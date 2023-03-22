@@ -1,0 +1,762 @@
+/*-
+ * #%L
+ * eTarget Maven Webapp
+ * %%
+ * Copyright (C) 2017 - 2021 digital ECMT
+ * %%
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ * #L%
+ */
+/** TARGET CSS **/
+* {
+	padding: 0;
+	margin: 0;
+	font-size: 14px;
+	color: #033b4a;
+}
+
+html {
+	/*background: #f6fcfc;*/
+	
+}
+
+body {
+	margin: 0;
+}
+
+h1 {
+	margin: 0 0 20px;
+	font-size: 1.5em;
+	border-bottom: 1px solid #999;
+	padding: 0 0 10px;
+}
+
+h2 {
+	margin: 20px 0 20px;
+	font-size: 1.3em;
+	border-bottom: 1px solid #999;
+	padding: 0 0 10px;
+}
+
+h3 {
+	margin: 10px 0;
+	font-size: 1.2em;
+	border-bottom: 1px solid #999;
+	padding: 0 0 5px;
+}
+
+h4 {
+	margin: 10px 0;
+	font-size: 1.1em;
+}
+
+p {
+	margin: 10px 0;
+}
+
+textarea {
+	padding: 2%;
+	line-height: 1.4;
+	width: 96%;
+	height: 13.5em;;
+}
+
+.linebreaks {
+	white-space: pre-line;
+}
+
+#header-title {
+	float: right;
+	color: #fff;
+	font-family: 'Josefin Sans', sans-serif;
+	font-weight: 300;
+	font-size: 1.8em;
+}
+
+#target-top-navigation {
+	background: #383838;
+	padding: 10px;
+}
+
+#target-top-navigation #list-link {
+	color: #fff;
+	text-decoration: none;
+	padding: 3px 7px;
+	border: 1px solid #fff;
+}
+
+#target-top-navigation #list-link:hover {
+	background: #2c2c2c;
+	cursor: pointer;
+}
+
+#target-top-navigation #search-link {
+	color: #fff;
+	text-decoration: none;
+	padding: 3px 7px;
+	border: 1px solid #fff;
+}
+
+#target-top-navigation #search-link:hover {
+	background: #2c2c2c;
+	cursor: pointer;
+}
+
+.page {
+	
+}
+
+#loggedin-user {
+	color: #fff;
+	margin: 0 0 0 5px;
+}
+
+#loggedin-user a {
+	color: #fff;
+}
+
+#patient-list, #system-status, #admin, #search, #genePanel {
+	padding: 5px;
+	margin: 5px;
+}
+
+/*
+table, th, td {
+   border: 1px solid #ccc;
+   border-collapse: collapse;
+}
+*/
+button {
+	cursor: pointer;
+	background: #fff;
+	color: #000;
+	padding: 3px;
+	border: 1px solid #bbb;
+	border-radius: 3px;
+}
+
+table {
+	width: 100%;
+	margin: 10px 0;
+	border-collapse: collapse; 
+	border-spacing: 0;
+}
+
+table th {
+	background: #0092b7;
+	font-weight: 400;
+	color: #fff;
+	padding: 5px;
+	text-align: left;
+}
+
+table th i {
+	font-size: 8px;
+	color: #fff;
+	position: relative;
+	top: 1px;
+}
+
+table th:first-child {
+	border-radius: 5px 0 0 0;
+}
+
+table th:last-child {
+	border-radius: 0 5px 0 0;
+}
+
+table td {
+	padding: 3px;
+	vertical-align: top;
+}
+
+table table {
+	margin: 0;
+}
+
+#patient-table-filter {
+	float: left;
+    display: block;
+    margin-bottom: 5px;
+}
+
+#patient-table-filter {
+	float: left;
+    display: block;
+    margin-bottom: 5px;
+}
+
+#patient-table-filter label{
+	font-size: 1.1em;
+	font-weight: bold;
+} 
+
+#patient-table {
+	padding: 10px 0 0;
+	border-collapse: collapse;
+}
+
+#patient-table th {
+	text-align: left;
+}
+
+#patient-table tr:hover {
+	background: #dcebee;
+	cursor: pointer;
+}
+
+tr[ng-repeat]:hover {
+	background: #dcebee;
+}
+
+#patient-details {
+	padding: 20px 5px;
+	border-bottom: 1px solid #ccc;
+}
+
+#patient-navigation {
+	float: right;
+}
+
+#patient-navigation i {
+	padding: 0 10px 0;
+	font-size: 1.3em;
+}
+
+#patient-details span {
+	padding: 0 10px 0;
+}
+
+#patient-details span {
+	font-size: 1.1em;
+}
+
+#detail-sidebar {
+	padding: 1%;
+	width: 13%;
+	font-size: 14px;
+	float: left;
+}
+
+#detail-sidebar ul li {
+	list-style-type: none;
+	/* padding-bottom: 10px; */
+	/* color: #3366FF; */
+	cursor: pointer;
+	/* text-decoration: underline; */
+	background: #eee;
+	margin: 0 0 10px;
+	padding: 7px 5px;
+	border-radius: 3px;
+	-webkit-transition: background 0.4s ease-in-out;
+	-moz-transition: background 0.4s ease-in-out;
+	-ms-transition: background 0.4s ease-in-out;
+	-o-transition: background 0.4s ease-in-out;
+	transition: background 0.4s ease-in-out;
+}
+
+#detail-sidebar ul li:hover {
+	background: #0092b7;
+	color: #fff;
+	-webkit-transition: background 0.4s ease-in-out;
+	-moz-transition: background 0.4s ease-in-out;
+	-ms-transition: background 0.4s ease-in-out;
+	-o-transition: background 0.4s ease-in-out;
+	transition: background 0.4s ease-in-out;
+}
+
+.detail-sidebar-selected {
+	background: #0092b7 !important;
+	color: #fff !important;
+}
+
+#detail-content {
+	padding: 1%;
+	width: 82%;
+	min-height: 50vh;
+	float: right;
+	border-left: 1px solid #ccc;
+}
+
+.detail-section {
+	background: #0092b7;
+	margin: 0 0 10px;
+}
+
+.detail-section a {
+	padding: 5px 10px;
+	display: inline-block;
+	color: #fff;
+}
+
+.outline {
+	padding: 5px;
+	border: 1px solid #ccc;
+}
+
+.green {
+	background: #61ff69;
+}
+
+.yellow {
+	background: #f7ff61;
+}
+
+.red {
+	background: #FF6961;
+}
+
+.blue {
+	background: #00EEEE;
+}
+
+.grey {
+	background: #92aaaf
+}
+
+#ctdna-legend {
+	border-top: 1px solid #ccc;
+}
+
+#ctdna-legend p {
+	
+}
+
+.not-specific-mutation-key, .high-confidence-key, .newly-selected-key {
+	display: inline-block;
+	width: 50px;
+	height: 10px;
+}
+
+#general-info {
+	font-size: 1.1em;
+	font-weight: 400;
+	padding: 0 0 5px;
+}
+
+.showhide {
+	font-size: 18px;
+}
+
+.relative {
+	position:relative;
+}
+
+.tooltiptext {
+	visibility: hidden;
+	background-color: #383838;
+	color: #fff;
+	text-align: center;
+	border-radius: 6px;
+	width: 200px; Date discussed padding : 5px;
+	/* Position the tooltip */
+	position: absolute;
+	z-index: 1;
+	white-space: normal !important;
+}
+
+.tooltiptext2 {
+	position: absolute;
+	right: 2px;
+    bottom: -15px;
+	z-index: 1;
+}
+
+
+.tooltip:hover .tooltiptext {
+	visibility: visible;
+	white-space: normal;
+}
+
+.tooltip:hover .tooltiptext span{
+	visibility: visible;
+	color: #fff;
+	white-space: normal !important;
+	display: table;
+	padding: 5px;
+}
+
+#meeting-outcome-buttons {
+	text-align: right;
+}
+
+#meeting-outcome-buttons button {
+	background-color: #383838;
+	color: #fff;
+	text-align: center;
+	border-radius: 5px;
+	width: 200px;
+	padding: 5px;
+	border: none;
+	cursor: pointer;
+}
+
+#meeting-outcome-buttons button:disabled {
+	cursor: default;
+	background: #999;
+	color: #333;
+}
+
+.pointer {
+	cursor: pointer;
+}
+
+#meeting-add {
+	background: #ccc;
+	border: 1px dashed #ccc;
+}
+
+#meeting-add input {
+	width: 98%;
+	padding: 2px;
+}
+
+#meeting-add select {
+	width: 98%;
+	height: 14.5em;
+	padding: 2%;
+}
+
+#meeting-list select {
+	width: 98%;
+	height: 14.5em;
+	padding: 2%;
+}
+
+#meeting-outcome-updated, #genepanel-saved {
+	background-color: #52D779;
+	color: #000;
+	padding: 5px;
+}
+
+#meeting-outcome-updated i,  #genepanel-saved i{
+	margin: 0 5px 0 0;
+}
+
+#meeting-list td {
+	vertical-align: top;
+}
+
+#meeting-list td span {
+	white-space: pre-line;
+}
+
+#pii-warning {
+	border: 1px solid #FF6961;
+	padding: 5px;
+}
+
+.baseline-active {
+	background: #333;
+}
+
+#significant-mutations {
+	
+}
+
+#footer {
+	clear: both;
+	border-top: 1px solid #ccc;
+	padding: 20px 0;
+	margin: 10px 0;
+	opacity: 0.7;
+}
+
+#footer nav {
+	width: auto;
+	margin: 0 auto;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+#footer nav a {
+	text-decoration: none;
+	border: none;
+}
+
+#footer nav a img {
+	height: 50px;
+	margin-left: 5px;
+}
+
+#notice-overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 100vh;
+	width: 100vw;
+	background: #000;
+	opacity: 0.7;
+	z-index: 999;
+}
+
+#notice {
+	background: #fff;
+	border: 10px solid #ff0000;
+	z-index: 1000;
+	padding: 10px;
+	position: fixed;
+	top: 100px;
+	left: 50%;
+	margin-left: -300px;
+	width: 600px;
+}
+
+#notice button {
+	padding: 10px;
+	font-weight: bold;
+	margin: 0 auto;
+	width: 100px;
+	text-align: center;
+	display: block;
+	cursor: pointer;
+}
+
+#support-email {
+	text-align: center;
+}
+
+#result_column {
+	min-width: 200px;
+}
+
+#search #clearsearch {
+	padding-bottom: 5px;
+	padding-top: 5px;
+    padding-right: 5px;
+    float: right;
+}
+
+#search #diseasesearch {
+	float: left;
+}
+
+#search #inputDiv {
+	overflow: auto;
+	margin-bottom: 10px;
+}
+
+#search .searchInput {
+	width: 350px;
+	float: left;
+}
+
+#search .searchInput2 {
+	width: 400px;
+	float: left;
+	padding-left: 10px;
+	position: relative;
+}
+
+#search .searchInput2 input {
+	width: 5%;
+    position: absolute;
+    bottom: 2px;
+}
+
+#search .searchInput2 label {
+	width: 90%;
+}
+
+#search .searchInput label {
+	width: 100%;
+	float: left;
+	text-align: right;
+	margin-right: 5px;
+}
+
+#search .searchInput input {
+	width: 180px;
+}
+
+#search .searchResults {
+	width: 100%;
+}
+
+#search .targetIDs {
+	padding-right: 3px;
+}
+
+#search .searchTab {
+	background-color: #fff;
+	color: #033b4a;
+	text-align: center;
+	border-radius: 0px;
+	width: 100px;
+	padding: 5px;
+	border: none;
+	cursor: pointer;
+}
+
+#search li.active {
+	background: #0092b7 !important;
+	color: #fff !important;
+}
+
+#search_waring {
+	padding: 10px;
+	display: block;
+	font-weight: bold;
+}
+
+#summery-table tr:hover {
+	background: #dcebee;
+}
+
+.greybackground {
+	background: #eee;
+}
+
+.icon-right {
+	text-align: right;
+    float: right;
+    cursor: pointer;
+    margin-left: 5px;
+    height: 12px;
+}
+
+#editLockMessage {
+	font-size: 1.1em;
+	font-style: italic;
+}
+
+.fm_headline {
+	margin-top: 1.5em;
+}
+
+@media print {
+	body * {
+		visibility: hidden;
+	}
+	.page {
+		display: none;
+	}
+	#section-to-print, #section-to-print * {
+		visibility: visible;
+	}
+	#section-to-print {
+		position: absolute;
+		left: 0;
+		top: 0;
+	}
+	* {
+		color: #000 !important;
+	}
+	th, td, tr {
+		border-radius: 0 !important;
+		border-collapse: collapse;
+	}
+	table {
+		page-break-inside: avoid;
+	}
+}
+
+@media screen {
+	#section-to-print {
+		visibility: hidden;
+		display: none;
+	}
+}
+
+.genepanel_input {
+	display: block;
+}
+
+.genepanel_input div {
+	display: inline-flex;
+}
+
+.genepanel_input div span {
+	font-size: 1.1em;
+    font-weight: bold;
+    padding: 10px;
+}
+
+.genepanel_input div button {
+	margin-left: 10px;
+}
+
+.genepanel_input_div {
+	width: 150px;
+}
+
+#genePanel-base-input {
+	width: 225px;
+}
+
+#addgenepanel-save {
+	max-width: 600px;
+}
+
+#addgenepanel-table {
+	max-width: 600px;
+}
+
+#addgenepanle-save-button {
+	float: right;
+}
+
+.redtext {
+	color: darkred;
+}
+
+.fa-file-pdf-o {
+	font-size: 1.5em;
+}
+
+.tumour_overview_c1 {
+	width: 150px;
+}
+
+#ihc_type {
+	width: 100px;
+}
+
+#ihc_area, #ihc_intratumoural, #ihc_intrastromal {
+	width: 166px;
+}
+
+#ihc_table_header, #ihc_pld_header {
+	text-align: center;
+}
+
+#ihc_cd_table, #ihc_pdl_table{
+	width: 600px;
+}
+
+.ihc_pld_column {
+	width: 150px;
+}
+
+#gene_panel_div {
+	min-width: 620px;
+	float: left;
+}
+#gene_panel_list_div {
+	float: left;
+}
+
+.first_column {
+	padding-right: 10px;
+}
+
+.trailfinder_highlight {
+	font-size: 1.2em;
+}

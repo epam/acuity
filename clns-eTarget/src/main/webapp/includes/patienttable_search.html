@@ -1,0 +1,216 @@
+<!--
+  #%L
+  eTarget Maven Webapp
+  %%
+  Copyright (C) 2017 - 2021 digital ECMT
+  %%
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to deal
+  in the Software without restriction, including without limitation the rights
+  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+  
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+  
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+  THE SOFTWARE.
+  #L%
+  -->
+<div>
+	<!-- Sidebar -->
+    <div id="detail-sidebar">
+    <ul>
+        <li ng-class="{active: isSearchTabSet(1)}" ng-click="setSearchTab(1);$parent.clearSearch();geneModel='';geneModel1='';diseaseModel='';">Disease</li>
+        <li ng-class="{active: isSearchTabSet(2)}" ng-click="setSearchTab(2);$parent.clearSearch();geneModel='';geneModel1='';diseaseModel='';">Gene</li>
+        <li id="pdx_menu" ng-class="{active: isSearchTabSet(3)}" ng-click="setSearchTab(3);$parent.clearSearch();geneModel='';geneModel1='';diseaseModel='';">PDX/CDX</li>
+    </ul>
+    </div>
+	<!-- Content section -->
+    <div id="detail-content">
+<<<<<<< HEAD
+    <div id="search_waring">
+		<i>Please note that the search is limited to only those patients who have 1) been uploaded to eTARGET, which commenced in October 2017, and 2) have at least one mutation.</i>
+	</div>
+=======
+>>>>>>> open_source
+    <div ng-show="isSearchTabSet(1)">
+    <div>
+	<div id="inputDiv">
+		<div class="searchInput" id=diseasesearch>
+			<label>Disease Type: <input type="text" class="search form-control"
+				ng-model="diseaseModel" 
+				ng-keypress="geneModel='';"
+				uib-typeahead="conditionName for conditionName in $parent.searchableConditions |
+			filter:$viewValue"
+				typeahead-select-on-exact="true"
+				typeahead-on-select="getConditionsSearch($item);diseaseModel=$label;geneModel='';" /></label>
+		</div>
+		<div class="searchInput" id=genesearch ng-show="false">
+			<label>Gene Name: <input type="text" class="form-control search" ng-model="geneModel"
+				uib-typeahead="geneName as patient.geneName for patient in $parent.allPatientsSearch | 
+			searchDisease:diseaseModel:$parent.search.disease |
+			unique:'geneName' | 
+			orderBy:'geneName' | 
+			filter:{geneName:$viewValue}"
+				typeahead-select-on-exact="true"
+				typeahead-on-select="onSelectGene($label);geneModel=$label;" /></label>
+		</div>
+		<div class="searchInput2" ng_show="false">
+			<label>Include Variants of Unknown Significance (VUS): 
+			<input type="checkbox" ng-model="$parent.search.unknownSig" 
+			ng-init="$parent.search.unknownSig='false'" ng-change="$parent.onSelectGene(geneModel)"/> </label>
+		</div>
+	</div>
+	</div>
+	<div id="resultsTable" class="searchResults" ng-show="$parent.search.disease!='' && $parent.search.disease===diseaseModel">
+		<h3>Patient Count by Gene</h3>
+		<table id="summery-table">
+			<thead>
+				<tr>
+					<th width="15%">Gene Name</th>
+					<th width="10%">Patient Count</th>
+					<th>Patient IDs</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="diseaseFiltered in $parent.search.diseaseList | searchGene:geneModel:$parent.search.gene:$parent.search.unknownSig | orderBy:['-patientIDs.length','geneName','targetID']"
+					class="row-border hover">
+					<td ng-click="$parent.search.gene=diseaseFiltered.geneName; $parent.geneModel=diseaseFiltered.geneName;" class="pointer">{{diseaseFiltered.geneName}}</td>
+					<td>{{diseaseFiltered.patientIDs.length}}</td>
+					<td><span class="targetIDs pointer"
+						ng-repeat="patient in diseaseFiltered.patientIDs | orderBy:'targetID'"
+						ng-click="$parent.showPage('detail', patient.personID)">{{patient.targetID}}<br /></span>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div  ng-show="$parent.search.gene!='' || ($parent.search.disease!='' && $parent.search.disease===diseaseModel)">
+		<h3>Details</h3>
+		<table id="patient-table">
+			<thead>
+				<tr>
+					<th width="15%">Disease Type</th>
+					<th width="10%">Gene Name</th>
+					<th width="10%">Patient ID</th>
+					<th width="15%">Result</th>
+					<th>VUS</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr
+					ng-repeat="patient in $parent.allPatientsSearch | searchDisease:diseaseModel:$parent.search.disease:$parent.search.unknownSig | 
+				searchGene:geneModel:$parent.search.gene:$parent.search.disease:$parent.search.unknownSig | orderBy:['conditionSubtype','geneName','targetID'] track by $index"
+					ng-click="$parent.showPage('detail', patient.personID);"
+					class="row-border hover">
+					<td>{{patient.conditionSubtype}}<span ng-show="patient.conditionSubtype==null">{{patient.conditionName}}</span></td>
+					<td>{{patient.geneName}}</td>
+					<td>{{patient.targetID}}</td>
+					<td ng-bind-html="trustAsHtml(patient.result)"></td>
+					<td><span ng-show="patient.unknownSignificant=='true'"><i class="fa fa-check" aria-hidden="true"></i></span></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	</div>
+	<div ng-show="isSearchTabSet(2)">
+		<div>
+		<div id="inputDiv">
+		<div class="searchInput" id=genesearch>
+			<label>Gene Name: <input type="text" class="form-control search" ng-model="geneModel1"
+				uib-typeahead="geneName as genes.geneName for genes in $parent.searchableGenes | 
+			unknownSig: $parent.search.unknownSig |
+			orderBy:'geneName' | 
+			filter:$viewValue"
+				typeahead-select-on-exact="true"
+				typeahead-on-select="getGenesSearch($item.geneName);geneModel1=$label;" /></label>
+		</div>
+		<div class="searchInput2" ng-show="false">
+			<label>Include Variants of Unknown Significance (VUS): 
+			<input type="checkbox" ng-model="$parent.search.unknownSig" 
+			ng-init="$parent.search.unknownSig='false'" ng-change="$parent.onSelectGene(geneModel1)"/> </label>
+		</div>
+
+		</div>
+		</div>
+		<div id="results_table_gene" ng-show="$parent.search.gene!='' && $parent.search.gene===geneModel1 && ($parent.search.geneList.patientIDs | unique:'type').length">
+		<h3>Patient Count</h3>
+		<table id="summery-table">
+			<thead>
+				<tr>
+					<th width="15%">Patient Count</th>
+					<th width="15%">Type</th>
+					<th>Patient IDs</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="types in $parent.search.geneList.patientIDs | unique:'type'"
+					class="row-border hover">
+					<td> {{($parent.search.geneList.patientIDs|filter:types.type).length}}</td>
+					<td>{{types.type}}</td>
+					<td><span class="targetIDs pointer"
+						ng-repeat="patient in $parent.search.geneList.patientIDs | filter:types.type | orderBy:'targetID'"
+						ng-click="$parent.showPage('detail', patient.personID)">{{patient.targetID}}<br /></span>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+		
+		<div  ng-show="$parent.search.gene!=''  && $parent.search.gene===geneModel1 && ($parent.search.geneList.patientIDs | unique:'type').length">
+		<h3>Details</h3>
+		<table id="patient-table">
+			<thead>
+				<tr>
+					<th width="15%">Disease Type</th>
+					<th width="10%">Patient ID</th>
+					<th width="15%">Variant in Selected Gene</th>
+					<th>VUS</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr
+					ng-repeat="patient in $parent.allPatientsSearch | 		
+				searchGene:geneModel1:$parent.search.gene:$parent.search.unknownSig | 
+				unique3:'conditionName':'targetID':'result' |
+			    orderBy:['conditionSubtype','targetID'] track by $index" 
+					ng-click="$parent.showPage('detail', patient.personID);"
+					class="row-border hover">
+					<td>{{patient.conditionSubtype}}<span ng-show="patient.conditionSubtype==null">{{patient.conditionName}}</td>
+					<td>{{patient.targetID}}</td>
+					<td ng-bind-html="trustAsHtml(patient.result)"></td>
+					<td><span ng-show="patient.unknownSignificant=='true'"><i class="fa fa-<c:if test = "${pdxcdx =='true'}">
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	</div>
+	<div ng-show="isSearchTabSet(3)">
+		<h3>CDX/PDX patients</h3>
+		<table id="summery-table">
+			<thead>
+				<tr>
+					<th width="15%">Patient ID</th>
+					<th>CDX/PDX</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td ng-if="$parent.search.pdxcdxList.length == 0">None</td>
+				</tr>
+				<tr ng-repeat="pdxcdx in $parent.search.pdxcdxList | unique : 'targetID' | orderBy:'targetID'">
+					<td class="targetIDs pointer" ng-click="$parent.showPage('detail', pdxcdx.personID)">{{pdxcdx.targetID}}</td>
+					<td><span ng-repeat="type in $parent.search.pdxcdxList | filter:{targetID:pdxcdx.targetID}">{{type.pdxcdx}} </span></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	</div>
+</div>

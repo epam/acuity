@@ -1,0 +1,10 @@
+target
+.idea
+*.iml
+sdtm_specs
+logs
+out
+.gradle/
+build/
+src/main/groovy/
+src/test/groovy/

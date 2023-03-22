@@ -1,0 +1,9 @@
+STUDY,PART,SUBJECT,VISIT,VISIT_DATE,NEW_LESION_SINCE_BASELINE,NEW_LESION_SITE,NEW_LESION_SCAN_DATE,RECIST_RESPONSE,INV_AGREES_REC_RESPONSE,INV_OPIN_PATIENT_STATUS,REASON_INV_RECIST_DIFFER
+Testing_1,A,T1_0001,1,01/05/2020,No,,,Partial Response,Yes,,
+Testing_1,A,T1_0001,2,02/05/2020,Yes,Local Lymph Nodes,09/05/2020,Progressive Disease,No,Stable,Due to subjects physical state
+Testing_1,A,T1_0002,1,02/15/2020,No,,,Progressive Disease,Yes,,
+Testing_1,A,T1_0002,2,03/15/2020,No,,,Partial Response,No,Stable,Due to subjects physical state
+Testing_1,A,T1_0003,1,07/05/2020,No,,,Stable Disease (Non-CR/Non-PD),Yes,,
+Testing_1,A,T1_0003,2,08/05/2020,No,,,Stable Disease (Non-CR/Non-PD),No,Responding,Due to subjects physical state
+Testing_1,A,T1_0005,1,08/02/2020,No,,,Progressive Disease,Yes,,
+Testing_1,A,T1_0005,2,09/02/2020,Yes,Breast,01/25/2021,Progressive Disease,No,Stable,Due to subjects physical state

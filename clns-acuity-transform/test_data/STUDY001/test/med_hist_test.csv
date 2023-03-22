@@ -1,0 +1,5 @@
+STUDY,PART,SUBJECT,MEDICATION,MEDICATION_GROUP,STATUS,START,END,LLTNAME,PT_TERM,HLT_TERM,SOC_TERM,CURRENT_MEDICATION
+,,E12345,Cardiovascular,Hypertension,,01/01/2014,,Hypertension,Hypertension,Vascular hypertensive disorders NEC,Vascular disorders,2
+,,E12345,Allergy / Immunology,Allergy to adhesive,X,04/01/2014,,Allergy,Hypersensitivity,Allergic conditions NEC,Immune system disorders,1
+,,E12345,Respiratory,Recurrent lower respiratory tract infections,,01/01/2017,05/01/2017,Lower respiratory tract infection,Lower respiratory tract infection,Lower respiratory tract and lung infections,Infections and infestations,1
+,,E23456,Musculoskeletal,Osteoporosis,X,01/01/2010,,Osteoporosis,Osteoporosis,Metabolic bone disorders,Musculoskeletal and connective tissue disorders,2

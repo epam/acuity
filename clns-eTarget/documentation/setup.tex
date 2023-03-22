@@ -1,0 +1,212 @@
+\section{First set up}
+\subsection{Virtual Machine}
+This section assumes a Azure Administrator has created a barebone Linux VM. The only task for the VM is to run a python script in regular
+intervals (every minute). The set up consists of installing all required Python libraries, setting up the configuration file, and creating a 
+cron job for the regular runs.
+
+\subsubsection{Setup SSH access to VM}
+SSH access to the VM is required firstly to set it up, but also to keep the VM updated. Steps:
+\begin{enumerate}
+  \item Log into Azure
+  \item Find the VM in 'Resource Groups' or 'Virtual Machines'
+  \item In the section for 'Support and Troubleshooting' select 'Reset Password'
+  \item Choose 'Reset SSH public key'
+  \item Choose a user name and copy your public key into 'SSH public key' field.
+\end{enumerate}
+For ease of use I have set up an alias in .bash\_aliases with the IP address of the VM found on the Azure portal.
+
+To gain root access on the VM do \verb|sudo bash|.
+
+It is advisable to run an update of the operating system before continuing to install new software.
+
+The service VMs are set up, so that you need to open the firewall for certain time before you can ssh into them.
+In the Security Centre of the Azure Portal you find the 'Advanced Cloud Defense' with an item 'Just in time VM access'. 
+Find your VM in there, tick the checkbox and click the button 'Request access'; select port 22 and click 'Open ports'.
+A short time late you'll gain access.
+
+\subsubsection{Create a service account for running python}
+\label{sec:useraccout}
+
+Idealy you want an service account (\verb|useradd -r commander|) for the user running the python script in a cron job. But this was not done on any of our environments and
+for consistency reasons we go for a normal user account which can't be used for login.
+\begin{verbatim}
+useradd commander
+usermod -L commander
+\end{verbatim}
+This means the user still got a home directory \verb|/home/comander| and an associated shell (\verb|/bin/bash|).
+
+\subsubsection{Install Python libraries}
+
+Install python libraries as the user who should run them, i.e. commander. That means only this user can execute those libraries.
+\begin{verbatim}
+pip3 install 'azure-storage-blob==1.1.0'
+pip3 install 'azure-storage-file==1.1.0'
+pip3 install pymssql
+#pip install crypto
+pip3 install pycryptodome
+pip3 install 'openpyxl==2.6.4'
+pip3 install pycel
+pip3 install ftpretty
+pip3 install zlib
+pip3 install jsonschema
+
+yum install zlib-devel
+\end{verbatim}
+
+As an admin install
+
+\verb|apt-get install python3-crypto|
+
+\subsubsection{Configure python script}
+
+The python script requires a \verb|.config| file for its configuration. This file is not part of the git repository as it contains sensitive information.
+The basic structure is:
+\verb|key; value|.
+
+For the list of keys see Table~\ref{tab:table1}.
+
+\begin{table}[ht!]
+  \setlength\extrarowheight{2pt}
+  \begin{center}
+    \caption{Table of required keys for the configuration}
+    \label{tab:table1}
+    \begin{tabularx}{\textwidth}{|l|L|L|} % <-- Alignments: 1st column left, 2nd middle and 3rd right, with vertical lines in between
+      \hline
+      \textbf{Key} & \textbf{Description} & \textbf{Where to find}\\
+      \hline
+      remotehostname & DNS name of database server & Azure portal; SQL database; Overview; Server name\\
+      remoteusername & User name to access the DB & Azure portal; DECMT\_DEV\_eTarget resourcegroup; eTargetVault; Secrets; find the right db \\
+      remotepassword & password to remoteusername & Azure portal; DECMT\_DEV\_eTarget resourcegroup; eTargetVault; Secrets; find the right db \\
+      remotedbname & Name of the database & Azure portal; SQL database; SQL databases\\
+      fileuser & Username for storage where users upload data files to (i.e. the data directory) & Azure portal; Storage account; Settings; Access keys; storage account name\\
+      filekey & Access key for that storage account & Azure portal; Storage account; Settings; Access keys; key1 or key2 key\\
+	  patientkey & Is used to encrypt and decrypt the Christie patient number & Azure portal; DECMT\_DEV\_eTarget resource group; eTargetVault; Secrets; Encryption Key\\
+      storageurl & Connection string to the storage account & Azure portal; Storage Account; Settings; Access keys; use connection string\\
+      containername & Name directory in blob usually 'reports' & will be created
+      if not existent\\
+      logblob & Name of the blob container for log files & create with the file explorer or in the Azure portal\\
+      \hline
+    \end{tabularx}
+  \end{center}
+\end{table}
+
+\subsubsection{Setup cron job for python script}
+
+The python script should run as the user created in section \ref{sec:useraccout}.
+\begin{verbatim}
+sudo bash
+su commander
+crontab -e
+\end{verbatim}
+Add the line (adapt to the correct location):
+
+\verb|*/1 * * * * bash /home/commander/target-data/run.sh /dev/null 2>&1|
+
+and save. This runs the run.sh script every minute. The script itself makes sure it is not running more than once, i.e. if the ingestion takes longer than a minute.
+
+\subsection{Database}
+There is currently no SQL script for setting up an empty eTarget database. Therefore you currently have to copy an existing eTarget database 
+(from the Dev or Test environment) to the new Database Service and clean out the existing data. 
+
+\subsection{Storage}
+Create a file share \verb|data| on Azure portal or via a Storage Explorer.
+
+Create a blob share \verb|log| on Azure portal or via a Storage Explorer.
+
+\subsection{Application}
+
+Please read the sections \ref{sec:build}, \ref{sec:deploy}.
+
+For a new environment add a server section as described in \ref{sec:build}.
+
+In \verb|pom.xml| create a new profile section. See table~\ref{tab:table2} for explainations of the \verb|<properties>|.
+
+\begin{table}[ht!]
+  \setlength\extrarowheight{2pt}
+  \begin{center}
+    \caption{Table of required properties in pom.xml \textless profile\textgreater ~section}
+    \label{tab:table2}
+    \begin{tabularx}{\textwidth}{|l|L|L|} % <-- Alignments: 1st column left, 2nd middle and 3rd right, with vertical lines in between
+      \hline
+      \textbf{property} & \textbf{Description} & \textbf{Where to find}\\
+      \hline
+	  serverid & given id in .m2/settings.xml & see that file\\
+	  postfix & name of the war file is \verb|etarget|+postfix\verb|.war| & set here\\
+	  azureFtpUrl & in case the deploy to the azure environment happens via sftp (wagon plug-in), this is the URL used & Azure portal; App service; Overview; FTP hostname + /sites/wwwroot\\
+	  webapp.include.path & where to find the include directory on the web server; note: this changes between Windows and Linux hosts & Azure portal; App service; Advanced Tools/SSH; than look for location\\
+	  databaseURL & JDBC url for connecting with the DB & \makecell[l]{\verb|jdbc:jtds:sqlserver://| \\ + Server name + \verb|/| \\ + db name;  Server name \\ and db name can be \\ found in Azure portal; \\ SQL database; Overview}\\
+	  dbuser & User name which the web-app should use & Azure portal; DECMT\_DEV\_eTarget resourcegroup; eTargetVault; Secrets; find the right db\\
+	  dbpassword & Password for dbuser & Azure portal; DECMT\_DEV\_eTarget resourcegroup; eTargetVault; Secrets; find the right db\\
+	  storageURL & Location of PDF files & Azure portal; Storage account; Access key; Connection string\\
+	  \makecell[l]{RESOURCE \\ GROUP\_NAME} & Info about your Azure subscription; used for azure maven deploy & az webapp list\\
+	  WEBAPP\_NAME & Name for this webapp in Azure; used for azure maven deploy & az webapp list\\
+	  REGION & Region in which the webapp is deployed; used for for azure maven deploy & az webapp list\\
+	  web.path & Path to the web app on the server; if on root use \textbackslash & your choice\\
+      \hline
+    \end{tabularx}
+  \end{center}
+\end{table}
+
+\subsubsection{Configurations}
+
+Configurations are split into three config files:
+\begin{enumerate}
+  \item application.properties -- contains application relevant settings
+  	\begin{enumerate}
+  	  \item \verb|edit.timeout| setting of the edit timeout in minutes; after that number of minutes an edit-locked patient will be released. 
+  	  \item \verb|application.version| sets ver version string for the browser tab name; value taken from \verb|pom.xml|.
+  	  \item \verb|application.title| Name of the application as shown on the browser tab
+  	  \item \verb|application.imageURL| Footer image URLs, comma separated, either relative URLs into the eTarget application or absolute URLs to other web resources
+  	  \item \verb|application.imageAlt| Alternative text for imates, displayed for screen readers or when images fail to laod
+  	  \item \verb|application.support| Email address on site to request help
+  	  \item \verb|data.blood| whether blood data is available
+  	  \item \verb|data.tumour| whether tumour data is available
+  	  \item \verb|page.additional_reports| display additional reports tab
+  	  \item \verb|page.ihc| display IHC tab
+  	  \item \verb|page.fmblood| display FM Bloods tab (the FM data source needs to be set-up in the \verb|CONCEPT_DATASOURCES| column \verb|panel_name| with the name `foundationmedicine')
+  	  \item |verb|page.fmtumour| display FM Tumour tab (the FM data source needs to be set-up in the \verb|CONCEPT_DATASOURCES| column \verb|panel_name| with the name `foundationmedicine')
+  	  \item \verb|page.tumourngs| display Tumour NGS tab
+  	  \item \verb|page.ctdnangs| display CtDNA NGS tab
+  	  \item \verb|page.ctdnaexploratory| display CtDNA Exploratory tab
+  	  \item \verb|page.pdxcdx| display PDX CDX tab
+  	  \item \verb|page.name| comma separated list of providers as found in the eTarget database table \verb|CONCEPT_DATASOURCES| column \verb|panel_name|. 
+  	  Note these are the generic providers, FM Tumour and  ctDNA providers are not configures this way, just turned on with the boolean above.
+  	  \item \verb|page.name.[name1]| name which should be displayed for this provider
+  	  \item \verb|page.name.[name1].blood| whether blood tab should be displayed
+  	  \item \verb|page.name.[name1].tumour| whether tumour tab should be displayed
+  	  \item \verb|page.name.[name1].code| two letter code which will be used for this provider in reports 
+	\end{enumerate}
+  \item config.properties -- contains connection settings
+    \begin{enumerate}
+      \item \verb|serverid| Maven setting in \verb|.m2/settings.xml| which contains the login data (username + password) the server
+      \item \verb|azureFtpUrl| The URL to use in case deployment is done using FTP (caused problems and generally moved to azure maven deploy)
+      \item \verb|toWarFile| The location for which the war file is to be build; needs to match where to deploy in Apache
+  	  \item \verb|databaseURL| URL to the database; value taken from \verb|pom.xml|. 
+  	  \item \verb|dbuser| user name for the database; taken from \verb|pom.xml|.
+  	  \item \verb|dbpassword| password for dbuser; taken from \verb|pom.xml|.
+  	  \item \verb|storageURL| URL to Azure blob storage (location of the PDFs); taken from \verb|pom.xml|.
+  	  \item \verb|storageContainerName| Name of the blob 'folder' for reports (PDFs)
+  	  \item \verb|trialContainerName| Name of the blob 'folder' for trial HTML documents (generated from the trail finder)
+  	  \item \verb|webapp.include.path| location of the include folder on the web server; taken from \verb|pom.xml|.
+  	  \item \verb|RESOURCEGROUP_NAME| Name of the Azure resource group for Maven Azure deploy; taken from Azure portal
+  	  \item \verb|WEBAPP_NAME| Name of the Azure web application; taken from Azure portal
+  	  \item \verb|REGION| Name of the deploy region; note: do not take from the Azure portal, required is the short name \verb|az| client provides, the one without spaces and catital letters.
+  	  \item \verb|PRICING| Pricing of the web application; taken from the Azure portal
+  	  \item \verb|SUBSCRIPTION_ID| Id of the subscription; taken from the Azure portal
+  	  \item \verb|web.path| location of where it should be deployed
+	\end{enumerate}
+  \item logging.properties -- standard logging properties file; set logging levels
+\end{enumerate}
+
+\subsection{Active Directory}
+
+Authentication is done using Microsoft's Active Directory service. This needs to be configured on the Azure portal. This part is best done by the administrator of Azure.
+
+Enable Authentication: Azure Portal: go to the correct App Service; Authentication/Authorization; switch on 'App Service Authentication'.\\ 
+Use Azure Active Directory: 'Action to take when request is not authenticated': 'Log in with Azure Active Directory'.\\
+'Authentication Providers': configure Azure Active Directory. Management Mode:
+Advanced. \\
+
+Client ID: Copy from Azure portal; Azure Active Directory; App registration; Application ID\\
+Issuer URL: \verb|https://sts.windows.net/|+ Azure portal; Azure Active Directory;  Properties; Directory ID\\
+ 

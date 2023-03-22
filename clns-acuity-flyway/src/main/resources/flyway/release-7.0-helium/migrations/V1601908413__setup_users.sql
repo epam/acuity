@@ -1,0 +1,50 @@
+DO
+$do$
+BEGIN
+   IF NOT EXISTS (
+      SELECT FROM pg_catalog.pg_roles
+      WHERE rolname = 'acuity') THEN
+      CREATE USER acuity PASSWORD '${user.acuity.password}';
+   END IF;
+END
+$do$;
+
+ALTER ROLE acuity SET search_path TO acuity;
+
+GRANT CONNECT ON DATABASE acuity_db TO acuity;
+
+
+GRANT USAGE ON SCHEMA acuity TO acuity;
+
+ALTER DEFAULT PRIVILEGES
+IN SCHEMA acuity
+GRANT SELECT, INSERT, UPDATE, DELETE ON TABLES TO acuity;
+
+ALTER DEFAULT PRIVILEGES
+IN SCHEMA acuity
+GRANT USAGE, SELECT ON SEQUENCES TO acuity;
+
+
+GRANT USAGE ON SCHEMA maintenance_tasks TO acuity;
+
+ALTER DEFAULT PRIVILEGES
+IN SCHEMA maintenance_tasks
+GRANT SELECT, INSERT, UPDATE, DELETE ON TABLES TO acuity;
+
+ALTER DEFAULT PRIVILEGES
+IN SCHEMA maintenance_tasks
+GRANT USAGE, SELECT ON SEQUENCES TO acuity;
+
+
+GRANT USAGE ON SCHEMA acuity_utils TO acuity;
+
+ALTER DEFAULT PRIVILEGES
+IN SCHEMA acuity_utils
+GRANT SELECT, INSERT, UPDATE, DELETE ON TABLES TO acuity;
+
+ALTER DEFAULT PRIVILEGES
+IN SCHEMA acuity_utils
+GRANT USAGE, SELECT ON SEQUENCES TO acuity;
+
+
+ALTER ROLE dbadmin SET search_path TO acuity;

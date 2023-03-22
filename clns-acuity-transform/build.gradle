@@ -1,0 +1,86 @@
+buildscript {
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.4.3.RELEASE")
+    }
+    repositories {
+        mavenCentral()
+    }
+}
+apply plugin: 'maven'
+apply plugin: 'groovy'
+apply plugin: 'org.springframework.boot'
+
+group = 'com.acuity.sdtm'
+version = '9.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+springBoot {
+    mainClass = 'com.acuity.sdtm.transform.Application'
+}
+
+bootRun {
+    systemProperties System.properties
+}
+
+test {
+    systemProperties System.properties
+}
+
+repositories {
+    mavenCentral()
+}
+
+sourceSets {
+    main {
+        groovy { srcDir "src/main/java" }
+        java { srcDirs = [] }
+    }
+    test {
+        groovy { srcDirs "src/test/java" }
+        java { srcDirs = [] }
+    }
+}
+ext {
+    springVersion = "4.3.1.RELEASE"
+    mongodbVersion = "3.4.2"
+}
+
+dependencies {
+    compile "com.epam:parso:2.0.7"
+    compile "com.opencsv:opencsv:3.8"
+    compile "org.mongodb:mongo-java-driver:$mongodbVersion"
+    compile "commons-cli:commons-cli:1.3"
+
+    compile ('org.springframework.boot:spring-boot-starter-web') {
+        exclude module: "spring-boot-starter-tomcat"
+    }
+
+    compile "org.springframework:spring-context-support:$springVersion"
+
+    compileOnly "org.projectlombok:lombok:1.16.12"
+    compile "javax.mail:mail:1.4.7"
+    compile "org.codehaus.groovy:groovy:2.4.6:indy"
+    compile("ch.qos.logback:logback-classic:1.1.7") {
+        exclude(group: 'org.slf4j')
+    }
+    compile "org.slf4j:slf4j-api:1.7.22"
+    testCompile("org.springframework.boot:spring-boot-starter-test")
+    testCompile "junit:junit:4.12"
+    testCompile "org.assertj:assertj-core:3.0.0"
+    testCompile "org.mockito:mockito-all:1.10.19"
+    testCompile "pl.pragmatists:JUnitParams:1.0.5"
+
+    compile("jcifs:jcifs:1.3.17") {
+        exclude(group: 'javax.servlet', module: 'servlet-api')
+    }
+    compile("org.codehaus.groovy:groovy-eclipse-compiler:2.9.2-01") {
+        exclude(group: 'org.slf4j')
+    }
+    compile "org.codehaus.groovy:groovy-eclipse-batch:2.4.3-01"
+    compile group: 'com.microsoft.azure', name: 'azure-storage', version: '5.3.1'
+    testCompile group: "de.flapdoodle.embed", name: "de.flapdoodle.embed.mongo", version: "2.0.0"
+    testCompile group: 'cz.jirutka.spring', name: 'embedmongo-spring', version: '1.1'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-mongodb', version: '1.2.5.RELEASE'
+}

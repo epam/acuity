@@ -1,0 +1,115 @@
+<!--
+  #%L
+  eTarget Maven Webapp
+  %%
+  Copyright (C) 2017 - 2021 digital ECMT
+  %%
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to deal
+  in the Software without restriction, including without limitation the rights
+  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+  
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+  
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+  THE SOFTWARE.
+  #L%
+  -->
+<div id="patient-table-filter">
+	<label>Patient ID: <input type="text" class="form-control" ng-model="targetIDFilter" /></label>
+	<label>Site: <input type="text" class="form-control" ng-model="siteFilter" /></label>
+</div>
+<table id="patient-table">
+	<thead>
+		<tr>
+		    <th style="width:50px" ng-show="$parent.allPatients[0].delete!=null">Delete Patient</th>
+			<th
+				ng-click="definePatientOrder('targetID')">Patient
+				ID <span ng-show="patientView.orderByField == 'targetID'"> <i
+					ng-show="patientView.order==1" class="fa fa-sort-asc"
+					aria-hidden="true"></i> <i ng-show="patientView.order==2"
+					class="fa fa-sort-desc" aria-hidden="true"></i>
+			</span><i ng-show="patientView.order==0" class="fa fa-sort" aria-hidden="true"></i>
+			</th>
+			<th
+				ng-click="definePatientOrder('careSite')">Site <span ng-show="patientView.orderByField == 'careSite'"> <i
+					ng-show="patientView.order==1" class="fa fa-sort-asc"
+					aria-hidden="true"></i> <i ng-show="patientView.order==2"
+					class="fa fa-sort-desc" aria-hidden="true"></i>
+			</span><i ng-show="patientView.order==0" class="fa fa-sort" aria-hidden="true"></i>
+			</th>
+			<th
+				ng-click="definePatientOrder('consentDate')">Consent
+				Date <span ng-show="patientView.orderByField == 'consentDate'">
+					<i ng-show="patientView.order==1" class="fa fa-sort-asc"
+					aria-hidden="true"></i> <i ng-show="patientView.order==2"
+					class="fa fa-sort-desc" aria-hidden="true"></i>
+			</span><i ng-show="patientView.order==0" class="fa fa-sort" aria-hidden="true"></i>
+			</th>
+			<th
+				ng-click="definePatientOrder('conditionName')">Disease
+				Type <span ng-show="patientView.orderByField == 'conditionName'">
+					<i ng-show="patientView.order==1" class="fa fa-sort-asc"
+					aria-hidden="true"></i> <i ng-show="patientView.order==2"
+					class="fa fa-sort-desc" aria-hidden="true"></i>
+			</span><i ng-show="patientView.order==0" class="fa fa-sort" aria-hidden="true"></i>
+			</th>
+			<th
+				ng-click="definePatientOrder('consultantName')">Consultant
+				<span ng-show="patientView.orderByField == 'consultantName'">
+					<i ng-show="patientView.order==1" class="fa fa-sort-asc"
+					aria-hidden="true"></i> <i ng-show="patientView.order==2"
+					class="fa fa-sort-desc" aria-hidden="true"></i>
+			</span><i ng-show="patientView.order==0" class="fa fa-sort" aria-hidden="true"></i>
+			</th>
+			<th
+				ng-click="definePatientOrder('status')">Status
+				<span ng-show="patientView.orderByField == 'status'"> <i
+					ng-show="patientView.order==1" class="fa fa-sort-asc"
+					aria-hidden="true"></i> <i ng-show="patientView.order==2"
+					class="fa fa-sort-desc" aria-hidden="true"></i>
+			</span><i ng-show="patientView.order==0" class="fa fa-sort" aria-hidden="true"></i>
+			</th>
+			<th
+				ng-click="definePatientOrder('mtbDate')">Date
+				Last Discussed at MTB <span
+				ng-show="patientView.orderByField == 'mtbDate'"> <i
+					ng-show="patientView.order==1" class="fa fa-sort-asc"
+					aria-hidden="true"></i> <i ng-show="patientView.order==2"
+					class="fa fa-sort-desc" aria-hidden="true"></i>
+			</span><i ng-show="patientView.order==0" class="fa fa-sort" aria-hidden="true"></i>
+			</th>
+			<th ng-show="$parent.allPatients[0].requirePrinting!=null" ng-click="definePatientOrder('requirePrinting')">Requires Printing<span
+				ng-show="patientView.orderByField == 'requirePrinting'"> <i
+					ng-show="patientView.order==1" class="fa fa-sort-asc"
+					aria-hidden="true"></i> <i ng-show="patientView.order==2"
+					class="fa fa-sort-desc" aria-hidden="true"></i>
+			</span><i ng-show="patientView.order==0" class="fa fa-sort" aria-hidden="true"></i>
+			
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr
+			ng-repeat="patient in $parent.allPatients|filter:{targetID:targetIDFilter}|filter:{careSite:siteFilter}|orderBy:patientView.orderByField:patientView.order>1:compareFunc"
+			class="row-border hover">
+			<td ng-show="$parent.allPatients[0].delete!=null"><i style="padding-right: 10px;" class="fa fa-times icon-right" aria-hidden="true" ng-click="$parent.deletePatient(patient.personID)"></i></td>
+			<td ng-click="$parent.showPage('detail', patient.personID);"><strong>{{patient.targetID}}</strong></td>
+			<td ng-click="$parent.showPage('detail', patient.personID);"><strong>{{patient.careSite}}</strong></td>
+			<td ng-click="$parent.showPage('detail', patient.personID);">{{patient.consentDate}}</td>
+			<td ng-click="$parent.showPage('detail', patient.personID);">{{patient.conditionName}}</td>
+			<td ng-click="$parent.showPage('detail', patient.personID);">{{patient.consultantName}}</td>
+			<td ng-click="$parent.showPage('detail', patient.personID);" class="linebreaks">{{patient.status}}</td>
+			<td ng-click="$parent.showPage('detail', patient.personID);">{{patient.mtbDate}}</td>
+			<td ng-click="$parent.showPage('detail', patient.personID);" ng-show="$parent.allPatients[0].requirePrinting!=null"><i ng-show="patient.requirePrinting=='true'" class="fa fa-check" aria-hidden="true"></i></td> 
+		</tr>
+	</tbody>
+</table>

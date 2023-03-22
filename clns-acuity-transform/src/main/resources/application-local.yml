@@ -1,0 +1,22 @@
+mongo:
+  host: localhost
+  port: 27017
+  db: test
+
+# HOW TO USE IT:
+# 0. choose and set variables SRC_BASE and OUT_BASE (it may be done just once, not for each conversion)
+# 1. place file directory (a whole directory, not just files!) with file set that should be converted as a whole into SRC_BASE directory
+# 2. update this config: DATASET_DIRECTORY variable should be named as the directory you just added
+# 3. run acuity-transform tool
+# 4. in the OUT_BASE directory you'll find a directory of the same name as you added in SRC_BASE - it will contain conversion results
+SRC_BASE: # path to the directory to place source file set, like: c:\data\transform_data\src\
+OUT_BASE: # path to the directory where transformation result file set will be placed, like: c:\data\transform_data\out\
+DATASET_DIRECTORY: # name of a directory directly containing file set, like: STUDY001_current_date_fileset
+
+studies:
+  list:
+    - study: # study name, like: STUDY001 (check Study enum to find a list of available studies)
+      version: # version name, like: SDTM_1_1_STUDY001 (check Version enum to find list of available versions)
+      source: ${SRC_BASE}/${DATASET_DIRECTORY}
+      destination: ${OUT_BASE}/${DATASET_DIRECTORY}
+      domain: dm  # for now, just don't change it

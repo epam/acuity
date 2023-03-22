@@ -1,0 +1,280 @@
+Summary: University of Manchester - eTarget Instance
+****************************************************
+
+Aim
+***
+Configure an instance of ETarget using the Azure portal, which can be used for DEV puropses by Research IT staff at the University of Manchester.
+This will be created in the DECMT_DEV_eTarget Resource Group within the DigitalECMT Subscription
+
+Components
+**********
+An eTarget instance comprises several components that will be created in Azure (but configured locally in some cases):
+
+An Azure SQL Database (which resides on a SQL Server (server))
+A File Store component (called a Storage Account in Azure)
+An Ubuntu Data Processing VM that is used for running a python3 script to perform data validation & transfer
+A Web App Service VM that provides a Java API and renders the web front-end of the eTarget application.    
+
+Existing Documentation
+**********************
+eTarget handover documentation (Rob Dunne)
+DECMT Azure Detailed Designed (SCC / Craig Kilborn)
+
+Azure Resource Group Details
+****************************
+Resource group: DECMT_DEV_eTarget
+Status: Online
+Location: North Europe
+Subscription: DigitalECMT
+Subscription ID: 3fb8227d-79d9-454d-bd83-694876914794
+
+SQL Server (Server) 
+*******************
+SQL Server: uomdevsqlserveret
+Full Server name: uomdevsqlserveret.database.windows.net
+Address: 191.235.193.75
+Server admin login: uomadmin
+Server admin password: 
+
+There is no cmd line access to this machine.
+
+An Azure SQL Database hosted on the above server 
+************************************************
+Azure SQL Server host: uomdevsqlserveret (uomdevsqlserveret.database.windows.net))
+SQL Server Database: uom_dev_etarget_db
+
+We have cloned the schema and data from the existing database below:
+
+Subscription: iDecide Non-Production
+Resource group: rg_Target_Dev
+Database: db_target_dev
+Host: dbvmtargetdev.database.windows.net
+Login: targetdev
+Password: 
+
+We do this clone by exporting a BACPAC file (export_of_db_target_dev_1109_040418.bacpac) to file storage (see below for details)
+We then use Import Database to create the database
+
+*** Use the Deployments blade in Azure to monitor progess. Or look at the Import/Export tab ***
+
+We can run a command such as that below to check that the contents of the database look correct:  
+
+"select * from SYSTEM_STATUS order by message_time;"
+
+Once created the database can be accessed via SSMS (SQL Server Management Studio) or the Azure Portal.
+
+Note:
+
+1) The patient ID reference is encrypted using Triple DES. Julie Stevenson3 has a copy of the SQL query used to decrypt this data. You will need to add your IP address to the firewall whitelist in Azure to access the database.
+
+Storage Account 
+****************
+"The file storage is accessed by the data uploaders. Files uploaded are copied by the VM and then deleted. Access is by Azure Storage Explorer using the access key found in the Azure control panel."
+
+Storage: uomdevstorageet
+Kind: Storage (general purpose v1)
+SKU: Standard_LRS
+
+Primary Blob Service Endpoint: https://uomdevstorageet.blob.core.windows.net/
+Primary File Service Endpoint: https://uomdevstorageet.file.core.windows.net/
+Primary Queue Service Endpoint: https://uomdevstorageet.queue.core.windows.net/
+Primary Table Service Endpoint: https://uomdevstorageet.table.core.windows.net/
+Resource ID: /subscriptions/3fb8227d-79d9-454d-bd83-694876914794/resourceGroups/DECMT_DEV_eTarget/providers/Microsoft.Storage/storageAccounts/uomdevstorageet
+Location: North Europe
+
+Storage Container: 
+Name: uomdevetargetdbbu
+Url: https://uomdevstorageet.blob.core.windows.net/uomdevetargetdbbu
+Container size: Blob count 1
+Size: 61.47 KiB Block blobs
+
+The URL for accessing an object in a storage account is built by appending the object's location in the storage account to the endpoint. For example, a blob address might have this format: http://mystorageaccount.blob.core.windows.net/mycontainer/myblob.
+
+e.g. (???) : https://uomdevstorageet.blob.core.windows.net/uomdevetargetdbbu/export_of_db_target_dev_1109_040418.bacpac
+
+Data processing VM
+******************
+"The VM is a Linux server that processes files that are added to the file storage. PDF files are copied to the web application /reports directory. CSV files are processed for patient data which is added to the database. No data is stored on the VM."
+
+Computer name: UOMDEVETARGETVM
+Operating system: Linux (Ubuntu Server 16.04 LTS)
+Size: Basic A0 (1 vcpu, 0.75 GB memory)
+Public IP address: 52.169.69.156
+Virtual network/subnet: DECMT_DEV_eTarget-vnet/default
+DNS name: uomdevetargetvm.northeurope.cloudapp.azure.com
+
+Create users through the front end (Reset Password link) - used SSH Keys
+
+User login: uomadmin
+User password: 
+
+The DNS registered quickly:
+
+We can open a PuTTY Session, login as uomadmin and the SSH key works immediately.
+
+First thing that we do is check for updates, install updates and reboot the Ubuntu VM
+
+=============================================================
+firstly run the command below to update repositories if prompted to press y/n press y:
+sudo apt-get update
+
+afterwards run this command to update existing software, if prompted to press y/n press y:
+sudo apt-get upgrade
+=============================================================
+
+We can reboot the server with:
+
+uomadmin@UOMDEVETARGETVM:~$ sudo reboot
+
+And the session is immediately closed. Its back within a minute.
+
+The Timezone is an hour out so we reconfigure that:
+
+uomadmin@UOMDEVETARGETVM:~$ sudo dpkg-reconfigure tzdata
+
+Current default time zone: 'Europe/London'
+Local time is now:      Thu Apr  5 10:40:46 BST 2018.
+Universal Time is now:  Thu Apr  5 09:40:46 UTC 2018.
+
+We'll also neeed an eTarget authorisation file on this VM - similar to that below from iDecide non-Production
+
+================================================================
+remotehostname; dbvmtargetdev.database.windows.net
+remoteusername; targetdev@dbvmtargetdev.database.windows.net
+remotepassword; [SQL Server password]
+remotedbname; db_target_dev
+fileuser; rgtargetdevdiag313
+filekey; nEkGl4RgnSKY3+Cn+GqItwDOWClffvfGUOB1wmtyW6GoTvVpjhh/9+SFo7hz37/nBQcGrdXzLOjZUaoQGQ18yA==
+patientkey; quipquagintzquadringentilliardtz
+ftphost; waws-prod-db3-087.ftp.azurewebsites.windows.net
+ftpuser; DECMTDEVeTargetWebApp\pdfcopydev
+ftppassword; [FTP Password - see PublishSettings file]
+================================================================
+
+A Web App Service VM
+********************
+Select the "Web App" option in Azure when setting this up through the Azure Portal interface.
+
+We specify that this should be Linux (rather than Windows). After installation we can see that this is:
+
+cea571986ec1:/usr/local/tomcat# cat /etc/os-release 
+NAME="Alpine Linux" 
+ID=alpine 
+VERSION_ID=3.7.0 
+PRETTY_NAME="Alpine Linux v3.7" 
+HOME_URL="http://alpinelinux.org" 
+BUG_REPORT_URL="http://bugs.alpinelinux.org" 
+
+What is Alpine Linux????
+
+Alpine Linux is a Linux distribution based on musl and BusyBox, primarily designed for "power users who appreciate security, simplicity and resource efficiency". It uses a hardened kernel and compiles all user space binaries as position-independent executables with stack-smashing protection.
+
+cea571986ec1:/usr/local/tomcat# uname -a 
+Linux cea571986ec1 4.13.0-1011-azure #14-Ubuntu SMP Thu Feb 15 16:15:39 UTC 2018 x86_64 Linux
+
+**** We get asked to choose the Runtime Stack - Choose Java (preview) / Tomcat 9.0 (JRE 9.0)
+
+Resource Name: uomdevetarget
+Runtime Stack: We chose Java (preview) / Tomcat 9.0 (JRE 9.0)
+URL: https://uomdevetarget.azurewebsites.net
+App Service plan/pricing tier: DECMTeTargetDevAppPlan (Standard: 1 Small)
+FTP/deployment username: No FTP/deployment user set
+FTP hostname: ftp://waws-prod-db3-087.ftp.azurewebsites.windows.net
+FTPS hostname: ftps://waws-prod-db3-087.ftp.azurewebsites.windows.net
+userName="uomdevetarget\$uomdevetarget"
+userPWD=[pwd]
+
+IP Address: 13.74.252.44
+HOSTNAMES ASSIGNED TO SITE: uomdevetarget.azurewebsites.net
+
+Upon completion the web server is up:  
+
+ea571986ec1:/var/log# ps -ef | grep java 
+
+115 root      10:31 /usr/lib/jvm/java-1.8-openjdk/jre/bin/java -Djava.util.logging.config.file=/usr/local/tomcat/conf/logging.properties -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager -Dport.http=80 -Dsite.tempdir=/tmp -Dsite.home=/home -Dsite.logdir=/home/LogFiles -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager -Djava.util.logging.config.file=/usr/local/tomcat/conf/logging.properties -Djava.protocol.handler.pkgs=org.apache.catalina.webresources -Djdk.tls.ephemeralDHKeySize=2048 -Dcatalina.instance.name=f328c1a88b05cb6439a2d82a7bb6fb824adf2f0f403726fa6a7fc75d1046ae9c -Djdk.tls.ephemeralDHKeySize=2048 -Djava.protocol.handler.pkgs=org.apache.catalina.webresources -Dignore.endorsed.dirs= -classpath /usr/local/tomcat/bin/bootstrap.jar:/usr/local/tomcat/bin/tomcat-juli.jar -Dcatalina.base=/usr/local/tomcat -Dcatalina.home=/usr/local/tomcat -Djava.io.tmpdir=/usr/local/tomcat/temp org.apache.catalina.startup.Bootstrap start
+
+And the home index page is accessible:
+
+https://uomdevetarget.azurewebsites.net/ (which displays index.jsp)
+
+"This Java based web application has been successfully created. There's nothing here yet, but Microsoft Azure makes it simple to publish content with GIT and FTP. 
+
+java.version: 1.8.0_151
+java.vendor: Oracle Corporation
+os.arch: amd64
+catalina.base: /usr/local/tomcat
+user.timezone: GMT"
+
+NB: Ports 443 and 80 are open. Port 22 for ssh is not
+
+**** SSH Access: In the Azure Portal we can choose SSH (under Development Tools): "SSH provides a Web SSH console experience for your Linux App code."
+
+This seems much improved over the previous console access (although still far from perfect). You can actually browse to the Web Home/Root directory (/home/site/wwwroot/webapps/ROOT) and create files there. For instance I have created a "tomcat_version.jsp" in that folder and which you can access at:
+
+https://uomdevetarget.azurewebsites.net/tomcat_version.jsp
+
+It returns:
+
+Tomcat Version : Apache Tomcat/9.0.6
+Servlet Specification Version : 4.0 
+JSP version : 2.3
+
+cea571986ec1:/home/site/wwwroot/webapps/ROOT# pwd
+/home/site/wwwroot/webapps/ROOT
+
+If in Azure Portal we go to the DECMTDEVeTargetWebApp Resource, there is a link to "Get Publish Profile". This contains ftp information necessary for copying files (i.e. PDFs) onto the machine
+
+Below is an example of how we can test this ftp:
+
+uomadmin@UOMDEVETARGETVM:~$ ftp waws-prod-db3-087.ftp.azurewebsites.windows.net
+Connected to waws-prod-db3-087.drip.azurewebsites.windows.net.
+220 Microsoft FTP Service
+Name (waws-prod-db3-087.ftp.azurewebsites.windows.net:uomadmin): uomdevetarget\$uomdevetarget
+Password:
+230 User logged in.
+Remote system type is Windows_NT.
+ftp> cd site/wwwroot/webapps/ROOT
+250 CWD command successful.
+ftp> pwd
+257 "/site/wwwroot/webapps/ROOT" is current directory.
+ftp> ls -ltrha
+227 Entering Passive Mode (13,79,37,62,40,50).
+125 Data connection already open; Transfer starting.
+04-05-18  03:03PM               148433 background.png
+04-05-18  03:03PM                 5486 index.jsp
+
+The login and password details come from the Publish Profile file that is downloaded from Azure Portal. Selected parts of the file are below:
+
+<publishProfile profileName="uomdevetarget - Web Deploy" .....
+msdeploySite="uomdevetarget"
+userName="$uomdevetarget"
+userPWD=[]
+destinationAppUrl="http://uomdevetarget.azurewebsites.net"
+</publishProfile>
+
+<publishProfile profileName="uomdevetarget - FTP"
+publishMethod="FTP"
+publishUrl="ftp://waws-prod-db3-087.ftp.azurewebsites.windows.net/site/wwwroot"
+ftpPassiveMode="True"
+userName="uomdevetarget\$uomdevetarget"
+userPWD=[]
+destinationAppUrl="http://uomdevetarget.azurewebsites.net"
+</publishProfile>
+
+
+Notes:
+******
+1) Build
+The Java API needs to be compiled before being deployed to the server if any
+changes are made. In the WEB-INF/classes directory you will find a build.sh
+file. Update the relevant path in this file, then run to compile / build the API.
+JSP, CSS, JS, and HTML file changes can be sent straight to the server.
+
+2) Deployment
+Deployment to the dev environment is via 'push to deploy' continuous integration from the Github repository. Pushing a new update to the repo will trigger the App Service to pull and deploy the latest code. You will need to visit the dev App Service section in Azure, and login to the repo with your Github login details under the 'Deployment options' section. Deployment to test and production are via SFTP to prevent accidental deployment of development code. You may wish to change this for easier deployment.
+
+Deployment of code to the processing server VM is via SSH / SCP.
+
+3) Code repository
+A copy of the web application code is hosted on the UoM Research IT Github repository. A separate repository exists for the data processing code, also on the UoM Research IT Github.
+

@@ -1,0 +1,18 @@
+mail:
+  host: #host
+  port: 25
+  connectionTimeout: 300000
+  timeout: 60000
+  writeTimeout: 60000
+  recipient: #recipient
+  subject: SDTM tool conversion job is FAILED
+  body: Dear ACUITY Support team,<br>The SDTM tool conversion job is FAILED for the following reasons <br>
+  signature: Thanks,<br>ACUITY SDTM tool
+
+mongo:
+    host: localhost
+    port: 51327
+    db: test
+
+SRC_BASE: #SRC_BASE
+OUT_BASE: #OUT_BASE

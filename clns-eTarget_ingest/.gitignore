@@ -1,0 +1,9 @@
+.config
+*.csv
+*.xml
+*.pdf
+*.rdp
+*.docx
+*.txt
+*.xlsx
+/__pycache__/

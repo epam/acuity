@@ -1,0 +1,445 @@
+---
+title: "Create synthetic data for clinical dashboard"
+author: "dECMT"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE)
+require(dplyr)
+# rm(list=ls())
+```
+
+
+```{r global parameters}
+datetime_format <- "%Y-%m-%d %H:%M:%S"
+dateformat <- "%Y-%m-%d"
+timeformat <- "%H:%M:%S"
+number_synthetic_patients <- 100
+today <- lubridate::as_date(Sys.Date())
+```
+
+```{r synthetic demographics}
+
+demographics_synth <- data.frame(SUBJECT_ID	= character(0),
+                                 VARIABLE_NAME	= character(0),
+                                 VARIABLE_VALUE = character(0), 
+                                 stringsAsFactors=FALSE)
+
+
+
+
+
+
+for(i in 1:number_synthetic_patients) {
+  # generate patient ID
+  subject_id <- paste0("patient_", i)
+  # generate dob
+  value <- sample(seq(as.Date('1945/01/01'), as.Date('2000/01/01'), by="day"), 1)
+  demographics_synth <- demographics_synth %>%
+    add_row(
+      SUBJECT_ID = subject_id, 
+      VARIABLE_NAME = "DOB", 
+      VARIABLE_VALUE = as.character(value)
+    )
+  # generate cancer type
+  value <- sample(c("BREAST", "COLORECTAL", "LIVER", "BLADDER", "PANCREAS"), 1)
+  demographics_synth <- demographics_synth %>%
+    add_row(
+      SUBJECT_ID = subject_id, 
+      VARIABLE_NAME = "CANCER TYPE", 
+      VARIABLE_VALUE = as.character(value)
+    )
+  # generate gender
+    value <- sample(c("MALE", "FEMALE"), 1)
+    demographics_synth <- demographics_synth %>%
+      add_row(
+        SUBJECT_ID = subject_id, 
+        VARIABLE_NAME = "GENDER", 
+        VARIABLE_VALUE = as.character(value)
+      )
+  # generate ethnic group
+    value <- sample(c("A", "B", "C"), 1)
+    demographics_synth <- demographics_synth %>%
+      add_row(
+        SUBJECT_ID = subject_id, 
+        VARIABLE_NAME = "ETHNIC_GROUP", 
+        VARIABLE_VALUE = as.character(value)
+      )    
+  # generate smoking status
+    value <- sample(c("Never smoked", "Smoker", "Former smoker", NA), 1)
+    demographics_synth <- demographics_synth %>%
+      add_row(
+        SUBJECT_ID = subject_id, 
+        VARIABLE_NAME = "SMOKING", 
+        VARIABLE_VALUE = as.character(value)
+      )    
+  # generate height
+    value <- round(rnorm(n=1, mean=170, sd=15), digits = 0)
+    demographics_synth <- demographics_synth %>%
+      add_row(
+        SUBJECT_ID = subject_id, 
+        VARIABLE_NAME = "HEIGHT", 
+        VARIABLE_VALUE = as.character(value)
+      )   
+  # generate weight
+    value <- round(rnorm(n=1, mean=70, sd=5), digits = 0)
+    demographics_synth <- demographics_synth %>%
+      add_row(
+        SUBJECT_ID = subject_id, 
+        VARIABLE_NAME = "WEIGHT", 
+        VARIABLE_VALUE = as.character(value)
+      ) 
+  
+}  
+  
+  
+
+```
+
+```{r get subject IDs}
+## get subject IDs
+subject_ids <- unique(demographics_synth$SUBJECT_ID)
+```
+
+```{r synthetic events}
+
+# Create sequence of dates
+# datetime_sequence <- seq(as.POSIXct('2022/01/01'),  
+#                          as.POSIXct('2022/11/01'),
+#                          by = "10 mins")
+
+events_synth <- data.frame(SUBJECT_ID	= character(0),
+                                 EVENT_NAME	= character(0),
+                                 EVENT_DATETIME = character(0), 
+                                 stringsAsFactors=FALSE)
+
+
+for(i in 1:length(subject_ids)) {
+  # generate patient ID
+  subject_id <- subject_ids[i]
+  # calculate age in years
+  dob <- demographics_synth$VARIABLE_VALUE[demographics_synth$VARIABLE_NAME == "DOB" & demographics_synth$SUBJECT_ID == subject_id]
+  dob <- lubridate::as_date(dob)
+  age <- round(lubridate::time_length(difftime(today, dob), "years"), digits=0)
+  ## assign a final outcome
+  if(age >50) {
+    final_outcome <- sample(x=c("DIED", "DISCHARGED"), size=1, prob = c(0.7,0.3))
+  } else {
+    final_outcome <- sample(x=c("DIED", "DISCHARGED"), size=1, prob = c(0.3,0.7))
+  }
+  
+  # generate admission events on random dates
+  datetime <- sample(x= seq(as.POSIXct('2022/01/01'),as.POSIXct('2022/02/01'),by = "10 mins"), size = 1 )
+  events_synth <- events_synth %>%
+    add_row(
+      SUBJECT_ID = subject_id, 
+      EVENT_NAME = "ADMISSION", 
+      EVENT_DATETIME = as.character(datetime)
+    )
+  # generate ITU events
+  datetime <- sample(x= seq(as.POSIXct('2022/02/01'),as.POSIXct('2022/03/01'),by = "10 mins"), size = 1 )
+  ## randomly decide not to have any ITU events
+  random <- rbinom(n=1, size=1, prob = c(0.5,0.5))
+  ## only create an event if random is 1
+  if(random == 1) {
+    events_synth <- events_synth %>%
+    add_row(
+      SUBJECT_ID = subject_id, 
+      EVENT_NAME = "ITU", 
+      EVENT_DATETIME = as.character(datetime)
+    )
+  } 
+  
+  # generate treatment start events
+  datetime <- sample(x= seq(as.POSIXct('2022/03/01'),as.POSIXct('2022/04/01'),by = "10 mins"), size = 1 )
+  events_synth <- events_synth %>%
+    add_row(
+      SUBJECT_ID = subject_id, 
+      EVENT_NAME = "TREATMENT_START", 
+      EVENT_DATETIME = as.character(datetime)
+    )
+  # generate treatment end events
+  datetime <- sample(x= seq(as.POSIXct('2022/04/01'),as.POSIXct('2022/05/01'),by = "10 mins"), size = 1 )
+  events_synth <- events_synth %>%
+    add_row(
+      SUBJECT_ID = subject_id, 
+      EVENT_NAME = "TREATMENT_END", 
+      EVENT_DATETIME = as.character(datetime)
+    )
+  # generate X ray events
+  datetime <- sample(x= seq(as.POSIXct('2022/05/01'),as.POSIXct('2022/06/01'),by = "10 mins"), size = 1 )
+  events_synth <- events_synth %>%
+    add_row(
+      SUBJECT_ID = subject_id, 
+      EVENT_NAME = "X_RAY", 
+      EVENT_DATETIME = as.character(datetime)
+    )
+  # generate outcome events
+  datetime <- sample(x= seq(as.POSIXct('2022/06/01'),as.POSIXct('2022/07/01'),by = "10 mins"), size = 1 )
+  events_synth <- events_synth %>%
+    add_row(
+      SUBJECT_ID = subject_id, 
+      EVENT_NAME = final_outcome, 
+      EVENT_DATETIME = as.character(datetime)
+    )
+}  
+  
+  
+
+```
+
+```{r define measurement ranges}
+
+normal_urea <- round(abs(rnorm(n=100, mean = 5, sd = 2)), digits = 1)
+high_urea <- round(rnorm(n=100, mean = 12, sd = 2), digits = 1)
+
+normal_crp <- round(abs(rnorm(n=100, mean = 3, sd = 2)), digits = 1)
+high_crp <- round(rnorm(n=100, mean = 150, sd = 20), digits = 1)
+
+normal_cea <- round(abs(rnorm(n=100, mean = 1, sd = 1)), digits = 1)
+high_cea <- round(abs(rnorm(n=100, mean = 4, sd = 1)), digits = 1)
+
+normal_hr <- round(abs(rnorm(n=100, mean = 70, sd = 5)), digits = 1)
+high_hr <- round(abs(rnorm(n=100, mean = 90, sd = 5)), digits = 1)
+
+normal_systolic <- round(abs(rnorm(n=100, mean = 80, sd = 5)), digits = 1)
+low_systolic <- round(abs(rnorm(n=100, mean = 55, sd = 5)), digits = 1)
+
+normal_diastolic <- round(abs(rnorm(n=100, mean = 120, sd = 5)), digits = 1)
+low_diastolic <- round(abs(rnorm(n=100, mean = 105, sd = 5)), digits = 1)
+```
+
+
+
+
+```{r synthetic measurements}
+measurements_synth <- data.frame(SUBJECT_ID = character(0),
+                           MEASUREMENT_NAME = character(0),
+                           MEASUREMENT_DATETIME = character(0),
+                           MEASUREMENT_VALUE = character(0),
+                           UNIT = character(0),
+                           stringsAsFactors=FALSE)
+
+
+for(i in 1:length(subject_ids)) {
+  # generate patient ID
+  subject_id <- subject_ids[i]
+  # get gender
+  gender <- demographics_synth$VARIABLE_VALUE[demographics_synth$SUBJECT_ID==subject_id & demographics_synth$VARIABLE_NAME == "GENDER" ]
+  cancer_type <- demographics_synth$VARIABLE_VALUE[demographics_synth$SUBJECT_ID==subject_id & demographics_synth$VARIABLE_NAME == "CANCER TYPE" ]
+  treatment_start <- lubridate::as_datetime(events_synth$EVENT_DATETIME[events_synth$SUBJECT_ID == subject_id & events_synth$EVENT_NAME == "TREATMENT_START"])
+
+  # get datetime of first event for this patient
+  earliest_datetime <- min(lubridate::as_datetime(events_synth$EVENT_DATETIME[events_synth$SUBJECT_ID == subject_id]))
+  # get datetime of last event for this patient
+  latest_datetime <- max(lubridate::as_datetime(events_synth$EVENT_DATETIME[events_synth$SUBJECT_ID == subject_id]))
+  # get final outcome for this patient
+  final_event <- events_synth %>%
+    dplyr::filter(SUBJECT_ID == subject_id) %>%
+    dplyr::arrange(EVENT_DATETIME) %>%
+    tail(1) %>%
+    dplyr::select(EVENT_NAME)
+  
+  # get date range
+  inpatient_dates <- seq(from = earliest_datetime,to = latest_datetime,by = "day")
+  for(j in 1:length(inpatient_dates)) {
+    datetime <- inpatient_dates[j]
+    # create measurements
+    measurement <- "CEA"
+    # specify unit
+    unit <- "ug/L"
+    # generate a random positive value
+    #value <- abs(rnorm(n=1, mean = 8+j, sd = 1))
+    if(datetime > treatment_start) {
+      value <- sample(normal_cea, size=1)
+    } else {
+      value <- sample(high_cea, size=1)
+    }
+    # skew pancreatic cancer higher
+    if(cancer_type == "PANCREAS") {value <- value * 1.1}
+    value <- round(value, digits = 1)
+    measurements_synth <- measurements_synth %>%
+      add_row(
+        SUBJECT_ID = subject_id, 
+        MEASUREMENT_NAME = measurement, 
+        MEASUREMENT_DATETIME = as.character(datetime),
+        MEASUREMENT_VALUE = as.character(value), 
+        UNIT = unit
+      )
+    
+    # create measurements
+    measurement <- "UREA"
+    # specify unit
+    unit <- "mmol/L"
+    # generate a value
+    # value <- rnorm(n=1, mean = 8+j, sd = 1)
+    if(datetime > treatment_start) {
+      value <- sample(normal_urea, size=1)
+    } else {
+      value <- sample(high_urea, size=1)
+    }
+    if(gender == "MALE") {value <- value * 1.1}
+    value <- round(value, digits = 1)
+    measurements_synth <- measurements_synth %>%
+      add_row(
+        SUBJECT_ID = subject_id, 
+        MEASUREMENT_NAME = measurement, 
+        MEASUREMENT_DATETIME = as.character(datetime),
+        MEASUREMENT_VALUE = as.character(value), 
+        UNIT = unit
+      )
+    # create measurements
+    measurement <- "CRP"
+    # specify unit
+    unit <- "mmol/L"
+    # generate a value
+    # value <- rnorm(n=1, mean = 45+j, sd = 10)
+    if(datetime > treatment_start) {
+      value <- sample(normal_crp, size=1)
+    } else {
+      value <- sample(high_crp, size=1)
+    }
+    if(final_event == "DIED") { value <- value * 1.1}
+    if(gender == "MALE") {value <- value * 1.1}
+  
+    value <- round(value, digits = 1)
+    measurements_synth <- measurements_synth %>%
+      add_row(
+        SUBJECT_ID = subject_id, 
+        MEASUREMENT_NAME = measurement, 
+        MEASUREMENT_DATETIME = as.character(datetime),
+        MEASUREMENT_VALUE = as.character(value), 
+        UNIT = unit
+      )
+    # create measurements
+    measurement <- "HR"
+    # specify unit
+    unit <- "bpm"
+    # generate a value
+    value <- rnorm(n=1, mean = 70-j, sd = 10)
+    if(datetime > treatment_start) {
+      value <- sample(normal_hr, size=1)
+    } else {
+      value <- sample(high_hr, size=1)
+    }
+    if(final_event == "DIED") { value <- value * 1.1}
+    if(gender == "MALE") {value <- value * 1.1}
+    value <- round(value, digits = 1)
+    measurements_synth <- measurements_synth %>%
+      add_row(
+        SUBJECT_ID = subject_id, 
+        MEASUREMENT_NAME = measurement, 
+        MEASUREMENT_DATETIME = as.character(datetime),
+        MEASUREMENT_VALUE = as.character(value), 
+        UNIT = unit
+      )
+    # create measurements
+    measurement <- "SYSTOLIC BP"
+    # specify unit
+    unit <- "mm Hg"
+    # generate a value
+    #value <- rnorm(n=1, mean = 120-j, sd = 10)
+    if(datetime > treatment_start) {
+      value <- sample(normal_systolic, size=1)
+    } else {
+      value <- sample(low_systolic, size=1)
+    }
+    if(final_event == "DIED") { value <- value * 0.9}
+    value <- round(value, digits = 1)
+    measurements_synth <- measurements_synth %>%
+      add_row(
+        SUBJECT_ID = subject_id, 
+        MEASUREMENT_NAME = measurement, 
+        MEASUREMENT_DATETIME = as.character(datetime),
+        MEASUREMENT_VALUE = as.character(value), 
+        UNIT = unit
+      )
+    # create measurements
+    measurement <- "DIASTOLIC BP"
+    # specify unit
+    unit <- "mm Hg"
+    # generate a value
+    # value <- rnorm(n=1, mean = 80, sd = 10)
+    if(datetime > treatment_start) {
+      value <- sample(normal_diastolic, size=1)
+    } else {
+      value <- sample(low_diastolic, size=1)
+    }
+    if(final_event == "DIED") { value <- value * 0.75}
+    value <- round(value, digits = 1)
+    measurements_synth <- measurements_synth %>%
+      add_row(
+        SUBJECT_ID = subject_id, 
+        MEASUREMENT_NAME = measurement, 
+        MEASUREMENT_DATETIME = as.character(datetime),
+        MEASUREMENT_VALUE = as.character(value), 
+        UNIT = unit
+      )
+    # create measurements
+    measurement <- "POSITION"
+    # specify unit
+    unit <- "NA"
+    # generate a value
+    value <- sample(x=c("PRONE", "BACK", "LEFT SIDE", "RIGHT SIDE"), size = 1)
+    measurements_synth <- measurements_synth %>%
+      add_row(
+        SUBJECT_ID = subject_id, 
+        MEASUREMENT_NAME = measurement, 
+        MEASUREMENT_DATETIME = as.character(datetime),
+        MEASUREMENT_VALUE = as.character(value), 
+        UNIT = unit
+      )
+    # create measurements
+    measurement <- "VENTILATED"
+    # specify unit
+    unit <- "NA"
+    # generate a value
+    value <- sample(x=c(1, 0, NA), size = 1)
+    measurements_synth <- measurements_synth %>%
+      add_row(
+        SUBJECT_ID = subject_id, 
+        MEASUREMENT_NAME = measurement, 
+        MEASUREMENT_DATETIME = as.character(datetime),
+        MEASUREMENT_VALUE = as.character(value), 
+        UNIT = unit
+      )
+    # create measurements
+    measurement <- "AWAKE"
+    # specify unit
+    unit <- "NA"
+    # generate a value
+    value <- sample(x=c("TRUE", "FALSE", NA), size = 1)
+    measurements_synth <- measurements_synth %>%
+      add_row(
+        SUBJECT_ID = subject_id, 
+        MEASUREMENT_NAME = measurement, 
+        MEASUREMENT_DATETIME = as.character(datetime),
+        MEASUREMENT_VALUE = as.character(value), 
+        UNIT = unit
+      )
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+}
+
+
+
+```
+
+```{r write synthetic data to csv}
+
+write.csv(x=demographics_synth, file = "DEMOGRAPHICS.csv", row.names = FALSE)
+write.csv(x=events_synth, file = "EVENTS.csv", row.names = FALSE)
+write.csv(x=measurements_synth, file = "MEASUREMENTS.csv", row.names = FALSE)
+
+```

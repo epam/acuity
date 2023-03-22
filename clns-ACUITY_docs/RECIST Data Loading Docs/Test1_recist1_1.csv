@@ -1,0 +1,26 @@
+STUDY,PART,SUBJECT,VISIT,VISIT_DATE,ANY_TL_PRESENT,TL_NUM,TL_SCAN_DATE,TL_SITE,TL_LONGEST_DIAM,ANY_NON_TL_PRESENT,NON_TL_SCAN_DATE,NON_TL_SITE,INVEST_OPINION_RESPONSE
+Testing_1,A,T1_0001,1,01/05/2020,Yes,1,12/28/2019,Oesophagus,22,,,,
+Testing_1,A,T1_0001,1,01/05/2020,Yes,2,12/28/2019,Adrenal,31,,,,
+Testing_1,A,T1_0001,1,01/05/2020,Yes,3,12/28/2019,Spleen,11,,,,
+Testing_1,A,T1_0001,2,02/05/2020,Yes,1,01/31/2020,Oesophagus,19,,,,
+Testing_1,A,T1_0001,2,02/05/2020,Yes,2,01/31/2020,Adrenal,28,,,,
+Testing_1,A,T1_0001,2,02/05/2020,Yes,3,01/31/2020,Spleen,8,,,,
+Testing_1,A,T1_0001,2,02/05/2020,,,,,,Yes,02/02/2020,Local Lymph Nodes,3
+Testing_1,A,T1_0002,1,02/15/2020,Yes,1,02/10/2020,Spleen,35,,,,
+Testing_1,A,T1_0002,1,02/15/2020,Yes,2,02/10/2020,Local Lymph Nodes,17,,,,
+Testing_1,A,T1_0002,1,02/15/2020,Yes,3,02/10/2020,Spleen,21,,,,
+Testing_1,A,T1_0002,1,02/15/2020,,,,,,Yes,02/07/2015,Bone,3
+Testing_1,A,T1_0002,2,03/15/2020,Yes,1,03/11/2020,Spleen,30,,,,
+Testing_1,A,T1_0002,2,03/15/2020,Yes,2,03/11/2020,Local Lymph Nodes,5,,,,
+Testing_1,A,T1_0002,2,03/15/2020,Yes,3,03/11/2020,Spleen,16,,,,
+Testing_1,A,T1_0002,2,03/15/2020,,,,,,Yes,03/12/2020,Bone,4
+Testing_1,A,T1_0003,1,07/05/2020,Yes,1,03/05/2020,Bone,34,,,,
+Testing_1,A,T1_0003,1,07/05/2020,Yes,2,03/05/2020,Central Nervous System,32,,,,
+Testing_1,A,T1_0003,1,07/05/2020,Yes,3,03/05/2020,Breast,38,,,,
+Testing_1,A,T1_0003,2,08/05/2020,Yes,1,08/01/2020,Bone,35,,,,
+Testing_1,A,T1_0003,2,08/05/2020,Yes,2,08/01/2020,Central Nervous System,37,,,,
+Testing_1,A,T1_0003,2,08/05/2020,Yes,3,08/01/2020,Breast,55,,,,
+Testing_1,A,T1_0005,1,08/02/2020,Yes,1,07/31/2020,Bladder,39,,,,
+Testing_1,A,T1_0005,1,08/02/2020,,,,,,Yes,08/01/2020,Breast,4
+Testing_1,A,T1_0005,2,09/02/2020,Yes,1,08/31/2020,Bladder,38,,,,
+Testing_1,A,T1_0005,2,09/02/2020,,,,,,No,09/01/2020,Breast,6

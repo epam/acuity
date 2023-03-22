@@ -1,0 +1,153 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type" : "object",
+    "properties": {
+        "type": { 
+        	"type": "string",
+        	"const": "genomic"
+        },
+        "specimenId" : {"type": "string"},
+        "sampleType" : {
+            "type": "string",
+            "enum": ["blood", "tissue"]
+            },
+        "sample" : {
+            "type" : "object",
+            "properties": {
+                "meanExonDepth" : {"type": "integer"},
+                "percentExons100x" : {"type" : "number"},
+                "tumourFractionScore" : {
+                    "type" : "object",
+                    "properties": {
+                        "value": {"type" : "number"},
+                        "unit": {"type" : "string"}
+                    },
+                    "required": ["value"]
+                }
+            }
+        },
+        "alterations" : { 
+            "type": "array",
+            "items" : {
+                "type" : "object",
+                "properties" : {
+                	"type": { 
+                   		"type": "string",
+                   		"enum": ["short variant", "copy number alteration", "rearrangement"]
+                	}
+              	},
+                "allOf": [ 
+                {
+                	"if" : {
+                		"properties": {"type": {"const": "short variant"}}
+                	},
+                	"then" : {
+                		"properties": {
+	                        "gene" : {"type" : "string"},
+	                        "proteinChange" : {"type" : "string"},
+	                        "cdsChange" : {"type" : "string"},
+	                        "readDepth" : {"type" : "integer"},
+	                        "position" : {"type" : "string"},
+	                        "variantAlleleFrequency%" : {"type": "number"},
+	                        "status" : {
+	                            "type": "string",
+	                            "enum": ["known", "unknown", "likely", "ambiguous"]
+	                        },
+	                        "transcript" : {"type": "string"},
+	                        "functionalEffect" :  {"type": "string"},
+	                        "subclonal": {"type" : "boolean"}
+	                    },
+                   		"required" : ["type", "gene", "proteinChange", "cdsChange", "readDepth", "position", "variantAlleleFrequency%", "functionalEffect"]
+                    }
+                }, 
+                {
+                	"if": {
+                		"properties": {"type": {"const": "copy number alteration"}}
+                	},
+                	"then" : {
+                		"properties" : {
+	                        "gene" : {"type" : "string"},
+	                        "copyNumber" : {"type": "integer"},
+	                        "exons" : {"type" : "string"},
+	                        "ratio" : {"type" : "number"},
+	                        "description" : {
+	                        	"type": "string",
+	                        	"enum": ["amplification", "partial amplification", "loss"]},
+	                        "position" : {"type": "string"},
+	                        "status" : {
+	                            "type": "string",
+	                            "enum": ["known", "unknown", "likely", "ambiguous"]
+	                        },
+	                        "equivocal": {"type" : "boolean"}
+	                    },
+	                    "required" : ["type", "gene", "copyNumber", "description"]
+	                }
+                },
+                {
+                	"if" : {
+                		"properties": {"type": {"const": "rearrangement"}}
+                	},
+                	"then" : {
+                		"properties" : {
+	                        "gene1" : {"type" : "string"},
+	                        "gene2" : {"type" : "string"},
+	                        "rearrangementType": {
+	                        	"type" : "string",
+	                        	"enum" : ["fusion", "rearrangement", "truncation", "deletion", "duplication", "unknown"]
+	                        },
+	                        "position1" : {"type" : "string"},
+	                        "position2" : {"type" : "string"},
+	                        "status" : {
+	                            "type": "string",
+	                            "enum": ["known", "unknown", "likely", "ambiguous"]
+	                        },
+	                        "variantAlleleFrequency" : {"type": "number"},
+	                        "inFrame" : {"type" : "string"},
+	                        "supportingReadPairs" : {"type" : "integer"},
+	                        "description" : {"type": "string"}
+	                    },
+	                    "required" : ["type", "gene1", "gene2", "rearrangementType", "position1", "position2"]
+	                }
+                }]
+            }
+        },
+        "bioMarkers" : {
+            "type": "array",
+            "items" : {
+                "anyOf": [ 
+                {
+                    "type" : "object",
+                    "properties" : {
+                        "type": { 
+                            "type": "string",
+                            "pattern": "microsatellite-instability"
+                        },
+                        "score" : {"type" : "number"},
+                        "status" : {"type": "string"}
+                    },
+                    "required" : ["type", "status"]
+                },
+                {
+                    "type" : "object",
+                    "properties" : {
+                        "type": { 
+                            "type": "string",
+                            "pattern": "tumour mutation burden"
+                        },
+                        "score" : {
+                            "type": "object",
+                            "properties" : {
+                                "value" : {"type" : "number"},
+                                "unit" : {"type" : "string"}
+                            },
+                            "required" : ["value"]
+                        },
+                        "status" : {"type" : "string"}
+                    },
+                    "required" : ["type", "status"]
+                }]
+            }    
+        }
+    },
+    "required" : ["type", "specimenId", "sampleType"]
+}

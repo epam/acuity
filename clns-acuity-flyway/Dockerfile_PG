@@ -1,0 +1,10 @@
+FROM docker.io/postgres:11.10
+
+WORKDIR /usr/root
+
+COPY ./docker_resources/postgres/create_db.sql /docker-entrypoint-initdb.d
+
+RUN apt update \
+	&& apt-get install postgresql-11-orafce -y
+
+EXPOSE 5432

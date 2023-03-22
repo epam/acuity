@@ -1,0 +1,16 @@
+spring:
+  profiles:
+    active: native
+  cloud:
+    config:
+      server:
+        native:
+          search-locations: /usr/root/acuity-spring-configs
+        prefix: /acuity-spring-configs
+  security:
+    user:
+      name:
+      password:
+
+server:
+  port: 8888

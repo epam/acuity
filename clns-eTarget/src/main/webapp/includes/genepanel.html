@@ -1,0 +1,130 @@
+<!--
+  #%L
+  eTarget Maven Webapp
+  %%
+  Copyright (C) 2017 - 2021 digital ECMT
+  %%
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to deal
+  in the Software without restriction, including without limitation the rights
+  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+  
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+  
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+  THE SOFTWARE.
+  #L%
+  -->
+<script>
+	var picker2;
+	jQuery(document).ready(function() {
+		picker2 = new Pikaday({
+			field : jQuery('#datepicker2')[0],
+			format : 'DD/MM/YYYY',
+			defaultDate : moment().toDate(),
+			setDefaultDate : false,
+			bound : true
+		});
+	});
+</script>
+<div id="gene_panel_div">
+<p ng-show="$parent.genePanel.message.length > 0" id="genepanel-saved">
+	<i class="fa fa-check" aria-hidden="true"></i>{{$parent.genePanel.message}}
+</p>
+<div class="genepanel_input" id="input_div">
+	<div class="genepanel_input_div">
+		<span>NGS Panel Name: </span>
+	</div>
+	<div>
+		<input type="text" ng-model="$parent.genePanel.name">
+	</div>
+	<div>
+		<span>*</span>
+	</div>
+	<div>
+		<span class="redtext" ng-show="$parent.allPanelNames.indexOf($parent.genePanel.name)>=0">Name must be unique.</span>
+	</div>
+</div>
+<div class="genepanel_input" id="input_div">
+	<div class="genepanel_input_div">
+		<span>In Use From: </span>
+	</div>
+	<div>
+		<input type="text" id="datepicker2" ng-model="$parent.genePanel.date">
+	</div>
+	<div>
+		<span>*</span>
+	</div>
+</div>
+<div class="genepanel_input" id="genespanels">
+	<div class="genepanel_input_div">
+		<span>Base on Panel: </span>
+	</div>
+	<div>
+		<select ng-model="$parent.genePanel.basePanel" ng-change="$parent.loadBasePanel()" id="genePanel-base-input">
+			<option value="-1" selected="selected">None</option>
+			<option value="{{$index}}" ng-repeat="panel in $parent.allPanelNames">{{panel}}</option>
+		</select>
+	</div>
+</div>
+<div class="genepanel_input" id="genes">
+	<div class="genepanel_input_div">
+		<span>Gene: </span>
+	</div>
+	<div>
+	<input type="text" class="gene form-control"
+		ng-model="$parent.genePanel.geneModel" 
+		uib-typeahead="gene_name as genes.gene_name for genes in $parent.allGenes |
+	unique:  'gene_name' |
+	orderBy: 'gene_name' |	
+	filter:$viewValue"
+		typeahead-select-on-exact="true" 
+		typeahead-on-select="$parent.genePanel.geneModel=$item" />
+	</div>
+	<div><button ng-click="$parent.addGeneToPanel($parent.genePanel.geneModel)">Add</button></div>
+</div>
+<div ng-show="$parent.genePanel.geneList.length>0">
+	<table id="addgenepanel-table">
+		<thead>
+			<tr>
+				<th>Genes</th>
+				<th width="15%"></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="gene in $parent.genePanel.geneList | orderBy: 'gene_name'">
+				<td>{{gene.gene_name}}</td>
+				<td class="pointer" ng-click="$parent.removeGeneFromPanel(gene)"><i class="fa fa-times" aria-hidden="true"></i></td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+<div id="addgenepanel-save" ng-show="$parent.genePanel.hasOwnProperty('date') && $parent.genePanel.geneList.length>0 && $parent.genePanel.name.trim()!=='' && $parent.allPanelNames.indexOf($parent.genePanel.name)<0">
+	<button id="addgenepanle-save-button" ng-click="$parent.saveGenePanel()">Save</button>
+</div>
+<br />
+</div>
+<div id="gene_panel_list_div">
+<table>
+	<thead>
+		<tr>
+			<th class="first_column">Gene Panel</th>
+			<th>In Use From</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="values in $parent.arrFromAllGenesPanel() | orderBy: orderByDateReverse">
+			<td class="first_column">{{values.genepanel}}</td>
+			<td>{{values.startDate}}</td>
+		</tr>
+	</tbody>
+</table>
+</div>
