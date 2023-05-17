@@ -6,16 +6,17 @@
 # separate terms of service, privacy policy, and support
 # documentation.
 
-name: Security Build
+name: Acuity Build
 
 on:
   push:
-    branches: [ "github-actions" ]
+    branches: [ "**" ]
   pull_request:
-    branches: [ "github-actions" ]
+    branches: [ "**" ]
 
 jobs:
-  build:
+
+  security-build:
 
     runs-on: ubuntu-latest
 
@@ -32,7 +33,8 @@ jobs:
           distribution: 'temurin'
           cache: maven
       - name: Build
-        run: mvn -B package deploy
+        run: mvn -B package deploy -P grunt,checks,docker
+
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         working-directory: clns-acuity-va-security
