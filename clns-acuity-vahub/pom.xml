@@ -60,9 +60,9 @@
 
     <distributionManagement>
         <repository>
-            <id>github-packages</id>
-            <name>digitalECMT.releases</name>
-            <url>https://maven.pkg.github.com/digital-ECMT/acuity-vahub</url>
+            <id>github</id>
+            <name>github</name>
+            <url>https://maven.pkg.github.com/epam/acuity</url>
         </repository>
     </distributionManagement>
 
@@ -80,7 +80,7 @@
             <repositories>
                 <repository>
                     <id>github</id>
-                    <url>https://maven.pkg.github.com/digital-ECMT/va-security</url>
+                    <url>https://maven.pkg.github.com/epam/acuity</url>
                     <snapshots>
                         <enabled>true</enabled>
                     </snapshots>
