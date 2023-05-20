@@ -101,3 +101,69 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         working-directory: clns-acuity-vahub
+
+  adminui-build:
+
+    runs-on: ubuntu-latest
+    needs: [security-build]
+
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+
+      - uses: actions/checkout@v3
+
+      - name: Log in to registry
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          java-version: '8'
+          distribution: 'temurin'
+          cache: 'maven'
+
+      - name: Build
+        run: mvn -B package deploy -P docker,github
+
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        working-directory: clns-acuity-admin
+
+  flyway-and-postgres-build:
+
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+
+      - uses: actions/checkout@v3
+
+      - name: Log in to registry
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          java-version: '8'
+          distribution: 'temurin'
+          cache: 'maven'
+
+      - name: Build Flyway
+        run: mvn -B package deploy -P docker-flyway
+
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        working-directory: clns-acuity-flyway
+
+      - name: Build Postgres
+        run: mvn -B package deploy -P docker-postgres
+
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        working-directory: clns-acuity-flyway
