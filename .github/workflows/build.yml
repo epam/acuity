@@ -9,9 +9,7 @@
 name: Acuity Build
 
 on:
-#  push:
-#    branches: [ "**" ]
-  pull_request:
+  pull_request: # build on pull request changes
     branches: [ "**" ]
 
 jobs:
