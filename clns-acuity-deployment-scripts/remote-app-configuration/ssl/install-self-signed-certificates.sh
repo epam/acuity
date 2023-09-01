@@ -116,15 +116,15 @@ openssl req -out ca.csr -newkey rsa:2048 -nodes -keyout ca.key -config ca.cnf -e
 openssl x509 -req -in ca.csr -CA root.crt -CAkey root.key -CAcreateserial -out ca.crt -days 9999 -extfile ca.cnf -extensions v3_req
 openssl x509 -in ca.crt -noout -text
 
-sudo rm -rf ./acuity-docker/ssl-certificates
-mkdir -p ./acuity-docker/ssl-certificates/certs
-mkdir -p ./acuity-docker/ssl-certificates/keys/
-sudo cp ca.crt ./acuity-docker/ssl-certificates/certs/
-sudo cp ca.key ./acuity-docker/ssl-certificates/keys/
+acuityDocker=$HOME/acuity/clns-acuity-docker
+sudo rm -rf $acuityDocker/ssl-certificates
+mkdir -p $acuityDocker/ssl-certificates/certs
+mkdir -p $acuityDocker/ssl-certificates/keys/
+sudo cp ca.crt $acuityDocker/ssl-certificates/certs/
+sudo cp ca.key $acuityDocker/ssl-certificates/keys/
 
 echo "Moving generated ssl certificates to separate directory in current folder ..."
 mkdir generated-ssl-certificates
 sudo mv *.csr *.crt *.cnf *.key *.srl ./generated-ssl-certificates
-
 
 echo "Now you should install root.crt file to your local machine to make it trust root certificate you've just created. For the sake of cyber-security change your self-signed certificates to authorized ones as soon as possible."

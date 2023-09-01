@@ -14,5 +14,9 @@
 # limitations under the License.
 #
 
-docker run -it --rm --name my-running-script -v "$PWD":/usr/src/myapp -w /usr/src/myapp python:3.6-slim  /bin/bash -c "pip install pyyaml;chmod +x apply-azure-configurations.py;./apply-azure-configurations.py"
+docker run -it --rm --name my-running-script \
+  -v "$PWD":/usr/src/myapp \
+  -v "$HOME/azure-credentials":/usr/src/myapp/azure-credentials \
+  -v "$HOME/acuity/clns-acuity-docker":/usr/src/myapp/acuity-docker \
+  -w /usr/src/myapp python:3.6-slim  /bin/bash -c "pip install pyyaml;chmod +x apply-azure-configurations.py;./apply-azure-configurations.py"
 docker rmi python:3.6-slim

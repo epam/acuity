@@ -1,4 +1,4 @@
-FROM docker.io/postgres:11.10
+FROM docker.io/postgres:11-bullseye
 
 WORKDIR /usr/root
 
