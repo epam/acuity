@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 #
 # Copyright 2021 The University of Manchester
 #
@@ -15,11 +15,12 @@
 # limitations under the License.
 #
 
+cd ../..
 currentDir=$(pwd)
 mvn_image=maven:3.3.9-jdk-8-onbuild
 
 echo "Creating builds directory in acuity-docker folder"
-mkdir clns-acuity-docker/building-mode/builds
+mkdir -p clns-acuity-docker/building-mode/builds
 echo "Creating temporary maven artifact folder..."
 
 #For some reason maven stucks while downloading dependencies related to this plugin
@@ -29,12 +30,12 @@ wget https://repo1.maven.org/maven2/org/apache/maven/plugins/maven-war-plugin/2.
 docker run -it --rm -v "$(pwd)":/usr/src/mymaven -v "$currentDir/maven-repo":/root/.m2 -w /usr/src/mymaven $mvn_image /bin/bash -c \
 "export MAVEN_OPTS=\"$MAVEN_OPTS -Djava.net.preferIPv6Stack=true -Dgenerate.pom=true\"; \
 echo '{\"registry\": \"https://registry.bower.io\", \"strict-ssl\": false}' >~/.bowerrc; \
-mvn install -f maven-war-plugin-2.2.pom; \
-cd clns-acuity-va-security;mvn install -DskipTests;cd ../clns-acuity-vahub; \
-#mvn package -P webapp -DskipTests;cd ../clns-acuity-admin; \
-#mvn install -DskipTests;cd ../clns-acuity-flyway; \
-#mvn install -DskipTests;cd ../clns-acuity-config-server; \
-#mvn install -DskipTests"
+echo 'Installing maven WAR plugin'; mvn install -f maven-war-plugin-2.2.pom; \
+echo 'Building VASecurity'; cd clns-acuity-va-security;mvn install -DskipTests;\
+echo 'Building VAHub'; cd ../clns-acuity-vahub; mvn package -P webapp -DskipTests;\
+echo 'Building Admin'; cd ../clns-acuity-admin; mvn install -DskipTests;\
+echo 'Building Flyway'; cd ../clns-acuity-flyway; mvn install -DskipTests;\
+echo 'Building Config Server'; cd ../clns-acuity-config-server; mvn install -DskipTests"
 
 cd $currentDir
 

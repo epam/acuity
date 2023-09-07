@@ -217,12 +217,12 @@ from
   ),
     severity_map as (
       select row_number() over (partition by esm_std_id order by
-        decode(ESM_DEPOT_GCS, null, 0 , 1) +
-        decode(ESM_SYSCORT_TRT, null, 0 , 1) +
-        decode(ESM_ICS_TRT, null, 0 , 1) +
-        decode(ESM_ANTIBIOTICS_TRT, null, 0 , 1) +
-        decode(ESM_HOSPIT, null, 0 , 1) +
-        decode(ESM_EMER_TRT, null, 0 , 1)) as rank,
+        oracle.decode(ESM_DEPOT_GCS, null, 0 , 1) +
+        oracle.decode(ESM_SYSCORT_TRT, null, 0 , 1) +
+        oracle.decode(ESM_ICS_TRT, null, 0 , 1) +
+        oracle.decode(ESM_ANTIBIOTICS_TRT, null, 0 , 1) +
+        oracle.decode(ESM_HOSPIT, null, 0 , 1) +
+        oracle.decode(ESM_EMER_TRT, null, 0 , 1)) as rank,
              D_DEPOT_GCS.trg as ESM_DEPOT_GCS,
              D_SYSCORT_TRT.trg as ESM_SYSCORT_TRT,
              D_ICS_TRT.trg as ESM_ICS_TRT,
