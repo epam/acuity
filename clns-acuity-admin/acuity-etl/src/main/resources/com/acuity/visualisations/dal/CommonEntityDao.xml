@@ -23,7 +23,12 @@
 
     <entry key="UPDATE_FIRST_DOSE_DATE"><![CDATA[
 UPDATE result_patient SET (pat_ip_dose_first_date, pat_received_drug) = (
-    SELECT MIN(mds_start_date), NVL2(MIN(mds_start_date), 'Yes', 'No')
+    SELECT
+      MIN(mds_start_date),
+      CASE
+        WHEN MIN(mds_start_date) IS NOT NULL THEN 'Yes'
+        ELSE 'No'
+      END
     FROM result_trg_med_dos_schedule
     WHERE mds_dose > 0 AND mds_pat_id = pat_id
 )
@@ -80,7 +85,11 @@ SET (pat_withdrawal_reason, pat_withdrawal_date) = (
   SELECT DISTINCT
     CASE
       WHEN wc_withdrawal_completion_date IS NULL
-      THEN nvl2(dth_pat_id, 'Death', 'No Withdrawal/Completion')
+      THEN
+        CASE
+          WHEN dth_pat_id IS NOT NULL THEN 'Death'
+          ELSE 'No Withdrawal/Completion'
+        END
       ELSE
         CASE
           WHEN dth_date IS NOT NULL AND LEAST(wc_withdrawal_completion_date, dth_date) = dth_date
@@ -217,12 +226,12 @@ from
   ),
     severity_map as (
       select row_number() over (partition by esm_std_id order by
-        oracle.decode(ESM_DEPOT_GCS, null, 0 , 1) +
-        oracle.decode(ESM_SYSCORT_TRT, null, 0 , 1) +
-        oracle.decode(ESM_ICS_TRT, null, 0 , 1) +
-        oracle.decode(ESM_ANTIBIOTICS_TRT, null, 0 , 1) +
-        oracle.decode(ESM_HOSPIT, null, 0 , 1) +
-        oracle.decode(ESM_EMER_TRT, null, 0 , 1)) as rank,
+        (CASE WHEN (ESM_DEPOT_GCS = null) THEN 0 ELSE 1 END) +
+        (CASE WHEN (ESM_SYSCORT_TRT = null) THEN 0 ELSE 1 END) +
+        (CASE WHEN (ESM_ICS_TRT = null) THEN 0 ELSE 1 END) +
+        (CASE WHEN (ESM_ANTIBIOTICS_TRT = null) THEN 0 ELSE 1 END) +
+        (CASE WHEN (ESM_HOSPIT = null) THEN 0 ELSE 1 END) +
+        (CASE WHEN (ESM_EMER_TRT = null) THEN 0 ELSE 1 END)) as rank,
              D_DEPOT_GCS.trg as ESM_DEPOT_GCS,
              D_SYSCORT_TRT.trg as ESM_SYSCORT_TRT,
              D_ICS_TRT.trg as ESM_ICS_TRT,

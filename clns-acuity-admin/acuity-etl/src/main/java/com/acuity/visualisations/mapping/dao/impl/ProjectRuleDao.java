@@ -42,12 +42,12 @@ import java.util.List;
 public class ProjectRuleDao extends BasicDynamicEntityDao<ProjectRule> implements IProjectRuleDao {
     private static final String SEARCH_PROJECTS_BY_DRUGS_QUERY
             = "select MPR_ID, MPR_DRUG, MPR_DRUG_DISPLAY_NAME, MPR_CREATE_DASHBOARD, MPR_AE_SEVERITY_TYPE, MPR_COMPLETED,"
-            + " sum(nvl2(msr_id, 1, 0)) as NBR_RCT_STUDIES from MAP_STUDY_RULE"
+            + " sum(CASE WHEN msr_id IS NOT NULL THEN 1 ELSE 0 END)) as NBR_RCT_STUDIES from MAP_STUDY_RULE"
             + " right join MAP_PROJECT_RULE on MSR_PRJ_ID = MPR_ID and MPR_DRUG in ";
 
     private static final String SEARCH_PROJECTS_BY_DRUG_QUERY
             = "select MPR_ID, MPR_DRUG, MPR_DRUG_DISPLAY_NAME, MPR_CREATE_DASHBOARD, MPR_AE_SEVERITY_TYPE, MPR_COMPLETED,"
-            + " sum(nvl2(msr_id, 1, 0)) as NBR_RCT_STUDIES from MAP_STUDY_RULE"
+            + " sum(CASE WHEN msr_id IS NOT NULL THEN 1 ELSE 0 END) as NBR_RCT_STUDIES from MAP_STUDY_RULE"
             + " right join MAP_PROJECT_RULE on MSR_PRJ_ID = MPR_ID"
             + " WHERE upper(MPR_DRUG) = upper(?)"
             + " group by MPR_ID, MPR_DRUG, MPR_DRUG_DISPLAY_NAME, MPR_CREATE_DASHBOARD, MPR_AE_SEVERITY_TYPE, MPR_COMPLETED ";
@@ -57,14 +57,14 @@ public class ProjectRuleDao extends BasicDynamicEntityDao<ProjectRule> implement
 
     private static final String SEARCH_PROJECT_BY_ID_QUERY
             = "select MPR_ID, MPR_DRUG, MPR_DRUG_DISPLAY_NAME, MPR_CREATE_DASHBOARD, MPR_AE_SEVERITY_TYPE, MPR_COMPLETED,"
-            + " sum(nvl2(msr_id, 1, 0)) as NBR_RCT_STUDIES from MAP_STUDY_RULE"
+            + " sum(CASE WHEN msr_id IS NOT NULL THEN 1 ELSE 0 END) as NBR_RCT_STUDIES from MAP_STUDY_RULE"
             + " right join MAP_PROJECT_RULE on MSR_PRJ_ID = MPR_ID"
             + " WHERE MPR_ID = ?"
             + " group by MPR_ID, MPR_DRUG, MPR_DRUG_DISPLAY_NAME, MPR_CREATE_DASHBOARD, MPR_AE_SEVERITY_TYPE, MPR_COMPLETED";
 
     private static final String SEARCH_QUERY
             = "select MPR_ID, MPR_DRUG, MPR_DRUG_DISPLAY_NAME, MPR_CREATE_DASHBOARD, MPR_AE_SEVERITY_TYPE, MPR_COMPLETED,"
-            + " sum(nvl2(msr_id, 1, 0)) as NBR_RCT_STUDIES from MAP_STUDY_RULE"
+            + " sum(CASE WHEN msr_id IS NOT NULL THEN 1 ELSE 0 END) as NBR_RCT_STUDIES from MAP_STUDY_RULE"
             + " right join MAP_PROJECT_RULE on MSR_PRJ_ID = MPR_ID"
             + " WHERE (LOWER(MPR_DRUG) LIKE ? OR LOWER(MSR_STUDY_CODE) LIKE ? )"
             + " group by MPR_ID, MPR_DRUG, MPR_DRUG_DISPLAY_NAME, MPR_CREATE_DASHBOARD, MPR_AE_SEVERITY_TYPE, MPR_COMPLETED"
@@ -72,7 +72,7 @@ public class ProjectRuleDao extends BasicDynamicEntityDao<ProjectRule> implement
 
     private static final String SEARCH_COMPLETED_QUERY
             = "select MPR_ID, MPR_DRUG, MPR_DRUG_DISPLAY_NAME, MPR_CREATE_DASHBOARD, MPR_AE_SEVERITY_TYPE, MPR_COMPLETED,"
-            + " sum(nvl2(msr_id, 1, 0)) as NBR_RCT_STUDIES from MAP_STUDY_RULE"
+            + " sum(CASE WHEN msr_id IS NOT NULL THEN 1 ELSE 0 END) as NBR_RCT_STUDIES from MAP_STUDY_RULE"
             + " right join MAP_PROJECT_RULE on MSR_PRJ_ID = MPR_ID"
             + " WHERE MPR_COMPLETED = 1"
             + " group by MPR_ID, MPR_DRUG, MPR_DRUG_DISPLAY_NAME, MPR_CREATE_DASHBOARD, MPR_AE_SEVERITY_TYPE, MPR_COMPLETED"
@@ -234,7 +234,8 @@ public class ProjectRuleDao extends BasicDynamicEntityDao<ProjectRule> implement
     public List<ProjectRule> getAllProjectRules() {
         logger.debug("getAllProjectRules");
         return getJdbcTemplate().query(
-                "SELECT MPR_ID, MPR_DRUG, MPR_DRUG_DISPLAY_NAME, MPR_AE_SEVERITY_TYPE, MPR_COMPLETED, sum(nvl2(msr_id, 1, 0)) AS NBR_RCT_STUDIES "
+                "SELECT MPR_ID, MPR_DRUG, MPR_DRUG_DISPLAY_NAME, MPR_AE_SEVERITY_TYPE, MPR_COMPLETED, sum("
+                        + "CASE WHEN msr_id IS NOT NULL THEN 1 ELSE 0 END) AS NBR_RCT_STUDIES "
                         + "FROM  MAP_PROJECT_RULE LEFT JOIN MAP_STUDY_RULE ON MSR_PRJ_ID= MPR_ID "
                         + "GROUP BY MPR_ID, MPR_DRUG, MPR_DRUG_DISPLAY_NAME, MPR_AE_SEVERITY_TYPE, MPR_COMPLETED ORDER BY MPR_DRUG",
                 ROW_MAPPER);
