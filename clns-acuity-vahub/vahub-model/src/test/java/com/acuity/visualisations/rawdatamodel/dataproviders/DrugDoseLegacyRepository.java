@@ -87,7 +87,7 @@ public interface DrugDoseLegacyRepository extends RawDataRepository<DrugDoseRaw>
             "         SELECT doses.pat_id, " +
             "                doses.drug, " +
             "                doses.ed, " +
-            "                acuity.nvl2(dscs.pat_id, 'DISCONTINUED', 'INACTIVE'), " +
+            "                oracle.nvl2(dscs.pat_id, 'DISCONTINUED', 'INACTIVE'), " +
             "                0, " +
             "                NULL, " +
             "                NULL, " +

@@ -19,7 +19,7 @@ BEGIN
   if p_first_dose > p_assessment then return null;
   end if;
 
-  days := trunc(p_assessment) - trunc(p_first_dose);
+  days := oracle.trunc(p_assessment) - oracle.trunc(p_first_dose);
   half := 1/2 * (7 * p_freq);
   x_max := 7 * p_freq + half;
   --dbms_output.put_line('First: x '||x||' freq '|| freq ||' min '||x_min||'  max '||x_max||' days '|| days|| ' half '||half);

@@ -32,8 +32,8 @@ create table acl_sid(
 
 create table acl_remote (
     id NUMBER(38) NOT NULL PRIMARY KEY,
-    name varchar2(500) not null,
-    base_url varchar2(500) not null,
+    name varchar(500) not null,
+    base_url varchar(500) not null,
     enabled boolean not null
 );
 
