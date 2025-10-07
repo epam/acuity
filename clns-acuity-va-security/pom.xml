@@ -71,8 +71,8 @@
     <distributionManagement>
         <repository>
             <id>github</id>
-            <name>digitalECMT.releases</name>
-            <url>https://maven.pkg.github.com/digital-ECMT/acuity-va-security</url>
+            <name>github</name>
+            <url>https://maven.pkg.github.com/epam/acuity</url>
         </repository>
     </distributionManagement>
 

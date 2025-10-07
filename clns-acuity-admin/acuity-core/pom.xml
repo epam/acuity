@@ -203,7 +203,7 @@
                             <registry>ghcr.io</registry>
                             <images>
                                 <image>
-                                    <name>ghcr.io/digital-ecmt/${project.artifactId}</name>
+                                    <name>ghcr.io/epam/acuity/${project.artifactId}</name>
                                     <build>
                                         <dockerFile>${project.basedir}/Dockerfile</dockerFile >
                                         <tags>

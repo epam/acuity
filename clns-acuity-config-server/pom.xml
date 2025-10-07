@@ -42,9 +42,9 @@
 
     <distributionManagement>
         <repository>
-            <id>github-packages</id>
-            <name>digitalECMT.releases</name>
-            <url>https://maven.pkg.github.com/digital-ECMT/acuity-config-server</url>
+            <id>github</id>
+            <name>github</name>
+            <url>https://maven.pkg.github.com/epam/acuity</url>
         </repository>
     </distributionManagement>
 
@@ -113,7 +113,7 @@
                             <registry>ghcr.io</registry>
                             <images>
                                 <image>
-                                    <name>ghcr.io/digital-ecmt/${project.artifactId}</name>
+                                    <name>ghcr.io/epam/acuity/${project.artifactId}</name>
                                     <build>
                                         <dockerFile>${project.basedir}/Dockerfile</dockerFile >
                                         <tags>
