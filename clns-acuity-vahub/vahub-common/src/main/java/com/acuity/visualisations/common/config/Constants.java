@@ -43,7 +43,9 @@ public final class Constants {
      */
     public static final String HAS_PERMISSION_VIEW_ONCOLOGY_PACKAGE =
             "@permissionEvaluator.hasViewDatasetWithExtraPermission(authentication, #requestBody.datasets, 'VIEW_ONCOLOGY_PACKAGE')";
+//            "true";
     public static final String HAS_VIEW_DATASET_PERMISSION =
             "@permissionEvaluator.hasViewDatasetPermission(authentication, #requestBody.datasets, 3)"; // 3 = AUTHORISED_USER
+//            "true";
 
 }

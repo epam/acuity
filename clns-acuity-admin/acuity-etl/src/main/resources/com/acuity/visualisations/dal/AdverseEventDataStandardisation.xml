@@ -36,12 +36,12 @@ with sourceTable as (
         when
         --if AE doesn't have an end date, withdrawal/completion date is not null and AE was started after withdrawal/completion date,
         --and last visit date after ae start date
-        --DECODE(SIGN(aes_start_date - coalesce(vis_date, aes_start_date)), 1, oracle.sysdate(), coalesce(vis_date, oracle.sysdate()) means use vis_date if vis_date >= aes_start_date or use current date otherwise
+        --oracle.DECODE(SIGN(aes_start_date - coalesce(vis_date, aes_start_date)), 1, oracle.sysdate(), coalesce(vis_date, oracle.sysdate()) means use vis_date if vis_date >= aes_start_date or use current date otherwise
             aes_end_date_raw is null
             and wc_withdrawal_completion_date is not null
             and aes_start_date > wc_withdrawal_completion_date
         --ETL should save the earliest date from death date, last visit date and current date-time as AE end date to the DB
-            then coalesce(dth_date, least(DECODE(SIGN(extract(day FROM(aes_start_date - coalesce(vis_date, aes_start_date))))::integer, 1, oracle.sysdate(), coalesce(vis_date, oracle.sysdate())), oracle.sysdate()))
+            then coalesce(dth_date, least(oracle.DECODE(SIGN(extract(day FROM(aes_start_date - coalesce(vis_date, aes_start_date))))::integer, 1, oracle.sysdate(), coalesce(vis_date, oracle.sysdate())), oracle.sysdate()))
         when
         --if AE doesn't have an end date and there is no withdrawal/completion date, but death date is present
             aes_end_date_raw is null
@@ -51,12 +51,12 @@ with sourceTable as (
             then dth_date
         when
         --if AE doesn't have an end date and there is no withdrawal/completion date and death date, and last visit is after ae start date
-        --DECODE(SIGN(aes_start_date - coalesce(vis_date, aes_start_date)), 1, oracle.sysdate(), coalesce(vis_date, oracle.sysdate()) means use vis_date if vis_date >= aes_start_date or use current date otherwise
+        --oracle.DECODE(SIGN(aes_start_date - coalesce(vis_date, aes_start_date)), 1, oracle.sysdate(), coalesce(vis_date, oracle.sysdate()) means use vis_date if vis_date >= aes_start_date or use current date otherwise
             aes_end_date_raw is null
             and wc_withdrawal_completion_date is null
             and dth_date is null
         --ETL should save the earliest date from last visit date and current date-time as AE end date to the DB
-            then least(DECODE(SIGN (extract(day FROM(aes_start_date - coalesce(vis_date, aes_start_date))))::integer, 1, oracle.sysdate(), coalesce(vis_date, oracle.sysdate())), oracle.sysdate())
+            then least(oracle.DECODE(SIGN (extract(day FROM(aes_start_date - coalesce(vis_date, aes_start_date))))::integer, 1, oracle.sysdate(), coalesce(vis_date, oracle.sysdate())), oracle.sysdate())
         when
         --if AE doesn't have an end date, withdrawal/completion date is not null and AE was started before withdrawal/completion date,
             aes_end_date_raw is null

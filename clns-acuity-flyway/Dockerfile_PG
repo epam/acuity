@@ -1,10 +1,12 @@
-FROM docker.io/postgres:11.10
+FROM docker.io/postgres:11-buster
 
 WORKDIR /usr/root
 
 COPY ./docker_resources/postgres/create_db.sql /docker-entrypoint-initdb.d
+COPY ./docker_resources/postgres/postgresql-11-orafce_3.7.2-2_amd64.deb /
 
-RUN apt update \
-	&& apt-get install postgresql-11-orafce -y
+RUN cat /etc/issue
+#RUN apt update
+RUN apt install /postgresql-11-orafce_3.7.2-2_amd64.deb -y
 
 EXPOSE 5432

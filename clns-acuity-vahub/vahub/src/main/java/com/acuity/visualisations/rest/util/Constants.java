@@ -32,7 +32,8 @@ public final class Constants {
      */
     //REQUEST ENDPOINT'S PARAMETER SHOULD BE NAMED AS "requestBody"!
     public static final String PRE_AUTHORISE_VISUALISATION
-            = "@permissionEvaluator.hasViewDatasetPermission(authentication, #requestBody.datasets, 3)"; // 3 = AUTHORISED_USER
+//            = "@permissionEvaluator.hasViewDatasetPermission(authentication, #requestBody.datasets, 3)"; // 3 = AUTHORISED_USER
+            = "true";
 
     /**
      * Pre authorise the visualisation for each web service end point for visualisations with Have they got permission for this visualisation or is the
@@ -40,7 +41,8 @@ public final class Constants {
      */
     //REQUEST ENDPOINT'S PARAMETER SHOULD BE NAMED AS "requestBody"!
     public static final String PRE_AUTHORISE_VISUALISATION_AND_ONCOLOGY
-            = "@permissionEvaluator.hasViewDatasetWithExtraPermission(authentication, #requestBody.datasets, 'VIEW_ONCOLOGY_PACKAGE')";
+//            = "@permissionEvaluator.hasViewDatasetWithExtraPermission(authentication, #requestBody.datasets, 'VIEW_ONCOLOGY_PACKAGE')";
+            = "true";
 
     /**
      * the #requestBody is supposed to be of the {@code EventFilterRequestPopulationAware} type

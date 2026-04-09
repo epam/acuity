@@ -189,7 +189,7 @@ where tmd.mds_id = sel.mds_id
     <entry key="FINISH_DOSE_SUBSEQUENT_PERIOD_TYPES"><![CDATA[
 update result_trg_med_dos_schedule tmd
 set mds_subsequent_period_type=(
-  CASE WHEN (TRUNC(mds_next_start_date) - TRUNC(sel.mds_end_date)) > INTERVAL '1 DAY'
+  CASE WHEN (DATE_TRUNC('day', mds_next_start_date) - DATE_TRUNC('day', sel.mds_end_date)) > INTERVAL '1 DAY'
   THEN 'INACTIVE_DOSING'
   ELSE COALESCE(mds_next_period_type, mds_subsequent_period_type) END
 )

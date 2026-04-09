@@ -45,33 +45,33 @@ public class CustomJobExecutionDao extends ACUITYDaoSupport implements ExtendedJ
     private static final String GET_ALL_JOB_EXECUTIONS_QUERY = "select project, study, batch_job_execution.* from "
             + "batch_job_execution,"
             + "(select job_execution_id as job_params_jeid, "
-            + "max(DECODE(key_name, '"
+            + "max(CASE WHEN(key_name = '"
             + JobLauncherConsts.STUDY_KEY
-            + "', string_val)) study, "
-            + "max(DECODE(key_name, '"
+            + "') THEN string_val END) study, "
+            + "max(CASE WHEN(key_name = '"
             + JobLauncherConsts.PROJECT_KEY
-            + "', string_val)) project from batch_job_execution_params group by job_execution_id) "
+            + "') THEN string_val END) project from batch_job_execution_params group by job_execution_id) "
             + "where batch_job_execution.job_execution_id=job_params_jeid";
 
     private static final String GET_ALL_JOB_ECEXUTION_IDS_QUERY = "select project, study, batch_job_execution.JOB_EXECUTION_ID from "
             + "batch_job_execution,"
             + "(select job_execution_id as job_params_jeid, "
-            + "max(DECODE(key_name, '"
+            + "max(CASE WHEN (key_name = '"
             + JobLauncherConsts.STUDY_KEY
-            + "', string_val)) study, "
-            + "max(DECODE(key_name, '"
+            + "') THEN string_val END) study, "
+            + "max(CASE WHEN (key_name = '"
             + JobLauncherConsts.PROJECT_KEY
-            + "', string_val)) project from batch_job_execution_params group by job_execution_id) "
+            + "') THEN string_val END) project from batch_job_execution_params group by job_execution_id) "
             + "where batch_job_execution.job_execution_id=job_params_jeid";
 
     private static final String GET_LATEST_JOB_EXECUTION_QUERY = "with job_params_decoded as " 
             + "  (select job_execution_id       as job_params_jeid, "
-            + "        max(decode(key_name, '"
+            + "        max(CASE WHEN (key_name = '"
             + JobLauncherConsts.STUDY_KEY
-            + "', string_val))                  as study, "
-            + "        max(decode(key_name, '"
+            + "') THEN string_val END)                  as study, "
+            + "        max(CASE WHEN(key_name = '"
             + JobLauncherConsts.PROJECT_KEY
-            + "', string_val))                  as project "
+            + "') THEN string_val END)                  as project "
             + "                            from batch_job_execution_params "
             + "                            group by job_execution_id) "
             + "select t1.project, "
@@ -117,11 +117,11 @@ public class CustomJobExecutionDao extends ACUITYDaoSupport implements ExtendedJ
             + "from batch_job_execution "
             + "INNER JOIN batch_job_instance bji"
             + "  ON batch_job_execution.job_instance_id = bji.job_instance_id, "
-            + "(select job_execution_id as job_params_jeid,max(DECODE(key_name, '"
+            + "(select job_execution_id as job_params_jeid,max(CASE WHEN(key_name = '"
             + JobLauncherConsts.STUDY_KEY
-            + "', string_val)) study, max(DECODE(key_name, '"
+            + ") THEN string_val END) study, max(CASE WHEN(key_name = '"
             + JobLauncherConsts.PROJECT_KEY
-            + "', string_val)) project "
+            + "') THEN string_val END) project "
             + "from batch_job_execution_params group by job_execution_id) as a "
             + "where batch_job_execution.job_execution_id=job_params_jeid "
             + "and bji.job_name = ? "
@@ -130,13 +130,13 @@ public class CustomJobExecutionDao extends ACUITYDaoSupport implements ExtendedJ
             + "left outer join "
             + "(select batch_job_execution.*, project, study, launchingTime "
             + "from batch_job_execution, "
-            + "(select job_execution_id as job_params_jeid,max(DECODE(key_name, '"
+            + "(select job_execution_id as job_params_jeid,max(CASE WHEN (key_name = '"
             + JobLauncherConsts.STUDY_KEY
-            + "', string_val)) study, max(DECODE(key_name, '"
+            + "') THEN string_val END) study, max(CASE WHEN(key_name = '"
             + JobLauncherConsts.PROJECT_KEY
-            + "', string_val)) project, max(DECODE(key_name, '"
+            + "') THEN string_val END) project, max(CASE WHEN(key_name = '"
             + JobLauncherConsts.UNIQUE_KEY
-            + "', string_val)) launchingTime "
+            + "') THEN string_val END) launchingTime "
             + "from batch_job_execution_params group by job_execution_id) as b "
             + "where batch_job_execution.job_execution_id=job_params_jeid) "
             + " t2 "

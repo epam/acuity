@@ -50,7 +50,7 @@ public interface QtProlongationRepository extends RawDataRepository<QtProlongati
             + "                   tst_visit, "
             + "                   tst_pat_id, "
             + "                   decg.decg_measurment_label            ecg_test, "
-            + "                   TO_NUMBER(decg.decg_measurment_value) ecg_value, "
+            + "                   oracle.TO_NUMBER(decg.decg_measurment_value) ecg_value, "
             + "                   'ECG'                                 measurement_category "
             + "            FROM result_decg decg "
             + "                     INNER JOIN result_test ON tst_id = decg_tst_id "

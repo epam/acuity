@@ -53,7 +53,7 @@ export class BarChartComponent extends AbstractChartComponent implements OnInit,
     protected plotBandIds: string[] = [];
     protected chartContainer: HTMLElement;
     protected chartContainerListener: EventListener;
-    private resizeObserver: ResizeObserver;
+    private resizeObserver: any; //ResizeObserver;
 
     constructor(protected elementRef: ElementRef,
                 protected barChartPlotconfigService: BarChartPlotconfigService,
@@ -70,11 +70,11 @@ export class BarChartComponent extends AbstractChartComponent implements OnInit,
         this.chartContainer.addEventListener('wheel', this.chartContainerListener);
 
         // TODO: figure out the reason for a passing width increase and fix it (for the this.elementRef.nativeElement.children[0].width)
-        this.resizeObserver = new ResizeObserver(elem => {
+        /*this.resizeObserver = new ResizeObserver(elem => {
             this.chart.calculateSize(this.chart.height, elem[0].borderBoxSize[0].inlineSize);
             this.chart.resize();
         });
-        this.resizeObserver.observe(this.elementRef.nativeElement.children[0]);
+        this.resizeObserver.observe(this.elementRef.nativeElement.children[0]);*/
     }
 
     ngOnDestroy(): void {

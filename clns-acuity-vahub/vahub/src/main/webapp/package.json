@@ -12,7 +12,6 @@
     "@types/lodash": "4.14.159",
     "@types/node": "10.5.3",
     "@types/nouislider": "9.0.0",
-    "@types/resize-observer-browser": "^0.1.6",
     "@types/wnumb": "1.0.27",
     "codelyzer": "~4.4.2",
     "copyfiles": "^1.2.0",

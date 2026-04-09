@@ -99,6 +99,7 @@ az storage account create \
   --kind StorageV2 \
   --sku Standard_LRS \
   --location $LOCATION \
+  --allow-blob-public-access false \
   --tags "Subscription=$SUBSCRIPTION" "Primary Contact=$PRIMARY_CONTACT" "Environment=${ENVIRONMENT_UPPER}" "Application=${APPLICATION}"
 
 az storage account create \
@@ -109,7 +110,8 @@ az storage account create \
   --kind StorageV2 \
   --sku Standard_LRS \
   --location $LOCATION \
-  --tags "Subscription=$SUBSCRIPTION" "Primary Contact=$PRIMARY_CONTACT" "Environment=${ENVIRONMENT_UPPER}" "Application=${APPLICATION}"  
+  --allow-blob-public-access false \
+  --tags "Subscription=$SUBSCRIPTION" "Primary Contact=$PRIMARY_CONTACT" "Environment=${ENVIRONMENT_UPPER}" "Application=${APPLICATION}"
   
 
 ## Create Backup Vault & Policy. Used for storing snapshots and VM backups. 
@@ -235,58 +237,59 @@ az vm create --name $APPLICATION_NAME \
   --boot-diagnostics-storage ${RESOURCE_GROUP_NAME}nediag \
   --storage-sku StandardSSD_LRS \
   --os-disk-size-gb 128 \
-  --tags "Subscription=$SUBSCRIPTION" "Primary Contact=$PRIMARY_CONTACT" "Environment=${ENVIRONMENT_UPPER}" "Application=${APPLICATION}" "Function=Web Server"
+  --tags "Subscription=$SUBSCRIPTION" "Primary Contact=$PRIMARY_CONTACT" "Environment=${ENVIRONMENT_UPPER}" "Application=${APPLICATION}" "Function=Web Server" \
+  --nsg ""
 
 ## Clears VM password
 VM_PASSWORD=""
 
-az network nsg rule create \
-    --resource-group ${NETWORK_RESOURCE_GROUP} \
-    --nsg-name ${APPLICATION_NAME}NSG \
-    --name in-443 \
-    --protocol tcp \
-    --direction inbound \
-    --priority 1010 \
-    --source-address-prefix '*' \
-    --source-port-range '*' \
-    --destination-address-prefix '*' \
-    --destination-port-range 443 \
-    --access allow
+#az network nsg rule create \
+#    --resource-group ${NETWORK_RESOURCE_GROUP} \
+#    --nsg-name ${APPLICATION_NAME}NSG \
+#    --name in-443 \
+#    --protocol tcp \
+#    --direction inbound \
+#    --priority 1010 \
+#    --source-address-prefix '*' \
+#    --source-port-range '*' \
+#    --destination-address-prefix '*' \
+#    --destination-port-range 443 \
+#    --access allow
 	
-az network nsg rule create \
-    --resource-group ${NETWORK_RESOURCE_GROUP} \
-    --nsg-name ${APPLICATION_NAME}NSG \
-    --name in-444 \
-    --protocol tcp \
-    --direction inbound \
-    --priority 1020 \
-    --source-address-prefix '*' \
-    --source-port-range '*' \
-    --destination-address-prefix '*' \
-    --destination-port-range 444 \
-    --access allow
+#az network nsg rule create \
+#    --resource-group ${NETWORK_RESOURCE_GROUP} \
+#    --nsg-name ${APPLICATION_NAME}NSG \
+#    --name in-444 \
+#    --protocol tcp \
+#    --direction inbound \
+#    --priority 1020 \
+#    --source-address-prefix '*' \
+#    --source-port-range '*' \
+#    --destination-address-prefix '*' \
+#    --destination-port-range 444 \
+#    --access allow
 
-az network nsg rule create \
-    --resource-group ${NETWORK_RESOURCE_GROUP} \
-    --nsg-name ${APPLICATION_NAME}NSG \
-    --name in-447 \
-    --protocol tcp \
-    --direction inbound \
-    --priority 1030 \
-    --source-address-prefix '*' \
-    --source-port-range '*' \
-    --destination-address-prefix '*' \
-    --destination-port-range 447 \
-    --access allow
+#az network nsg rule create \
+#    --resource-group ${NETWORK_RESOURCE_GROUP} \
+#    --nsg-name ${APPLICATION_NAME}NSG \
+#    --name in-447 \
+#    --protocol tcp \
+#    --direction inbound \
+#    --priority 1030 \
+#    --source-address-prefix '*' \
+#    --source-port-range '*' \
+#    --destination-address-prefix '*' \
+#    --destination-port-range 447 \
+#    --access allow
 
 vasecurity_url=https://${DNS_NAME}.${LOCATION}.cloudapp.azure.com:444
 adminui_url=https://${DNS_NAME}.${LOCATION}.cloudapp.azure.com:447
 vahub_url=https://${DNS_NAME}.${LOCATION}.cloudapp.azure.com:443
 
 echo "Generating application registries..."
-vasecurity_app_id=$((az ad app create --display-name ${APPLICATION}-vasecurity --reply-urls ${vasecurity_url}/login --query "appId") | xargs)
-admin_app_id=$((az ad app create --display-name ${APPLICATION}-admin --reply-urls ${adminui_url}/login --query "appId") | xargs)
-vahub_app_id=$((az ad app create --display-name ${APPLICATION}-vahub  --reply-urls ${vahub_url}/login --query "appId") | xargs)
+vasecurity_app_id=$((az ad app create --display-name ${APPLICATION}-vasecurity --web-redirect-uris ${vasecurity_url}/login --query "appId") | xargs)
+admin_app_id=$((az ad app create --display-name ${APPLICATION}-admin --web-redirect-uris ${adminui_url}/login --query "appId") | xargs)
+vahub_app_id=$((az ad app create --display-name ${APPLICATION}-vahub  --web-redirect-uris ${vahub_url}/login --query "appId") | xargs)
 
 echo "Adding Microsoft Graph User.Read permissions to registries..."
 az ad app permission add --id $vahub_app_id --api 00000003-0000-0000-c000-000000000000 --api-permissions e1fe6dd8-ba31-4d61-89e7-88639da4683d=Scope
@@ -304,7 +307,7 @@ vahub_client_secret=$((az ad app credential reset --id ${vahub_app_id} --append 
 
 
 echo "Creating Azure storage account..."
-az storage account create --name $STORAGE_ACCOUNT_NAME --resource-group $NETWORK_RESOURCE_GROUP --location $LOCATION --kind StorageV2
+az storage account create --name $STORAGE_ACCOUNT_NAME --resource-group $NETWORK_RESOURCE_GROUP --location $LOCATION --kind StorageV2 --allow-blob-public-access false
 
 storage_key=$((az storage account keys list -g $NETWORK_RESOURCE_GROUP -n $STORAGE_ACCOUNT_NAME --query [0].value) | xargs)
 

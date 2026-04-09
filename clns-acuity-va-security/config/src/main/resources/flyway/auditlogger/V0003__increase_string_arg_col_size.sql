@@ -14,4 +14,4 @@
  * limitations under the License.
  */
 
-ALTER TABLE LOG_ARG MODIFY LOG_ARG_STRING_VALUE varchar2(4000);
+ALTER TABLE LOG_ARG MODIFY LOG_ARG_STRING_VALUE varchar(4000);
