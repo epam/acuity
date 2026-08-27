@@ -1,5 +1,6 @@
+name: acuity
 services:
-  postgres:
+  acuity-postgres:
     image: acuity-postgres
     restart: always
     ports:
@@ -14,19 +15,47 @@ services:
       interval: 5s
       timeout: 5s
       retries: 10
-  flyway:
+
+  acuity-flyway-migrate:
     image: acuity-flyway
     env_file: env-configs/flyway.env
     depends_on:
-      postgres:
+      acuity-postgres:
         condition: service_healthy
-  va-security:
+
+  acuity-va-security:
     image: acuity-va-security
     ports:
       - "8000:8000"
     env_file: env-configs/va-security.env
     depends_on:
-      flyway:
+      acuity-flyway-migrate:
         condition: service_completed_successfully
+
+  acuity-admin:
+    image: acuity-admin
+    ports:
+      - "9090:8000"
+    env_file: env-configs/acuity-admin.env
+    depends_on:
+      acuity-flyway-migrate:
+        condition: service_completed_successfully
+
+  acuity-va-hub:
+    image: acuity-va-hub
+    ports:
+      - "8080:8000"
+    env_file: env-configs/va-hub.env
+    depends_on:
+      acuity-flyway-migrate:
+        condition: service_completed_successfully
+
+  acuity-va-hub-ui:
+    image: acuity-va-hub-ui
+    ports:
+      - "3000:8000"
+    env_file: env-configs/vahub-ui.env
+    depends_on:
+      - acuity-va-hub
 volumes:
   pgdata:
