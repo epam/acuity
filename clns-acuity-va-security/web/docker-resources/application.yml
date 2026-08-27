@@ -17,8 +17,8 @@ logging:
 spring:
   datasource:
     url: jdbc:postgresql://postgres:5432/acuity_db
-    username: acuity
-    password:
+    username: ${POSTGRES_USER:acuity}
+    password: ${POSTGRES_PASSWORD:}
     driver-class-name: org.postgresql.Driver
     fetch:
       size: 256
