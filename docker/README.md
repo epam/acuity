@@ -29,7 +29,7 @@ Built by the Makefile, tagged `acuity-<name>`. Dockerfiles live in `images/`.
 | Image | Base | Notes |
 |---|---|---|
 | `acuity-postgres` | `postgres:17-alpine` | Builds the orafce extension from source; seeds via `create_db.sql`. |
-| `acuity-flyway` | `flyway/flyway:10-alpine` | Bundles the SQL migrations and `flyway.conf`. |
+| `acuity-flyway` | `flyway/flyway:10-alpine` | Bundles the SQL migrations and `env-configs/flyway.conf`; runs the base image's default `flyway migrate`. Not this repo's `clns-acuity-flyway/.../flyway.conf` (that one stays reserved for the manual-CLI workflow in `clns-acuity-flyway/README.md`). |
 | `acuity-va-security` | `eclipse-temurin:8-jre` | Maven multi-stage build of `clns-acuity-va-security/web`. |
 | `acuity-admin` | `eclipse-temurin:8-jre` | Maven build; installs `va-security` auth module locally first. |
 | `acuity-va-hub` | `eclipse-temurin:8-jre` | Maven build; installs `va-security` modules locally first. |
@@ -40,7 +40,11 @@ The Java images build against the monorepo, so build context is the repo root
 
 ## Environment variables
 
-One file per service in `env-configs/`. Defaults are for local dev only.
+- One file per service in `env-configs/`. Defaults are for local dev only.
+- `acuity-flyway-migrate` is the exception: it takes a Flyway `.conf` file,
+baked into the image at build time (not `env_file`), since Flyway's env var
+support doesn't cover the dynamic `placeholders.*` key. Edit it and re-run
+`make build-flyway` to pick up changes.
 
 **`postgres.env`**
 
@@ -52,11 +56,18 @@ One file per service in `env-configs/`. Defaults are for local dev only.
 | `PGDATA` | Data directory inside the volume. |
 | `POSTGRES_HOST_AUTH_METHOD` / `POSTGRES_INITDB_ARGS` | Forced to `md5` — va-security ships a JDBC driver too old for scram-sha-256. |
 
-**`flyway.env`**
+**`flyway.conf`** (baked into the image — `flyway.locations`, `flyway.schemas`,
+`flyway.createSchemas`, `flyway.validateOnMigrate`, plus the placeholder
+below)
 
-| Var | Purpose |
+| Key | Purpose |
 |---|---|
-| `FLYWAY_USER` / `FLYWAY_PASSWORD` | DB credentials Flyway migrates with. |
+| `flyway.placeholders.user.acuity.password` | Password migrations assign to the `acuity` app role — must match `POSTGRES_PASSWORD` in the app env files. |
+
+Connection settings (`FLYWAY_URL` / `FLYWAY_USER` / `FLYWAY_PASSWORD`) aren't
+in `flyway.conf` — they're set directly on the `acuity-flyway-migrate`
+service in `docker-compose.yml`, since (unlike `placeholders.*`) Flyway does
+read these as env vars.
 
 **`acuity-admin.env`, `va-hub.env`, `va-security.env`** (Spring services)
 

@@ -18,25 +18,28 @@ services:
 
   acuity-flyway-migrate:
     image: acuity-flyway
-    env_file: env-configs/flyway.env
+    environment:
+      FLYWAY_URL: jdbc:postgresql://acuity-postgres:5432/acuity_db
+      FLYWAY_USER: test
+      FLYWAY_PASSWORD: test
     depends_on:
       acuity-postgres:
         condition: service_healthy
-
-  acuity-va-security:
-    image: acuity-va-security
-    ports:
-      - "8000:8000"
-    env_file: env-configs/va-security.env
-    depends_on:
-      acuity-flyway-migrate:
-        condition: service_completed_successfully
 
   acuity-admin:
     image: acuity-admin
     ports:
       - "9090:8000"
     env_file: env-configs/acuity-admin.env
+    depends_on:
+      acuity-flyway-migrate:
+        condition: service_completed_successfully
+
+  acuity-va-security:
+    image: acuity-va-security
+    ports:
+      - "8000:8000"
+    env_file: env-configs/va-security.env
     depends_on:
       acuity-flyway-migrate:
         condition: service_completed_successfully
