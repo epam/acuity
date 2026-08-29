@@ -1,1 +1,1 @@
-CREATE DATABASE acuity_db;
+CREATE ROLE dbadmin;

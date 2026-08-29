@@ -16,9 +16,9 @@ logging:
 # database connection data. if needed, the ones you need may be overridden for particular app in its config.
 spring:
   datasource:
-    url: jdbc:postgresql://postgres:5432/acuity_db
-    username: acuity
-    password:
+    url: ${POSTGRES_URL:jdbc:postgresql://acuity-postgres:5432/acuity_db}
+    username: ${POSTGRES_USER:acuity}
+    password: ${POSTGRES_PASSWORD:}
     driver-class-name: org.postgresql.Driver
     fetch:
       size: 256
@@ -35,20 +35,20 @@ spring:
 acuity:
   # used by AdminUI and VAHub to connect to VASecurity
   vasecurity:
-    url: http://vasecurity:8000
-    username: acuity
-    password:
+    url: ${VASECURITY_URL:http://acuity-va-security:8000}
+    username: ${VASECURITY_USERNAME:acuity}
+    password: ${VASECURITY_PASSWORD:}
   # used by AdminUI and VASecurity to connect to VAHUb
   vahub:
-    url: http://vahub:8000
-    username: acuity
-    password:
+    url: ${VAHUB_URL:http://acuity-va-hub:8000}
+    username: ${VAHUB_USERNAME:acuity}
+    password: ${VAHUB_PASSWORD:}
   # for VASecurity authorization module used in all ACUITY apps (basic authentication settings; should be here as long as basic authentication is used)
   security:
     basic-auth:
       users:
-        - username: acuity
-          password:
+        - username: ${BASIC_AUTH_USERNAME:acuity}
+          password: ${BASIC_AUTH_PASSWORD:}
           roles:
             - REMOTE_USER
             - ACL_ADMINISTRATOR

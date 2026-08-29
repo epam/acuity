@@ -137,7 +137,7 @@
                 </executions>
                 <configuration>
                     <dateFormat>EEE MMM d HH:mm:ss z yyyy</dateFormat>
-                    <dotGitDirectory>${project.basedir}/.git</dotGitDirectory>
+                    <dotGitDirectory>${project.basedir}/../../.git</dotGitDirectory>
                     <skipPoms>true</skipPoms>
                     <generateGitPropertiesFile>true</generateGitPropertiesFile>
                     <generateGitPropertiesFilename>src/main/resources/git.properties</generateGitPropertiesFilename>
