@@ -10,17 +10,21 @@ Run every command from this `docker/` directory.
 Compose project name: `acuity`. Startup order is enforced via healthchecks and
 `depends_on`.
 
-| Service | Host port | Description |
-|---|---|---|
-| `acuity-postgres` | 5432 | PostgreSQL 17 + orafce. Data in the `pgdata` volume. |
-| `acuity-flyway-migrate` | – | One-shot. Runs DB migrations, then exits. Waits for postgres healthy. |
-| `acuity-va-security` | 8000 | Auth service (WAR). |
-| `acuity-admin` | 9090 | Admin UI (WAR). |
-| `acuity-va-hub` | 8080 | VAHub backend API (Spring Boot JAR). |
-| `acuity-va-hub-ui` | 3000 | VAHub Angular SPA served by nginx, which proxies `/resources/*` to `acuity-va-hub`. |
+| Service | Host port | Profile | Description |
+|---|---|---|---|
+| `acuity-postgres` | 5432 | `main`, `initdb` | PostgreSQL 17 + orafce. Data in the `pgdata` volume. |
+| `acuity-flyway-migrate` | – | `main`, `initdb` | One-shot. Runs DB migrations, then exits. Waits for postgres healthy. |
+| `acuity-va-security` | 8000 | `main` | Auth service (WAR). |
+| `acuity-admin` | 9090 | `main` | Admin UI (WAR). |
+| `acuity-va-hub` | 8080 | `main` | VAHub backend API (Spring Boot JAR). |
+| `acuity-va-hub-ui` | 3000 | `main` | VAHub Angular SPA served by nginx, which proxies `/resources/*` to `acuity-va-hub`. |
 
 `va-security`, `admin` and `va-hub` start after `flyway-migrate` completes.
 `va-hub-ui` starts after `va-hub`.
+
+**Profiles**: `main` is the full stack (default). `initdb` is just
+postgres + the migration — useful for setting up the DB alone. Selected via
+the Makefile's `PROFILE` var, not passed to `docker compose` directly.
 
 ## Images
 
@@ -107,9 +111,17 @@ Requires Docker with Compose v2.
 | `make down_volumes` | Same as `down`, plus delete volumes (wipes the DB). |
 
 Add `NO_CACHE=1` to any build target to build without the Docker cache.
+Add `PROFILE=initdb` to `up`/`up_build`/`down`/`down_volumes` to target just
+postgres + migrations instead of the full stack (default: `main`).
 
 First run:
 
 ```
 make up_build
+```
+
+DB only:
+
+```
+make up_build PROFILE=initdb
 ```
