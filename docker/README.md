@@ -41,10 +41,14 @@ The Java images build against the monorepo, so build context is the repo root
 ## Environment variables
 
 - One file per service in `env-configs/`. Defaults are for local dev only.
-- `acuity-flyway-migrate` is the exception: it takes a Flyway `.conf` file,
-baked into the image at build time (not `env_file`), since Flyway's env var
-support doesn't cover the dynamic `placeholders.*` key. Edit it and re-run
-`make build-flyway` to pick up changes.
+Every load-bearing value (DB connection strings, usernames, passwords,
+inter-service URLs) is overridable via env var with no image rebuild — see
+each service's table below.
+- `acuity-flyway-migrate` is the exception: its structural settings
+(locations/schemas/etc, see `flyway.conf` below) are baked into the image at
+build time (not `env_file`) since they're tied to the migration bundle
+itself, not the environment. Edit `env-configs/flyway.conf` and re-run
+`make build-flyway` only if you need to change those.
 
 **`postgres.env`**
 
@@ -56,18 +60,16 @@ support doesn't cover the dynamic `placeholders.*` key. Edit it and re-run
 | `PGDATA` | Data directory inside the volume. |
 | `POSTGRES_HOST_AUTH_METHOD` / `POSTGRES_INITDB_ARGS` | Forced to `md5` — va-security ships a JDBC driver too old for scram-sha-256. |
 
-**`flyway.conf`** (baked into the image — `flyway.locations`, `flyway.schemas`,
-`flyway.createSchemas`, `flyway.validateOnMigrate`, plus the placeholder
-below)
+**`flyway.conf`** — baked into the image, structural only (`flyway.locations`,
+`flyway.schemas`, `flyway.createSchemas`, `flyway.validateOnMigrate`); nothing
+load-bearing lives here. Connection and secrets are env vars set on the
+`acuity-flyway-migrate` service in `docker-compose.yml` (override via a
+project-level `.env` file or the shell — no rebuild needed):
 
-| Key | Purpose |
+| Var | Purpose |
 |---|---|
-| `flyway.placeholders.user.acuity.password` | Password migrations assign to the `acuity` app role — must match `POSTGRES_PASSWORD` in the app env files. |
-
-Connection settings (`FLYWAY_URL` / `FLYWAY_USER` / `FLYWAY_PASSWORD`) aren't
-in `flyway.conf` — they're set directly on the `acuity-flyway-migrate`
-service in `docker-compose.yml`, since (unlike `placeholders.*`) Flyway does
-read these as env vars.
+| `FLYWAY_URL` / `FLYWAY_USER` / `FLYWAY_PASSWORD` | DB connection Flyway migrates with (native Flyway env vars). |
+| `FLYWAY_ACUITY_PASSWORD` | Password migrations assign to the `acuity` app role — must match `POSTGRES_PASSWORD` below. Passed as a CLI arg (`flyway.Dockerfile`'s `CMD`) since Flyway has no env var for dynamic `placeholders.*` keys. |
 
 **`acuity-admin.env`, `va-hub.env`, `va-security.env`** (Spring services)
 
@@ -80,6 +82,10 @@ read these as env vars.
 | `STORAGE_PROFILE` | (admin only) e.g. `local-storage`. |
 | `OTHER_PROFILES` | (va-hub, va-security) extra profiles, comma-separated. |
 | `JAVA_OPTIONS` | Optional extra JVM flags. |
+| `POSTGRES_URL` | JDBC connection string. Not in the shipped `.env` files (the `application.yml` default already points at `acuity-postgres`) — add it to point at a different DB. |
+| `VASECURITY_URL` / `VASECURITY_USERNAME` / `VASECURITY_PASSWORD` | How this service reaches va-security. Same override note as `POSTGRES_URL`. |
+| `VAHUB_URL` / `VAHUB_USERNAME` / `VAHUB_PASSWORD` | How this service reaches va-hub. Same override note as `POSTGRES_URL`. |
+| `BASIC_AUTH_USERNAME` / `BASIC_AUTH_PASSWORD` | This service's own in-memory basic-auth user (used when a peer calls in under a non-`local-no-security` `AUTH_PROFILE`). |
 
 **`vahub-ui.env`**
 

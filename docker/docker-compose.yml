@@ -19,9 +19,11 @@ services:
   acuity-flyway-migrate:
     image: acuity-flyway
     environment:
-      FLYWAY_URL: jdbc:postgresql://acuity-postgres:5432/acuity_db
-      FLYWAY_USER: test
-      FLYWAY_PASSWORD: test
+      FLYWAY_URL: ${FLYWAY_URL:-jdbc:postgresql://acuity-postgres:5432/acuity_db}
+      FLYWAY_USER: ${FLYWAY_USER:-test}
+      FLYWAY_PASSWORD: ${FLYWAY_PASSWORD:-test}
+      # must match POSTGRES_PASSWORD in the app env files - it's the password migrations assign the acuity role
+      FLYWAY_ACUITY_PASSWORD: ${FLYWAY_ACUITY_PASSWORD:-test}
     depends_on:
       acuity-postgres:
         condition: service_healthy

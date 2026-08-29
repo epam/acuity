@@ -20,7 +20,7 @@ RUN mvn -f clns-acuity-va-security/pom.xml -B -pl domain,common,auditlogger,auth
 # ---- stage 2: build the Angular bundle ----
 FROM node:6 AS webapp
 
-# node:6's npm 3.10 is broken on overlayfs; swap in npm 6.14 by hand
+# node:6's npm 3.10 is broken; swap in npm 6.14 by hand
 RUN curl -sL https://registry.npmjs.org/npm/-/npm-6.14.18.tgz | tar -xz -C /tmp \
     && rm -rf /usr/local/lib/node_modules/npm \
     && mv /tmp/package /usr/local/lib/node_modules/npm

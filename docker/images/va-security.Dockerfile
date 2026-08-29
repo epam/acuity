@@ -4,10 +4,10 @@ WORKDIR /build
 COPY .git ./.git
 COPY clns-acuity-va-security ./clns-acuity-va-security
 
-# checks profile (checkstyle/findbugs) is for CI, not needed for the artifact
+# Checks profile (checkstyle/findbugs) is for CI, not needed for the artifact.
 RUN mvn -f clns-acuity-va-security/pom.xml -B -pl web -am -P '!checks' \
         -DskipTests clean package \
-    && cp clns-acuity-va-security/web/target/*.war /build/app.war
+        && cp clns-acuity-va-security/web/target/*.war /build/app.war
 
 
 FROM eclipse-temurin:8-jre
