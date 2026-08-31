@@ -3,22 +3,44 @@ IMAGES := postgres flyway va-security admin va-hub va-hub-ui
 # main = full stack, initdb = just postgres + migrations (see docker-compose.yml profiles)
 PROFILE ?= main
 
-# build-% targets are left off .PHONY on purpose: make 3.81 skips pattern rules
-# for phony targets. They create no file, so the recipe runs every invocation anyway.
-.PHONY: build_all up up_build down down_volumes
+# build-local-% / build-release-% are left off .PHONY on purpose: make 3.81 skips
+# pattern rules for phony targets. They create no file, so the recipe runs anyway.
+.PHONY: build-all build-all-release require-version up up_build down down_volumes ecr-login
+
+ECR_REGISTRY := 897021975362.dkr.ecr.us-east-1.amazonaws.com
+IMAGE_REPO   := $(ECR_REGISTRY)/epm-lstr-acuity/
+
+# release covers every image except postgres (RDS on AWS, nothing to push)
+RELEASE_IMAGES := $(filter-out postgres,$(IMAGES))
+
+# AWS_PROFILE=<name> overrides the profile for aws calls (else the ambient env is used)
+AWS_PROFILE_FLAG := $(if $(AWS_PROFILE),--profile $(AWS_PROFILE),)
 
 # NO_CACHE=1 builds without the docker builder cache
 BUILD_FLAGS := $(if $(NO_CACHE),--no-cache,)
 
-build-%:
-	docker build $(BUILD_FLAGS) -f images/$*.Dockerfile --tag=acuity-$* --load ..
+# local image tagged :latest, loaded into docker, never pushed
+build-local-%:
+	docker build $(BUILD_FLAGS) -f images/$*.Dockerfile --tag=$(IMAGE_REPO)$*:latest --load ..
 
-build_all: $(addprefix build-,$(IMAGES))
+build-all: $(addprefix build-local-,$(IMAGES))
+
+# image tagged :$(VERSION), pushed to ECR -- run `make ecr-login` first
+build-release-%: require-version
+	docker build $(BUILD_FLAGS) -f images/$*.Dockerfile --tag=$(IMAGE_REPO)$*:$(VERSION) --push ..
+
+build-all-release: $(addprefix build-release-,$(RELEASE_IMAGES))
+
+require-version:
+	@test -n "$(VERSION)" || { echo "VERSION is required, e.g. make build-all-release VERSION=1.2.3" >&2; exit 1; }
+
+ecr-login:
+	aws $(AWS_PROFILE_FLAG) ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin $(ECR_REGISTRY)
 
 up:
 	docker compose --profile $(PROFILE) up -d
 
-up_build: build_all
+up_build: build-all
 	docker compose --profile $(PROFILE) up -d
 
 down:

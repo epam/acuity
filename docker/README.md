@@ -28,7 +28,10 @@ the Makefile's `PROFILE` var, not passed to `docker compose` directly.
 
 ## Images
 
-Built by the Makefile, tagged `acuity-<name>`. Dockerfiles live in `images/`.
+Built by the Makefile, tagged
+`897021975362.dkr.ecr.us-east-1.amazonaws.com/epm-lstr-acuity/acuity-<name>`
+(`:latest` for local builds, `:<version>` for releases). Dockerfiles live in
+`images/`.
 
 | Image | Base | Notes |
 |---|---|---|
@@ -52,7 +55,7 @@ each service's table below.
 (locations/schemas/etc, see `flyway.conf` below) are baked into the image at
 build time (not `env_file`) since they're tied to the migration bundle
 itself, not the environment. Edit `env-configs/flyway.conf` and re-run
-`make build-flyway` only if you need to change those.
+`make build-local-flyway` only if you need to change those.
 
 **`postgres.env`**
 
@@ -99,16 +102,26 @@ project-level `.env` file or the shell — no rebuild needed):
 
 ## Build and run
 
-Requires Docker with Compose v2.
+Requires Docker with Compose v2 (`docker build` uses buildx for `--load` / `--push`).
+
+### Local
 
 | Command | Action |
 |---|---|
-| `make build_all` | Build all images. |
-| `make build-<name>` | Build one image. `<name>` ∈ `postgres flyway va-security admin va-hub va-hub-ui`. |
+| `make build-all` | Build all images, tag `:latest`, load into Docker. |
+| `make build-local-<name>` | Build one image the same way. `<name>` ∈ `postgres flyway va-security admin va-hub va-hub-ui`. |
 | `make up` | Start the stack (detached). Images must already be built. |
-| `make up_build` | Build all images, then start. |
+| `make up_build` | `build-all`, then start. |
 | `make down` | Stop and remove containers. |
 | `make down_volumes` | Same as `down`, plus delete volumes (wipes the DB). |
+
+### Release to ECR
+
+| Command | Action |
+|---|---|
+| `make ecr-login` | Log Docker in to the ECR registry. `AWS_PROFILE=<name>` overrides the AWS profile (else the ambient env is used). |
+| `make build-all-release VERSION=x.y.z` | Build every image except postgres, tag `:x.y.z`, push. `VERSION` is required; run `make ecr-login` first. |
+| `make build-release-<name> VERSION=x.y.z` | One image, tagged and pushed the same way. |
 
 Add `NO_CACHE=1` to any build target to build without the Docker cache.
 Add `PROFILE=initdb` to `up`/`up_build`/`down`/`down_volumes` to target just
