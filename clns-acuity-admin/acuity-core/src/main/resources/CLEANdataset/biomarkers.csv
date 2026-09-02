@@ -1,0 +1,307 @@
+STUDY,PART,Bioinformatics Pipeline Version,SAMPLE TYPE,SAMPLE DATE,SUBJECT ID,SAMPLE ID,VARIANT-TYPE,GENE,SOMATIC STATUS/FUNCTIONAL IMPACT,SV-PROTEIN-CHANGE,SV-CDS-CHANGE,CHR (no longer represented as SV-GENOME-POSITION as split out into 2 columns),"CHR POSITION
+(no longer SV-GENOME-POSITION as split into 2 columns)",SV-GENOME-POSITION,SV-COVERAGE,SV-PERCENT-READS,CNA-COPY-NUMBER,MUTATION_TYPE,CNA-TYPE,REARR-GENE 1,CNA-RATIO,REARR-GENE2,REARR-DESCRIPTION,REARR-IN-FRAME?,REARR-POS1,REARR-POS2,REARR-NUMBER-OF-READS,CNA-EXONS
+STUDY0001,B,3,Tissue,5/22/2017,ID0001,6202959545_H15-21824 A1,short variant,ERBB2,known,S310Y,929C>A,chr17,37868208,chr17:37868208:37868300,714,40,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0001,6202959545_H15-21824 A1,short variant,PTCH2,known,E583K,1747G>A,chr1,45293826,chr1:45293826,514,41,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0001,6202959545_H15-21824 A1,short variant,TERT,known,promoter -124C>T,-124C>T,chr5,1295228,chr5:1295228,109,58,-,Other,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0001,6202959545_H15-21824 A1,short variant,TP53,known,Q331*,991C>T,chr17,7576855,chr17:7576855,499,77,-,Trunc/FS,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0001,6202959545_H15-21824 A1,short variant,APC,likely,S851fs*7,2552_2561delGTTTGGAGAG,chr5,112173842,chr5:112173842,527,64,-,Trunc/FS,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0001,6202959545_H15-21824 A1,short variant,RB1,likely,V144fs*9,429_429delA,chr13,48919263,chr13:48919263,333,35,-,Trunc/FS,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0001,6202959545_H15-21824 A1,short variant,CIC,unknown,G167V,500G>T,chr19,42791519,chr19:42791519,657,53,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0001,6202959545_H15-21824 A1,short variant,EPHA3,unknown,K713T,2138A>C,chr3,89480301,chr3:89480301,419,48,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0001,6202959545_H15-21824 A1,short variant,FLCN,unknown,A89S,265G>T,chr17,17129621,chr17:17129621,796,52,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0001,6202959545_H15-21824 A1,short variant,NOTCH4,unknown,L46V,136C>G,chr6,32190801,chr6:32190801,677,41,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0001,6202959545_H15-21824 A1,short variant,PIK3CA,unknown,D352H,1054G>C,chr3,178921572,chr3:178921572,347,44,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0001,6202959545_H15-21824 A1,short variant,SF3B1,unknown,D114N,340G>A,chr2,198285227,chr2:198285227,756,40,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0001,6202959545_H15-21824 A1,short variant,SMARCA4,unknown,E882K,2644G>A,chr19,11132428,chr19:11132428,571,37,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0001,6202959545_H15-21824 A1,short variant,TRRAP,unknown,D381N,1141G>A,chr7,98506376,chr7:98506376,692,40,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0001,6202959545_H15-21824 A1,short variant,ZBTB2,unknown,R62H,185G>A,chr6,151688016,chr6:151688016,703,41,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0002,6202959545_H15-21824 A1,short variant,SMARCA4,unknown,E882K,2644G>A,chr19,11132428,chr19:11132428,571,37,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0002,6202959545_H15-21824 A1,short variant,TRRAP,unknown,D381N,1141G>A,chr7,98506376,chr7:98506376,692,40,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0002,6202959545_H15-21824 A1,short variant,ZBTB2,unknown,R62H,185G>A,chr6,151688016,chr6:151688016,703,41,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0003,6203261249_ZH10-8-16,copy-number-alteration,IRF2,unknown,-,-,-,,-,-,-,7,Amplification,amplification,-,1.8,-,-,-,-,-,-,8 of 8
+STUDY0001,B,3,Tissue,5/22/2017,ID0003,6203261249_ZH10-8-16,copy-number-alteration,FAT1,unknown,-,-,-,,-,-,-,7,Amplification,amplification,-,1.77,-,-,-,-,-,-,26 of 26
+STUDY0001,B,3,Tissue,5/22/2017,ID0004,6203261249_ZH10-8-16,short variant,PIK3CA,known,V344G,1031T>G,chr3,178921549,chr3:178921549,638,15,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0004,6203261249_ZH10-8-16,short variant,PIK3CA,known,E365K,1093G>A,chr3,178922324,chr3:178922324,442,15,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0004,6203261249_ZH10-8-16,short variant,PIK3CA,known,E545K,1633G>A,chr3,178936091,chr3:178936091,626,8,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0005,6203261249_ZH10-8-16,short variant,TP53,known,R282W,844C>T,chr17,7577094,chr17:7577094,818,53,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0006,6203261249_ZH10-8-16,short variant,KDM6A,likely,splice site 3549-1G>A,3549-1G>A,chrX,44948987,chrX:44948987,430,57,-,Splice,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0007,6203261249_ZH10-8-16,short variant,CDK12,unknown,T692I,2075C>T,chr17,37646953,chr17:37646953,870,48,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0008,6203261249_ZH10-8-16,short variant,EP300,unknown,Q1455R,4364A>G,chr22,41566487,chr22:41566487,669,60,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0009,6203261249_ZH10-8-16,short variant,EPHA6,unknown,D475E,1425C>A,chr3,96962950,chr3:96962950,1021,46,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0010,6203261249_ZH10-8-16,short variant,EPHB6,unknown,R763Q,2288G>A,chr7,142566731,chr7:142566731,656,57,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0011,6203261249_ZH10-8-16,short variant,ERBB4,unknown,E1220Q,3658G>C,chr2,212248609,chr2:212248609,944,7,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0012,6203261249_ZH10-8-16,short variant,FAT3,unknown,E609*,1825G>T,chr11,92087103,chr11:92087103,1217,41,-,Other,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0013,6203261249_ZH10-8-16,short variant,FAT3,unknown,H4553Y,13657C>T,chr11,92624262,chr11:92624262,944,43,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0014,6203261249_ZH10-8-16,short variant,INPP4B,unknown,M906T,2717T>C,chr4,142949993,chr4:142949993,858,22,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0015,6203261249_ZH10-8-16,short variant,NOTCH4,unknown,E1826Q,5476G>C,chr6,32163750,chr6:32163750,612,12,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0016,6203261249_ZH10-8-16,short variant,PARP1,unknown,G530R,1588G>A,chr1,226567298,chr1:226567298,875,48,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0017,6203261249_ZH10-8-16,short variant,RAD51C,unknown,V25G,74T>G,chr17,56770078,chr17:56770078,759,12,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0018,6203261249_ZH10-8-16,short variant,SPTA1,unknown,E502K,1504G>A,chr1,158641228,chr1:158641228,950,44,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0020,6203261249_ZH10-8-16,short variant,TET2,unknown,L426V,1276C>G,chr4,106156375,chr4:106156375,948,7,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0020,6203261249_ZH10-8-16,short variant,TSC2,unknown,D1319N,3955G>A,chr16,2133767,chr16:2133767,1080,44,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0020,6203261249_ZH10-8-16,copy-number-alteration,CDKN2A,known,-,-,-,,-,-,-,0,Deletion,loss,-,0.33,-,-,-,-,-,-,5 of 5
+STUDY0001,B,3,Tissue,5/22/2017,ID0021,6203261249_ZH10-8-16,copy-number-alteration,CDKN2B,known,-,-,-,,-,-,-,0,Deletion,loss,-,0.33,-,-,-,-,-,-,5 of 5
+STUDY0001,B,3,Tissue,5/22/2017,ID0021,6203261249_ZH10-8-16,copy-number-alteration,IRF2,unknown,-,-,-,,-,-,-,7,Amplification,amplification,-,1.8,-,-,-,-,-,-,8 of 8
+STUDY0001,B,3,Tissue,5/22/2017,ID0021,6203261249_ZH10-8-16,copy-number-alteration,FAT1,unknown,-,-,-,,-,-,-,7,Amplification,amplification,-,1.77,-,-,-,-,-,-,26 of 26
+STUDY0001,B,3,Tissue,5/22/2017,ID0021,6203261249_ZH10-8-16,copy-number-alteration,TEK,unknown,-,-,-,,-,-,-,0,Deletion,loss,-,0.33,-,-,-,-,-,-,23 of 23
+STUDY0001,B,3,Tissue,5/22/2017,ID0033,6202959544,short variant,TERT,known,promoter -124C>T,-124C>T,chr5,1295228,chr5:1295228,436,33,-,Other,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0034,6202959544,short variant,FANCA,likely,Q248*,742C>T,chr16,89869717,chr16:89869717,1045,34,-,Trunc/FS,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0035,6202959544,short variant,STAG2,likely,Q123*,367C>T,chrX,123171455,chrX:123171455,295,71,-,Trunc/FS,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0036,6202959544,short variant,CUL4B,unknown,L457I,1369C>A,chrX,119676830,chrX:119676830,293,30,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0037,6202959544,short variant,DOT1L,unknown,D64H,190G>C,chr19,2185918,chr19:2185918,671,23,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0038,6202959544,short variant,FANCF,unknown,A186V,557C>T,chr11,22646800,chr11:22646800,890,46,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0039,6202959544,short variant,FANCM,unknown,S281C,842C>G,chr14,45618122,chr14:45618122,638,22,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0040,6202959544,short variant,FAT3,unknown,A3607T,10819G>A,chr11,92577352,chr11:92577352,774,37,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0041,6202959544,short variant,LRP1B,unknown,R3559W,10675C>T,chr2,141130670,chr2:141130670,457,53,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0042,6202959544,short variant,LTK,unknown,E813*,2437G>T,chr15,41796352,chr15:41796352,1098,52,-,Other,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0043,6202959544,short variant,MLL2,unknown,Q4228E,12682C>G,chr12,49425806,chr12:49425806,853,34,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0044,6202959544,short variant,RICTOR,unknown,L1683V,5047C>G,chr5,38942940,chr5:38942940,591,17,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0045,6202959544,copy-number-alteration,CCNE1,known,-,-,-,,-,-,-,7,Amplification,amplification,-,1.91,-,-,-,-,-,-,10 of 10
+STUDY0001,B,3,Tissue,5/22/2017,ID0046,6202959544,copy-number-alteration,CDKN2A,known,-,-,-,,-,-,-,0,Deletion,loss,-,0.29,-,-,-,-,-,-,5 of 5
+STUDY0001,B,3,Tissue,5/22/2017,ID0047,6202959544,copy-number-alteration,CDKN2B,known,-,-,-,,-,-,-,0,Deletion,loss,-,0.3,-,-,-,-,-,-,5 of 5
+STUDY0001,B,3,Tissue,5/22/2017,ID0048,6202959544,copy-number-alteration,CEBPA,unknown,-,-,-,,-,-,-,7,Amplification,amplification,-,2.36,-,-,-,-,-,-,3 of 3
+STUDY0001,B,3,Tissue,5/22/2017,ID0049,6202959544,copy-number-alteration,SDHC,unknown,-,-,-,,-,-,-,10,Amplification,amplification,-,2.93,-,-,-,-,-,-,5 of 6
+STUDY0001,B,3,Tissue,5/22/2017,ID0050,6202959544,copy-number-alteration,DDR2,unknown,-,-,-,,-,-,-,10,Amplification,amplification,-,2.6,-,-,-,-,-,-,16 of 16
+STUDY0001,B,3,Tissue,5/22/2017,ID0051,6202959544,rearrangement,FGFR3,known,-,-,-,,-,-,-,-,Rearrangement,-,FGFR3,-,TACC3,fusion,unknown,chr4:1808773-1808879,chr4:1745468-1745683,170,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0052,6202959544,rearrangement,EWSR1,unknown,-,-,-,,-,-,-,-,Other,-,EWSR1,-,SFI1,rearrangement,unknown,chr22:29686187-29686417,chr22:31922783-31922949,132,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0053,6203902277_1004,short variant,BRCA2,likely,S3366fs*4,10095C>GAATTATATCT,chr13,32972745,chr13:32972745,750,36.93,-,Trunc/FS,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0054,6203902277_1004,short variant,BCL6,unknown,R550H,1649G>A,chr3,187444578,chr3:187444578,891,50.51,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0055,6203902277_1004,short variant,CDH1,unknown,N417S,1250A>G,chr16,68847328,chr16:68847328,748,52.81,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0056,6203902277_1004,short variant,CREBBP,unknown,N1978S,5933A>G,chr16,3779115,chr16:3779115,535,48.6,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0057,6203902277_1004,short variant,CREBBP,unknown,V238L,712G>C,chr16,3900384,chr16:3900384,634,46.69,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0058,6203902277_1004,short variant,FANCD2,unknown,I935L,2803A>C,chr3,10116301,chr3:10116301,782,51.02,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0059,6203902277_1004,short variant,FAT1,unknown,G19A,56G>C,chr4,187630926,chr4:187630926,940,51.81,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0060,6203902277_1004,short variant,FGF4,unknown,A24T,70G>A,chr11,69589783,chr11:69589783,245,55.92,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0061,6203902277_1004,short variant,KDM5A,unknown,Q1197P,3590A>C,chr12,416960,chr12:416960,898,47.77,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0062,6203902277_1004,short variant,MED12,unknown,Q2076_Y2077insQ,6228_6229insCAG,chrX,70360668,chrX:70360668,400,50.5,-,InDel,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0063,6203902277_1004,short variant,MLH1,unknown,E594D,1782G>C,chr3,37089060,chr3:37089060,703,48.08,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0064,6203902277_1004,short variant,RICTOR,unknown,I880V,2638A>G,chr5,38954935,chr5:38954935,922,48.48,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0065,6203261250,short variant,HRAS,known,Q61R,182A>G,chr11,533874,chr11:533874,662,23.56,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0068,6203261250,short variant,TERT,known,promoter -124C>T,-124C>T,chr5,1295228,chr5:1295228,79,18.99,-,Other,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0068,6203261250,short variant,ASXL1,unknown,A1312V,3935C>T,chr20,31024450,chr20:31024450,923,48.86,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0068,6203261250,short variant,ATM,unknown,F763L,2289T>A,chr11,108128246,chr11:108128246,1175,49.45,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0068,6203261250,short variant,EPHA5,unknown,G783A,2348G>C,chr4,66217267,chr4:66217267,1157,51.77,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0068,6203261250,short variant,FANCM,unknown,L526V,1576C>G,chr14,45628478,chr14:45628478,943,48.25,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0068,6203261250,short variant,PARP4,unknown,Q1059*,3175C>T,chr13,25021264,chr13:25021264,918,15.03,-,Other,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0068,6203261250,short variant,RPTOR,unknown,A862T,2584G>A,chr17,78896587,chr17:78896587,569,53.08,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0068,6203261250,short variant,SPTA1,unknown,K2368N,7104G>T,chr1,158582637,chr1:158582637,990,49.9,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0068,6203261250,copy-number-alteration,LYN,ambiguous,-,-,-,,-,-,-,8,Amplification,amplification,-,1.45,-,-,-,-,-,-,12 of 12
+STUDY0001,B,3,Tissue,5/22/2017,ID0068,6203261250,copy-number-alteration,PRKDC,unknown,-,-,-,,-,-,-,8,Amplification,amplification,-,1.45,-,-,-,-,-,-,77 of 86
+STUDY0001,B,3,Tissue,5/22/2017,ID0068,6203261250,copy-number-alteration,PREX2,unknown,-,-,-,,-,-,-,8,Amplification,amplification,-,1.66,-,-,-,-,-,-,41 of 41
+STUDY0001,B,3,Tissue,5/22/2017,ID0068,6203261250,copy-number-alteration,NBN,unknown,-,-,-,,-,-,-,8,Amplification,amplification,-,1.54,-,-,-,-,-,-,16 of 16
+STUDY0001,B,3,Tissue,5/22/2017,ID0073,6203902279_13-28001 F9,short-variant,FGFR3,known,S249C,746C>G,chr4,1803568,chr4:1803568,441,22.68,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0073,6203902279_13-28001 F9,short-variant,PIK3CG,known,R477H,1430G>A,chr7,106509436,chr7:106509436,949,45.52,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0073,6203902279_13-28001 F9,short-variant,TERT,known,promoter -124C>T,-124C>T,chr5,1295228,chr5:1295228,85,20,-,Other,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0073,6203902279_13-28001 F9,short-variant,ATM,likely,V997fs*2,2990delT,chr11,108142045,chr11:108142045,1214,14.58,-,Trunc/FS,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0073,6203902279_13-28001 F9,short-variant,ATM,likely,splice site 6976-2A>G,6976-2A>G,chr11,108198370,chr11:108198370,870,45.86,-,Splice,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0076,6203902279_13-28001 F9,short-variant,KDM6A,likely,P1286fs*6,3857delC,chrX,44950087,chrX:44950087,495,23.64,-,Trunc/FS,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0076,6203902279_13-28001 F9,short-variant,EP300,unknown,N2209_Q2213>K,6627_6638delCCAGTTCCAGCA,chr22,41574341,chr22:41574341,757,43.99,-,Other,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0076,6203902279_13-28001 F9,short-variant,HOXB13,unknown,G84E,251G>A,chr17,46805705,chr17:46805705,615,54.31,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0076,6203902279_13-28001 F9,short-variant,KDM5C,unknown,T1544I,4631C>T,chrX,53222201,chrX:53222201,213,98.12,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0076,6203902279_13-28001 F9,short-variant,KDR,unknown,G539R,1615G>A,chr4,55972029,chr4:55972029,763,48.1,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0076,6203902279_13-28001 F9,short-variant,MST1R,unknown,D271N,811G>A,chr3,49940232,chr3:49940232,795,9.43,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0076,6203902279_13-28001 F9,short-variant,MST1R,unknown,D173H,517G>C,chr3,49940526,chr3:49940526,869,9.44,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0076,6203902279_13-28001 F9,short-variant,NSD1,unknown,C310S,928T>A,chr5,176618885,chr5:176618885,755,53.91,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0076,6203902279_13-28001 F9,short-variant,PALB2,unknown,T397S,1189A>T,chr16,23646678,chr16:23646678,905,45.3,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0076,6203902279_13-28001 F9,short-variant,PMS2,unknown,S587N,1760G>A,chr7,6026636,chr7:6026636,970,7.11,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0076,6203902279_13-28001 F9,short-variant,PMS2,unknown,R563Q,1688_1689GA>AG,chr7,6026707,chr7:6026707,948,6.12,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0077,6203902265_24916-14,short-variant,TP53,known,R181P,542G>C,chr17,7578388,chr17:7578388,985,24.47,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0077,6203902265_24916-14,short-variant,TOP1,unknown,P397L,1190C>T,chr20,39729875,chr20:39729875,1107,11.92,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0078,6203902265_24916-14,short-variant,ZNRF3,known,E304*,910G>T,chr22,29445379,chr22:29445379,1375,3.49,-,Trunc/FS,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0078,6203902265_24916-14,copy-number-alteration,FGF12,known,-,-,-,,-,-,-,7,Amplification,amplification,-,2.06,-,-,-,-,-,-,6 of 6
+STUDY0001,B,3,Tissue,5/22/2017,ID0079,6203902265_24916-14,short-variant,BRCA1,likely[BIC (clinical=yes n=40)],Q1111fs*5,3331_3334delCAAG,chr17,41244213,chr17:41244213,670,58.81,-,Trunc/FS,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0079,6203902266_20598/15 LUN,short-variant,FANCG,known,L310F,930G>C,chr9,35076575,chr9:35076575,576,15.8,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0080,6203902265_24916-14,short-variant,RB1,likely,Q689fs*26,2067_2083delGAATGAGTATGAACTCA,chr13,49033929,chr13:49033929,1384,39.6,-,Trunc/FS,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0080,6203902266_20598/15 LUN,short-variant,MAP2K4,known,V321M,961G>A,chr17,12032525,chr17:12032525,651,44.7,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0080,6203902266_20598/15 LUN,short-variant,TERT,known,promoter -124C>T,-124C>T,chr5,1295228,chr5:1295228,237,15.19,-,Other,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0080,6203902266_20598/15 LUN,short-variant,SMARCA4,likely,splice site 4636-1G>C,4636-1G>C,chr19,11170428,chr19:11170428,841,18.07,-,Splice,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0080,6203902266_20598/15 LUN,short-variant,ARID1B,unknown,Q131_H132insQQ,386_387insGCAGCA,chr6,157099449,chr6:157099449,1041,27.38,-,InDel,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0081,6203902265_24916-14,short-variant,ASXL1,unknown,D741V,2222A>T,chr20,31022737,chr20:31022737,1496,46.86,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0082,6203902265_24916-14,short-variant,DDR1,unknown,P501L,1502C>T,chr6,30862437,chr6:30862437,805,55.53,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0083,6203902265_24916-14,short-variant,FGF23,unknown,P195S,583C>T,chr12,4479682,chr12:4479682,1069,75.21,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0084,6203902265_24916-14,short-variant,IKBKE,unknown,E50K,148G>A,chr1,206647734,chr1:206647734,1083,48.94,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0084,6203902266_20598/15 LUN,short-variant,ARID1B,unknown,G246S,736G>A,chr6,157099799,chr6:157099799,602,48.5,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0085,6203902265_24916-14,short-variant,JUN,unknown,G179D,536G>A,chr1,59248207,chr1:59248207,725,56.83,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0086,6203902265_24916-14,short-variant,MLL,unknown,R3718K,11153G>A,chr11,118390348,chr11:118390348,1063,17.22,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0087,6203902265_24916-14,short-variant,PDGFRB,unknown,P427S,1279C>T,chr5,149510190,chr5:149510190,916,34.28,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0087,6203902266_20598/15 LUN,short-variant,ATRX,unknown,S68L,203C>T,chrX,76953110,chrX:76953110,350,34.29,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0087,6203902266_20598/15 LUN,short-variant,CDKN2B,unknown,G7D,20G>A,chr9,22008933,chr9:22008933,481,47.61,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0087,6203902266_20598/15 LUN,short-variant,CHD2,unknown,K228R,683A>G,chr15,93482939,chr15:93482939,1200,49.08,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0088,6203902265_24916-14,short-variant,POLD1,unknown,V295M,883G>A,chr19,50905911,chr19:50905911,666,40.69,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0089,6203902265_24916-14,short-variant,PTCH2,unknown,G1197E,3590G>A,chr1,45288109,chr1:45288109,894,59.28,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0089,6203902266_20598/15 LUN,short-variant,CUL4A,unknown,D591Y,1771G>T,chr13,113914960,chr13:113914960,731,11.49,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0089,6203902266_20598/15 LUN,short-variant,FANCI,unknown,G1156R,3466G>C,chr15,89849354,chr15:89849354,871,48.56,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0090,6203902265_24916-14,short-variant,RAD54L,unknown,R552Q,1655G>A,chr1,46739854,chr1:46739854,1134,53.97,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0090,6203902266_20598/15 LUN,short-variant,GREM1,unknown,L13V,37C>G,chr15,33022928,chr15:33022928,1081,15.82,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0097,6203902266_20598/15 LUN,short-variant,IKBKE,unknown,E485Q,1453G>C,chr1,206658359,chr1:206658359,775,14.32,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0097,6203902266_20598/15 LUN,short-variant,MKNK2,unknown,E309K,925G>A,chr19,2041859,chr19:2041859,560,56.07,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0097,6203902266_20598/15 LUN,short-variant,MLL3,unknown,D2928H,8782G>C,chr7,151873756,chr7:151873756,668,12.13,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0097,6203902266_20598/15 LUN,short-variant,MLL3,unknown,E2925*,8773G>T,chr7,151873765,chr7:151873765,578,10.38,-,Other,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0097,6203902266_20598/15 LUN,short-variant,MLL3,unknown,E2753Q,8257G>C,chr7,151874281,chr7:151874281,623,17.01,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0097,6203902266_20598/15 LUN,short-variant,MLL3,unknown,D2733H,8197G>C,chr7,151874341,chr7:151874341,538,14.87,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0097,6203902266_20598/15 LUN,short-variant,MLL3,unknown,D2711H,8131G>C,chr7,151874407,chr7:151874407,730,12.88,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0097,6203902266_20598/15 LUN,short-variant,MLL3,unknown,D2703H,8107G>C,chr7,151874431,chr7:151874431,801,14.36,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0098,6203902266_20598/15 LUN,short-variant,MLL3,unknown,E2669K,8005G>A,chr7,151874533,chr7:151874533,850,13.88,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0098,6203902266_20598/15 LUN,short-variant,PPP2R1A,unknown,A232T,694G>A,chr19,52716250,chr19:52716250,1167,40.7,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0098,6203902266_20598/15 LUN,short-variant,SETD2,unknown,Y852F,2555A>T,chr3,47163571,chr3:47163571,456,43.64,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0098,6203902266_20598/15 LUN,short-variant,TAF1,unknown,G1271E,3812G>A,chrX,70621406,chrX:70621406,508,28.54,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0098,6203902266_20598/15 LUN,short-variant,TP53BP1,unknown,I450_P451del,1347_1352delTATCCC,chr15,43762077,chr15:43762077,799,46.18,-,InDel,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0098,6203902266_20598/15 LUN,copy-number-alteration,MDM2,known,-,-,-,,-,-,-,10,Amplification,amplification,-,2,-,-,-,-,-,-,11 of 11
+STUDY0001,B,3,Tissue,5/22/2017,ID0098,6203902266_20598/15 LUN,copy-number-alteration,FRS2,known,-,-,-,,-,-,-,10,Amplification,amplification,-,1.95,-,-,-,-,-,-,5 of 5
+STUDY0001,B,3,Tissue,5/22/2017,ID0099,6203902268_14-12192-1E,short-variant,TP53,known,E221*,661G>T,chr17,7578188,chr17:7578188,598,80.27,-,Trunc/FS,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0099,6203902268_14-12192-1E,short-variant,CASP8,unknown,M1?,-80_36del116,chr2,202122874,chr2:202122874,522,28.93,-,Other,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0099,6203902268_14-12192-1E,short-variant,FANCD2,unknown,V958M,2872G>A,chr3,10119777,chr3:10119777,691,37.63,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0099,6203902268_14-12192-1E,short-variant,FANCM,unknown,V1857M,5569G>A,chr14,45665603,chr14:45665603,1331,50.71,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0099,6203902268_14-12192-1E,short-variant,JAK2,unknown,L113V,337C>G,chr9,5029893,chr9:5029893,965,28.19,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0099,6203902268_14-12192-1E,short-variant,JAK3,unknown,E658_D661del,1973_1984delAGGGGGCTGATG,chr19,17945954,chr19:17945954,382,27.75,-,InDel,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0099,6203902268_14-12192-1E,short-variant,LRP1B,unknown,L325F,973C>T,chr2,141946030,chr2:141946030,1262,35.1,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0099,6203902268_14-12192-1E,short-variant,MLL2,unknown,Q3965del,11886_11888delACA,chr12,49426599,chr12:49426599,830,19.88,-,InDel,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0102,6203902268_14-12192-1E,short-variant,RPTOR,unknown,P95A,283C>G,chr17,78617545,chr17:78617545,948,47.15,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0102,6203902268_14-12192-1E,short-variant,RUNX1T1,unknown,R50S,150G>T,chr8,93029530,chr8:93029530,1103,8.61,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0102,6203902268_14-12192-1E,short-variant,SETD2,unknown,K629E,1885A>G,chr3,47164241,chr3:47164241,885,61.92,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0102,6203902268_14-12192-1E,short-variant,TRRAP,unknown,E2422K,7264G>A,chr7,98565148,chr7:98565148,731,43.78,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0102,6203902268_14-12192-1E,short-variant,TRRAP,unknown,S3368F,10103C>T,chr7,98592394,chr7:98592394,785,40.13,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0102,6203902268_14-12192-1E,copy-number-alteration,ERBB2,known,-,-,-,,-,-,-,7,Amplification,amplification,-,2,-,-,-,-,-,-,27 of 27
+STUDY0001,B,3,Tissue,5/22/2017,ID0102,6203902268_14-12192-1E,copy-number-alteration,TOP2A,known,-,-,-,,-,-,-,7,Amplification,amplification,-,1.91,-,-,-,-,-,-,36 of 36
+STUDY0001,B,3,Tissue,5/22/2017,ID0102,6203902268_14-12192-1E,copy-number-alteration,ZNF217,known,-,-,-,,-,-,-,18,Amplification,amplification,-,5.1,-,-,-,-,-,-,4 of 4
+STUDY0001,B,3,Tissue,5/22/2017,ID0102,6203902268_14-12192-1E,copy-number-alteration,ROS1,known,-,-,-,,-,-,-,28,Amplification,amplification,-,6.96,-,-,-,-,-,-,43 of 43
+STUDY0001,B,3,Tissue,5/22/2017,ID0102,6203902268_14-12192-1E,copy-number-alteration,CDK12,unknown,-,-,-,,-,-,-,7,Amplification,amplification,-,1.92,-,-,-,-,-,-,14 of 14
+STUDY0001,B,3,Tissue,5/22/2017,ID0102,6203902268_14-12192-1E,copy-number-alteration,RARA,unknown,-,-,-,,-,-,-,7,Amplification,amplification,-,1.61,-,-,-,-,-,-,9 of 10
+STUDY0001,B,3,Tissue,5/22/2017,ID0102,6203902268_14-12192-1E,copy-number-alteration,SOX10,unknown,-,-,-,,-,-,-,9,Amplification,amplification,-,2.55,-,-,-,-,-,-,5 of 5
+STUDY0001,B,3,Tissue,5/22/2017,ID0104,6203902267_PR70349-7,short-variant,TP53,known,R213*,637C>T,chr17,7578212,chr17:7578212,582,61.17,-,Trunc/FS,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0104,6203902267_PR70349-7,short-variant,MLL2,likely,Q3821fs*6,11460_11471CCAGGGCCCTCA>TG,chr12,49427017,chr12:49427017,565,38.41,-,Trunc/FS,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0104,6203902267_PR70349-7,short-variant,MLL2,likely,Q791fs*3,2371_2372insC,chr12,49445094,chr12:49445094,577,21.14,-,Trunc/FS,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0104,6203902267_PR70349-7,short-variant,APC,unknown,E1949K,5845G>A,chr5,112177136,chr5:112177136,1137,22.78,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0104,6203902267_PR70349-7,short-variant,APC,unknown,D1976N,5926G>A,chr5,112177217,chr5:112177217,1125,24.36,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0104,6203902267_PR70349-7,short-variant,CDH1,unknown,E757K,2269G>A,chr16,68862181,chr16:68862181,1116,19.09,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0105,6203902267_PR70349-7,short-variant,CDH2,unknown,S620L,1859C>T,chr18,25565608,chr18:25565608,922,18.44,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0105,6203902267_PR70349-7,short-variant,CHUK,unknown,R47S,139C>A,chr10,101985741,chr10:101985741,747,39.76,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0105,6203902267_PR70349-7,short-variant,EP300,unknown,L2393V,7177C>G,chr22,41574892,chr22:41574892,899,47.94,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0105,6203902267_PR70349-7,short-variant,ERBB2,unknown,S819F,2456C>T,chr17,37881127,chr17:37881127,553,32.37,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0105,6203902267_PR70349-7,short-variant,ERBB2,unknown,L1157V,3469C>G,chr17,37883998,chr17:37883998,415,26.02,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0105,6203902267_PR70349-7,short-variant,FUBP1,unknown,R409T,1226G>C,chr1,78428573,chr1:78428573,1014,19.43,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0105,6203902267_PR70349-7,short-variant,MAGI2,unknown,E147L,439_440GA>TT,chr7,78256534,chr7:78256534,1219,20.75,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0105,6203902267_PR70349-7,short-variant,PRKCI,unknown,S222*,665C>G,chr3,169993035,chr3:169993035,1177,20.65,-,Other,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0107,6203902267_PR70349-7,short-variant,TRRAP,unknown,M2363V,7087A>G,chr7,98563504,chr7:98563504,915,71.69,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0107,6203902267_PR70349-7,short-variant,TSC1,unknown,Y704C,2111A>G,chr9,135779135,chr9:135779135,713,18.37,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0107,6203902267_PR70349-7,short-variant,ZNRF3,unknown,E588K,1762G>A,chr22,29446231,chr22:29446231,631,17.12,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0107,6203902267_PR70349-7,copy-number-alteration,CCND1,known,-,-,-,,-,-,-,12,Amplification,amplification,-,3.48,-,-,-,-,-,-,5 of 5
+STUDY0001,B,3,Tissue,5/22/2017,ID0107,6203902267_PR70349-7,copy-number-alteration,FGF19,known,-,-,-,,-,-,-,12,Amplification,amplification,-,3.61,-,-,-,-,-,-,3 of 3
+STUDY0001,B,3,Tissue,5/22/2017,ID0107,6203902267_PR70349-7,copy-number-alteration,FGF4,known,-,-,-,,-,-,-,12,Amplification,amplification,-,3.12,-,-,-,-,-,-,3 of 3
+STUDY0001,B,3,Tissue,5/22/2017,ID0107,6203902267_PR70349-7,copy-number-alteration,FGF3,known,-,-,-,,-,-,-,12,Amplification,amplification,-,3.23,-,-,-,-,-,-,3 of 3
+STUDY0001,B,3,Tissue,5/22/2017,ID0107,6203902267_PR70349-7,copy-number-alteration,CDKN2A,known,-,-,-,,-,-,-,0,Deletion,loss,-,0.34,-,-,-,-,-,-,5 of 5
+STUDY0001,B,3,Tissue,5/22/2017,ID0108,6203902267_PR70349-7,copy-number-alteration,CDKN2B,known,-,-,-,,-,-,-,0,Deletion,loss,-,0.32,-,-,-,-,-,-,5 of 5
+STUDY0001,B,3,Tissue,5/22/2017,ID0108,6203902267_PR70349-7,copy-number-alteration,PRKDC,unknown,-,-,-,,-,-,-,8,Amplification,amplification,-,2.38,-,-,-,-,-,-,86 of 86
+STUDY0001,B,3,Tissue,5/22/2017,ID0108,6203902267_PR70349-7,copy-number-alteration,RUNX1T1,unknown,-,-,-,,-,-,-,12,Amplification,amplification,-,3.51,-,-,-,-,-,-,15 of 15
+STUDY0001,B,3,Tissue,5/22/2017,ID0108,6203902267_PR70349-7,rearrangement,HGF,unknown,-,-,-,,-,-,-,-,Other,-,HGF,-,CACNA2D1,rearrangement,No,chr7:81387952-81388170,chr7:81859716-81859966,107,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0108,6203902269_15A010029 A7,short-variant,MLL2,likely,E1082*,3244G>T,chr12,49444127,chr12:49444127,1170,51.45,-,Trunc/FS,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0108,6203902269_15A010029 A7,short-variant,TP53,likely,E180_D186del,539_559del21,chr17,7578370,chr17:7578370,787,89.83,-,InDel,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0108,6203902269_15A010029 A7,short-variant,AXL,unknown,Q361P,1082A>C,chr19,41744462,chr19:41744462,1206,79.19,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0108,6203902269_15A010029 A7,short-variant,BARD1,unknown,R658L,1973G>T,chr2,215595163,chr2:215595163,579,9.67,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0109,6203902269_15A010029 A7,short-variant,FANCA,unknown,M221V,661A>G,chr16,89871736,chr16:89871736,895,20,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0109,6203902269_15A010029 A7,short-variant,FANCL,unknown,T367fs*13,1099_1100insATTA,chr2,58386928,chr2:58386928,1076,19.42,-,InDel,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0109,6203902269_15A010029 A7,short-variant,FAT3,unknown,V3518M,10552G>A,chr11,92573911,chr11:92573911,560,96.43,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0109,6203902269_15A010029 A7,short-variant,MLL2,unknown,R280W,838A>T,chr12,49447260,chr12:49447260,1186,42.58,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0109,6203902269_15A010029 A7,short-variant,NOTCH3,unknown,R169H,506G>A,chr19,15302944,chr19:15302944,888,63.06,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0109,6203902269_15A010029 A7,short-variant,PIK3C3,unknown,F81C,242T>G,chr18,39537708,chr18:39537708,914,12.58,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0110,6203902269_15A010029 A7,short-variant,PNRC1,unknown,S239C,716C>G,chr6,89793647,chr6:89793647,1213,34.3,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0110,6203902269_15A010029 A7,short-variant,PTPRD,unknown,H1843Q,5529T>A,chr9,8331587,chr9:8331587,253,87.75,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0110,6203902269_15A010029 A7,copy-number-alteration,CREBBP,known,-,-,-,,-,-,-,0,Deletion,loss,-,0.13,-,-,-,-,-,-,6 of 31
+STUDY0001,B,3,Tissue,5/22/2017,ID0110,6203902269_15A010029 A7,copy-number-alteration,MCL1,known,-,-,-,,-,-,-,22,Amplification,amplification,-,7.46,-,-,-,-,-,-,5 of 5
+STUDY0001,B,3,Tissue,5/22/2017,ID0110,6203902269_15A010029 A7,copy-number-alteration,LYN,known,-,-,-,,-,-,-,18,Amplification,amplification,-,6.54,-,-,-,-,-,-,12 of 12
+STUDY0001,B,3,Tissue,5/22/2017,ID0110,6203902269_15A010029 A7,copy-number-alteration,SOX9,unknown,-,-,-,,-,-,-,10,Amplification,amplification,-,3.84,-,-,-,-,-,-,3 of 3
+STUDY0001,B,3,Tissue,5/22/2017,ID0110,6203902269_15A010029 A7,copy-number-alteration,SPTA1,unknown,-,-,-,,-,-,-,9,Amplification,amplification,-,3.2,-,-,-,-,-,-,52 of 52
+STUDY0001,B,3,Tissue,5/22/2017,ID0110,6203902269_15A010029 A7,copy-number-alteration,SDHC,unknown,-,-,-,,-,-,-,8,Amplification,amplification,-,3.32,-,-,-,-,-,-,5 of 6
+STUDY0001,B,3,Tissue,5/22/2017,ID0110,6203902269_15A010029 A7,rearrangement,BMPR1A,unknown,-,-,-,,-,-,-,-,Other,-,BMPR1A,-,BMPR1A,rearrangement,No,chr10:88659389-88659680,chr10:88668333-88668548,91,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0111,6203902275_15-30720 B2,short-variant,PIK3CA,known,E545K,1633G>A,chr3,178936091,chr3:178936091,1357,6.34,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0111,6203902275_15-30720 B2,short-variant,TERT,known,promoter -124C>T,-124C>T,chr5,1295228,chr5:1295228,164,43.29,-,Other,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0111,6203902275_15-30720 B2,short-variant,TP53,known,R248Q,743G>A,chr17,7577538,chr17:7577538,674,67.95,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0111,6203902275_15-30720 B2,short-variant,NCOR1,likely,Q661*,1981C>T,chr17,16021276,chr17:16021276,1075,13.67,-,Trunc/FS,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0111,6203902275_15-30720 B2,short-variant,RBM10,likely,I377fs*108,1128delC,chrX,47039675,chrX:47039675,333,63.36,-,Trunc/FS,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0111,6203902275_15-30720 B2,short-variant,ARID1B,unknown,Q131_H132insQQ,386_387insGCAGCA,chr6,157099449,chr6:157099449,730,21.92,-,InDel,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0111,6203902275_15-30720 B2,short-variant,CDK12,unknown,S323L,968C>T,chr17,37619292,chr17:37619292,688,13.37,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0112,6203902275_15-30720 B2,short-variant,EPHA7,unknown,M958I,2874G>A,chr6,93955024,chr6:93955024,607,6.59,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0112,6203902275_15-30720 B2,short-variant,ERG,unknown,R196K,587G>A,chr21,39775433,chr21:39775433,702,43.45,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0112,6203902275_15-30720 B2,short-variant,FAT1,unknown,L1500V,4498C>G,chr4,187549743,chr4:187549743,928,9.91,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0112,6203902275_15-30720 B2,short-variant,FLCN,unknown,A60V,179C>T,chr17,17131273,chr17:17131273,539,60.48,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0112,6203902275_15-30720 B2,short-variant,GATA4,unknown,D434N,1300G>A,chr8,11615955,chr8:11615955,472,34.75,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0112,6203902275_15-30720 B2,short-variant,IGF2R,unknown,H1641Y,4921C>T,chr6,160494475,chr6:160494475,593,54.47,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0112,6203902275_15-30720 B2,short-variant,SDHC,unknown,E144Q,430G>C,chr1,161332307,chr1:161332307,175,51.43,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0117,6203902275_15-30720 B2,short-variant,TOP2A,unknown,T602N,1805C>A,chr17,38562874,chr17:38562874,1086,63.81,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0117,6203902275_15-30720 B2,copy-number-alteration,RICTOR,ambiguous,-,-,-,,-,-,-,7,Amplification,amplification,-,2.13,-,-,-,-,-,-,39 of 39
+STUDY0001,B,3,Tissue,5/22/2017,ID0117,6203902275_15-30720 B2,copy-number-alteration,FGF10,ambiguous,-,-,-,,-,-,-,7,Amplification,amplification,-,1.95,-,-,-,-,-,-,3 of 3
+STUDY0001,B,3,Tissue,5/22/2017,ID0117,6203902275_15-30720 B2,copy-number-alteration,MYST3,known,-,-,-,,-,-,-,9,Amplification,amplification,-,2.33,-,-,-,-,-,-,16 of 16
+STUDY0001,B,3,Tissue,5/22/2017,ID0117,6203902275_15-30720 B2,copy-number-alteration,SDHA,unknown,-,-,-,,-,-,-,7,Amplification,amplification,-,2.06,-,-,-,-,-,-,15 of 15
+STUDY0001,B,3,Tissue,5/22/2017,ID0117,6203902275_15-30720 B2,copy-number-alteration,IL7R,unknown,-,-,-,,-,-,-,7,Amplification,amplification,-,1.75,-,-,-,-,-,-,8 of 8
+STUDY0001,B,3,Tissue,5/22/2017,ID0117,6203902275_15-30720 B2,rearrangement,BRCA1,likely,-,-,-,,-,-,-,-,Rearrangement,-,BRCA1,-,,truncation,unknown,chr17:41232870-41233191,chr21:38946182-38946317,43,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0117,6203902275_15-30720 B2,rearrangement,MYST3,unknown,-,-,-,,-,-,-,-,Other,-,MYST3,-,KAT6A,rearrangement,unknown,chr8:41834628-41834858,chr8:41828890-41829093,34,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0117,6203902263_0024220,short-variant,TERT,known,promoter -124C>T,-124C>T,chr5,1295228,chr5:1295228,186,16.13,-,Other,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0117,6203902263_0024220,short-variant,TP53,known,E285*,853G>T,chr17,7577085,chr17:7577085,1073,13.33,-,Trunc/FS,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0117,6203902263_0024220,short-variant,KDM6A,likely,R559fs*22,1675_1676insC,chrX,44922814,chrX:44922814,589,19.86,-,Trunc/FS,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0119,6203902263_0024220,short-variant,TSC1,likely,E469*,1405G>T,chr9,135782151,chr9:135782151,816,14.83,-,Trunc/FS,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0119,6203902263_0024220,short-variant,CDH5,unknown,A671P,2011G>C,chr16,66436728,chr16:66436728,955,5.86,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0119,6203902263_0024220,short-variant,EPHB1,unknown,P345S,1033C>T,chr3,134851627,chr3:134851627,854,6.21,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/22/2017,ID0119,6203902263_0024220,short-variant,FAM46C,unknown,D224E,672C>A,chr1,118166162,chr1:118166162,1094,48.99,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/28/2017,ID0119,6203902263_0024220,short-variant,GPR124,unknown,T348I,1043C>T,chr8,37689051,chr8:37689051,862,42.69,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/28/2017,ID0119,6203902263_0024220,short-variant,LRP1B,unknown,D1624A,4871A>C,chr2,141607739,chr2:141607739,859,11.64,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/28/2017,ID0120,6203902263_0024220,short-variant,MLL2,unknown,S708Y,2123C>A,chr12,49445343,chr12:49445343,965,7.25,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/28/2017,ID0120,6203902263_0024220,short-variant,MLL2,unknown,P505S,1513C>T,chr12,49445953,chr12:49445953,1014,7.2,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/28/2017,ID0120,6203902263_0024220,short-variant,RANBP2,unknown,S2925Y,8774C>A,chr2,109398597,chr2:109398597,685,40.58,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/28/2017,ID0120,6203902263_0024220,short-variant,TSC1,unknown,S538C,1613C>G,chr9,135781352,chr9:135781352,1142,15.5,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/28/2017,ID0120,6203902263_0024220,copy-number-alteration,CDKN2A,known,-,-,-,,-,-,-,0,Deletion,loss,-,0.92,-,-,-,-,-,-,4 of 4
+STUDY0001,B,3,Tissue,5/28/2017,ID0120,6203902263_0024220,copy-number-alteration,CDKN2B,known,-,-,-,,-,-,-,0,Deletion,loss,-,0.94,-,-,-,-,-,-,2 of 2
+STUDY0001,B,3,Tissue,5/28/2017,ID0122,6203915024_H1505796,short-variant,TERT,known,promoter -124C>T,-124C>T,chr5,1295228,chr5:1295228,130,26.15,-,Other,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/28/2017,ID0122,6203915024_H1505796,short-variant,TP53,known,R342*,1024C>T,chr17,7574003,chr17:7574003,399,55.39,-,Trunc/FS,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/28/2017,ID0122,6203915024_H1505796,short-variant,MLL2,likely,P1194fs*12,3581_3582delCC,chr12,49443788,chr12:49443788,629,33.39,-,Trunc/FS,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/28/2017,ID0122,6203915024_H1505796,short-variant,CSF1R,unknown,N255I,764A>T,chr5,149456964,chr5:149456964,582,51.2,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/28/2017,ID0122,6203915024_H1505796,short-variant,EPHA5,unknown,R554K,1661G>A,chr4,66280028,chr4:66280028,741,14.3,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/28/2017,ID0122,6203915024_H1505796,short-variant,ERBB4,unknown,R106H,317G>A,chr2,212812259,chr2:212812259,1169,15.14,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/28/2017,ID0122,6203915024_H1505796,short-variant,FRS2,unknown,R362H,1085G>A,chr12,69968293,chr12:69968293,1196,52.26,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/28/2017,ID0124,6203915024_H1505796,short-variant,MAP2K4,unknown,G17_S18insGSGGGSG,51_52insGGCTCCGGGGGCGGCAGCGGC,chr17,11924254,chr17:11924254,568,12.68,-,InDel,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/28/2017,ID0124,6203915024_H1505796,short-variant,MSH6,unknown,R1076S,3226C>A,chr2,48030612,chr2:48030612,963,29.18,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/28/2017,ID0124,6203915024_H1505796,short-variant,MST1R,unknown,R983W,2947C>T,chr3,49933163,chr3:49933163,743,48.99,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/28/2017,ID0124,6203915024_H1505796,short-variant,MTOR,unknown,L67fs*1,199delC,chr1,11318613,chr1:11318613,572,20.28,-,InDel,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/28/2017,ID0124,6203915024_H1505796,short-variant,NTRK2,unknown,V752I,2254G>A,chr9,87635202,chr9:87635202,720,18.33,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/28/2017,ID0124,6203915024_H1505796,short-variant,RAF1,unknown,S233C,698C>G,chr3,12645771,chr3:12645771,1027,13.24,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/28/2017,ID0124,6203915024_H1505796,short-variant,SMARCA4,unknown,H736Y,2206C>T,chr19,11121139,chr19:11121139,582,8.25,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/28/2017,ID0124,6203915024_H1505796,short-variant,SPEN,unknown,S1306P,3916T>C,chr1,16256651,chr1:16256651,694,36.31,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/28/2017,ID0124,6203915024_H1505796,copy-number-alteration,MYCL1,known,-,-,-,,-,-,-,9,Amplification,amplification,-,2.01,-,-,-,-,-,-,5 of 5
+STUDY0001,B,3,Tissue,5/28/2017,ID0125,6203915024_H1505796,copy-number-alteration,FGF12,known,-,-,-,,-,-,-,8,Amplification,amplification,-,1.75,-,-,-,-,-,-,6 of 6
+STUDY0001,B,3,Tissue,5/28/2017,ID0125,6203915024_H1505796,copy-number-alteration,FGFR3,known,-,-,-,,-,-,-,8,Amplification,amplification,-,1.66,-,-,-,-,-,-,17 of 17
+STUDY0001,B,3,Tissue,5/28/2017,ID0125,6203915024_H1505796,copy-number-alteration,CDKN2A,known,-,-,-,,-,-,-,0,Deletion,loss,-,0.38,-,-,-,-,-,-,5 of 5
+STUDY0001,B,3,Tissue,5/28/2017,ID0125,6203915024_H1505796,copy-number-alteration,CDKN2B,known,-,-,-,,-,-,-,0,Deletion,loss,-,0.37,-,-,-,-,-,-,5 of 5
+STUDY0001,B,3,Tissue,5/28/2017,ID0125,6203915024_H1505796,copy-number-alteration,GATA3,unknown,-,-,-,,-,-,-,13,Amplification,amplification,-,2.48,-,-,-,-,-,-,5 of 5
+STUDY0001,B,3,Tissue,5/28/2017,ID0125,6203915024_H1505796,copy-number-alteration,SDHC,unknown,-,-,-,,-,-,-,9,Amplification,amplification,-,1.92,-,-,-,-,-,-,5 of 6
+STUDY0001,B,3,Tissue,5/28/2017,ID0125,6203915024_H1505796,copy-number-alteration,DDR2,unknown,-,-,-,,-,-,-,9,Amplification,amplification,-,1.89,-,-,-,-,-,-,16 of 16
+STUDY0001,B,3,Tissue,5/28/2017,ID0125,6203915024_H1505796,copy-number-alteration,MAGI2,unknown,-,-,-,,-,-,-,9,Amplification,amplification,-,1.91,-,-,-,-,-,-,21 of 22
+STUDY0001,B,3,Tissue,5/28/2017,ID0126,6203915024_H1505796,copy-number-alteration,NBN,unknown,-,-,-,,-,-,-,10,Amplification,amplification,-,1.95,-,-,-,-,-,-,16 of 16
+STUDY0001,B,3,Tissue,5/28/2017,ID0126,6203915023_16R20558-A12,short-variant,TP53,known,R175H,524G>A,chr17,7578406,chr17:7578406,709,19.89,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/28/2017,ID0126,6203915023_16R20558-A12,short-variant,MLL3,likely,S593*,1778C>G,chr7,151946996,chr7:151946996,738,15.58,-,Trunc/FS,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/28/2017,ID0126,6203915023_16R20558-A12,short-variant,ARID1A,unknown,S1609C,4826C>G,chr1,27101544,chr1:27101544,875,15.77,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/28/2017,ID0126,6203915023_16R20558-A12,short-variant,ATRX,unknown,S2058G,6172A>G,chrX,76845349,chrX:76845349,400,99.25,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/28/2017,ID0126,6203915023_16R20558-A12,short-variant,BRD4,unknown,S489N,1466G>A,chr19,15367860,chr19:15367860,939,17.47,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/28/2017,ID0126,6203915023_16R20558-A12,short-variant,CDC73,unknown,E261Q,781G>C,chr1,193117048,chr1:193117048,887,13.98,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/28/2017,ID0128,6203915023_16R20558-A12,short-variant,CDH1,unknown,E208Q,622G>C,chr16,68842686,chr16:68842686,634,19.87,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/28/2017,ID0128,6203915023_16R20558-A12,short-variant,CDKN1A,unknown,R83fs*3,248_255delGGCGAGGC,chr6,36652125,chr6:36652125,902,15.63,-,InDel,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/28/2017,ID0128,6203915023_16R20558-A12,short-variant,CDKN1A,unknown,E108fs*21,322_323insG,chr6,36652200,chr6:36652200,915,15.52,-,InDel,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/28/2017,ID0128,6203915023_16R20558-A12,short-variant,CIC,unknown,I200V,598A>G,chr19,42791712,chr19:42791712,779,50.32,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/28/2017,ID0128,6203915023_16R20558-A12,short-variant,DOT1L,unknown,S1256L,3767C>T,chr19,2226287,chr19:2226287,617,50.24,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/28/2017,ID0129,6203915023_16R20558-A12,short-variant,EP300,unknown,M1339I,4017G>A,chr22,41564595,chr22:41564595,860,16.63,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/28/2017,ID0129,6203915023_16R20558-A12,short-variant,EPHA6,unknown,L1102H,3305T>A,chr3,97467457,chr3:97467457,853,45.37,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/28/2017,ID0129,6203915023_16R20558-A12,short-variant,ESR1,unknown,S118P,352T>C,chr6,152129399,chr6:152129399,518,62.93,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/28/2017,ID0130,6203915023_16R20558-A12,short-variant,FANCD2,unknown,E14Q,40G>C,chr3,10070381,chr3:10070381,763,16.25,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/28/2017,ID0130,6203915023_16R20558-A12,short-variant,IGF2R,unknown,Q831H,2493G>C,chr6,160469554,chr6:160469554,655,16.95,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/28/2017,ID0130,6203915023_16R20558-A12,short-variant,LZTR1,unknown,R53C,157C>T,chr22,21336817,chr22:21336817,694,18.01,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/28/2017,ID0130,6203915023_16R20558-A12,short-variant,MAP3K1,unknown,S939C,2816C>G,chr5,56177843,chr5:56177843,753,39.04,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/28/2017,ID0130,6203915023_16R20558-A12,short-variant,MLL3,unknown,L804V,2410C>G,chr7,151945109,chr7:151945109,712,6.74,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/28/2017,ID0131,6203915023_16R20558-A12,short-variant,NOTCH1,unknown,S1208C,3623C>G,chr9,139401777,chr9:139401777,712,12.92,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/28/2017,ID0131,6203915023_16R20558-A12,short-variant,PARP2,unknown,K480N,1440G>C,chr14,20825281,chr14:20825281,760,19.61,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/28/2017,ID0131,6203915023_16R20558-A12,short-variant,PREX2,unknown,R52K,155G>A,chr8,68930094,chr8:68930094,975,16.82,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/28/2017,ID0132,6203915023_16R20558-A12,short-variant,PREX2,unknown,E1093K,3277G>A,chr8,69028118,chr8:69028118,858,14.34,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/28/2017,ID0132,6203915023_16R20558-A12,short-variant,PTCH2,unknown,S424F,1271C>T,chr1,45294929,chr1:45294929,813,16.24,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/28/2017,ID0132,6203915023_16R20558-A12,short-variant,RANBP2,unknown,D1190H,3568G>C,chr2,109380563,chr2:109380563,1153,17.17,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/28/2017,ID0132,6203915023_16R20558-A12,short-variant,SLIT2,unknown,D980H,2938G>C,chr4,20569228,chr4:20569228,745,16.64,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/28/2017,ID0133,6203915023_16R20558-A12,short-variant,SNCAIP,unknown,P241T,721C>A,chr5,121759153,chr5:121759153,1109,15.69,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/28/2017,ID0133,6203915023_16R20558-A12,short-variant,TBX3,unknown,E460K,1378G>A,chr12,115112362,chr12:115112362,436,22.48,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/28/2017,ID0133,6203915023_16R20558-A12,short-variant,TET2,unknown,S239Y,716C>A,chr4,106155815,chr4:106155815,944,13.98,-,Missense,-,-,-,-,-,-,-,-,-,-
+STUDY0001,B,3,Tissue,5/28/2017,ID0133,6203915023_16R20558-A12,short-variant,TYRO3,unknown,A569V,1706C>T,chr15,41863838,chr15:41863838,1226,23,-,Missense,-,-,-,-,-,-,-,-,-,-

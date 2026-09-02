@@ -1,0 +1,123 @@
+STUDY,SUBJECT,PART,IP_DISC,IPDC_DAT,IPDCREA,S_IPDCRE,SUBJCONT,IP
+STUDY0001,ID0004,B,1,12/6/2015,99,"Discontinued IP due to progression, however, this was not confirmed by RECIST - subjective progression",1,Drug\Placebo
+STUDY0001,ID0005,B,1,5/30/2015,99,Subjective Disease Progression,1,Drug\Placebo
+STUDY0001,ID0005,B,1,6/10/2015,2,,1,Drug\Placebo
+STUDY0001,ID0006,B,1,12/1/2014,1,,1,Drug\Placebo
+STUDY0001,ID0007,B,1,1/4/2016,2,,1,Drug\Placebo
+STUDY0001,ID0009,B,1,12/19/2015,2,,1,Drug\Placebo
+STUDY0001,ID0011,B,1,6/5/2016,2,,1,Drug\Placebo
+STUDY0001,ID0012,B,1,11/28/2014,2,,1,Drug\Placebo
+STUDY0001,ID0014,B,1,3/14/2015,7,,1,Drug\Placebo
+STUDY0001,ID0015,B,1,11/29/2015,2,,1,Drug\Placebo
+STUDY0001,ID0016,B,1,9/15/2015,99,clinical disease progression',1,Drug\Placebo
+STUDY0001,ID0018,B,1,2/9/2016,2,,1,Drug\Placebo
+STUDY0001,ID0020,B,1,6/16/2015,99,clinical disease progression,1,Drug\Placebo
+STUDY0001,ID0021,B,1,2/26/2015,2,,1,Drug\Placebo
+STUDY0001,ID0023,B,1,11/16/2015,2,,1,Drug\Placebo
+STUDY0001,ID0025,B,1,1/26/2016,2,,1,Drug\Placebo
+STUDY0001,ID0026,B,1,7/17/2016,99,Safety reasons as judged by the investigator,1,Drug\Placebo
+STUDY0001,ID0027,B,1,10/18/2015,2,,1,Drug\Placebo
+STUDY0001,ID0028,B,1,5/11/2015,2,,1,Drug\Placebo
+STUDY0001,ID0032,B,1,10/5/2015,2,,1,Drug\Placebo
+STUDY0001,ID0034,B,1,6/13/2015,2,,1,Drug\Placebo
+STUDY0001,ID0037,B,1,6/15/2015,2,,1,Drug\Placebo
+STUDY0001,ID0038,B,1,2/16/2015,1,,1,Drug\Placebo
+STUDY0001,ID0039,B,1,4/27/2015,99,Allergic reaction to paclitaxel and investigators' decision to continue with another chenotherapy.,1,Drug\Placebo
+STUDY0001,ID0040,B,1,6/14/2015,1,patient is not receiving study treatment for a long time,1,Drug\Placebo
+STUDY0001,ID0041,B,1,5/5/2015,99,Subjective disease progression,1,Drug\Placebo
+STUDY0001,ID0043,B,1,10/5/2016,Other – Progression Disease,,1,Drug\Placebo
+STUDY0001,ID0045,B,1,10/27/2015,2,,1,Drug\Placebo
+STUDY0001,ID0046,B,1,5/22/2015,99,complete response of the tumor,1,Drug\Placebo
+STUDY0001,ID0047,B,1,10/23/2015,2,,1,Drug\Placebo
+STUDY0001,ID0051,B,1,8/10/2015,2,,1,Drug\Placebo
+STUDY0001,ID0052,B,1,,2,,1,Drug\Placebo
+STUDY0001,ID0054,B,1,10/17/2015,2,,1,Drug\Placebo
+STUDY0001,ID0055,B,1,1/20/2016,2,,1,Drug\Placebo
+STUDY0001,ID0058,B,1,,2,,1,Drug\Placebo
+STUDY0001,ID0059,B,1,2/23/2016,2,,1,Drug\Placebo
+STUDY0001,ID0060,B,1,11/1/2014,1,,1,Drug\Placebo
+STUDY0001,ID0061,B,1,10/6/2015,1,,1,Drug\Placebo
+STUDY0001,ID0062,B,1,6/29/2015,99,subjective disease progression,1,Drug\Placebo
+STUDY0001,ID0064,B,1,6/28/2015,2,,1,Drug\Placebo
+STUDY0001,ID0068,B,1,11/28/2014,1,,1,Drug\Placebo
+STUDY0001,ID0073,B,1,10/27/2015,2,,1,Drug\Placebo
+STUDY0001,ID0075,B,1,5/16/2015,2,,1,Drug\Placebo
+STUDY0001,ID0076,B,1,10/21/2014,2,,1,Drug\Placebo
+STUDY0001,ID0077,B,1,9/9/2015,2,,1,Drug\Placebo
+STUDY0001,ID0079,B,1,4/26/2016,99,safety reasons; radiotherapy for local (not RECIST defined) progression of right breast required),1,Drug\Placebo
+STUDY0001,ID0080,B,1,6/28/2015,2,,1,Drug\Placebo
+STUDY0001,ID0083,B,1,8/19/2015,2,,1,Drug\Placebo
+STUDY0001,ID0084,B,1,12/20/2015,2,,1,Drug\Placebo
+STUDY0001,ID0087,B,1,3/30/2015,1,,1,Drug\Placebo
+STUDY0001,ID0089,B,1,2/9/2016,2,,1,Drug\Placebo
+STUDY0001,ID0090,B,1,10/31/2016,99,due to preliminar Study results”,0,Drug\Placebo
+STUDY0001,ID0092,B,1,3/29/2015,1,,1,Drug\Placebo
+STUDY0001,ID0093,B,1,5/2/2015,2,,1,Drug\Placebo
+STUDY0001,ID0095,B,1,3/14/2015,2,,1,Drug\Placebo
+STUDY0001,ID0097,B,1,1/24/2015,1,,1,Drug\Placebo
+STUDY0001,ID0098,B,1,9/2/2015,1,,1,Drug\Placebo
+STUDY0001,ID0099,B,1,7/12/2015,2,,1,Drug\Placebo
+STUDY0001,ID0102,B,1,5/30/2015,2,,1,Drug\Placebo
+STUDY0001,ID0104,B,1,9/6/2015,2,,1,Drug\Placebo
+STUDY0001,ID0105,B,1,2/8/2015,1,,0,Drug\Placebo
+STUDY0001,ID0107,B,1,11/24/2015,2,,1,Drug\Placebo
+STUDY0001,ID0108,B,1,3/2/2015,2,,1,Drug\Placebo
+STUDY0001,ID0109,B,1,3/8/2015,2,,1,Drug\Placebo
+STUDY0001,ID0110,B,1,6/7/2015,2,,1,Drug\Placebo
+STUDY0001,ID0111,B,1,6/28/2016,2,,1,Drug\Placebo
+STUDY0001,ID0112,B,1,5/5/2015,Other – Progression disease,,1,Drug\Placebo
+STUDY0001,ID0117,B,1,10/16/2015,2,,1,Drug\Placebo
+STUDY0001,ID0119,B,1,,2,,1,Drug\Placebo
+STUDY0001,ID0120,B,1,10/5/2015,99,patient became surgical eligible,1,Drug\Placebo
+STUDY0001,ID0122,B,1,4/5/2015,2,,1,Drug\Placebo
+STUDY0001,ID0124,B,1,6/18/2016,2,,1,Drug\Placebo
+STUDY0001,ID0125,B,1,7/20/2015,99,subjective progresive disease,1,Drug\Placebo
+STUDY0001,ID0126,B,1,11/17/2015,7,,1,Drug\Placebo
+STUDY0001,ID0128,B,1,12/26/2015,99,patient became eligible for surgery,1,Drug\Placebo
+STUDY0001,ID0129,B,1,5/24/2015,2,,1,Drug\Placebo
+STUDY0001,ID0130,B,1,10/3/2016,99,due to patients and investigators decision,1,Drug\Placebo
+STUDY0001,ID0131,B,1,9/25/2016,99,Ater the braking the code thetreatment was stopped because of the placebo therapy,1,Drug\Placebo
+STUDY0001,ID0132,B,1,11/15/2014,1,,1,Drug\Placebo
+STUDY0001,ID0133,B,1,7/25/2015,2,,1,Drug\Placebo
+STUDY0001,ID0136,B,1,11/9/2015,2,,1,Drug\Placebo
+STUDY0001,ID0137,B,1,4/12/2015,2,,1,Drug\Placebo
+STUDY0001,ID0138,B,1,7/25/2015,2,,1,Drug\Placebo
+STUDY0001,ID0139,B,1,6/12/2015,2,,1,Drug\Placebo
+STUDY0001,ID0140,B,1,4/27/2015,2,,1,Drug\Placebo
+STUDY0001,ID0141,B,1,11/21/2015,99,patient became eligible for surgery,1,Drug\Placebo
+STUDY0001,ID0143,B,1,10/15/2016,2,,1,Drug\Placebo
+STUDY0001,ID0144,B,1,1/18/2015,2,,1,Drug\Placebo
+STUDY0001,ID0148,B,1,1/9/2016,2,,1,Drug\Placebo
+STUDY0001,ID0151,B,1,,2,,1,Drug\Placebo
+STUDY0001,ID0153,B,1,10/18/2016,2,,1,Drug\Placebo
+STUDY0001,ID0154,B,1,9/19/2015,2,,1,Drug\Placebo
+STUDY0001,ID0156,B,1,3/10/2015,7,,0,Drug\Placebo
+STUDY0001,ID0157,B,1,12/16/2014,2,,1,Drug\Placebo
+STUDY0001,ID0158,B,1,6/5/2015,2,,1,Drug\Placebo
+STUDY0001,ID0159,B,1,5/12/2015,2,,1,Drug\Placebo
+STUDY0001,ID0160,B,1,8/11/2015,2,,1,Drug\Placebo
+STUDY0001,ID0161,B,1,2/14/2016,2,,1,Drug\Placebo
+STUDY0001,ID0164,B,1,8/2/2015,2,,1,Drug\Placebo
+STUDY0001,ID0166,B,1,3/12/2015,7,,1,Drug\Placebo
+STUDY0001,ID0167,B,1,10/1/2016,7,,1,Drug\Placebo
+STUDY0001,ID0171,B,1,3/12/2016,1,,0,Drug\Placebo
+STUDY0001,ID0173,B,1,2/2/2016,2,,1,Drug\Placebo
+STUDY0001,ID0177,B,1,11/18/2015,1,,1,Drug\Placebo
+STUDY0001,ID0178,B,1,10/11/2015,2,,1,Drug\Placebo
+STUDY0001,ID0180,B,1,9/30/2014,2,,1,Drug\Placebo
+STUDY0001,ID0181,B,1,2/23/2016,99,"Clinical Disease Progression, once it was not confirmed by RECIST",1,Drug\Placebo
+STUDY0001,ID0182,B,1,5/29/2015,2,,1,Drug\Placebo
+STUDY0001,ID0183,B,1,1/4/2015,2,,1,Drug\Placebo
+STUDY0001,ID0184,B,1,7/3/2015,2,,1,Drug\Placebo
+STUDY0001,ID0185,B,1,5/17/2015,2,,1,Drug\Placebo
+STUDY0001,ID0186,B,1,4/27/2015,7,,1,Drug\Placebo
+STUDY0001,ID0187,B,1,1/26/2015,99,although not progressed according to recist investigator felt patient was progressing and wanted to change treatment.,1,Drug\Placebo
+STUDY0001,ID0189,B,1,10/11/2015,2,,1,Drug\Placebo
+STUDY0001,ID0190,B,1,8/2/2015,2,,1,Drug\Placebo
+STUDY0001,ID0191,B,1,1/14/2015,2,,1,Drug\Placebo
+STUDY0001,ID0192,B,1,11/3/2014,2,,1,Drug\Placebo
+STUDY0001,ID0193,B,1,8/20/2014,2,,1,Drug\Placebo
+STUDY0001,ID0195,B,1,6/8/2016,99,Condition Under Investigation Worsened,1,Drug\Placebo
+STUDY0001,ID0197,B,1,10/25/2015,2,,1,Drug\Placebo
+STUDY0001,ID0199,B,1,10/25/2015,99,patient became elegible for surgery,1,Drug\Placebo
+STUDY0001,ID0200,B,1,1/4/2015,7,,1,Drug\Placebo

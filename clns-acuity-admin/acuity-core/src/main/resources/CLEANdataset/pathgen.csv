@@ -1,0 +1,28 @@
+Study,Part,Subject,PTUMLOC,ODIA_DAT,PTUMTYPE,DETMETH,HSTLTYP,TUMGRADE,TNM_T,TNM_N,TNM_M,AJCC_STG
+STUDY0001,B,ID0002,29,8/23/2014,,Biopsy,Serous,High Grade,TX,NX,M1,IV
+STUDY0001,B,ID0003,3,2/28/2015,,Histological,Invasive Carcinoma (NOS),Moderately Differentiated (G2),TX,N3,M1,IIIA
+STUDY0001,B,ID0004,48,2/16/2015,,Cytological,Ductal Carcinoma In Situ,Unassessable (GX),T4,N2,M0,IIIA
+STUDY0001,B,ID0005,3,1/3/2015,,Biopsy,Serous,High Grade,T4,N2,M1,IV
+STUDY0001,B,ID0006,48,10/26/2014,,Biopsy,Serous,High Grade,T2,N2,M0,IIB
+STUDY0001,B,ID0007,3,12/16/2014,,Cytological,Cannot Be Determined,Unassessable (GX),T2,N1,M0,IIB
+STUDY0001,B,ID0007,3,12/17/2014,,Biopsy,,,T2,,,
+STUDY0001,B,ID0008,3,10/14/2014,,Cytological,Invasive Carcinoma (NOS),Poorly Differentiated (G3),T1,NX,M1,IV
+STUDY0001,B,ID0009,3,10/25/2014,,Cytological,Other,Moderately Differentiated (G2),T2,N1,M0,IIB
+STUDY0001,B,ID0010,48,1/17/2015,,Biopsy,Serous,High Grade,T2,N1,M0,IIB
+STUDY0001,B,ID0011,3,10/21/2014,,Cytological,Invasive Lobular,Well Differentiated (G1),T2,N1,M1,IV
+STUDY0001,B,ID0012,29,9/30/2014,,Cytological,Cannot Be Determined,Unassessable (GX),Tis,NX,MX,IV
+STUDY0001,B,ID0013,3,3/18/2015,,Histological,Cannot Be Determined,Unassessable (GX),T4,N2,M0,IIIB
+STUDY0001,B,ID0014,48,2/16/2015,,Cytological,Ductal Carcinoma In Situ,Unassessable (GX),T4,N2,M0,IIIB
+STUDY0001,B,ID0015,3,3/21/2015,,Cytological,Invasive Ductal,Moderately Differentiated (G2),T3,N1,M1,IV
+STUDY0001,B,ID0016,3,2/14/2015,,Cytological,Invasive Lobular,Poorly Differentiated (G3),T3,N2,M0,IIIB
+STUDY0001,B,ID0017,3,9/9/2014,,Histological,Other,Unassessable (GX),T3,N1,M0,IIIA
+STUDY0001,B,ID0018,29,2/10/2015,,Biopsy,Serous,High Grade,T3,N3,M0,IIIC
+STUDY0001,B,ID0019,3,2/9/2015,,Histological,Ductal Carcinoma In Situ,Moderately Differentiated (G2),T2,N1,M1,IV
+STUDY0001,B,ID0020,3,12/27/2014,,Biopsy,Serous,High Grade,T3,N2,M0,IIIB
+STUDY0001,B,ID0021,29,10/12/2014,,Biopsy,Serous,High Grade,T4,N2,M1,IV
+STUDY0001,B,ID0023,3,2/3/2015,,Biopsy,Serous,High Grade,TX,NX,M1,IV
+STUDY0001,B,ID0025,3,1/18/2015,,Biopsy,Serous,High Grade,T3,N2,M1,IV
+STUDY0001,B,ID0026,3,8/23/2014,,Histological,Ductal Carcinoma In Situ,Well Differentiated (G1),T1,N0,M0,IA
+STUDY0001,B,ID0027,3,8/31/2014,,Histological,Other,Moderately Differentiated (G2),T4,N3,M1,IV
+STUDY0001,B,ID0028,3,1/4/2015,,Histological,Invasive Lobular,Poorly Differentiated (G3),T2,N0,M1,IV
+STUDY0001,B,ID0032,3,2/28/2015,,Histological,Invasive Carcinoma (NOS),Moderately Differentiated (G2),TX,N3,M1,IV

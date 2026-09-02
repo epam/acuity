@@ -1,0 +1,836 @@
+STUDY,PART,SUBJECT,VISIT,VIS_DAT,MEDPREF,ROUTEOFADMINISTRATION,TRREAS,CXSDAT,CXEDAT,CXCANCER,CYCLENO,CXCLASS,TREATSTS,CXBRESP,FAILREAS
+STUDY0001,B,ID0001,,10/27/2010,GEFITINIB,ORAL,PRIMARY DISEASE,9/2/2008,9/26/2008,0,17,Other,First Line,Non-evaluable,Toxicity
+STUDY0001,B,ID0001,,10/27/2010,INVESTIGATIONAL DRUG,ORAL,PRIMARY DISEASE,8/28/2007,1/15/2008,0,1,Systemic Therapy,First Line,Partial response,Toxicity
+STUDY0001,B,ID0001,,10/27/2010,GIMERACIL+OTERACIL POTASSIUM+TEGAFUR,,PRIMARY DISEASE,2/24/2008,4/14/2008,0,2,Cytotoxic Chemotherapy,First Line,Progression,Toxicity
+STUDY0001,B,ID0001,,10/27/2010,CISPLATIN,INTRAVENOUS,PRIMARY DISEASE,11/12/2008,11/4/2009,0,3,Cytotoxic Chemotherapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0001,,10/27/2010,CISPLATIN,INTRAVENOUS,PRIMARY DISEASE,1/2/2009,4/14/2009,0,4,Cytotoxic Chemotherapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0001,,10/27/2010,CARBOPLATIN,INTRAVENOUS,PRIMARY DISEASE,2/8/2010,3/19/2010,1,4,Systemic Therapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0001,,10/27/2010,PEMETREXED,INTRAVENOUS,PRIMARY DISEASE,5/7/2010,6/1/2010,1,5,Cytotoxic Chemotherapy,>Third Line,Partial response,Toxicity
+STUDY0001,B,ID0002,,12/16/2010,PEMETREXED,ORAL,PRIMARY DISEASE,1/26/2007,6/5/2007,0,,Systemic Therapy,First Line,,Toxicity
+STUDY0001,B,ID0002,,12/16/2010,VANDETANIB,ORAL,PRIMARY DISEASE,3/28/2008,4/17/2008,0,,Systemic Therapy,First Line,Progression,Toxicity
+STUDY0001,B,ID0003,,12/27/2010,GEFITINIB,ORAL,,3/10/2008,3/11/2010,0,1,Systemic Therapy,First Line,Not applicable,Toxicity
+STUDY0001,B,ID0003,,12/27/2010,GEFITINIB,ORAL,,4/5/2008,11/9/2011,0,17,Other,First Line,Non-evaluable,Toxicity
+STUDY0001,B,ID0003,,12/27/2010,CISPLATIN,INTRAVENOUS,,9/9/2010,10/22/2010,0,6,Cytotoxic Chemotherapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0003,,12/27/2010,DOCETAXEL,INTRAVENOUS,,7/2/2010,9/29/2010,0,7,Cytotoxic Chemotherapy,Second Line,Partial response,Progresssion following Completion of Therapy
+STUDY0001,B,ID0003,,12/27/2010,AZACITIDINE,SUBCUTANEOUS,,10/26/2010,11/25/2010,0,4,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0003,,12/27/2010,CARBOPLATIN,INTRAVENOUS,,10/21/2010,11/22/2011,0,,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0003,,12/27/2010,GEMCITABINE,INTRAVENOUS,,12/16/2010,1/5/2011,1,3,Systemic Therapy,>Third Line,Stable disease,Toxicity
+STUDY0001,B,ID0003,,12/27/2010,GEMCITABINE,INTRAVENOUS,,7/16/2016,,2,8,Systemic Therapy,>Third Line,Stable disease,Toxicity
+STUDY0001,B,ID0004,,3/7/2011,GEFITINIB,,LUNG CANCER,9/25/2008,11/12/2008,0,1,Systemic Therapy,First Line,Partial response,Toxicity
+STUDY0001,B,ID0004,,3/7/2011,GEFITINIB,,PRIMARY DISEASE,7/17/2008,8/10/2008,0,1,Systemic Therapy,First Line,Not applicable,Toxicity
+STUDY0001,B,ID0004,,3/7/2011,GEMCITABINE,,PRIMARY DISEASE,7/5/2007,9/24/2008,0,6,Systemic Therapy,First Line,Not applicable,Toxicity
+STUDY0001,B,ID0004,,3/7/2011,DOCETAXEL,,PRIMARY DISEASE,9/26/2009,3/9/2010,0,8,Cytotoxic Chemotherapy,Second Line,Partial response,Progresssion following Completion of Therapy
+STUDY0001,B,ID0004,,3/7/2011,CARBOPLATIN,,PRIMARY DISEASE,4/16/2009,6/30/2010,0,6,Systemic Therapy,Second Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0004,,3/7/2011,CISPLATIN,,PRIMARY DISEASE,3/8/2009,9/1/2009,0,2,Cytotoxic Chemotherapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0004,,3/7/2011,BEVACIZUMAB,,PRIMARY DISEASE,11/2/2010,1/7/2011,1,3,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0004,,3/7/2011,CARBOPLATIN,,PRIMARY DISEASE,11/17/2010,12/21/2010,0,4,Systemic Therapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0004,,3/7/2011,ANTINEOPLASTIC AGENTS,,PRIMARY DISEASE,11/15/2010,12/9/2010,0,6,Other,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0004,,3/7/2011,PEMETREXED,,PRIMARY DISEASE,1/27/2011,2/17/2011,1,3,Systemic Therapy,>Third Line,Partial response,Toxicity
+STUDY0001,B,ID0004,,3/7/2011,VANDETANIB,,PRIMARY DISEASE,1/29/2011,2/25/2011,1,5,Systemic Therapy,>Third Line,Partial response,Toxicity
+STUDY0001,B,ID0005,,1/3/2011,GEFITINIB,ORAL,BREAST CANCER,2/26/2007,7/1/2008,0,18,Other,First Line,Non-evaluable,Toxicity
+STUDY0001,B,ID0005,,1/3/2011,CISPLATIN,INTRAVENOUS,BREAST CANCER,7/13/2010,8/13/2010,0,6,Cytotoxic Chemotherapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0005,,1/3/2011,CARBOPLATIN,INTRAVENOUS,BREAST CANCER,6/26/2010,8/17/2010,0,3,Systemic Therapy,Second Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0005,,1/3/2011,CARBOPLATIN,INTRAVENOUS,BREAST CANCER,9/27/2010,10/30/2010,1,,Systemic Therapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0005,,1/3/2011,BEVACIZUMAB,INTRAVENOUS,BREAST CANCER,10/13/2010,11/6/2010,1,2,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0006,,10/26/2010,GEFITINIB,ORAL,OVARIAN CANCER,5/4/2007,12/26/2008,0,,Systemic Therapy,First Line,,Toxicity
+STUDY0001,B,ID0006,,10/26/2010,GEFITINIB,ORAL,OVARIAN CANCER,11/27/2006,2/12/2007,0,1,Systemic Therapy,First Line,Not applicable,Toxicity
+STUDY0001,B,ID0006,,10/26/2010,GEFITINIB,ORAL,OVARIAN CANCER,12/13/2006,6/13/2007,0,,Other,First Line,Progression,Toxicity
+STUDY0001,B,ID0006,,10/26/2010,CARBOPLATIN,INTRAVENOUS,OVARIAN CANCER,7/23/2009,12/10/2009,0,12,Cytotoxic Chemotherapy,Second Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0006,,10/26/2010,BEVACIZUMAB,INTRAVENOUS,OVARIAN CANCER,6/17/2010,8/15/2010,1,1,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0006,,10/26/2010,PACLITAXEL,INTRAVENOUS,OVARIAN CANCER,9/6/2010,10/1/2010,1,1,Cytotoxic Chemotherapy,>Third Line,Not applicable,Toxicity
+STUDY0001,B,ID0006,,10/26/2010,GEMCITABINE,INTRAVENOUS,OVARIAN CANCER,9/2/2010,9/24/2010,1,2,Systemic Therapy,>Third Line,Non-evaluable,Toxicity
+STUDY0001,B,ID0006,,10/26/2010,GEMCITABINE,INTRAVENOUS,OVARIAN CANCER,8/30/2010,9/20/2010,1,3,Systemic Therapy,>Third Line,Stable disease,Toxicity
+STUDY0001,B,ID0007,,12/16/2010,GEFITINIB,ORAL,PROSTATE CANCER,1/26/2007,6/5/2007,0,,Systemic Therapy,First Line,,Toxicity
+STUDY0001,B,ID0007,,12/16/2010,INVESTIGATIONAL DRUG,ORAL,PROSTATE CANCER,3/28/2008,4/17/2008,0,,Systemic Therapy,First Line,Progression,Toxicity
+STUDY0001,B,ID0007,,12/16/2010,CISPLATIN,INTRAVENOUS,PROSTATE CANCER,7/16/2008,8/29/2008,0,1,Systemic Therapy,Second Line,Progression,Progression on Therapy
+STUDY0001,B,ID0007,,12/16/2010,DOCETAXEL,INTRAVENOUS,PROSTATE CANCER,5/25/2008,6/16/2008,0,8,Cytotoxic Chemotherapy,Second Line,Partial response,Progresssion following Completion of Therapy
+STUDY0001,B,ID0007,,12/16/2010,CISPLATIN,INTRAVENOUS,PROSTATE CANCER,5/27/2008,8/23/2008,0,1,Cytotoxic Chemotherapy,Second Line,Progression,Progression on Therapy
+STUDY0001,B,ID0007,,12/16/2010,ANTINEOPLASTIC AGENTS,INTRAVENOUS,PROSTATE CANCER,10/28/2008,11/19/2008,1,6,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0009,,10/25/2010,IRINOTECAN,INTRAVENOUS,,4/30/2007,7/21/2008,0,4,Cytotoxic Chemotherapy,First Line,Non-evaluable,Toxicity
+STUDY0001,B,ID0009,,10/25/2010,GEFITINIB,ORAL,,7/20/2009,10/16/2009,0,,Systemic Therapy,First Line,,Toxicity
+STUDY0001,B,ID0009,,10/25/2010,CARBOPLATIN,INTRAVENOUS,,1/12/2010,3/13/2010,0,,Systemic Therapy,Second Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0009,,10/25/2010,CISPLATIN,INTRAVENOUS,,1/29/2010,3/5/2010,0,1,Cytotoxic Chemotherapy,Second Line,Progression,Progression on Therapy
+STUDY0001,B,ID0009,,10/25/2010,BEVACIZUMAB,INTRAVENOUS,,5/2/2010,5/27/2010,0,3,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0009,,10/25/2010,PEMETREXED,INTRAVENOUS,,7/7/2010,7/27/2010,1,1,Cytotoxic Chemotherapy,>Third Line,,Toxicity
+STUDY0001,B,ID0009,,10/25/2010,PEMETREXED,INTRAVENOUS,,7/7/2010,7/28/2010,1,6,Cytotoxic Chemotherapy,>Third Line,Partial response,Toxicity
+STUDY0001,B,ID0009,,10/25/2010,GEMCITABINE,INTRAVENOUS,,7/7/2010,7/28/2010,1,1,Cytotoxic Chemotherapy,>Third Line,Stable disease,Toxicity
+STUDY0001,B,ID0011,,10/21/2010,GEMCITABINE,INTRAVENOUS,,3/9/2007,1/14/2008,0,6,Cytotoxic Chemotherapy,First Line,Stable disease,Toxicity
+STUDY0001,B,ID0011,,10/21/2010,CARBOPLATIN,INTRAVENOUS,,8/10/2009,9/15/2009,0,8,Systemic Therapy,Second Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0011,,10/21/2010,DOCETAXEL,INTRAVENOUS,,2/23/2009,3/30/2009,0,8,Cytotoxic Chemotherapy,Second Line,Partial response,Progresssion following Completion of Therapy
+STUDY0001,B,ID0011,,10/21/2010,ANTINEOPLASTIC AGENTS,INTRAVENOUS,,1/21/2010,2/15/2010,1,3,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0012,,9/30/2010,GEFITINIB,ORAL,OVARIAN CANCER,9/20/2007,11/25/2008,0,9,Cytotoxic Chemotherapy,First Line,Non-evaluable,Progresssion following Completion of Therapy
+STUDY0001,B,ID0012,,9/30/2010,GEMCITABINE,INTRAVENOUS,OVARIAN CANCER,6/6/2008,11/15/2009,0,7,Cytotoxic Chemotherapy,First Line,,Toxicity
+STUDY0001,B,ID0012,,9/30/2010,GEFITINIB,ORAL,OVARIAN CANCER,1/22/2007,5/25/2007,0,7,Cytotoxic Chemotherapy,First Line,Non-evaluable,Progresssion following Completion of Therapy
+STUDY0001,B,ID0012,,9/30/2010,CARBOPLATIN,INTRAVENOUS,OVARIAN CANCER,2/12/2010,5/13/2010,0,4,Systemic Therapy,Second Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0012,,9/30/2010,CISPLATIN,INTRAVENOUS,OVARIAN CANCER,4/8/2010,5/23/2010,0,3,Systemic Therapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0012,,9/30/2010,BEVACIZUMAB,INTRAVENOUS,OVARIAN CANCER,7/7/2010,7/27/2010,1,3,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0012,,9/30/2010,BEVACIZUMAB,INTRAVENOUS,OVARIAN CANCER,7/7/2010,7/27/2010,1,3,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0014,,2/16/2011,GEFITINIB,ORAL,OVARIAN CANCER,4/5/2007,8/8/2007,1,8,Cytotoxic Chemotherapy,First Line,Non-evaluable,Progresssion following Completion of Therapy
+STUDY0001,B,ID0014,,2/16/2011,CISPLATIN,INTRAVENOUS,OVARIAN CANCER,12/15/2007,1/28/2008,1,6,Systemic Therapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0014,,2/16/2011,CARBOPLATIN+GEMCITABINE,INTRAVENOUS,OVARIAN CANCER,12/2/2007,1/20/2008,1,6,Cytotoxic Chemotherapy,Second Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0014,,2/16/2011,CARBOPLATIN,INTRAVENOUS,OVARIAN CANCER,5/25/2009,9/15/2009,1,9,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0014,,2/16/2011,CARBOPLATIN,INTRAVENOUS,OVARIAN CANCER,8/13/2009,10/26/2009,1,4,Systemic Therapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0015,,3/21/2011,GEFITINIB,ORAL,,12/30/2007,5/5/2008,0,,Systemic Therapy,First Line,,Toxicity
+STUDY0001,B,ID0015,,3/21/2011,GEMCITABINE,INTRAVENOUS,,3/9/2008,4/30/2008,0,6,Cytotoxic Chemotherapy,First Line,Partial response,Toxicity
+STUDY0001,B,ID0015,,3/21/2011,CISPLATIN,INTRAVENOUS,,10/4/2009,11/10/2010,0,2,Systemic Therapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0015,,3/21/2011,CISPLATIN,INTRAVENOUS,,7/16/2009,6/23/2010,0,1,Cytotoxic Chemotherapy,Second Line,Progression,Progression on Therapy
+STUDY0001,B,ID0015,,3/21/2011,CARBOPLATIN,INTRAVENOUS,,12/24/2010,1/14/2011,1,6,Systemic Therapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0015,,3/21/2011,ANTINEOPLASTIC AGENTS,INTRAVENOUS,,12/23/2010,1/12/2011,1,3,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0016,,2/14/2011,GEFITINIB,ORAL,,6/18/2007,2/6/2009,,,Systemic Therapy,First Line,,Toxicity
+STUDY0001,B,ID0016,,2/14/2011,GEFITINIB,ORAL,,8/21/2008,9/25/2008,,1,Systemic Therapy,First Line,Not applicable,Progresssion following Completion of Therapy
+STUDY0001,B,ID0016,,2/14/2011,CISPLATIN,INTRAVENOUS,,8/12/2009,9/15/2009,,1,Systemic Therapy,Second Line,Progression,Progression on Therapy
+STUDY0001,B,ID0016,,2/14/2011,BEVACIZUMAB,INTRAVENOUS,,12/3/2009,2/21/2010,,3,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0018,,2/10/2011,PACLITAXEL,INTRAVENOUS,,8/10/2007,5/13/2008,,6,Systemic Therapy,First Line,Progression,Toxicity
+STUDY0001,B,ID0018,,2/10/2011,CISPLATIN,INTRAVENOUS,,6/29/2008,8/12/2008,,5,Cytotoxic Chemotherapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0018,,2/10/2011,CISPLATIN,INTRAVENOUS,,7/30/2008,9/9/2008,,4,Systemic Therapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0018,,2/10/2011,ANTINEOPLASTIC AGENTS,INTRAVENOUS,,1/10/2009,2/23/2009,,1,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0020,,12/27/2010,GEFITINIB,ORAL,,3/10/2008,3/11/2009,0,1,Systemic Therapy,First Line,Not applicable,Toxicity
+STUDY0001,B,ID0020,,12/27/2010,GEFITINIB,ORAL,,4/5/2008,11/9/2009,0,17,Other,First Line,Non-evaluable,Toxicity
+STUDY0001,B,ID0020,,12/27/2010,CISPLATIN,INTRAVENOUS,,9/9/2010,10/2/2010,0,6,Cytotoxic Chemotherapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0020,,12/27/2010,DOCETAXEL,INTRAVENOUS,,7/2/2010,8/29/2010,0,7,Cytotoxic Chemotherapy,Second Line,Partial response,Progresssion following Completion of Therapy
+STUDY0001,B,ID0020,,12/27/2010,AZACITIDINE,SUBCUTANEOUS,,10/26/2010,11/25/2010,0,4,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0020,,12/27/2010,CARBOPLATIN,INTRAVENOUS,,10/21/2010,11/22/2010,0,,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0020,,12/27/2010,ANTINEOPLASTIC AGENTS,INTRAVENOUS,,11/6/2010,11/29/2010,1,3,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0020,,12/27/2010,PEMETREXED,INTRAVENOUS,,12/15/2010,1/7/2011,1,4,Cytotoxic Chemotherapy,>Third Line,Partial response,Toxicity
+STUDY0001,B,ID0020,,12/27/2010,GEMCITABINE,INTRAVENOUS,,12/16/2010,1/5/2011,1,3,Systemic Therapy,>Third Line,Stable disease,Toxicity
+STUDY0001,B,ID0020,,12/27/2010,GEMCITABINE,INTRAVENOUS,,7/16/2015,,2,8,Systemic Therapy,>Third Line,Stable disease,Toxicity
+STUDY0001,B,ID0021,,10/12/2010,IRINOTECAN,INTRAVENOUS,,3/18/2007,11/29/2007,0,6,Systemic Therapy,First Line,Not applicable,Progresssion following Completion of Therapy
+STUDY0001,B,ID0021,,10/12/2010,CISPLATIN,INTRAVENOUS,,7/26/2008,7/16/2009,0,4,Cytotoxic Chemotherapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0021,,10/12/2010,CISPLATIN,INTRAVENOUS,,6/27/2008,10/26/2008,0,4,Cytotoxic Chemotherapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0021,,10/12/2010,ANTINEOPLASTIC AGENTS,INTRAVENOUS,,3/23/2010,5/2/2010,1,2,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0021,,10/12/2010,ANTINEOPLASTIC AGENTS,INTRAVENOUS,,3/15/2010,4/16/2010,2,6,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0021,,10/12/2010,GEMCITABINE,INTRAVENOUS,,6/17/2010,8/22/2010,2,2,Systemic Therapy,>Third Line,Non-evaluable,Toxicity
+STUDY0001,B,ID0023,,2/3/2011,GEMCITABINE,INTRAVENOUS,,3/24/2007,4/17/2007,0,6,Cytotoxic Chemotherapy,First Line,Not applicable,Toxicity
+STUDY0001,B,ID0023,,2/3/2011,CISPLATIN,INTRAVENOUS,,5/26/2008,9/9/2008,0,1,Cytotoxic Chemotherapy,Second Line,Progression,Progression on Therapy
+STUDY0001,B,ID0023,,2/3/2011,CETUXIMAB,INTRAVENOUS,,6/21/2007,1/13/2008,0,12,Cytotoxic Chemotherapy,Second Line,Progression,Progression on Therapy
+STUDY0001,B,ID0023,,2/3/2011,BEVACIZUMAB,INTRAVENOUS,,7/9/2009,10/3/2009,0,2,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0023,,2/3/2011,ANTINEOPLASTIC AGENTS,INTRAVENOUS,,8/13/2009,10/6/2009,1,3,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0023,,2/3/2011,ANTINEOPLASTIC AGENTS,INTRAVENOUS,,,10/13/2009,2,4,Immunotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0023,,2/3/2011,GEMCITABINE,INTRAVENOUS,,11/12/2009,12/15/2009,2,2,Cytotoxic Chemotherapy,>Third Line,Partial response,Toxicity
+STUDY0001,B,ID0023,,2/3/2011,PEMETREXED,INTRAVENOUS,,11/7/2009,12/15/2009,2,,Other,>Third Line,Stable disease,Toxicity
+STUDY0001,B,ID0023,,2/3/2011,GEMCITABINE,INTRAVENOUS,,11/7/2009,12/3/2009,2,4,Cytotoxic Chemotherapy,>Third Line,Stable disease,Toxicity
+STUDY0001,B,ID0025,,1/18/2011,GEFITINIB,ORAL,,2/11/2007,4/23/2008,0,3,Other,First Line,Not applicable,Progresssion following Completion of Therapy
+STUDY0001,B,ID0025,,1/18/2011,IRINOTECAN,INTRAVENOUS,,6/4/2007,2/28/2009,0,6,Systemic Therapy,First Line,Not applicable,Progresssion following Completion of Therapy
+STUDY0001,B,ID0025,,1/18/2011,CISPLATIN,INTRAVENOUS,,11/9/2009,7/17/2010,0,2,Cytotoxic Chemotherapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0025,,1/18/2011,CISPLATIN,INTRAVENOUS,,3/23/2010,5/13/2010,0,4,Cytotoxic Chemotherapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0025,,1/18/2011,CISPLATIN,INTRAVENOUS,,1/23/2010,2/14/2010,0,4,Systemic Therapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0025,,1/18/2011,BEVACIZUMAB,INTRAVENOUS,,10/2/2010,10/22/2010,1,3,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0025,,1/18/2011,CARBOPLATIN,INTRAVENOUS,,9/25/2010,11/8/2010,1,9,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0025,,1/18/2011,PEMETREXED,INTRAVENOUS,,11/25/2010,1/21/2011,2,9,Systemic Therapy,>Third Line,Progression,Toxicity
+STUDY0001,B,ID0025,,1/18/2011,PEMETREXED,INTRAVENOUS,,12/3/2010,1/7/2011,2,15,Cytotoxic Chemotherapy,>Third Line,Stable disease,Toxicity
+STUDY0001,B,ID0025,,1/18/2011,PEMETREXED,INTRAVENOUS,,12/13/2010,1/2/2011,2,11,Cytotoxic Chemotherapy,>Third Line,Stable disease,Toxicity
+STUDY0001,B,ID0026,,8/23/2010,GEFITINIB,ORAL,,10/18/2006,3/21/2007,,1,Systemic Therapy,First Line,Not applicable,Toxicity
+STUDY0001,B,ID0026,,8/23/2010,CISPLATIN,INTRAVENOUS,,1/20/2010,2/23/2010,,2,Cytotoxic Chemotherapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0026,,8/23/2010,CISPLATIN,INTRAVENOUS,,1/29/2010,2/19/2010,,6,Cytotoxic Chemotherapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0026,,8/23/2010,CETUXIMAB,INTRAVENOUS,,1/13/2010,2/23/2010,,3,Cytotoxic Chemotherapy,Second Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0026,,8/23/2010,ANTINEOPLASTIC AGENTS,INTRAVENOUS,,5/19/2010,6/12/2010,,16,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0026,,8/23/2010,ANTINEOPLASTIC AGENTS,INTRAVENOUS,,5/22/2010,6/19/2010,,3,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0027,,8/31/2010,PACLITAXEL,INTRAVENOUS,,1/14/2008,4/6/2008,,,Systemic Therapy,First Line,Progression,Toxicity
+STUDY0001,B,ID0027,,8/31/2010,CISPLATIN,INTRAVENOUS,,12/7/2009,2/1/2010,,6,Cytotoxic Chemotherapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0027,,8/31/2010,CISPLATIN,INTRAVENOUS,,3/31/2009,1/25/2010,,1,Cytotoxic Chemotherapy,Second Line,Progression,Progression on Therapy
+STUDY0001,B,ID0027,,8/31/2010,ANTINEOPLASTIC AGENTS,INTRAVENOUS,,3/11/2010,4/13/2010,,4,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0027,,8/31/2010,BEVACIZUMAB,INTRAVENOUS,,3/29/2010,4/19/2010,,2,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0027,,8/31/2010,BEVACIZUMAB,INTRAVENOUS,,3/14/2010,4/17/2010,,3,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0028,,1/4/2011,PEMETREXED,INTRAVENOUS,,1/22/2007,3/18/2007,,2,Systemic Therapy,First Line,Stable disease,Toxicity
+STUDY0001,B,ID0028,,1/4/2011,INVESTIGATIONAL DRUG,ORAL,,1/21/2007,3/11/2007,,17,Systemic Therapy,First Line,Stable disease,Toxicity
+STUDY0001,B,ID0028,,1/4/2011,CISPLATIN,INTRAVENOUS,,12/29/2007,2/22/2008,,4,Cytotoxic Chemotherapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0028,,1/4/2011,CISPLATIN,INTRAVENOUS,,8/11/2007,11/21/2008,,4,Cytotoxic Chemotherapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0028,,1/4/2011,ANTINEOPLASTIC AGENTS,INTRAVENOUS,,10/1/2010,10/31/2010,,2,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0028,,1/4/2011,BEVACIZUMAB,INTRAVENOUS,,9/17/2010,10/26/2010,,17,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0028,,1/4/2011,BEVACIZUMAB,INTRAVENOUS,,10/5/2010,11/9/2010,,2,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0028,,1/4/2011,VINORELBINE,INTRAVENOUS,,12/26/2010,1/15/2011,,3,Cytotoxic Chemotherapy,>Third Line,Not applicable,
+STUDY0001,B,ID0028,,1/4/2011,PEMETREXED,INTRAVENOUS,,12/25/2010,1/16/2011,,,Systemic Therapy,>Third Line,Non-evaluable,Toxicity
+STUDY0001,B,ID0032,,2/28/2011,IRINOTECAN,INTRAVENOUS,,5/14/2007,9/5/2007,,6,Systemic Therapy,First Line,Not applicable,Progresssion following Completion of Therapy
+STUDY0001,B,ID0032,,2/28/2011,INVESTIGATIONAL DRUG,ORAL,,2/2/2008,8/17/2008,,,Other,First Line,Partial response,Toxicity
+STUDY0001,B,ID0032,,2/28/2011,CARBOPLATIN,INTRAVENOUS,,11/9/2008,6/15/2009,,3,Systemic Therapy,Second Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0032,,2/28/2011,ANTINEOPLASTIC AGENTS,INTRAVENOUS,,11/21/2009,10/1/2010,,8,Other,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0032,,2/28/2011,ANTINEOPLASTIC AGENTS,INTRAVENOUS,,11/20/2009,10/27/2010,,1,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0034,,2/7/2011,GEFITINIB,ORAL,,6/9/2007,8/26/2009,,1,Systemic Therapy,First Line,Not applicable,Progresssion following Completion of Therapy
+STUDY0001,B,ID0034,,2/7/2011,CARBOPLATIN,INTRAVENOUS,,4/9/2010,4/30/2010,,4,Systemic Therapy,Second Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0034,,2/7/2011,DOCETAXEL,INTRAVENOUS,,3/28/2010,4/28/2010,,,Cytotoxic Chemotherapy,Second Line,Partial response,Progresssion following Completion of Therapy
+STUDY0001,B,ID0034,,2/7/2011,BEVACIZUMAB,INTRAVENOUS,,9/2/2010,9/30/2010,,3,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0034,,2/7/2011,BEVACIZUMAB,INTRAVENOUS,,9/10/2010,2/7/2011,,17,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0034,,2/7/2011,AZACITIDINE,SUBCUTANEOUS,,9/12/2010,1/30/2011,,4,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0037,,3/23/2011,INVESTIGATIONAL DRUG,ORAL,,4/7/2007,9/21/2007,,18,Systemic Therapy,First Line,Partial response,Toxicity
+STUDY0001,B,ID0037,,3/23/2011,CISPLATIN,INTRAVENOUS,,12/8/2007,12/29/2007,,6,Systemic Therapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0037,,3/23/2011,CARBOPLATIN,INTRAVENOUS,,12/11/2007,1/3/2008,,2,Systemic Therapy,Second Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0037,,3/23/2011,CISPLATIN,INTRAVENOUS,,12/8/2007,1/2/2008,,3,Cytotoxic Chemotherapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0037,,3/23/2011,BEVACIZUMAB,INTRAVENOUS,,4/5/2008,12/13/2008,,4,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0038,,12/23/2010,GEFITINIB,ORAL,,11/21/2007,12/15/2007,,3,Other,First Line,Not applicable,Progresssion following Completion of Therapy
+STUDY0001,B,ID0038,,12/23/2010,CARBOPLATIN,INTRAVENOUS,,6/21/2008,2/16/2009,,4,Systemic Therapy,Second Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0038,,12/23/2010,CARBOPLATIN,INTRAVENOUS,,9/7/2009,1/16/2010,,4,Systemic Therapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0039,,2/11/2011,GEFITINIB,ORAL,,9/2/2008,5/10/2009,,14,Immunotherapy,First Line,Non-evaluable,Progresssion following Completion of Therapy
+STUDY0001,B,ID0039,,2/11/2011,IRINOTECAN,INTRAVENOUS,,10/21/2007,6/15/2008,,2,Systemic Therapy,First Line,Not applicable,Toxicity
+STUDY0001,B,ID0039,,2/11/2011,DOCETAXEL,INTRAVENOUS,,6/20/2010,9/17/2010,,7,Cytotoxic Chemotherapy,Second Line,Partial response,Progresssion following Completion of Therapy
+STUDY0001,B,ID0039,,2/11/2011,ANTINEOPLASTIC AGENTS,INTRAVENOUS,,12/24/2010,1/17/2011,,1,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0039,,2/11/2011,ANTINEOPLASTIC AGENTS,INTRAVENOUS,,12/26/2010,1/18/2011,,7,Other,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0039,,2/11/2011,ANTINEOPLASTIC AGENTS,INTRAVENOUS,,12/29/2010,1/19/2011,,4,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0039,,2/11/2011,PEMETREXED,INTRAVENOUS,,1/23/2011,2/15/2011,,6,Cytotoxic Chemotherapy,>Third Line,Stable disease,Toxicity
+STUDY0001,B,ID0039,,2/11/2011,PEMETREXED,INTRAVENOUS,,1/24/2011,2/14/2011,,6,Cytotoxic Chemotherapy,>Third Line,Partial response,Toxicity
+STUDY0001,B,ID0040,,2/24/2011,INVESTIGATIONAL DRUG,ORAL,,3/19/2008,5/7/2008,,1,Systemic Therapy,First Line,Progression,Toxicity
+STUDY0001,B,ID0040,,2/24/2011,CISPLATIN,INTRAVENOUS,,9/21/2009,1/25/2010,,5,Cytotoxic Chemotherapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0040,,2/24/2011,ANTINEOPLASTIC AGENTS,INTRAVENOUS,,10/14/2010,11/8/2010,,27,Systemic Therapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0040,,2/24/2011,PEMETREXED,INTRAVENOUS,,12/12/2010,2/19/2011,,3,,>Third Line,Partial response,Toxicity
+STUDY0001,B,ID0040,,2/24/2011,PEMETREXED,INTRAVENOUS,,1/21/2011,2/10/2011,,,Systemic Therapy,>Third Line,Not applicable,Toxicity
+STUDY0001,B,ID0040,,2/24/2011,PACLITAXEL,INTRAVENOUS,,12/25/2010,2/13/2011,,1,Cytotoxic Chemotherapy,>Third Line,Progression,Toxicity
+STUDY0001,B,ID0041,,9/20/2010,GEFITINIB,ORAL,,5/26/2007,11/10/2007,,22,Systemic Therapy,First Line,Complete response,Toxicity
+STUDY0001,B,ID0041,,9/20/2010,CISPLATIN,INTRAVENOUS,,6/16/2008,11/4/2008,,4,Systemic Therapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0041,,9/20/2010,CISPLATIN,INTRAVENOUS,,1/8/2009,2/3/2009,,2,Cytotoxic Chemotherapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0041,,9/20/2010,CARBOPLATIN,INTRAVENOUS,,8/10/2008,1/28/2009,,4,Systemic Therapy,Second Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0041,,9/20/2010,BEVACIZUMAB,INTRAVENOUS,,5/1/2009,6/20/2009,,2,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0041,,9/20/2010,BEVACIZUMAB,INTRAVENOUS,,6/1/2009,3/17/2010,,2,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0041,,9/20/2010,BEVACIZUMAB,INTRAVENOUS,,6/7/2009,8/18/2009,,3,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0043,,3/4/2011,GEFITINIB,ORAL,,3/14/2008,3/18/2009,,9,Cytotoxic Chemotherapy,First Line,Non-evaluable,Progresssion following Completion of Therapy
+STUDY0001,B,ID0043,,3/4/2011,GEFITINIB,ORAL,,2/20/2010,4/17/2010,,,Systemic Therapy,First Line,,Toxicity
+STUDY0001,B,ID0043,,3/4/2011,CARBOPLATIN,INTRAVENOUS,,10/8/2010,11/11/2010,,4,Systemic Therapy,Second Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0043,,3/4/2011,CISPLATIN,INTRAVENOUS,,5/25/2010,10/3/2010,,4,Systemic Therapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0043,,3/4/2011,ANTINEOPLASTIC AGENTS,INTRAVENOUS,,12/20/2010,1/11/2011,,3,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0043,,3/4/2011,BEVACIZUMAB,INTRAVENOUS,,12/24/2010,1/20/2011,,3,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0043,,3/4/2011,ANTINEOPLASTIC AGENTS,INTRAVENOUS,,12/16/2010,1/17/2011,,4,Immunotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0045,,2/18/2011,INVESTIGATIONAL DRUG,ORAL,,5/7/2007,6/2/2009,,17,Systemic Therapy,First Line,Stable disease,Toxicity
+STUDY0001,B,ID0045,,2/18/2011,GEMCITABINE,INTRAVENOUS,,12/8/2007,5/24/2008,,6,Cytotoxic Chemotherapy,First Line,Non-evaluable,Toxicity
+STUDY0001,B,ID0045,,2/18/2011,CISPLATIN,INTRAVENOUS,,12/23/2009,1/13/2010,,5,Cytotoxic Chemotherapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0045,,2/18/2011,CARBOPLATIN,INTRAVENOUS,,3/4/2010,8/29/2010,,6,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0045,,2/18/2011,PAZOPANIB,INTRAVENOUS,,10/26/2010,11/18/2010,,2,Immunotherapy,>Third Line,Non-evaluable,Toxicity
+STUDY0001,B,ID0045,,2/18/2011,VINORELBINE,INTRAVENOUS,,10/12/2010,11/30/2010,,4,Cytotoxic Chemotherapy,>Third Line,Stable disease,
+STUDY0001,B,ID0046,,11/10/2010,GEFITINIB,INTRAVENOUS,,12/27/2006,5/1/2008,,22,Systemic Therapy,First Line,Complete response,Toxicity
+STUDY0001,B,ID0046,,11/10/2010,INVESTIGATIONAL DRUG,ORAL,,4/29/2008,6/8/2008,,17,Systemic Therapy,First Line,Stable disease,Toxicity
+STUDY0001,B,ID0046,,11/10/2010,CISPLATIN,INTRAVENOUS,,5/12/2010,6/30/2010,,1,Cytotoxic Chemotherapy,Second Line,Progression,Progression on Therapy
+STUDY0001,B,ID0046,,11/10/2010,BEVACIZUMAB,INTRAVENOUS,,9/1/2010,10/3/2010,,2,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0046,,11/10/2010,CARBOPLATIN,INTRAVENOUS,,9/4/2010,9/24/2010,,5,Systemic Therapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0046,,11/10/2010,ANTINEOPLASTIC AGENTS,INTRAVENOUS,,9/1/2010,10/6/2010,,2,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0046,,11/10/2010,PEMETREXED,INTRAVENOUS,,10/24/2010,11/15/2010,,4,Cytotoxic Chemotherapy,>Third Line,Stable disease,Toxicity
+STUDY0001,B,ID0047,,12/14/2010,GEMCITABINE,INTRAVENOUS,,8/16/2007,5/12/2008,,9,Cytotoxic Chemotherapy,First Line,Partial response,Toxicity
+STUDY0001,B,ID0047,,12/14/2010,CARBOPLATIN,INTRAVENOUS,,11/17/2008,2/10/2009,,12,Cytotoxic Chemotherapy,Second Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0047,,12/14/2010,CISPLATIN,INTRAVENOUS,,10/12/2008,8/10/2009,,3,Cytotoxic Chemotherapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0047,,12/14/2010,BEVACIZUMAB,INTRAVENOUS,,4/30/2010,9/5/2010,,1,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0047,,12/14/2010,BEVACIZUMAB,INTRAVENOUS,,5/30/2010,10/10/2010,,2,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0047,,12/14/2010,ANTINEOPLASTIC AGENTS,INTRAVENOUS,,7/3/2010,10/9/2010,,16,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0051,,11/30/2010,GEFITINIB,ORAL,,8/26/2008,10/27/2009,,,Systemic Therapy,First Line,,Toxicity
+STUDY0001,B,ID0051,,11/30/2010,CISPLATIN,INTRAVENOUS,,6/11/2010,8/12/2010,,4,Systemic Therapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0051,,11/30/2010,CISPLATIN,INTRAVENOUS,,6/10/2010,9/4/2010,,4,Cytotoxic Chemotherapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0051,,11/30/2010,CARBOPLATIN,INTRAVENOUS,,10/1/2010,11/9/2010,,,Systemic Therapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0051,,11/30/2010,ANTINEOPLASTIC AGENTS,INTRAVENOUS,,9/26/2010,10/18/2010,,4,Immunotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0051,,11/30/2010,CARBOPLATIN,INTRAVENOUS,,9/29/2010,11/14/2010,,6,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0052,,12/1/2010,ERLOTINIB,ORAL,,3/27/2007,5/25/2007,,21,Other,Palliative,Partial response,Progresssion following Completion of Therapy
+STUDY0001,B,ID0054,,2/24/2011,GEMCITABINE,INTRAVENOUS,,4/17/2007,6/16/2007,,6,Cytotoxic Chemotherapy,First Line,Not applicable,Toxicity
+STUDY0001,B,ID0054,,2/24/2011,CISPLATIN,INTRAVENOUS,,11/27/2008,9/24/2009,,3,Systemic Therapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0054,,2/24/2011,CISPLATIN,INTRAVENOUS,,1/25/2008,2/20/2008,,3,Cytotoxic Chemotherapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0054,,2/24/2011,ANTINEOPLASTIC AGENTS,INTRAVENOUS,,1/19/2010,2/18/2010,,6,Other,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0055,,1/26/2011,PACLITAXEL,INTRAVENOUS,,8/7/2007,12/28/2007,,13,Cytotoxic Chemotherapy,First Line,Progression,Toxicity
+STUDY0001,B,ID0055,,1/26/2011,GEFITINIB,ORAL,,5/22/2007,8/25/2007,,,Systemic Therapy,First Line,Progression,Toxicity
+STUDY0001,B,ID0055,,1/26/2011,CISPLATIN,INTRAVENOUS,,5/16/2010,6/8/2010,,6,Cytotoxic Chemotherapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0055,,1/26/2011,CARBOPLATIN,INTRAVENOUS,,9/6/2010,10/21/2010,,6,Systemic Therapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0055,,1/26/2011,ANTINEOPLASTIC AGENTS,INTRAVENOUS,,8/20/2010,9/9/2010,,6,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0055,,1/26/2011,CARBOPLATIN,INTRAVENOUS,,10/4/2010,1/27/2011,,4,Systemic Therapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0058,,3/11/2011,INVESTIGATIONAL DRUG,ORAL,,8/18/2008,5/1/2009,,,Systemic Therapy,First Line,Progression,Toxicity
+STUDY0001,B,ID0058,,3/11/2011,GEFITINIB,ORAL,,10/17/2007,6/7/2009,,8,Cytotoxic Chemotherapy,First Line,Non-evaluable,Progresssion following Completion of Therapy
+STUDY0001,B,ID0058,,3/11/2011,GEFITINIB,ORAL,,7/10/2009,10/13/2009,,1,Systemic Therapy,First Line,Not applicable,Toxicity
+STUDY0001,B,ID0058,,3/11/2011,CARBOPLATIN,INTRAVENOUS,,5/3/2010,7/25/2010,,5,Other,Second Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0058,,3/11/2011,ANTINEOPLASTIC AGENTS,INTRAVENOUS,,11/24/2010,1/21/2011,,3,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0058,,3/11/2011,PEMETREXED,INTRAVENOUS,,2/6/2011,3/5/2011,,9,Systemic Therapy,>Third Line,Progression,Toxicity
+STUDY0001,B,ID0058,,3/11/2011,PEMETREXED,INTRAVENOUS,,2/7/2011,3/3/2011,,3,,>Third Line,Partial response,Toxicity
+STUDY0001,B,ID0059,,12/15/2010,INVESTIGATIONAL DRUG,ORAL,,5/6/2007,10/15/2007,,17,Systemic Therapy,First Line,Stable disease,Toxicity
+STUDY0001,B,ID0059,,12/15/2010,GEFITINIB,ORAL,,10/17/2007,11/6/2007,,9,Cytotoxic Chemotherapy,First Line,Non-evaluable,Progresssion following Completion of Therapy
+STUDY0001,B,ID0059,,12/15/2010,DOCETAXEL,INTRAVENOUS,,1/9/2008,5/27/2008,,12,Systemic Therapy,Second Line,Partial response,Progresssion following Completion of Therapy
+STUDY0001,B,ID0059,,12/15/2010,CISPLATIN,INTRAVENOUS,,12/18/2007,6/6/2008,,4,Systemic Therapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0059,,12/15/2010,CETUXIMAB,INTRAVENOUS,,4/3/2008,7/26/2008,,3,Cytotoxic Chemotherapy,Second Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0059,,12/15/2010,ANTINEOPLASTIC AGENTS,INTRAVENOUS,,4/25/2009,5/14/2010,,6,Other,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0059,,12/15/2010,BEVACIZUMAB,INTRAVENOUS,,10/2/2008,7/10/2010,,,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0059,,12/15/2010,ANTINEOPLASTIC AGENTS,INTRAVENOUS,,1/3/2010,6/3/2010,,3,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0059,,12/15/2010,PEMETREXED,INTRAVENOUS,,10/11/2010,11/5/2010,,11,Cytotoxic Chemotherapy,>Third Line,Partial response,Toxicity
+STUDY0001,B,ID0060,,9/24/2010,INVESTIGATIONAL DRUG,ORAL,,11/23/2006,12/21/2006,,3,Other,First Line,Stable disease,Toxicity
+STUDY0001,B,ID0060,,9/24/2010,GEFITINIB,ORAL,,11/17/2006,12/26/2006,,8,Cytotoxic Chemotherapy,First Line,Non-evaluable,Progresssion following Completion of Therapy
+STUDY0001,B,ID0060,,9/24/2010,CISPLATIN,INTRAVENOUS,,12/21/2008,5/13/2009,,2,Cytotoxic Chemotherapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0060,,9/24/2010,CISPLATIN,INTRAVENOUS,,5/21/2008,11/25/2008,,4,Cytotoxic Chemotherapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0060,,9/24/2010,CARBOPLATIN,INTRAVENOUS,,10/31/2009,3/2/2010,,5,Systemic Therapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0060,,9/24/2010,ANTINEOPLASTIC AGENTS,INTRAVENOUS,,7/12/2009,1/4/2010,,5,Other,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0060,,9/24/2010,AZACITIDINE,SUBCUTANEOUS,,9/28/2009,2/18/2010,,4,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0061,,1/17/2011,INVESTIGATIONAL DRUG,ORAL,,2/12/2007,3/12/2007,,34,Systemic Therapy,First Line,Stable disease,Toxicity
+STUDY0001,B,ID0061,,1/17/2011,GEFITINIB,ORAL,,2/26/2007,5/12/2007,,16,Other,First Line,Non-evaluable,Toxicity
+STUDY0001,B,ID0061,,1/17/2011,MOTESANIB,INTRAVENOUS,,4/21/2007,6/11/2007,,,Cytotoxic Chemotherapy,First Line,Not applicable,Toxicity
+STUDY0001,B,ID0061,,1/17/2011,CARBOPLATIN,INTRAVENOUS,,10/11/2008,9/12/2009,,6,Immunotherapy,Second Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0061,,1/17/2011,CISPLATIN,INTRAVENOUS,,9/8/2008,11/13/2008,,6,Cytotoxic Chemotherapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0061,,1/17/2011,BEVACIZUMAB,INTRAVENOUS,,7/12/2010,8/17/2010,,2,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0061,,1/17/2011,CARBOPLATIN,INTRAVENOUS,,7/18/2010,8/13/2010,,6,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0062,,11/10/2010,GEFITINIB,INTRAVENOUS,,7/28/2008,9/29/2008,,3,Other,First Line,Not applicable,Progresssion following Completion of Therapy
+STUDY0001,B,ID0062,,11/10/2010,PEMETREXED,INTRAVENOUS,,11/25/2006,12/28/2007,,3,Cytotoxic Chemotherapy,First Line,Stable disease,Toxicity
+STUDY0001,B,ID0062,,11/10/2010,GEMCITABINE,INTRAVENOUS,,8/21/2007,8/4/2008,,6,Systemic Therapy,First Line,Not applicable,Toxicity
+STUDY0001,B,ID0062,,11/10/2010,CISPLATIN,INTRAVENOUS,,12/10/2009,4/4/2010,,1,Cytotoxic Chemotherapy,Second Line,Progression,Progression on Therapy
+STUDY0001,B,ID0062,,11/10/2010,CARBOPLATIN,INTRAVENOUS,,8/10/2009,4/28/2010,,1,Systemic Therapy,Second Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0062,,11/10/2010,ANTINEOPLASTIC AGENTS,INTRAVENOUS,,5/24/2010,8/7/2010,,7,Other,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0062,,11/10/2010,BEVACIZUMAB,INTRAVENOUS,,5/28/2010,9/9/2010,,3,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0064,,10/27/2010,PEMETREXED,INTRAVENOUS,,2/17/2007,3/31/2008,,3,Cytotoxic Chemotherapy,First Line,Stable disease,Toxicity
+STUDY0001,B,ID0064,,10/27/2010,PACLITAXEL,INTRAVENOUS,,12/19/2007,2/10/2009,,29,Systemic Therapy,First Line,Not applicable,Toxicity
+STUDY0001,B,ID0064,,10/27/2010,CISPLATIN,INTRAVENOUS,,6/12/2009,7/2/2009,,4,Cytotoxic Chemotherapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0064,,10/27/2010,CISPLATIN,INTRAVENOUS,,3/20/2009,5/5/2009,,6,Cytotoxic Chemotherapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0064,,10/27/2010,CISPLATIN,INTRAVENOUS,,5/10/2009,6/12/2009,,4,Cytotoxic Chemotherapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0064,,10/27/2010,ANTINEOPLASTIC AGENTS,INTRAVENOUS,,9/17/2009,12/18/2009,,27,Systemic Therapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0064,,10/27/2010,ANTINEOPLASTIC AGENTS,INTRAVENOUS,,9/27/2009,12/18/2009,,30,Systemic Therapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0068,,10/25/2010,GEFITINIB,ORAL,,5/21/2007,7/31/2007,,8,Cytotoxic Chemotherapy,First Line,Non-evaluable,Progresssion following Completion of Therapy
+STUDY0001,B,ID0068,,10/25/2010,CARBOPLATIN,INTRAVENOUS,,6/30/2008,8/29/2008,,,Systemic Therapy,Second Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0068,,10/25/2010,CISPLATIN,INTRAVENOUS,,5/26/2008,9/16/2008,,6,Cytotoxic Chemotherapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0068,,10/25/2010,BEVACIZUMAB,INTRAVENOUS,,11/7/2008,12/10/2008,,,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0068,,10/25/2010,ANTINEOPLASTIC AGENTS,INTRAVENOUS,,11/18/2008,12/18/2008,,1,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0068,,10/25/2010,ANTINEOPLASTIC AGENTS,INTRAVENOUS,,11/12/2008,12/14/2008,,30,Systemic Therapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0068,,10/25/2010,PACLITAXEL,INTRAVENOUS,,6/13/2009,11/1/2009,,1,Cytotoxic Chemotherapy,>Third Line,Progression,Toxicity
+STUDY0001,B,ID0073,,11/2/2010,OLAPARIB,INTRAVENOUS,,6/12/2008,6/4/2009,,22,Systemic Therapy,First Line,Progression,Toxicity
+STUDY0001,B,ID0073,,11/2/2010,CISPLATIN,INTRAVENOUS,,4/23/2010,5/27/2010,,1,Cytotoxic Chemotherapy,Second Line,Progression,Progression on Therapy
+STUDY0001,B,ID0073,,11/2/2010,BEVACIZUMAB,INTRAVENOUS,,7/3/2010,7/23/2010,,2,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0075,,1/18/2011,GEFITINIB,ORAL,,2/5/2007,2/27/2007,,7,Cytotoxic Chemotherapy,First Line,Non-evaluable,Progresssion following Completion of Therapy
+STUDY0001,B,ID0075,,1/18/2011,INVESTIGATIONAL DRUG,ORAL,,2/3/2007,2/26/2007,,22,Systemic Therapy,First Line,Not applicable,Toxicity
+STUDY0001,B,ID0075,,1/18/2011,GEFITINIB,INTRAVENOUS,,1/29/2007,2/18/2007,,9,Cytotoxic Chemotherapy,First Line,Non-evaluable,Progresssion following Completion of Therapy
+STUDY0001,B,ID0075,,1/18/2011,CISPLATIN,INTRAVENOUS,,5/1/2008,8/3/2008,,4,Systemic Therapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0075,,1/18/2011,CISPLATIN,INTRAVENOUS,,10/27/2008,5/7/2009,,2,Cytotoxic Chemotherapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0075,,1/18/2011,CARBOPLATIN,INTRAVENOUS,,6/1/2007,11/30/2008,,4,Systemic Therapy,Second Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0075,,1/18/2011,AZACITIDINE,SUBCUTANEOUS,,5/9/2010,7/26/2010,,4,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0075,,1/18/2011,ANTINEOPLASTIC AGENTS,INTRAVENOUS,,7/13/2010,8/11/2010,,8,Other,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0075,,1/18/2011,PEMETREXED,INTRAVENOUS,,9/22/2010,12/3/2010,,5,Systemic Therapy,>Third Line,Stable disease,Toxicity
+STUDY0001,B,ID0076,,7/14/2010,GEFITINIB,ORAL,,2/16/2007,3/12/2007,,4,Cytotoxic Chemotherapy,First Line,Non-evaluable,Progresssion following Completion of Therapy
+STUDY0001,B,ID0076,,7/14/2010,GEFITINIB,ORAL,,3/19/2007,5/17/2007,,,Other,First Line,Partial response,Toxicity
+STUDY0001,B,ID0076,,7/14/2010,CISPLATIN,INTRAVENOUS,,1/22/2008,2/29/2008,,4,Systemic Therapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0076,,7/14/2010,CISPLATIN,INTRAVENOUS,,10/28/2007,3/19/2008,,6,Systemic Therapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0076,,7/14/2010,CETUXIMAB,INTRAVENOUS,,5/10/2008,6/6/2008,,10,Systemic Therapy,Second Line,Progression,Progression on Therapy
+STUDY0001,B,ID0076,,7/14/2010,ANTINEOPLASTIC AGENTS,INTRAVENOUS,,7/21/2008,11/6/2008,,6,Other,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0076,,7/14/2010,CARBOPLATIN,INTRAVENOUS,,12/22/2008,1/25/2009,,6,Systemic Therapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0076,,7/14/2010,BEVACIZUMAB,INTRAVENOUS,,7/27/2008,12/3/2008,,2,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0076,,7/14/2010,VINORELBINE DITARTRATE,INTRAVENOUS,,2/15/2009,9/18/2009,,6,Systemic Therapy,>Third Line,Progression,
+STUDY0001,B,ID0076,,7/14/2010,GEMCITABINE,INTRAVENOUS,,11/13/2009,2/2/2010,,2,Cytotoxic Chemotherapy,>Third Line,Partial response,Toxicity
+STUDY0001,B,ID0076,,7/14/2010,PEMETREXED,INTRAVENOUS,,5/21/2009,11/9/2009,,,Other,>Third Line,Stable disease,Toxicity
+STUDY0001,B,ID0077,,11/11/2010,GEFITINIB,ORAL,,12/13/2007,4/1/2008,,2,Systemic Therapy,First Line,Not applicable,Progresssion following Completion of Therapy
+STUDY0001,B,ID0077,,11/11/2010,GEFITINIB,ORAL,,4/14/2009,7/7/2009,,8,Cytotoxic Chemotherapy,First Line,Non-evaluable,Progresssion following Completion of Therapy
+STUDY0001,B,ID0077,,11/11/2010,GEMCITABINE,INTRAVENOUS,,6/24/2009,7/16/2009,,6,Cytotoxic Chemotherapy,First Line,Partial response,Toxicity
+STUDY0001,B,ID0077,,11/11/2010,CISPLATIN,INTRAVENOUS,,10/13/2009,1/3/2010,,4,Systemic Therapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0077,,11/11/2010,CETUXIMAB,INTRAVENOUS,,10/12/2009,12/18/2009,,3,Systemic Therapy,Second Line,Progression,Progression on Therapy
+STUDY0001,B,ID0077,,11/11/2010,CARBOPLATIN,INTRAVENOUS,,11/12/2009,12/18/2009,,6,Cytotoxic Chemotherapy,Second Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0077,,11/11/2010,CARBOPLATIN,INTRAVENOUS,,2/13/2010,4/30/2010,,6,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0077,,11/11/2010,ANTINEOPLASTIC AGENTS,INTRAVENOUS,,3/20/2010,5/1/2010,,8,Other,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0077,,11/11/2010,ANTINEOPLASTIC AGENTS,INTRAVENOUS,,4/9/2010,5/13/2010,,1,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0079,,2/15/2011,GEFITINIB,ORAL,,6/20/2008,9/25/2008,,1,Other,First Line,Progression,Toxicity
+STUDY0001,B,ID0079,,2/15/2011,DOCETAXEL,INTRAVENOUS,,1/30/2009,5/13/2009,,7,Cytotoxic Chemotherapy,Second Line,Partial response,Progresssion following Completion of Therapy
+STUDY0001,B,ID0079,,2/15/2011,BEVACIZUMAB,INTRAVENOUS,,11/27/2009,12/17/2009,,4,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0080,,11/3/2010,INVESTIGATIONAL DRUG,ORAL,,5/10/2007,8/29/2007,,1,Systemic Therapy,First Line,Partial response,Toxicity
+STUDY0001,B,ID0080,,11/3/2010,GEFITINIB,ORAL,,2/22/2007,4/19/2007,,,Systemic Therapy,First Line,,Toxicity
+STUDY0001,B,ID0080,,11/3/2010,CISPLATIN,INTRAVENOUS,,2/24/2008,2/24/2010,,6,Cytotoxic Chemotherapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0080,,11/3/2010,CARBOPLATIN,INTRAVENOUS,,8/20/2009,2/10/2010,,,Systemic Therapy,Second Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0080,,11/3/2010,CARBOPLATIN,INTRAVENOUS,,7/29/2010,9/10/2010,,6,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0083,,11/18/2010,GEFITINIB,ORAL,,9/26/2007,12/4/2007,,7,Cytotoxic Chemotherapy,First Line,Non-evaluable,Progresssion following Completion of Therapy
+STUDY0001,B,ID0083,,11/18/2010,INVESTIGATIONAL DRUG,ORAL,,11/15/2006,2/27/2007,,,Immunotherapy,First Line,Stable disease,Toxicity
+STUDY0001,B,ID0083,,11/18/2010,IRINOTECAN,INTRAVENOUS,,9/3/2006,11/5/2006,,2,Systemic Therapy,First Line,Not applicable,Toxicity
+STUDY0001,B,ID0083,,11/18/2010,CISPLATIN,INTRAVENOUS,,4/17/2008,6/16/2008,,5,Cytotoxic Chemotherapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0083,,11/18/2010,CARBOPLATIN,INTRAVENOUS,,1/2/2010,3/4/2010,,6,Systemic Therapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0083,,11/18/2010,BEVACIZUMAB,INTRAVENOUS,,2/1/2009,2/22/2009,,2,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0083,,11/18/2010,ANTINEOPLASTIC AGENTS,INTRAVENOUS,,12/26/2009,4/26/2010,,7,Other,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0083,,11/18/2010,PEMETREXED,INTRAVENOUS,,9/7/2010,10/11/2010,,,Systemic Therapy,>Third Line,Not applicable,Toxicity
+STUDY0001,B,ID0084,,2/15/2011,IRINOTECAN,INTRAVENOUS,,12/7/2007,12/30/2007,,1,Systemic Therapy,First Line,Progression,Toxicity
+STUDY0001,B,ID0084,,2/15/2011,CISPLATIN,INTRAVENOUS,,6/5/2010,7/30/2010,,7,Cytotoxic Chemotherapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0084,,2/15/2011,CISPLATIN,INTRAVENOUS,,6/1/2010,6/28/2010,,1,Cytotoxic Chemotherapy,Second Line,Progression,Progression on Therapy
+STUDY0001,B,ID0084,,2/15/2011,CARBOPLATIN,INTRAVENOUS,,5/15/2010,7/20/2010,,5,Systemic Therapy,Second Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0084,,2/15/2011,CARBOPLATIN,INTRAVENOUS,,9/12/2010,10/6/2010,,6,Systemic Therapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0084,,2/15/2011,PEMETREXED,INTRAVENOUS,,10/26/2010,11/16/2010,,17,Cytotoxic Chemotherapy,>Third Line,,Toxicity
+STUDY0001,B,ID0084,,2/15/2011,PEMETREXED,INTRAVENOUS,,10/23/2010,11/15/2010,,9,Cytotoxic Chemotherapy,>Third Line,Progression,Toxicity
+STUDY0001,B,ID0087,,12/23/2010,PACLITAXEL,INTRAVENOUS,,8/17/2008,6/3/2009,,8,Cytotoxic Chemotherapy,First Line,Non-evaluable,Toxicity
+STUDY0001,B,ID0087,,12/23/2010,GEFITINIB,INTRAVENOUS,,8/31/2007,10/1/2008,,,Other,First Line,Partial response,Toxicity
+STUDY0001,B,ID0087,,12/23/2010,CETUXIMAB,INTRAVENOUS,,8/23/2010,9/12/2010,,3,Systemic Therapy,Second Line,Progression,Progression on Therapy
+STUDY0001,B,ID0087,,12/23/2010,CISPLATIN,INTRAVENOUS,,6/30/2010,8/18/2010,,6,Systemic Therapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0087,,12/23/2010,CISPLATIN,INTRAVENOUS,,6/14/2010,9/9/2010,,3,Cytotoxic Chemotherapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0087,,12/23/2010,CARBOPLATIN,INTRAVENOUS,,10/6/2010,10/31/2010,,6,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0087,,12/23/2010,ANTINEOPLASTIC AGENTS,INTRAVENOUS,,10/1/2010,11/6/2010,,3,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0087,,12/23/2010,CARBOPLATIN,INTRAVENOUS,,10/21/2010,11/12/2010,,,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0087,,12/23/2010,PEMETREXED,INTRAVENOUS,,11/28/2010,12/28/2010,,3,Systemic Therapy,>Third Line,Not applicable,Toxicity
+STUDY0001,B,ID0087,,12/23/2010,PEMETREXED,INTRAVENOUS,,12/1/2010,12/23/2010,,12,Systemic Therapy,>Third Line,Progression,Toxicity
+STUDY0001,B,ID0089,,9/9/2010,GEFITINIB,ORAL,,3/9/2008,9/1/2008,,1,,First Line,Partial response,Toxicity
+STUDY0001,B,ID0089,,9/9/2010,CISPLATIN,INTRAVENOUS,,2/21/2009,3/28/2009,,5,Cytotoxic Chemotherapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0089,,9/9/2010,CETUXIMAB,INTRAVENOUS,,2/16/2009,4/29/2009,,10,Systemic Therapy,Second Line,Progression,Progression on Therapy
+STUDY0001,B,ID0089,,9/9/2010,DOCETAXEL,INTRAVENOUS,,2/17/2009,4/13/2009,,7,Cytotoxic Chemotherapy,Second Line,Partial response,Progresssion following Completion of Therapy
+STUDY0001,B,ID0089,,9/9/2010,BEVACIZUMAB,INTRAVENOUS,,11/28/2009,12/23/2009,,2,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0089,,9/9/2010,BEVACIZUMAB,INTRAVENOUS,,6/13/2009,8/11/2009,,2,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0089,,9/9/2010,AZACITIDINE,SUBCUTANEOUS,,11/10/2009,12/2/2009,,4,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0089,,9/9/2010,VINORELBINE,INTRAVENOUS,,1/16/2010,2/13/2010,,2,Cytotoxic Chemotherapy,>Third Line,,Toxicity
+STUDY0001,B,ID0089,,9/9/2010,PEMETREXED,INTRAVENOUS,,1/14/2010,2/13/2010,,1,Cytotoxic Chemotherapy,>Third Line,,Toxicity
+STUDY0001,B,ID0089,,9/9/2010,GEMCITABINE,INTRAVENOUS,,1/12/2010,2/1/2010,,2,Systemic Therapy,>Third Line,Not applicable,Toxicity
+STUDY0001,B,ID0090,,8/14/2010,GEFITINIB,ORAL,,12/11/2006,9/5/2007,,,Other,First Line,Partial response,Toxicity
+STUDY0001,B,ID0090,,8/14/2010,IRINOTECAN,INTRAVENOUS,,11/21/2006,4/27/2007,,2,Systemic Therapy,First Line,Not applicable,Toxicity
+STUDY0001,B,ID0090,,8/14/2010,GEFITINIB,ORAL,,12/5/2006,5/31/2007,,16,Immunotherapy,First Line,Non-evaluable,Toxicity
+STUDY0001,B,ID0090,,8/14/2010,CARBOPLATIN,INTRAVENOUS,,12/14/2007,5/22/2008,,4,Systemic Therapy,Second Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0090,,8/14/2010,CARBOPLATIN,INTRAVENOUS,,2/12/2008,3/16/2008,,5,Systemic Therapy,Second Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0090,,8/14/2010,CARBOPLATIN,INTRAVENOUS,,4/26/2010,6/11/2010,,6,Systemic Therapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0092,,10/1/2010,GEFITINIB,INTRAVENOUS,,1/6/2008,2/19/2008,,,Systemic Therapy,First Line,,Toxicity
+STUDY0001,B,ID0092,,10/1/2010,INVESTIGATIONAL DRUG,ORAL,,3/23/2007,10/25/2008,,34,Systemic Therapy,First Line,Stable disease,Toxicity
+STUDY0001,B,ID0092,,10/1/2010,GEFITINIB,INTRAVENOUS,,8/31/2007,9/4/2008,,40,Systemic Therapy,First Line,,Toxicity
+STUDY0001,B,ID0092,,10/1/2010,DOCETAXEL,INTRAVENOUS,,4/9/2010,7/15/2010,,11,Cytotoxic Chemotherapy,Second Line,Partial response,Progresssion following Completion of Therapy
+STUDY0001,B,ID0092,,10/1/2010,BEVACIZUMAB,INTRAVENOUS,,8/19/2010,9/11/2010,,2,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0092,,10/1/2010,CARBOPLATIN,INTRAVENOUS,,8/20/2010,9/11/2010,,6,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0092,,10/1/2010,ANTINEOPLASTIC AGENTS,INTRAVENOUS,,8/20/2010,9/10/2010,,3,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0093,,11/9/2010,GEFITINIB,ORAL,,5/7/2007,4/11/2009,,,Systemic Therapy,First Line,,Toxicity
+STUDY0001,B,ID0093,,11/9/2010,GEFITINIB,ORAL,,1/20/2007,5/1/2007,,,Systemic Therapy,First Line,Progression,Toxicity
+STUDY0001,B,ID0093,,11/9/2010,GEFITINIB,ORAL,,10/11/2008,2/13/2009,,3,Systemic Therapy,First Line,Not applicable,Progresssion following Completion of Therapy
+STUDY0001,B,ID0093,,11/9/2010,CARBOPLATIN,INTRAVENOUS,,9/18/2009,10/31/2009,,6,Other,Second Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0093,,11/9/2010,DOCETAXEL,INTRAVENOUS,,9/24/2009,11/1/2009,,13,Cytotoxic Chemotherapy,Second Line,Partial response,Progresssion following Completion of Therapy
+STUDY0001,B,ID0093,,11/9/2010,CARBOPLATIN,INTRAVENOUS,,8/13/2009,9/19/2009,,12,Cytotoxic Chemotherapy,Second Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0093,,11/9/2010,BEVACIZUMAB,INTRAVENOUS,,2/6/2010,6/10/2010,,4,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0093,,11/9/2010,AZACITIDINE,SUBCUTANEOUS,,6/22/2010,7/28/2010,,4,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0093,,11/9/2010,PEMETREXED,INTRAVENOUS,,9/6/2010,9/26/2010,,4,Cytotoxic Chemotherapy,>Third Line,Stable disease,Toxicity
+STUDY0001,B,ID0095,,11/2/2010,PEMETREXED,INTRAVENOUS,,9/26/2009,11/26/2009,,2,Cytotoxic Chemotherapy,First Line,Progression,Toxicity
+STUDY0001,B,ID0095,,11/2/2010,CISPLATIN,INTRAVENOUS,,3/24/2010,5/21/2010,,1,Cytotoxic Chemotherapy,Second Line,Progression,Progression on Therapy
+STUDY0001,B,ID0095,,11/2/2010,BEVACIZUMAB,INTRAVENOUS,,7/12/2010,8/12/2010,,4,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0097,,9/15/2010,GEFITINIB,ORAL,,7/4/2008,3/28/2009,,9,Cytotoxic Chemotherapy,First Line,Non-evaluable,Progresssion following Completion of Therapy
+STUDY0001,B,ID0097,,9/15/2010,INVESTIGATIONAL DRUG,ORAL,,8/7/2008,3/17/2009,,,Systemic Therapy,First Line,Not applicable,Toxicity
+STUDY0001,B,ID0097,,9/15/2010,GEFITINIB,ORAL,,10/28/2007,4/20/2009,,2,Systemic Therapy,First Line,Not applicable,Progresssion following Completion of Therapy
+STUDY0001,B,ID0097,,9/15/2010,CARBOPLATIN,INTRAVENOUS,,2/17/2010,4/25/2010,,4,Systemic Therapy,Second Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0097,,9/15/2010,CISPLATIN,INTRAVENOUS,,3/15/2010,5/3/2010,,1,Cytotoxic Chemotherapy,Second Line,Progression,Progression on Therapy
+STUDY0001,B,ID0097,,9/15/2010,CETUXIMAB,INTRAVENOUS,,3/1/2010,4/7/2010,,3,Cytotoxic Chemotherapy,Second Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0097,,9/15/2010,ANTINEOPLASTIC AGENTS,INTRAVENOUS,,6/4/2010,7/9/2010,,16,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0097,,9/15/2010,ANTINEOPLASTIC AGENTS,INTRAVENOUS,,6/6/2010,7/5/2010,,27,Systemic Therapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0097,,9/15/2010,GEMCITABINE,INTRAVENOUS,,7/21/2010,8/17/2010,,1,Cytotoxic Chemotherapy,>Third Line,Stable disease,Toxicity
+STUDY0001,B,ID0097,,9/15/2010,PEMETREXED,INTRAVENOUS,,8/2/2010,8/24/2010,,11,Cytotoxic Chemotherapy,>Third Line,Progression,Toxicity
+STUDY0001,B,ID0097,,9/15/2010,VINORELBINE,INTRAVENOUS,,7/30/2010,8/21/2010,,2,Cytotoxic Chemotherapy,>Third Line,Progression,Toxicity
+STUDY0001,B,ID0098,,11/1/2010,GEFITINIB,ORAL,,6/24/2007,12/6/2007,,18,Other,First Line,Non-evaluable,Toxicity
+STUDY0001,B,ID0098,,11/1/2010,INVESTIGATIONAL DRUG,ORAL,,5/3/2008,12/3/2008,,34,Systemic Therapy,First Line,Stable disease,Toxicity
+STUDY0001,B,ID0098,,11/1/2010,GEFITINIB,ORAL,,8/9/2008,4/4/2010,,1,Systemic Therapy,First Line,Not applicable,Toxicity
+STUDY0001,B,ID0098,,11/1/2010,CARBOPLATIN,INTRAVENOUS,,8/21/2010,9/13/2010,,4,Systemic Therapy,Second Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0098,,11/1/2010,BEVACIZUMAB,INTRAVENOUS,,9/16/2010,10/6/2010,,2,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0098,,11/1/2010,BEVACIZUMAB,INTRAVENOUS,,9/16/2010,10/6/2010,,2,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0098,,11/1/2010,CARBOPLATIN,INTRAVENOUS,,9/16/2010,10/6/2010,,,Systemic Therapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0099,,3/11/2011,GEFITINIB,ORAL,,7/11/2007,3/16/2009,,,Other,First Line,Progression,Toxicity
+STUDY0001,B,ID0099,,3/11/2011,CARBOPLATIN,INTRAVENOUS,,9/13/2010,10/21/2010,,4,Systemic Therapy,Second Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0099,,3/11/2011,BEVACIZUMAB,INTRAVENOUS,,12/30/2010,2/7/2011,,2,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0099,,3/11/2011,PEMETREXED,INTRAVENOUS,,2/27/2011,3/20/2011,,9,Systemic Therapy,>Third Line,Progression,Toxicity
+STUDY0001,B,ID0099,,3/11/2011,GEMCITABINE,INTRAVENOUS,,2/27/2011,3/20/2011,,4,Cytotoxic Chemotherapy,>Third Line,Partial response,Toxicity
+STUDY0001,B,ID0102,,3/22/2011,GEFITINIB,ORAL,,6/23/2008,7/29/2008,,7,Cytotoxic Chemotherapy,First Line,Non-evaluable,Progresssion following Completion of Therapy
+STUDY0001,B,ID0102,,3/22/2011,CARBOPLATIN,INTRAVENOUS,,11/9/2008,12/18/2008,,12,Cytotoxic Chemotherapy,Second Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0102,,3/22/2011,CARBOPLATIN,INTRAVENOUS,,9/23/2008,12/29/2008,,5,Immunotherapy,Second Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0102,,3/22/2011,CARBOPLATIN,INTRAVENOUS,,2/5/2009,2/28/2009,,5,Systemic Therapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0102,,3/22/2011,BEVACIZUMAB,INTRAVENOUS,,2/21/2009,9/20/2009,,,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0102,,3/22/2011,ANTINEOPLASTIC AGENTS,INTRAVENOUS,,5/8/2009,9/21/2009,,1,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0104,,3/28/2011,GEFITINIB,INTRAVENOUS,,7/4/2008,1/8/2009,,,Other,First Line,Not applicable,Toxicity
+STUDY0001,B,ID0104,,3/28/2011,CISPLATIN,INTRAVENOUS,,2/5/2011,2/25/2011,,4,Cytotoxic Chemotherapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0104,,3/28/2011,CISPLATIN,INTRAVENOUS,,2/1/2011,2/21/2011,,4,Cytotoxic Chemotherapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0104,,3/28/2011,CISPLATIN,INTRAVENOUS,,2/12/2011,3/4/2011,,6,Cytotoxic Chemotherapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0104,,3/28/2011,AZACITIDINE,SUBCUTANEOUS,,3/10/2011,3/30/2011,,4,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0104,,3/28/2011,ANTINEOPLASTIC AGENTS,INTRAVENOUS,,3/11/2011,3/31/2011,,1,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0105,,1/21/2011,PEMETREXED,INTRAVENOUS,,5/1/2007,5/25/2007,,3,Cytotoxic Chemotherapy,First Line,Stable disease,Toxicity
+STUDY0001,B,ID0105,,1/21/2011,GEFITINIB,INTRAVENOUS,,3/25/2007,6/10/2007,,4,Systemic Therapy,First Line,Non-evaluable,Progresssion following Completion of Therapy
+STUDY0001,B,ID0105,,1/21/2011,METHOTREXATE,INTRAVENOUS,,6/15/2007,7/27/2007,,,Systemic Therapy,First Line,Not applicable,Toxicity
+STUDY0001,B,ID0105,,1/21/2011,CISPLATIN,INTRAVENOUS,,11/7/2007,2/3/2008,,4,Systemic Therapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0105,,1/21/2011,BEVACIZUMAB,INTRAVENOUS,,12/25/2008,5/2/2009,,4,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0105,,1/21/2011,VINORELBINE DITARTRATE,INTRAVENOUS,,1/30/2010,4/14/2010,,1,Cytotoxic Chemotherapy,>Third Line,Progression,
+STUDY0001,B,ID0105,,1/21/2011,GEMCITABINE,INTRAVENOUS,,1/24/2010,4/12/2010,,2,,>Third Line,Stable disease,Toxicity
+STUDY0001,B,ID0107,,10/26/2010,GIMERACIL+OTERACIL POTASSIUM+TEGAFUR,INTRAVENOUS,,1/10/2008,2/12/2008,,2,Cytotoxic Chemotherapy,First Line,Progression,Toxicity
+STUDY0001,B,ID0107,,10/26/2010,GEFITINIB,ORAL,,5/16/2007,7/21/2007,,1,Other,First Line,Stable disease,Toxicity
+STUDY0001,B,ID0107,,10/26/2010,CISPLATIN,INTRAVENOUS,,6/12/2008,3/19/2009,,3,Cytotoxic Chemotherapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0107,,10/26/2010,DOCETAXEL,INTRAVENOUS,,3/27/2008,10/7/2008,,13,Cytotoxic Chemotherapy,Second Line,Partial response,Progresssion following Completion of Therapy
+STUDY0001,B,ID0107,,10/26/2010,BEVACIZUMAB,INTRAVENOUS,,12/8/2009,3/19/2010,,3,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0107,,10/26/2010,BEVACIZUMAB,INTRAVENOUS,,4/1/2010,5/25/2010,,2,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0107,,10/26/2010,BEVACIZUMAB,INTRAVENOUS,,12/11/2009,2/11/2010,,4,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0108,,12/16/2010,ERLOTINIB,ORAL,,5/1/2009,1/16/2010,,,Systemic Therapy,Palliative,Not applicable,Progresssion following Completion of Therapy
+STUDY0001,B,ID0109,,12/15/2010,INVESTIGATIONAL DRUG,ORAL,,12/3/2007,2/29/2008,,2,Systemic Therapy,First Line,Not applicable,Toxicity
+STUDY0001,B,ID0109,,12/15/2010,GEMCITABINE,INTRAVENOUS,,4/14/2007,10/1/2007,,6,Systemic Therapy,First Line,Not applicable,Toxicity
+STUDY0001,B,ID0109,,12/15/2010,CYCLOPHOSPHAMIDE,INTRAVENOUS,,7/9/2008,10/8/2008,,4,Cytotoxic Chemotherapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0109,,12/15/2010,DOCETAXEL,INTRAVENOUS,,8/24/2008,12/9/2008,,7,Cytotoxic Chemotherapy,Second Line,Partial response,Progresssion following Completion of Therapy
+STUDY0001,B,ID0109,,12/15/2010,ANTINEOPLASTIC AGENTS,INTRAVENOUS,,1/10/2009,12/8/2009,,6,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0110,,10/25/2010,INVESTIGATIONAL DRUG,ORAL,,12/26/2006,1/18/2007,,17,Systemic Therapy,First Line,Stable disease,Toxicity
+STUDY0001,B,ID0110,,10/25/2010,CISPLATIN,INTRAVENOUS,,6/16/2008,10/13/2008,,5,Cytotoxic Chemotherapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0110,,10/25/2010,ANTINEOPLASTIC AGENTS,INTRAVENOUS,,3/11/2009,8/15/2009,,2,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0110,,10/25/2010,ANTINEOPLASTIC AGENTS,INTRAVENOUS,,12/6/2009,6/4/2010,,8,Other,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0110,,10/25/2010,ANTINEOPLASTIC AGENTS,INTRAVENOUS,,1/4/2010,5/26/2010,,4,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0110,,10/25/2010,GEMCITABINE,INTRAVENOUS,,8/15/2010,9/11/2010,,2,Cytotoxic Chemotherapy,>Third Line,Partial response,Toxicity
+STUDY0001,B,ID0110,,10/25/2010,PEMETREXED,INTRAVENOUS,,8/21/2010,9/12/2010,,1,Cytotoxic Chemotherapy,>Third Line,,Toxicity
+STUDY0001,B,ID0110,,10/25/2010,PEMETREXED,INTRAVENOUS,,8/19/2010,9/10/2010,,13,Cytotoxic Chemotherapy,>Third Line,Progression,Toxicity
+STUDY0001,B,ID0111,,2/25/2011,GEFITINIB,ORAL,,10/1/2007,7/24/2008,,,Systemic Therapy,First Line,Progression,Toxicity
+STUDY0001,B,ID0111,,2/25/2011,GEFITINIB,ORAL,,9/21/2008,11/8/2009,,14,Immunotherapy,First Line,Non-evaluable,Progresssion following Completion of Therapy
+STUDY0001,B,ID0111,,2/25/2011,PACLITAXEL,INTRAVENOUS,,4/9/2008,1/8/2010,,29,Systemic Therapy,First Line,Not applicable,Toxicity
+STUDY0001,B,ID0111,,2/25/2011,CARBOPLATIN,INTRAVENOUS,,3/6/2010,5/3/2010,,6,Immunotherapy,Second Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0111,,2/25/2011,CETUXIMAB,INTRAVENOUS,,8/14/2010,11/27/2010,,3,Systemic Therapy,Second Line,Progression,Progression on Therapy
+STUDY0001,B,ID0111,,2/25/2011,CISPLATIN,INTRAVENOUS,,12/1/2010,12/28/2010,,4,Systemic Therapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0111,,2/25/2011,ANTINEOPLASTIC AGENTS,INTRAVENOUS,,1/26/2011,2/15/2011,,3,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0112,,2/17/2011,INVESTIGATIONAL DRUG,ORAL,,5/16/2007,12/20/2007,,8,Systemic Therapy,First Line,Progression,Toxicity
+STUDY0001,B,ID0112,,2/17/2011,CISPLATIN,INTRAVENOUS,,1/9/2010,4/7/2010,,4,Cytotoxic Chemotherapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0112,,2/17/2011,CISPLATIN,INTRAVENOUS,,5/20/2009,1/28/2010,,3,Systemic Therapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0112,,2/17/2011,BEVACIZUMAB,INTRAVENOUS,,7/21/2010,8/26/2010,,2,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0117,,12/10/2010,GEFITINIB,ORAL,,10/5/2006,4/24/2007,,,Systemic Therapy,First Line,,Toxicity
+STUDY0001,B,ID0117,,12/10/2010,CARBOPLATIN,INTRAVENOUS,,12/21/2008,1/14/2009,,2,Systemic Therapy,Second Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0117,,12/10/2010,CISPLATIN,INTRAVENOUS,,7/13/2008,8/24/2008,,4,Cytotoxic Chemotherapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0117,,12/10/2010,CISPLATIN,INTRAVENOUS,,1/7/2008,5/12/2008,,3,Systemic Therapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0117,,12/10/2010,ANTINEOPLASTIC AGENTS,INTRAVENOUS,,4/23/2010,6/17/2010,,5,Other,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0117,,12/10/2010,CARBOPLATIN,INTRAVENOUS,,3/27/2010,7/16/2010,,6,Systemic Therapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0119,,12/22/2010,GEFITINIB,ORAL,,12/4/2009,1/7/2010,,,Systemic Therapy,First Line,,Toxicity
+STUDY0001,B,ID0119,,12/22/2010,CISPLATIN,INTRAVENOUS,,8/31/2010,9/24/2010,,6,Cytotoxic Chemotherapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0119,,12/22/2010,CISPLATIN,INTRAVENOUS,,8/28/2010,9/20/2010,,4,Cytotoxic Chemotherapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0119,,12/22/2010,CISPLATIN,INTRAVENOUS,,8/12/2010,9/3/2010,,4,Cytotoxic Chemotherapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0119,,12/22/2010,BEVACIZUMAB,INTRAVENOUS,,10/2/2010,10/24/2010,,12,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0119,,12/22/2010,ANTINEOPLASTIC AGENTS,INTRAVENOUS,,10/3/2010,10/28/2010,,3,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0119,,12/22/2010,BEVACIZUMAB,INTRAVENOUS,,10/7/2010,11/2/2010,,3,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0119,,12/22/2010,GEMCITABINE,INTRAVENOUS,,11/6/2010,11/27/2010,,4,Systemic Therapy,>Third Line,Stable disease,Toxicity
+STUDY0001,B,ID0119,,12/22/2010,GEMCITABINE,INTRAVENOUS,,11/7/2010,12/3/2010,,4,Cytotoxic Chemotherapy,>Third Line,Stable disease,Toxicity
+STUDY0001,B,ID0120,,3/16/2011,GEMCITABINE,INTRAVENOUS,,7/27/2007,4/7/2008,,6,Systemic Therapy,First Line,Not applicable,Toxicity
+STUDY0001,B,ID0120,,3/16/2011,GEFITINIB,ORAL,,7/8/2007,5/28/2008,,,Systemic Therapy,First Line,,Toxicity
+STUDY0001,B,ID0120,,3/16/2011,INVESTIGATIONAL DRUG,ORAL,,5/18/2008,10/31/2008,,,Immunotherapy,First Line,Stable disease,Toxicity
+STUDY0001,B,ID0120,,3/16/2011,CARBOPLATIN,INTRAVENOUS,,4/4/2009,8/14/2010,,4,Systemic Therapy,Second Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0120,,3/16/2011,CETUXIMAB,INTRAVENOUS,,1/10/2010,6/21/2010,,3,Cytotoxic Chemotherapy,Second Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0120,,3/16/2011,CARBOPLATIN,INTRAVENOUS,,11/18/2010,1/1/2011,,6,Systemic Therapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0120,,3/16/2011,PEMETREXED,INTRAVENOUS,,3/15/2011,4/4/2011,,4,Cytotoxic Chemotherapy,>Third Line,Stable disease,Toxicity
+STUDY0001,B,ID0120,,3/16/2011,PEMETREXED,INTRAVENOUS,,3/11/2011,3/31/2011,,41,Systemic Therapy,>Third Line,Progression,Toxicity
+STUDY0001,B,ID0122,,1/12/2011,GEFITINIB,ORAL,,12/24/2007,6/3/2008,,,Systemic Therapy,First Line,,Toxicity
+STUDY0001,B,ID0122,,1/12/2011,PEMETREXED,INTRAVENOUS,,6/13/2008,10/23/2008,,3,Cytotoxic Chemotherapy,First Line,Stable disease,Toxicity
+STUDY0001,B,ID0122,,1/12/2011,DOCETAXEL,INTRAVENOUS,,9/21/2009,10/24/2009,,8,Cytotoxic Chemotherapy,Second Line,Partial response,Progresssion following Completion of Therapy
+STUDY0001,B,ID0122,,1/12/2011,BEVACIZUMAB,INTRAVENOUS,,10/2/2010,12/1/2010,,4,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0122,,1/12/2011,PEMETREXED,INTRAVENOUS,,12/23/2010,1/15/2011,,4,Cytotoxic Chemotherapy,>Third Line,Stable disease,Toxicity
+STUDY0001,B,ID0122,,1/12/2011,PEMETREXED,INTRAVENOUS,,12/31/2010,1/20/2011,,10,Systemic Therapy,>Third Line,,Toxicity
+STUDY0001,B,ID0122,,1/12/2011,PEMETREXED,INTRAVENOUS,,12/31/2010,1/22/2011,,9,Systemic Therapy,>Third Line,Progression,Toxicity
+STUDY0001,B,ID0124,,2/9/2011,PACLITAXEL,INTRAVENOUS,,3/10/2009,3/30/2009,,,Systemic Therapy,First Line,Progression,Toxicity
+STUDY0001,B,ID0124,,2/9/2011,GEFITINIB,ORAL,,5/6/2007,6/30/2007,,,Systemic Therapy,First Line,Progression,Toxicity
+STUDY0001,B,ID0124,,2/9/2011,GEFITINIB,ORAL,,3/8/2007,8/11/2008,,8,Cytotoxic Chemotherapy,First Line,Non-evaluable,Progresssion following Completion of Therapy
+STUDY0001,B,ID0124,,2/9/2011,CETUXIMAB,INTRAVENOUS,,10/20/2009,1/19/2010,,3,Cytotoxic Chemotherapy,Second Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0124,,2/9/2011,CISPLATIN,INTRAVENOUS,,4/15/2009,6/2/2009,,4,Cytotoxic Chemotherapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0124,,2/9/2011,CARBOPLATIN,INTRAVENOUS,,7/10/2009,10/2/2009,,6,Systemic Therapy,Second Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0124,,2/9/2011,ANTINEOPLASTIC AGENTS,INTRAVENOUS,,2/11/2010,3/15/2010,,5,Other,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0124,,2/9/2011,GEMCITABINE,INTRAVENOUS,,6/18/2010,8/19/2010,,4,Cytotoxic Chemotherapy,>Third Line,Partial response,Toxicity
+STUDY0001,B,ID0124,,2/9/2011,PEMETREXED,INTRAVENOUS,,4/27/2010,7/29/2010,,9,Systemic Therapy,>Third Line,Progression,Toxicity
+STUDY0001,B,ID0125,,3/8/2011,GEFITINIB,ORAL,,9/14/2008,9/1/2010,,,Systemic Therapy,First Line,Progression,Toxicity
+STUDY0001,B,ID0125,,3/8/2011,IRINOTECAN,INTRAVENOUS,,10/25/2008,12/14/2008,,2,Systemic Therapy,First Line,Not applicable,Toxicity
+STUDY0001,B,ID0125,,3/8/2011,CISPLATIN,INTRAVENOUS,,1/11/2011,1/31/2011,,3,Cytotoxic Chemotherapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0125,,3/8/2011,CISPLATIN,INTRAVENOUS,,1/19/2011,2/8/2011,,1,Cytotoxic Chemotherapy,Second Line,Progression,Progression on Therapy
+STUDY0001,B,ID0125,,3/8/2011,CARBOPLATIN,INTRAVENOUS,,2/2/2011,2/22/2011,,,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0126,,3/4/2011,GEFITINIB,INTRAVENOUS,,1/12/2008,5/5/2008,,6,Cytotoxic Chemotherapy,First Line,Non-evaluable,Progresssion following Completion of Therapy
+STUDY0001,B,ID0126,,3/4/2011,GEFITINIB,INTRAVENOUS,,4/4/2008,5/24/2008,,,Systemic Therapy,First Line,Stable disease,Toxicity
+STUDY0001,B,ID0126,,3/4/2011,CISPLATIN,INTRAVENOUS,,8/17/2008,9/27/2008,,6,Cytotoxic Chemotherapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0126,,3/4/2011,CISPLATIN,INTRAVENOUS,,8/30/2008,9/30/2008,,5,Cytotoxic Chemotherapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0126,,3/4/2011,CARBOPLATIN,INTRAVENOUS,,11/16/2008,12/17/2008,,9,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0126,,3/4/2011,CARBOPLATIN,INTRAVENOUS,,11/12/2008,12/6/2008,,6,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0126,,3/4/2011,GEMCITABINE,INTRAVENOUS,,1/19/2009,8/13/2009,,2,Cytotoxic Chemotherapy,>Third Line,Not applicable,Toxicity
+STUDY0001,B,ID0126,,3/4/2011,PAZOPANIB,INTRAVENOUS,,4/24/2009,8/7/2009,,2,Immunotherapy,>Third Line,Non-evaluable,Toxicity
+STUDY0001,B,ID0126,,3/4/2011,PEMETREXED,INTRAVENOUS,,7/11/2009,8/9/2009,,10,Systemic Therapy,>Third Line,Stable disease,Toxicity
+STUDY0001,B,ID0128,,3/4/2011,PEMETREXED,INTRAVENOUS,,3/29/2007,9/12/2008,,3,Cytotoxic Chemotherapy,First Line,Partial response,Toxicity
+STUDY0001,B,ID0128,,3/4/2011,CARBOPLATIN,INTRAVENOUS,,10/1/2010,10/23/2010,,1,Systemic Therapy,Second Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0128,,3/4/2011,CARBOPLATIN,INTRAVENOUS,,9/23/2010,11/7/2010,,2,Systemic Therapy,Second Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0128,,3/4/2011,CISPLATIN,INTRAVENOUS,,9/27/2010,10/20/2010,,6,Cytotoxic Chemotherapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0128,,3/4/2011,ANTINEOPLASTIC AGENTS,INTRAVENOUS,,12/12/2010,1/1/2011,,1,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0129,,1/17/2011,GEMCITABINE,INTRAVENOUS,,12/5/2008,1/16/2009,,6,Systemic Therapy,First Line,Not applicable,Toxicity
+STUDY0001,B,ID0129,,1/17/2011,PACLITAXEL,INTRAVENOUS,,12/2/2007,4/22/2009,,12,Cytotoxic Chemotherapy,First Line,Not applicable,Toxicity
+STUDY0001,B,ID0129,,1/17/2011,INVESTIGATIONAL DRUG,ORAL,,6/20/2009,8/23/2009,,18,Systemic Therapy,First Line,Partial response,Toxicity
+STUDY0001,B,ID0129,,1/17/2011,CISPLATIN,INTRAVENOUS,,12/9/2009,1/12/2010,,6,Cytotoxic Chemotherapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0129,,1/17/2011,CISPLATIN,INTRAVENOUS,,12/1/2009,1/5/2010,,2,Cytotoxic Chemotherapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0129,,1/17/2011,BEVACIZUMAB,INTRAVENOUS,,7/9/2010,8/19/2010,,17,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0129,,1/17/2011,CARBOPLATIN,INTRAVENOUS,,6/28/2010,8/2/2010,,4,Systemic Therapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0129,,1/17/2011,ANTINEOPLASTIC AGENTS,INTRAVENOUS,,7/2/2010,8/8/2010,,8,Other,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0129,,1/17/2011,GEMCITABINE,INTRAVENOUS,,9/8/2010,9/28/2010,,4,Systemic Therapy,>Third Line,Stable disease,Toxicity
+STUDY0001,B,ID0129,,1/17/2011,PEMETREXED,INTRAVENOUS,,8/27/2010,9/29/2010,,3,Systemic Therapy,>Third Line,Stable disease,Toxicity
+STUDY0001,B,ID0130,,4/11/2011,GEFITINIB,ORAL,,11/15/2007,2/15/2008,,,Other,First Line,Progression,Toxicity
+STUDY0001,B,ID0130,,4/11/2011,GEMCITABINE,INTRAVENOUS,,8/1/2007,12/22/2007,,6,Cytotoxic Chemotherapy,First Line,Not applicable,Toxicity
+STUDY0001,B,ID0130,,4/11/2011,CARBOPLATIN,INTRAVENOUS,,6/22/2008,1/2/2009,,4,Systemic Therapy,Second Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0130,,4/11/2011,CISPLATIN,INTRAVENOUS,,7/9/2008,5/1/2009,,3,Systemic Therapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0130,,4/11/2011,CARBOPLATIN,INTRAVENOUS,,12/14/2008,3/6/2009,,8,Systemic Therapy,Second Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0130,,4/11/2011,CARBOPLATIN,INTRAVENOUS,,1/24/2010,3/27/2010,,5,Systemic Therapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0130,,4/11/2011,BEVACIZUMAB,INTRAVENOUS,,1/7/2010,1/27/2010,,2,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0130,,4/11/2011,GEMCITABINE,INTRAVENOUS,,12/2/2010,2/16/2011,,3,Systemic Therapy,>Third Line,Stable disease,Toxicity
+STUDY0001,B,ID0130,,4/11/2011,VINORELBINE,INTRAVENOUS,,11/17/2010,1/29/2011,,4,Cytotoxic Chemotherapy,>Third Line,Stable disease,
+STUDY0001,B,ID0130,,4/11/2011,GEMCITABINE,INTRAVENOUS,,8/10/2010,10/12/2010,,2,Systemic Therapy,>Third Line,Stable disease,Toxicity
+STUDY0001,B,ID0131,,1/21/2011,GEFITINIB,ORAL,,5/20/2009,12/10/2009,,22,Systemic Therapy,First Line,Complete response,Toxicity
+STUDY0001,B,ID0131,,1/21/2011,IRINOTECAN,INTRAVENOUS,,9/8/2009,4/13/2010,,6,Systemic Therapy,First Line,Not applicable,Progresssion following Completion of Therapy
+STUDY0001,B,ID0131,,1/21/2011,PEMETREXED,INTRAVENOUS,,5/6/2008,9/11/2009,,2,Systemic Therapy,First Line,Progression,Toxicity
+STUDY0001,B,ID0131,,1/21/2011,CISPLATIN,INTRAVENOUS,,6/25/2010,7/16/2010,,5,Cytotoxic Chemotherapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0131,,1/21/2011,CISPLATIN,INTRAVENOUS,,6/26/2010,7/20/2010,,14,Cytotoxic Chemotherapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0131,,1/21/2011,CARBOPLATIN,INTRAVENOUS,,8/11/2010,9/26/2010,,4,Systemic Therapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0131,,1/21/2011,ANTINEOPLASTIC AGENTS,INTRAVENOUS,,8/9/2010,9/19/2010,,3,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0131,,1/21/2011,GEMCITABINE,INTRAVENOUS,,10/22/2010,11/23/2010,,1,Cytotoxic Chemotherapy,>Third Line,Partial response,Toxicity
+STUDY0001,B,ID0132,,10/13/2010,GEFITINIB,ORAL,,3/20/2009,1/1/2010,,9,Cytotoxic Chemotherapy,First Line,Non-evaluable,Progresssion following Completion of Therapy
+STUDY0001,B,ID0132,,10/13/2010,INVESTIGATIONAL DRUG,ORAL,,7/20/2008,3/20/2009,,10,Immunotherapy,First Line,Partial response,Toxicity
+STUDY0001,B,ID0132,,10/13/2010,CISPLATIN,INTRAVENOUS,,4/29/2010,5/31/2010,,3,Systemic Therapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0132,,10/13/2010,CISPLATIN,INTRAVENOUS,,4/7/2010,6/3/2010,,4,Cytotoxic Chemotherapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0132,,10/13/2010,BEVACIZUMAB,INTRAVENOUS,,6/17/2010,7/9/2010,,2,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0132,,10/13/2010,BEVACIZUMAB,INTRAVENOUS,,7/7/2010,8/12/2010,,3,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0132,,10/13/2010,VINORELBINE DITARTRATE,INTRAVENOUS,,9/29/2010,10/20/2010,,2,Systemic Therapy,>Third Line,Not applicable,
+STUDY0001,B,ID0133,,1/5/2011,PEMETREXED,INTRAVENOUS,,12/22/2007,1/21/2008,,3,Cytotoxic Chemotherapy,First Line,Partial response,Toxicity
+STUDY0001,B,ID0133,,1/5/2011,INVESTIGATIONAL DRUG,ORAL,,10/8/2007,11/9/2007,,6,Other,First Line,Partial response,Toxicity
+STUDY0001,B,ID0133,,1/5/2011,PACLITAXEL,INTRAVENOUS,,8/7/2007,11/12/2007,,,Systemic Therapy,First Line,Progression,Toxicity
+STUDY0001,B,ID0133,,1/5/2011,DOCETAXEL,INTRAVENOUS,,5/30/2008,9/15/2008,,8,Systemic Therapy,Second Line,Partial response,Progresssion following Completion of Therapy
+STUDY0001,B,ID0133,,1/5/2011,CARBOPLATIN,INTRAVENOUS,,2/28/2008,10/16/2008,,4,Systemic Therapy,Second Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0133,,1/5/2011,CARBOPLATIN,INTRAVENOUS,,6/9/2008,7/19/2008,,4,Systemic Therapy,Second Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0133,,1/5/2011,CARBOPLATIN,INTRAVENOUS,,11/2/2008,3/26/2009,,6,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0133,,1/5/2011,ANTINEOPLASTIC AGENTS,INTRAVENOUS,,8/17/2009,11/6/2009,,6,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0133,,1/5/2011,ANTINEOPLASTIC AGENTS,INTRAVENOUS,,4/3/2009,11/17/2009,,5,Other,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0133,,1/5/2011,VINORELBINE,INTRAVENOUS,,1/27/2010,3/9/2010,,3,Cytotoxic Chemotherapy,>Third Line,Not applicable,
+STUDY0001,B,ID0133,,1/5/2011,VINORELBINE,INTRAVENOUS,,1/26/2010,2/27/2010,,4,Systemic Therapy,>Third Line,Stable disease,
+STUDY0001,B,ID0133,,1/5/2011,PEMETREXED,INTRAVENOUS,,1/26/2010,3/26/2010,,17,Cytotoxic Chemotherapy,>Third Line,,Toxicity
+STUDY0001,B,ID0136,,3/15/2011,INVESTIGATIONAL DRUG,ORAL,,7/9/2009,9/22/2009,,,Immunotherapy,First Line,Stable disease,Toxicity
+STUDY0001,B,ID0136,,3/15/2011,GEFITINIB,ORAL,,4/14/2008,7/17/2009,,,Systemic Therapy,First Line,,Toxicity
+STUDY0001,B,ID0136,,3/15/2011,PEMETREXED,INTRAVENOUS,,5/15/2009,8/6/2009,,3,Cytotoxic Chemotherapy,First Line,Partial response,Toxicity
+STUDY0001,B,ID0136,,3/15/2011,CISPLATIN,INTRAVENOUS,,4/7/2010,5/18/2010,,2,Cytotoxic Chemotherapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0136,,3/15/2011,CARBOPLATIN,INTRAVENOUS,,11/3/2010,11/25/2010,,5,Systemic Therapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0136,,3/15/2011,CARBOPLATIN,INTRAVENOUS,,7/27/2010,10/10/2010,,5,Systemic Therapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0136,,3/15/2011,PEMETREXED,INTRAVENOUS,,12/22/2010,1/21/2011,,4,Systemic Therapy,>Third Line,Partial response,Toxicity
+STUDY0001,B,ID0137,,1/24/2011,GEFITINIB,ORAL,,8/11/2007,12/1/2007,,,Systemic Therapy,First Line,,Toxicity
+STUDY0001,B,ID0137,,1/24/2011,GEFITINIB,ORAL,,9/14/2007,4/13/2008,,15,Immunotherapy,First Line,Non-evaluable,Toxicity
+STUDY0001,B,ID0137,,1/24/2011,GEFITINIB,ORAL,,3/4/2007,8/21/2007,,7,Cytotoxic Chemotherapy,First Line,Non-evaluable,Progresssion following Completion of Therapy
+STUDY0001,B,ID0137,,1/24/2011,CISPLATIN,INTRAVENOUS,,1/3/2009,1/30/2009,,2,Cytotoxic Chemotherapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0137,,1/24/2011,ANTINEOPLASTIC AGENTS,INTRAVENOUS,,6/27/2009,12/30/2009,,3,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0137,,1/24/2011,BEVACIZUMAB,INTRAVENOUS,,9/6/2009,12/11/2009,,3,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0138,,10/14/2010,GEFITINIB,ORAL,,6/12/2007,8/30/2007,,15,Immunotherapy,First Line,Non-evaluable,Toxicity
+STUDY0001,B,ID0138,,10/14/2010,CISPLATIN,INTRAVENOUS,,7/26/2008,10/18/2008,,3,Cytotoxic Chemotherapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0138,,10/14/2010,CISPLATIN,INTRAVENOUS,,3/31/2008,6/5/2008,,7,Cytotoxic Chemotherapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0138,,10/14/2010,CARBOPLATIN,INTRAVENOUS,,4/3/2009,6/6/2009,,6,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0139,,2/22/2011,GEFITINIB,ORAL,,4/17/2009,12/11/2009,,,Systemic Therapy,First Line,,Toxicity
+STUDY0001,B,ID0139,,2/22/2011,GEFITINIB,ORAL,,12/28/2007,11/13/2009,,,Systemic Therapy,First Line,,Toxicity
+STUDY0001,B,ID0139,,2/22/2011,GEMCITABINE,INTRAVENOUS,,8/2/2007,2/2/2009,,,Cytotoxic Chemotherapy,First Line,Stable disease,Toxicity
+STUDY0001,B,ID0139,,2/22/2011,CARBOPLATIN,INTRAVENOUS,,4/9/2010,6/3/2010,,4,Systemic Therapy,Second Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0139,,2/22/2011,CISPLATIN,INTRAVENOUS,,4/26/2010,6/3/2010,,3,Cytotoxic Chemotherapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0139,,2/22/2011,CARBOPLATIN,INTRAVENOUS,,4/1/2010,6/5/2010,,4,Systemic Therapy,Second Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0139,,2/22/2011,BEVACIZUMAB,INTRAVENOUS,,7/10/2010,7/30/2010,,3,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0139,,2/22/2011,ANTINEOPLASTIC AGENTS,INTRAVENOUS,,7/13/2010,8/2/2010,,3,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0140,,8/30/2010,GEFITINIB,ORAL,,7/27/2009,12/2/2009,,1,,First Line,Partial response,Toxicity
+STUDY0001,B,ID0140,,8/30/2010,CETUXIMAB,INTRAVENOUS,,4/21/2010,5/26/2010,,1,Systemic Therapy,Second Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0140,,8/30/2010,CISPLATIN,INTRAVENOUS,,4/29/2010,5/19/2010,,6,Systemic Therapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0140,,8/30/2010,CARBOPLATIN,INTRAVENOUS,,7/3/2010,8/1/2010,,6,Systemic Therapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0140,,8/30/2010,BEVACIZUMAB,INTRAVENOUS,,6/17/2010,7/27/2010,,3,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0141,,3/4/2011,INVESTIGATIONAL DRUG,ORAL,,2/28/2009,6/21/2009,,,Systemic Therapy,First Line,Not applicable,Toxicity
+STUDY0001,B,ID0141,,3/4/2011,GEFITINIB,ORAL,,11/3/2006,5/10/2008,,10,Cytotoxic Chemotherapy,First Line,Non-evaluable,Progresssion following Completion of Therapy
+STUDY0001,B,ID0141,,3/4/2011,GEFITINIB,ORAL,,1/9/2007,12/12/2008,,,Systemic Therapy,First Line,,Toxicity
+STUDY0001,B,ID0141,,3/4/2011,CISPLATIN,INTRAVENOUS,,9/1/2009,12/27/2009,,4,Cytotoxic Chemotherapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0141,,3/4/2011,CISPLATIN,INTRAVENOUS,,10/3/2009,12/20/2009,,4,Systemic Therapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0141,,3/4/2011,BEVACIZUMAB,INTRAVENOUS,,2/12/2010,3/4/2010,,2,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0143,,11/4/2010,GEMCITABINE,INTRAVENOUS,,3/2/2007,12/14/2007,,6,Cytotoxic Chemotherapy,First Line,Non-evaluable,Toxicity
+STUDY0001,B,ID0143,,11/4/2010,DOCETAXEL,INTRAVENOUS,,1/15/2010,5/1/2010,,11,Cytotoxic Chemotherapy,Second Line,Partial response,Progresssion following Completion of Therapy
+STUDY0001,B,ID0143,,11/4/2010,CISPLATIN,INTRAVENOUS,,6/24/2008,6/18/2010,,6,Cytotoxic Chemotherapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0143,,11/4/2010,CARBOPLATIN,INTRAVENOUS,,9/18/2010,10/10/2010,,5,Systemic Therapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0143,,11/4/2010,ANTINEOPLASTIC AGENTS,INTRAVENOUS,,9/3/2010,9/25/2010,,8,Other,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0143,,11/4/2010,AZACITIDINE,SUBCUTANEOUS,,9/9/2010,10/11/2010,,4,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0144,,11/2/2010,GEFITINIB,ORAL,,5/15/2007,10/10/2007,,,Systemic Therapy,First Line,,Toxicity
+STUDY0001,B,ID0144,,11/2/2010,CARBOPLATIN,INTRAVENOUS,,3/29/2009,4/28/2009,,3,Systemic Therapy,Second Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0144,,11/2/2010,CARBOPLATIN,INTRAVENOUS,,4/1/2009,4/24/2009,,3,Systemic Therapy,Second Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0144,,11/2/2010,CARBOPLATIN,INTRAVENOUS,,3/22/2009,4/24/2009,,6,Cytotoxic Chemotherapy,Second Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0144,,11/2/2010,CARBOPLATIN,INTRAVENOUS,,12/9/2009,12/30/2009,,6,Systemic Therapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0144,,11/2/2010,CARBOPLATIN,INTRAVENOUS,,10/7/2009,12/4/2009,,6,Systemic Therapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0144,,11/2/2010,BEVACIZUMAB,INTRAVENOUS,,12/26/2009,2/16/2010,,2,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0144,,11/2/2010,PEMETREXED,INTRAVENOUS,,4/14/2010,5/11/2010,,17,Cytotoxic Chemotherapy,>Third Line,,Toxicity
+STUDY0001,B,ID0148,,2/24/2011,GEMCITABINE,INTRAVENOUS,,7/13/2007,12/6/2007,,6,Systemic Therapy,First Line,Not applicable,Toxicity
+STUDY0001,B,ID0148,,2/24/2011,GEFITINIB,ORAL,,10/20/2007,11/4/2008,,15,Immunotherapy,First Line,Non-evaluable,Toxicity
+STUDY0001,B,ID0148,,2/24/2011,INVESTIGATIONAL DRUG,ORAL,,11/26/2007,3/27/2009,,20,Immunotherapy,First Line,Stable disease,Toxicity
+STUDY0001,B,ID0148,,2/24/2011,CISPLATIN,INTRAVENOUS,,11/17/2009,1/10/2010,,2,Cytotoxic Chemotherapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0148,,2/24/2011,CISPLATIN,INTRAVENOUS,,11/11/2009,1/5/2010,,8,Cytotoxic Chemotherapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0148,,2/24/2011,CISPLATIN,INTRAVENOUS,,9/8/2009,1/10/2010,,6,Cytotoxic Chemotherapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0148,,2/24/2011,BEVACIZUMAB,INTRAVENOUS,,3/20/2010,6/9/2010,,3,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0148,,2/24/2011,ANTINEOPLASTIC AGENTS,INTRAVENOUS,,3/9/2010,3/29/2010,,4,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0148,,2/24/2011,PEMETREXED,INTRAVENOUS,,12/1/2010,2/6/2011,,2,Cytotoxic Chemotherapy,>Third Line,Stable disease,Toxicity
+STUDY0001,B,ID0151,,1/26/2011,MOTESANIB,INTRAVENOUS,,2/15/2007,3/9/2007,,,Cytotoxic Chemotherapy,First Line,Not applicable,Toxicity
+STUDY0001,B,ID0151,,1/26/2011,INVESTIGATIONAL DRUG,ORAL,,2/18/2007,3/16/2007,,,Systemic Therapy,First Line,Progression,Toxicity
+STUDY0001,B,ID0151,,1/26/2011,GEMCITABINE,INTRAVENOUS,,2/18/2007,3/10/2007,,5,Cytotoxic Chemotherapy,First Line,,Toxicity
+STUDY0001,B,ID0151,,1/26/2011,CRIZOTINIB,INTRAVENOUS,,1/16/2009,8/27/2010,,6,Other,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0151,,1/26/2011,CISPLATIN,INTRAVENOUS,,9/8/2009,9/30/2009,,4,Systemic Therapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0151,,1/26/2011,ANTINEOPLASTIC AGENTS,INTRAVENOUS,,12/5/2010,12/29/2010,,16,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0151,,1/26/2011,GEMCITABINE,INTRAVENOUS,,1/9/2011,1/30/2011,,3,Systemic Therapy,>Third Line,Stable disease,Toxicity
+STUDY0001,B,ID0151,,1/26/2011,VINORELBINE DITARTRATE,INTRAVENOUS,,1/7/2011,1/30/2011,,3,Cytotoxic Chemotherapy,>Third Line,Stable disease,
+STUDY0001,B,ID0153,,1/20/2011,GEFITINIB,ORAL,,5/24/2007,7/5/2007,,,Other,First Line,Not applicable,Toxicity
+STUDY0001,B,ID0153,,1/20/2011,CISPLATIN,INTRAVENOUS,,12/6/2008,3/31/2009,,6,Systemic Therapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0153,,1/20/2011,BEVACIZUMAB,INTRAVENOUS,,5/17/2010,8/29/2010,,3,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0153,,1/20/2011,PEMETREXED,INTRAVENOUS,,9/26/2010,10/20/2010,,12,Systemic Therapy,>Third Line,Non-evaluable,Toxicity
+STUDY0001,B,ID0153,,1/20/2011,PEMETREXED,INTRAVENOUS,,10/3/2010,11/2/2010,,1,Cytotoxic Chemotherapy,>Third Line,Progression,Toxicity
+STUDY0001,B,ID0154,,11/12/2010,ERLOTINIB,ORAL,,10/25/2007,2/15/2008,,8,Other,Palliative,Partial response,Progresssion following Completion of Therapy
+STUDY0001,B,ID0156,,2/10/2011,PEMETREXED,INTRAVENOUS,,3/6/2007,7/14/2009,,3,Cytotoxic Chemotherapy,First Line,Partial response,Toxicity
+STUDY0001,B,ID0156,,2/10/2011,CYCLOPHOSPHAMIDE,INTRAVENOUS,,1/28/2010,4/23/2010,,4,Cytotoxic Chemotherapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0156,,2/10/2011,CISPLATIN,INTRAVENOUS,,2/10/2010,4/14/2010,,2,Cytotoxic Chemotherapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0156,,2/10/2011,CISPLATIN,INTRAVENOUS,,2/27/2010,3/30/2010,,6,Cytotoxic Chemotherapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0156,,2/10/2011,CARBOPLATIN,INTRAVENOUS,,8/5/2010,8/25/2010,,6,Systemic Therapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0156,,2/10/2011,ANTINEOPLASTIC AGENTS,INTRAVENOUS,,7/29/2010,8/24/2010,,6,Other,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0157,,8/2/2010,GEFITINIB,INTRAVENOUS,,1/9/2007,3/24/2007,,1,Systemic Therapy,First Line,Partial response,Toxicity
+STUDY0001,B,ID0157,,8/2/2010,INVESTIGATIONAL DRUG,ORAL,,9/26/2006,8/27/2007,,,Immunotherapy,First Line,Stable disease,Toxicity
+STUDY0001,B,ID0157,,8/2/2010,CETUXIMAB,INTRAVENOUS,,10/19/2007,12/24/2007,,3,Cytotoxic Chemotherapy,Second Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0157,,8/2/2010,CARBOPLATIN,INTRAVENOUS,,10/22/2007,11/28/2007,,3,Systemic Therapy,Second Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0157,,8/2/2010,CARBOPLATIN,INTRAVENOUS,,10/19/2007,12/12/2007,,4,Systemic Therapy,Second Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0157,,8/2/2010,BEVACIZUMAB,INTRAVENOUS,,9/30/2009,1/21/2010,,,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0158,,1/21/2011,GEFITINIB,ORAL,,5/28/2007,7/2/2007,,18,Other,First Line,Non-evaluable,Toxicity
+STUDY0001,B,ID0158,,1/21/2011,IRINOTECAN,INTRAVENOUS,,2/5/2007,9/16/2007,,1,Systemic Therapy,First Line,,Toxicity
+STUDY0001,B,ID0158,,1/21/2011,CARBOPLATIN,INTRAVENOUS,,7/25/2008,8/18/2008,,4,Systemic Therapy,Second Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0158,,1/21/2011,BEVACIZUMAB,INTRAVENOUS,,9/8/2008,10/13/2008,,2,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0158,,1/21/2011,PAZOPANIB,INTRAVENOUS,,12/24/2009,7/4/2010,,2,Immunotherapy,>Third Line,Non-evaluable,Toxicity
+STUDY0001,B,ID0159,,2/10/2011,GEMCITABINE,INTRAVENOUS,,5/27/2010,7/19/2010,,6,Systemic Therapy,First Line,Not applicable,Toxicity
+STUDY0001,B,ID0159,,2/10/2011,CISPLATIN,INTRAVENOUS,,11/11/2010,12/6/2010,,6,Cytotoxic Chemotherapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0159,,2/10/2011,DOCETAXEL,INTRAVENOUS,,10/31/2010,11/29/2010,,11,Cytotoxic Chemotherapy,Second Line,Partial response,Progresssion following Completion of Therapy
+STUDY0001,B,ID0159,,2/10/2011,ANTINEOPLASTIC AGENTS,INTRAVENOUS,,12/18/2010,1/7/2011,,2,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0159,,2/10/2011,BEVACIZUMAB,INTRAVENOUS,,12/24/2010,1/13/2011,,3,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0159,,2/10/2011,ANTINEOPLASTIC AGENTS,INTRAVENOUS,,12/17/2010,1/6/2011,,2,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0159,,2/10/2011,PEMETREXED,INTRAVENOUS,,1/28/2011,2/17/2011,,4,Cytotoxic Chemotherapy,>Third Line,Stable disease,Toxicity
+STUDY0001,B,ID0159,,2/10/2011,GEMCITABINE,INTRAVENOUS,,1/18/2011,2/7/2011,,4,Cytotoxic Chemotherapy,>Third Line,Stable disease,Toxicity
+STUDY0001,B,ID0159,,2/10/2011,VINORELBINE DITARTRATE,INTRAVENOUS,,1/20/2011,2/9/2011,,1,Systemic Therapy,>Third Line,Progression,
+STUDY0001,B,ID0160,,9/14/2010,GEFITINIB,ORAL,,10/28/2006,12/19/2006,,1,Systemic Therapy,First Line,Not applicable,Toxicity
+STUDY0001,B,ID0160,,9/14/2010,GEFITINIB,ORAL,,10/19/2006,1/2/2007,,,Other,First Line,Not applicable,Toxicity
+STUDY0001,B,ID0160,,9/14/2010,GEFITINIB,ORAL,,11/6/2006,2/2/2007,,,Systemic Therapy,First Line,Progression,Toxicity
+STUDY0001,B,ID0160,,9/14/2010,CARBOPLATIN+GEMCITABINE,INTRAVENOUS,,3/31/2008,5/18/2008,,6,Cytotoxic Chemotherapy,Second Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0160,,9/14/2010,BEVACIZUMAB,INTRAVENOUS,,10/9/2008,12/20/2008,,,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0160,,9/14/2010,BEVACIZUMAB,INTRAVENOUS,,11/4/2008,12/10/2008,,3,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0160,,9/14/2010,BEVACIZUMAB,INTRAVENOUS,,10/14/2008,12/26/2008,,1,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0161,,9/6/2010,GEFITINIB,ORAL,,9/23/2007,1/31/2009,,3,Systemic Therapy,First Line,Not applicable,Progresssion following Completion of Therapy
+STUDY0001,B,ID0161,,9/6/2010,CARBOPLATIN,INTRAVENOUS,,1/12/2010,2/17/2010,,6,Systemic Therapy,Second Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0161,,9/6/2010,CARBOPLATIN,INTRAVENOUS,,3/8/2010,7/6/2010,,4,Systemic Therapy,Second Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0161,,9/6/2010,DOCETAXEL,INTRAVENOUS,,4/9/2010,5/12/2010,,,Cytotoxic Chemotherapy,Second Line,Partial response,Progresssion following Completion of Therapy
+STUDY0001,B,ID0161,,9/6/2010,ANTINEOPLASTIC AGENTS,INTRAVENOUS,,7/22/2010,8/31/2010,,6,Other,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0161,,9/6/2010,ANTINEOPLASTIC AGENTS,INTRAVENOUS,,7/23/2010,8/31/2010,,1,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0164,,12/20/2010,PEMETREXED,INTRAVENOUS,,7/9/2010,8/9/2010,,3,Cytotoxic Chemotherapy,First Line,Stable disease,Toxicity
+STUDY0001,B,ID0164,,12/20/2010,GEMCITABINE HYDROCHLORIDE,INTRAVENOUS,,4/8/2010,6/26/2010,,2,Cytotoxic Chemotherapy,First Line,Stable disease,Toxicity
+STUDY0001,B,ID0164,,12/20/2010,CISPLATIN,INTRAVENOUS,,10/28/2010,11/17/2010,,1,Cytotoxic Chemotherapy,Second Line,Progression,Progression on Therapy
+STUDY0001,B,ID0164,,12/20/2010,BEVACIZUMAB,INTRAVENOUS,,11/14/2010,12/4/2010,,2,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0166,,11/5/2010,GEFITINIB,ORAL,,8/17/2007,10/6/2007,,22,Systemic Therapy,First Line,Complete response,Toxicity
+STUDY0001,B,ID0166,,11/5/2010,CISPLATIN,INTRAVENOUS,,7/10/2009,10/6/2009,,1,Cytotoxic Chemotherapy,Second Line,Progression,Progression on Therapy
+STUDY0001,B,ID0166,,11/5/2010,CISPLATIN,INTRAVENOUS,,9/19/2009,10/15/2009,,6,Systemic Therapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0166,,11/5/2010,BEVACIZUMAB,INTRAVENOUS,,2/18/2010,3/30/2010,,,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0166,,11/5/2010,CARBOPLATIN,INTRAVENOUS,,1/24/2010,4/19/2010,,6,Systemic Therapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0166,,11/5/2010,ANTINEOPLASTIC AGENTS,INTRAVENOUS,,2/14/2010,3/31/2010,,4,Immunotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0167,,2/28/2011,IRINOTECAN,INTRAVENOUS,,3/14/2008,7/8/2008,,1,Systemic Therapy,First Line,Progression,Toxicity
+STUDY0001,B,ID0167,,2/28/2011,CISPLATIN,INTRAVENOUS,,3/11/2009,10/10/2009,,2,Cytotoxic Chemotherapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0167,,2/28/2011,CISPLATIN,INTRAVENOUS,,11/30/2008,4/14/2009,,3,Cytotoxic Chemotherapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0167,,2/28/2011,CISPLATIN,INTRAVENOUS,,6/15/2009,10/10/2009,,6,Cytotoxic Chemotherapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0167,,2/28/2011,ANTINEOPLASTIC AGENTS,INTRAVENOUS,,1/27/2010,2/27/2010,,6,Other,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0167,,2/28/2011,ANTINEOPLASTIC AGENTS,INTRAVENOUS,,1/19/2010,2/26/2010,,3,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0167,,2/28/2011,ANTINEOPLASTIC AGENTS,INTRAVENOUS,,1/20/2010,2/20/2010,,,Systemic Therapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0167,,2/28/2011,VINORELBINE,INTRAVENOUS,,6/17/2010,8/11/2010,,5,Cytotoxic Chemotherapy,>Third Line,Partial response,
+STUDY0001,B,ID0171,,2/18/2011,GEFITINIB,ORAL,,7/12/2007,2/19/2008,,9,Cytotoxic Chemotherapy,First Line,Non-evaluable,Progresssion following Completion of Therapy
+STUDY0001,B,ID0171,,2/18/2011,GEFITINIB,ORAL,,7/29/2007,1/9/2008,,1,Systemic Therapy,First Line,Not applicable,Progresssion following Completion of Therapy
+STUDY0001,B,ID0171,,2/18/2011,CARBOPLATIN,INTRAVENOUS,,7/3/2008,11/5/2008,,6,Other,Second Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0171,,2/18/2011,BEVACIZUMAB,INTRAVENOUS,,2/8/2009,2/8/2010,,3,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0171,,2/18/2011,VINORELBINE,INTRAVENOUS,,7/24/2010,8/16/2010,,3,Cytotoxic Chemotherapy,>Third Line,Not applicable,
+STUDY0001,B,ID0173,,3/8/2011,OLAPARIB,INTRAVENOUS,,9/1/2007,10/29/2008,,8,Immunotherapy,First Line,Stable disease,Toxicity
+STUDY0001,B,ID0173,,3/8/2011,PACLITAXEL,INTRAVENOUS,,3/30/2007,4/15/2009,,6,Systemic Therapy,First Line,Progression,Toxicity
+STUDY0001,B,ID0173,,3/8/2011,PEMETREXED,INTRAVENOUS,,3/3/2008,7/24/2008,,3,Cytotoxic Chemotherapy,First Line,Partial response,Toxicity
+STUDY0001,B,ID0173,,3/8/2011,CARBOPLATIN,INTRAVENOUS,,11/1/2009,12/20/2009,,4,Systemic Therapy,Second Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0173,,3/8/2011,ANTINEOPLASTIC AGENTS,INTRAVENOUS,,3/25/2010,5/17/2010,,1,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0173,,3/8/2011,CARBOPLATIN,INTRAVENOUS,,2/20/2010,3/30/2010,,5,Systemic Therapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0173,,3/8/2011,BEVACIZUMAB,INTRAVENOUS,,1/27/2010,2/22/2010,,12,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0177,,10/15/2010,PACLITAXEL,INTRAVENOUS,,9/28/2007,11/26/2007,,8,Cytotoxic Chemotherapy,First Line,Non-evaluable,Toxicity
+STUDY0001,B,ID0177,,10/15/2010,MOTESANIB,INTRAVENOUS,,1/27/2008,4/6/2008,,,Cytotoxic Chemotherapy,First Line,Not applicable,Toxicity
+STUDY0001,B,ID0177,,10/15/2010,GEFITINIB,ORAL,,2/7/2007,4/10/2009,,22,Systemic Therapy,First Line,Complete response,Toxicity
+STUDY0001,B,ID0177,,10/15/2010,CARBOPLATIN,INTRAVENOUS,,8/30/2009,11/19/2009,,3,Systemic Therapy,Second Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0177,,10/15/2010,CISPLATIN,INTRAVENOUS,,9/6/2009,10/12/2009,,6,Cytotoxic Chemotherapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0177,,10/15/2010,CARBOPLATIN,INTRAVENOUS,,1/24/2010,3/23/2010,,4,Systemic Therapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0177,,10/15/2010,CARBOPLATIN,INTRAVENOUS,,3/19/2010,5/23/2010,,6,Systemic Therapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0177,,10/15/2010,GEMCITABINE,INTRAVENOUS,,7/7/2010,9/8/2010,,4,Cytotoxic Chemotherapy,>Third Line,Stable disease,Toxicity
+STUDY0001,B,ID0177,,10/15/2010,PEMETREXED,INTRAVENOUS,,9/18/2010,10/19/2010,,41,Systemic Therapy,>Third Line,Progression,Toxicity
+STUDY0001,B,ID0178,,12/13/2010,GEFITINIB,ORAL,,3/4/2009,7/20/2010,,3,Other,First Line,Not applicable,Progresssion following Completion of Therapy
+STUDY0001,B,ID0178,,12/13/2010,GEFITINIB,ORAL,,2/2/2009,8/2/2009,,1,Systemic Therapy,First Line,Not applicable,Progresssion following Completion of Therapy
+STUDY0001,B,ID0178,,12/13/2010,CARBOPLATIN,INTRAVENOUS,,8/6/2010,9/11/2010,,4,Systemic Therapy,Second Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0178,,12/13/2010,CARBOPLATIN,INTRAVENOUS,,10/18/2010,11/7/2010,,4,Systemic Therapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0178,,12/13/2010,ANTINEOPLASTIC AGENTS,INTRAVENOUS,,10/16/2010,11/8/2010,,4,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0178,,12/13/2010,ANTINEOPLASTIC AGENTS,INTRAVENOUS,,10/15/2010,11/7/2010,,2,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0178,,12/13/2010,VINORELBINE,INTRAVENOUS,,11/21/2010,12/21/2010,,6,Systemic Therapy,>Third Line,Not applicable,
+STUDY0001,B,ID0178,,12/13/2010,PEMETREXED,INTRAVENOUS,,11/15/2010,12/18/2010,,,Systemic Therapy,>Third Line,Not applicable,Toxicity
+STUDY0001,B,ID0180,,7/22/2010,PEMETREXED,INTRAVENOUS,,7/23/2008,4/14/2009,,2,Systemic Therapy,First Line,Stable disease,Toxicity
+STUDY0001,B,ID0180,,7/22/2010,GEFITINIB,ORAL,,1/24/2009,3/31/2009,,14,Immunotherapy,First Line,Non-evaluable,Progresssion following Completion of Therapy
+STUDY0001,B,ID0180,,7/22/2010,CISPLATIN,INTRAVENOUS,,7/3/2009,1/28/2010,,,Systemic Therapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0180,,7/22/2010,CISPLATIN,INTRAVENOUS,,11/5/2009,1/10/2010,,4,Cytotoxic Chemotherapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0180,,7/22/2010,CARBOPLATIN,INTRAVENOUS,,1/24/2010,3/9/2010,,4,Systemic Therapy,Second Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0180,,7/22/2010,ANTINEOPLASTIC AGENTS,INTRAVENOUS,,4/21/2010,5/11/2010,,7,Other,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0180,,7/22/2010,GEMCITABINE,INTRAVENOUS,,6/10/2010,7/28/2010,,2,Systemic Therapy,>Third Line,Non-evaluable,Toxicity
+STUDY0001,B,ID0180,,7/22/2010,VINORELBINE DITARTRATE,INTRAVENOUS,,6/9/2010,7/26/2010,,3,Cytotoxic Chemotherapy,>Third Line,Stable disease,
+STUDY0001,B,ID0180,,7/22/2010,VINORELBINE,INTRAVENOUS,,6/23/2010,8/5/2010,,3,Cytotoxic Chemotherapy,>Third Line,Not applicable,
+STUDY0001,B,ID0181,,2/4/2011,GEMCITABINE,INTRAVENOUS,,7/20/2007,2/2/2010,,6,Systemic Therapy,First Line,Not applicable,Toxicity
+STUDY0001,B,ID0181,,2/4/2011,GEFITINIB,ORAL,,3/25/2010,9/1/2010,,4,Cytotoxic Chemotherapy,First Line,Non-evaluable,Progresssion following Completion of Therapy
+STUDY0001,B,ID0181,,2/4/2011,CARBOPLATIN,INTRAVENOUS,,9/12/2010,10/5/2010,,6,Other,Second Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0181,,2/4/2011,CISPLATIN,INTRAVENOUS,,9/16/2010,10/8/2010,,1,Cytotoxic Chemotherapy,Second Line,Progression,Progression on Therapy
+STUDY0001,B,ID0181,,2/4/2011,ANTINEOPLASTIC AGENTS,INTRAVENOUS,,10/23/2010,11/16/2010,,30,Systemic Therapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0181,,2/4/2011,PEMETREXED,INTRAVENOUS,,12/16/2010,1/14/2011,,23,Cytotoxic Chemotherapy,>Third Line,Stable disease,Toxicity
+STUDY0001,B,ID0181,,2/4/2011,PEMETREXED,INTRAVENOUS,,12/17/2010,1/19/2011,,4,Systemic Therapy,>Third Line,Partial response,Toxicity
+STUDY0001,B,ID0182,,1/17/2011,GEMCITABINE,INTRAVENOUS,,8/13/2008,2/26/2009,,6,Systemic Therapy,First Line,Not applicable,Toxicity
+STUDY0001,B,ID0182,,1/17/2011,CISPLATIN,INTRAVENOUS,,12/29/2009,2/9/2010,,5,Cytotoxic Chemotherapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0182,,1/17/2011,CYCLOPHOSPHAMIDE,INTRAVENOUS,,2/4/2010,8/30/2010,,4,Cytotoxic Chemotherapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0182,,1/17/2011,BEVACIZUMAB,INTRAVENOUS,,11/27/2010,1/13/2011,,2,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0182,,1/17/2011,ANTINEOPLASTIC AGENTS,INTRAVENOUS,,11/29/2010,12/21/2010,,6,Other,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0182,,1/17/2011,CARBOPLATIN,INTRAVENOUS,,11/27/2010,12/23/2010,,4,Systemic Therapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0183,,10/28/2010,GEFITINIB,ORAL,,12/29/2007,5/30/2008,,22,Systemic Therapy,First Line,Complete response,Toxicity
+STUDY0001,B,ID0183,,10/28/2010,GEFITINIB,ORAL,,10/20/2007,5/3/2008,,22,Systemic Therapy,First Line,Complete response,Toxicity
+STUDY0001,B,ID0183,,10/28/2010,INVESTIGATIONAL DRUG,ORAL,,2/17/2007,1/17/2008,,1,Systemic Therapy,First Line,Progression,Toxicity
+STUDY0001,B,ID0183,,10/28/2010,CISPLATIN,INTRAVENOUS,,2/15/2009,3/23/2009,,3,Cytotoxic Chemotherapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0183,,10/28/2010,CARBOPLATIN+GEMCITABINE,INTRAVENOUS,,9/15/2008,1/31/2009,,6,Cytotoxic Chemotherapy,Second Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0183,,10/28/2010,ANTINEOPLASTIC AGENTS,INTRAVENOUS,,4/28/2009,5/30/2009,,5,Other,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0183,,10/28/2010,ANTINEOPLASTIC AGENTS,INTRAVENOUS,,4/27/2009,5/17/2009,,3,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0183,,10/28/2010,PEMETREXED,INTRAVENOUS,,9/27/2010,10/19/2010,,5,Cytotoxic Chemotherapy,>Third Line,Stable disease,Toxicity
+STUDY0001,B,ID0184,,1/4/2011,GEFITINIB,ORAL,,3/7/2007,3/31/2007,,22,Systemic Therapy,First Line,Complete response,Toxicity
+STUDY0001,B,ID0184,,1/4/2011,GEFITINIB,ORAL,,2/12/2007,3/8/2007,,14,Immunotherapy,First Line,Non-evaluable,Progresssion following Completion of Therapy
+STUDY0001,B,ID0184,,1/4/2011,CISPLATIN,INTRAVENOUS,,3/17/2009,4/27/2009,,1,Cytotoxic Chemotherapy,Second Line,Progression,Progression on Therapy
+STUDY0001,B,ID0184,,1/4/2011,CARBOPLATIN,INTRAVENOUS,,3/23/2008,6/13/2008,,5,Immunotherapy,Second Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0184,,1/4/2011,CARBOPLATIN,INTRAVENOUS,,8/30/2009,4/21/2010,,9,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0184,,1/4/2011,ANTINEOPLASTIC AGENTS,INTRAVENOUS,,6/1/2009,9/13/2009,,1,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0184,,1/4/2011,ANTINEOPLASTIC AGENTS,INTRAVENOUS,,5/24/2009,11/26/2009,,2,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0185,,11/25/2010,INVESTIGATIONAL DRUG,ORAL,,8/25/2008,11/9/2008,,34,Systemic Therapy,First Line,Stable disease,Toxicity
+STUDY0001,B,ID0185,,11/25/2010,INVESTIGATIONAL DRUG,ORAL,,5/10/2007,10/4/2007,,8,Systemic Therapy,First Line,Progression,Toxicity
+STUDY0001,B,ID0185,,11/25/2010,CISPLATIN,INTRAVENOUS,,12/28/2008,2/24/2009,,3,Cytotoxic Chemotherapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0185,,11/25/2010,CARBOPLATIN,INTRAVENOUS,,1/3/2009,2/2/2009,,5,Other,Second Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0185,,11/25/2010,CISPLATIN,INTRAVENOUS,,1/27/2009,2/23/2009,,5,Cytotoxic Chemotherapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0185,,11/25/2010,BEVACIZUMAB,INTRAVENOUS,,7/15/2009,12/3/2009,,2,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0185,,11/25/2010,ANTINEOPLASTIC AGENTS,INTRAVENOUS,,6/10/2010,7/2/2010,,2,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0186,,11/1/2010,PEMETREXED,INTRAVENOUS,,6/26/2007,4/27/2008,,2,Systemic Therapy,First Line,Progression,Toxicity
+STUDY0001,B,ID0186,,11/1/2010,GEFITINIB,ORAL,,1/31/2007,5/25/2009,,4,Systemic Therapy,First Line,Non-evaluable,Progresssion following Completion of Therapy
+STUDY0001,B,ID0186,,11/1/2010,GEFITINIB,ORAL,,7/26/2007,8/25/2007,,6,Cytotoxic Chemotherapy,First Line,Non-evaluable,Progresssion following Completion of Therapy
+STUDY0001,B,ID0186,,11/1/2010,CARBOPLATIN,INTRAVENOUS,,1/18/2010,3/10/2010,,1,Systemic Therapy,Second Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0186,,11/1/2010,DOCETAXEL,INTRAVENOUS,,4/8/2010,5/19/2010,,11,Cytotoxic Chemotherapy,Second Line,Partial response,Progresssion following Completion of Therapy
+STUDY0001,B,ID0186,,11/1/2010,CARBOPLATIN,INTRAVENOUS,,7/4/2010,7/30/2010,,6,Systemic Therapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0186,,11/1/2010,BEVACIZUMAB,INTRAVENOUS,,7/9/2010,8/8/2010,,2,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0186,,11/1/2010,GEMCITABINE,INTRAVENOUS,,8/16/2010,9/7/2010,,4,Cytotoxic Chemotherapy,>Third Line,Stable disease,Toxicity
+STUDY0001,B,ID0186,,11/1/2010,GEMCITABINE,INTRAVENOUS,,8/20/2010,9/10/2010,,2,Cytotoxic Chemotherapy,>Third Line,Progression,Toxicity
+STUDY0001,B,ID0186,,11/1/2010,GEMCITABINE,INTRAVENOUS,,8/16/2010,9/6/2010,,3,Cytotoxic Chemotherapy,>Third Line,Non-evaluable,Toxicity
+STUDY0001,B,ID0187,,11/23/2010,GEFITINIB,INTRAVENOUS,,3/6/2007,6/6/2007,,22,Systemic Therapy,First Line,Complete response,Toxicity
+STUDY0001,B,ID0187,,11/23/2010,IRINOTECAN,INTRAVENOUS,,7/28/2007,11/6/2007,,6,Systemic Therapy,First Line,Not applicable,Progresssion following Completion of Therapy
+STUDY0001,B,ID0187,,11/23/2010,MOTESANIB,INTRAVENOUS,,1/29/2007,8/9/2007,,,Cytotoxic Chemotherapy,First Line,Not applicable,Toxicity
+STUDY0001,B,ID0187,,11/23/2010,CISPLATIN,INTRAVENOUS,,3/31/2008,8/11/2009,,4,Cytotoxic Chemotherapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0187,,11/23/2010,ANTINEOPLASTIC AGENTS,INTRAVENOUS,,3/12/2010,6/11/2010,,1,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0187,,11/23/2010,PACLITAXEL,INTRAVENOUS,,10/17/2010,11/6/2010,,1,Cytotoxic Chemotherapy,>Third Line,Progression,Toxicity
+STUDY0001,B,ID0187,,11/23/2010,GEMCITABINE,INTRAVENOUS,,10/16/2010,11/6/2010,,4,Systemic Therapy,>Third Line,Partial response,Toxicity
+STUDY0001,B,ID0187,,11/23/2010,PEMETREXED,INTRAVENOUS,,10/16/2010,11/5/2010,,9,Cytotoxic Chemotherapy,>Third Line,Stable disease,Toxicity
+STUDY0001,B,ID0189,,3/25/2011,GEFITINIB,ORAL,,3/11/2008,5/25/2008,,14,Immunotherapy,First Line,Non-evaluable,Progresssion following Completion of Therapy
+STUDY0001,B,ID0189,,3/25/2011,CARBOPLATIN,INTRAVENOUS,,9/30/2009,11/3/2010,,6,Immunotherapy,Second Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0189,,3/25/2011,CISPLATIN,INTRAVENOUS,,6/24/2008,9/2/2010,,6,Systemic Therapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0189,,3/25/2011,BEVACIZUMAB,INTRAVENOUS,,11/30/2010,1/21/2011,,2,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0190,,3/4/2011,GEFITINIB,ORAL,,4/20/2007,5/31/2007,,16,Immunotherapy,First Line,Non-evaluable,Toxicity
+STUDY0001,B,ID0190,,3/4/2011,GEMCITABINE,INTRAVENOUS,,4/25/2007,6/7/2007,,6,Cytotoxic Chemotherapy,First Line,Stable disease,Toxicity
+STUDY0001,B,ID0190,,3/4/2011,GEFITINIB,ORAL,,3/25/2007,4/16/2007,,1,Systemic Therapy,First Line,Non-evaluable,Toxicity
+STUDY0001,B,ID0190,,3/4/2011,CISPLATIN,INTRAVENOUS,,6/12/2009,7/4/2009,,4,Systemic Therapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0190,,3/4/2011,ANTINEOPLASTIC AGENTS,INTRAVENOUS,,10/1/2009,12/26/2009,,,Systemic Therapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0191,,10/26/2010,GEFITINIB,ORAL,,9/7/2007,11/17/2008,,22,Systemic Therapy,First Line,Complete response,Toxicity
+STUDY0001,B,ID0191,,10/26/2010,PACLITAXEL,INTRAVENOUS,,7/9/2008,10/2/2009,,13,Cytotoxic Chemotherapy,First Line,Progression,Toxicity
+STUDY0001,B,ID0191,,10/26/2010,INVESTIGATIONAL DRUG,ORAL,,7/12/2008,2/20/2009,,17,Systemic Therapy,First Line,Stable disease,Toxicity
+STUDY0001,B,ID0191,,10/26/2010,CISPLATIN,INTRAVENOUS,,10/25/2009,11/15/2009,,2,Cytotoxic Chemotherapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0191,,10/26/2010,BEVACIZUMAB,INTRAVENOUS,,12/3/2009,12/23/2009,,1,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0191,,10/26/2010,GEMCITABINE,INTRAVENOUS,,5/6/2010,6/1/2010,,3,Systemic Therapy,>Third Line,Stable disease,Toxicity
+STUDY0001,B,ID0191,,10/26/2010,PEMETREXED,INTRAVENOUS,,4/16/2010,6/3/2010,,41,Systemic Therapy,>Third Line,Progression,Toxicity
+STUDY0001,B,ID0191,,10/26/2010,VINORELBINE,INTRAVENOUS,,2/1/2010,3/28/2010,,5,Cytotoxic Chemotherapy,>Third Line,Stable disease,
+STUDY0001,B,ID0192,,8/27/2010,PEMETREXED,INTRAVENOUS,,11/20/2006,10/1/2007,,3,Cytotoxic Chemotherapy,First Line,Stable disease,Toxicity
+STUDY0001,B,ID0192,,8/27/2010,CISPLATIN,INTRAVENOUS,,4/11/2008,5/14/2008,,4,Systemic Therapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0192,,8/27/2010,CISPLATIN,INTRAVENOUS,,6/1/2008,7/19/2008,,1,Cytotoxic Chemotherapy,Second Line,Progression,Progression on Therapy
+STUDY0001,B,ID0192,,8/27/2010,CARBOPLATIN,INTRAVENOUS,,7/6/2008,7/26/2008,,8,Systemic Therapy,Second Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0192,,8/27/2010,ANTINEOPLASTIC AGENTS,INTRAVENOUS,,5/27/2009,2/15/2010,,1,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0192,,8/27/2010,AZACITIDINE,SUBCUTANEOUS,,12/28/2009,2/28/2010,,4,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0193,,6/25/2010,GEFITINIB,ORAL,,8/4/2007,3/28/2009,,10,Cytotoxic Chemotherapy,First Line,Non-evaluable,Progresssion following Completion of Therapy
+STUDY0001,B,ID0193,,6/25/2010,PACLITAXEL,INTRAVENOUS,,4/8/2008,12/13/2008,,,Systemic Therapy,First Line,Progression,Toxicity
+STUDY0001,B,ID0193,,6/25/2010,CISPLATIN,INTRAVENOUS,,8/1/2009,12/15/2009,,5,Cytotoxic Chemotherapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0193,,6/25/2010,CARBOPLATIN,INTRAVENOUS,,1/10/2010,2/5/2010,,,Systemic Therapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0193,,6/25/2010,PEMETREXED,INTRAVENOUS,,5/5/2010,5/25/2010,,38,Cytotoxic Chemotherapy,>Third Line,Partial response,Toxicity
+STUDY0001,B,ID0193,,6/25/2010,GEMCITABINE,INTRAVENOUS,,4/27/2010,5/22/2010,,4,Systemic Therapy,>Third Line,Partial response,Toxicity
+STUDY0001,B,ID0195,,9/10/2010,GEMCITABINE,INTRAVENOUS,,1/2/2007,3/17/2007,,6,Systemic Therapy,First Line,Not applicable,Toxicity
+STUDY0001,B,ID0195,,9/10/2010,GEFITINIB,ORAL,,11/14/2006,4/14/2007,,,Systemic Therapy,First Line,,Toxicity
+STUDY0001,B,ID0195,,9/10/2010,CARBOPLATIN,INTRAVENOUS,,7/18/2007,11/29/2007,,,Systemic Therapy,Second Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0195,,9/10/2010,BEVACIZUMAB,INTRAVENOUS,,3/24/2008,5/24/2008,,1,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0195,,9/10/2010,CARBOPLATIN,INTRAVENOUS,,7/9/2008,8/26/2008,,6,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0195,,9/10/2010,BEVACIZUMAB,INTRAVENOUS,,3/4/2008,7/4/2008,,2,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0197,,10/21/2010,GEFITINIB,ORAL,,10/8/2007,5/14/2008,,3,Systemic Therapy,First Line,Not applicable,Progresssion following Completion of Therapy
+STUDY0001,B,ID0197,,10/21/2010,GEFITINIB,ORAL,,11/21/2006,2/10/2008,,3,Other,First Line,Not applicable,Progresssion following Completion of Therapy
+STUDY0001,B,ID0197,,10/21/2010,GEFITINIB,ORAL,,3/9/2007,7/1/2007,,1,Systemic Therapy,First Line,Not applicable,Progresssion following Completion of Therapy
+STUDY0001,B,ID0197,,10/21/2010,CISPLATIN,INTRAVENOUS,,11/22/2008,12/13/2008,,3,Cytotoxic Chemotherapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0197,,10/21/2010,CARBOPLATIN,INTRAVENOUS,,11/9/2008,12/3/2008,,1,Systemic Therapy,Second Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0197,,10/21/2010,CISPLATIN,INTRAVENOUS,,11/2/2008,11/24/2008,,4,Cytotoxic Chemotherapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0197,,10/21/2010,BEVACIZUMAB,INTRAVENOUS,,8/7/2009,2/6/2010,,3,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0197,,10/21/2010,ANTINEOPLASTIC AGENTS,INTRAVENOUS,,8/6/2009,12/15/2009,,51,Systemic Therapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0197,,10/21/2010,VINORELBINE,INTRAVENOUS,,3/25/2010,6/26/2010,,5,Cytotoxic Chemotherapy,>Third Line,Stable disease,
+STUDY0001,B,ID0197,,10/21/2010,VINORELBINE,INTRAVENOUS,,6/23/2010,7/16/2010,,3,Cytotoxic Chemotherapy,>Third Line,Not applicable,
+STUDY0001,B,ID0197,,10/21/2010,PEMETREXED,INTRAVENOUS,,5/13/2010,8/6/2010,,9,Systemic Therapy,>Third Line,Progression,Toxicity
+STUDY0001,B,ID0199,,1/17/2011,GEMCITABINE,INTRAVENOUS,,3/11/2007,4/26/2007,,6,Systemic Therapy,First Line,Not applicable,Toxicity
+STUDY0001,B,ID0199,,1/17/2011,GEFITINIB,ORAL,,2/15/2007,3/19/2007,,,Other,First Line,Progression,Toxicity
+STUDY0001,B,ID0199,,1/17/2011,CISPLATIN,INTRAVENOUS,,1/21/2008,4/21/2008,,6,Systemic Therapy,Second Line,Progression,Progresssion following Completion of Therapy
+STUDY0001,B,ID0199,,1/17/2011,CARBOPLATIN,INTRAVENOUS,,4/26/2008,6/7/2008,,4,Systemic Therapy,Second Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0199,,1/17/2011,CARBOPLATIN,INTRAVENOUS,,12/13/2007,5/25/2008,,4,Systemic Therapy,Second Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0199,,1/17/2011,ANTINEOPLASTIC AGENTS,INTRAVENOUS,,6/17/2009,10/24/2009,,3,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy
+STUDY0001,B,ID0199,,1/17/2011,PEMETREXED,INTRAVENOUS,,5/23/2010,6/14/2010,,,Other,>Third Line,Stable disease,Toxicity
+STUDY0001,B,ID0199,,1/17/2011,GEMCITABINE,INTRAVENOUS,,5/24/2010,6/26/2010,,2,Cytotoxic Chemotherapy,>Third Line,Stable disease,Toxicity
+STUDY0001,B,ID0199,,1/17/2011,GEMCITABINE,INTRAVENOUS,,3/29/2010,8/18/2010,,3,Systemic Therapy,>Third Line,Stable disease,Toxicity
+STUDY0001,B,ID0200,,11/9/2010,GEMCITABINE HYDROCHLORIDE,INTRAVENOUS,,3/4/2007,6/4/2007,,3,Cytotoxic Chemotherapy,First Line,Progression,Toxicity
+STUDY0001,B,ID0200,,11/9/2010,GEFITINIB,ORAL,,7/30/2007,10/3/2007,,,Other,First Line,Not applicable,Toxicity
+STUDY0001,B,ID0200,,11/9/2010,DOCETAXEL,INTRAVENOUS,,7/21/2008,4/4/2009,,7,Cytotoxic Chemotherapy,Second Line,Partial response,Progresssion following Completion of Therapy
+STUDY0001,B,ID0200,,11/9/2010,DOCETAXEL,INTRAVENOUS,,3/28/2008,3/27/2009,,7,Cytotoxic Chemotherapy,Second Line,Partial response,Progresssion following Completion of Therapy
+STUDY0001,B,ID0200,,11/9/2010,ANTINEOPLASTIC AGENTS,INTRAVENOUS,,8/16/2010,9/27/2010,,2,Cytotoxic Chemotherapy,Third Line,Stable disease,Progression on Therapy

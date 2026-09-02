@@ -1,0 +1,845 @@
+STUDY,SUBJECT,PART,IP,SD_SDAT,SD_STIM,SD_EDAT,SDACN,SDACNREA,S_DOSCHR,SDDOSE
+STUDY0001,ID0001,B,Drug\Placebo,11/10/2014,13:10,11/20/2014,98,,,30
+STUDY0001,ID0001,B,Drug\Placebo,12/7/2015,20:00,,3,99,progressive disease,30
+STUDY0001,ID0002,B,Drug\Placebo,11/10/2014,13:15,11/20/2014,98,,,20
+STUDY0001,ID0002,B,Drug\Placebo,12/7/2015,20:00,,3,99,progressive disease,20
+STUDY0001,ID0002,B,Drug\Placebo,12/7/2016,20:00,,3,99,progressive disease,0
+STUDY0001,ID0003,B,Drug\Placebo,11/10/2014,12:10,11/20/2014,98,,,70
+STUDY0001,ID0003,B,Drug\Placebo,12/7/2016,20:00,,3,99,progressive disease,70
+STUDY0001,ID0004,B,Drug\Placebo,3/29/2015,15:55,4/8/2015,98,,,50
+STUDY0001,ID0004,B,Drug\Placebo,12/6/2015,,12/16/2015,3,99,"Discontinued IP due to progression, however, this was not confirmed by RECIST - subjective progression",0
+STUDY0001,ID0005,B,Drug\Placebo,1/24/2015,16:40,2/3/2015,98,,,40
+STUDY0001,ID0005,B,Drug\Placebo,5/31/2015,8:00,6/10/2015,3,99,progression of disease,50
+STUDY0001,ID0006,B,Drug\Placebo,11/9/2014,9:20,11/19/2014,98,,,30
+STUDY0001,ID0006,B,Drug\Placebo,12/2/2014,9:20,12/12/2014,3,1,,40
+STUDY0001,ID0007,B,Drug\Placebo,12/21/2014,14:00,12/31/2014,98,,,30
+STUDY0001,ID0008,B,Drug\Placebo,12/21/2014,14:00,12/31/2014,98,,,30
+STUDY0001,ID0009,B,Drug\Placebo,11/18/2014,12:25,11/28/2014,98,,,40
+STUDY0001,ID0009,B,Drug\Placebo,12/2/2014,12:10,12/12/2014,3,1,,0
+STUDY0001,ID0009,B,Drug\Placebo,12/9/2014,12:10,12/19/2014,0,,,40
+STUDY0001,ID0009,B,Drug\Placebo,4/14/2015,10:40,4/24/2015,3,1,,50
+STUDY0001,ID0009,B,Drug\Placebo,4/21/2015,12:25,5/1/2015,0,,,40
+STUDY0001,ID0009,B,Drug\Placebo,9/27/2015,8:00,9/28/2015,3,99,the patient did not have IP-tablets,60
+STUDY0001,ID0009,B,Drug\Placebo,9/28/2015,11:50,,0,,,40
+STUDY0001,ID0010,B,Drug\Placebo,11/4/2014,10:55,11/14/2014,98,,,20
+STUDY0001,ID0011,B,Drug\Placebo,11/4/2014,10:55,11/14/2014,98,,,20
+STUDY0001,ID0011,B,Drug\Placebo,2/15/2015,9:00,2/25/2015,3,1,,100
+STUDY0001,ID0011,B,Drug\Placebo,2/23/2015,9:55,3/5/2015,0,,,20
+STUDY0001,ID0011,B,Drug\Placebo,8/19/2015,8:00,8/29/2015,3,1,,0
+STUDY0001,ID0011,B,Drug\Placebo,8/25/2015,9:00,9/4/2015,0,,,20
+STUDY0001,ID0012,B,Drug\Placebo,10/12/2014,8:55,10/22/2014,98,,,30
+STUDY0001,ID0012,B,Drug\Placebo,11/29/2014,11:00,,3,99,disease progression,10
+STUDY0001,ID0013,B,Drug\Placebo,10/12/2014,8:55,10/22/2014,98,,,30
+STUDY0001,ID0013,B,Drug\Placebo,11/29/2014,11:00,,3,99,disease progression,10
+STUDY0001,ID0014,B,Drug\Placebo,3/1/2015,10:20,3/11/2015,98,,,40
+STUDY0001,ID0014,B,Drug\Placebo,3/15/2015,8:00,3/25/2015,3,99,Voluntary discontinuation by subject,50
+STUDY0001,ID0015,B,Drug\Placebo,4/12/2015,11:55,,98,,,10
+STUDY0001,ID0015,B,Drug\Placebo,5/9/2015,,5/19/2015,3,1,,0
+STUDY0001,ID0015,B,Drug\Placebo,5/18/2015,7:50,,0,,,10
+STUDY0001,ID0015,B,Drug\Placebo,9/6/2015,,9/16/2015,3,1,,0
+STUDY0001,ID0015,B,Drug\Placebo,9/21/2015,,,0,,,10
+STUDY0001,ID0016,B,Drug\Placebo,3/8/2015,10:30,,98,,,20
+STUDY0001,ID0018,B,Drug\Placebo,2/17/2015,15:25,,98,,,20
+STUDY0001,ID0018,B,Drug\Placebo,2/9/2016,,2/19/2016,3,99,progression,0
+STUDY0001,ID0020,B,Drug\Placebo,12/31/2014,11:00,,98,,,30
+STUDY0001,ID0020,B,Drug\Placebo,6/17/2015,11:00,6/27/2015,3,99,disease progression,0
+STUDY0001,ID0021,B,Drug\Placebo,11/8/2014,13:50,,98,,,30
+STUDY0001,ID0021,B,Drug\Placebo,2/27/2015,8:00,,3,99,progression of disease,0
+STUDY0001,ID0022,B,Drug\Placebo,3/3/2015,16:30,3/13/2015,98,,,60
+STUDY0001,ID0022,B,Drug\Placebo,6/15/2015,20:00,,2,1,,50
+STUDY0001,ID0022,B,Drug\Placebo,9/28/2015,8:00,10/8/2015,3,1,,0
+STUDY0001,ID0022,B,Drug\Placebo,10/13/2015,20:00,,0,,,60
+STUDY0001,ID0022,B,Drug\Placebo,11/17/2015,8:00,11/27/2015,3,99,condition under investigation worsened,0
+STUDY0001,ID0023,B,Drug\Placebo,3/3/2015,16:30,3/13/2015,98,,,60
+STUDY0001,ID0023,B,Drug\Placebo,6/15/2015,20:00,,2,1,,50
+STUDY0001,ID0023,B,Drug\Placebo,9/28/2015,8:00,10/8/2015,3,1,,0
+STUDY0001,ID0023,B,Drug\Placebo,10/13/2015,20:00,,0,,,60
+STUDY0001,ID0023,B,Drug\Placebo,11/17/2015,8:00,11/27/2015,3,99,condition under investigation worsened,0
+STUDY0001,ID0023,B,Drug\Placebo,6/1/2015,8:00,6/11/2015,3,1,,0
+STUDY0001,ID0023,B,Drug\Placebo,3/11/2015,20:00,3/21/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0023,B,Drug\Placebo,3/12/2015,8:00,3/12/2015,0,,,60
+STUDY0001,ID0023,B,Drug\Placebo,3/18/2015,20:00,3/28/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,50
+STUDY0001,ID0023,B,Drug\Placebo,3/19/2015,8:00,3/29/2015,0,,,60
+STUDY0001,ID0023,B,Drug\Placebo,3/31/2015,20:00,4/10/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0023,B,Drug\Placebo,4/1/2015,8:00,,0,,,60
+STUDY0001,ID0023,B,Drug\Placebo,4/7/2015,20:00,4/17/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0023,B,Drug\Placebo,4/8/2015,8:00,4/18/2015,0,,,60
+STUDY0001,ID0023,B,Drug\Placebo,4/19/2015,20:00,4/24/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,120
+STUDY0001,ID0023,B,Drug\Placebo,4/15/2015,8:00,4/25/2015,0,,,60
+STUDY0001,ID0023,B,Drug\Placebo,4/25/2015,20:00,8/29/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0023,B,Drug\Placebo,8/20/2015,8:00,,0,,,60
+STUDY0001,ID0023,B,Drug\Placebo,8/25/2015,20:11,9/4/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0023,B,Drug\Placebo,8/26/2015,8:00,,0,,,60
+STUDY0001,ID0023,B,Drug\Placebo,9/1/2015,20:00,9/11/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0023,B,Drug\Placebo,9/2/2015,8:00,,0,,,60
+STUDY0001,ID0023,B,Drug\Placebo,9/15/2015,20:00,9/25/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between morning and evening dose.,0
+STUDY0001,ID0023,B,Drug\Placebo,9/16/2015,8:00,,0,,,60
+STUDY0001,ID0023,B,Drug\Placebo,9/21/2015,20:00,10/1/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between morning and evening dose.,0
+STUDY0001,ID0023,B,Drug\Placebo,9/22/2015,8:00,,0,,,60
+STUDY0001,ID0023,B,Drug\Placebo,9/29/2015,20:00,,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between morning and evening dose.,0
+STUDY0001,ID0023,B,Drug\Placebo,9/30/2015,8:00,10/10/2015,0,,,60
+STUDY0001,ID0023,B,Drug\Placebo,10/14/2015,20:00,10/24/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between morning and evening dose.,60
+STUDY0001,ID0023,B,Drug\Placebo,10/25/2015,8:00,10/25/2015,0,,,60
+STUDY0001,ID0023,B,Drug\Placebo,10/20/2015,20:00,10/30/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between morning and evening dose.,0
+STUDY0001,ID0023,B,Drug\Placebo,10/21/2015,8:00,,0,,,60
+STUDY0001,ID0023,B,Drug\Placebo,11/3/2015,20:00,11/13/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between morning and evening dose.,0
+STUDY0001,ID0023,B,Drug\Placebo,11/14/2015,8:00,11/14/2015,0,,,60
+STUDY0001,ID0023,B,Drug\Placebo,6/21/2015,20:00,7/1/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0023,B,Drug\Placebo,6/22/2015,8:00,,0,,,60
+STUDY0001,ID0023,B,Drug\Placebo,6/30/2015,20:00,7/10/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0024,B,Drug\Placebo,7/1/2015,8:00,,0,,,60
+STUDY0001,ID0024,B,Drug\Placebo,7/7/2015,20:00,7/17/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0024,B,Drug\Placebo,7/8/2015,8:00,7/18/2015,0,,,60
+STUDY0001,ID0025,B,Drug\Placebo,3/4/2015,20:00,3/14/2015,98,,,50
+STUDY0001,ID0025,B,Drug\Placebo,1/26/2016,20:00,2/5/2016,3,99,radiotherapy,0
+STUDY0001,ID0026,B,Drug\Placebo,9/15/2014,12:00,9/25/2014,98,,,30
+STUDY0001,ID0027,B,Drug\Placebo,9/21/2014,14:12,10/1/2014,98,,,10
+STUDY0001,ID0027,B,Drug\Placebo,8/10/2015,9:00,,3,99,Patient forgot to take the medication,0
+STUDY0001,ID0027,B,Drug\Placebo,8/10/2015,21:00,,0,,,10
+STUDY0001,ID0027,B,Drug\Placebo,10/11/2015,9:00,10/21/2015,3,99,dose not taken due to patient mistake,0
+STUDY0001,ID0027,B,Drug\Placebo,10/12/2015,9:00,,0,,,10
+STUDY0001,ID0028,B,Drug\Placebo,1/6/2015,15:35,,98,,,20
+STUDY0001,ID0028,B,Drug\Placebo,3/14/2015,20:00,3/24/2015,3,1,,0
+STUDY0001,ID0028,B,Drug\Placebo,3/31/2015,11:20,,2,1,,10
+STUDY0001,ID0028,B,Drug\Placebo,5/12/2015,9:00,5/22/2015,3,99,DISEASE PROGRESSION,0
+STUDY0001,ID0029,B,Drug\Placebo,9/21/2014,14:12,10/1/2014,98,,,10
+STUDY0001,ID0029,B,Drug\Placebo,8/10/2015,9:00,,3,99,Patient forgot to take the medication,0
+STUDY0001,ID0030,B,Drug\Placebo,8/10/2015,21:00,,0,,,10
+STUDY0001,ID0030,B,Drug\Placebo,10/11/2015,9:00,10/21/2015,3,99,dose not taken due to patient mistake,0
+STUDY0001,ID0031,B,Drug\Placebo,10/12/2015,9:00,,0,,,10
+STUDY0001,ID0032,B,Drug\Placebo,3/17/2015,21:00,,98,,,20
+STUDY0001,ID0033,B,Drug\Placebo,3/24/2015,9:30,,98,,,40
+STUDY0001,ID0033,B,Drug\Placebo,6/16/2015,9:30,6/26/2015,3,99,Condition Under Investigation Worsened.,0
+STUDY0001,ID0033,B,Drug\Placebo,5/22/2015,10:00,6/1/2015,3,99,patient forgot to take 2015-May-22 morning dose,0
+STUDY0001,ID0033,B,Drug\Placebo,5/22/2015,22:00,6/1/2015,0,,,40
+STUDY0001,ID0034,B,Drug\Placebo,2/21/2015,13:15,,98,,,10
+STUDY0001,ID0034,B,Drug\Placebo,6/14/2015,0:01,6/24/2015,3,99,Progressive disease,0
+STUDY0001,ID0036,B,Drug\Placebo,3/24/2015,9:30,,98,,,40
+STUDY0001,ID0036,B,Drug\Placebo,6/16/2015,9:30,6/26/2015,3,99,Condition Under Investigation Worsened.,0
+STUDY0001,ID0037,B,Drug\Placebo,5/22/2015,10:00,6/1/2015,3,99,patient forgot to take 2015-May-22 morning dose,0
+STUDY0001,ID0037,B,Drug\Placebo,5/22/2015,22:00,6/1/2015,0,,,40
+STUDY0001,ID0035,B,Drug\Placebo,1/6/2015,12:37,,98,,,20
+STUDY0001,ID0035,B,Drug\Placebo,1/20/2015,0:00,1/30/2015,3,1,,0
+STUDY0001,ID0038,B,Drug\Placebo,2/3/2015,15:00,,2,1,,10
+STUDY0001,ID0038,B,Drug\Placebo,2/5/2015,12:00,2/15/2015,3,1,,0
+STUDY0001,ID0038,B,Drug\Placebo,2/10/2015,14:25,,0,,,20
+STUDY0001,ID0038,B,Drug\Placebo,2/17/2015,10:00,2/27/2015,3,1,,0
+STUDY0001,ID0039,B,Drug\Placebo,3/22/2015,10:15,4/1/2015,98,,,40
+STUDY0001,ID0039,B,Drug\Placebo,4/28/2015,9:25,5/8/2015,3,99,Allergic reaction to paclitaxel and investigators' decision to continue with another chenotherapy.,10
+STUDY0001,ID0040,B,Drug\Placebo,3/23/2015,15:20,4/2/2015,98,,,50
+STUDY0001,ID0040,B,Drug\Placebo,6/15/2015,8:00,6/25/2015,3,1,,0
+STUDY0001,ID0042,B,Drug\Placebo,10/8/2014,13:05,10/28/2014,98,,,10
+STUDY0001,ID0042,B,Drug\Placebo,2/17/2015,21:00,3/9/2015,3,99,Patient forgot to take the medication,0
+STUDY0001,ID0041,B,Drug\Placebo,2/18/2015,9:00,3/10/2015,0,,,10
+STUDY0001,ID0041,B,Drug\Placebo,5/5/2015,21:00,5/25/2015,3,99,progressive disease,0
+STUDY0001,ID0043,B,Drug\Placebo,3/24/2015,14:05,,98,,,10
+STUDY0001,ID0043,B,Drug\Placebo,4/4/2015,,4/24/2015,3,1,,0
+STUDY0001,ID0043,B,Drug\Placebo,4/12/2015,21:00,5/2/2015,0,99,re-start medication,10
+STUDY0001,ID0043,B,Drug\Placebo,2/16/2016,21:00,,3,1,,0
+STUDY0001,ID0043,B,Drug\Placebo,2/19/2016,21:00,3/10/2016,0,99,re-start medication,10
+STUDY0001,ID0045,B,Drug\Placebo,3/15/2015,9:00,3/25/2015,98,,,20
+STUDY0001,ID0045,B,Drug\Placebo,3/25/2015,9:00,4/4/2015,3,1,,0
+STUDY0001,ID0045,B,Drug\Placebo,4/7/2015,21:15,4/17/2015,2,1,,10
+STUDY0001,ID0045,B,Drug\Placebo,4/21/2015,8:00,5/1/2015,3,1,,0
+STUDY0001,ID0045,B,Drug\Placebo,5/10/2015,13:30,5/20/2015,2,1,,10
+STUDY0001,ID0046,B,Drug\Placebo,12/8/2014,15:12,12/13/2014,98,,,60
+STUDY0001,ID0046,B,Drug\Placebo,5/23/2015,8:30,5/28/2015,3,10,,0
+STUDY0001,ID0046,B,Drug\Placebo,3/2/2015,20:30,3/7/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between morning and evening dose.,0
+STUDY0001,ID0046,B,Drug\Placebo,3/3/2015,8:30,3/8/2015,0,,,60
+STUDY0001,ID0046,B,Drug\Placebo,3/10/2015,20:30,3/15/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between morning and evening dose.,0
+STUDY0001,ID0046,B,Drug\Placebo,3/11/2015,8:30,3/16/2015,0,,,60
+STUDY0001,ID0046,B,Drug\Placebo,3/16/2015,20:30,3/21/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between morning and evening dose.,0
+STUDY0001,ID0046,B,Drug\Placebo,3/17/2015,8:30,3/22/2015,0,,,60
+STUDY0001,ID0046,B,Drug\Placebo,4/6/2015,20:30,4/11/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between morning and evening dose.,0
+STUDY0001,ID0046,B,Drug\Placebo,4/7/2015,8:30,4/12/2015,0,,,60
+STUDY0001,ID0046,B,Drug\Placebo,1/5/2015,20:30,1/10/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0046,B,Drug\Placebo,1/6/2015,8:30,1/11/2015,0,,,60
+STUDY0001,ID0046,B,Drug\Placebo,1/12/2015,20:30,1/17/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0046,B,Drug\Placebo,1/13/2015,8:30,1/18/2015,0,,,60
+STUDY0001,ID0046,B,Drug\Placebo,1/19/2015,20:30,1/24/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0046,B,Drug\Placebo,1/20/2015,8:30,1/25/2015,0,,,60
+STUDY0001,ID0046,B,Drug\Placebo,2/1/2015,20:30,2/6/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0046,B,Drug\Placebo,2/2/2015,8:30,2/7/2015,0,,,60
+STUDY0001,ID0046,B,Drug\Placebo,2/9/2015,20:30,2/14/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0046,B,Drug\Placebo,2/10/2015,8:30,2/15/2015,0,,,60
+STUDY0001,ID0046,B,Drug\Placebo,2/16/2015,20:30,2/21/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0046,B,Drug\Placebo,2/17/2015,8:30,2/22/2015,0,,,60
+STUDY0001,ID0047,B,Drug\Placebo,1/3/2015,12:15,1/13/2015,98,,,30
+STUDY0001,ID0047,B,Drug\Placebo,10/24/2015,8:00,11/3/2015,3,99,disease progression,0
+STUDY0001,ID0051,B,Drug\Placebo,12/28/2014,14:55,1/7/2015,98,,,50
+STUDY0001,ID0052,B,Drug\Placebo,12/29/2014,14:00,1/3/2015,98,,,70
+STUDY0001,ID0052,B,Drug\Placebo,8/10/2015,9:00,8/15/2015,3,1,,0
+STUDY0001,ID0052,B,Drug\Placebo,8/17/2015,9:30,8/22/2015,0,,,70
+STUDY0001,ID0052,B,Drug\Placebo,10/11/2015,10:00,10/16/2015,3,1,,0
+STUDY0001,ID0052,B,Drug\Placebo,10/19/2015,10:00,10/24/2015,0,,,70
+STUDY0001,ID0052,B,Drug\Placebo,3/24/2016,9:00,3/29/2016,3,99,Patient forgot it,0
+STUDY0001,ID0052,B,Drug\Placebo,3/26/2016,9:00,3/31/2016,0,,,70
+STUDY0001,ID0052,B,Drug\Placebo,6/10/2016,21:00,6/15/2016,3,1,,0
+STUDY0001,ID0052,B,Drug\Placebo,7/4/2016,21:00,7/9/2016,0,,,70
+STUDY0001,ID0052,B,Drug\Placebo,8/11/2016,9:00,8/16/2016,3,99,Patiente Decision.,0
+STUDY0001,ID0052,B,Drug\Placebo,8/15/2016,9:00,8/20/2016,3,99,Disease Progression,0
+STUDY0001,ID0054,B,Drug\Placebo,3/9/2015,11:20,3/19/2015,98,,,40
+STUDY0001,ID0055,B,Drug\Placebo,2/16/2015,12:05,2/26/2015,98,,,30
+STUDY0001,ID0058,B,Drug\Placebo,4/19/2015,15:15,4/29/2015,98,,,60
+STUDY0001,ID0058,B,Drug\Placebo,11/23/2015,9:30,12/3/2015,3,1,,0
+STUDY0001,ID0058,B,Drug\Placebo,12/7/2015,9:30,12/17/2015,0,,,60
+STUDY0001,ID0058,B,Drug\Placebo,10/4/2015,21:30,10/14/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0058,B,Drug\Placebo,10/5/2015,9:30,10/15/2015,0,,,60
+STUDY0001,ID0058,B,Drug\Placebo,10/11/2015,21:30,10/21/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0058,B,Drug\Placebo,10/12/2015,9:30,10/22/2015,0,,,60
+STUDY0001,ID0058,B,Drug\Placebo,10/18/2015,21:30,10/28/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0058,B,Drug\Placebo,10/19/2015,9:30,10/29/2015,0,,,60
+STUDY0001,ID0058,B,Drug\Placebo,11/1/2015,21:30,11/11/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0058,B,Drug\Placebo,11/2/2015,9:30,11/12/2015,0,,,60
+STUDY0001,ID0058,B,Drug\Placebo,11/16/2015,21:30,11/26/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0058,B,Drug\Placebo,11/17/2015,9:30,11/27/2015,0,,,60
+STUDY0001,ID0058,B,Drug\Placebo,11/29/2015,21:30,12/9/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0058,B,Drug\Placebo,11/30/2015,9:30,12/10/2015,0,,,60
+STUDY0001,ID0058,B,Drug\Placebo,12/6/2015,21:30,12/16/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0058,B,Drug\Placebo,12/7/2015,9:30,12/17/2015,0,,,60
+STUDY0001,ID0058,B,Drug\Placebo,12/13/2015,21:30,12/23/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0058,B,Drug\Placebo,12/14/2015,9:30,12/24/2015,0,,,60
+STUDY0001,ID0059,B,Drug\Placebo,1/21/2015,17:05,1/31/2015,98,,,60
+STUDY0001,ID0059,B,Drug\Placebo,2/23/2016,18:00,3/4/2016,3,99,condition under investigation worsed,0
+STUDY0001,ID0059,B,Drug\Placebo,1/28/2015,18:00,2/7/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0059,B,Drug\Placebo,1/29/2015,6:00,2/8/2015,0,,,60
+STUDY0001,ID0059,B,Drug\Placebo,2/3/2015,18:00,2/13/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0059,B,Drug\Placebo,2/4/2015,6:00,2/14/2015,0,,,60
+STUDY0001,ID0059,B,Drug\Placebo,2/17/2015,18:00,2/27/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0059,B,Drug\Placebo,2/18/2015,6:00,2/28/2015,0,,,60
+STUDY0001,ID0059,B,Drug\Placebo,2/24/2015,18:00,3/6/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0059,B,Drug\Placebo,2/25/2015,6:00,3/7/2015,0,,,60
+STUDY0001,ID0059,B,Drug\Placebo,3/3/2015,18:00,3/13/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0059,B,Drug\Placebo,3/4/2015,6:00,3/14/2015,0,,,60
+STUDY0001,ID0059,B,Drug\Placebo,3/17/2015,18:00,3/27/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0059,B,Drug\Placebo,3/18/2015,6:00,3/28/2015,0,,,60
+STUDY0001,ID0059,B,Drug\Placebo,3/24/2015,18:00,4/3/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0059,B,Drug\Placebo,3/25/2015,6:00,4/4/2015,0,,,60
+STUDY0001,ID0059,B,Drug\Placebo,4/1/2015,18:00,4/11/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0059,B,Drug\Placebo,4/2/2015,6:00,4/12/2015,0,,,60
+STUDY0001,ID0059,B,Drug\Placebo,4/15/2015,18:00,4/25/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0059,B,Drug\Placebo,4/16/2015,6:00,4/26/2015,0,,,60
+STUDY0001,ID0059,B,Drug\Placebo,4/20/2015,18:00,4/30/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0059,B,Drug\Placebo,4/21/2015,6:00,5/1/2015,0,,,60
+STUDY0001,ID0059,B,Drug\Placebo,5/6/2015,18:00,5/16/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0059,B,Drug\Placebo,5/7/2015,6:00,5/17/2015,0,,,60
+STUDY0001,ID0059,B,Drug\Placebo,5/27/2015,18:00,6/6/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0059,B,Drug\Placebo,5/28/2015,6:00,6/7/2015,0,,,60
+STUDY0001,ID0059,B,Drug\Placebo,6/3/2015,18:00,6/13/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0059,B,Drug\Placebo,6/4/2015,6:00,6/14/2015,0,,,60
+STUDY0001,ID0059,B,Drug\Placebo,6/17/2015,18:00,6/27/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0059,B,Drug\Placebo,6/18/2015,6:00,6/28/2015,0,,,60
+STUDY0001,ID0059,B,Drug\Placebo,6/22/2015,18:00,7/2/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0059,B,Drug\Placebo,6/23/2015,6:00,7/3/2015,0,,,60
+STUDY0001,ID0059,B,Drug\Placebo,7/1/2015,18:00,7/11/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0059,B,Drug\Placebo,7/2/2015,6:00,7/12/2015,0,,,60
+STUDY0001,ID0059,B,Drug\Placebo,7/15/2015,18:00,7/25/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0059,B,Drug\Placebo,7/16/2015,6:00,7/26/2015,0,,,60
+STUDY0001,ID0059,B,Drug\Placebo,7/22/2015,18:00,8/1/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0059,B,Drug\Placebo,7/23/2015,6:00,8/2/2015,0,,,60
+STUDY0001,ID0059,B,Drug\Placebo,7/29/2015,18:00,8/8/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0059,B,Drug\Placebo,7/30/2015,6:00,8/9/2015,0,,,60
+STUDY0001,ID0059,B,Drug\Placebo,8/12/2015,18:00,8/22/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0059,B,Drug\Placebo,8/13/2015,6:00,8/23/2015,0,,,60
+STUDY0001,ID0059,B,Drug\Placebo,8/19/2015,18:00,8/29/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0059,B,Drug\Placebo,8/20/2015,6:00,8/30/2015,0,,,60
+STUDY0001,ID0059,B,Drug\Placebo,8/26/2015,18:00,9/5/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0059,B,Drug\Placebo,8/27/2015,6:00,9/6/2015,0,,,60
+STUDY0001,ID0059,B,Drug\Placebo,9/9/2015,18:00,9/19/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0059,B,Drug\Placebo,9/10/2015,6:00,9/20/2015,0,,,60
+STUDY0001,ID0059,B,Drug\Placebo,9/16/2015,18:00,9/26/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0059,B,Drug\Placebo,9/17/2015,6:00,9/27/2015,0,,,60
+STUDY0001,ID0059,B,Drug\Placebo,9/23/2015,18:00,10/3/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0059,B,Drug\Placebo,9/24/2015,6:00,10/4/2015,0,,,60
+STUDY0001,ID0059,B,Drug\Placebo,10/7/2015,18:00,10/17/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0059,B,Drug\Placebo,10/8/2015,6:00,10/18/2015,0,,,60
+STUDY0001,ID0059,B,Drug\Placebo,10/14/2015,18:00,10/24/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0059,B,Drug\Placebo,10/15/2015,6:00,10/25/2015,0,,,60
+STUDY0001,ID0059,B,Drug\Placebo,10/21/2015,18:00,10/31/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0059,B,Drug\Placebo,10/22/2015,6:00,11/1/2015,0,,,60
+STUDY0001,ID0059,B,Drug\Placebo,11/4/2015,18:00,11/14/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0059,B,Drug\Placebo,11/5/2015,6:00,11/15/2015,0,,,60
+STUDY0001,ID0059,B,Drug\Placebo,11/11/2015,18:00,11/21/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0059,B,Drug\Placebo,11/12/2015,6:00,11/22/2015,0,,,60
+STUDY0001,ID0059,B,Drug\Placebo,11/18/2015,18:00,11/28/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0059,B,Drug\Placebo,11/19/2015,6:00,11/29/2015,0,,,60
+STUDY0001,ID0059,B,Drug\Placebo,12/8/2015,18:00,12/18/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0059,B,Drug\Placebo,12/9/2015,6:00,12/19/2015,0,,,60
+STUDY0001,ID0059,B,Drug\Placebo,12/16/2015,18:00,12/26/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0059,B,Drug\Placebo,12/17/2015,6:00,12/27/2015,0,,,60
+STUDY0001,ID0059,B,Drug\Placebo,12/22/2015,18:00,1/1/2016,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0059,B,Drug\Placebo,12/23/2015,6:00,1/2/2016,0,,,60
+STUDY0001,ID0059,B,Drug\Placebo,1/5/2016,18:00,1/15/2016,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0059,B,Drug\Placebo,1/6/2016,6:00,1/16/2016,0,,,60
+STUDY0001,ID0059,B,Drug\Placebo,1/13/2016,18:00,1/23/2016,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0059,B,Drug\Placebo,1/14/2016,6:00,1/24/2016,0,,,60
+STUDY0001,ID0059,B,Drug\Placebo,1/27/2016,18:00,2/6/2016,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0059,B,Drug\Placebo,1/28/2016,6:00,2/7/2016,0,,,60
+STUDY0001,ID0059,B,Drug\Placebo,2/9/2016,18:00,2/19/2016,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between morning and evening dose,0
+STUDY0001,ID0059,B,Drug\Placebo,2/10/2016,6:00,2/20/2016,0,,,60
+STUDY0001,ID0059,B,Drug\Placebo,2/17/2016,18:00,2/27/2016,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between morning and evening dose,0
+STUDY0001,ID0059,B,Drug\Placebo,2/18/2016,6:00,2/28/2016,0,,,60
+STUDY0001,ID0060,B,Drug\Placebo,10/26/2014,14:20,11/5/2014,98,,,30
+STUDY0001,ID0061,B,Drug\Placebo,2/7/2015,14:10,2/17/2015,98,,,40
+STUDY0001,ID0061,B,Drug\Placebo,6/17/2015,9:30,6/27/2015,3,10,,0
+STUDY0001,ID0061,B,Drug\Placebo,6/18/2015,,6/28/2015,0,,,40
+STUDY0001,ID0061,B,Drug\Placebo,6/24/2015,9:30,7/4/2015,3,99,chemical pleurodesis,0
+STUDY0001,ID0061,B,Drug\Placebo,6/25/2015,,7/5/2015,0,,,40
+STUDY0001,ID0061,B,Drug\Placebo,9/24/2015,10:05,10/4/2015,3,99,technical reasons,0
+STUDY0001,ID0061,B,Drug\Placebo,9/28/2015,12:20,10/8/2015,0,,,40
+STUDY0001,ID0061,B,Drug\Placebo,10/6/2015,9:00,10/16/2015,3,1,,0
+STUDY0001,ID0062,B,Drug\Placebo,12/9/2014,16:30,12/14/2014,98,,,60
+STUDY0001,ID0062,B,Drug\Placebo,3/30/2015,21:00,4/4/2015,3,1,,0
+STUDY0001,ID0062,B,Drug\Placebo,4/13/2015,22:00,4/18/2015,0,,,60
+STUDY0001,ID0062,B,Drug\Placebo,6/29/2015,21:00,7/4/2015,3,99,clinical disease progression,0
+STUDY0001,ID0062,B,Drug\Placebo,1/6/2015,21:00,1/11/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between morning and evening dose.,0
+STUDY0001,ID0062,B,Drug\Placebo,1/7/2015,9:00,1/12/2015,0,,,60
+STUDY0001,ID0062,B,Drug\Placebo,1/13/2015,21:00,1/18/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between morning and evening dose.,0
+STUDY0001,ID0062,B,Drug\Placebo,1/14/2015,9:00,1/19/2015,0,,,60
+STUDY0001,ID0062,B,Drug\Placebo,1/20/2015,21:00,1/25/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between morning and evening dose.,0
+STUDY0001,ID0062,B,Drug\Placebo,1/21/2015,9:00,1/26/2015,0,,,60
+STUDY0001,ID0062,B,Drug\Placebo,2/3/2015,21:00,2/8/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between morning and evening dose.,0
+STUDY0001,ID0062,B,Drug\Placebo,2/4/2015,9:00,2/9/2015,0,,,60
+STUDY0001,ID0062,B,Drug\Placebo,2/11/2015,21:00,2/16/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between morning and evening dose.,0
+STUDY0001,ID0062,B,Drug\Placebo,2/12/2015,9:00,2/17/2015,0,,,60
+STUDY0001,ID0062,B,Drug\Placebo,2/17/2015,21:00,2/22/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between morning and evening dose.,0
+STUDY0001,ID0062,B,Drug\Placebo,2/18/2015,9:00,2/23/2015,0,,,60
+STUDY0001,ID0062,B,Drug\Placebo,4/14/2015,21:00,4/19/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between morning and evening dose.,0
+STUDY0001,ID0062,B,Drug\Placebo,4/15/2015,9:00,4/20/2015,0,,,60
+STUDY0001,ID0062,B,Drug\Placebo,4/28/2015,21:00,5/3/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between morning and evening dose.,0
+STUDY0001,ID0062,B,Drug\Placebo,4/29/2015,9:00,5/4/2015,0,,,60
+STUDY0001,ID0062,B,Drug\Placebo,5/5/2015,21:00,5/10/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between morning and evening dose.,0
+STUDY0001,ID0062,B,Drug\Placebo,5/6/2015,9:00,5/11/2015,0,,,60
+STUDY0001,ID0062,B,Drug\Placebo,5/12/2015,21:00,5/17/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between morning and evening dose.,0
+STUDY0001,ID0062,B,Drug\Placebo,5/13/2015,9:00,5/18/2015,0,,,60
+STUDY0001,ID0062,B,Drug\Placebo,5/25/2015,21:00,5/30/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between morning and evening dose.,0
+STUDY0001,ID0062,B,Drug\Placebo,5/26/2015,9:00,5/31/2015,0,,,60
+STUDY0001,ID0062,B,Drug\Placebo,6/2/2015,21:00,6/7/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between morning and evening dose.,0
+STUDY0001,ID0062,B,Drug\Placebo,6/3/2015,9:00,6/8/2015,0,,,60
+STUDY0001,ID0062,B,Drug\Placebo,6/9/2015,21:00,6/14/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between morning and evening dose.,0
+STUDY0001,ID0062,B,Drug\Placebo,6/10/2015,9:00,6/15/2015,0,,,60
+STUDY0001,ID0062,B,Drug\Placebo,6/22/2015,21:00,6/27/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between morning and evening dose.,0
+STUDY0001,ID0062,B,Drug\Placebo,6/23/2015,9:00,6/28/2015,0,,,60
+STUDY0001,ID0064,B,Drug\Placebo,11/9/2014,10:30,11/19/2014,98,,,20
+STUDY0001,ID0064,B,Drug\Placebo,6/29/2015,10:30,7/9/2015,3,99,Drug permanently interrupted for progression disease,0
+STUDY0001,ID0068,B,Drug\Placebo,11/22/2014,13:10,12/2/2014,98,,,20
+STUDY0001,ID0068,B,Drug\Placebo,11/29/2014,8:00,12/9/2014,3,1,,0
+STUDY0001,ID0073,B,Drug\Placebo,11/11/2014,14:38,11/21/2014,98,,,40
+STUDY0001,ID0073,B,Drug\Placebo,10/27/2015,20:00,11/6/2015,3,99,progessive disease,0
+STUDY0001,ID0075,B,Drug\Placebo,1/25/2015,11:40,2/4/2015,98,,,30
+STUDY0001,ID0075,B,Drug\Placebo,5/16/2015,13:00,5/26/2015,3,99,disease progression,0
+STUDY0001,ID0076,B,Drug\Placebo,8/6/2014,8:30,8/16/2014,98,,,40
+STUDY0001,ID0077,B,Drug\Placebo,12/1/2014,12:10,12/11/2014,98,,,30
+STUDY0001,ID0079,B,Drug\Placebo,2/28/2015,13:21,3/10/2015,98,,,40
+STUDY0001,ID0079,B,Drug\Placebo,7/18/2015,8:00,7/28/2015,3,1,,0
+STUDY0001,ID0079,B,Drug\Placebo,8/1/2015,13:50,8/11/2015,0,,,40
+STUDY0001,ID0080,B,Drug\Placebo,11/18/2014,10:34,11/28/2014,98,,,50
+STUDY0001,ID0080,B,Drug\Placebo,6/29/2015,10:00,7/9/2015,3,99,Disease Progression,0
+STUDY0001,ID0083,B,Drug\Placebo,12/1/2014,10:30,12/11/2014,98,,,30
+STUDY0001,ID0083,B,Drug\Placebo,12/28/2014,20:00,1/7/2015,3,1,,0
+STUDY0001,ID0083,B,Drug\Placebo,1/25/2015,14:00,2/4/2015,0,,,30
+STUDY0001,ID0083,B,Drug\Placebo,5/25/2015,8:00,6/4/2015,3,1,,0
+STUDY0001,ID0083,B,Drug\Placebo,5/31/2015,8:00,6/10/2015,0,,,30
+STUDY0001,ID0083,B,Drug\Placebo,6/22/2015,8:00,7/2/2015,3,1,,0
+STUDY0001,ID0083,B,Drug\Placebo,7/12/2015,13:00,7/22/2015,0,,,30
+STUDY0001,ID0083,B,Drug\Placebo,7/28/2015,13:00,8/7/2015,2,1,,20
+STUDY0001,ID0083,B,Drug\Placebo,8/4/2015,13:00,8/14/2015,3,1,,0
+STUDY0001,ID0083,B,Drug\Placebo,8/16/2015,13:00,8/26/2015,0,,,30
+STUDY0001,ID0083,B,Drug\Placebo,8/19/2015,13:00,8/29/2015,3,1,,0
+STUDY0001,ID0084,B,Drug\Placebo,3/2/2015,9:40,3/12/2015,98,,,40
+STUDY0001,ID0087,B,Drug\Placebo,1/6/2015,12:35,1/16/2015,98,,,20
+STUDY0001,ID0087,B,Drug\Placebo,3/8/2015,,3/18/2015,3,99,patient forgot to take dose,0
+STUDY0001,ID0087,B,Drug\Placebo,3/9/2015,,3/19/2015,0,,,20
+STUDY0001,ID0089,B,Drug\Placebo,9/24/2014,10:25,10/4/2014,98,,,20
+STUDY0001,ID0089,B,Drug\Placebo,11/12/2014,14:20,11/22/2014,3,1,,0
+STUDY0001,ID0089,B,Drug\Placebo,11/25/2014,14:32,12/5/2014,2,1,,10
+STUDY0001,ID0089,B,Drug\Placebo,4/7/2015,,4/17/2015,3,1,,0
+STUDY0001,ID0089,B,Drug\Placebo,5/5/2015,,5/15/2015,0,,,20
+STUDY0001,ID0089,B,Drug\Placebo,10/6/2015,,10/16/2015,3,1,,0
+STUDY0001,ID0089,B,Drug\Placebo,10/27/2015,15:00,11/6/2015,2,99,clinical judgement/patient decision,10
+STUDY0001,ID0089,B,Drug\Placebo,2/9/2016,,2/19/2016,3,99,progression,0
+STUDY0001,ID0090,B,Drug\Placebo,9/10/2014,18:30,9/20/2014,98,,,50
+STUDY0001,ID0090,B,Drug\Placebo,7/5/2015,6:00,7/15/2015,3,10,,0
+STUDY0001,ID0090,B,Drug\Placebo,10/20/2015,14:00,10/30/2015,0,99,restart after surgery,50
+STUDY0001,ID0092,B,Drug\Placebo,10/13/2014,12:00,10/23/2014,98,,,10
+STUDY0001,ID0092,B,Drug\Placebo,3/30/2015,,4/9/2015,3,1,,0
+STUDY0001,ID0093,B,Drug\Placebo,11/12/2014,13:26,11/22/2014,98,,,10
+STUDY0001,ID0093,B,Drug\Placebo,12/17/2014,0:00,12/27/2014,3,1,,0
+STUDY0001,ID0093,B,Drug\Placebo,1/6/2015,9:00,1/16/2015,0,,,10
+STUDY0001,ID0093,B,Drug\Placebo,2/3/2015,0:00,2/13/2015,2,1,,0
+STUDY0001,ID0093,B,Drug\Placebo,3/22/2015,0:00,4/1/2015,3,1,,0
+STUDY0001,ID0093,B,Drug\Placebo,4/4/2015,,4/14/2015,0,,,10
+STUDY0001,ID0093,B,Drug\Placebo,5/3/2015,,5/13/2015,3,1,,0
+STUDY0001,ID0093,B,Drug\Placebo,1/27/2015,,2/6/2015,3,1,,0
+STUDY0001,ID0095,B,Drug\Placebo,11/24/2014,10:25,12/4/2014,98,,,30
+STUDY0001,ID0095,B,Drug\Placebo,3/15/2015,8:00,3/25/2015,3,99,"progression , study drug  discontinued",0
+STUDY0001,ID0097,B,Drug\Placebo,10/7/2014,11:35,10/17/2014,98,,,10
+STUDY0001,ID0097,B,Drug\Placebo,11/18/2014,21:00,11/28/2014,3,1,,0
+STUDY0001,ID0097,B,Drug\Placebo,11/25/2014,21:00,12/5/2014,0,99,AE recovered,10
+STUDY0001,ID0097,B,Drug\Placebo,12/19/2014,9:00,12/29/2014,3,1,,0
+STUDY0001,ID0097,B,Drug\Placebo,12/22/2014,9:00,1/1/2015,0,99,AE resolved,10
+STUDY0001,ID0097,B,Drug\Placebo,1/20/2015,21:00,1/30/2015,3,1,,0
+STUDY0001,ID0097,B,Drug\Placebo,1/21/2015,21:00,1/31/2015,0,,,10
+STUDY0001,ID0097,B,Drug\Placebo,1/24/2015,21:00,2/3/2015,3,1,,0
+STUDY0001,ID0098,B,Drug\Placebo,11/18/2014,18:00,11/28/2014,98,,,50
+STUDY0001,ID0098,B,Drug\Placebo,9/2/2015,7:00,9/12/2015,3,1,,0
+STUDY0001,ID0099,B,Drug\Placebo,4/20/2015,15:50,4/30/2015,98,,,60
+STUDY0001,ID0099,B,Drug\Placebo,7/13/2015,8:00,7/23/2015,3,99,progression of disease,0
+STUDY0001,ID0102,B,Drug\Placebo,3/29/2015,11:00,4/8/2015,98,,,20
+STUDY0001,ID0102,B,Drug\Placebo,5/31/2015,11:00,6/10/2015,3,99,DISEASE PROGRESSION,0
+STUDY0001,ID0104,B,Drug\Placebo,3/29/2015,10:00,4/8/2015,98,,,40
+STUDY0001,ID0104,B,Drug\Placebo,6/20/2015,7:00,6/30/2015,3,99,morning dose not used 20 June 2015,0
+STUDY0001,ID0104,B,Drug\Placebo,6/20/2015,19:00,6/30/2015,0,,,40
+STUDY0001,ID0104,B,Drug\Placebo,7/4/2015,7:00,7/14/2015,3,99,morning dose not used 04 Jul 2015,0
+STUDY0001,ID0104,B,Drug\Placebo,7/4/2015,19:00,7/14/2015,0,,,40
+STUDY0001,ID0104,B,Drug\Placebo,9/7/2015,9:00,9/17/2015,3,99,Condition Under Investigation Worsened,0
+STUDY0001,ID0105,B,Drug\Placebo,2/8/2015,14:30,2/18/2015,98,,,20
+STUDY0001,ID0105,B,Drug\Placebo,2/9/2015,,2/19/2015,3,1,,0
+STUDY0001,ID0107,B,Drug\Placebo,11/19/2014,11:50,11/29/2014,98,,,30
+STUDY0001,ID0108,B,Drug\Placebo,1/7/2015,14:50,1/17/2015,98,,,50
+STUDY0001,ID0108,B,Drug\Placebo,3/3/2015,8:00,3/13/2015,3,99,Drug was interrumped because of progressive disease and patient was discontinued from the study,0
+STUDY0001,ID0109,B,Drug\Placebo,1/11/2015,14:50,1/21/2015,98,,,40
+STUDY0001,ID0109,B,Drug\Placebo,3/9/2015,8:00,3/19/2015,3,99,study drug has permanently discontinued due to Condition Under Investigation,0
+STUDY0001,ID0110,B,Drug\Placebo,10/26/2014,12:20,11/5/2014,98,,,10
+STUDY0001,ID0110,B,Drug\Placebo,6/8/2015,,6/18/2015,3,99,PERMANENTLY STOPPED,0
+STUDY0001,ID0111,B,Drug\Placebo,4/1/2015,16:15,4/2/2015,98,,,60
+STUDY0001,ID0111,B,Drug\Placebo,4/8/2015,21:00,4/9/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0111,B,Drug\Placebo,4/9/2015,9:00,4/10/2015,0,,,60
+STUDY0001,ID0111,B,Drug\Placebo,4/14/2015,21:00,4/15/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0111,B,Drug\Placebo,4/15/2015,9:00,4/16/2015,0,,,60
+STUDY0001,ID0111,B,Drug\Placebo,4/29/2015,21:00,4/30/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0111,B,Drug\Placebo,4/30/2015,9:00,5/1/2015,0,,,60
+STUDY0001,ID0111,B,Drug\Placebo,5/6/2015,21:00,5/7/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0111,B,Drug\Placebo,5/7/2015,9:00,5/8/2015,0,,,60
+STUDY0001,ID0111,B,Drug\Placebo,5/13/2015,21:00,5/14/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0111,B,Drug\Placebo,5/14/2015,9:00,5/15/2015,0,,,60
+STUDY0001,ID0111,B,Drug\Placebo,7/21/2015,21:00,7/22/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0111,B,Drug\Placebo,7/22/2015,9:00,7/23/2015,0,,,60
+STUDY0001,ID0111,B,Drug\Placebo,7/29/2015,21:00,7/30/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0111,B,Drug\Placebo,7/30/2015,9:00,7/31/2015,0,,,60
+STUDY0001,ID0111,B,Drug\Placebo,8/5/2015,21:00,8/6/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0111,B,Drug\Placebo,8/6/2015,9:00,8/7/2015,0,,,60
+STUDY0001,ID0111,B,Drug\Placebo,8/19/2015,21:00,8/20/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0111,B,Drug\Placebo,8/20/2015,9:00,8/21/2015,0,,,60
+STUDY0001,ID0111,B,Drug\Placebo,8/26/2015,21:00,8/27/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0111,B,Drug\Placebo,8/27/2015,9:00,8/28/2015,0,,,60
+STUDY0001,ID0111,B,Drug\Placebo,9/2/2015,21:00,9/3/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0111,B,Drug\Placebo,9/3/2015,9:00,9/4/2015,0,,,60
+STUDY0001,ID0111,B,Drug\Placebo,9/16/2015,21:00,9/17/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0111,B,Drug\Placebo,9/17/2015,9:00,9/18/2015,0,,,60
+STUDY0001,ID0111,B,Drug\Placebo,9/23/2015,21:00,9/24/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0111,B,Drug\Placebo,9/24/2015,9:00,9/25/2015,0,,,60
+STUDY0001,ID0111,B,Drug\Placebo,9/30/2015,21:00,10/1/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0111,B,Drug\Placebo,10/1/2015,9:00,10/2/2015,0,,,60
+STUDY0001,ID0111,B,Drug\Placebo,10/14/2015,21:00,10/15/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0111,B,Drug\Placebo,10/15/2015,9:00,10/16/2015,0,,,60
+STUDY0001,ID0111,B,Drug\Placebo,10/21/2015,21:00,10/22/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0111,B,Drug\Placebo,10/22/2015,9:00,10/23/2015,0,,,60
+STUDY0001,ID0111,B,Drug\Placebo,10/27/2015,21:00,10/28/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0111,B,Drug\Placebo,10/28/2015,9:00,10/29/2015,0,,,60
+STUDY0001,ID0111,B,Drug\Placebo,6/28/2016,9:00,6/29/2016,3,99,progressive disease,0
+STUDY0001,ID0112,B,Drug\Placebo,3/4/2015,12:05,,98,,,10
+STUDY0001,ID0112,B,Drug\Placebo,5/5/2015,21:00,5/25/2015,3,99,Disease progresion,0
+STUDY0001,ID0117,B,Drug\Placebo,12/20/2014,11:00,12/30/2014,98,,,50
+STUDY0001,ID0117,B,Drug\Placebo,1/19/2015,11:00,1/29/2015,3,99,Patient forgot to take it.,0
+STUDY0001,ID0117,B,Drug\Placebo,1/20/2015,11:00,1/30/2015,0,,,50
+STUDY0001,ID0117,B,Drug\Placebo,6/9/2015,10:00,6/19/2015,3,1,,0
+STUDY0001,ID0117,B,Drug\Placebo,6/10/2015,10:00,6/20/2015,0,,,50
+STUDY0001,ID0117,B,Drug\Placebo,10/17/2015,10:00,10/27/2015,3,99,Pogression Disease,0
+STUDY0001,ID0119,B,Drug\Placebo,1/19/2015,15:20,1/24/2015,98,,,60
+STUDY0001,ID0119,B,Drug\Placebo,3/24/2015,10:00,3/29/2015,3,99,Progressive disease.,0
+STUDY0001,ID0120,B,Drug\Placebo,4/15/2015,16:15,4/25/2015,98,,,60
+STUDY0001,ID0120,B,Drug\Placebo,6/7/2015,7:00,6/19/2015,3,1,,
+STUDY0001,ID0120,B,Drug\Placebo,6/13/2015,15:35,6/23/2015,0,,,60
+STUDY0001,ID0120,B,Drug\Placebo,10/5/2015,19:00,10/15/2015,3,10,,
+STUDY0001,ID0120,B,Drug\Placebo,6/13/2015,19:00,6/23/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0120,B,Drug\Placebo,6/14/2015,7:00,6/24/2015,0,,,60
+STUDY0001,ID0120,B,Drug\Placebo,6/17/2015,19:00,6/27/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0120,B,Drug\Placebo,6/18/2015,7:00,6/28/2015,0,,,60
+STUDY0001,ID0120,B,Drug\Placebo,6/22/2015,19:00,7/2/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0120,B,Drug\Placebo,6/23/2015,7:00,7/3/2015,0,,,60
+STUDY0001,ID0120,B,Drug\Placebo,7/8/2015,19:00,7/18/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0120,B,Drug\Placebo,7/9/2015,7:00,7/19/2015,0,,,60
+STUDY0001,ID0120,B,Drug\Placebo,7/14/2015,19:00,7/24/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0120,B,Drug\Placebo,7/15/2015,7:00,7/25/2015,0,,,60
+STUDY0001,ID0120,B,Drug\Placebo,7/21/2015,19:00,7/31/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0120,B,Drug\Placebo,7/22/2015,7:00,8/1/2015,0,,,60
+STUDY0001,ID0120,B,Drug\Placebo,8/11/2015,19:00,8/21/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0120,B,Drug\Placebo,8/12/2015,7:00,8/22/2015,0,,,60
+STUDY0001,ID0120,B,Drug\Placebo,8/18/2015,19:00,8/28/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0120,B,Drug\Placebo,8/19/2015,7:00,8/29/2015,0,,,60
+STUDY0001,ID0120,B,Drug\Placebo,8/4/2015,19:00,8/14/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0120,B,Drug\Placebo,8/5/2015,7:00,8/15/2015,0,,,60
+STUDY0001,ID0122,B,Drug\Placebo,1/19/2015,12:35,1/29/2015,98,,,20
+STUDY0001,ID0122,B,Drug\Placebo,4/6/2015,8:00,4/16/2015,3,99,disease progression,0
+STUDY0001,ID0124,B,Drug\Placebo,3/4/2015,20:30,3/14/2015,98,,,60
+STUDY0001,ID0124,B,Drug\Placebo,10/19/2015,8:30,10/29/2015,3,1,,0
+STUDY0001,ID0124,B,Drug\Placebo,11/4/2015,8:30,11/14/2015,0,,,60
+STUDY0001,ID0124,B,Drug\Placebo,1/24/2016,8:30,2/3/2016,3,1,,0
+STUDY0001,ID0124,B,Drug\Placebo,9/23/2015,8:30,10/3/2015,3,1,,0
+STUDY0001,ID0124,B,Drug\Placebo,9/29/2015,8:30,10/9/2015,0,,,60
+STUDY0001,ID0124,B,Drug\Placebo,2/10/2016,20:30,2/20/2016,0,,,60
+STUDY0001,ID0125,B,Drug\Placebo,3/16/2015,14:10,3/26/2015,98,,,50
+STUDY0001,ID0125,B,Drug\Placebo,5/8/2015,8:00,5/18/2015,3,99,patient forgot to take study drug this day,0
+STUDY0001,ID0125,B,Drug\Placebo,5/2/2015,20:00,5/12/2015,3,99,patient forgot to take study drug this day only the nigth dose(01 tablet).,0
+STUDY0001,ID0125,B,Drug\Placebo,5/9/2015,8:00,5/19/2015,0,,,50
+STUDY0001,ID0125,B,Drug\Placebo,5/3/2015,8:00,5/13/2015,0,,,50
+STUDY0001,ID0125,B,Drug\Placebo,7/20/2015,8:00,7/30/2015,3,99,Progression disease.,0
+STUDY0001,ID0126,B,Drug\Placebo,3/29/2015,16:55,4/8/2015,98,,,50
+STUDY0001,ID0126,B,Drug\Placebo,7/12/2015,20:00,7/22/2015,2,1,,40
+STUDY0001,ID0126,B,Drug\Placebo,10/5/2015,20:00,10/15/2015,2,1,,40
+STUDY0001,ID0126,B,Drug\Placebo,6/4/2015,0:00,6/14/2015,3,1,,0
+STUDY0001,ID0126,B,Drug\Placebo,9/4/2015,0:00,9/14/2015,3,1,,0
+STUDY0001,ID0128,B,Drug\Placebo,4/1/2015,15:45,4/1/2015,98,,,60
+STUDY0001,ID0128,B,Drug\Placebo,12/26/2015,18:00,12/26/2015,3,10,,0
+STUDY0001,ID0128,B,Drug\Placebo,4/6/2015,18:00,4/6/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0128,B,Drug\Placebo,4/7/2015,6:00,4/7/2015,0,,,60
+STUDY0001,ID0128,B,Drug\Placebo,4/14/2015,18:00,4/14/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0128,B,Drug\Placebo,4/15/2015,6:00,4/15/2015,0,,,60
+STUDY0001,ID0128,B,Drug\Placebo,5/27/2015,18:00,5/27/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0128,B,Drug\Placebo,5/28/2015,6:00,5/28/2015,0,,,60
+STUDY0001,ID0128,B,Drug\Placebo,6/2/2015,18:00,6/2/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0128,B,Drug\Placebo,6/3/2015,6:00,6/3/2015,0,,,60
+STUDY0001,ID0128,B,Drug\Placebo,6/10/2015,18:00,6/10/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0128,B,Drug\Placebo,6/11/2015,6:00,6/11/2015,0,,,60
+STUDY0001,ID0128,B,Drug\Placebo,6/22/2015,18:00,6/22/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0128,B,Drug\Placebo,6/23/2015,6:00,6/23/2015,0,,,60
+STUDY0001,ID0128,B,Drug\Placebo,6/30/2015,18:00,6/30/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0128,B,Drug\Placebo,7/1/2015,6:00,7/1/2015,0,,,60
+STUDY0001,ID0128,B,Drug\Placebo,7/7/2015,18:00,7/7/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0128,B,Drug\Placebo,7/8/2015,6:00,7/8/2015,0,,,60
+STUDY0001,ID0128,B,Drug\Placebo,7/22/2015,18:00,7/22/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0128,B,Drug\Placebo,7/23/2015,6:00,7/23/2015,0,,,60
+STUDY0001,ID0128,B,Drug\Placebo,7/28/2015,18:00,7/28/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0128,B,Drug\Placebo,7/29/2015,6:00,7/29/2015,0,,,60
+STUDY0001,ID0128,B,Drug\Placebo,8/4/2015,18:00,8/4/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0128,B,Drug\Placebo,8/5/2015,6:00,8/5/2015,0,,,60
+STUDY0001,ID0128,B,Drug\Placebo,12/22/2015,18:00,12/22/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0128,B,Drug\Placebo,12/23/2015,6:00,12/23/2015,0,,,60
+STUDY0001,ID0128,B,Drug\Placebo,12/15/2015,18:00,12/15/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0128,B,Drug\Placebo,12/16/2015,6:00,12/16/2015,0,,,60
+STUDY0001,ID0128,B,Drug\Placebo,12/1/2015,18:00,12/1/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0128,B,Drug\Placebo,12/2/2015,6:00,12/2/2015,0,,,60
+STUDY0001,ID0128,B,Drug\Placebo,12/17/2015,8:00,12/17/2015,3,99,patient forgot to take two consecutive doses,0
+STUDY0001,ID0128,B,Drug\Placebo,12/18/2015,8:00,12/18/2015,0,,,60
+STUDY0001,ID0129,B,Drug\Placebo,2/2/2015,11:35,2/12/2015,98,,,10
+STUDY0001,ID0129,B,Drug\Placebo,5/25/2015,,6/4/2015,3,99,PERMANENTLY STOPPED,0
+STUDY0001,ID0130,B,Drug\Placebo,4/14/2015,10:25,4/24/2015,98,,,40
+STUDY0001,ID0130,B,Drug\Placebo,5/26/2015,7:00,6/5/2015,3,99,morning dose not used 26 May  ,0
+STUDY0001,ID0130,B,Drug\Placebo,5/26/2015,19:00,6/5/2015,0,,,40
+STUDY0001,ID0130,B,Drug\Placebo,6/16/2015,7:00,6/26/2015,3,99,morning dose not used 16 June  ,0
+STUDY0001,ID0130,B,Drug\Placebo,6/16/2015,19:00,6/26/2015,0,,,40
+STUDY0001,ID0130,B,Drug\Placebo,10/13/2015,7:00,10/23/2015,3,99,morning dose not taken on 13 OCt  ,0
+STUDY0001,ID0130,B,Drug\Placebo,10/27/2015,7:00,11/6/2015,3,99,morning dose not taken on 27 OCt  ,0
+STUDY0001,ID0130,B,Drug\Placebo,10/13/2015,19:00,10/23/2015,0,,,40
+STUDY0001,ID0130,B,Drug\Placebo,10/27/2015,19:00,11/6/2015,0,,,40
+STUDY0001,ID0130,B,Drug\Placebo,4/12/2016,7:00,4/22/2016,3,99,morning dose not taken on 12 Apr  ,0
+STUDY0001,ID0130,B,Drug\Placebo,4/12/2016,19:00,4/22/2016,0,,,40
+STUDY0001,ID0130,B,Drug\Placebo,8/17/2016,7:00,8/27/2016,3,99,morning dose not used 17 August  ,0
+STUDY0001,ID0130,B,Drug\Placebo,8/17/2016,19:00,8/27/2016,0,,,40
+STUDY0001,ID0130,B,Drug\Placebo,10/4/2016,10:00,10/14/2016,3,99,AZD was discontinued permanently,0
+STUDY0001,ID0131,B,Drug\Placebo,2/11/2015,13:55,2/21/2015,98,,,40
+STUDY0001,ID0131,B,Drug\Placebo,3/11/2015,12:00,3/21/2015,98,,,40
+STUDY0001,ID0131,B,Drug\Placebo,2/11/2015,13:55,2/21/2015,98,99,After the code braking the treatment (placebo) was stopped on 25 SEP  ,40
+STUDY0001,ID0132,B,Drug\Placebo,11/5/2014,11:55,11/15/2014,98,,,30
+STUDY0001,ID0132,B,Drug\Placebo,11/16/2014,8:00,11/26/2014,3,1,,0
+STUDY0001,ID0133,B,Drug\Placebo,2/18/2015,16:25,2/28/2015,98,,,50
+STUDY0001,ID0136,B,Drug\Placebo,3/25/2015,10:10,4/4/2015,98,,,50
+STUDY0001,ID0136,B,Drug\Placebo,11/10/2015,8:00,11/20/2015,3,1,,
+STUDY0001,ID0137,B,Drug\Placebo,2/16/2015,10:15,2/26/2015,98,,,40
+STUDY0001,ID0137,B,Drug\Placebo,4/13/2015,10:00,4/23/2015,3,99,Condition Under Investigation Worsened,0
+STUDY0001,ID0138,B,Drug\Placebo,10/18/2014,12:46,10/28/2014,98,,,20
+STUDY0001,ID0138,B,Drug\Placebo,7/26/2015,0:01,8/5/2015,3,99,progressive disease,0
+STUDY0001,ID0139,B,Drug\Placebo,3/22/2015,16:10,3/23/2015,98,,,60
+STUDY0001,ID0139,B,Drug\Placebo,4/5/2015,8:00,4/6/2015,3,1,,0
+STUDY0001,ID0139,B,Drug\Placebo,4/19/2015,9:35,4/20/2015,2,1,,50
+STUDY0001,ID0139,B,Drug\Placebo,6/13/2015,8:00,6/14/2015,3,99,condition under investigation worsening,0
+STUDY0001,ID0140,B,Drug\Placebo,9/17/2014,16:25,9/27/2014,98,,,30
+STUDY0001,ID0141,B,Drug\Placebo,3/31/2015,15:15,3/31/2015,98,,,60
+STUDY0001,ID0141,B,Drug\Placebo,11/21/2015,20:00,11/21/2015,3,10,,0
+STUDY0001,ID0141,B,Drug\Placebo,4/27/2015,20:00,4/27/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between morning and evening dose.,0
+STUDY0001,ID0141,B,Drug\Placebo,4/28/2015,8:00,4/28/2015,0,,,60
+STUDY0001,ID0141,B,Drug\Placebo,5/5/2015,20:00,5/5/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between morning and evening dose.,0
+STUDY0001,ID0141,B,Drug\Placebo,5/6/2015,8:00,5/6/2015,0,,,60
+STUDY0001,ID0141,B,Drug\Placebo,5/12/2015,20:00,5/12/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between morning and evening dose.,0
+STUDY0001,ID0141,B,Drug\Placebo,5/13/2015,8:00,5/13/2015,0,,,60
+STUDY0001,ID0141,B,Drug\Placebo,9/15/2015,20:00,9/15/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between morning and evening dose.,0
+STUDY0001,ID0141,B,Drug\Placebo,9/16/2015,8:00,9/16/2015,0,,,60
+STUDY0001,ID0141,B,Drug\Placebo,9/22/2015,20:00,9/22/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between morning and evening dose.,0
+STUDY0001,ID0141,B,Drug\Placebo,9/23/2015,8:00,9/23/2015,0,,,60
+STUDY0001,ID0141,B,Drug\Placebo,9/29/2015,20:00,9/29/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between morning and evening dose.,0
+STUDY0001,ID0141,B,Drug\Placebo,9/30/2015,8:00,9/30/2015,0,,,60
+STUDY0001,ID0143,B,Drug\Placebo,11/30/2014,10:15,12/10/2014,98,,,30
+STUDY0001,ID0143,B,Drug\Placebo,3/9/2015,9:00,3/19/2015,3,1,,0
+STUDY0001,ID0143,B,Drug\Placebo,3/23/2015,9:00,4/2/2015,0,,,30
+STUDY0001,ID0143,B,Drug\Placebo,6/16/2015,8:00,6/26/2015,3,1,,0
+STUDY0001,ID0143,B,Drug\Placebo,7/13/2015,8:00,7/23/2015,0,,,30
+STUDY0001,ID0143,B,Drug\Placebo,2/23/2016,8:00,3/4/2016,3,1,,0
+STUDY0001,ID0143,B,Drug\Placebo,3/9/2016,8:00,3/19/2016,2,99,After drug interruption because paronychia lasts more than 1 year the drug is continued in reduced dose,20
+STUDY0001,ID0143,B,Drug\Placebo,5/11/2016,8:00,5/21/2016,3,1,,0
+STUDY0001,ID0143,B,Drug\Placebo,6/6/2016,8:00,6/16/2016,2,1,,20
+STUDY0001,ID0144,B,Drug\Placebo,11/17/2014,11:10,12/7/2014,98,,,10
+STUDY0001,ID0144,B,Drug\Placebo,1/18/2015,21:00,2/7/2015,3,99,progressive disease,0
+STUDY0001,ID0148,B,Drug\Placebo,3/24/2015,10:15,4/3/2015,98,,,40
+STUDY0001,ID0151,B,Drug\Placebo,2/15/2015,17:15,2/20/2015,98,,,70
+STUDY0001,ID0151,B,Drug\Placebo,4/26/2015,21:00,5/1/2015,3,99,Condition Under Investigation Worsened,0
+STUDY0001,ID0153,B,Drug\Placebo,2/11/2015,11:45,3/3/2015,98,,,10
+STUDY0001,ID0154,B,Drug\Placebo,12/6/2014,21:00,12/16/2014,98,,,20
+STUDY0001,ID0156,B,Drug\Placebo,2/25/2015,10:53,3/7/2015,98,,,20
+STUDY0001,ID0156,B,Drug\Placebo,3/11/2015,10:00,3/21/2015,3,1,,0
+STUDY0001,ID0157,B,Drug\Placebo,8/18/2014,14:00,8/28/2014,98,,,20
+STUDY0001,ID0157,B,Drug\Placebo,12/17/2014,,12/27/2014,3,99,disease progression,0
+STUDY0001,ID0158,B,Drug\Placebo,2/10/2015,9:15,2/20/2015,98,,,20
+STUDY0001,ID0158,B,Drug\Placebo,6/6/2015,8:00,6/16/2015,3,99,PD,0
+STUDY0001,ID0159,B,Drug\Placebo,3/3/2015,16:00,3/13/2015,98,,,50
+STUDY0001,ID0159,B,Drug\Placebo,5/13/2015,7:00,5/23/2015,3,99,Condition Under Invetigational Worsened,0
+STUDY0001,ID0160,B,Drug\Placebo,10/1/2014,10:27,10/11/2014,98,,,50
+STUDY0001,ID0160,B,Drug\Placebo,6/10/2015,10:00,6/20/2015,3,1,,0
+STUDY0001,ID0160,B,Drug\Placebo,6/17/2015,10:55,6/27/2015,0,,,50
+STUDY0001,ID0160,B,Drug\Placebo,8/11/2015,22:00,8/21/2015,3,1,,0
+STUDY0001,ID0161,B,Drug\Placebo,9/21/2014,11:10,10/1/2014,98,,,10
+STUDY0001,ID0161,B,Drug\Placebo,2/14/2016,,2/24/2016,3,99,PROGRESSION OF METASTATIC BREAST CANCER,0
+STUDY0001,ID0164,B,Drug\Placebo,12/31/2014,11:05,1/10/2015,98,,,20
+STUDY0001,ID0164,B,Drug\Placebo,3/11/2015,10:00,3/21/2015,3,1,,0
+STUDY0001,ID0164,B,Drug\Placebo,3/19/2015,8:30,3/29/2015,0,,,20
+STUDY0001,ID0164,B,Drug\Placebo,3/21/2015,8:30,3/31/2015,3,1,,0
+STUDY0001,ID0164,B,Drug\Placebo,3/22/2015,8:30,4/1/2015,2,1,,10
+STUDY0001,ID0164,B,Drug\Placebo,8/3/2015,8:30,8/13/2015,3,99,progression of ovarian cancer,0
+STUDY0001,ID0166,B,Drug\Placebo,11/30/2014,14:55,12/10/2014,98,,,30
+STUDY0001,ID0166,B,Drug\Placebo,1/3/2015,8:00,1/13/2015,3,1,,0
+STUDY0001,ID0166,B,Drug\Placebo,1/25/2015,15:00,2/4/2015,0,,,30
+STUDY0001,ID0166,B,Drug\Placebo,2/17/2015,8:00,2/27/2015,3,1,,0
+STUDY0001,ID0166,B,Drug\Placebo,3/8/2015,15:00,3/18/2015,2,1,,20
+STUDY0001,ID0166,B,Drug\Placebo,3/12/2015,10:00,3/22/2015,3,99,patient's wish,0
+STUDY0001,ID0167,B,Drug\Placebo,3/28/2015,16:10,3/29/2015,98,,,60
+STUDY0001,ID0167,B,Drug\Placebo,2/7/2016,22:00,2/8/2016,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0167,B,Drug\Placebo,2/8/2016,10:00,2/9/2016,0,,,60
+STUDY0001,ID0167,B,Drug\Placebo,2/14/2016,22:00,2/15/2016,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0167,B,Drug\Placebo,1/15/2016,10:00,1/16/2016,0,,,60
+STUDY0001,ID0167,B,Drug\Placebo,2/28/2016,22:00,2/29/2016,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0167,B,Drug\Placebo,2/29/2016,10:00,3/1/2016,0,,,60
+STUDY0001,ID0167,B,Drug\Placebo,3/13/2016,22:00,3/14/2016,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0167,B,Drug\Placebo,3/14/2016,10:00,3/15/2016,0,,,60
+STUDY0001,ID0167,B,Drug\Placebo,3/20/2016,22:00,3/21/2016,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0167,B,Drug\Placebo,3/21/2016,10:00,3/22/2016,0,,,60
+STUDY0001,ID0167,B,Drug\Placebo,3/27/2016,22:00,3/28/2016,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0167,B,Drug\Placebo,3/28/2016,10:00,3/29/2016,0,,,60
+STUDY0001,ID0167,B,Drug\Placebo,7/7/2016,22:00,7/8/2016,3,99,failure dispensation,0
+STUDY0001,ID0167,B,Drug\Placebo,7/10/2016,15:30,7/11/2016,0,,,60
+STUDY0001,ID0167,B,Drug\Placebo,9/30/2016,22:00,10/1/2016,3,99,the patient chose to discontinue the drug after end of clinical trial,0
+STUDY0001,ID0171,B,Drug\Placebo,2/24/2015,18:28,3/6/2015,98,,,50
+STUDY0001,ID0171,B,Drug\Placebo,1/26/2016,8:30,2/5/2016,3,1,,0
+STUDY0001,ID0171,B,Drug\Placebo,5/1/2015,8:00,5/11/2015,3,99,Patient forgot to take study drug,0
+STUDY0001,ID0171,B,Drug\Placebo,5/2/2015,8:00,5/12/2015,0,,,50
+STUDY0001,ID0171,B,Drug\Placebo,5/8/2015,8:00,5/18/2015,3,99,Patient forgot to take study drug,0
+STUDY0001,ID0171,B,Drug\Placebo,5/9/2015,8:00,5/19/2015,0,,,50
+STUDY0001,ID0171,B,Drug\Placebo,9/10/2015,8:00,9/20/2015,3,99,Patient forgot to take study drug,0
+STUDY0001,ID0171,B,Drug\Placebo,9/12/2015,8:00,9/22/2015,0,,,50
+STUDY0001,ID0171,B,Drug\Placebo,9/22/2015,8:00,10/2/2015,3,99,Patient forgot to take study drug,0
+STUDY0001,ID0171,B,Drug\Placebo,9/23/2015,8:00,10/3/2015,0,,,50
+STUDY0001,ID0171,B,Drug\Placebo,9/25/2015,8:00,10/5/2015,3,99,Patient forgot to take study drug,0
+STUDY0001,ID0171,B,Drug\Placebo,9/26/2015,8:00,10/6/2015,3,99,Patient forgot to take study drug,0
+STUDY0001,ID0171,B,Drug\Placebo,10/14/2015,8:00,10/24/2015,3,10,,0
+STUDY0001,ID0171,B,Drug\Placebo,10/15/2015,8:00,10/25/2015,0,,,50
+STUDY0001,ID0171,B,Drug\Placebo,2/2/2016,8:00,2/12/2016,0,,,50
+STUDY0001,ID0171,B,Drug\Placebo,3/13/2016,8:00,3/23/2016,3,1,,0
+STUDY0001,ID0171,B,Drug\Placebo,9/27/2015,8:00,10/7/2015,0,,,50
+STUDY0001,ID0173,B,Drug\Placebo,3/22/2015,12:32,4/1/2015,98,,,40
+STUDY0001,ID0173,B,Drug\Placebo,2/2/2016,20:00,2/12/2016,3,99,progressive disease,0
+STUDY0001,ID0177,B,Drug\Placebo,10/22/2014,13:00,11/1/2014,98,,,30
+STUDY0001,ID0178,B,Drug\Placebo,1/3/2015,20:00,1/13/2015,98,,,30
+STUDY0001,ID0178,B,Drug\Placebo,6/22/2015,9:20,7/2/2015,3,1,,0
+STUDY0001,ID0178,B,Drug\Placebo,6/24/2015,8:00,7/4/2015,0,,,30
+STUDY0001,ID0180,B,Drug\Placebo,8/6/2014,9:45,8/16/2014,98,,,10
+STUDY0001,ID0180,B,Drug\Placebo,9/12/2014,9:00,9/22/2014,3,99,Patient forgot to take the dose,0
+STUDY0001,ID0180,B,Drug\Placebo,9/12/2014,21:00,9/22/2014,0,,,10
+STUDY0001,ID0181,B,Drug\Placebo,2/24/2015,15:40,2/25/2015,98,,,60
+STUDY0001,ID0181,B,Drug\Placebo,9/20/2015,10:05,9/21/2015,3,1,,0
+STUDY0001,ID0181,B,Drug\Placebo,10/4/2015,20:00,10/5/2015,0,,,60
+STUDY0001,ID0181,B,Drug\Placebo,2/23/2016,20:00,2/24/2016,3,99,Performance status increased,0
+STUDY0001,ID0181,B,Drug\Placebo,3/3/2015,20:00,3/4/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between morning and evening dose.,0
+STUDY0001,ID0181,B,Drug\Placebo,3/4/2015,8:00,3/5/2015,0,,,60
+STUDY0001,ID0181,B,Drug\Placebo,3/14/2015,20:00,3/15/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between morning and evening dose.,0
+STUDY0001,ID0181,B,Drug\Placebo,3/15/2015,8:00,3/16/2015,0,,,60
+STUDY0001,ID0181,B,Drug\Placebo,4/19/2015,20:00,4/20/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between morning and evening dose.,0
+STUDY0001,ID0181,B,Drug\Placebo,4/20/2015,8:00,4/21/2015,0,,,60
+STUDY0001,ID0181,B,Drug\Placebo,4/27/2015,20:00,4/28/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between morning and evening dose.,0
+STUDY0001,ID0181,B,Drug\Placebo,4/28/2015,8:00,4/29/2015,0,,,60
+STUDY0001,ID0181,B,Drug\Placebo,5/4/2015,20:00,5/5/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between morning and evening dose.,0
+STUDY0001,ID0181,B,Drug\Placebo,5/5/2015,8:00,5/6/2015,0,,,60
+STUDY0001,ID0181,B,Drug\Placebo,5/18/2015,20:00,5/19/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between morning and evening dose.,0
+STUDY0001,ID0181,B,Drug\Placebo,5/19/2015,8:00,5/20/2015,0,,,60
+STUDY0001,ID0181,B,Drug\Placebo,6/22/2015,20:00,6/23/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between morning and evening dose.,0
+STUDY0001,ID0181,B,Drug\Placebo,6/23/2015,8:00,6/24/2015,0,,,60
+STUDY0001,ID0181,B,Drug\Placebo,8/12/2015,20:00,8/13/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between morning and evening dose.,0
+STUDY0001,ID0181,B,Drug\Placebo,8/13/2015,8:00,8/14/2015,0,,,60
+STUDY0001,ID0181,B,Drug\Placebo,8/17/2015,20:00,8/18/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between morning and evening dose.,0
+STUDY0001,ID0181,B,Drug\Placebo,8/18/2015,8:00,8/19/2015,0,,,60
+STUDY0001,ID0181,B,Drug\Placebo,8/24/2015,20:00,8/25/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between morning and evening dose.,0
+STUDY0001,ID0181,B,Drug\Placebo,8/25/2015,8:00,8/26/2015,0,,,60
+STUDY0001,ID0181,B,Drug\Placebo,9/9/2015,20:00,9/10/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between morning and evening dose.,0
+STUDY0001,ID0181,B,Drug\Placebo,9/10/2015,8:00,9/11/2015,0,,,60
+STUDY0001,ID0181,B,Drug\Placebo,9/14/2015,20:00,9/15/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between morning and evening dose.,0
+STUDY0001,ID0181,B,Drug\Placebo,9/15/2015,8:00,9/16/2015,0,,,60
+STUDY0001,ID0181,B,Drug\Placebo,9/28/2015,20:00,9/29/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between morning and evening dose.,0
+STUDY0001,ID0181,B,Drug\Placebo,9/29/2015,8:00,9/30/2015,0,,,60
+STUDY0001,ID0181,B,Drug\Placebo,10/13/2015,20:00,10/14/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between morning and evening dose.,0
+STUDY0001,ID0181,B,Drug\Placebo,10/14/2015,8:00,10/15/2015,0,,,60
+STUDY0001,ID0181,B,Drug\Placebo,10/19/2015,20:00,10/20/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between morning and evening dose.,0
+STUDY0001,ID0181,B,Drug\Placebo,10/20/2015,8:00,10/21/2015,0,,,60
+STUDY0001,ID0181,B,Drug\Placebo,10/26/2015,20:00,10/27/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between morning and evening dose.,0
+STUDY0001,ID0181,B,Drug\Placebo,10/27/2015,8:00,10/28/2015,0,,,60
+STUDY0001,ID0181,B,Drug\Placebo,11/9/2015,20:00,11/10/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between morning and evening dose.,0
+STUDY0001,ID0181,B,Drug\Placebo,11/10/2015,8:00,11/11/2015,0,,,60
+STUDY0001,ID0181,B,Drug\Placebo,11/17/2015,20:00,11/18/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between morning and evening dose.,0
+STUDY0001,ID0181,B,Drug\Placebo,11/18/2015,8:00,11/19/2015,0,,,60
+STUDY0001,ID0181,B,Drug\Placebo,11/23/2015,20:00,11/24/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between morning and evening dose.,0
+STUDY0001,ID0181,B,Drug\Placebo,11/24/2015,8:00,11/25/2015,0,,,60
+STUDY0001,ID0181,B,Drug\Placebo,12/7/2015,20:00,12/8/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between morning and evening dose.,0
+STUDY0001,ID0181,B,Drug\Placebo,12/8/2015,8:00,12/9/2015,0,,,60
+STUDY0001,ID0181,B,Drug\Placebo,12/14/2015,20:00,12/15/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between morning and evening dose.,0
+STUDY0001,ID0181,B,Drug\Placebo,12/15/2015,8:00,12/16/2015,0,,,60
+STUDY0001,ID0181,B,Drug\Placebo,12/20/2015,20:00,12/21/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between morning and evening dose.,0
+STUDY0001,ID0181,B,Drug\Placebo,12/21/2015,8:00,12/22/2015,0,,,60
+STUDY0001,ID0181,B,Drug\Placebo,1/4/2016,20:00,1/5/2016,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between morning and evening dose.,0
+STUDY0001,ID0181,B,Drug\Placebo,1/5/2016,8:00,1/6/2016,0,,,60
+STUDY0001,ID0181,B,Drug\Placebo,1/11/2016,20:00,1/12/2016,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between morning and evening dose.,0
+STUDY0001,ID0181,B,Drug\Placebo,1/12/2016,8:00,1/13/2016,0,,,60
+STUDY0001,ID0181,B,Drug\Placebo,1/18/2016,20:00,1/19/2016,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between morning and evening dose.,0
+STUDY0001,ID0181,B,Drug\Placebo,1/19/2016,8:00,1/20/2016,0,,,60
+STUDY0001,ID0181,B,Drug\Placebo,2/1/2016,20:00,2/2/2016,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0181,B,Drug\Placebo,2/2/2016,8:00,2/3/2016,0,,,60
+STUDY0001,ID0181,B,Drug\Placebo,2/8/2016,20:00,2/9/2016,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0181,B,Drug\Placebo,2/9/2016,8:00,2/10/2016,0,,,60
+STUDY0001,ID0182,B,Drug\Placebo,2/15/2015,16:25,2/25/2015,98,,,60
+STUDY0001,ID0182,B,Drug\Placebo,5/30/2015,8:00,6/9/2015,3,99,condition under investigation worsened,0
+STUDY0001,ID0182,B,Drug\Placebo,5/3/2015,20:00,5/13/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0182,B,Drug\Placebo,5/4/2015,8:00,5/14/2015,0,,,60
+STUDY0001,ID0182,B,Drug\Placebo,5/17/2015,20:00,5/27/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0182,B,Drug\Placebo,5/18/2015,8:00,5/28/2015,0,,,60
+STUDY0001,ID0182,B,Drug\Placebo,5/24/2015,20:00,6/3/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0182,B,Drug\Placebo,5/25/2015,8:00,6/4/2015,0,,,60
+STUDY0001,ID0183,B,Drug\Placebo,11/12/2014,11:03,12/2/2014,98,,,10
+STUDY0001,ID0183,B,Drug\Placebo,11/18/2014,11:00,12/8/2014,3,99,Patient forgot to take the medication,0
+STUDY0001,ID0183,B,Drug\Placebo,11/18/2014,23:10,12/8/2014,0,99,Patient restarted medication,10
+STUDY0001,ID0183,B,Drug\Placebo,1/4/2015,23:00,1/24/2015,3,99,Underlying disease progression,0
+STUDY0001,ID0184,B,Drug\Placebo,2/15/2015,17:10,2/25/2015,98,,,60
+STUDY0001,ID0184,B,Drug\Placebo,7/4/2015,8:00,7/14/2015,3,99,condition under investigation worsened,0
+STUDY0001,ID0185,B,Drug\Placebo,12/21/2014,16:00,12/31/2014,98,,,60
+STUDY0001,ID0185,B,Drug\Placebo,5/18/2015,8:00,5/28/2015,3,99,progression disease,0
+STUDY0001,ID0185,B,Drug\Placebo,12/29/2014,20:00,1/8/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0185,B,Drug\Placebo,12/30/2014,8:00,1/9/2015,0,,,60
+STUDY0001,ID0185,B,Drug\Placebo,1/6/2015,20:00,1/16/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0185,B,Drug\Placebo,1/7/2015,8:00,1/17/2015,0,,,60
+STUDY0001,ID0185,B,Drug\Placebo,1/21/2015,20:00,1/31/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0185,B,Drug\Placebo,1/22/2015,8:00,2/1/2015,0,,,60
+STUDY0001,ID0185,B,Drug\Placebo,1/27/2015,20:00,2/6/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0185,B,Drug\Placebo,1/28/2015,8:00,2/7/2015,0,,,60
+STUDY0001,ID0185,B,Drug\Placebo,2/3/2015,20:00,2/13/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0185,B,Drug\Placebo,2/4/2015,8:00,2/14/2015,0,,,60
+STUDY0001,ID0185,B,Drug\Placebo,4/14/2015,20:00,4/24/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between morning and evening dose.,0
+STUDY0001,ID0185,B,Drug\Placebo,4/15/2015,8:00,4/25/2015,0,,,60
+STUDY0001,ID0185,B,Drug\Placebo,4/20/2015,20:00,4/30/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between morning and evening dose.,0
+STUDY0001,ID0185,B,Drug\Placebo,4/21/2015,8:00,5/1/2015,0,,,60
+STUDY0001,ID0185,B,Drug\Placebo,4/28/2015,20:00,5/8/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between morning and evening dose.,0
+STUDY0001,ID0185,B,Drug\Placebo,4/29/2015,8:00,5/9/2015,0,,,60
+STUDY0001,ID0186,B,Drug\Placebo,11/11/2014,12:30,11/21/2014,98,,,40
+STUDY0001,ID0186,B,Drug\Placebo,4/28/2015,8:00,5/8/2015,3,99,voluntary discontinuation by Subject,0
+STUDY0001,ID0187,B,Drug\Placebo,12/3/2014,13:00,12/13/2014,98,,,10
+STUDY0001,ID0187,B,Drug\Placebo,1/27/2015,,2/6/2015,3,99,disease progression,0
+STUDY0001,ID0189,B,Drug\Placebo,3/30/2015,11:15,4/9/2015,98,,,10
+STUDY0001,ID0189,B,Drug\Placebo,5/13/2015,,5/23/2015,3,99,PATIENT MISSED MORNING DOSE IN ERROR,0
+STUDY0001,ID0189,B,Drug\Placebo,5/13/2015,,5/23/2015,0,,,10
+STUDY0001,ID0189,B,Drug\Placebo,6/5/2015,,6/15/2015,3,99,PATIENT MISSED EVENING DOSE IN ERROR,0
+STUDY0001,ID0189,B,Drug\Placebo,6/6/2015,,6/16/2015,0,,,10
+STUDY0001,ID0189,B,Drug\Placebo,6/7/2015,,6/17/2015,3,99,PATIENT MISSED MORNING DOSE IN ERROR,0
+STUDY0001,ID0189,B,Drug\Placebo,6/7/2015,,6/17/2015,0,,,10
+STUDY0001,ID0189,B,Drug\Placebo,6/15/2015,,6/25/2015,3,1,,0
+STUDY0001,ID0189,B,Drug\Placebo,6/22/2015,,7/2/2015,0,,,10
+STUDY0001,ID0189,B,Drug\Placebo,6/30/2015,,7/10/2015,3,99,PATIENT MISSED MORNING DOSE IN ERROR,0
+STUDY0001,ID0189,B,Drug\Placebo,6/30/2015,,7/10/2015,0,,,10
+STUDY0001,ID0189,B,Drug\Placebo,7/19/2015,,7/29/2015,3,99,PATIENT MISSED MORNING DOSE IN ERROR,0
+STUDY0001,ID0189,B,Drug\Placebo,7/19/2015,,7/29/2015,0,,,10
+STUDY0001,ID0189,B,Drug\Placebo,8/1/2015,,8/11/2015,3,99,PATIENT MISSED MORNING DOSE IN ERROR,0
+STUDY0001,ID0189,B,Drug\Placebo,8/1/2015,,8/11/2015,0,,,10
+STUDY0001,ID0189,B,Drug\Placebo,8/12/2015,,8/22/2015,3,99,PATIENT MISSED MORNING DOSE IN ERROR,0
+STUDY0001,ID0189,B,Drug\Placebo,8/12/2015,,8/22/2015,0,,,10
+STUDY0001,ID0189,B,Drug\Placebo,9/18/2015,22:00,9/28/2015,3,99,PATIENT MISSED EVENING DOSE IN ERROR,0
+STUDY0001,ID0189,B,Drug\Placebo,9/19/2015,,9/29/2015,0,,,10
+STUDY0001,ID0189,B,Drug\Placebo,10/12/2015,,10/22/2015,3,1,,0
+STUDY0001,ID0190,B,Drug\Placebo,4/1/2015,15:30,4/11/2015,98,,,60
+STUDY0001,ID0190,B,Drug\Placebo,8/3/2015,8:00,8/13/2015,3,99,progression disease,0
+STUDY0001,ID0190,B,Drug\Placebo,4/28/2015,20:00,5/8/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0190,B,Drug\Placebo,4/29/2015,8:00,5/9/2015,0,,,60
+STUDY0001,ID0190,B,Drug\Placebo,5/13/2015,20:00,5/23/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0190,B,Drug\Placebo,5/14/2015,8:00,5/24/2015,0,,,60
+STUDY0001,ID0190,B,Drug\Placebo,7/21/2015,20:00,7/31/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0190,B,Drug\Placebo,7/22/2015,8:00,8/1/2015,0,,,60
+STUDY0001,ID0190,B,Drug\Placebo,7/28/2015,20:00,8/7/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0190,B,Drug\Placebo,7/29/2015,8:00,8/8/2015,0,,,60
+STUDY0001,ID0190,B,Drug\Placebo,5/6/2015,20:00,5/16/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0190,B,Drug\Placebo,5/7/2015,8:00,5/17/2015,0,,,60
+STUDY0001,ID0191,B,Drug\Placebo,11/18/2014,17:30,11/28/2014,98,,,50
+STUDY0001,ID0191,B,Drug\Placebo,1/14/2015,19:00,1/24/2015,3,99,Diseas progression,0
+STUDY0001,ID0192,B,Drug\Placebo,9/10/2014,9:16,9/20/2014,98,,,40
+STUDY0001,ID0192,B,Drug\Placebo,9/18/2014,8:00,9/28/2014,3,1,,0
+STUDY0001,ID0192,B,Drug\Placebo,10/1/2014,8:00,10/11/2014,0,,,40
+STUDY0001,ID0192,B,Drug\Placebo,10/30/2014,8:00,11/9/2014,3,1,,0
+STUDY0001,ID0192,B,Drug\Placebo,11/4/2014,8:00,11/14/2014,3,99,Condition is progressed,0
+STUDY0001,ID0193,B,Drug\Placebo,7/22/2014,14:00,8/1/2014,98,,,50
+STUDY0001,ID0195,B,Drug\Placebo,9/28/2014,11:15,10/8/2014,98,,,10
+STUDY0001,ID0197,B,Drug\Placebo,11/17/2014,11:00,11/27/2014,98,,,50
+STUDY0001,ID0197,B,Drug\Placebo,12/17/2014,12:00,12/27/2014,0,,,50
+STUDY0001,ID0197,B,Drug\Placebo,12/13/2014,9:00,12/23/2014,3,1,,0
+STUDY0001,ID0197,B,Drug\Placebo,10/25/2015,21:00,,3,99,Progression disease,0
+STUDY0001,ID0199,B,Drug\Placebo,2/15/2015,15:10,,98,,,60
+STUDY0001,ID0199,B,Drug\Placebo,10/26/2015,8:00,11/5/2015,3,10,,0
+STUDY0001,ID0199,B,Drug\Placebo,2/24/2015,20:00,3/6/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0199,B,Drug\Placebo,2/25/2015,8:00,,0,,,60
+STUDY0001,ID0199,B,Drug\Placebo,3/3/2015,20:00,3/13/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0199,B,Drug\Placebo,3/4/2015,8:00,,0,,,60
+STUDY0001,ID0199,B,Drug\Placebo,3/22/2015,20:00,4/1/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0199,B,Drug\Placebo,3/23/2015,8:00,,0,,,60
+STUDY0001,ID0199,B,Drug\Placebo,3/29/2015,20:00,4/8/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0199,B,Drug\Placebo,3/30/2015,8:00,,0,,,60
+STUDY0001,ID0199,B,Drug\Placebo,4/12/2015,20:00,4/22/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0199,B,Drug\Placebo,4/13/2015,8:00,,0,,,60
+STUDY0001,ID0199,B,Drug\Placebo,4/19/2015,20:00,4/29/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0199,B,Drug\Placebo,4/20/2015,8:00,,0,,,60
+STUDY0001,ID0199,B,Drug\Placebo,4/26/2015,20:00,5/6/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0199,B,Drug\Placebo,4/26/2015,8:00,,0,,,60
+STUDY0001,ID0199,B,Drug\Placebo,5/10/2015,20:00,5/20/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0199,B,Drug\Placebo,5/11/2015,8:00,,0,,,60
+STUDY0001,ID0199,B,Drug\Placebo,5/17/2015,20:00,5/27/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0199,B,Drug\Placebo,5/18/2015,8:00,,0,,,60
+STUDY0001,ID0199,B,Drug\Placebo,5/25/2015,20:00,6/4/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0199,B,Drug\Placebo,5/26/2015,8:00,,0,,,60
+STUDY0001,ID0199,B,Drug\Placebo,6/7/2015,20:00,6/17/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0199,B,Drug\Placebo,6/8/2015,8:00,,0,,,60
+STUDY0001,ID0199,B,Drug\Placebo,6/14/2015,20:00,6/24/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0199,B,Drug\Placebo,6/15/2015,8:00,,0,,,60
+STUDY0001,ID0199,B,Drug\Placebo,6/21/2015,20:00,7/1/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0199,B,Drug\Placebo,6/22/2015,8:00,,0,,,60
+STUDY0001,ID0199,B,Drug\Placebo,9/6/2015,20:00,9/16/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0199,B,Drug\Placebo,9/7/2015,8:00,,0,,,60
+STUDY0001,ID0199,B,Drug\Placebo,9/13/2015,20:00,9/23/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0199,B,Drug\Placebo,9/14/2015,8:00,,0,,,60
+STUDY0001,ID0199,B,Drug\Placebo,9/27/2015,20:00,10/7/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0199,B,Drug\Placebo,9/28/2015,8:00,,0,,,60
+STUDY0001,ID0199,B,Drug\Placebo,10/4/2015,20:00,10/14/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0199,B,Drug\Placebo,10/5/2015,8:00,,0,,,60
+STUDY0001,ID0199,B,Drug\Placebo,10/11/2015,20:00,10/21/2015,3,99,Patient administered study drug/placebo prior to chemotherapy and missed second dose due to the minimum interval between  morning and evening dose.,0
+STUDY0001,ID0199,B,Drug\Placebo,10/12/2015,8:00,,0,,,60
+STUDY0001,ID0200,B,Drug\Placebo,11/24/2014,16:40,,98,,,10
+STUDY0001,ID0200,B,Drug\Placebo,1/5/2015,0:01,1/15/2015,3,99,Patients chocie,0
+STUDY0001,ID0200,B,Drug\Placebo,12/1/2014,8:00,12/11/2014,3,99,"Delay in Chemotherapy, dose would be out of window.",0
+STUDY0001,ID0200,B,Drug\Placebo,12/15/2014,10:00,12/25/2014,3,99,"Delay in chemotherapy, dose out of scheduled window",0
+STUDY0001,ID0200,B,Drug\Placebo,12/1/2014,20:00,12/11/2014,0,,,10
+STUDY0001,ID0200,B,Drug\Placebo,12/15/2014,11:30,,0,,,10
+STUDY0001,ID0003,B,Drug\Placebo,11/4/2014,10:55,11/14/2014,98,,,20
+STUDY0001,ID0003,B,Drug\Placebo,2/15/2015,9:00,2/25/2015,3,1,,100
+STUDY0001,ID0003,B,Drug\Placebo,2/23/2015,9:55,3/5/2015,0,,,20
+STUDY0001,ID0003,B,Drug\Placebo,8/19/2015,8:00,8/29/2015,3,1,,0
+STUDY0001,ID0003,B,Drug\Placebo,8/25/2015,9:00,9/4/2015,0,,,20
+STUDY0001,ID0008,B,Drug\Placebo,10/12/2014,8:55,10/22/2014,98,,,30
+STUDY0001,ID0008,B,Drug\Placebo,11/29/2014,11:00,,3,99,disease progression,10
