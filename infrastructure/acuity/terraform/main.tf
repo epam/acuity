@@ -1,5 +1,5 @@
 terraform {
-  required_version = ">= 1.10"
+  required_version = ">= 1.15"
 
   required_providers {
     aws = {
@@ -18,4 +18,12 @@ terraform {
 
 provider "aws" {
   region = "us-east-1"
+
+  default_tags {
+    tags = {
+      Project   = "acuity"
+      Env       = "poc"
+      Terraform = true
+    }
+  }
 }
