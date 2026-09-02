@@ -95,10 +95,12 @@ locals {
   }
   # `has_lb` = this service is behind the ALB (its target group key == the map
   # key). va-security has no ALB path. Story 1.6 / AD-4.
+  # `efs` = mount the durable admin-storage volume at local-storage.path. Only
+  # admin (Story 1.7 / AD-10).
   app_services = {
-    "va-hub"      = { cpu = 1024, memory = 2048, sg = module.sg_va_hub.id, has_lb = true, env = { OTHER_PROFILES = "NoScheduledJobs" } }
-    "admin"       = { cpu = 512, memory = 1024, sg = module.sg_admin.id, has_lb = true, env = { STORAGE_PROFILE = "local-storage" } }
-    "va-security" = { cpu = 512, memory = 1024, sg = module.sg_va_security.id, has_lb = false, env = { OTHER_PROFILES = "default,postgres-mode" } }
+    "va-hub"      = { cpu = 1024, memory = 2048, sg = module.sg_va_hub.id, has_lb = true, efs = false, env = { OTHER_PROFILES = "NoScheduledJobs" } }
+    "admin"       = { cpu = 512, memory = 1024, sg = module.sg_admin.id, has_lb = true, efs = true, env = { STORAGE_PROFILE = "local-storage" } }
+    "va-security" = { cpu = 512, memory = 1024, sg = module.sg_va_security.id, has_lb = false, efs = false, env = { OTHER_PROFILES = "default,postgres-mode" } }
   }
 }
 
@@ -120,6 +122,18 @@ resource "aws_ecs_task_definition" "app" {
     cpu_architecture        = "X86_64"
   }
 
+  # AD-10: admin gets a durable EFS-backed volume; the others don't.
+  dynamic "volume" {
+    for_each = each.value.efs ? [1] : []
+    content {
+      name = "admin-storage"
+      efs_volume_configuration {
+        file_system_id     = module.efs.id
+        transit_encryption = "ENABLED"
+      }
+    }
+  }
+
   container_definitions = jsonencode([
     {
       name  = "acuity-${each.key}"
@@ -128,6 +142,12 @@ resource "aws_ecs_task_definition" "app" {
       portMappings = [
         { containerPort = 8000, name = "acuity-${each.key}", appProtocol = "http" },
       ]
+
+      # Admin only - the EFS volume at local-storage.path as shipped.
+      mountPoints = each.value.efs ? [{
+        sourceVolume  = "admin-storage"
+        containerPath = "/usr/root/local-file-storage"
+      }] : []
 
       # No VASECURITY_URL / VAHUB_URL - the image defaults are what Service
       # Connect resolves (AD-3). POSTGRES_URL is the only URL override.
