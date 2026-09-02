@@ -115,7 +115,9 @@ resource "aws_ecs_task_definition" "app" {
         for k, v in merge(local.app_common_env, {
           POSTGRES_USER = "acuity"
           POSTGRES_URL  = "jdbc:postgresql://${module.rds.db_instance_address}:5432/acuity_db"
-          JAVA_OPTIONS  = "-XX:MaxRAMPercentage=60"
+          # JDK 8 needs a float ("=60" is rejected); UseContainerSupport is
+          # default-on since 8u191 but kept explicit against a base-image change.
+          JAVA_OPTIONS = "-XX:+UseContainerSupport -XX:MaxRAMPercentage=60.0"
         }, each.value.env) : { name = k, value = v }
       ]
 
