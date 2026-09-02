@@ -12,3 +12,9 @@ resource "aws_cloudwatch_log_group" "app" {
   name              = "/acuity/poc/${each.key}"
   retention_in_days = 14
 }
+
+# Story 1.6: va-hub-ui is a standalone service (not a `local.app_services` member).
+resource "aws_cloudwatch_log_group" "va_hub_ui" {
+  name              = "/acuity/poc/va-hub-ui"
+  retention_in_days = 14
+}
