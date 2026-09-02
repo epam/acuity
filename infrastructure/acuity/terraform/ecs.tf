@@ -38,48 +38,6 @@ resource "aws_iam_role_policy_attachment" "ecs_execution_ssm_secrets" {
   policy_arn = aws_iam_policy.ssm_secrets_read.arn
 }
 
-resource "aws_ecs_task_definition" "flyway" {
-  family                   = "acuity-flyway"
-  requires_compatibilities = ["FARGATE"]
-  network_mode             = "awsvpc"
-  cpu                      = 256
-  memory                   = 512
-  execution_role_arn       = aws_iam_role.ecs_execution.arn
-  # No task role: the container only talks to RDS, no AWS API access.
-
-  runtime_platform {
-    operating_system_family = "LINUX"
-    cpu_architecture        = "X86_64"
-  }
-
-  container_definitions = jsonencode([
-    {
-      name  = "flyway"
-      image = "${module.ecr["flyway"].repository_url}:${var.image_tag}"
-
-      # No command/entrypoint override - the image bakes CMD
-      environment = [
-        { name = "FLYWAY_URL", value = "jdbc:postgresql://${module.rds.db_instance_address}:5432/acuity_db" },
-        { name = "FLYWAY_USER", value = "dbadmin" },
-      ]
-
-      secrets = [
-        { name = "FLYWAY_PASSWORD", valueFrom = aws_ssm_parameter.dbadmin_password.arn },
-        { name = "FLYWAY_ACUITY_PASSWORD", valueFrom = aws_ssm_parameter.acuity_password.arn },
-      ]
-
-      logConfiguration = {
-        logDriver = "awslogs"
-        options = {
-          "awslogs-group"         = aws_cloudwatch_log_group.flyway.name
-          "awslogs-region"        = data.aws_region.current.region
-          "awslogs-stream-prefix" = "flyway" # required for the FARGATE awslogs driver
-        }
-      }
-    }
-  ])
-}
-
 # One HTTP namespace `acuity`; services register under their exact compose name
 # so the images' baked http://acuity-va-*:8000 URLs resolve with no override.
 resource "aws_service_discovery_http_namespace" "acuity" {
@@ -134,6 +92,13 @@ resource "aws_ecs_task_definition" "app" {
       name  = "acuity-${each.key}"
       image = "${module.ecr[each.key].repository_url}:${var.image_tag}"
 
+      # Migrations run to completion before the app starts; a stuck migration
+      # fails the task (and the deploy) at startTimeout rather than hanging.
+      dependsOn = [
+        { containerName = "flyway", condition = "SUCCESS" },
+      ]
+      startTimeout = 600
+
       portMappings = [
         { containerPort = 8000, name = "acuity-${each.key}", appProtocol = "http" },
       ]
@@ -162,6 +127,40 @@ resource "aws_ecs_task_definition" "app" {
         logDriver = "awslogs"
         options = {
           "awslogs-group"         = aws_cloudwatch_log_group.app[each.key].name
+          "awslogs-region"        = data.aws_region.current.region
+          "awslogs-stream-prefix" = each.key # required for the FARGATE awslogs driver
+        }
+      }
+    },
+    {
+      name  = "flyway"
+      image = "${module.ecr["flyway"].repository_url}:${var.image_tag}"
+
+      # Non-essential: exits 0 after migrating, then the app container starts.
+      # essential = false is required - ECS rejects a SUCCESS dependency on an essential container.
+      essential = false
+
+      # Let an in-flight migration finish (or fail cleanly) if the deploy is aborted.
+      stopTimeout = 120
+
+      # No command/entrypoint override - the image bakes CMD.
+      # LOCK_RETRY_COUNT=-1: the sidecars on the other DB services wait on the
+      # schema-history lock instead of erroring out while the first one migrates.
+      environment = [
+        { name = "FLYWAY_URL", value = "jdbc:postgresql://${module.rds.db_instance_address}:5432/acuity_db" },
+        { name = "FLYWAY_USER", value = "dbadmin" },
+        { name = "FLYWAY_LOCK_RETRY_COUNT", value = "-1" },
+      ]
+
+      secrets = [
+        { name = "FLYWAY_PASSWORD", valueFrom = aws_ssm_parameter.dbadmin_password.arn },
+        { name = "FLYWAY_ACUITY_PASSWORD", valueFrom = aws_ssm_parameter.acuity_password.arn },
+      ]
+
+      logConfiguration = {
+        logDriver = "awslogs"
+        options = {
+          "awslogs-group"         = aws_cloudwatch_log_group.flyway.name
           "awslogs-region"        = data.aws_region.current.region
           "awslogs-stream-prefix" = each.key # required for the FARGATE awslogs driver
         }
@@ -214,10 +213,15 @@ resource "aws_ecs_service" "app" {
     }
   }
 
-  # Task definition revisions are managed out of band (redeploy on a new image_tag).
-  lifecycle {
-    ignore_changes = [task_definition]
+  # A failed rollout (e.g. a bad migration in the flyway sidecar) rolls this
+  # service back to the last healthy revision; running tasks keep serving.
+  deployment_circuit_breaker {
+    enable   = true
+    rollback = true
   }
+
+  # `apply` blocks on the rollout, so a failed migration fails the apply.
+  wait_for_steady_state = true
 }
 
 # va-hub-ui (nginx SPA) - standalone, NOT a Service Connect member.
@@ -285,7 +289,10 @@ resource "aws_ecs_service" "va_hub_ui" {
     container_port   = local.app_port
   }
 
-  lifecycle {
-    ignore_changes = [task_definition]
+  deployment_circuit_breaker {
+    enable   = true
+    rollback = true
   }
+
+  wait_for_steady_state = true
 }
