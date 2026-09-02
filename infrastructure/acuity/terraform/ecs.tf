@@ -93,10 +93,12 @@ locals {
     AUTH_PROFILE     = "local-no-security"
     CONFIG_PROFILE   = "local-config"
   }
+  # `has_lb` = this service is behind the ALB (its target group key == the map
+  # key). va-security has no ALB path. Story 1.6 / AD-4.
   app_services = {
-    "va-hub"      = { cpu = 1024, memory = 2048, sg = module.sg_va_hub.id, env = { OTHER_PROFILES = "NoScheduledJobs" } }
-    "admin"       = { cpu = 512, memory = 1024, sg = module.sg_admin.id, env = { STORAGE_PROFILE = "local-storage" } }
-    "va-security" = { cpu = 512, memory = 1024, sg = module.sg_va_security.id, env = { OTHER_PROFILES = "default,postgres-mode" } }
+    "va-hub"      = { cpu = 1024, memory = 2048, sg = module.sg_va_hub.id, has_lb = true, env = { OTHER_PROFILES = "NoScheduledJobs" } }
+    "admin"       = { cpu = 512, memory = 1024, sg = module.sg_admin.id, has_lb = true, env = { STORAGE_PROFILE = "local-storage" } }
+    "va-security" = { cpu = 512, memory = 1024, sg = module.sg_va_security.id, has_lb = false, env = { OTHER_PROFILES = "default,postgres-mode" } }
   }
 }
 
@@ -162,12 +164,27 @@ resource "aws_ecs_service" "app" {
   desired_count   = 1
   launch_type     = "FARGATE"
 
+  # AD-1: grace period only where there's a load balancer to health-check against;
+  # va-security has none, so it stays unset there (deferred-work.md gap).
+  health_check_grace_period_seconds = each.value.has_lb ? 300 : null
+
   network_configuration {
     subnets         = module.vpc.public_subnets
     security_groups = [each.value.sg]
     # Public subnets, no NAT (AD-6); the task SG is the only guard. Upgrade
     # path: private subnets + NAT / VPC endpoints.
     assign_public_ip = true
+  }
+
+  # ECS registers the task IP into the ALB target group named after this service
+  # (target_type = "ip"). va-security has none.
+  dynamic "load_balancer" {
+    for_each = each.value.has_lb ? [1] : []
+    content {
+      target_group_arn = module.alb.target_groups[each.key].arn
+      container_name   = "acuity-${each.key}"
+      container_port   = local.app_port
+    }
   }
 
   service_connect_configuration {
@@ -186,6 +203,80 @@ resource "aws_ecs_service" "app" {
 
   # AD-7: task definition revisions are managed out of band (redeploy on a new
   # image_tag), not by Terraform diffing the container def.
+  lifecycle {
+    ignore_changes = [task_definition]
+  }
+}
+
+# --- Story 1.6: va-hub-ui (nginx SPA) - standalone, NOT a Service Connect member ---
+# It has no DB and a different env contract, so it stays out of `local.app_services`
+# (folding it in would mean a conditional on every field). AD-1: 0.25 vCPU / 0.5 GB.
+
+resource "aws_ecs_task_definition" "va_hub_ui" {
+  family                   = "acuity-va-hub-ui"
+  requires_compatibilities = ["FARGATE"]
+  network_mode             = "awsvpc"
+  cpu                      = 256
+  memory                   = 512
+  execution_role_arn       = aws_iam_role.ecs_execution.arn
+  # No task role: the container only serves static files and (on Docker) proxies.
+
+  runtime_platform {
+    operating_system_family = "LINUX"
+    cpu_architecture        = "X86_64" # AD-1 linux/amd64 - see deferred-work.md
+  }
+
+  container_definitions = jsonencode([
+    {
+      name  = "acuity-va-hub-ui"
+      image = "${module.ecr["va-hub-ui"].repository_url}:${var.image_tag}"
+
+      # No `name` - va-hub-ui is not on Service Connect.
+      portMappings = [
+        { containerPort = local.app_port },
+      ]
+
+      # Dead on AWS (the ALB /resources/* rule intercepts before nginx), but the
+      # image's nginx.conf.template runs `envsubst` at boot and an empty
+      # ${VAHUB_API} yields an invalid proxy_pass - so pass the compose default.
+      environment = [
+        { name = "VAHUB_API", value = "http://acuity-va-hub:8000" },
+      ]
+
+      logConfiguration = {
+        logDriver = "awslogs"
+        options = {
+          "awslogs-group"         = aws_cloudwatch_log_group.va_hub_ui.name
+          "awslogs-region"        = data.aws_region.current.region
+          "awslogs-stream-prefix" = "va-hub-ui" # required for the FARGATE awslogs driver
+        }
+      }
+    }
+  ])
+}
+
+resource "aws_ecs_service" "va_hub_ui" {
+  name            = "acuity-va-hub-ui"
+  cluster         = module.ecs_cluster.arn
+  task_definition = aws_ecs_task_definition.va_hub_ui.arn
+  desired_count   = 1
+  launch_type     = "FARGATE"
+
+  health_check_grace_period_seconds = 300 # AD-1
+
+  network_configuration {
+    subnets          = module.vpc.public_subnets
+    security_groups  = [module.sg_va_hub_ui.id]
+    assign_public_ip = true
+  }
+
+  load_balancer {
+    target_group_arn = module.alb.target_groups["va-hub-ui"].arn
+    container_name   = "acuity-va-hub-ui"
+    container_port   = local.app_port
+  }
+
+  # AD-7: revisions managed out of band, same as the app services.
   lifecycle {
     ignore_changes = [task_definition]
   }
