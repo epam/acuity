@@ -1,16 +1,10 @@
-# Story 1.2 - the two AD-8 DB password secrets as SSM SecureString, plus the
-# detached IAM policy that grants reading them (attached by later stories).
-
 data "aws_caller_identity" "current" {}
 data "aws_region" "current" {}
 
-# key_id is left unset on the parameters below, so they use this key - hence
-# it's the only key the read policy needs kms:Decrypt on.
 data "aws_kms_alias" "ssm" {
   name = "alias/aws/ssm"
 }
 
-# special = false: each value passes through sh -c and a SQL literal downstream.
 resource "random_password" "dbadmin_password" {
   length  = 32 # within RDS's 8-128 master-password limit, ample entropy
   special = false
@@ -35,9 +29,6 @@ resource "aws_ssm_parameter" "acuity_password" {
   value       = random_password.acuity_password.result
 }
 
-# Detached read policy - nothing attaches it in this story; later stories attach
-# it to their task execution roles. Scoped to the PoC's own SSM prefix and the
-# single KMS key those parameters use.
 data "aws_iam_policy_document" "ssm_secrets_read" {
   statement {
     sid       = "ReadAcuityPocParameters"

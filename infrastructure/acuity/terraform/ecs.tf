@@ -1,5 +1,4 @@
-# ECS cluster `acuity` + the shared task execution role (Story 1.5's app tasks
-# reuse it), and the one-off `acuity-flyway` migration task (AD-1, AD-7, AD-8).
+# ECS cluster `acuity` + the shared task execution role 
 
 module "ecs_cluster" {
   source  = "terraform-aws-modules/ecs/aws//modules/cluster"
@@ -48,8 +47,6 @@ resource "aws_ecs_task_definition" "flyway" {
   execution_role_arn       = aws_iam_role.ecs_execution.arn
   # No task role: the container only talks to RDS, no AWS API access.
 
-  # AD-1: pin linux/amd64 explicitly, same as the app task defs. The release
-  # image must actually be built amd64 (see deferred-work.md - Makefile sets no --platform).
   runtime_platform {
     operating_system_family = "LINUX"
     cpu_architecture        = "X86_64"
@@ -60,8 +57,7 @@ resource "aws_ecs_task_definition" "flyway" {
       name  = "flyway"
       image = "${module.ecr["flyway"].repository_url}:${var.image_tag}"
 
-      # No command/entrypoint override - the image bakes
-      # sh -c 'flyway "-placeholders.user.acuity.password=${FLYWAY_ACUITY_PASSWORD}" migrate'.
+      # No command/entrypoint override - the image bakes CMD
       environment = [
         { name = "FLYWAY_URL", value = "jdbc:postgresql://${module.rds.db_instance_address}:5432/acuity_db" },
         { name = "FLYWAY_USER", value = "dbadmin" },
@@ -84,8 +80,6 @@ resource "aws_ecs_task_definition" "flyway" {
   ])
 }
 
-# --- Story 1.5: the three backend app services on ECS Service Connect (AD-1, AD-3, AD-7) ---
-
 # One HTTP namespace `acuity`; services register under their exact compose name
 # so the images' baked http://acuity-va-*:8000 URLs resolve with no override.
 resource "aws_service_discovery_http_namespace" "acuity" {
@@ -100,10 +94,6 @@ locals {
     AUTH_PROFILE     = "local-no-security"
     CONFIG_PROFILE   = "local-config"
   }
-  # `has_lb` = this service is behind the ALB (its target group key == the map
-  # key). va-security has no ALB path. Story 1.6 / AD-4.
-  # `efs` = mount the durable admin-storage volume at local-storage.path. Only
-  # admin (Story 1.7 / AD-10).
   app_services = {
     "va-hub"      = { cpu = 1024, memory = 2048, sg = module.sg_va_hub.id, has_lb = true, efs = false, env = { OTHER_PROFILES = "NoScheduledJobs" } }
     "admin"       = { cpu = 512, memory = 1024, sg = module.sg_admin.id, has_lb = true, efs = true, env = { STORAGE_PROFILE = "local-storage" } }
@@ -122,14 +112,12 @@ resource "aws_ecs_task_definition" "app" {
   execution_role_arn       = aws_iam_role.ecs_execution.arn
   # No task role: these tasks only reach RDS and the Service Connect peers.
 
-  # AD-1: pin linux/amd64 explicitly. The release images must actually be built
-  # amd64 (see deferred-work.md - the Makefile sets no --platform).
   runtime_platform {
     operating_system_family = "LINUX"
     cpu_architecture        = "X86_64"
   }
 
-  # AD-10: admin gets a durable EFS-backed volume; the others don't.
+  # Admin gets a durable EFS-backed volume; the others don't.
   dynamic "volume" {
     for_each = each.value.efs ? [1] : []
     content {
@@ -156,8 +144,8 @@ resource "aws_ecs_task_definition" "app" {
         containerPath = "/usr/root/local-file-storage"
       }] : []
 
-      # No VASECURITY_URL / VAHUB_URL - the image defaults are what Service
-      # Connect resolves (AD-3). POSTGRES_URL is the only URL override.
+      # No VASECURITY_URL / VAHUB_URL - the image defaults are what Service Connect resolves.
+      # POSTGRES_URL is the only URL override.
       environment = [
         for k, v in merge(local.app_common_env, {
           POSTGRES_USER = "acuity"
@@ -191,15 +179,13 @@ resource "aws_ecs_service" "app" {
   desired_count   = 1
   launch_type     = "FARGATE"
 
-  # AD-1: grace period only where there's a load balancer to health-check against;
-  # va-security has none, so it stays unset there (deferred-work.md gap).
   health_check_grace_period_seconds = each.value.has_lb ? 300 : null
 
   network_configuration {
     subnets         = module.vpc.public_subnets
     security_groups = [each.value.sg]
-    # Public subnets, no NAT (AD-6); the task SG is the only guard. Upgrade
-    # path: private subnets + NAT / VPC endpoints.
+    # Public subnets, no NAT. The task SG is the only guard.
+    # Upgrade path: private subnets + NAT / VPC endpoints.
     assign_public_ip = true
   }
 
@@ -228,17 +214,13 @@ resource "aws_ecs_service" "app" {
     }
   }
 
-  # AD-7: task definition revisions are managed out of band (redeploy on a new
-  # image_tag), not by Terraform diffing the container def.
+  # Task definition revisions are managed out of band (redeploy on a new image_tag).
   lifecycle {
     ignore_changes = [task_definition]
   }
 }
 
-# --- Story 1.6: va-hub-ui (nginx SPA) - standalone, NOT a Service Connect member ---
-# It has no DB and a different env contract, so it stays out of `local.app_services`
-# (folding it in would mean a conditional on every field). AD-1: 0.25 vCPU / 0.5 GB.
-
+# va-hub-ui (nginx SPA) - standalone, NOT a Service Connect member.
 resource "aws_ecs_task_definition" "va_hub_ui" {
   family                   = "acuity-va-hub-ui"
   requires_compatibilities = ["FARGATE"]
@@ -303,7 +285,6 @@ resource "aws_ecs_service" "va_hub_ui" {
     container_port   = local.app_port
   }
 
-  # AD-7: revisions managed out of band, same as the app services.
   lifecycle {
     ignore_changes = [task_definition]
   }

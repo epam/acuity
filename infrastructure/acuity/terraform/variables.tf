@@ -1,10 +1,10 @@
 variable "image_tag" {
-  description = "Release image tag for the app / flyway task definitions. No default - supply via terraform.tfvars or -var (make deploy passes it)."
+  description = "Release image tag for the app. No default - supply via terraform.tfvars or -var."
   type        = string
 
   validation {
     condition     = var.image_tag != "latest"
-    error_message = "image_tag must be a pinned release version, never \"latest\" (AD-11)."
+    error_message = "image_tag must be a pinned release version, never \"latest\"."
   }
 }
 
@@ -14,7 +14,7 @@ variable "vpn_cidrs" {
 
   validation {
     condition     = length(var.vpn_cidrs) > 0
-    error_message = "vpn_cidrs must not be empty - the ALB has no other ingress path."
+    error_message = "vpn_cidrs must not be empty."
   }
 
   validation {
