@@ -48,6 +48,13 @@ resource "aws_ecs_task_definition" "flyway" {
   execution_role_arn       = aws_iam_role.ecs_execution.arn
   # No task role: the container only talks to RDS, no AWS API access.
 
+  # AD-1: pin linux/amd64 explicitly, same as the app task defs. The release
+  # image must actually be built amd64 (see deferred-work.md - Makefile sets no --platform).
+  runtime_platform {
+    operating_system_family = "LINUX"
+    cpu_architecture        = "X86_64"
+  }
+
   container_definitions = jsonencode([
     {
       name  = "flyway"
