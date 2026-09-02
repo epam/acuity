@@ -1,7 +1,7 @@
 name: acuity
 services:
   acuity-postgres:
-    image: acuity-postgres
+    image: 897021975362.dkr.ecr.us-east-1.amazonaws.com/epm-lstr-acuity/postgres
     profiles: [main, initdb]
     restart: always
     ports:
@@ -18,7 +18,7 @@ services:
       retries: 10
 
   acuity-flyway-migrate:
-    image: acuity-flyway
+    image: 897021975362.dkr.ecr.us-east-1.amazonaws.com/epm-lstr-acuity/flyway
     profiles: [main, initdb]
     environment:
       FLYWAY_URL: ${FLYWAY_URL:-jdbc:postgresql://acuity-postgres:5432/acuity_db}
@@ -31,7 +31,7 @@ services:
         condition: service_healthy
 
   acuity-admin:
-    image: acuity-admin
+    image: 897021975362.dkr.ecr.us-east-1.amazonaws.com/epm-lstr-acuity/admin 
     profiles: [main]
     ports:
       - "9090:8000"
@@ -41,7 +41,7 @@ services:
         condition: service_completed_successfully
 
   acuity-va-security:
-    image: acuity-va-security
+    image: 897021975362.dkr.ecr.us-east-1.amazonaws.com/epm-lstr-acuity/va-security
     profiles: [main]
     ports:
       - "8000:8000"
@@ -51,7 +51,7 @@ services:
         condition: service_completed_successfully
 
   acuity-va-hub:
-    image: acuity-va-hub
+    image: 897021975362.dkr.ecr.us-east-1.amazonaws.com/epm-lstr-acuity/va-hub
     profiles: [main]
     ports:
       - "8080:8000"
@@ -61,7 +61,7 @@ services:
         condition: service_completed_successfully
 
   acuity-va-hub-ui:
-    image: acuity-va-hub-ui
+    image: 897021975362.dkr.ecr.us-east-1.amazonaws.com/epm-lstr-acuity/va-hub-ui
     profiles: [main]
     ports:
       - "3000:8000"
