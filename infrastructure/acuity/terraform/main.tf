@@ -14,7 +14,7 @@ terraform {
 
   backend "s3" {
     region       = "us-east-1"
-    bucket       = "epm-lstr-terraform-state-45116284"
+    bucket       = "epm-lstr-terraform-state-us-east-1"
     key          = "acuity/terraform.tfstate"
     use_lockfile = true
   }
