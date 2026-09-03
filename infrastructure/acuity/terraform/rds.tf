@@ -1,9 +1,8 @@
-# Single-AZ PostgreSQL 17, VPC-internal. 
-# The `dbadmin` master role here replaces the dropped custom-Postgres image's create_db.sql.
+# Single-AZ PostgreSQL 17
 
 module "rds" {
   source  = "terraform-aws-modules/rds/aws"
-  version = "~> 6.0"
+  version = "~> 7.0"
 
   identifier = "acuity-poc"
 
@@ -22,9 +21,10 @@ module "rds" {
   multi_az            = false # single-AZ: PoC cost ceiling.
   publicly_accessible = false
 
-  # PoC uses random_password (also written to SSM), not Secrets Manager.
+  # PoC uses random_password (also written to SSM Parameter Store).
   manage_master_user_password = false
-  password                    = random_password.dbadmin_password.result
+  password_wo                 = ephemeral.random_password.dbadmin_password.result
+  password_wo_version         = 1
 
   # DB sits in the public subnets, guarded only by publicly_accessible = false + sg_rds. 
   create_db_subnet_group = true
