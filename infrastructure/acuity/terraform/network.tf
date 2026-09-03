@@ -7,7 +7,6 @@ locals {
   public_subnets = ["10.0.0.0/24", "10.0.1.0/24"]
   app_port       = 8000 # va-hub-ui, va-hub, admin, va-security all listen here
 
-  # flyway's egress narrows to RDS-only once its migration task exists.
   egress_all = {
     all_ipv4 = {
       ip_protocol = "-1"
@@ -43,211 +42,219 @@ module "sg_alb" {
 
   name        = "acuity-poc-alb"
   description = "ALB - inbound from the corporate VPN only"
-  vpc_id      = module.vpc.vpc_id
+
+  vpc_id = module.vpc.vpc_id
 
   ingress_rules = merge(
     { for cidr in var.vpn_cidrs : "http-${replace(cidr, "/[./]/", "-")}" => {
+      description = "va-hub-ui / va-hub HTTP from VPN"
+      ip_protocol = "tcp"
       from_port   = 80
       to_port     = 80
-      ip_protocol = "tcp"
       cidr_ipv4   = cidr
-      description = "va-hub-ui / va-hub HTTP from VPN"
     } },
     { for cidr in var.vpn_cidrs : "admin-${replace(cidr, "/[./]/", "-")}" => {
+      description = "admin HTTP from VPN"
+      ip_protocol = "tcp"
       from_port   = 9090
       to_port     = 9090
-      ip_protocol = "tcp"
       cidr_ipv4   = cidr
-      description = "admin HTTP from VPN"
     } },
   )
 
   egress_rules = local.egress_all
 }
 
-# --- va-hub-ui: reached only by the ALB; not a Service Connect member ---
+# va-hub-ui: reached only by the ALB
 module "sg_va_hub_ui" {
   source  = "terraform-aws-modules/security-group/aws"
   version = "~> 6.0"
 
   name        = "acuity-poc-va-hub-ui"
   description = "va-hub-ui task - inbound from the ALB only"
-  vpc_id      = module.vpc.vpc_id
+
+  vpc_id = module.vpc.vpc_id
 
   ingress_rules = {
     from_alb = {
+      description                  = "ALB - va-hub-ui"
+      ip_protocol                  = "tcp"
       from_port                    = local.app_port
       to_port                      = local.app_port
-      ip_protocol                  = "tcp"
       referenced_security_group_id = module.sg_alb.id
-      description                  = "ALB - va-hub-ui"
     }
   }
 
   egress_rules = local.egress_all
 }
 
-# --- va-hub: hit by the ALB (/resources/* rule) and by admin over Service Connect ---
+# va-hub: hit by the ALB and by admin over Service Connect.
 module "sg_va_hub" {
   source  = "terraform-aws-modules/security-group/aws"
   version = "~> 6.0"
 
   name        = "acuity-poc-va-hub"
-  description = "va-hub task - inbound from the ALB and from admin (Service Connect)"
-  vpc_id      = module.vpc.vpc_id
+  description = "va-hub task - inbound from the ALB and from admin via Service Connect"
+
+  vpc_id = module.vpc.vpc_id
 
   ingress_rules = {
     from_alb = {
+      description                  = "ALB - va-hub"
+      ip_protocol                  = "tcp"
       from_port                    = local.app_port
       to_port                      = local.app_port
-      ip_protocol                  = "tcp"
       referenced_security_group_id = module.sg_alb.id
-      description                  = "ALB - va-hub (/resources/*)"
     }
     from_admin = {
+      description                  = "admin - va-hub"
+      ip_protocol                  = "tcp"
       from_port                    = local.app_port
       to_port                      = local.app_port
-      ip_protocol                  = "tcp"
       referenced_security_group_id = module.sg_admin.id
-      description                  = "admin - va-hub (Service Connect)"
     }
   }
 
   egress_rules = local.egress_all
 }
 
-# --- admin: hit only by the ALB (:9090 listener) ---
+# admin: hit only by the ALB (:9090 listener)
 module "sg_admin" {
   source  = "terraform-aws-modules/security-group/aws"
   version = "~> 6.0"
 
   name        = "acuity-poc-admin"
   description = "admin task - inbound from the ALB only"
-  vpc_id      = module.vpc.vpc_id
+
+  vpc_id = module.vpc.vpc_id
 
   ingress_rules = {
     from_alb = {
+      description                  = "ALB - admin"
+      ip_protocol                  = "tcp"
       from_port                    = local.app_port
       to_port                      = local.app_port
-      ip_protocol                  = "tcp"
       referenced_security_group_id = module.sg_alb.id
-      description                  = "ALB - admin"
     }
   }
 
   egress_rules = local.egress_all
 }
 
-# --- va-security: never reached from the ALB - only va-hub and admin call it (Service Connect) ---
+# va-security: never reached from the ALB - only va-hub and admin call it.
 module "sg_va_security" {
   source  = "terraform-aws-modules/security-group/aws"
   version = "~> 6.0"
 
   name        = "acuity-poc-va-security"
-  description = "va-security task - inbound from va-hub and admin only (Service Connect)"
-  vpc_id      = module.vpc.vpc_id
+  description = "va-security task - inbound from va-hub and admin only"
+
+  vpc_id = module.vpc.vpc_id
 
   ingress_rules = {
     from_va_hub = {
+      description                  = "va-hub - va-security"
+      ip_protocol                  = "tcp"
       from_port                    = local.app_port
       to_port                      = local.app_port
-      ip_protocol                  = "tcp"
       referenced_security_group_id = module.sg_va_hub.id
-      description                  = "va-hub - va-security (Service Connect)"
     }
     from_admin = {
+      description                  = "admin - va-security"
+      ip_protocol                  = "tcp"
       from_port                    = local.app_port
       to_port                      = local.app_port
-      ip_protocol                  = "tcp"
       referenced_security_group_id = module.sg_admin.id
-      description                  = "admin - va-security (Service Connect)"
     }
   }
 
   egress_rules = local.egress_all
 }
 
-# --- flyway: one-off migration task, no inbound; egress narrows to RDS-only once its task exists ---
+# flyway: one-off migration task, no inbound; egress narrows to RDS-only once its task exists 
 module "sg_flyway" {
   source  = "terraform-aws-modules/security-group/aws"
   version = "~> 6.0"
 
   name        = "acuity-poc-flyway"
   description = "flyway migration task - no inbound"
-  vpc_id      = module.vpc.vpc_id
+
+  vpc_id = module.vpc.vpc_id
 
   ingress_rules = {}
   egress_rules  = local.egress_all
 }
 
-# --- rds: only the app/migration tasks and the bastion may reach Postgres ---
+# rds: only the app/migration tasks and the bastion may reach it.
 module "sg_rds" {
   source  = "terraform-aws-modules/security-group/aws"
   version = "~> 6.0"
 
   name        = "acuity-poc-rds"
   description = "RDS PostgreSQL - inbound from app tasks, flyway and the bastion only"
-  vpc_id      = module.vpc.vpc_id
+
+  vpc_id = module.vpc.vpc_id
 
   ingress_rules = {
     from_va_hub = {
+      description                  = "va-hub - RDS"
+      ip_protocol                  = "tcp"
       from_port                    = 5432
       to_port                      = 5432
-      ip_protocol                  = "tcp"
       referenced_security_group_id = module.sg_va_hub.id
-      description                  = "va-hub - RDS"
     }
     from_va_security = {
+      description                  = "va-security - RDS"
+      ip_protocol                  = "tcp"
       from_port                    = 5432
       to_port                      = 5432
-      ip_protocol                  = "tcp"
       referenced_security_group_id = module.sg_va_security.id
-      description                  = "va-security - RDS"
     }
     from_admin = {
+      description                  = "admin - RDS"
+      ip_protocol                  = "tcp"
       from_port                    = 5432
       to_port                      = 5432
-      ip_protocol                  = "tcp"
       referenced_security_group_id = module.sg_admin.id
-      description                  = "admin - RDS"
     }
     from_flyway = {
+      description                  = "flyway - RDS"
+      ip_protocol                  = "tcp"
       from_port                    = 5432
       to_port                      = 5432
-      ip_protocol                  = "tcp"
       referenced_security_group_id = module.sg_flyway.id
-      description                  = "flyway - RDS"
     }
     from_bastion = {
+      description                  = "bastion - RDS"
+      ip_protocol                  = "tcp"
       from_port                    = 5432
       to_port                      = 5432
-      ip_protocol                  = "tcp"
       referenced_security_group_id = module.sg_bastion.id
-      description                  = "bastion - RDS"
     }
   }
 
-  # RDS never initiates outbound connections (no log exports, no replicas, no
-  # S3 import/export extensions here) — revisit if any of those get added.
+  # RDS never initiates outbound connections (no log exports, no replicas, no S3 import/export extensions here).
+  # Revisit if any of those get added.
   egress_rules = {}
 }
 
-# --- efs: only admin mounts it ---
+# efs: only admin mounts it
 module "sg_efs" {
   source  = "terraform-aws-modules/security-group/aws"
   version = "~> 6.0"
 
   name        = "acuity-poc-efs"
   description = "EFS - inbound from admin only"
-  vpc_id      = module.vpc.vpc_id
+
+  vpc_id = module.vpc.vpc_id
 
   ingress_rules = {
     from_admin = {
+      description                  = "admin - EFS (NFS)"
+      ip_protocol                  = "tcp"
       from_port                    = 2049
       to_port                      = 2049
-      ip_protocol                  = "tcp"
       referenced_security_group_id = module.sg_admin.id
-      description                  = "admin - EFS (NFS)"
     }
   }
 
@@ -255,18 +262,17 @@ module "sg_efs" {
   egress_rules = {}
 }
 
-# --- bastion: no inbound rules at all - reached only via SSM Session Manager ---
+# bastion: no inbound rules at all - reached only via SSM Session Manager.
 module "sg_bastion" {
   source  = "terraform-aws-modules/security-group/aws"
   version = "~> 6.0"
 
   name        = "acuity-poc-bastion"
   description = "Bastion - no inbound; accessed only via SSM Session Manager"
-  vpc_id      = module.vpc.vpc_id
+
+  vpc_id = module.vpc.vpc_id
 
   ingress_rules = {}
 
-  # Stays all-outbound: reaches SSM Session Manager over the public internet,
-  # not a VPC endpoint.
   egress_rules = local.egress_all
 }
