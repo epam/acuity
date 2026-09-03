@@ -29,14 +29,14 @@ module "vpc" {
 
   enable_nat_gateway = false
 
-  # Org policy forbids any Terraform-managed change to the default Network ACL;
+  # Epam Org policy forbids any Terraform-managed change to the default Network ACL;
   # a central governance system owns and enforces its rules and auto-reverts
-  # anything else (incident: acl-0b4248b40e75364a9, 2026-09-02). The module
-  # manages and overwrites it by default, so opt out entirely and touch nothing.
+  # anything else. 
+  # The module manages and overwrites it by default, so opt out entirely and touch nothing.
   manage_default_network_acl = false
 }
 
-# --- ALB: the only internet-facing edge, restricted to the corporate VPN ---
+# ALB is the only internet-facing resource, restricted to the corporate VPN
 module "sg_alb" {
   source  = "terraform-aws-modules/security-group/aws"
   version = "~> 6.0"
@@ -227,7 +227,9 @@ module "sg_rds" {
     }
   }
 
-  egress_rules = local.egress_all
+  # RDS never initiates outbound connections (no log exports, no replicas, no
+  # S3 import/export extensions here) — revisit if any of those get added.
+  egress_rules = {}
 }
 
 # --- efs: only admin mounts it ---
@@ -249,7 +251,8 @@ module "sg_efs" {
     }
   }
 
-  egress_rules = local.egress_all
+  # EFS mount targets are receive-only (NFS server side); nothing to egress.
+  egress_rules = {}
 }
 
 # --- bastion: no inbound rules at all - reached only via SSM Session Manager ---
