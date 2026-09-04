@@ -1,0 +1,24 @@
+STUDY,SUBJECT,PART,AENO,EVTERM,EVTSDAT,EVTSTIM,CVETYPE,CVE_PIS,CVE_TRA,CVE_LOC,S_CVELOV,ST_DUR,MDRPRIOR,MDRDUR,MDRCURR,Comment
+STUDY0001,ID0002,B,1,Stroke,11/18/2010,,,No,Yes,"Intraparenchym., Subarachn. or Intraventric.",,< 24 hours,Yes,Yes,No,
+STUDY0001,ID0002,B,2,Stroke,2/1/2011,2:20,Transient Ischaemic Attack (TIA),No,Yes,"Intraparenchym., Subarachn. or Intraventric.",,< 24 hours,Yes,Yes,Yes,Ischaemic Attack
+STUDY0001,ID0003,B,3,Stroke,3/17/2011,,Transient Ischaemic Attack (TIA),No,,Subdural or Epidural,,< 24 hours,Yes,Yes,No,Ischaemic Attack
+STUDY0001,ID0009,B,1,Stroke,,7:20,,,Yes,Other ,Somewhere else,,,,,
+STUDY0001,ID0028,B,5,Stroke,2/3/2011,5:20,Undetermined,No,No,"Intraparenchym., Subarachn. or Intraventric.",,>= 24 hours ,Yes,No,No,
+STUDY0001,ID0041,B,1,Stroke,11/18/2010,,,No,Yes,"Intraparenchym., Subarachn. or Intraventric.",,< 24 hours,Yes,Yes,No,
+STUDY0001,ID0052,B,2,Stroke,3/20/2011,13:20,,No,No,Other ,Somewhere else,>= 24 hours ,Yes,No,No,
+STUDY0001,ID0058,B,3,,7/21/2016,20:20,Primary Intracranial Hemorrhage ,Yes,Yes,"Intraparenchym., Subarachn. or Intraventric.",,< 24 hours,No,,,
+STUDY0001,ID0059,B,2,Stroke,2/1/2011,2:20,Transient Ischaemic Attack (TIA),No,Yes,"Intraparenchym., Subarachn. or Intraventric.",,< 24 hours,Yes,Yes,Yes,Ischaemic Attack
+STUDY0001,ID0061,B,2,,10/4/2017,,Undetermined,No,No,"Intraparenchym., Subarachn. or Intraventric.",,>= 24 hours ,Yes,No,No,
+STUDY0001,ID0073,B,5,Stroke,1/7/2011,,,Yes,Yes,"Intraparenchym., Subarachn. or Intraventric.",,< 24 hours,No,,,
+STUDY0001,ID0089,B,3,Stroke,10/15/2010,,Primary Intracranial Hemorrhage ,Yes,Yes,Other ,Somewhere else,< 24 hours,No,,,
+STUDY0001,ID0104,B,5,,6/3/2011,16:20,Primary Intracranial Hemorrhage ,Yes,Yes,Other ,Somewhere else,< 24 hours,No,,,
+STUDY0001,ID0110,B,1,,4/25/2016,18:20,Transient Ischaemic Attack (TIA),,Yes,Subdural or Epidural,,< 24 hours,Yes,Yes,Yes,Ischaemic Attack
+STUDY0001,ID0119,B,3,Stroke,3/17/2011,,Transient Ischaemic Attack (TIA),No,,Subdural or Epidural,,< 24 hours,Yes,Yes,No,Ischaemic Attack
+STUDY0001,ID0128,B,4,,7/15/2011,15:20,Primary Ischemic Stroke ,Yes,Yes,Subdural or Epidural,,>= 24 hours ,No,,,
+STUDY0001,ID0129,B,1,Stroke,6/15/2011,12:20,,Yes,Yes,Subdural or Epidural,,< 24 hours,No,,,
+STUDY0001,ID0130,B,5,,12/26/2011,9:20,,No,No,Subdural or Epidural,,>= 24 hours ,Yes,No,No,
+STUDY0001,ID0139,B,2,Stroke,6/8/2011,,,Yes,,,,>= 24 hours ,No,,,
+STUDY0001,ID0143,B,4,,2/27/2016,21:20,Undetermined,No,No,Subdural or Epidural,,>= 24 hours ,Yes,No,No,
+STUDY0001,ID0160,B,2,,11/10/2015,,Primary Ischemic Stroke ,Yes,Yes,Other ,,>= 24 hours ,No,,,
+STUDY0001,ID0166,B,4,Stroke,12/7/2010,,Primary Ischemic Stroke ,Yes,Yes,Subdural or Epidural,,>= 24 hours ,No,,,
+STUDY0001,ID0178,B,1,Stroke,6/22/2011,10:20,,No,Yes,Other ,Somewhere else,< 24 hours,Yes,Yes,No,
