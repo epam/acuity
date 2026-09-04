@@ -92,7 +92,7 @@ public abstract class BasicReportDao<T extends Report> extends ACUITYDaoSupport 
     protected String getSelectStatementForJobExecutionId() {
         StringBuilder builder = new StringBuilder();
 
-        builder.append("SELECT * FROM (SELECT ");
+        builder.append("SELECT ");
         builder.append(getSelectFields());
         builder.append(" FROM ");
         builder.append(getTableName());
@@ -101,7 +101,7 @@ public abstract class BasicReportDao<T extends Report> extends ACUITYDaoSupport 
         builder.append(" = ? AND ");
         builder.append(getPrimaryKeyColumn());
         builder.append(" > ? ORDER BY " + getPrimaryKeyColumn());
-        builder.append(") WHERE ROWNUM <= " + BasicReportDao.DATA_ROW_LIMIT);
+        builder.append(" LIMIT " + BasicReportDao.DATA_ROW_LIMIT);
 
         return builder.toString();
     }

@@ -30,6 +30,12 @@ spring:
     test-on-return: true
   # Spring Batch-specific option: disables all jobs execution on app startup (more info: https://www.baeldung.com/spring-batch-testing-job)
   batch:
+    # Flyway already creates BATCH_* tables (see clns-acuity-flyway migrations); without this,
+    # Spring Boot's BatchAutoConfiguration tries to re-run spring-batch-core's own schema-postgresql.sql
+    # using the "acuity" role, which only has USAGE (not CREATE) on schema "acuity" -> "permission
+    # denied for schema acuity" on every app startup (harmless/swallowed, but spams the DB logs).
+    initializer:
+      enabled: false
     job:
       enabled: false
 
