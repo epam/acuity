@@ -1,4 +1,4 @@
-# EFS so admin's uploads survive Fargate task restarts (Story 1.7 / AD-10).
+# EFS so admin's uploads survive Fargate task restarts.
 
 module "efs" {
   source  = "terraform-aws-modules/efs/aws"
@@ -6,19 +6,18 @@ module "efs" {
 
   name = "acuity-poc"
 
-  # sg-efs already exists (network.tf, Story 1.1); attach it per mount target.
+  # sg-efs already exists in network.tf
   create_security_group = false
 
-  # One mount target per public subnet; key by subnet id so nothing depends on
-  # the order two separate lists happen to be in.
+  # Keyed by AZ (known at plan time), not by subnet ID (only known after the
+  # VPC creates it) - a for_each key must be knowable before apply.
   mount_targets = {
-    for s in module.vpc.public_subnets : s => {
-      subnet_id       = s
+    for idx, az in local.azs : az => {
+      subnet_id       = module.vpc.public_subnets[idx]
       security_groups = [module.sg_efs.id]
     }
   }
 
-  # PoC upload data is disposable demo content - no automatic backups / PITR.
-  # Re-enable (the module default) before any non-PoC use.
+  # PoC upload data is disposable demo content - no automatic backups or PITR.
   create_backup_policy = false
 }
