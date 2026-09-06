@@ -244,7 +244,7 @@ module "sg_efs" {
   version = "~> 6.0"
 
   name        = "acuity-poc-efs"
-  description = "EFS - inbound from admin only"
+  description = "EFS - inbound from admin and the bastion only"
 
   vpc_id = module.vpc.vpc_id
 
@@ -255,6 +255,13 @@ module "sg_efs" {
       from_port                    = 2049
       to_port                      = 2049
       referenced_security_group_id = module.sg_admin.id
+    }
+    from_bastion = {
+      description                  = "bastion - EFS (NFS)"
+      ip_protocol                  = "tcp"
+      from_port                    = 2049
+      to_port                      = 2049
+      referenced_security_group_id = module.sg_bastion.id
     }
   }
 

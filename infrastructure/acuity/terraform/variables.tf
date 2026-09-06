@@ -1,5 +1,5 @@
 variable "image_tag" {
-  description = "Release image tag for the app. No default - supply via terraform.tfvars or -var."
+  description = "Release image tag for the app."
   type        = string
 
   validation {
