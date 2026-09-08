@@ -4,6 +4,10 @@ WORKDIR /build
 COPY .git ./.git
 COPY clns-acuity-va-security ./clns-acuity-va-security
 
+# git 2.43 (this base) defaults to wire protocol v2, which GitHub 401s from some
+# networks -- breaks bower's `git ls-remote`. Force v0.
+RUN git config --global protocol.version 0
+
 # Checks profile (checkstyle/findbugs) is for CI, not needed for the artifact.
 RUN mvn -f clns-acuity-va-security/pom.xml -B -pl web -am -P '!checks' \
         -DskipTests clean package \

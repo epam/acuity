@@ -27,7 +27,7 @@ build-all: $(addprefix build-local-,$(IMAGES))
 
 # image tagged :$(VERSION), pushed to ECR -- run `make ecr-login` first
 build-release-%: require-version
-	docker build $(BUILD_FLAGS) -f images/$*.Dockerfile --tag=$(IMAGE_REPO)$*:$(VERSION) --push ..
+	docker buildx build $(BUILD_FLAGS) -f images/$*.Dockerfile --platform=linux/amd64 --tag=$(IMAGE_REPO)$*:$(VERSION) --push ..
 
 build-all-release: $(addprefix build-release-,$(RELEASE_IMAGES))
 

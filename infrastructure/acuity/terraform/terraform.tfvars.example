@@ -1,0 +1,6 @@
+# Copy to terraform.tfvars (gitignored) and fill in your real values.
+image_tag = "0.0.0" # pinned release version
+
+vpn_cidrs = [
+  "203.0.113.0/32", # example - replace with real corporate VPN egress CIDR(s)
+]
