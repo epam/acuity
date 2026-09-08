@@ -165,8 +165,28 @@ public class InputModelChunkProcessorImpl extends HoldersAware implements InputM
         OutputEntityUtil.setSha1(entity, entityDescriptionRule);
     }
 
+    /**
+     * Derive an SDTM-domain-like discriminator from the source file name, e.g.
+     * "local://BCSTUDY01/LB.csv" -&gt; "LB". Used to disambiguate RESULT_TEST rows
+     * (see Test.uniqueFields / domain field) so that LB, VS, EG, ZE rows for the
+     * same subject and date don't collide on a shared Test record.
+     */
+    private static String getDomainCode(String sourceName) {
+        String name = sourceName;
+        int slash = Math.max(name.lastIndexOf('/'), name.lastIndexOf('\\'));
+        if (slash >= 0) {
+            name = name.substring(slash + 1);
+        }
+        int dot = name.lastIndexOf('.');
+        if (dot > 0) {
+            name = name.substring(0, dot);
+        }
+        return name.toUpperCase();
+    }
+
     public OutputModelChunk process1(InputModelChunk inputModelChunk) throws Exception {
         String sourceName = inputModelChunk.getSourceName();
+        String domainCode = getDomainCode(sourceName);
         List<String> entityNames = configurationUtil.getEntities(sourceName);
         OutputModelChunk outputModelChunk = new OutputModelChunkImpl();
         int offSet = 0;
@@ -198,6 +218,7 @@ public class InputModelChunkProcessorImpl extends HoldersAware implements InputM
                         entity.setStudyName(getStudyName());
                         entity.setSourceName(sourceName);
                         entity.setRowNumber(recordEntry.getKey());
+                        entity.setDomain(domainCode);
 
                         executionProfiler.startOperation(getJobExecutionId(), "InputModelChunkProcessorImpl.process-setSha");
                         entities.addAll(extractEntitiesIfRequired(entity, sourceName, recordEntry.getKey()));
@@ -206,7 +227,13 @@ public class InputModelChunkProcessorImpl extends HoldersAware implements InputM
                 }
                 executionProfiler.stopOperation(getJobExecutionId(), "InputModelChunkProcessorImpl.process-int1");
             }
-            offSet += columns == null ? 0 : columns.size();
+            if (columns != null) {
+                Set<String> skipSet = inputModelChunk.getColumnsToSkip();
+                long realCols = columns.stream()
+                        .filter(c -> !skipSet.contains(c.getName()))
+                        .count();
+                offSet += (int) realCols;
+            }
         }
         executionProfiler.startOperation(getJobExecutionId(), "InputModelChunkProcessorImpl.process-int2");
         for (OutputEntity entity : entities) {
@@ -314,6 +341,19 @@ public class InputModelChunkProcessorImpl extends HoldersAware implements InputM
         }
         for (int i = offSet; i < columns.size() + offSet; i++) {
             IColumnRule columnRule = columns.get(i - offSet);
+            if (columnRule.getName().isEmpty()) {
+                // Empty slot already present in expanded record — do NOT shift recordIndex.
+                if (columnRule.getDefault() != null) {
+                    try {
+                        AbstractParser<?> emptyColParser = ReflectionUtil.getParser(getJobExecutionId(), sourceName,
+                                columnRule.getField(), columnRule.getType(), columnRule.getMapper(), columnRule.getHelper());
+                        Object defaultVal = emptyColParser.parse(columnRule.getDefault());
+                        setFieldValue(entity, columnRule, defaultVal, false, pivotedValues);
+                    } catch (InvalidDataFormatException ignored) {
+                    }
+                }
+                continue;
+            }
             if (columnsToSkip.contains(columnRule.getName())) {
                 missedColumnsOffset++;
                 continue;

@@ -19,7 +19,7 @@ package com.acuity.visualisations.rawdatamodel.util;
 import com.acuity.visualisations.rawdatamodel.trellis.TrellisOptions;
 import com.acuity.visualisations.rawdatamodel.trellis.grouping.PopulationGroupByOptions;
 import com.acuity.visualisations.rawdatamodel.vo.Subject;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.List;

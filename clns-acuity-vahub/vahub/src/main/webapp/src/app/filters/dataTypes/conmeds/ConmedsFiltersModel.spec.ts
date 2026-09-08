@@ -24,8 +24,8 @@ import {FilterEventService} from '../../event/FilterEventService';
 
 import {MockDatasetViews, MockFilterEventService, MockHttpClient} from '../../../common/MockClasses';
 import {DatasetViews} from '../../../security/DatasetViews';
-import {HttpClientTestingModule} from '@angular/common/http/testing';
-import {HttpClient} from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 class MockFilterHttpService {
 }
@@ -55,21 +55,22 @@ describe('GIVEN a ConmedsFiltersModel class', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [HttpClientTestingModule],
-            providers: [
-                {provide: HttpClient, useClass: MockHttpClient},
-                {provide: DatasetViews, useClass: MockDatasetViews},
-                {provide: FilterHttpService, useClass: MockFilterHttpService},
-                {provide: PopulationFiltersModel, deps: [FilterHttpService, FilterEventService]},
-                {provide: FilterEventService, useClass: MockFilterEventService},
-                {
-                    provide: ConmedsFiltersModel,
-                    useFactory: (p: PopulationFiltersModel, f: FilterHttpService, e: FilterEventService, d: DatasetViews):
-                        ConmedsFiltersModel => new ConmedsFiltersModel(p, f, e, d),
-                    deps: [PopulationFiltersModel, FilterHttpService, FilterEventService, DatasetViews]
-                },
-            ]
-        });
+    imports: [],
+    providers: [
+        { provide: HttpClient, useClass: MockHttpClient },
+        { provide: DatasetViews, useClass: MockDatasetViews },
+        { provide: FilterHttpService, useClass: MockFilterHttpService },
+        { provide: PopulationFiltersModel, deps: [FilterHttpService, FilterEventService] },
+        { provide: FilterEventService, useClass: MockFilterEventService },
+        {
+            provide: ConmedsFiltersModel,
+            useFactory: (p: PopulationFiltersModel, f: FilterHttpService, e: FilterEventService, d: DatasetViews): ConmedsFiltersModel => new ConmedsFiltersModel(p, f, e, d),
+            deps: [PopulationFiltersModel, FilterHttpService, FilterEventService, DatasetViews]
+        },
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+    ]
+});
     });
 
     beforeEach(inject([ConmedsFiltersModel], (_conmedsFiltersModel: ConmedsFiltersModel) => {

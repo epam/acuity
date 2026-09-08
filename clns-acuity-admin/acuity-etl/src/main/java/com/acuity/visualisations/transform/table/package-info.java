@@ -21,5 +21,5 @@
 // Generated on: 2013.07.02 at 08:28:42 PM MSK 
 //
 
-@javax.xml.bind.annotation.XmlSchema(namespace = "http://visualisations.acuity.com/TablesDescription",
-        elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED) package com.acuity.visualisations.transform.table;
+@jakarta.xml.bind.annotation.XmlSchema(namespace = "http://visualisations.acuity.com/TablesDescription",
+        elementFormDefault = jakarta.xml.bind.annotation.XmlNsForm.QUALIFIED) package com.acuity.visualisations.transform.table;

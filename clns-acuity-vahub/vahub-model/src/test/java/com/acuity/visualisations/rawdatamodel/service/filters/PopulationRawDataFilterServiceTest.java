@@ -23,8 +23,8 @@ import com.acuity.visualisations.rawdatamodel.filters.SetFilter;
 import com.acuity.visualisations.rawdatamodel.vo.FilterQuery;
 import com.acuity.visualisations.rawdatamodel.vo.FilterResult;
 import com.acuity.visualisations.rawdatamodel.vo.Subject;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.util.Collection;
@@ -261,7 +261,7 @@ public class PopulationRawDataFilterServiceTest {
         assertThat(filtered.getFilteredResult()).containsExactlyInAnyOrder(population.get(0), population.get(1), population.get(3));
     }
 
-    @Ignore("doesnt work with nulls")
+    @Disabled("doesnt work with nulls")
     @Test
     public void testQueryAttendetVisitsIncludeEmptyValuesFilter() {
         PopulationFilters filters = new PopulationFilters();

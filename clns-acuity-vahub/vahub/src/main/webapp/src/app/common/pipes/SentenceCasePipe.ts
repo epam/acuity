@@ -26,7 +26,10 @@ import {knownAcronyms} from '../utils/Utils';
  * formats to: Subject ID
  */
 
-@Pipe({name: 'sentenceCase'})
+@Pipe({
+    name: 'sentenceCase',
+    standalone: false
+})
 export class SentenceCasePipe implements PipeTransform {
 
     private knownExceptions: Map<string, string> = new Map([

@@ -20,13 +20,15 @@ import com.acuity.visualisations.rawdatamodel.trellis.TrellisOptions;
 import com.acuity.visualisations.rawdatamodel.trellis.grouping.RenalGroupByOptions;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.List;
 
 @Data
+@EqualsAndHashCode(callSuper = false)
 @AllArgsConstructor
 @NoArgsConstructor
 public class RenalTrellisResponse implements Serializable {

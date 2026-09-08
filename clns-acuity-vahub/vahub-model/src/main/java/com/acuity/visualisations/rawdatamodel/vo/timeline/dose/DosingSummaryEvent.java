@@ -27,7 +27,7 @@ import java.util.List;
 
 
 @Data
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = false)
 @ToString(callSuper = true)
 public class DosingSummaryEvent extends EventInterval implements Serializable {
 

@@ -18,12 +18,14 @@ package com.acuity.visualisations.batch.reader.tablereader;
 
 import au.com.bytecode.opencsv.CSVReader;
 import lombok.SneakyThrows;
+import org.apache.commons.io.input.BOMInputStream;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.Closeable;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -40,7 +42,7 @@ public class CsvTableReader implements TableReader, Closeable {
 
     @SneakyThrows
     public CsvTableReader(InputStream input, long length) {
-        Reader isr = new InputStreamReader(input);
+        Reader isr = new InputStreamReader(new BOMInputStream(input), StandardCharsets.UTF_8);
 
         this.reader = new CSVReader(isr);
 

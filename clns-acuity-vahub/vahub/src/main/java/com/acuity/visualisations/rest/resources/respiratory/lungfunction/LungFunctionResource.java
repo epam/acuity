@@ -21,7 +21,6 @@ import com.acuity.visualisations.rawdatamodel.service.event.LungFunctionService;
 import com.acuity.visualisations.rest.model.request.SingleSubjectRequest;
 import com.acuity.visualisations.rest.model.request.respiratory.lungfunction.LungFunctionRequest;
 import com.acuity.visualisations.rest.model.response.DetailsOnDemandResponse;
-import io.swagger.annotations.Api;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;
@@ -31,14 +30,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import java.util.List;
 
 import static com.acuity.visualisations.rest.util.Constants.PRE_AUTHORISE_VISUALISATION;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @RestController
-@Api(description = "rest endpoints for common Lung Function methods")
 @RequestMapping(value = "/resources/respiratory/lung-function",
         consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
 @PreAuthorize(PRE_AUTHORISE_VISUALISATION)

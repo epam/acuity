@@ -26,14 +26,14 @@ import com.acuity.va.security.acl.domain.AcuitySidDetails;
 import com.acuity.va.security.config.annotation.FlatXmlNullDataSetLoader;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
 import com.github.springtestdbunit.annotation.DbUnitConfiguration;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.security.acls.domain.CumulativePermission;
 import org.springframework.security.acls.model.Acl;
 import org.springframework.security.acls.model.Permission;
 import org.springframework.test.annotation.DirtiesContext;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import static com.acuity.va.security.acl.permissions.AcuityCumulativePermissionsAsRoles.ADMINISTRATOR;
 import static com.acuity.va.security.acl.permissions.AcuityCumulativePermissionsAsRoles.AUTHORISED_USER;
@@ -44,7 +44,7 @@ import static com.acuity.va.security.acl.permissions.AcuityPermissions.EDIT_TRAI
 import static com.acuity.va.security.acl.permissions.AcuityPermissions.VIEW_VISUALISATIONS;
 import static org.assertj.core.api.Assertions.assertThat;
 
-@RunWith(SpringJUnit4ClassRunner.class)
+@ExtendWith(SpringExtension.class)
 @TransactionalMyBatisDBUnitH2Test
 @DatabaseSetup({"/dbunit/security/dbunit-all-security.xml"})
 @DbUnitConfiguration(dataSetLoader = FlatXmlNullDataSetLoader.class)
@@ -69,7 +69,7 @@ public class WhenCheckingAcuityAclPermissionEvaluator extends AbstractPermission
     Acl drugProgrammeA;
     Acl study1;
 
-    @Before
+    @BeforeEach
     public void beforeClass() {
         drugProgrammeA = securityAclService.find(new DrugProgramme(2L)); // Drug A
         study1 = securityAclService.find(new ClinicalStudy(4L)); // Study 1

@@ -17,7 +17,7 @@
 import {Injectable} from '@angular/core';
 import {List, Map} from 'immutable';
 import {capitalize, forEach, intersectionWith, isArray, isEmpty, startCase} from 'lodash';
-import {ColDef, ColGroupDef} from 'ag-grid/main';
+import {ColDef, ColGroupDef} from 'ag-grid-community';
 
 import {DataService} from '../../data/DataService';
 import {DatasetViews} from '../../../../security/DatasetViews';
@@ -127,16 +127,21 @@ export class DetailsOnDemandEventTableService extends AbstractTableService {
             }
         }
         if (!isEmpty(columnDefs) || hasOnlyGroups) {
-            const availableColumnGroupDefs = new Array<any>();
             if (hasOnlyGroups) {
                 columnDefs = getColumnGroupDefs(columns).toArray();
             }
             columnDefs.forEach(column => {
                 if (column.children) {
-                    this.extractColumns(column, availableColumnGroupDefs);
+                    this.extractColumns(column);
                 }
             });
             this.gridOptions.api.setColumnDefs(columnDefs);
+            // Labs DoD defines a 'study' column group that should start collapsed (showing only
+            // the always-visible Subject column). Other tables don't define a 'study' group,
+            // so this is a no-op for them.
+            if (this.gridOptions.columnApi.getColumnGroup('study')) {
+                this.gridOptions.columnApi.setColumnGroupOpened('study', false);
+            }
             forEach(expandedGroupsIds, (groupId: string) => {
                 this.gridOptions.columnApi.setColumnGroupOpened(groupId, true);
             });
@@ -164,6 +169,10 @@ export class DetailsOnDemandEventTableService extends AbstractTableService {
         return this.getMetadataKey() === 'biomarker' || tableName === 'biomarker';
     }
 
+    isLabsTable(): boolean {
+        return this.getMetadataKey() === 'labs';
+    }
+
     private getMetadataKey(): string {
         const plugin = window.location.hash.split('/')[2];
         const plot = window.location.hash.split('/')[3];
@@ -179,14 +188,18 @@ export class DetailsOnDemandEventTableService extends AbstractTableService {
         return plugin;
     }
 
-    private extractColumns(columnGroup: ColGroupDef, availableColumnGroupDefs: Array<any>) {
+    // Filters out columns absent from the b/e info request, then forces the first remaining
+    // child to columnGroupShow = null so it stays visible when the group is collapsed.
+    // Still needed: Biomarker's getColumnGroupDefs() groups (hasOnlyGroups path) and Labs'
+    // Study/Lab Results groups both rely on this anchor-forcing behaviour, which is why their
+    // anchor columns (subjectId, measurementName) are placed first in LabsColumnModel.ts.
+    private extractColumns(columnGroup: ColGroupDef) {
         // filtering columns that are absent in info request
         columnGroup.children = columnGroup.children.filter(child => child.headerName);
         if (columnGroup.children.length > 0) {
             const columnDefs = DetailsOnDemandEventTableService.getDefinitionsForAvailableColumns(columnGroup);
             // always show first column
             columnDefs[0].columnGroupShow = null;
-            this.addColumnGroupToTable(availableColumnGroupDefs, columnGroup, columnDefs);
         }
     }
 

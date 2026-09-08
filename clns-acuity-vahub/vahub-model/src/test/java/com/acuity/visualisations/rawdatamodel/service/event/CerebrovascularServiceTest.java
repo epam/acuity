@@ -37,14 +37,15 @@ import com.acuity.visualisations.rawdatamodel.vo.compatibility.OutputOvertimeDat
 import com.acuity.visualisations.rawdatamodel.vo.compatibility.TrellisedOvertime;
 import com.acuity.visualisations.rawdatamodel.vo.wrappers.Cerebrovascular;
 import com.acuity.va.security.acl.domain.Datasets;
-import org.assertj.core.api.JUnitSoftAssertions;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.assertj.core.api.SoftAssertions;
+import org.assertj.core.api.junit.jupiter.InjectSoftAssertions;
+import org.assertj.core.api.junit.jupiter.SoftAssertionsExtension;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.Arrays;
 import java.util.Date;
@@ -72,10 +73,10 @@ import static com.acuity.visualisations.rawdatamodel.trellis.grouping.ChartGroup
 import static com.google.common.collect.Lists.newArrayList;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.tuple;
-import static org.mockito.Matchers.any;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
-@RunWith(SpringRunner.class)
+@ExtendWith({SpringExtension.class, SoftAssertionsExtension.class})
 @ContextConfiguration(classes = TestConfig.class)
 public class CerebrovascularServiceTest {
 
@@ -88,8 +89,8 @@ public class CerebrovascularServiceTest {
     // @MockBean
     //private CerebrovascularFilterService cerebrovascularFilterService;
 
-    @Rule
-    public final JUnitSoftAssertions softly = new JUnitSoftAssertions();
+    @InjectSoftAssertions
+    private SoftAssertions softly;
 
     private static final Subject SUBJECT1;
     private static final Subject SUBJECT2;
@@ -326,7 +327,7 @@ public class CerebrovascularServiceTest {
         settings.withOption(COLOR_BY, CerebrovascularGroupByOptions.EVENT_TYPE.getGroupByOptionAndParams());
         settings.withOption(X_AXIS, CerebrovascularGroupByOptions.START_DATE.getGroupByOptionAndParams(
                 GroupByOption.Params.builder()
-                        .with(GroupByOption.Param.BIN_SIZE, 1)
+                        .with(Param.BIN_SIZE, 1)
                         .with(Param.TIMESTAMP_TYPE, TimestampType.DAYS_SINCE_FIRST_DOSE)
                         .build()));
 //        final ChartGroupByOptions.GroupByOptionAndParams<CIEventGroupByOptions> trellis = ARM.getGroupByOptionAndParams();
@@ -408,7 +409,7 @@ public class CerebrovascularServiceTest {
         settings.withOption(COLOR_BY, CerebrovascularGroupByOptions.EVENT_TYPE.getGroupByOptionAndParams());
         settings.withOption(X_AXIS, CerebrovascularGroupByOptions.START_DATE.getGroupByOptionAndParams(
                 GroupByOption.Params.builder()
-                        .with(GroupByOption.Param.BIN_SIZE, 1)
+                        .with(Param.BIN_SIZE, 1)
                         .with(Param.TIMESTAMP_TYPE, TimestampType.DAYS_SINCE_FIRST_DOSE)
                         .build()));
 //        final ChartGroupByOptions.GroupByOptionAndParams<CIEventGroupByOptions> trellis = ARM.getGroupByOptionAndParams();

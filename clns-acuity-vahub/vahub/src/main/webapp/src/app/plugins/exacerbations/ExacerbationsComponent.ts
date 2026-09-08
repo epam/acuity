@@ -20,7 +20,8 @@ import {Router} from '@angular/router';
 import {AbstractPluginComponent} from '../AbstractPluginComponent';
 
 @Component({
-    templateUrl: '../respiratory/RespiratoryComponent.html'
+    templateUrl: '../respiratory/RespiratoryComponent.html',
+    standalone: false
 })
 export class ExacerbationsComponent extends AbstractPluginComponent {
 

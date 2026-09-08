@@ -32,7 +32,6 @@ public class DoseDiscontinuationFilterService extends AbstractEventFilterService
         Collection<DoseDisc> filteredDoseDiscEvents = filteredResult.getFilteredResult();
 
         return filteredDoseDiscEvents.parallelStream()
-                .distinct()
                 .collect(new FilterSummaryStatisticsCollector<>(DoseDiscFilterSummaryStatistics.class))
                 .getFilters();
     }

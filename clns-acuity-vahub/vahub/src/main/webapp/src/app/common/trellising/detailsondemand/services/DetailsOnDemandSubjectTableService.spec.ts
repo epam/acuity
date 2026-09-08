@@ -15,7 +15,7 @@
  */
 
 import {EventEmitter} from '@angular/core';
-import {GridApi, IGetRowsParams, ColumnApi} from 'ag-grid/main';
+import {GridApi, IGetRowsParams, ColumnApi} from 'ag-grid-community';
 import {fromJS} from 'immutable';
 
 import {DetailsOnDemandSubjectTableService} from './DetailsOnDemandSubjectTableService';

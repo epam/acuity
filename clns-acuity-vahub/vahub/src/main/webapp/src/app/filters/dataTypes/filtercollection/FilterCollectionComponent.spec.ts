@@ -15,7 +15,7 @@
  */
 
 import {TestBed, inject} from '@angular/core/testing';
-import {HttpClientTestingModule} from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import {Observable} from 'rxjs/Observable';
 import * as  _ from 'lodash';
 
@@ -31,6 +31,7 @@ import {
 } from '../../module';
 
 import {MockFilterEventService} from '../../../common/MockClasses';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 jasmine.DEFAULT_TIMEOUT_INTERVAL = 6000;
 
@@ -45,35 +46,37 @@ describe('GIVEN a FilterCollectionComponent', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [HttpClientTestingModule],
-            providers: [
-                {provide: FilterHttpService, useClass: MockFilterHttpService},
-                {provide: FilterEventService, useClass: MockFilterEventService},
-                {provide: PopulationFiltersModel, useClass: PopulationFiltersModel, deps: [FilterEventService]},
-                {provide: AesFiltersModel, useClass: AesFiltersModel, deps: [FilterEventService]},
-                {provide: 'MAP_LIST', useValue: 'MAP_LIST'},
-                {provide: 'drugsDiscontinutaionReason', useValue: 'drugsDiscontinutaionReason'},
-                {provide: 'Main Reason For Drug Discontinuation', useValue: 'Main Reason For Drug Discontinuation'},
-                {
-                    provide: BaseMapFilterItemModel,
-                    useClass: BaseMapFilterItemModel,
-                    deps: ['MAP_LIST', 'drugsDiscontinutaionReason', 'Main Reason For Drug Discontinuation']
-                },
-                {provide: Document, useValue: document},
-                {
-                    provide: CardiacFiltersModel,
-                    useClass: CardiacFiltersModel,
-                    deps: [PopulationFiltersModel, FilterHttpService, FilterEventService]
-                },
-                {
-                    provide: FilterCollectionComponent,
-                    deps: [Document],
-                    useFactory: (document: Document): FilterCollectionComponent => {
-                        return new FilterCollectionComponent(document);
-                    }
-                }
-            ]
-        });
+    imports: [],
+    providers: [
+        { provide: FilterHttpService, useClass: MockFilterHttpService },
+        { provide: FilterEventService, useClass: MockFilterEventService },
+        { provide: PopulationFiltersModel, useClass: PopulationFiltersModel, deps: [FilterEventService] },
+        { provide: AesFiltersModel, useClass: AesFiltersModel, deps: [FilterEventService] },
+        { provide: 'MAP_LIST', useValue: 'MAP_LIST' },
+        { provide: 'drugsDiscontinutaionReason', useValue: 'drugsDiscontinutaionReason' },
+        { provide: 'Main Reason For Drug Discontinuation', useValue: 'Main Reason For Drug Discontinuation' },
+        {
+            provide: BaseMapFilterItemModel,
+            useClass: BaseMapFilterItemModel,
+            deps: ['MAP_LIST', 'drugsDiscontinutaionReason', 'Main Reason For Drug Discontinuation']
+        },
+        { provide: Document, useValue: document },
+        {
+            provide: CardiacFiltersModel,
+            useClass: CardiacFiltersModel,
+            deps: [PopulationFiltersModel, FilterHttpService, FilterEventService]
+        },
+        {
+            provide: FilterCollectionComponent,
+            deps: [Document],
+            useFactory: (document: Document): FilterCollectionComponent => {
+                return new FilterCollectionComponent(document);
+            }
+        },
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting()
+    ]
+});
     });
 
     describe('WHEN Apply is pressed', () => {

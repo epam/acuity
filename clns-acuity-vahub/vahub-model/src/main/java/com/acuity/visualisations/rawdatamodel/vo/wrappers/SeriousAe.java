@@ -27,7 +27,7 @@ import lombok.Getter;
 
 import java.util.OptionalInt;
 
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = false)
 public class SeriousAe extends SubjectAwareWrapper<SeriousAeRaw> {
 
     public SeriousAe(SeriousAeRaw event, Subject subject) {

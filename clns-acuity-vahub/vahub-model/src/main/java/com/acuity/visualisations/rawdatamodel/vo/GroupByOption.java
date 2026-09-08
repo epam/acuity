@@ -115,7 +115,7 @@ public interface GroupByOption<T> extends Serializable {
                 this.params = new HashMap<>(params.paramMap);
             }
 
-            public Params.ParamsBuilder with(Param param, Object value) {
+            public ParamsBuilder with(Param param, Object value) {
                 params.put(param, value);
                 return this;
             }
@@ -222,6 +222,9 @@ public interface GroupByOption<T> extends Serializable {
 
     @SneakyThrows
     static <T, G extends Enum<G> & GroupByOption<T>> PopulationGroupByOptions getCorrespondingSubjectOption(G option) {
+        if (option instanceof PopulationGroupByOptions) {
+            return (PopulationGroupByOptions) option;
+        }
         return CORRESPONDING_POP_OPTIONS.computeIfAbsent(option, new Function<GroupByOption, PopulationGroupByOptions>() {
             @Override
             @SneakyThrows

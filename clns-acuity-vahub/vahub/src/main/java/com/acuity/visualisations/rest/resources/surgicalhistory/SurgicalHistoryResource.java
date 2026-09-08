@@ -22,7 +22,6 @@ import com.acuity.visualisations.rest.model.request.SingleSubjectRequest;
 import com.acuity.visualisations.rest.model.request.surgicalhistory.SurgicalHistoryRequest;
 import com.acuity.visualisations.rest.model.response.DetailsOnDemandResponse;
 import com.acuity.visualisations.rest.util.Constants;
-import io.swagger.annotations.Api;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;
@@ -32,10 +31,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 
 @RestController
-@Api(description = "rest endpoints for surgical history")
 @RequestMapping("/resources/surgical-history/")
 @PreAuthorize(Constants.PRE_AUTHORISE_VISUALISATION)
 @RequiredArgsConstructor

@@ -201,6 +201,10 @@
     overflow: hidden;
 }
 
+.labs-dod-table {
+    overflow-x: auto;
+}
+
 .summary-button {
     cursor: default;
 }

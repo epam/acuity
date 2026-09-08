@@ -31,6 +31,7 @@ public class VitalThin extends TimestampedEntity {
 
     protected String subject;
     protected String part;
+    protected String domain;
 
     @AcuityField(transform = AcuityFieldTransformation.MEASUREMENT_EVENT_12_00_00)
     protected LocalDateTime date;

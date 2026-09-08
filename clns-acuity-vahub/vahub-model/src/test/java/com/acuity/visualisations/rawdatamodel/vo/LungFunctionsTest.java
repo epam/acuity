@@ -17,7 +17,7 @@
 package com.acuity.visualisations.rawdatamodel.vo;
 
 import com.acuity.visualisations.rawdatamodel.vo.wrappers.LungFunction;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static com.acuity.visualisations.rawdatamodel.util.DateUtils.toDate;
 import static org.assertj.core.api.Assertions.assertThat;

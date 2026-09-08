@@ -51,4 +51,8 @@ public class HysRequest extends LiverRequest {
      */
     @NotNull
     private ChartGroupByOptionsFiltered<Liver, LiverGroupByOptions> settings;
+
+    public ChartGroupByOptionsFiltered<Liver, LiverGroupByOptions> getSettings() {
+        return settings;
+    }
 }

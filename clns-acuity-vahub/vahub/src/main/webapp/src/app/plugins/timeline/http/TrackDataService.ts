@@ -98,7 +98,8 @@ export class TrackDataService {
                 trackConfigs.forEach((subjectTrackConfig: TrackData[]) => {
                     subjectTrackConfig.forEach((trackConfig: TrackData) => {
                         resultSubjects = resultSubjects.map((subject: ISubject) => {
-                            if (subject.id === trackConfig.subjectId) {
+                            if (subject.id === trackConfig.subjectId
+                                || (trackConfig.subject && subject.subjectId === trackConfig.subject)) {
                                 return <ISubject> new SubjectRecord({
                                     id: subject.id,
                                     subjectId: subject.subjectId,

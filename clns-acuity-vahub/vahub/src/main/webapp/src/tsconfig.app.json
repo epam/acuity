@@ -6,13 +6,20 @@
     "module": "es2015",
     "types": []
   },
+  "angularCompilerOptions": {
+    "strictTemplates": false,
+    "fullTemplateTypeCheck": false,
+    "strictInputTypes": false,
+    "strictAttributeTypes": false,
+    "strictOutputEventTypes": false,
+    "strictDomEventTypes": false
+  },
   "exclude": [
     "test.ts",
     "**/*.spec.ts"
   ],
   "include": [
     "./**/*.ts",
-    "../node_modules/ag-grid-angular/main.ts",
     "../node_modules/@types/resize-observer-browser/index.d.ts"
   ]
 }

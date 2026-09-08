@@ -15,7 +15,7 @@
  */
 
 import {inject, TestBed} from '@angular/core/testing';
-import {HttpClientTestingModule} from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 
 import {LiverFunctionFiltersModel} from './LiverFunctionFiltersModel';
 import {PopulationFiltersModel} from '../population/PopulationFiltersModel';
@@ -27,6 +27,7 @@ import {SessionEventService} from '../../../session/event/SessionEventService';
 import {SessionHttpService} from '../../../session/http/SessionHttpService';
 import {MockDatasetViews, MockFilterEventService} from '../../../common/MockClasses';
 import {DatasetViews} from '../../../security/DatasetViews';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 class MockFilterHttpService {
 }
@@ -35,23 +36,23 @@ describe('GIVEN a LiverFunctionFiltersModel class', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [HttpClientTestingModule],
-            providers: [
-                SessionHttpService,
-                SessionEventService,
-                {provide: DatasetViews, useClass: MockDatasetViews},
-                {provide: FilterHttpService, useClass: MockFilterHttpService},
-                {provide: FilterEventService, useClass: MockFilterEventService},
-                {provide: PopulationFiltersModel, deps: [FilterHttpService, FilterEventService]},
-                {
-                    provide: LiverFunctionFiltersModel,
-                    useFactory: (p: PopulationFiltersModel, f: FilterHttpService,
-                                 e: FilterEventService, d: DatasetViews): LiverFunctionFiltersModel =>
-                        new LiverFunctionFiltersModel(p, f, e, d),
-                    deps: [PopulationFiltersModel, FilterHttpService, FilterEventService, DatasetViews]
-                }
-            ]
-        });
+    imports: [],
+    providers: [
+        SessionHttpService,
+        SessionEventService,
+        { provide: DatasetViews, useClass: MockDatasetViews },
+        { provide: FilterHttpService, useClass: MockFilterHttpService },
+        { provide: FilterEventService, useClass: MockFilterEventService },
+        { provide: PopulationFiltersModel, deps: [FilterHttpService, FilterEventService] },
+        {
+            provide: LiverFunctionFiltersModel,
+            useFactory: (p: PopulationFiltersModel, f: FilterHttpService, e: FilterEventService, d: DatasetViews): LiverFunctionFiltersModel => new LiverFunctionFiltersModel(p, f, e, d),
+            deps: [PopulationFiltersModel, FilterHttpService, FilterEventService, DatasetViews]
+        },
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting()
+    ]
+});
     });
 
     describe('WHEN constructing', () => {

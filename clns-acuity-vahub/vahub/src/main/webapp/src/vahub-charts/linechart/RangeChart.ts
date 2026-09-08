@@ -79,27 +79,34 @@ export class RangeChart extends AbstractLineChart {
     }
 
     private drawInterval (innerSpace: d3.Selection<SVGElement>, data: Series[], animate = false) {
-        const intervalPoints = data.reduce((acc, val) => acc.concat(val.data), [])
-            .sort((a, b) => a.x - b.x);
         const that = this;
-        if (!animate) {
-            innerSpace.append('g')
-                .attr('id', 'arearange')
-                .attr('clip-path', this.clipPathURL)
-                .append('path')
-                .datum(intervalPoints)
-                .attr('fill', data[0].color)
-                .attr('opacity', data[0].fillOpacity)
-                .attr('stroke', 'none');
+        if (!data.length) {
+            return;
         }
-        innerSpace.select('#arearange path')
-            .transition()
-            .duration(animate && this.animationTime)
-            .attr('d', d3.area()
-                .x((d) => that.getXCoordinate(d))
-                .y0((d) => that.getYCoordinate(d.yMin))
-                .y1((d) => that.getYCoordinate(d.yMax))
-            );
+        if (!animate) {
+            const group = innerSpace.append('g')
+                .attr('id', 'arearange')
+                .attr('clip-path', this.clipPathURL);
+            data.forEach((series, index) => {
+                group.append('path')
+                    .attr('class', `arearange-${index}`)
+                    .datum([...series.data].sort((a, b) => a.x - b.x))
+                    .attr('fill', series.color)
+                    .attr('opacity', series.fillOpacity)
+                    .attr('stroke', 'none');
+            });
+        }
+        data.forEach((series, index) => {
+            innerSpace.select(`#arearange .arearange-${index}`)
+                .datum([...series.data].sort((a, b) => a.x - b.x))
+                .transition()
+                .duration(animate && this.animationTime)
+                .attr('d', d3.area()
+                    .x((d) => that.getXCoordinate(d))
+                    .y0((d) => that.getYCoordinate(d.yMin))
+                    .y1((d) => that.getYCoordinate(d.yMax))
+                );
+        });
     }
 
     private reversedScale = (x: number) => {

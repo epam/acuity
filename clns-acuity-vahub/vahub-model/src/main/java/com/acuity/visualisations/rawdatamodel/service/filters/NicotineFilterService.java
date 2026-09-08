@@ -32,7 +32,6 @@ public class NicotineFilterService extends AbstractEventFilterService<Nicotine, 
         Collection<Nicotine> filteredEvents = filteredResult.getFilteredResult();
 
         return filteredEvents.parallelStream()
-                .distinct()
                 .collect(new FilterSummaryStatisticsCollector<>(NicotineFiltersSummaryStatistics.class))
                 .getFilters();
     }

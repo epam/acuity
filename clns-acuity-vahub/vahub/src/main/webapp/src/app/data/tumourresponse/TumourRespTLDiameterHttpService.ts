@@ -15,8 +15,7 @@
  */
 
 import {downloadData, getServerPath} from '../../common/utils/Utils';
-import {Response} from '@angular/http';
-import {HttpClient} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {fromJS, List} from 'immutable';
@@ -25,6 +24,7 @@ import {omit} from 'lodash';
 import {BaseChartsHttpService} from '../BaseChartsHttpService';
 import {DynamicAxis, IPlot, PlotType} from '../../common/trellising/store';
 import {PopulationFiltersModel} from '../../filters/dataTypes/population/PopulationFiltersModel';
+import {RecistFiltersModel} from '../../filters/dataTypes/recist/RecistFiltersModel';
 import Dataset = Request.Dataset;
 import DetailsOnDemandRequest = Request.DetailsOnDemandRequest;
 import SortAttrs = Request.SortAttrs;
@@ -36,7 +36,8 @@ import AssessedTargetLesion = Request.AssessedTargetLesion;
 @Injectable()
 export class TumourRespTLDiameterHttpService extends BaseChartsHttpService {
     constructor(private http: HttpClient,
-                private populationFiltersModel: PopulationFiltersModel) {
+                private populationFiltersModel: PopulationFiltersModel,
+                private recistFiltersModel: RecistFiltersModel) {
         super();
     }
 
@@ -44,7 +45,7 @@ export class TumourRespTLDiameterHttpService extends BaseChartsHttpService {
         const path = getServerPath('tumour', 'linechart-xaxis');
         const postData: any = {
             populationFilters: this.populationFiltersModel.transformFiltersToServer(),
-            tumourFilters: {},
+            tumourFilters: this.recistFiltersModel.transformFiltersToServer(),
             datasets: currentDatasets
         };
         return this.http.post(path, JSON.stringify(postData)).map(res => res as DynamicAxis[]);
@@ -63,7 +64,7 @@ export class TumourRespTLDiameterHttpService extends BaseChartsHttpService {
         const path = getServerPath('tumour', 'linechart');
 
         const postData: any = {
-            tumourFilters: {},
+            tumourFilters: this.recistFiltersModel.transformFiltersToServer(),
             populationFilters: this.populationFiltersModel.transformFiltersToServer(),
             // no color by option for this plot, so this is to force to send seriesBy instead of giving it from trellising.
             datasets: currentDatasets,
@@ -99,13 +100,13 @@ export class TumourRespTLDiameterHttpService extends BaseChartsHttpService {
 
         const postData: any = {
             datasets,
-            tumourFilters: {},
+            tumourFilters: this.recistFiltersModel.transformFiltersToServer(),
             populationFilters: this.populationFiltersModel.transformFiltersToServer(),
             settings: settingsCopy
         };
 
         return this.http.post(path, JSON.stringify(postData))
-            .map((response: Response) => {
+            .map((response: any) => {
                 const data = <any>response;
                 return <List<IPlot>>fromJS(data.map((plotItem: any) => {
                     return {
@@ -125,7 +126,7 @@ export class TumourRespTLDiameterHttpService extends BaseChartsHttpService {
         const request = {
             datasets,
             populationFilters: this.populationFiltersModel.transformFiltersToServer(),
-            tumourFilters: {},
+            tumourFilters: this.recistFiltersModel.transformFiltersToServer(),
             selection: {
                 selectionItems: selectionItems.map(item => {
                     return {
@@ -172,7 +173,7 @@ export class TumourRespTLDiameterHttpService extends BaseChartsHttpService {
     downloadAllDetailsOnDemandData(currentDatasets: Request.AcuityObjectIdentityWithPermission[]): void {
         const requestBody = {
             populationFilters: this.populationFiltersModel.transformFiltersToServer(),
-            tumourFilters: {},
+            tumourFilters: this.recistFiltersModel.transformFiltersToServer(),
             datasets: currentDatasets
         };
 

@@ -21,9 +21,6 @@ import com.acuity.visualisations.rawdatamodel.vo.timeline.lungfunction.SubjectLu
 import com.acuity.visualisations.rawdatamodel.vo.timeline.lungfunction.SubjectLungFunctionSummary;
 import com.acuity.visualisations.rest.model.request.respiratory.lungfunction.LungFunctionTimelineRequest;
 import com.acuity.visualisations.rest.util.Constants;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;
@@ -33,13 +30,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import java.util.List;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @RestController
-@Api(value = "/resources/timeline/lung-function/", description = "rest endpoints for for lungfunction timeline")
 @RequestMapping(value = "/resources/timeline/lung-function/",
         consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
 @PreAuthorize(Constants.PRE_AUTHORISE_VISUALISATION)
@@ -49,17 +45,9 @@ public class TimelineLungFunctionResource {
     @Autowired
     private LungFunctionTimelineService timelineLungFunctionService;
 
-    @ApiOperation(
-            value = "Gets the lungfunction summary information for the timeline for the currently selected population and lungfunction filters",
-            nickname = "getLungFunctionSummaries",
-            response = List.class,
-            httpMethod = "POST"
-    )
     @PostMapping("summaries")
     @Cacheable
     public List<SubjectLungFunctionSummary> getLungFunctionSummaries(
-            @ApiParam(value = "TimelineLungFunctionRequest:  LungFunction and Population Filters e.g. {lungfunction: {}, populationFilters: {}}",
-                    required = true)
             @RequestBody @Valid LungFunctionTimelineRequest requestBody) {
 
         return timelineLungFunctionService.getLungFunctionSummaries(
@@ -70,16 +58,9 @@ public class TimelineLungFunctionResource {
                 requestBody.getDayZero().getStringarg());
     }
 
-    @ApiOperation(
-            value = "Gets the lungfunction detail information for the timeline for the currently selected population and lungfunction filters",
-            nickname = "getLungFunctionDetails",
-            response = List.class,
-            httpMethod = "POST"
-    )
     @PostMapping("details")
     @Cacheable
     public List<SubjectLungFunctionDetail> getLungFunctionDetails(
-            @ApiParam(value = "TimelineStatusRequest:  LungFunction and Population Filters e.g. {lungfunction: {}, populationFilters: {}}", required = true)
             @RequestBody @Valid LungFunctionTimelineRequest requestBody) {
 
         return timelineLungFunctionService.getLungFunctionDetails(

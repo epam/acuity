@@ -25,14 +25,14 @@ import com.acuity.va.security.common.Constants;
 import com.acuity.va.security.config.annotation.FlatXmlNullDataSetLoader;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
 import com.github.springtestdbunit.annotation.DbUnitConfiguration;
-import org.junit.Ignore;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.List;
 
@@ -47,8 +47,9 @@ import static com.acuity.va.security.common.Constants.TRAINED_USER_AUTHORITY;
 import static com.acuity.va.security.common.Constants.TRAINED_USER_GROUP;
 import static com.google.common.collect.Lists.newArrayList;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-@RunWith(SpringJUnit4ClassRunner.class)
+@ExtendWith(SpringExtension.class)
 @TransactionalMyBatisDBUnitH2Test
 @DatabaseSetup("/dbunit/security/dbunit-all-security.xml")
 @DbUnitConfiguration(dataSetLoader = FlatXmlNullDataSetLoader.class)
@@ -201,16 +202,20 @@ public class WhenUsingUserService {
         userService.removeUserFromGroup("glenbob", "Users");
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void shouldThrowErrorForAddingUserToUnknownGroup() {
+        assertThrows(IllegalArgumentException.class, () -> {
 
         userService.addUserToGroup("ksdf5465667", "UnknownGroup");
+        });
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void shouldThrowErrorForAddingUnknownUserToGroup() {
+        assertThrows(IllegalArgumentException.class, () -> {
 
         userService.addUserToGroup("ksdf5465667ddd", "Users");
+        });
     }
 
     @Test
@@ -221,16 +226,20 @@ public class WhenUsingUserService {
         assertThat(customUserDetailsManager.findUsersInGroup("Users")).hasSize(1);
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void shouldThrowErrorForRemovingUserToUnknownGroup() {
+        assertThrows(IllegalArgumentException.class, () -> {
 
         userService.removeUserFromGroup("kfgt12354", "UnknownGroup");
+        });
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void shouldThrowErrorForRemovingUnKnownUserToGroup() {
+        assertThrows(IllegalArgumentException.class, () -> {
 
         userService.removeUserFromGroup("kfgt12354ddd", "Users");
+        });
     }
 
     @Test
@@ -320,8 +329,9 @@ public class WhenUsingUserService {
         assertThat(acuityUserDetails2.getLinkeduser()).isNull();
     }
 
-    @Test(expected = DuplicateKeyException.class)
+    @Test
     public void shouldntAllow2LinkedUsers() {
+        assertThrows(DuplicateKeyException.class, () -> {
 
         String USERID = "ksdf5465667";
         String LINKTO_USERID = "user001";
@@ -332,9 +342,10 @@ public class WhenUsingUserService {
             System.out.println(ex);
             throw ex;
         }
+        });
     }
 
-    @Ignore
+    @Disabled
     @Test
     public void shouldCreateUserIfNotExistAndAddToGroup_ForNoneExistantUser_CreateAndAddToGroup() {
 
@@ -386,7 +397,7 @@ public class WhenUsingUserService {
         assertThat(invalidUser).isFalse();
     }
 
-    @Ignore
+    @Disabled
     @Test
     public void shouldCheckIfValidUserAndNotInDB() {
         String USERID_NOT_IN_DB = "kfbg570";
@@ -464,23 +475,23 @@ public class WhenUsingUserService {
         assertThat(userService.groupExists(newGroup)).isFalse();
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void shouldntDeleteDevGroup() {
-        userService.removeGroup(DEVELOPMENT_GROUP);
+        assertThrows(IllegalArgumentException.class, () -> userService.removeGroup(DEVELOPMENT_GROUP));
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void shouldntDeleteTrainingGroup() {
-        userService.removeGroup(TRAINED_USER_GROUP);
+        assertThrows(IllegalArgumentException.class, () -> userService.removeGroup(TRAINED_USER_GROUP));
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void shouldntDeleteAclGroup() {
-        userService.removeGroup(ACL_ADMINISTRATOR_GROUP);
+        assertThrows(IllegalArgumentException.class, () -> userService.removeGroup(ACL_ADMINISTRATOR_GROUP));
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void shouldntDeleteSupportGroup() {
-        userService.removeGroup(ACUITY_SUPPORT_GROUP);
+        assertThrows(IllegalArgumentException.class, () -> userService.removeGroup(ACUITY_SUPPORT_GROUP));
     }
 }

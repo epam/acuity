@@ -31,7 +31,6 @@ import com.acuity.visualisations.rest.model.request.pkresult.PkResultOptionsRequ
 import com.acuity.visualisations.rest.model.request.pkresult.PkResultRequest;
 import com.acuity.visualisations.rest.model.request.DetailsOnDemandRequest;
 import com.acuity.visualisations.rest.util.Constants;
-import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;
@@ -40,8 +39,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.http.HttpServletResponse;
-import javax.validation.Valid;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.validation.Valid;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
@@ -104,7 +103,6 @@ public class PkResultResource {
     @RequestMapping(value = "/filters-subjects", method = POST)
     @Cacheable(condition = Constants.EMPTY_EVENT_AND_POPULATION_FILTER)
     public List<String> getSubjects(
-            @ApiParam(value = "PkResultRequest: pkResult and Population Filters e.g. {pkResultFilters : {}, populationFilters: {}}", required = true)
             @RequestBody PkResultRequest requestBody) {
         return pkResultService.getSubjects(requestBody.getDatasetsObject(),
                 requestBody.getEventFilters(), requestBody.getPopulationFilters());
@@ -123,8 +121,7 @@ public class PkResultResource {
 
     @RequestMapping(value = "/details-on-demand", method = POST)
     public List<Map<String, String>> getDetailsOnDemandData(
-            @ApiParam(value = "Details On Demand Request body: A list of event IDs to get the data for e.g. "
-                    + "['ev-1', 'ev-2']", required = true) @RequestBody @Valid DetailsOnDemandRequest requestBody) {
+            @RequestBody @Valid DetailsOnDemandRequest requestBody) {
 
         return pkResultService.getDetailsOnDemandData(
                 requestBody.getDatasetsObject(), requestBody.getEventIds(), requestBody.getSortAttrs(),

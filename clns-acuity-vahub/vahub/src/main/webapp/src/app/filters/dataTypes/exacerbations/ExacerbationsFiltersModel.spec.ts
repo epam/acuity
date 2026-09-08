@@ -15,8 +15,8 @@
  */
 
 import {inject, TestBed} from '@angular/core/testing';
-import {HttpClientTestingModule} from '@angular/common/http/testing';
-import {HttpClient} from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 import {ExacerbationsFiltersModel} from './ExacerbationsFiltersModel';
 import {PopulationFiltersModel} from '../population/PopulationFiltersModel';
@@ -37,24 +37,24 @@ describe('GIVEN a ExacerbationsFiltersModel class', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [HttpClientTestingModule],
-            providers: [
-                HttpClient,
-                SessionHttpService,
-                SessionEventService,
-                {provide: DatasetViews, useClass: MockDatasetViews},
-                {provide: FilterHttpService, useClass: MockFilterHttpService},
-                {provide: PopulationFiltersModel, deps: [FilterHttpService, FilterEventService]},
-                {provide: FilterEventService, useValue: new MockFilterEventService()},
-                {
-                    provide: ExacerbationsFiltersModel,
-                    useFactory: (p: PopulationFiltersModel, f: FilterHttpService, e: FilterEventService,
-                                 d: DatasetViews): ExacerbationsFiltersModel =>
-                        new ExacerbationsFiltersModel(p, f, e, d),
-                    deps: [PopulationFiltersModel, FilterHttpService, FilterEventService, DatasetViews]
-                }
-            ]
-        });
+    imports: [],
+    providers: [
+        HttpClient,
+        SessionHttpService,
+        SessionEventService,
+        { provide: DatasetViews, useClass: MockDatasetViews },
+        { provide: FilterHttpService, useClass: MockFilterHttpService },
+        { provide: PopulationFiltersModel, deps: [FilterHttpService, FilterEventService] },
+        { provide: FilterEventService, useValue: new MockFilterEventService() },
+        {
+            provide: ExacerbationsFiltersModel,
+            useFactory: (p: PopulationFiltersModel, f: FilterHttpService, e: FilterEventService, d: DatasetViews): ExacerbationsFiltersModel => new ExacerbationsFiltersModel(p, f, e, d),
+            deps: [PopulationFiltersModel, FilterHttpService, FilterEventService, DatasetViews]
+        },
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting()
+    ]
+});
     });
 
     beforeEach(inject([ExacerbationsFiltersModel], (_exacerbationsFiltersModel: ExacerbationsFiltersModel) => {

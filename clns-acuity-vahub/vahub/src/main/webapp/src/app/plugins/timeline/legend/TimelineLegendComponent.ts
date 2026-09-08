@@ -42,7 +42,8 @@ import * as  _ from 'lodash';
     selector: 'timeline-legend',
     templateUrl: 'TimelineLegendComponent.html',
     styleUrls: ['./TimelineLegend.css'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class TimelineLegendComponent implements OnChanges {
     @Input() loading: boolean;

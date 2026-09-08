@@ -22,7 +22,8 @@ import {Subscription} from 'rxjs/Subscription';
 @Component({
     selector: 'timeline-filter',
     templateUrl: 'TimelineFilterComponent.html',
-    styleUrls: ['./TimelineFilterComponent.css']
+    styleUrls: ['./TimelineFilterComponent.css'],
+    standalone: false
 })
 export class TimelineFilterComponent implements OnInit, OnDestroy {
 

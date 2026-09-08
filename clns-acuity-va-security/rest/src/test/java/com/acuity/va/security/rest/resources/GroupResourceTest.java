@@ -24,7 +24,7 @@ import com.google.common.collect.Lists;
 import static com.google.common.collect.Lists.newArrayList;
 import com.google.common.collect.Sets;
 import com.jayway.jsonpath.JsonPath;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import javax.ws.rs.core.Response;
 import java.util.List;

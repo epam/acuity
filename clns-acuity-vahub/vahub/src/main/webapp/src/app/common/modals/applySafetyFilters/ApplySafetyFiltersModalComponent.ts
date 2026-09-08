@@ -26,7 +26,8 @@ import {PopulationFiltersModel} from '../../../filters/dataTypes/population/Popu
  */
 @Component({
     selector: 'apply-safety-filters-modal',
-    templateUrl: 'ApplySafetyFiltersModalComponent.html'
+    templateUrl: 'ApplySafetyFiltersModalComponent.html',
+    standalone: false
 })
 export class ApplySafetyFiltersModalComponent implements OnInit, OnDestroy {
 

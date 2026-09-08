@@ -46,7 +46,8 @@ import {ChartMouseEvent} from '../../../../../../../vahub-charts/types/interface
     selector: 'joinedrangeplot',
     template: '<div></div>',
     providers: [JoinedRangePlotConfigService, JoinedRangePlotService],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class JoinedRangePlotComponent extends AbstractPlotComponent implements OnChanges, OnDestroy {
     @Input() plotData: List<TrellisedRangePlot<any, any>>;
@@ -97,7 +98,7 @@ export class JoinedRangePlotComponent extends AbstractPlotComponent implements O
             }
             if (changes['selection'] && !is(changes['selection'].previousValue, changes['selection'].currentValue)) {
                 this.updateSelectionRendering();
-                this.chart.update();
+                this.chart?.update();
             }
         }
     }

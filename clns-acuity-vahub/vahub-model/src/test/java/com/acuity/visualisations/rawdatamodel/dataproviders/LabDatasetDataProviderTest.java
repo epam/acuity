@@ -32,15 +32,15 @@ import com.acuity.visualisations.rawdatamodel.vo.LabRaw;
 import com.acuity.visualisations.rawdatamodel.vo.Subject;
 import com.acuity.va.security.acl.domain.Dataset;
 import com.acuity.va.security.acl.domain.Datasets;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.core.ResolvableType;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -49,10 +49,10 @@ import java.util.List;
 
 import static com.acuity.visualisations.config.util.TestConstants.DUMMY_ACUITY_DATASET;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Matchers.any;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = {TestConfig.class, DataProviderConfiguration.class})
 public class LabDatasetDataProviderTest extends DataProviderAwareTest {
     @Autowired
@@ -82,7 +82,7 @@ public class LabDatasetDataProviderTest extends DataProviderAwareTest {
     @MockBean
     private PopulationDatasetsDataProvider populationDatasetsDataProvider;
 
-    @Before
+    @BeforeEach
     public void setup() {
         MockitoAnnotations.initMocks(this);
     }

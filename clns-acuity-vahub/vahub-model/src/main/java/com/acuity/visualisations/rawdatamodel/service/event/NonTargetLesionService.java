@@ -65,7 +65,7 @@ public class NonTargetLesionService extends BaseEventService<NonTargetLesionRaw,
                 .sorted(Comparator.comparing(ntl -> ntl.getEvent().getLesionDate(), Comparator.nullsLast(Comparator.naturalOrder())))
                 .filter(t)
                 .collect(Collectors.toList());
-        return ssvCommonService.getColumnData(Column.DatasetType.fromDatasets(datasets), sortedNtls);
+        return ssvCommonService.getColumnData(DatasetType.fromDatasets(datasets), sortedNtls);
     }
 
     @Override

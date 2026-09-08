@@ -27,7 +27,6 @@ import com.acuity.visualisations.rest.model.request.respiratory.lungfunction.Lun
 import com.acuity.visualisations.rest.model.request.respiratory.lungfunction.LungFunctionSelectionRequest;
 import com.acuity.visualisations.rest.model.request.respiratory.lungfunction.LungFunctionTrellisRequest;
 import com.acuity.visualisations.rest.model.request.respiratory.lungfunction.LungFunctionValuesRequest;
-import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;
@@ -37,14 +36,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import java.util.List;
 
 import static com.acuity.visualisations.rest.util.Constants.PRE_AUTHORISE_VISUALISATION;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @RestController
-@Api(description = "rest endpoints for Lung Function Measurements Over Time chart data")
 @RequestMapping(value = "/resources/respiratory/lung-function/measurements-over-time-chart",
         consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
 @PreAuthorize(PRE_AUTHORISE_VISUALISATION)

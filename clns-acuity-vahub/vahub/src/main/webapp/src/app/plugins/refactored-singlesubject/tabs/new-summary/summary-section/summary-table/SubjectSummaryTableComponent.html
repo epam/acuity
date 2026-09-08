@@ -14,12 +14,17 @@
   ~ limitations under the License.
   -->
 
+<div style="text-align: right; margin-bottom: 5px;">
+    <button type="button" class="btn btn-default btn-xs" (click)="exportCsv()">
+        <span class="glyphicon glyphicon-download-alt"></span> Export CSV
+    </button>
+</div>
 <ag-grid-angular
-        class="ag-fresh"
+        class="ag-theme-alpine"
         [ngStyle]="{'width': '96%'}"
         [gridOptions]="gridOptions"
-        [rowData]="tabTableData"
-        [columnDefs]="columnDefs"
+        [rowData]="tabTableData?.toArray ? tabTableData.toArray() : tabTableData"
+        [columnDefs]="columnDefs?.toArray ? columnDefs.toArray() : columnDefs"
         [style.height]="hasMuchData ? '300px' : ''"
 >
 </ag-grid-angular>

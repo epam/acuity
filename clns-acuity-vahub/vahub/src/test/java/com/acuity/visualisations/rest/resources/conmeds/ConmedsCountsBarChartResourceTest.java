@@ -31,13 +31,13 @@ import com.acuity.visualisations.rest.model.request.conmeds.ConmedsRequest;
 import com.acuity.va.security.acl.domain.Datasets;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.assertj.core.util.Lists;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.ArrayList;
@@ -48,15 +48,15 @@ import static com.acuity.visualisations.config.util.TestConstants.DUMMY_DETECT_D
 import static com.acuity.visualisations.rawdatamodel.trellis.grouping.ChartGroupByOptions.ChartGroupBySetting.X_AXIS;
 import static com.acuity.visualisations.rawdatamodel.trellis.grouping.ConmedGroupByOptions.ARM;
 import static org.hamcrest.Matchers.hasSize;
-import static org.mockito.Matchers.any;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 
-@RunWith(SpringRunner.class)
-@WebMvcTest(controllers = ConmedsCountsBarChartResource.class, secure = false)
+@ExtendWith(SpringExtension.class)
+@WebMvcTest(controllers = ConmedsCountsBarChartResource.class)
 public class ConmedsCountsBarChartResourceTest {
 
     private static final String BASE_URL = "/resources/conmeds/counts-bar-chart";

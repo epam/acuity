@@ -20,7 +20,8 @@ import {DatasetViews} from '../../security/module';
 import {AbstractPluginComponent} from '../AbstractPluginComponent';
 
 @Component({
-    templateUrl: '../tumour-response/TumourResponseComponent.html'
+    templateUrl: '../tumour-response/TumourResponseComponent.html',
+    standalone: false
 })
 export class TumourTherapyComponent extends AbstractPluginComponent {
 

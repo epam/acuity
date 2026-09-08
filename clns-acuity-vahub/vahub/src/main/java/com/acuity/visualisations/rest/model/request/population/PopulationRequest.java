@@ -27,4 +27,8 @@ import lombok.EqualsAndHashCode;
 public class PopulationRequest extends DatasetsRequest {
     @NotNull
     private PopulationFilters populationFilters;
+
+    public PopulationFilters getPopulationFilters() {
+        return populationFilters;
+    }
 }

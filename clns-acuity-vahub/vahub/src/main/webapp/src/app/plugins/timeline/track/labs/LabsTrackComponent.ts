@@ -40,7 +40,8 @@ import {List} from 'immutable';
     selector: 'labs-track',
     templateUrl: 'LabsTrackComponent.html',
     styleUrls: ['../TimelineTrackComponent.css'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class LabsTrackComponent extends AbstractTrackComponent implements OnInit, OnChanges, OnDestroy {
     @Input() track: ITrack;

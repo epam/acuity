@@ -30,7 +30,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.Collection;
-import java.util.Date;
 
 @Component("jobListener")
 public class EtlBatchExecutionListener implements JobExecutionListener {
@@ -73,8 +72,8 @@ public class EtlBatchExecutionListener implements JobExecutionListener {
         String jobName = jobExecution.getJobInstance().getJobName();
         String studyName = jobExecution.getJobParameters().getString(JobLauncherConsts.STUDY_KEY);
         String projectName = jobExecution.getJobParameters().getString(JobLauncherConsts.PROJECT_KEY);
-        Date startTime = jobExecution.getStartTime();
-        Date endTime = jobExecution.getEndTime();
+        java.time.LocalDateTime startTime = jobExecution.getStartTime();
+        java.time.LocalDateTime endTime = jobExecution.getEndTime();
         String exitCode = jobExecution.getExitStatus().getExitCode();
         LOGGER.info(jobExecutionId, jobName, projectName, studyName,
                 "Spring batch job finished Start time: {}, End Time: {}, Exit Code: {}", new Object[]{startTime, endTime, exitCode});

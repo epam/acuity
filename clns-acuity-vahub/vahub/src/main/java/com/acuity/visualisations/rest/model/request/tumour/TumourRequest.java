@@ -21,7 +21,7 @@ import com.acuity.visualisations.rest.model.request.EventFilterRequestPopulation
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
@@ -32,6 +32,10 @@ public class TumourRequest extends EventFilterRequestPopulationAware<AssessedTar
 
     @Override
     public AssessedTargetLesionFilters getEventFilters() {
+        return tumourFilters;
+    }
+
+    public AssessedTargetLesionFilters getTumourFilters() {
         return tumourFilters;
     }
 }

@@ -28,7 +28,7 @@ import {DoseTabComponent} from './tabs/dose/DoseTabComponent';
 import {SingleSubjectViewServiceFactory} from './http/SingleSubjectViewServiceFactory';
 import {BaseSingleSubjectViewHttpService} from './http/BaseSingleSubjectViewHttpService';
 import {SingleSubjectViewTableComponentModule} from './ssv-table-component/SingleSubjectViewTableComponent.module';
-import {AgGridModule} from 'ag-grid-angular/main';
+import {AgGridModule} from 'ag-grid-angular';
 import {DoseDiscontinuationTabComponent} from './tabs/dose-discontinuation/DoseDiscontinuationTabComponent';
 import {ConmedsTabComponent} from './tabs/conmeds/ConmedsTabComponent';
 import {AdverseEventsTabComponent} from './tabs/adverse-events/AdverseEventsTabComponent';
@@ -63,12 +63,7 @@ import {SubjectSummaryTabComponentModule} from './tabs/new-summary/SubjectSummar
         SSVSubjectSearchComponentModule,
         SingleSubjectViewTableComponentModule,
         EffectsModule.forFeature([SingleSubjectViewEffects]),
-        AgGridModule.withComponents([
-            SingleSubjectViewComponent,
-            SSVSubjectSearchComponentModule,
-            SingleSubjectViewTableComponentModule,
-            SingleSubjectTabsComponent
-        ]),
+        AgGridModule,
         TrellisingComponentModule,
         SingleSubjectTimelineComponentModule,
         SummaryTabComponentModule,

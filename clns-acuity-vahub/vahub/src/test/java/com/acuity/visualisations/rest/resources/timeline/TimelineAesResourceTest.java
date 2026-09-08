@@ -27,10 +27,10 @@ import com.acuity.visualisations.rest.model.request.aes.AesTimelineRequest;
 import com.acuity.va.security.acl.domain.Datasets;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
-import org.mockito.Matchers;
+import org.mockito.ArgumentMatchers;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.http.MediaType;
@@ -45,7 +45,7 @@ import java.util.Date;
 import java.util.List;
 
 import static com.acuity.visualisations.config.util.TestConstants.DUMMY_DETECT_DATASETS;
-import static org.mockito.Matchers.anyString;
+import static org.mockito.ArgumentMatchers.nullable;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -62,7 +62,7 @@ public class TimelineAesResourceTest {
     private MockMvc mvc;
     private static ObjectMapper mapper;
 
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
         mvc = MockMvcBuilders.standaloneSetup(timelineAesResource).build();
@@ -99,7 +99,7 @@ public class TimelineAesResourceTest {
         timelineAesRequest.setDatasets(DUMMY_DETECT_DATASETS.getDatasetsList());
 
         when(mockAeTimelineService.getAesSummaries(any(Datasets.class),
-                any(AeFilters.class), any(PopulationFilters.class), any(DayZeroType.class), anyString())).thenReturn(response);
+                any(AeFilters.class), any(PopulationFilters.class), any(DayZeroType.class), nullable(String.class))).thenReturn(response);
 
         MockHttpServletRequestBuilder post = MockMvcRequestBuilders.
                 post("/resources/timeline/aes/aessummaries").
@@ -113,7 +113,7 @@ public class TimelineAesResourceTest {
                 .andReturn();
 
         verify(mockAeTimelineService, times(1)).getAesSummaries(eq(DUMMY_DETECT_DATASETS),
-                any(AeFilters.class), any(PopulationFilters.class), eq(DayZeroType.DAYS_SINCE_FIRST_DOSE), anyString());
+                any(AeFilters.class), any(PopulationFilters.class), eq(DayZeroType.DAYS_SINCE_FIRST_DOSE), nullable(String.class));
         verifyNoMoreInteractions(mockAeTimelineService);
     }
 
@@ -133,8 +133,8 @@ public class TimelineAesResourceTest {
         timelineAesRequest.setAesFilters(AeFilters.empty());
         timelineAesRequest.setDatasets(DUMMY_DETECT_DATASETS.getDatasetsList());
 
-        when(mockAeTimelineService.getAesDetails(Matchers.any(Datasets.class), Matchers.any(AeFilters.class),
-                Matchers.any(PopulationFilters.class), Matchers.any(DayZeroType.class), anyString())).thenReturn(response);
+        when(mockAeTimelineService.getAesDetails(ArgumentMatchers.any(Datasets.class), ArgumentMatchers.any(AeFilters.class),
+                ArgumentMatchers.any(PopulationFilters.class), ArgumentMatchers.any(DayZeroType.class), nullable(String.class))).thenReturn(response);
 
         MockHttpServletRequestBuilder post = MockMvcRequestBuilders.
                 post("/resources/timeline/aes/aesdetails").
@@ -148,7 +148,7 @@ public class TimelineAesResourceTest {
                 .andReturn();
 
         verify(mockAeTimelineService, times(1)).getAesDetails(eq(DUMMY_DETECT_DATASETS),
-                Matchers.any(AeFilters.class), Matchers.any(PopulationFilters.class), Matchers.any(DayZeroType.class), anyString());
+                ArgumentMatchers.any(AeFilters.class), ArgumentMatchers.any(PopulationFilters.class), ArgumentMatchers.any(DayZeroType.class), nullable(String.class));
         verifyNoMoreInteractions(mockAeTimelineService);
     }
 }

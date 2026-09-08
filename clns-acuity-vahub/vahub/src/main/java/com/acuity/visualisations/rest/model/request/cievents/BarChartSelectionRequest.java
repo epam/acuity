@@ -23,7 +23,7 @@ import com.acuity.visualisations.rawdatamodel.vo.wrappers.CIEvent;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
@@ -31,4 +31,9 @@ public class BarChartSelectionRequest extends CIEventRequest {
     @NotNull
     private ChartSelection<CIEvent, CIEventGroupByOptions,
             ChartSelectionItem<CIEvent, CIEventGroupByOptions>> selection;
+
+    public ChartSelection<CIEvent, CIEventGroupByOptions,
+            ChartSelectionItem<CIEvent, CIEventGroupByOptions>> getSelection() {
+        return selection;
+    }
 }

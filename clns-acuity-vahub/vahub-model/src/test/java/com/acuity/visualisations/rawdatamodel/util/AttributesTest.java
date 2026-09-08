@@ -17,14 +17,14 @@
 package com.acuity.visualisations.rawdatamodel.util;
 
 import com.acuity.visualisations.rawdatamodel.trellis.grouping.ChartGroupByOptions;
-import com.googlecode.cqengine.attribute.Attribute;
+import com.googlecode.cqengine.attribute.SimpleNullableAttribute;
+import com.googlecode.cqengine.query.option.QueryOptions;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Date;
 
-import static com.googlecode.cqengine.query.QueryFactory.nullableAttribute;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class AttributesTest {
@@ -32,28 +32,40 @@ public class AttributesTest {
     @Test
     public void testGetString() {
         SomeEntity e = getEntity();
-        Attribute stringAttr = nullableAttribute("stringField", SomeEntity::getStringField);
+        SimpleNullableAttribute<SomeEntity, String> stringAttr =
+                new SimpleNullableAttribute<SomeEntity, String>(SomeEntity.class, String.class, "stringField") {
+                    @Override public String getValue(SomeEntity o, QueryOptions q) { return o.getStringField(); }
+                };
         assertThat(Attributes.getString(stringAttr, e)).isEqualTo(e.getStringField());
     }
 
     @Test
     public void testGetInt() {
         SomeEntity e = getEntity();
-        Attribute intAttr = nullableAttribute("intField", SomeEntity::getIntField);
+        SimpleNullableAttribute<SomeEntity, Integer> intAttr =
+                new SimpleNullableAttribute<SomeEntity, Integer>(SomeEntity.class, Integer.class, "intField") {
+                    @Override public Integer getValue(SomeEntity o, QueryOptions q) { return o.getIntField(); }
+                };
         assertThat(Attributes.getInt(intAttr, e)).isEqualTo(e.getIntField());
     }
 
     @Test
     public void testGetDouble() {
         SomeEntity e = getEntity();
-        Attribute doubleAttr = nullableAttribute("doubleField", SomeEntity::getDoubleField);
+        SimpleNullableAttribute<SomeEntity, Double> doubleAttr =
+                new SimpleNullableAttribute<SomeEntity, Double>(SomeEntity.class, Double.class, "doubleField") {
+                    @Override public Double getValue(SomeEntity o, QueryOptions q) { return o.getDoubleField(); }
+                };
         assertThat(Attributes.getDouble(doubleAttr, e)).isEqualTo(e.getDoubleField());
     }
 
     @Test
     public void testGetDate() {
         SomeEntity e = getEntity();
-        Attribute dateAttr = nullableAttribute("dateField", SomeEntity::getDateField);
+        SimpleNullableAttribute<SomeEntity, Date> dateAttr =
+                new SimpleNullableAttribute<SomeEntity, Date>(SomeEntity.class, Date.class, "dateField") {
+                    @Override public Date getValue(SomeEntity o, QueryOptions q) { return o.getDateField(); }
+                };
         assertThat(Attributes.getDate(dateAttr, e)).isEqualTo(e.getDateField());
     }
 

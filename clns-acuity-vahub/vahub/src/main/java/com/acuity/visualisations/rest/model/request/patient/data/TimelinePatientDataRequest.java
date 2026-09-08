@@ -22,7 +22,7 @@ import com.acuity.visualisations.rawdatamodel.vo.wrappers.PatientData;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 import java.util.Map;
 import java.util.Set;
 
@@ -32,4 +32,11 @@ public class TimelinePatientDataRequest extends PatientDataRequest {
     @NotNull
     private Map<ChartGroupByOptions.ChartGroupBySetting, ChartGroupByOptions.GroupByOptionAndParams<PatientData, PatientDataGroupByOptions>> options;
     private Set<String> subjectIds;
+
+    public Map<ChartGroupByOptions.ChartGroupBySetting, ChartGroupByOptions.GroupByOptionAndParams<PatientData, PatientDataGroupByOptions>> getOptions() {
+        return options;
+    }
+    public Set<String> getSubjectIds() {
+        return subjectIds;
+    }
 }

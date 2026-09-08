@@ -20,7 +20,7 @@ import {downloadData, getServerPath} from '../../common/utils/Utils';
 import {BaseChartsHttpService} from '../BaseChartsHttpService';
 import {PopulationFiltersModel} from '../../filters/dataTypes/population/PopulationFiltersModel';
 import {CardiacFiltersModel} from '../../filters/dataTypes/cardiac/CardiacFiltersModel';
-import {HttpClient} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import {Map} from 'immutable';
 import DetailsOnDemandRequest = Request.DetailsOnDemandRequest;
 import DetailsOnDemandResponse = Request.DetailsOnDemandResponse;

@@ -25,14 +25,15 @@ import com.acuity.visualisations.rawdatamodel.vo.Subject;
 import com.acuity.visualisations.rawdatamodel.vo.TargetLesionRaw;
 import com.acuity.visualisations.rawdatamodel.vo.wrappers.TargetLesion;
 import com.acuity.va.security.acl.domain.Datasets;
-import org.assertj.core.api.JUnitSoftAssertions;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.assertj.core.api.SoftAssertions;
+import org.assertj.core.api.junit.jupiter.InjectSoftAssertions;
+import org.assertj.core.api.junit.jupiter.SoftAssertionsExtension;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -43,11 +44,11 @@ import static com.acuity.visualisations.rawdatamodel.Constants.DATASET;
 import static com.acuity.visualisations.rawdatamodel.util.DaysUtil.toDate;
 import static com.google.common.collect.Lists.newArrayList;
 import static org.assertj.core.api.Assertions.tuple;
-import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.eq;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.when;
 
-@RunWith(SpringRunner.class)
+@ExtendWith({SpringExtension.class, SoftAssertionsExtension.class})
 @SpringBootTest(classes = TestConfig.class)
 public class NonTargetLesionDatasetsDataProviderTest {
 
@@ -81,8 +82,8 @@ public class NonTargetLesionDatasetsDataProviderTest {
 
     private List<TargetLesion> targetLesions = newArrayList(tl1, tl2);
 
-    @Rule
-    public final JUnitSoftAssertions softly = new JUnitSoftAssertions();
+    @InjectSoftAssertions
+    private SoftAssertions softly;
 
     @MockBean
     private PopulationDatasetsDataProvider populationDatasetsDataProvider;

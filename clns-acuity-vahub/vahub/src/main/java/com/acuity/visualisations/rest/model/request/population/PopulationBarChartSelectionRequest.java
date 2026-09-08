@@ -23,7 +23,7 @@ import com.acuity.visualisations.rawdatamodel.vo.Subject;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
@@ -31,4 +31,9 @@ public class PopulationBarChartSelectionRequest extends PopulationRequest {
     @NotNull
     private ChartSelection<Subject, PopulationGroupByOptions,
             ChartSelectionItem<Subject, PopulationGroupByOptions>> selection;
+
+    public ChartSelection<Subject, PopulationGroupByOptions,
+            ChartSelectionItem<Subject, PopulationGroupByOptions>> getSelection() {
+        return selection;
+    }
 }

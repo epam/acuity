@@ -30,7 +30,7 @@ import java.util.List;
  * Status summary of lung function (visits) for a subject, which consists of a list of LungFunctionSummaryEvent.
  */
 @Getter
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = false)
 @ToString(callSuper = true)
 public final class SubjectLungFunctionSummary extends SubjectSummary implements Serializable {
     private String sex;

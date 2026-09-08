@@ -16,7 +16,10 @@
 
 import {Pipe, PipeTransform} from '@angular/core';
 
-@Pipe({ name: 'sort' })
+@Pipe({
+    name: 'sort',
+    standalone: false
+})
 export class OrderByPipe implements PipeTransform {
     transform(array: Array<string>): Array<string> {
         const compare = (a, b) => {

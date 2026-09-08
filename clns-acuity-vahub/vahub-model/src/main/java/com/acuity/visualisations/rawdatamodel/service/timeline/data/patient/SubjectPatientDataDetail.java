@@ -24,7 +24,7 @@ import lombok.ToString;
 import java.util.List;
 
 @Data
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = false)
 @ToString(callSuper = true)
 public class SubjectPatientDataDetail extends SubjectSummary {
     private List<PatientDataTests> tests;

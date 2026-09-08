@@ -28,7 +28,7 @@ import static com.acuity.visualisations.rawdatamodel.util.Constants.PERCENT;
 import static com.acuity.visualisations.rawdatamodel.vo.wrappers.CtDna.NO_MUTATIONS_DETECTED;
 
 @Getter
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = false)
 public final class SubjectGeneMutationVaf extends SubjectGeneMutation implements Serializable {
     private String vaf;
     private String vafPercent;

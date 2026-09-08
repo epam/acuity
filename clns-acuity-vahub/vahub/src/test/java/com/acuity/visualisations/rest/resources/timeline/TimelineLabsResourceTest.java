@@ -33,8 +33,8 @@ import com.acuity.visualisations.rest.model.request.labs.LabsTimelineRequest;
 import com.acuity.va.security.acl.domain.Datasets;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -51,8 +51,8 @@ import java.util.Set;
 import static com.acuity.visualisations.config.util.TestConstants.DUMMY_DETECT_DATASETS;
 import static com.google.common.collect.Lists.newArrayList;
 import static com.google.common.collect.Sets.newHashSet;
+import static org.mockito.ArgumentMatchers.nullable;
 import static org.mockito.Mockito.any;
-import static org.mockito.Mockito.anyString;
 import static org.mockito.Mockito.eq;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -74,7 +74,7 @@ public class TimelineLabsResourceTest {
     private MockMvc mvc;
     private static ObjectMapper mapper;
 
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
         mvc = MockMvcBuilders.standaloneSetup(timelineLabsResource).build();
@@ -120,7 +120,7 @@ public class TimelineLabsResourceTest {
 
         when(mockTimelineLabsService.getTimelineSummaries(any(Datasets.class),
                 any(LabFilters.class), any(PopulationFilters.class),
-                any(DayZeroType.class), anyString()
+                any(DayZeroType.class), nullable(String.class)
         )).thenReturn(response);
 
         MockHttpServletRequestBuilder post = MockMvcRequestBuilders.
@@ -138,7 +138,7 @@ public class TimelineLabsResourceTest {
                 eq(DUMMY_DETECT_DATASETS),
                 any(LabFilters.class),
                 any(PopulationFilters.class),
-                eq(DayZeroType.DAYS_SINCE_FIRST_DOSE), anyString()
+                eq(DayZeroType.DAYS_SINCE_FIRST_DOSE), nullable(String.class)
         );
         verifyNoMoreInteractions(mockTimelineLabsService);
     }
@@ -196,7 +196,7 @@ public class TimelineLabsResourceTest {
 
         when(mockTimelineLabsService.getTimelineCategories(any(Datasets.class),
                 any(LabFilters.class), any(PopulationFilters.class),
-                any(DayZeroType.class), anyString())).thenReturn(response);
+                any(DayZeroType.class), nullable(String.class))).thenReturn(response);
 
         MockHttpServletRequestBuilder post = MockMvcRequestBuilders.
                 post("/resources/timeline/labs/categories").
@@ -212,7 +212,7 @@ public class TimelineLabsResourceTest {
         verify(mockTimelineLabsService, times(1)).getTimelineCategories(
                 eq(DUMMY_DETECT_DATASETS),
                 any(LabFilters.class), any(PopulationFilters.class),
-                eq(DayZeroType.DAYS_SINCE_FIRST_DOSE), anyString()
+                eq(DayZeroType.DAYS_SINCE_FIRST_DOSE), nullable(String.class)
         );
         verifyNoMoreInteractions(mockTimelineLabsService);
     }
@@ -259,7 +259,7 @@ public class TimelineLabsResourceTest {
 
         when(mockTimelineLabsService.getTimelineDetails(any(Datasets.class),
                 any(LabFilters.class), any(PopulationFilters.class),
-                any(DayZeroType.class), anyString()
+                any(DayZeroType.class), nullable(String.class)
         )).thenReturn(response);
 
         MockHttpServletRequestBuilder post = MockMvcRequestBuilders.
@@ -277,7 +277,7 @@ public class TimelineLabsResourceTest {
                 eq(DUMMY_DETECT_DATASETS),
                 any(LabFilters.class),
                 any(PopulationFilters.class),
-                eq(DayZeroType.DAYS_SINCE_FIRST_DOSE), anyString()
+                eq(DayZeroType.DAYS_SINCE_FIRST_DOSE), nullable(String.class)
         );
         verifyNoMoreInteractions(mockTimelineLabsService);
     }

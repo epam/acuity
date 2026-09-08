@@ -27,8 +27,8 @@ import com.acuity.va.security.acl.domain.DatasetsRequest;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.assertj.core.util.Lists;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -41,9 +41,9 @@ import java.util.ArrayList;
 import static com.acuity.visualisations.config.util.TestConstants.DUMMY_DETECT_DATASETS;
 import static com.google.common.collect.Lists.newArrayList;
 import static org.hamcrest.Matchers.hasSize;
-import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.anyListOf;
-import static org.mockito.Mockito.anyString;
+import static org.mockito.ArgumentMatchers.nullable;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyList;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -63,7 +63,7 @@ public class TimelineResourceTest {
     private MockMvc mvc;
     private static ObjectMapper mapper;
 
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
         mvc = MockMvcBuilders.standaloneSetup(timelineResource).build();
@@ -125,16 +125,16 @@ public class TimelineResourceTest {
         when(mockTimelineService.getSubjectsSortedByStudyDuration(
                 any(Datasets.class),
                 any(PopulationFilters.class),
-                anyListOf(TimelineTrack.class),
+                anyList(),
                 any(DayZeroType.class),
-                anyString(),
+                nullable(String.class),
                 any(AeFilters.class),
                 any(ConmedFilters.class),
                 any(DrugDoseFilters.class),
                 any(CardiacFilters.class),
+                any(ExacerbationFilters.class),
                 any(LabFilters.class),
                 any(LungFunctionFilters.class),
-                any(ExacerbationFilters.class),
                 any(VitalFilters.class),
                 any(PatientDataFilters.class))).thenReturn(response);
 

@@ -32,7 +32,8 @@ import * as _ from 'lodash';
     selector: 'trellis-x-text-zoom',
     changeDetection: ChangeDetectionStrategy.OnPush,
     templateUrl: 'XTextZoomComponent.html',
-    styleUrls: ['./XTextZoomComponent.css']
+    styleUrls: ['./XTextZoomComponent.css'],
+    standalone: false
 })
 export class XTextZoomComponent implements OnInit, OnChanges {
     @Input() zoom: IZoom;

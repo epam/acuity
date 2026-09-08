@@ -17,13 +17,14 @@
 package com.acuity.va.security.auth.remote;
 
 import com.acuity.va.security.acl.domain.AcuityObjectIdentityWithPermission;
+import com.acuity.va.security.acl.domain.AcuitySidDetails;
 import com.acuity.va.security.acl.domain.Dataset;
 import com.acuity.va.security.acl.domain.DatasetsRequest;
-import com.acuity.va.security.acl.domain.AcuitySidDetails;
 import com.acuity.va.security.auth.common.ISecurityResourceClient;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import jakarta.annotation.PostConstruct;
 import lombok.SneakyThrows;
 import org.apache.http.HttpHeaders;
 import org.apache.http.HttpHost;
@@ -57,7 +58,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.PostConstruct;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.List;

@@ -22,8 +22,8 @@ import com.acuity.visualisations.transform.entity.EntityDescriptionRule;
 import com.acuity.visualisations.transform.entitytotable.EntityTablesRootRule;
 import com.acuity.visualisations.transform.table.TablesRootRule;
 
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBElement;
+import jakarta.xml.bind.JAXBContext;
+import jakarta.xml.bind.JAXBElement;
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamReader;
 import java.io.InputStream;

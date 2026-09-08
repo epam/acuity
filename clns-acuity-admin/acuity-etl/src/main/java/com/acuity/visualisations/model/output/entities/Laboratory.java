@@ -43,6 +43,7 @@ public class Laboratory extends TimestampedEntity implements SmartEntity {
     private BigDecimal refHigh;
     private String subject;
     private String part;
+    private String domain;
     private String comment;
     private String valueDipstick;
     private String protocolScheduleTimepoint;

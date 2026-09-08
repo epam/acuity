@@ -20,7 +20,7 @@ import java.io.IOException;
 
 import org.apache.commons.lang3.SerializationUtils;
 import static org.assertj.core.api.Assertions.assertThat;
-import org.junit.*;
+import org.junit.jupiter.api.*;
 
 /**
  *

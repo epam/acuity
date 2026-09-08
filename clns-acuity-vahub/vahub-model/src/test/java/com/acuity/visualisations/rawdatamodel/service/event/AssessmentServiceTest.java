@@ -24,16 +24,17 @@ import com.acuity.visualisations.rawdatamodel.vo.AssessmentRaw;
 import com.acuity.visualisations.rawdatamodel.vo.Subject;
 import com.acuity.visualisations.rawdatamodel.vo.wrappers.Assessment;
 import com.acuity.va.security.acl.domain.Datasets;
-import org.assertj.core.api.JUnitSoftAssertions;
+import org.assertj.core.api.SoftAssertions;
+import org.assertj.core.api.junit.jupiter.InjectSoftAssertions;
+import org.assertj.core.api.junit.jupiter.SoftAssertionsExtension;
 import org.assertj.core.groups.Tuple;
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.Collections;
 import java.util.List;
@@ -43,10 +44,10 @@ import static com.acuity.visualisations.rawdatamodel.Constants.DATASETS;
 import static com.acuity.visualisations.rawdatamodel.util.Constants.NOT_IMPLEMENTED;
 import static com.acuity.visualisations.rawdatamodel.util.DaysUtil.toDate;
 import static com.google.common.collect.Lists.newArrayList;
-import static org.mockito.Matchers.any;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
-@RunWith(SpringRunner.class)
+@ExtendWith({SpringExtension.class, SoftAssertionsExtension.class})
 @ContextConfiguration(classes = TestConfig.class)
 public class AssessmentServiceTest {
     @Autowired
@@ -56,8 +57,8 @@ public class AssessmentServiceTest {
     @MockBean
     private AssessmentDatasetsDataProvider assessmentDatasetsDataProvider;
 
-    @Rule
-    public final JUnitSoftAssertions softly = new JUnitSoftAssertions();
+    @InjectSoftAssertions
+    private SoftAssertions softly;
 
     private static Subject subject = Subject.builder().subjectId("sid1").baselineDate(toDate("2015-01-20T00:00:00"))
             .firstTreatmentDate(toDate("2015-01-20T00:00:00")).build();
@@ -91,7 +92,7 @@ public class AssessmentServiceTest {
 
     public static final List<Assessment> ASSESSMENTS = newArrayList(as1, as2, as3, as4, as5, as6, as7, as8, as9, as10);
 
-    @Before
+    @BeforeEach
     public void initMocks() {
         when(populationDatasetsDataProvider.loadData(any(Datasets.class))).thenReturn(Collections.singleton(subject));
         when(assessmentDatasetsDataProvider.loadData(any(Datasets.class))).thenReturn(ASSESSMENTS);

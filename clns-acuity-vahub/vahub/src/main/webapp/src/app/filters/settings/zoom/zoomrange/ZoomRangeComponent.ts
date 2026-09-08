@@ -24,7 +24,8 @@ import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, Outp
     selector: 'zoomrange',
     changeDetection: ChangeDetectionStrategy.OnPush,
     templateUrl: 'ZoomRangeComponent.html',
-    styleUrls: ['../../dataTypes/PlotSettings.css']
+    styleUrls: ['../../dataTypes/PlotSettings.css'],
+    standalone: false
 })
 export class ZoomRangeComponent implements OnChanges {
     @Input() zoom: number;

@@ -25,7 +25,8 @@ import {UserActivityService} from './UserActivityService';
 @Component({
     selector: 'app',
     templateUrl: 'AppComponent.html',
-    styleUrls: ['./AppComponent.css']
+    styleUrls: ['./AppComponent.css'],
+    standalone: false
 })
 export class AppComponent implements OnDestroy, AfterViewInit {
     //refreshModal

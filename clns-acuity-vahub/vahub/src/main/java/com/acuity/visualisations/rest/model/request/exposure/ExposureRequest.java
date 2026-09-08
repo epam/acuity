@@ -21,7 +21,7 @@ import com.acuity.visualisations.rest.model.request.EventFilterRequestPopulation
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
@@ -31,6 +31,10 @@ public class ExposureRequest extends EventFilterRequestPopulationAware<ExposureF
 
     @Override
     public ExposureFilters getEventFilters() {
+        return exposureFilters;
+    }
+
+    public ExposureFilters getExposureFilters() {
         return exposureFilters;
     }
 }

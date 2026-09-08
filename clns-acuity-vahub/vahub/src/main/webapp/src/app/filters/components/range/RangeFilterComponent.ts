@@ -25,7 +25,8 @@ import {BaseFilterItemModel} from '../BaseFilterItemModel';
 @Component({
     selector: 'rangefilter',
     templateUrl: 'RangeFilterComponent.html',
-    styleUrls: ['./RangeFilterComponent.css']
+    styleUrls: ['./RangeFilterComponent.css'],
+    standalone: false
 })
 export class RangeFilterComponent extends BaseRangeComponent implements AfterViewInit {
     static counter = 0;
@@ -33,7 +34,7 @@ export class RangeFilterComponent extends BaseRangeComponent implements AfterVie
     @Input() model: RangeFilterItemModel;
     @Input() openedFilterModel: BaseFilterItemModel;
 
-    @ViewChild(ZoombarComponent) zoombar: ZoombarComponent;
+    @ViewChild(ZoombarComponent, { static: false }) zoombar: ZoombarComponent;
 
     private timeoutId: number;
 

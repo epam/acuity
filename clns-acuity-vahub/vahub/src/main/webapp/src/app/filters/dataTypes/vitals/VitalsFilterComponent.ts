@@ -22,7 +22,8 @@ import {AbstractDataTypeFilter} from '../AbstractDataTypeFilter';
 
 @Component({
     selector: 'vitalsfilter',
-    templateUrl: 'VitalsFilterComponent.html'
+    templateUrl: 'VitalsFilterComponent.html',
+    standalone: false
 })
 export class VitalsFilterComponent extends AbstractDataTypeFilter implements OnInit, OnDestroy, AfterViewInit {
     @Output()

@@ -17,7 +17,7 @@
 import {Component, OnDestroy, Renderer2} from '@angular/core';
 import {Subscription} from 'rxjs/Subscription';
 import {ActivatedRoute} from '@angular/router';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {ConfigurationService} from '../configuration/module';
 import {isEmpty} from 'lodash';
 import QnaMakerProperties = Request.QnaMakerProperties;
@@ -25,7 +25,8 @@ import QnaMakerProperties = Request.QnaMakerProperties;
 @Component({
     selector: 'manual-component',
     templateUrl: 'ManualComponent.html',
-    styleUrls: ['./ManualComponent.css']
+    styleUrls: ['./ManualComponent.css'],
+    standalone: false
 })
 export class ManualComponent implements OnDestroy {
     private routeFragmentSubscription: Subscription;
@@ -89,7 +90,7 @@ export class ManualComponent implements OnDestroy {
                     this.loading = false;
                 },
                 error => {
-                    console.log(error);
+                    console.error(error);
                     this.loading = false;
                 });
         }

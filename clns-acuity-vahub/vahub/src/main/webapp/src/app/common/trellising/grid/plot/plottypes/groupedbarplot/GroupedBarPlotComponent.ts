@@ -45,7 +45,8 @@ import {ChartEvents, ChartMouseEvent} from '../../../../../../../vahub-charts/ty
     selector: 'groupedbarplot',
     template: '<div></div>',
     providers: [GroupedBarPlotConfigService, GroupedBarPlotService],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class GroupedBarPlotComponent extends AbstractPlotComponent implements OnChanges, OnDestroy {
     @Input() plotData: List<OutputBarChartData>;
@@ -96,7 +97,7 @@ export class GroupedBarPlotComponent extends AbstractPlotComponent implements On
         }
         if (changes['selection'] && !is(changes['selection'].previousValue, changes['selection'].currentValue)) {
             this.updateSelectionRendering();
-            this.chart.update();
+            this.chart?.update();
         }
 
     }

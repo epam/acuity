@@ -16,7 +16,7 @@
 
 package com.acuity.visualisations.rawdatamodel.util;
 
-import net.logstash.logback.encoder.org.apache.commons.lang.ObjectUtils;
+import org.apache.commons.lang3.ObjectUtils;
 import se.sawano.java.text.AlphanumericComparator;
 
 import java.util.Comparator;

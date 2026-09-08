@@ -24,7 +24,7 @@ export class EmptyPlotsService extends AbstractPaginationService {
 
     public static generateEmptyPlots(limit: number, offset: number, trellises: List<ITrellises>): List<IPlot> {
         const trellisesJS: any[] = trellises.toJS();
-        const series: any = _.filter(trellisesJS, {'category': TrellisCategory.NON_MANDATORY_SERIES});
+        const series: any = _.filter(trellisesJS, <any>{'category': TrellisCategory.NON_MANDATORY_SERIES});
         const trellisOptions = this.getNonSeriesTrellisOptionValues(trellisesJS);
 
         if (trellisOptions.length > 0) {

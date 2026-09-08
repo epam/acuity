@@ -207,22 +207,18 @@ public class RefreshCacheService {
         for (String toRemoveName : toRemoveNames) {
 
             AtomicInteger removedKeys = new AtomicInteger(0);
-            // NB:  Could improve this by using ehcache search API
-            net.sf.ehcache.Cache ehcache = ((net.sf.ehcache.Cache) cacheManager.getCache(toRemoveName).getNativeCache());
-            ehcache.getKeys().forEach(k -> {
-                if (k instanceof DatasetsKey) {
-                    DatasetsKey dsk = ((DatasetsKey) k);
-
-                    // if any of the ids in dataseys key is in the datasets to remove then remove
-                    // ie if we have key ds = 1,2 and we are removing ds = 1, then disjoint([1,2], [1]) = true
-                    //  double check its removing the same type aswell
-                    if (!Collections.disjoint(dsk.getDatasets().getIds(), datasets.getIds())
-                            && dsk.getDatasets().isAcuityType() == datasets.isAcuityType()) {
-                        ehcache.remove(dsk);
-                        removedKeys.incrementAndGet();
-                    }
-                }
-            });
+            com.github.benmanes.caffeine.cache.Cache<Object, Object> caffeineCache =
+                    ((com.github.benmanes.caffeine.cache.Cache<Object, Object>) cacheManager.getCache(toRemoveName).getNativeCache());
+            List<Object> toInvalidate = caffeineCache.asMap().keySet().stream()
+                    .filter(k -> k instanceof DatasetsKey)
+                    .filter(k -> {
+                        DatasetsKey dsk = (DatasetsKey) k;
+                        return !Collections.disjoint(dsk.getDatasets().getIds(), datasets.getIds())
+                                && dsk.getDatasets().isAcuityType() == datasets.isAcuityType();
+                    })
+                    .collect(toList());
+            caffeineCache.invalidateAll(toInvalidate);
+            removedKeys.addAndGet(toInvalidate.size());
 
             if (removedKeys.get() != 0) {
                 log.debug("Removed #{} keys from: {}", removedKeys.get(), toRemoveName);
@@ -289,10 +285,10 @@ public class RefreshCacheService {
     private List<Datasets> listCachedDatasets(String cacheName) {
         log.info("Listing dataset caches for {}", cacheName);
 
-        net.sf.ehcache.Cache ehcache = ((net.sf.ehcache.Cache) cacheManager.getCache(cacheName).getNativeCache());
-        List<Object> keys = ehcache.getKeys();
+        com.github.benmanes.caffeine.cache.Cache<Object, Object> caffeineCache =
+                ((com.github.benmanes.caffeine.cache.Cache<Object, Object>) cacheManager.getCache(cacheName).getNativeCache());
 
-        return keys.stream().map(k -> {
+        return caffeineCache.asMap().keySet().stream().map(k -> {
             if (k instanceof DatasetsKey) {
                 DatasetsKey dsk = ((DatasetsKey) k);
                 return dsk.getDatasets();

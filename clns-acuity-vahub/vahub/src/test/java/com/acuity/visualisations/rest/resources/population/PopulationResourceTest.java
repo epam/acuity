@@ -20,13 +20,13 @@ import com.acuity.visualisations.rawdatamodel.filters.DateRangeFilter;
 import com.acuity.visualisations.rawdatamodel.filters.PopulationFilters;
 import com.acuity.visualisations.rawdatamodel.service.PopulationService;
 import com.acuity.visualisations.rest.model.request.population.PopulationRequest;
-import com.acuity.visualisations.rest.model.request.SingleSubjectRequest;
+import com.acuity.visualisations.rest.model.request.population.PopulationSingleSubjectRequest;
 import com.acuity.va.security.acl.domain.Datasets;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -48,8 +48,8 @@ import static com.acuity.visualisations.config.util.TestConstants.SUBJECT_ID;
 import static com.google.common.collect.Lists.newArrayList;
 import static com.google.common.collect.Sets.newHashSet;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.eq;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
@@ -67,7 +67,7 @@ public class PopulationResourceTest {
     private MockMvc mvc;
     private static ObjectMapper mapper;
 
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
         mvc = MockMvcBuilders.standaloneSetup(populationResource).build();
@@ -79,8 +79,8 @@ public class PopulationResourceTest {
     @Test
     public void shouldGetAvailableFilters() throws Exception {
 
-        com.acuity.visualisations.rawdatamodel.filters.PopulationFilters populationFilters =
-                new com.acuity.visualisations.rawdatamodel.filters.PopulationFilters();
+        PopulationFilters populationFilters =
+                new PopulationFilters();
         populationFilters.setDeath(new com.acuity.visualisations.rawdatamodel.filters.SetFilter<>(newArrayList("Y")));
         populationFilters.setSpecifiedEthnicGroup(new com.acuity.visualisations.rawdatamodel.filters.SetFilter<>(newArrayList("white")));
         final DateRangeFilter randomisationDate = new DateRangeFilter();
@@ -94,7 +94,7 @@ public class PopulationResourceTest {
 
         when(mockPopulationService.getAvailableFilters(
                 any(Datasets.class),
-                any(com.acuity.visualisations.rawdatamodel.filters.PopulationFilters.class))).
+                any(PopulationFilters.class))).
                 thenReturn(populationFilters);
 
         MockHttpServletRequestBuilder post = MockMvcRequestBuilders.
@@ -107,21 +107,21 @@ public class PopulationResourceTest {
                 .andExpect(status().isOk())
                 .andReturn();
 
-        com.acuity.visualisations.rawdatamodel.filters.PopulationFilters returnedPopulationFilters =
-                mapper.readValue(result.getResponse().getContentAsString(), com.acuity.visualisations.rawdatamodel.filters.PopulationFilters.class);
+        PopulationFilters returnedPopulationFilters =
+                mapper.readValue(result.getResponse().getContentAsString(), PopulationFilters.class);
 
         assertThat(returnedPopulationFilters).isEqualTo(populationFilters);
         verify(mockPopulationService, times(1)).getAvailableFilters(eq(DUMMY_ACUITY_DATASETS),
-                any(com.acuity.visualisations.rawdatamodel.filters.PopulationFilters.class));
+                any(PopulationFilters.class));
 
         verifyNoMoreInteractions(mockPopulationService);
     }
 
     @Test
     public void shoudGetValueForSSV() throws Exception {
-        SingleSubjectRequest request = new SingleSubjectRequest();
+        PopulationSingleSubjectRequest request = new PopulationSingleSubjectRequest();
         request.setDatasets(DUMMY_ACUITY_DATASETS.getDatasetsList());
-        request.setEventFilters(PopulationFilters.empty());
+        request.setPopulationFilters(PopulationFilters.empty());
         request.setSubjectId(SUBJECT_ID);
 
         List<Map<String, String>> mockResponse = new ArrayList<>();
@@ -147,7 +147,7 @@ public class PopulationResourceTest {
 
         assertThat(response).isEqualTo(mockResponse);
         verify(mockPopulationService, times(1))
-                .getSingleSubjectData(any(Datasets.class), any(String.class), any(com.acuity.visualisations.rawdatamodel.filters.PopulationFilters.class));
+                .getSingleSubjectData(any(Datasets.class), any(String.class), any(PopulationFilters.class));
         verifyNoMoreInteractions(mockPopulationService);
 
     }

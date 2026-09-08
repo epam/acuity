@@ -169,7 +169,7 @@ public class MyResource extends BaseResource {
 
         LOG.debug("GET: clearing cache " + name);
 
-        refreshCachesTask.getCacheManager().getCache(name).removeAll();
+        refreshCachesTask.getCacheManager().getCache(name).clear();
         return Response.ok().build();
     }
 

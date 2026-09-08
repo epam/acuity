@@ -24,7 +24,7 @@ import com.acuity.visualisations.sdtm.SdtmSuppData;
 import com.acuity.visualisations.sdtm.entity.SdtmEntityAE;
 import com.acuity.visualisations.sdtm.entity.SdtmEntityFA;
 import com.acuity.visualisations.sdtm.entity.SdtmKey;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.HashMap;

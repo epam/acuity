@@ -32,14 +32,14 @@ import com.acuity.visualisations.rawdatamodel.vo.compatibility.TrellisedOvertime
 import com.acuity.visualisations.rawdatamodel.vo.wrappers.CvotEndpoint;
 import com.acuity.va.security.acl.domain.Datasets;
 import com.google.common.collect.Sets;
-import org.junit.Ignore;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.util.StopWatch;
 
 import java.time.LocalDate;
@@ -51,10 +51,11 @@ import java.util.Random;
 import java.util.UUID;
 
 import static com.acuity.visualisations.rawdatamodel.trellis.grouping.ChartGroupByOptions.ChartGroupBySetting.X_AXIS;
-import static org.mockito.Matchers.any;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
-@RunWith(SpringRunner.class)
+@Disabled("Manual profiling test — needs jakarta.servlet on vahub-model test classpath")
+@ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = TestConfig.class)
 public class CvotEndpointOverTimePerformanceTest {
 
@@ -70,7 +71,7 @@ public class CvotEndpointOverTimePerformanceTest {
 
 
     @Test
-    @Ignore("Supposed to run manually when needed to do profiling")
+    @Disabled("Supposed to run manually when needed to do profiling")
     public void test() throws InterruptedException {
         StopWatch stopWatch = new StopWatch();
         final List<CvotEndpoint> mocked = generateRandomCIEventList(1000000, 500, 20, 2014, 2015);

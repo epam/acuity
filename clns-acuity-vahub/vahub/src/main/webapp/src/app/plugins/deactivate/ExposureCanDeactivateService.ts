@@ -16,7 +16,7 @@
 
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
-import {CanDeactivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router} from '@angular/router';
+import { ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
 
 import {
     ExposureFiltersModel,
@@ -29,7 +29,7 @@ import {FilterId} from '../../common/module';
 import {TimelineConfigService} from '../../common/trellising/store/services/TimelineConfigService';
 
 @Injectable()
-export class CanDeactivateExposure extends CanDeactivateBase implements CanDeactivate<ExposureComponent> {
+export class CanDeactivateExposure extends CanDeactivateBase  {
 
     constructor(exposureFiltersModel: ExposureFiltersModel,
                 protected filtersService: FiltersService,

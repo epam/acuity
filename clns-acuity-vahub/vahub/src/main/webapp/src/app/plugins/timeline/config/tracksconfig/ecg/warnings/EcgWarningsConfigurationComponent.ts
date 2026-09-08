@@ -21,7 +21,8 @@ import * as  _ from 'lodash';
 
 @Component({
     selector: 'ecg-warnings-config',
-    templateUrl: 'EcgWarningsConfigurationComponent.html'
+    templateUrl: 'EcgWarningsConfigurationComponent.html',
+    standalone: false
 })
 export class EcgWarningsConfigurationComponent implements OnChanges {
     @Input() ecgWarnings: EcgWarnings;

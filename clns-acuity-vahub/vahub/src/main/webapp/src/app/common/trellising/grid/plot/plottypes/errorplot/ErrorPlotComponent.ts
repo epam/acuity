@@ -46,7 +46,8 @@ import {ChartMouseEvent} from '../../../../../../../vahub-charts/types/interface
     selector: 'errorplot',
     template: '<div></div>',
     providers: [ErrorPlotConfigService],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class ErrorPlotComponent extends AbstractPlotComponent implements OnChanges, OnDestroy {
     @Input() plotData: Map<string, string>;

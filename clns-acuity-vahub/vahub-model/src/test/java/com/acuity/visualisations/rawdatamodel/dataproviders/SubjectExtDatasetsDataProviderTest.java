@@ -24,16 +24,17 @@ import com.acuity.visualisations.rawdatamodel.vo.wrappers.DiseaseExtent;
 import com.acuity.visualisations.rawdatamodel.vo.wrappers.Pathology;
 import com.acuity.visualisations.rawdatamodel.vo.wrappers.SubjectExt;
 import com.acuity.va.security.acl.domain.Datasets;
-import org.assertj.core.api.JUnitSoftAssertions;
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.assertj.core.api.SoftAssertions;
+import org.assertj.core.api.junit.jupiter.InjectSoftAssertions;
+import org.assertj.core.api.junit.jupiter.SoftAssertionsExtension;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -43,10 +44,10 @@ import static com.acuity.visualisations.config.util.TestConstants.DUMMY_ACUITY_D
 import static com.acuity.visualisations.rawdatamodel.util.DaysUtil.toDate;
 import static com.google.common.collect.Lists.newArrayList;
 import static org.assertj.core.api.Assertions.tuple;
-import static org.mockito.Matchers.any;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
-@RunWith(SpringRunner.class)
+@ExtendWith({SpringExtension.class, SoftAssertionsExtension.class})
 @SpringBootTest(classes = TestConfig.class)
 public class SubjectExtDatasetsDataProviderTest {
 
@@ -74,8 +75,8 @@ public class SubjectExtDatasetsDataProviderTest {
             // after first treatment date, must not be considered
             new Pathology(PathologyRaw.builder().date(toDate("2000-04-10")).build(), subject3));
 
-    @Rule
-    public final JUnitSoftAssertions softly = new JUnitSoftAssertions();
+    @InjectSoftAssertions
+    private SoftAssertions softly;
 
     @MockBean
     private PopulationDatasetsDataProvider populationDatasetsDataProvider;
@@ -86,7 +87,7 @@ public class SubjectExtDatasetsDataProviderTest {
     @Autowired
     private SubjectExtDatasetsDataProvider subjectExtDatasetsDataProvider;
 
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
     }

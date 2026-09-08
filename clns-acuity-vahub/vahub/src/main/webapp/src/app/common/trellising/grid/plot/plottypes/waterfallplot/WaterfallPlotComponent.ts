@@ -52,7 +52,8 @@ import {ChartEvents, ChartMouseEvent, UserOptions} from '../../../../../../../va
         <div></div>
     `,
     providers: [WaterfallPlotConfigService],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class WaterfallPlotComponent extends AbstractPlotComponent implements OnChanges, OnDestroy {
     @Input() plotData: Map<string, any>;
@@ -98,7 +99,7 @@ export class WaterfallPlotComponent extends AbstractPlotComponent implements OnC
 
         if (changes['selection']) {
             this.updateSelectionRendering();
-            this.chart.update();
+            this.chart?.update();
         }
 
         if (changes['zoomY'] && this.zoomY) {

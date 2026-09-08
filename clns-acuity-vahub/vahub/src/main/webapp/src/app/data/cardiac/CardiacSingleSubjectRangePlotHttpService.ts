@@ -22,7 +22,7 @@ import {IPlot, ISelectionDetail, PlotType} from '../../common/trellising/store';
 import {CardiacFiltersModel, PopulationFiltersModel} from '../../filters/dataTypes/module';
 import {SingleSubjectModel} from '../../plugins/refactored-singlesubject/SingleSubjectModel';
 import {CardiacHttpService} from './CardiacHttpService';
-import {HttpClient} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import {XAxisOptions} from '../../common/trellising/store/actions/TrellisingActionCreator';
 import Dataset = Request.Dataset;
 import CardiacMeanRangeValuesRequest = Request.CardiacMeanRangeValuesRequest;

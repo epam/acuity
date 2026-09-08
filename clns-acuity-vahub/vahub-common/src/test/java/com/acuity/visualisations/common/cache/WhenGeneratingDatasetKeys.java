@@ -19,7 +19,7 @@ package com.acuity.visualisations.common.cache;
 import static com.acuity.visualisations.common.cache.DatasetsKeyGenerator.generateDatasetsKey;
 import com.acuity.va.security.acl.domain.Datasets;
 import static org.assertj.core.api.Assertions.assertThat;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.springframework.cache.interceptor.SimpleKey;
 
 /**

@@ -22,7 +22,7 @@ import com.acuity.visualisations.rawdatamodel.vo.timeline.dose.MaxDoseType;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
@@ -31,4 +31,11 @@ public class TimelineDosingRequest extends DrugDoseRequest {
     @NotNull
     private TAxes<DayZeroType> dayZero;
     private MaxDoseType maxDoseType;
+
+    public TAxes<DayZeroType> getDayZero() {
+        return dayZero;
+    }
+    public MaxDoseType getMaxDoseType() {
+        return maxDoseType;
+    }
 }

@@ -23,7 +23,7 @@ import com.acuity.visualisations.rawdatamodel.vo.plots.ChordCalculationObject;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 import java.util.Map;
 
 @Data
@@ -34,4 +34,12 @@ public class AesChordSelectionRequest extends AesRequest {
             ChartSelectionItem<ChordCalculationObject, ChordGroupByOptions>> selection;
     @NotNull
     private Map<String, String> additionalSettings;
+
+    public ChartSelection<ChordCalculationObject, ChordGroupByOptions,
+            ChartSelectionItem<ChordCalculationObject, ChordGroupByOptions>> getSelection() {
+        return selection;
+    }
+    public Map<String, String> getAdditionalSettings() {
+        return additionalSettings;
+    }
 }

@@ -24,7 +24,8 @@ import SavedFilterVO = Request.SavedFilterVO;
 @Component({
     selector: 'available-cohorts',
     templateUrl: 'AvailableCohortsComponent.html',
-    styleUrls: ['CohortEditorComponent.css']
+    styleUrls: ['CohortEditorComponent.css'],
+    standalone: false
 })
 export class AvailableCohortsComponent implements OnInit {
 

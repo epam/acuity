@@ -20,7 +20,7 @@ import {PopulationFiltersModel} from '../../filters/dataTypes/population/Populat
 import {ConmedsFiltersModel} from '../../filters/dataTypes/conmeds/ConmedsFiltersModel';
 import {Injectable} from '@angular/core';
 import {BaseChartsHttpService} from '../BaseChartsHttpService';
-import {HttpClient} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import DetailsOnDemandResponse = Request.DetailsOnDemandResponse;
 import DetailsOnDemandRequest = Request.DetailsOnDemandRequest;
 import Dataset = Request.Dataset;

@@ -14,10 +14,8 @@
  * limitations under the License.
  */
 
-import {
-    Component, animate, state, style, trigger, transition, Input, OnChanges,
-    Output, EventEmitter, OnInit, OnDestroy, SimpleChanges
-} from '@angular/core';
+import {animate, state, style, trigger, transition} from '@angular/animations';
+import {Component, Input, OnChanges, Output, EventEmitter, OnInit, OnDestroy, SimpleChanges} from '@angular/core';
 import {XAxisLabelComponent} from '../xaxis/XAxisLabelComponent';
 import {AxisLabelService} from '../AxisLabelService';
 import {TabId, DynamicAxis} from '../../store/ITrellising';
@@ -29,11 +27,12 @@ import {XAxisLabelService} from '../xaxis/XAxisLabelService';
     styleUrls: ['TableStyle.css'],
     animations: [
         trigger('openClose', [
-            state('collapsed, void', style({opacity: '0', bottom: '0px'})),
-            state('expanded', style({opacity: '1', bottom: '120px'})),
-            transition('collapsed <=> expanded', [animate(500, style({opacity: '1', bottom: '120px'}))])
+            state('collapsed, void', style({ opacity: '0', bottom: '0px' })),
+            state('expanded', style({ opacity: '1', bottom: '120px' })),
+            transition('collapsed <=> expanded', [animate(500, style({ opacity: '1', bottom: '120px' }))])
         ])
-    ]
+    ],
+    standalone: false
 })
 export class TableXAxisLabelComponent extends XAxisLabelComponent implements OnInit, OnDestroy, OnChanges {
 

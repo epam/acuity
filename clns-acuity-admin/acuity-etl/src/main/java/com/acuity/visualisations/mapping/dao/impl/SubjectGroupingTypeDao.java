@@ -38,7 +38,7 @@ public class SubjectGroupingTypeDao extends ACUITYDaoSupport implements ISubject
         return getJdbcTemplate().query(con -> {
             PreparedStatement ps = con.prepareStatement("select * from " + getTableName());
             return ps;
-        }, new SubjectGroupingTypeDao.Mapper());
+        }, new Mapper());
     }
 
     private String getTableName() {

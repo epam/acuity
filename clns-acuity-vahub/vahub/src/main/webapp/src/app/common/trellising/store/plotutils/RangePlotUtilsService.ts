@@ -33,7 +33,7 @@ export class RangePlotUtilsService extends BaseChartUtilsService {
     public extractLegend(plotsDatas: List<IPlot>, tabId: TabId, trellises: List<ITrellises>): ILegend[] {
         const legends: Array<ILegend> = [];
         let legendEntries: any;
-        let title = _.filter(<ITrellises[]>trellises.toJS(), {'category': TrellisCategory.NON_MANDATORY_SERIES})
+        let title = _.filter(<ITrellises[]>trellises.toJS(), <any>{'category': TrellisCategory.NON_MANDATORY_SERIES})
             .map(x => x.trellisedBy).join(', ');
         title = this.getLegendTitle(tabId, title);
         plotsDatas.forEach((plot: IPlot) => {
@@ -58,7 +58,7 @@ export class RangePlotUtilsService extends BaseChartUtilsService {
             });
 
             if (title) {
-                const currentEntry = _.find(legends, {'title': title});
+                const currentEntry = _.find(legends, <any>{'title': title});
                 if (currentEntry) {
                     legends.forEach((legend: ILegend) => {
                         if (legend.title === title) {

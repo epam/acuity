@@ -83,7 +83,7 @@ public abstract class CommonTableService {
     protected abstract Type getType();
 
     public <T> List<Map<String, String>> getColumnData(DatasetType datasetType, Collection<T> items, List<SortAttrs> sortAttrs,
-                                                       long from, long count, boolean withEventId, Column.Type tableType) {
+                                                       long from, long count, boolean withEventId, Type tableType) {
         if (items.isEmpty()) {
             return Collections.emptyList();
         }
@@ -118,7 +118,7 @@ public abstract class CommonTableService {
         return getColumnData(datasetType, items, sortAttrs, from, count, withEventId, getType());
     }
 
-    private <T> Collection<T> sortItems(Collection<T> items, List<SortAttrs> sortAttrs, DatasetType datasetType, Column.Type tableType) {
+    private <T> Collection<T> sortItems(Collection<T> items, List<SortAttrs> sortAttrs, DatasetType datasetType, Type tableType) {
         Collection<T> itemsList = items;
         sortAttrs = CollectionUtils.isEmpty(sortAttrs) ? getDefaultSortBy(datasetType, items, tableType) : sortAttrs;
         if (!CollectionUtils.isEmpty(sortAttrs)) {
@@ -133,7 +133,7 @@ public abstract class CommonTableService {
         return getColumnData(datasetType, items, Collections.emptyList(), 0, Long.MAX_VALUE, withEventId);
     }
 
-    public <T> List<Map<String, String>> getColumnData(DatasetType datasetType, Collection<T> items, Column.Type tableType) {
+    public <T> List<Map<String, String>> getColumnData(DatasetType datasetType, Collection<T> items, Type tableType) {
         return getColumnData(datasetType, items, Collections.emptyList(), 0, Long.MAX_VALUE, true, tableType);
     }
 
@@ -169,7 +169,7 @@ public abstract class CommonTableService {
                         .getDisplayName(), (o1, o2) -> o1, LinkedHashMap::new));
     }
 
-    <T> ArrayList<SortAttrs> getDefaultSortBy(DatasetType datasetType, Collection<T> items, Column.Type tableType) {
+    <T> ArrayList<SortAttrs> getDefaultSortBy(DatasetType datasetType, Collection<T> items, Type tableType) {
         T event = items.iterator().next();
         Map<String, ColumnMetadata> columnsMetadata;
         if (event instanceof EventWrapper<?>) {
@@ -195,7 +195,7 @@ public abstract class CommonTableService {
      * annotation parameter
      */
     private Map<String, ColumnMetadata> getClassColumnMetadata(Class<?> eventClass, Class<?> rawItemClass,
-                                                               DatasetType datasetType, Column.Type tableType) {
+                                                               DatasetType datasetType, Type tableType) {
         Map<String, ColumnMetadata> columnsMetadata = getClassColumnMetadataImpl(eventClass, datasetType, tableType);
         Map<String, ColumnMetadata> wrappedSort = getClassColumnMetadataImpl(rawItemClass, datasetType, tableType);
         columnsMetadata.putAll(wrappedSort);
@@ -210,7 +210,7 @@ public abstract class CommonTableService {
         return getClassColumnMetadataImpl(clazz, datasetType, getType());
     }
 
-    private Map<String, ColumnMetadata> getClassColumnMetadata(Object event, Column.DatasetType datasetType, Column.Type tableType) {
+    private Map<String, ColumnMetadata> getClassColumnMetadata(Object event, DatasetType datasetType, Type tableType) {
         Map<String, ColumnMetadata> columnsMetadata = getClassColumnMetadataImpl(event, datasetType, tableType);
         if (event instanceof EventWrapper) {
             Object wrappedEvent = ((EventWrapper<?>) event).getEvent();
@@ -223,7 +223,7 @@ public abstract class CommonTableService {
      * Returns map of columnNames and {@link ColumnMetadata} pairs, according to {@link Column#order()}
      * annotation parameter
      */
-    Map<String, ColumnMetadata> getClassColumnMetadataImpl(Object event, Column.DatasetType datasetType, Column.Type tableType) {
+    Map<String, ColumnMetadata> getClassColumnMetadataImpl(Object event, DatasetType datasetType, Type tableType) {
         Class<?> clazz = event instanceof Class ? (Class<?>) event : event.getClass();
         MetadataCacheKey key = new MetadataCacheKey(clazz, datasetType, tableType);
         return classMetadataCache.computeIfAbsent(key, classMetadataExtractor(key)
@@ -259,7 +259,7 @@ public abstract class CommonTableService {
      * Returns a map, where the key is column display name and value if function that can be applied on object to get this column's value.
      */
     Map<String, Function<Object, Pair<ColumnMetadata, Object>>> getClassColumnReaders(
-            Object event, Column.DatasetType datasetType, Column.Type tableType) {
+            Object event, DatasetType datasetType, Type tableType) {
         return classColumnReadersCache.computeIfAbsent(new MetadataCacheKey(event.getClass(), datasetType, tableType), anything -> {
             Map<String, ColumnMetadata> columnMetadata = getClassColumnMetadata(event, datasetType, tableType);
 

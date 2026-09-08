@@ -22,7 +22,8 @@ import {AbstractDataTypeFilter} from '../AbstractDataTypeFilter';
 
 @Component({
     selector: 'dose-discontinuation-filter',
-    templateUrl: 'DoseDiscontinuationFilterComponent.html'
+    templateUrl: 'DoseDiscontinuationFilterComponent.html',
+    standalone: false
 })
 export class DoseDiscontinuationFilterComponent extends AbstractDataTypeFilter implements OnInit, OnDestroy, AfterViewInit {
     @Output()

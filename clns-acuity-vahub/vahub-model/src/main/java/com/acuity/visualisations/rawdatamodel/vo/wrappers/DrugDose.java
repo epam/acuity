@@ -32,7 +32,7 @@ import java.util.Date;
 import java.util.OptionalInt;
 
 @ToString(callSuper = true)
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = false)
 public class DrugDose extends SubjectAwareWrapper<DrugDoseRaw> implements HasStartEndDate, Serializable {
     public DrugDose(DrugDoseRaw event, Subject subject) {
         super(event, subject);

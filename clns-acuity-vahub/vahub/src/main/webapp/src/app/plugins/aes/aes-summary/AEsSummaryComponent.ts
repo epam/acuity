@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+import {GridOptions} from 'ag-grid-community';
 import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
 import {Subscription} from 'rxjs/Subscription';
 import {ActivatedRoute} from '@angular/router';
@@ -35,13 +36,14 @@ import {ConfigurationService} from '../../../configuration/ConfigurationService'
 @Component({
     selector: 'aes-summary',
     templateUrl: './AEsSummaryComponent.html',
-    styleUrls: ['./AEsSummaryComponent.styl'],
+    styleUrls: ['./AEsSummaryComponent.scss'],
     providers: [
-        {provide: AEsSummaryDataService, useClass: AEsSummaryAnyDataService, multi: true},
-        {provide: AEsSummaryDataService, useClass: AEsSummaryMstCmnDataService, multi: true},
-        {provide: AEsSummaryDataService, useClass: AEsSummaryDeathOutcomeDataService, multi: true},
-        {provide: AEsSummaryDataService, useClass: SAEsSummaryLdostDataService, multi: true},
-    ]
+        { provide: AEsSummaryDataService, useClass: AEsSummaryAnyDataService, multi: true },
+        { provide: AEsSummaryDataService, useClass: AEsSummaryMstCmnDataService, multi: true },
+        { provide: AEsSummaryDataService, useClass: AEsSummaryDeathOutcomeDataService, multi: true },
+        { provide: AEsSummaryDataService, useClass: SAEsSummaryLdostDataService, multi: true },
+    ],
+    standalone: false
 })
 export class AEsSummaryComponent implements OnInit, OnDestroy {
 
@@ -56,21 +58,7 @@ export class AEsSummaryComponent implements OnInit, OnDestroy {
     columnDefs = [];
     csvData: any;
     summaryData: InMemory.AeSummariesTable[];
-    gridOptions = {
-        api: null,
-        enableSorting: true,
-        toolPanelSuppressRowGroups: true,
-        toolPanelSuppressValues: true,
-        groupUseEntireRow: false,
-        toolPanelSuppressPivots: true,
-        toolPanelSuppressPivotMode: true,
-        enableColResize: true,
-        enableRangeSelection: true,
-        enableFilter: false,
-        groupSuppressAutoColumn: true,
-        getContextMenuItems: () => [],
-        getMainMenuItems: this.getMainMenuItems
-    };
+    gridOptions: GridOptions = {};
     private dataSubscription: Subscription;
     private error = false;
     private summaryService: AEsSummaryDataService;
@@ -189,9 +177,4 @@ export class AEsSummaryComponent implements OnInit, OnDestroy {
         }
     }
 
-    private getMainMenuItems(params) {
-        return params.column.getId() === 'socColumn'
-            ? ['expandAll', 'contractAll']
-            : [];
-    }
 }

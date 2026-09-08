@@ -58,7 +58,8 @@ import OutputMarkEntry = InMemory.OutputMarkEntry;
     selector: 'columnrange-plot',
     templateUrl: 'ColumnRangePlotComponent.html',
     providers: [ColumnRangePlotConfigService],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 
 export class ColumnRangePlotComponent extends AbstractPlotComponent implements OnChanges, OnInit, OnDestroy {
@@ -130,7 +131,7 @@ export class ColumnRangePlotComponent extends AbstractPlotComponent implements O
 
         if (changes['selection']) {
             this.updateSelectionRendering();
-            this.chart.update();
+            this.chart?.update();
         }
     }
 

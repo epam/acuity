@@ -25,10 +25,12 @@ import com.acuity.visualisations.rawdatamodel.vo.compatibility.OutputBarChartDat
 import com.acuity.visualisations.rawdatamodel.vo.compatibility.TrellisedBarChart;
 import com.acuity.visualisations.rawdatamodel.vo.wrappers.Exacerbation;
 import com.google.common.collect.ImmutableSet;
-import org.assertj.core.api.JUnitSoftAssertions;
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
+import org.assertj.core.api.SoftAssertions;
+import org.assertj.core.api.junit.jupiter.InjectSoftAssertions;
+import org.assertj.core.api.junit.jupiter.SoftAssertionsExtension;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -36,10 +38,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+@ExtendWith(SoftAssertionsExtension.class)
 public class BarChartUIModelServiceTest {
 
-    @Rule
-    public final JUnitSoftAssertions softly = new JUnitSoftAssertions();
+    @InjectSoftAssertions
+    private SoftAssertions softly;
     private BarChartUIModelService barChartUIModelService = new BarChartUIModelService();
 
     Set<String> subjectSet1;
@@ -48,7 +51,7 @@ public class BarChartUIModelServiceTest {
     Set<String> subjectSet4;
     Set<String> subjectSet5;
 
-    @Before
+    @BeforeEach
     public void init() {
         String SUBJECT1 = "E01";
         String SUBJECT2 = "E02";

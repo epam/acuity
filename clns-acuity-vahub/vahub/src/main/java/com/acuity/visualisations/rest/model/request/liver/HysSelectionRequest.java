@@ -33,4 +33,20 @@ public class HysSelectionRequest extends LiverRequest {
     private double maxX;
     private double minY;
     private double maxY;
+
+    public ChartGroupByOptionsFiltered<Liver, LiverGroupByOptions> getSettings() {
+        return settings;
+    }
+    public double getMinX() {
+        return minX;
+    }
+    public double getMaxX() {
+        return maxX;
+    }
+    public double getMinY() {
+        return minY;
+    }
+    public double getMaxY() {
+        return maxY;
+    }
 }

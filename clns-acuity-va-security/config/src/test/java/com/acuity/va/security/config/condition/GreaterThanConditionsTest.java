@@ -20,7 +20,8 @@ import static com.acuity.va.security.config.condition.Conditions.greaterThan;
 import static com.acuity.va.security.config.condition.Conditions.greaterThanOrEqualTo;
 import static org.assertj.core.api.Assertions.assertThat;
 import org.assertj.core.util.Lists;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  *
@@ -39,14 +40,14 @@ public class GreaterThanConditionsTest {
         assertThat(Lists.newArrayList(1, 2, 3)).are(greaterThan(0));
     }
 
-    @Test(expected = AssertionError.class)
+    @Test
     public void shouldFailTestGreaterThanCondition1() {
-        assertThat(Lists.newArrayList(1, 2, 3)).are(greaterThan(1));
+        assertThrows(AssertionError.class, () -> assertThat(Lists.newArrayList(1, 2, 3)).are(greaterThan(1)));
     }
 
-    @Test(expected = AssertionError.class)
+    @Test
     public void shouldFailTestGreaterThanCondition2() {
-        assertThat(Lists.newArrayList(1, 2, 3)).are(greaterThan(2));
+        assertThrows(AssertionError.class, () -> assertThat(Lists.newArrayList(1, 2, 3)).are(greaterThan(2)));
     }
 
     // GreaterThan Double
@@ -60,14 +61,14 @@ public class GreaterThanConditionsTest {
         assertThat(Lists.newArrayList(1.0, 2.0, 3.0)).are(greaterThan(0.0));
     }
 
-    @Test(expected = AssertionError.class)
+    @Test
     public void shouldFailTestGreaterThanDoubleCondition1() {
-        assertThat(Lists.newArrayList(1.0, 2.0, 3.0)).are(greaterThan(1.0));
+        assertThrows(AssertionError.class, () -> assertThat(Lists.newArrayList(1.0, 2.0, 3.0)).are(greaterThan(1.0)));
     }
 
-    @Test(expected = AssertionError.class)
+    @Test
     public void shouldFailTestGreaterThanDoubleCondition2() {
-        assertThat(Lists.newArrayList(1.0, 2.0, 3.0)).are(greaterThan(2.0));
+        assertThrows(AssertionError.class, () -> assertThat(Lists.newArrayList(1.0, 2.0, 3.0)).are(greaterThan(2.0)));
     }
 
     // GreaterThanOrEqualTo Integer
@@ -81,14 +82,14 @@ public class GreaterThanConditionsTest {
         assertThat(Lists.newArrayList(1, 2, 3)).are(greaterThanOrEqualTo(1));
     }
 
-    @Test(expected = AssertionError.class)
+    @Test
     public void shouldFailTestGreaterThanOrEqualToCondition1() {
-        assertThat(Lists.newArrayList(1, 2, 3)).are(greaterThanOrEqualTo(2));
+        assertThrows(AssertionError.class, () -> assertThat(Lists.newArrayList(1, 2, 3)).are(greaterThanOrEqualTo(2)));
     }
 
-    @Test(expected = AssertionError.class)
+    @Test
     public void shouldFailTestGreaterThanOrEqualToondition2() {
-        assertThat(Lists.newArrayList(1, 2, 3)).are(greaterThanOrEqualTo(3));
+        assertThrows(AssertionError.class, () -> assertThat(Lists.newArrayList(1, 2, 3)).are(greaterThanOrEqualTo(3)));
     }
 
     // GreaterThanOrEqualTo Double
@@ -102,13 +103,13 @@ public class GreaterThanConditionsTest {
         assertThat(Lists.newArrayList(1.0, 2.0, 3.0)).are(greaterThanOrEqualTo(1.0));
     }
 
-    @Test(expected = AssertionError.class)
+    @Test
     public void shouldFailTestGreaterThanOrEqualToDoubleCondition1() {
-        assertThat(Lists.newArrayList(1.0, 2.0, 3.0)).are(greaterThanOrEqualTo(2.0));
+        assertThrows(AssertionError.class, () -> assertThat(Lists.newArrayList(1.0, 2.0, 3.0)).are(greaterThanOrEqualTo(2.0)));
     }
 
-    @Test(expected = AssertionError.class)
+    @Test
     public void shouldFailTestGreaterThanOrEqualToDoubleCondition2() {
-        assertThat(Lists.newArrayList(1.0, 2.0, 3.0)).are(greaterThanOrEqualTo(3.0));
+        assertThrows(AssertionError.class, () -> assertThat(Lists.newArrayList(1.0, 2.0, 3.0)).are(greaterThanOrEqualTo(3.0)));
     }
 }

@@ -30,4 +30,14 @@ public class AesAssociatedAesNumbersRequest extends DatasetsRequest {
     private PopulationFilters populationFilters;
     private String fromPlot;
     private List<String> eventIds;
+
+    public PopulationFilters getPopulationFilters() {
+        return populationFilters;
+    }
+    public String getFromPlot() {
+        return fromPlot;
+    }
+    public List<String> getEventIds() {
+        return eventIds;
+    }
 }

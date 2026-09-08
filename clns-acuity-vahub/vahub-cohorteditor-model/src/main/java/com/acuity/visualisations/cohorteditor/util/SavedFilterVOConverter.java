@@ -27,7 +27,7 @@ import com.acuity.visualisations.common.util.Security;
 import com.acuity.va.security.acl.domain.Datasets;
 import java.util.List;
 import java.util.stream.Collectors;
-import javax.persistence.EntityManager;
+import jakarta.persistence.EntityManager;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -111,7 +111,7 @@ public class SavedFilterVOConverter {
     private SavedFilter getSavedFilter(SavedFilterVO savedFilterVO) {
         Long id = savedFilterVO.getSavedFilter().getId();
 
-        return (id != null && savedFilterRepository.exists(id))
+        return (id != null && savedFilterRepository.existsById(id))
                 ? savedFilterRepository.loadTreeById(id) : savedFilterVO.getSavedFilter();
     }
 

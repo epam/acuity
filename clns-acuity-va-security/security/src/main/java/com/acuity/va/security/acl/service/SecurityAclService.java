@@ -35,7 +35,7 @@ import com.acuity.va.security.acl.domain.UsernameFullNameAndLinkedAccount;
 import com.acuity.va.security.acl.permissions.AclPermissionCalculator;
 import com.acuity.va.security.acl.permissions.AcuityPermissionViewPackagesManager;
 import com.google.common.collect.Sets;
-import net.sf.ehcache.CacheManager;
+import org.springframework.cache.CacheManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -707,7 +707,9 @@ public class SecurityAclService {
     @Transactional(value = "security")
     public void clearAclCache() {
         aclCache.clearCache();
-        cacheManager.clearAllStartingWith(HOURLY_REFRESHABLE_CACHE);
+        cacheManager.getCacheNames().stream()
+                .filter(name -> name.startsWith(HOURLY_REFRESHABLE_CACHE))
+                .forEach(name -> cacheManager.getCache(name).clear());
     }
 
     /**

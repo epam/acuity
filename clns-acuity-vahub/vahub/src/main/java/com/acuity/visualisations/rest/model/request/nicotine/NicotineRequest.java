@@ -22,7 +22,7 @@ import com.acuity.va.security.acl.domain.DatasetsRequest;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
@@ -31,4 +31,11 @@ public class NicotineRequest extends DatasetsRequest {
     private PopulationFilters populationFilters;
     @NotNull
     private NicotineFilters nicotineFilters;
+
+    public PopulationFilters getPopulationFilters() {
+        return populationFilters;
+    }
+    public NicotineFilters getNicotineFilters() {
+        return nicotineFilters;
+    }
 }

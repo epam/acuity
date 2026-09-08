@@ -15,29 +15,29 @@
  */
 
 import {Injectable} from '@angular/core';
-import {ColDef} from 'ag-grid/main';
+import {ColDef} from 'ag-grid-community';
 import {List} from 'immutable';
 import {AbstractColumnModel} from '../AbstractColumnModel';
 
 @Injectable()
 export class ExacerbationsColumnModel extends AbstractColumnModel {
     _columnDefs: List<ColDef> = List([
-        {field: 'studyId', enableRowGroup: true},
-        {field: 'studyPart', enableRowGroup: true},
-        {field: 'subjectId', enableRowGroup: true},
-        {field: 'exacerbationClassification', enableRowGroup: true},
-        {field: 'startDate', enableRowGroup: true},
-        {field: 'endDate', enableRowGroup: true},
-        {field: 'daysOnStudyAtStart', enableValue: true, filter: 'number'},
-        {field: 'daysOnStudyAtEnd', enableValue: true, filter: 'number'},
-        {field: 'duration', enableValue: true, filter: 'number'},
-        {field: 'startPriorToRandomisation', enableRowGroup: true},
-        {field: 'endPriorToRandomisation', enableRowGroup: true},
-        {field: 'hospitalisation', enableRowGroup: true},
-        {field: 'emergencyRoomVisit', enableRowGroup: true},
-        {field: 'antibioticsTreatment', enableRowGroup: true},
-        {field: 'depotCorticosteroidTreatment', enableRowGroup: true},
-        {field: 'systemicCorticosteroidTreatment', enableRowGroup: true},
-        {field: 'increasedInhaledCorticosteroidTreatment', enableRowGroup: true}
+        {field: 'studyId'},
+        {field: 'studyPart'},
+        {field: 'subjectId'},
+        {field: 'exacerbationClassification'},
+        {field: 'startDate'},
+        {field: 'endDate'},
+        {field: 'daysOnStudyAtStart', filter: 'number'},
+        {field: 'daysOnStudyAtEnd', filter: 'number'},
+        {field: 'duration', filter: 'number'},
+        {field: 'startPriorToRandomisation'},
+        {field: 'endPriorToRandomisation'},
+        {field: 'hospitalisation'},
+        {field: 'emergencyRoomVisit'},
+        {field: 'antibioticsTreatment'},
+        {field: 'depotCorticosteroidTreatment'},
+        {field: 'systemicCorticosteroidTreatment'},
+        {field: 'increasedInhaledCorticosteroidTreatment'}
     ]);
 }

@@ -39,16 +39,17 @@ import com.acuity.visualisations.rawdatamodel.vo.compatibility.TrellisedWaterfal
 import com.acuity.visualisations.rawdatamodel.vo.plots.SelectionDetail;
 import com.acuity.visualisations.rawdatamodel.vo.wrappers.AssessedTargetLesion;
 import com.acuity.va.security.acl.domain.Datasets;
-import org.assertj.core.api.JUnitSoftAssertions;
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.assertj.core.api.SoftAssertions;
+import org.assertj.core.api.junit.jupiter.InjectSoftAssertions;
+import org.assertj.core.api.junit.jupiter.SoftAssertionsExtension;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -64,10 +65,10 @@ import static com.acuity.visualisations.rawdatamodel.vo.GroupByOption.Param.ASSE
 import static com.acuity.visualisations.rawdatamodel.vo.GroupByOption.Param.WEEK_NUMBER;
 import static com.google.common.collect.Lists.newArrayList;
 import static org.assertj.core.api.Assertions.tuple;
-import static org.mockito.Matchers.any;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
-@RunWith(SpringRunner.class)
+@ExtendWith({SpringExtension.class, SoftAssertionsExtension.class})
 @ContextConfiguration(classes = TestConfig.class)
 public class TumourWaterfallServiceTest {
 
@@ -78,10 +79,10 @@ public class TumourWaterfallServiceTest {
     @MockBean
     private AssessedTargetLesionDatasetsDataProvider tumourDatasetsDataProvider;
 
-    @Rule
-    public final JUnitSoftAssertions softly = new JUnitSoftAssertions();
+    @InjectSoftAssertions
+    private SoftAssertions softly;
 
-    @Before
+    @BeforeEach
     public void setup() {
         MockitoAnnotations.initMocks(this);
         when(tumourDatasetsDataProvider.loadData(any(Datasets.class))).thenReturn(tumours);
@@ -96,7 +97,7 @@ public class TumourWaterfallServiceTest {
 
         List<TrellisedWaterfallChart<AssessedTargetLesion, ATLGroupByOptions>> waterfallChart =
                 tumourService.getTumourDataOnWaterfall(DUMMY_2_ACUITY_DATASETS, AssessedTargetLesionFilters.empty(), PopulationFilters.empty(),
-                        getWaterfallSettingsFiltered(AssessmentAxisOptions.AssessmentType.WEEK, 4, false));
+                        getWaterfallSettingsFiltered(AssessmentType.WEEK, 4, false));
 
         softly.assertThat(waterfallChart).hasSize(1);
         final OutputWaterfallData data = waterfallChart.get(0).getData();
@@ -124,7 +125,7 @@ public class TumourWaterfallServiceTest {
                 AssessedTargetLesionFilters.empty(), PopulationFilters.empty(),
                 ChartSelection.of(getDefaultWaterfallSelectionSettings(), newArrayList(ChartSelectionItem.of(selectedTrellises, selectedItem1),
                         ChartSelectionItem.of(selectedTrellises, selectedItem2), ChartSelectionItem.of(selectedTrellises, selectedItem3))),
-                getWaterfallSettingsFiltered(AssessmentAxisOptions.AssessmentType.BEST_CHANGE, 0, true));
+                getWaterfallSettingsFiltered(AssessmentType.BEST_CHANGE, 0, true));
 
         softly.assertThat(selectionDetails).extracting(s -> s.getEventIds().size(), s -> s.getSubjectIds().size(), SelectionDetail::getTotalEvents,
                 SelectionDetail::getTotalSubjects).containsExactly(4, 3, 5, 4);
@@ -144,7 +145,7 @@ public class TumourWaterfallServiceTest {
                 AssessedTargetLesionFilters.empty(), PopulationFilters.empty(),
                 ChartSelection.of(getDefaultWaterfallSelectionSettings(), newArrayList(ChartSelectionItem.of(selectedTrellises, selectedItem1),
                         ChartSelectionItem.of(selectedTrellises, selectedItem2))),
-                getWaterfallSettingsFiltered(AssessmentAxisOptions.AssessmentType.WEEK, 4, true));
+                getWaterfallSettingsFiltered(AssessmentType.WEEK, 4, true));
 
         softly.assertThat(selectionDetails).extracting(s -> s.getEventIds().size(), s -> s.getSubjectIds().size(), SelectionDetail::getTotalEvents,
                 SelectionDetail::getTotalSubjects).containsExactly(3, 2, 3, 4);
@@ -187,7 +188,7 @@ public class TumourWaterfallServiceTest {
     public void testGetColorByBestChange(){
         ChartGroupByOptions<AssessedTargetLesion, ATLGroupByOptions> settingsBestResponse = ChartGroupByOptions.<AssessedTargetLesion, ATLGroupByOptions>builder()
                 .withOption(Y_AXIS, ATLGroupByOptions.PERCENTAGE_CHANGE.getGroupByOptionAndParams(GroupByOption.Params.builder()
-                        .with(ASSESSMENT_TYPE, AssessmentAxisOptions.AssessmentType.BEST_CHANGE)
+                        .with(ASSESSMENT_TYPE, AssessmentType.BEST_CHANGE)
                         .with(WEEK_NUMBER,  0)
                         .build()))
                 .build();
@@ -203,7 +204,7 @@ public class TumourWaterfallServiceTest {
     public void testGetColorByWeek() {
         ChartGroupByOptions<AssessedTargetLesion, ATLGroupByOptions> settingsAssessmentResponse = ChartGroupByOptions.<AssessedTargetLesion, ATLGroupByOptions>builder()
                 .withOption(Y_AXIS, ATLGroupByOptions.PERCENTAGE_CHANGE.getGroupByOptionAndParams(GroupByOption.Params.builder()
-                        .with(ASSESSMENT_TYPE, AssessmentAxisOptions.AssessmentType.WEEK)
+                        .with(ASSESSMENT_TYPE, AssessmentType.WEEK)
                         .with(WEEK_NUMBER,  0)
                         .build()))
                 .build();

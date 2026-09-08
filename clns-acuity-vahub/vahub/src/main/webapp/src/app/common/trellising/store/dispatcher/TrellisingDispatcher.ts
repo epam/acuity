@@ -156,7 +156,6 @@ export class TrellisingDispatcher {
     }
 
     public updateZoomRange(axisType: 'xAxis' | 'yAxis', rangeValue): void {
-        console.log(axisType, rangeValue, this.tabId);
         this._store.dispatch({
             type: ActionTypes.TRELLIS_CHANGE_ZOOM_RANGE,
             payload: {

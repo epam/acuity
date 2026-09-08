@@ -23,7 +23,8 @@ import SavedFilterInstance = Request.SavedFilterInstance;
 @Component({
     selector: 'cohort-filter-list',
     templateUrl: 'FilterListComponent.html',
-    styleUrls: ['CohortEditorComponent.css']
+    styleUrls: ['CohortEditorComponent.css'],
+    standalone: false
 })
 export class FilterListComponent implements OnChanges {
 

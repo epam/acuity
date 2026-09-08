@@ -16,7 +16,7 @@
 
 import {ChangeDetectorRef, Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges} from '@angular/core';
 import {NavigationStart, Router} from '@angular/router';
-import {GridOptions} from 'ag-grid/main';
+import {GridOptions} from 'ag-grid-community';
 import {Subscription} from 'rxjs/Subscription';
 import {List, Map} from 'immutable';
 import {clone, isEmpty, isNull, isUndefined} from 'lodash';
@@ -38,7 +38,8 @@ import {DatasetViews} from '../../../../security/DatasetViews';
         DetailsOnDemandHeightService,
         DetailsOnDemandSummaryService,
         DetailsOnDemandEventTableService
-    ]
+    ],
+    standalone: false
 })
 
 export class MultiDetailsOnDemandComponent implements OnInit, OnChanges, OnDestroy {
@@ -74,6 +75,7 @@ export class MultiDetailsOnDemandComponent implements OnInit, OnChanges, OnDestr
     @Input() multiSelectionDetail: IMultiSelectionDetail;
     @Input() eventModels: Map<any, IDetailsOnDemand>;
     @Input() subjectModel: IDetailsOnDemand;
+    @Input() eventDetailsOnDemandDisabled: boolean;
 
     @Output() updatedEvent = new EventEmitter<IDetailsOnDemand>();
     @Output() updatedSubject = new EventEmitter<IDetailsOnDemand>();
@@ -87,23 +89,17 @@ export class MultiDetailsOnDemandComponent implements OnInit, OnChanges, OnDestr
                 private datasetViews: DatasetViews,
                 private changeDetectorRef: ChangeDetectorRef) {
         this.gridOptionsTemplate = {
+            enableCellTextSelection: true,
+            ensureDomOrder: true,
             defaultColDef: {
-                menuTabs: []
+                sortable: true,
+                resizable: true,
+                filter: true,
+                floatingFilter: true,
+                tooltipValueGetter: (params) => params.value
             },
             context: {},
-            getContextMenuItems: () => {
-                return [
-                    'copy',
-                    'copyWithHeaders',
-                    'separator',
-                    'toolPanel'
-                ];
-            },
-            enableServerSideSorting: true,
-            toolPanelSuppressRowGroups: true,
-            toolPanelSuppressValues: true,
-            toolPanelSuppressPivots: true,
-            toolPanelSuppressPivotMode: true
+            onFirstDataRendered: (params) => setTimeout(() => params.api.sizeColumnsToFit()),
         };
 
         this.tablesList = this.eventTableService.getMultipleEventTablesNames();
@@ -112,7 +108,7 @@ export class MultiDetailsOnDemandComponent implements OnInit, OnChanges, OnDestr
         });
         this.selectedTable = this.tablesList.first();
         this.subjectGridOptions = clone(this.gridOptionsTemplate);
-        (<any> this.subjectGridOptions).groupHeaders = true;
+        
     }
 
     ngOnInit(): void {
@@ -164,6 +160,15 @@ export class MultiDetailsOnDemandComponent implements OnInit, OnChanges, OnDestr
 
     openOrClose(): void {
         this.detailsOnDemandHeightService.onExpandCollapseButtonPress();
+    }
+
+    exportCsv(): void {
+        const api = this.subjectsTableVisible
+            ? this.subjectGridOptions.api
+            : this.eventsGridOptions.get(this.selectedTable) && this.eventsGridOptions.get(this.selectedTable).api;
+        if (api) {
+            api.exportDataAsCsv();
+        }
     }
 
     openSaveModal(): void {

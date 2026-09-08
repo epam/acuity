@@ -22,7 +22,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
@@ -31,4 +31,8 @@ public abstract class EventFilterRequestPopulationAware<T> extends DatasetsReque
     private PopulationFilters populationFilters;
     @JsonIgnore
     public abstract T getEventFilters();
+
+    public PopulationFilters getPopulationFilters() {
+        return populationFilters;
+    }
 }

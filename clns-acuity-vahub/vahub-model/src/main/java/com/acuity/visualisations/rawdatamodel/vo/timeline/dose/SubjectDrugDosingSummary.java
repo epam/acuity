@@ -29,7 +29,7 @@ import java.util.List;
  * @author ksnd199
  */
 @Data
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = false)
 @ToString(callSuper = true)
 public class SubjectDrugDosingSummary extends SubjectSummary implements Serializable {
 

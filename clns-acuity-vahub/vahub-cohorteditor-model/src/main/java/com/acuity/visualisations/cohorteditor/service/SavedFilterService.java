@@ -83,6 +83,6 @@ public class SavedFilterService {
 
     @Transactional
     public void deleteSavedFilters(Long savedFilterId) {
-        savedFilterRepository.delete(savedFilterId);
+        savedFilterRepository.deleteById(savedFilterId);
     }
 }

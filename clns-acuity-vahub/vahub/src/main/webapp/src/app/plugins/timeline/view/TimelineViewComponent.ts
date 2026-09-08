@@ -30,7 +30,8 @@ import {TimelineObservables} from '../store/observable/TimelineObservables';
     selector: 'timeline-view',
     templateUrl: 'TimelineViewComponent.html',
     styleUrls: ['./TimelineViewComponent.css'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class TimelineViewComponent implements AfterViewInit {
     @Input() subjects: ISubject[];

@@ -181,7 +181,7 @@ public abstract class BaseEventService<R extends HasSubjectId & HasStringId, T e
                 .orElse(t -> true);
     }
 
-    private Predicate<T> composeTimestampTypeBasedPredicate(ChartGroupByOptions.GroupByOptionAndParams<T, G> xAxisOption) {
+    private Predicate<T> composeTimestampTypeBasedPredicate(GroupByOptionAndParams<T, G> xAxisOption) {
         GroupByOption.TimestampType timestampType = Optional.ofNullable(xAxisOption.getParams()).map(GroupByOption.Params::getTimestampType).orElse(null);
         if (timestampType == null || timestampType == GroupByOption.TimestampType.DATE) {
             return t -> true;
@@ -192,7 +192,7 @@ public abstract class BaseEventService<R extends HasSubjectId & HasStringId, T e
     }
 
     private Function<T, Date> getDateExtractor(GroupByOption.TimestampType timestampType,
-                                               ChartGroupByOptions.GroupByOptionAndParams<T, G> xAxisOption) {
+                                               GroupByOptionAndParams<T, G> xAxisOption) {
         switch (timestampType) {
             case DAYS_SINCE_RANDOMISATION:
             case DAYS_HOURS_SINCE_RANDOMISATION:
@@ -211,7 +211,7 @@ public abstract class BaseEventService<R extends HasSubjectId & HasStringId, T e
         }
     }
 
-    protected Predicate<T> composeEventTypeSpecificXAxisBasedPredicate(ChartGroupByOptions.GroupByOptionAndParams<T, G> xAxisOption) {
+    protected Predicate<T> composeEventTypeSpecificXAxisBasedPredicate(GroupByOptionAndParams<T, G> xAxisOption) {
         return t -> true;
     }
 
@@ -272,7 +272,7 @@ public abstract class BaseEventService<R extends HasSubjectId & HasStringId, T e
 
     /**
      * This method can be used if any grouping options require some data context.
-     * It will put {@link com.acuity.visualisations.rawdatamodel.vo.GroupByOption.Param#CONTEXT}
+     * It will put {@link GroupByOption.Param#CONTEXT}
      * into provided {@link ChartGroupByOptions} and return updated settings
      */
     public final ChartGroupByOptions<T, G> getOptionsWithContext(ChartGroupByOptions<T, G> options, Supplier<Map<G, Object>> supplier) {

@@ -22,7 +22,10 @@ import {Pipe, PipeTransform} from '@angular/core';
  * formats to: Subject ID
  */
 
-@Pipe({name: 'roundValue'})
+@Pipe({
+    name: 'roundValue',
+    standalone: false
+})
 export class RoundValuePipe implements PipeTransform {
     transform(value: number): number {
         return Math.round(value * 100) / 100;

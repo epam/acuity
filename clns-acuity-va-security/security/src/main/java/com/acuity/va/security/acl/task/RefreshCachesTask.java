@@ -16,10 +16,10 @@
 
 package com.acuity.va.security.acl.task;
 
-import net.sf.ehcache.CacheManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.CacheManager;
 import org.springframework.stereotype.Component;
 
 import static com.acuity.va.security.common.Constants.HOURLY_REFRESHABLE_CACHE;
@@ -41,7 +41,7 @@ public class RefreshCachesTask {
     public void runNightly() {
         LOG.info("Running NightlyRefreshCachesTask ...");
 
-        cacheManager.clearAllStartingWith(REFRESHABLE_CACHE);
+        clearAllStartingWith(REFRESHABLE_CACHE);
 
         LOG.info("Finished NightlyRefreshCachesTask");
     }
@@ -49,9 +49,15 @@ public class RefreshCachesTask {
     public void runHourly() {
         LOG.info("Running HourlyRefreshCachesTask ...");
 
-        cacheManager.clearAllStartingWith(HOURLY_REFRESHABLE_CACHE);
+        clearAllStartingWith(HOURLY_REFRESHABLE_CACHE);
 
         LOG.info("Finished HourlyRefreshCachesTask");
+    }
+
+    private void clearAllStartingWith(String prefix) {
+        cacheManager.getCacheNames().stream()
+                .filter(name -> name.startsWith(prefix))
+                .forEach(name -> cacheManager.getCache(name).clear());
     }
 
     public CacheManager getCacheManager() {

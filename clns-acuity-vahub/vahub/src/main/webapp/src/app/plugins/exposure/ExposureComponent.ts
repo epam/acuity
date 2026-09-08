@@ -20,7 +20,8 @@ import {DatasetViews, UserPermissions} from '../../security/module';
 import {AbstractPluginComponent} from '../AbstractPluginComponent';
 
 @Component({
-    templateUrl: 'ExposureComponent.html'
+    templateUrl: 'ExposureComponent.html',
+    standalone: false
 })
 export class ExposureComponent extends AbstractPluginComponent {
     constructor(public datasetViews: DatasetViews, public userPermissions: UserPermissions) {

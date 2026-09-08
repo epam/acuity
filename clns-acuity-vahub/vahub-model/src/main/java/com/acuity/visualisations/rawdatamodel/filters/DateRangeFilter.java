@@ -32,7 +32,7 @@ import static com.acuity.visualisations.rawdatamodel.util.DaysUtil.JSON_TIMESTAM
  */
 @ToString
 @NoArgsConstructor
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = false)
 public class DateRangeFilter extends RangeFilter<Date> {
 
     public DateRangeFilter(Date from, Date to) {

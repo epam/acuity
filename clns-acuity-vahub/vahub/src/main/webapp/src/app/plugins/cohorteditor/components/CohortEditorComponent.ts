@@ -39,7 +39,8 @@ import SavedFilterInstance = Request.SavedFilterInstance;
 @Component({
     templateUrl: 'CohortEditorComponent.html',
     styleUrls: ['CohortEditorComponent.css', '../../../filters/filters.css'],
-    providers: [FiltersUtils, PopulationFiltersModel, AesFiltersModel, SelectedFiltersModel, FiltersExportService]
+    providers: [FiltersUtils, PopulationFiltersModel, AesFiltersModel, SelectedFiltersModel, FiltersExportService],
+    standalone: false
 })
 export class CohortEditorComponent extends AbstractPluginComponent implements OnDestroy {
 
@@ -51,10 +52,10 @@ export class CohortEditorComponent extends AbstractPluginComponent implements On
 
     sharedWith: UserVO[] = [];
 
-    @ViewChild(AvailableCohortsComponent)
+    @ViewChild(AvailableCohortsComponent, { static: false })
     availableCohortsComponent: AvailableCohortsComponent;
 
-    @ViewChild(FilterListComponent)
+    @ViewChild(FilterListComponent, { static: false })
     filterListComponent: FilterListComponent;
 
     private originalPopulationFilterModel: PopulationFiltersModel;

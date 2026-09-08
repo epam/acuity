@@ -19,7 +19,7 @@ package com.acuity.visualisations.rawdatamodel.vo;
 import com.acuity.visualisations.rawdatamodel.vo.biomarker.BiomarkerData;
 import com.acuity.visualisations.rawdatamodel.vo.biomarker.BiomarkerMutation;
 import com.acuity.visualisations.rawdatamodel.vo.biomarker.BiomarkerParameters;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.Collections;

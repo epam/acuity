@@ -22,7 +22,8 @@ import {AbstractDataTypeFilter} from '../AbstractDataTypeFilter';
 
 @Component({
     selector: 'aesfilter',
-    templateUrl: 'AesFilterComponent.html'
+    templateUrl: 'AesFilterComponent.html',
+    standalone: false
 })
 export class AesFilterComponent extends AbstractDataTypeFilter implements OnInit, OnDestroy, AfterViewInit {
     @Input() isCohortFilter: boolean;

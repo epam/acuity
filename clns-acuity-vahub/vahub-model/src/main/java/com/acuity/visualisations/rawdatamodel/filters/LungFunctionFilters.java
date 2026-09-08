@@ -53,7 +53,7 @@ public class LungFunctionFilters extends Filters<LungFunction> {
         CombinedQueryBuilder<LungFunction> cqb = new CombinedQueryBuilder<>(LungFunction.class);
         if (subjectIds != null && !subjectIds.isEmpty()) {
             final SetFilter<String> stringSetFilter = new SetFilter<>(subjectIds);
-            cqb.add(getFilterQuery(LungFunction.Attributes.SUBJECT_ID, stringSetFilter));
+            cqb.add(getFilterQuery(Attributes.SUBJECT_ID, stringSetFilter));
         }
         return cqb
                 .add(getFilterQuery(Attributes.MEASUREMENT_NAME, this.getMeasurementName()))
