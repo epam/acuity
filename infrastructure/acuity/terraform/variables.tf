@@ -1,3 +1,19 @@
+variable "new_stack_image_tag" {
+  description = "Image tag for the new-stack deployment."
+  type        = string
+
+  validation {
+    condition     = var.new_stack_image_tag != "latest"
+    error_message = "new_stack_image_tag must be a pinned release version, never \"latest\"."
+  }
+}
+
+variable "deployment" {
+  description = "Short name for this deployment, used to name the ALB (e.g. \"poc\", \"new-stack\")."
+  type        = string
+  default     = "poc"
+}
+
 variable "image_tag" {
   description = "Release image tag for the app."
   type        = string

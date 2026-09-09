@@ -1,32 +1,18 @@
-# The one internet-facing edge. No ingress rule here: `sg_alb` already gates :80 / :9090 to `var.vpn_cidrs`.
-
-locals {
-  tg_health = {
-    "va-hub-ui" = { path = "/", matcher = "200-399" }
-    "va-hub"    = { path = "/resources/", matcher = "200-499" }
-    "admin"     = { path = "/", matcher = "200-399" }
-  }
-}
-
-module "alb" {
+# Secondary ALB for version 0.0.5
+module "alb_new_stack" {
   source  = "terraform-aws-modules/alb/aws"
   version = "~> 10.0"
 
-  name     = "acuity-poc"
+  name     = "acuity-${var.deployment}"
   internal = false
 
   vpc_id  = module.vpc.vpc_id
   subnets = module.vpc.public_subnets
 
-  create_security_group = false # `sg_alb` is the sole guard. The module must not create its own.
+  create_security_group = false
   security_groups       = [module.sg_alb.id]
 
   enable_deletion_protection = false
-
-  access_logs = {
-    bucket  = "prod-s3-elb-logs-us-east-1"
-    enabled = true
-  }
 
   target_groups = {
     for k, hc in local.tg_health : k => {
@@ -58,3 +44,4 @@ module "alb" {
     }
   }
 }
+ 
