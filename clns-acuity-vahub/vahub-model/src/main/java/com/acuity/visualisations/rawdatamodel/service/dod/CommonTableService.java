@@ -34,8 +34,6 @@ import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
-import org.springframework.cglib.reflect.FastClass;
-import org.springframework.cglib.reflect.FastMethod;
 import org.supercsv.io.CsvMapWriter;
 import org.supercsv.io.ICsvMapWriter;
 import org.supercsv.prefs.CsvPreference;
@@ -185,9 +183,8 @@ public abstract class CommonTableService {
                 .collect(Collectors.toCollection(ArrayList::new));
     }
 
-    private FastMethod getFastMethod(Class<?> clz, Method reader) {
-        FastClass fc = FastClass.create(clz);
-        return fc.getMethod(reader);
+    private Method getReadMethod(Method reader) {
+        return reader;
     }
 
     /**
@@ -239,7 +236,7 @@ public abstract class CommonTableService {
         return elem -> {
             Column a = elem.getAnnotationObject();
             Method reader = elem.getFieldReader();
-            return new ColumnMetadata(getFastMethod(clazz, reader),
+            return new ColumnMetadata(getReadMethod(reader),
                     a.order(),
                     getColumnName(elem),
                     a.displayName(),
@@ -305,10 +302,10 @@ public abstract class CommonTableService {
     }
 
     private static Object invokeMethod(ColumnMetadata metadata, Object object) {
-        FastMethod method = metadata.getReadMethod();
+        Method method = metadata.getReadMethod();
         try {
-            return method.invoke(object, new Object[] {});
-        } catch (InvocationTargetException e) {
+            return method.invoke(object);
+        } catch (InvocationTargetException | IllegalAccessException e) {
             log.error(e.getMessage(), e);
             return null;
         }
@@ -374,7 +371,7 @@ public abstract class CommonTableService {
     @Getter
     @Builder(toBuilder = true)
     static class ColumnMetadata {
-        private FastMethod readMethod;
+        private Method readMethod;
         private Double order;
         private String columnName;
         private String displayName;
