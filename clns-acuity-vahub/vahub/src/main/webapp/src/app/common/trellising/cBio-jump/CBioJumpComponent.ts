@@ -24,7 +24,8 @@ import * as  _ from 'lodash';
 
 @Component({
     selector: 'cBio-jump',
-    templateUrl: 'CBioJumpComponent.html'
+    templateUrl: 'CBioJumpComponent.html',
+    standalone: false
 })
 export class CBioJumpComponent {
     @Input() selectionDetail: ISelectionDetail;

@@ -27,7 +27,7 @@ import lombok.ToString;
 import java.io.Serializable;
 
 @ToString(callSuper = true)
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = false)
 public class SurvivalStatus extends SubjectAwareWrapper<SurvivalStatusRaw> implements Serializable {
     public SurvivalStatus(SurvivalStatusRaw event, Subject subject) {
         super(event, subject);

@@ -30,4 +30,8 @@ public class LiverRequest extends EventFilterRequestPopulationAware<LiverFilters
     public LiverFilters getEventFilters() {
         return liverFilters;
     }
+
+    public LiverFilters getLiverFilters() {
+        return liverFilters;
+    }
 }

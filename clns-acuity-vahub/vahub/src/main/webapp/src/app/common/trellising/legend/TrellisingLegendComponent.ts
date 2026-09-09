@@ -26,7 +26,8 @@ import {LEFT_ARROW_BASE64} from '../../CommonChartUtils';
     selector: 'trellising-legend',
     templateUrl: 'TrellisingLegendComponent.html',
     styleUrls: ['./TrellisingLegendComponent.css'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class TrellisingLegendComponent implements OnChanges {
     @Input() legend: ILegend[];

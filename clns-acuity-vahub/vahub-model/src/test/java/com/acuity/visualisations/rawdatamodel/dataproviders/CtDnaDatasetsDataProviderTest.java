@@ -26,15 +26,16 @@ import com.acuity.visualisations.rawdatamodel.dataproviders.common.DataProviderA
 import com.acuity.visualisations.rawdatamodel.test.TestConfig;
 import com.acuity.visualisations.rawdatamodel.vo.CtDnaRaw;
 import com.acuity.va.security.acl.domain.Dataset;
-import org.assertj.core.api.JUnitSoftAssertions;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.assertj.core.api.SoftAssertions;
+import org.assertj.core.api.junit.jupiter.InjectSoftAssertions;
+import org.assertj.core.api.junit.jupiter.SoftAssertionsExtension;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.core.ResolvableType;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -47,11 +48,11 @@ import static com.acuity.visualisations.rawdatamodel.util.DaysUtil.toDate;
 import static com.acuity.visualisations.rawdatamodel.vo.wrappers.CtDna.NO_MUTATIONS_DETECTED;
 import static com.google.common.collect.Lists.newArrayList;
 import static org.assertj.core.api.Assertions.tuple;
-import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.eq;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.when;
 
-@RunWith(SpringRunner.class)
+@ExtendWith({SpringExtension.class, SoftAssertionsExtension.class})
 @SpringBootTest(classes = TestConfig.class)
 public class CtDnaDatasetsDataProviderTest extends DataProviderAwareTest {
 
@@ -98,8 +99,8 @@ public class CtDnaDatasetsDataProviderTest extends DataProviderAwareTest {
 
     private List<CtDnaRaw> ctDnas = newArrayList(ctDna1, ctDna21, ctDna22, ctDna31, ctDna32, ctDna34, ctDna4, ctDna5, ctDna6);
 
-    @Rule
-    public final JUnitSoftAssertions softly = new JUnitSoftAssertions();
+    @InjectSoftAssertions
+    private SoftAssertions softly;
     @Autowired
     private CtDnaDatasetsDataProvider ctDnaDatasetsDataProvider;
     @Autowired

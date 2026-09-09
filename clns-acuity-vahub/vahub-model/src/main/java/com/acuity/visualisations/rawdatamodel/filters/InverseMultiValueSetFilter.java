@@ -32,7 +32,7 @@ import java.util.Collection;
  *
  */
 @ToString(callSuper = true)
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = false)
 @NoArgsConstructor
 public final class InverseMultiValueSetFilter<T extends Comparable<T>> extends MultiValueSetFilter<T> {
 

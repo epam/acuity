@@ -24,7 +24,10 @@ import com.acuity.visualisations.web.workflow.ClinicalStudyWorkflow;
 import com.acuity.visualisations.web.workflow.DrugProgramWorkflow;
 import org.apache.commons.lang.StringUtils;
 
-import javax.servlet.http.HttpSession;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
+import org.springframework.web.util.WebUtils;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.HashMap;
@@ -33,6 +36,18 @@ import java.util.Map;
 import java.util.function.Supplier;
 
 public final class ControllerUtils {
+
+    /** Default tab ID used when the TAB_ID cookie is absent (first request before JS sets it). */
+    public static final String DEFAULT_TAB_ID = "default";
+
+    /**
+     * Null-safe TAB_ID cookie reader. Returns DEFAULT_TAB_ID when the cookie has not yet
+     * been set by the browser (e.g. the very first POST before page JavaScript runs).
+     */
+    public static String getTabId(HttpServletRequest request, String cookieName) {
+        Cookie cookie = WebUtils.getCookie(request, cookieName);
+        return cookie != null ? cookie.getValue() : DEFAULT_TAB_ID;
+    }
 
     public static final String SESSION_ATTR_PROGRAMME_WORKFLOW = "programme_workflow";
     public static final String SESSION_ATTR_STUDY_WORKFLOW = "study_workflow";

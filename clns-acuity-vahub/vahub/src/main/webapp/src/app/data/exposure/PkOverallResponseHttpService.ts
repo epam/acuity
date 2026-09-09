@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {HttpClient} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {fromJS, List, Map} from 'immutable';
 import {isEqual} from 'lodash';
@@ -110,13 +110,10 @@ export class PkOverallResponseHttpService extends BaseChartsHttpService {
             params: {}
         };
 
-        const trellisOptions = settings.settings.trellisOptions[0] ? [settings.settings.trellisOptions[0],
+        const trellisOptions = [
             {groupByOption: YAxisParameters.MEASUREMENT},
-            {
-                groupByOption: YAxisParameters.MEASUREMENT_TIMEPOINT,
-                params: params
-            }
-        ] : [];
+            {groupByOption: YAxisParameters.MEASUREMENT_TIMEPOINT, params: params}
+        ];
 
         const settingsCopy = {
             settings: {
@@ -169,9 +166,10 @@ export class PkOverallResponseHttpService extends BaseChartsHttpService {
                     'Y_AXIS': yAxis,
                     'X_AXIS': handleXAxisOptions(settings.settings.options['X_AXIS'].groupByOption)
                 },
-                trellisOptions: [{groupByOption: settings.settings.trellisOptions[0].groupByOption, params: {}},
+                trellisOptions: [
                     {groupByOption: YAxisParameters.MEASUREMENT, params: {}},
-                    {groupByOption: YAxisParameters.MEASUREMENT_TIMEPOINT, params: params}]
+                    {groupByOption: YAxisParameters.MEASUREMENT_TIMEPOINT, params: params}
+                ]
             }
         };
         const postData: any = {

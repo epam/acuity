@@ -15,8 +15,8 @@
  */
 
 import {async, inject, TestBed} from '@angular/core/testing';
-import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
-import {HttpClientModule} from '@angular/common/http';
+import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 import {AesSummaryHttpService} from './AesSummaryHttpService';
 
@@ -24,9 +24,9 @@ describe('GIVEN AEsSummaryAnyDataService', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [HttpClientModule, HttpClientTestingModule],
-            providers: [AesSummaryHttpService]
-        });
+    imports: [],
+    providers: [AesSummaryHttpService, provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+});
     });
 
     describe('When get data for any category', () => {

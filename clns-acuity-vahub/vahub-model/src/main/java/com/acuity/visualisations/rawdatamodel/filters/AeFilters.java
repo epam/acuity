@@ -68,7 +68,7 @@ import static com.acuity.visualisations.rawdatamodel.vo.wrappers.Ae.Attributes.U
 import static com.acuity.visualisations.rawdatamodel.vo.wrappers.Ae.Attributes.WEPAPP_MAX_CTC;
 
 @Data
-@EqualsAndHashCode(callSuper = false)
+@EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
 public class AeFilters extends UsedInTflFilters<Ae> {
 

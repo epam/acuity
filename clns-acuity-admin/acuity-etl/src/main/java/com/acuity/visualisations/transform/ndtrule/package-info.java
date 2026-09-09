@@ -21,5 +21,5 @@
 // Generated on: 2013.07.04 at 08:28:32 PM MSK 
 //
 
-@javax.xml.bind.annotation.XmlSchema(namespace = "http://www.example.org/NewDataTransformation",
-        elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED) package com.acuity.visualisations.transform.ndtrule;
+@jakarta.xml.bind.annotation.XmlSchema(namespace = "http://www.example.org/NewDataTransformation",
+        elementFormDefault = jakarta.xml.bind.annotation.XmlNsForm.QUALIFIED) package com.acuity.visualisations.transform.ndtrule;

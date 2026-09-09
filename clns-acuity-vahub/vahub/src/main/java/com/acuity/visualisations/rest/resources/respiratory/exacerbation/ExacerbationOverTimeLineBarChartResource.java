@@ -26,8 +26,6 @@ import com.acuity.visualisations.rest.model.request.respiratory.exacerbation.Exa
 import com.acuity.visualisations.rest.model.request.respiratory.exacerbation.ExacerbationRequest;
 import com.acuity.visualisations.rest.model.request.respiratory.exacerbation.ExacerbationSelectionRequest;
 import com.acuity.visualisations.rest.model.response.respiratory.exacerbation.ExacerbationColorByOptionsResponse;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;
@@ -37,14 +35,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import java.util.List;
 
 import static com.acuity.visualisations.rest.util.Constants.PRE_AUTHORISE_VISUALISATION;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @RestController
-@Api(description = "rest endpoints for exacerbations over time chart data")
 @RequestMapping(value = "/resources/respiratory/exacerbation/over-time-line-bar-chart",
         consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
 @PreAuthorize(PRE_AUTHORISE_VISUALISATION)
@@ -54,7 +51,6 @@ public class ExacerbationOverTimeLineBarChartResource {
 
     private final ExacerbationService exacerbationService;
 
-    @ApiOperation("Gets the available color-by options")
     @PostMapping("color-by-options")
     @Cacheable
     public ExacerbationColorByOptionsResponse getColorByOptions(
@@ -66,7 +62,6 @@ public class ExacerbationOverTimeLineBarChartResource {
                 requestBody.getPopulationFilters()));
     }
 
-    @ApiOperation("Gets the available x-axis options")
     @PostMapping("x-axis")
     @Cacheable
     public AxisOptions<ExacerbationGroupByOptions> getXAxis(@RequestBody @Valid ExacerbationRequest requestBody) {
@@ -74,8 +69,6 @@ public class ExacerbationOverTimeLineBarChartResource {
                 requestBody.getExacerbationFilters(), requestBody.getPopulationFilters());
     }
 
-    @ApiOperation("Gets the data for over time line bar chart in available exacerbation filters for the currently "
-            + "selected exacerbation and population filters")
     @PostMapping("values")
     @Cacheable
     public List<TrellisedOvertime<Exacerbation, ExacerbationGroupByOptions>> getValues(
@@ -87,7 +80,6 @@ public class ExacerbationOverTimeLineBarChartResource {
                 requestBody.getPopulationFilters());
     }
 
-    @ApiOperation("Gets selection detail for exacerbation over time line bar chart")
     @PostMapping("selection")
     @Cacheable
     public SelectionDetail getSelection(@RequestBody @Valid ExacerbationSelectionRequest requestBody) {

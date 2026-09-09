@@ -18,7 +18,8 @@ import {Component} from '@angular/core';
 import {DatasetViews} from '../../../security/module';
 
 @Component({
-    template: `<spotfire-component [moduletype]="'Tolerability'"></spotfire-component>`
+    template: `<spotfire-component [moduletype]="'Tolerability'"></spotfire-component>`,
+    standalone: false
 })
 export class TolerabilityComponent {
 

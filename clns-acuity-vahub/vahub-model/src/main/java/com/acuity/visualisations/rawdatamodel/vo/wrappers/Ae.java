@@ -42,7 +42,7 @@ import java.util.stream.Collectors;
 import static com.acuity.visualisations.rawdatamodel.util.Column.DatasetType.ACUITY;
 import static com.acuity.visualisations.rawdatamodel.util.ObjectUtil.anyNull;
 
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = false)
 @ToString(callSuper = true)
 public final class Ae extends SubjectAwareWrapper<AeRaw> implements HasStartEndDate, Serializable, HasAssociatedAe {
 

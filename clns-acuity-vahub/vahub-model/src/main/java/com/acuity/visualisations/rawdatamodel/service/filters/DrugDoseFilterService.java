@@ -32,7 +32,6 @@ public class DrugDoseFilterService extends AbstractEventFilterService<DrugDose, 
         Collection<DrugDose> filteredEvents = filteredResult.getFilteredResult();
 
         return filteredEvents.stream()
-                .distinct()
                 .collect(new FilterSummaryStatisticsCollector<>(DrugDoseFiltersSummaryStatistics.class))
                 .getFilters();
     }

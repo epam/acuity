@@ -44,7 +44,8 @@ import {ChartMouseEvent} from '../../../../../../../vahub-charts/types/interface
     selector: 'stackedbarplot',
     template: '<div></div>',
     providers: [StackedBarPlotConfigService, StackedBarPlotService],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class StackedBarPlotComponent extends AbstractPlotComponent implements OnChanges, OnDestroy {
     @Input() plotData: List<TrellisedBarChart<any, any>>;
@@ -97,7 +98,7 @@ export class StackedBarPlotComponent extends AbstractPlotComponent implements On
         }
         if (changes['selection'] && !is(changes['selection'].previousValue, changes['selection'].currentValue)) {
             this.updateSelectionRendering();
-            this.chart.update();
+            this.chart?.update();
         }
 
     }

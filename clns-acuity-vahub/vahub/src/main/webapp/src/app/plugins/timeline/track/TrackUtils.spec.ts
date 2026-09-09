@@ -16,7 +16,7 @@
 
 import {TestBed, inject} from '@angular/core/testing';
 import {TrackUtils} from './TrackUtils';
-import {HttpClient} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 
 describe('GIVEN a TrackUtils class', () => {
     let trackUtils;

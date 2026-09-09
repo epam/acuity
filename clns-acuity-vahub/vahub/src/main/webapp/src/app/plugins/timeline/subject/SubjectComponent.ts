@@ -28,7 +28,8 @@ import {TimelineObservables} from '../store/observable/TimelineObservables';
         '../track/TimelineTrackComponent.css'
     ],
     templateUrl: 'SubjectComponent.html',
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class SubjectComponent implements OnChanges {
     @Input() subject: ISubject;

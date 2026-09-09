@@ -61,9 +61,9 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.util.WebUtils;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.Writer;
 import java.util.ArrayList;
@@ -108,7 +108,7 @@ public class DrugProgrammeController extends AbstractController {
                                        @ModelAttribute("projectId") String editProjectId, @ModelAttribute("drugId") String editDrugId)
             throws DrugProgrammeException {
         try {
-            String browserTabId = WebUtils.getCookie(request, TAB_ID).getValue();
+            String browserTabId = ControllerUtils.getTabId(request, TAB_ID);
             final ModelAndView modelAndView = new ModelAndView(VIEW_NAME);
             HttpSession session = request.getSession();
             if (StringUtils.hasText(editProjectId)) {
@@ -225,7 +225,7 @@ public class DrugProgrammeController extends AbstractController {
     @RequestMapping(value = "/programme-edit", method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.OK)
     public void editProject(final HttpServletRequest request, @RequestBody ProjectRule updatedProject) throws DrugProgrammeException {
-        String browserTabId = WebUtils.getCookie(request, TAB_ID).getValue();
+        String browserTabId = ControllerUtils.getTabId(request, TAB_ID);
         String drugProgrammeName = updatedProject.getDrugProgrammeName();
         boolean createDashboard = updatedProject.isCreateDashboard();
         AeSeverityType aeSeverityType = updatedProject.getAeSeverityType();
@@ -269,7 +269,7 @@ public class DrugProgrammeController extends AbstractController {
             throws DrugProgrammeException {
         try {
             HttpSession session = request.getSession();
-            String browserTabId = WebUtils.getCookie(request, TAB_ID).getValue();
+            String browserTabId = ControllerUtils.getTabId(request, TAB_ID);
             Map<String, ProjectRule> searchResult = ControllerUtils.getProgrammesSearchResult(session);
 
             ControllerUtils.clearProgrammeWorkflow(session, browserTabId);
@@ -291,7 +291,7 @@ public class DrugProgrammeController extends AbstractController {
             throws DrugProgrammeException {
         try {
             response.setContentType("text/plain");
-            String browserTabId = WebUtils.getCookie(request, TAB_ID).getValue();
+            String browserTabId = ControllerUtils.getTabId(request, TAB_ID);
             DrugProgramWorkflow workflow = ControllerUtils.getProgrammeWorkflow(request.getSession(), browserTabId);
 
             GroupRuleBase group = request.getParameter("groupType").equals("ae") ? new AEGroupRule() : new LabGroupRule();
@@ -324,7 +324,7 @@ public class DrugProgrammeController extends AbstractController {
         Writer writer = null;
         try {
             response.setContentType("text/plain");
-            String browserTabId = WebUtils.getCookie(request, TAB_ID).getValue();
+            String browserTabId = ControllerUtils.getTabId(request, TAB_ID);
 
             DrugProgramWorkflow workflow = ControllerUtils.getProgrammeWorkflow(request.getSession(), browserTabId);
             GroupRuleBase group = ControllerUtils.getProgrammesEditGroup(request.getSession());
@@ -388,7 +388,7 @@ public class DrugProgrammeController extends AbstractController {
     public GroupRuleBase deleteGroup(final HttpServletRequest request, @RequestParam("groupId") Long groupId, @RequestParam("groupType") String groupType)
             throws DrugProgrammeException {
         try {
-            String browserTabId = WebUtils.getCookie(request, TAB_ID).getValue();
+            String browserTabId = ControllerUtils.getTabId(request, TAB_ID);
             DrugProgramWorkflow workflow = ControllerUtils.getProgrammeWorkflow(request.getSession(), browserTabId);
             GroupRuleBase grp = workflow.getGroup(groupId.toString() + groupType);
             programmeGroupingsService.deleteGroup(grp);
@@ -406,7 +406,7 @@ public class DrugProgrammeController extends AbstractController {
     public GroupRuleBase getGroupById(final HttpServletRequest request, @RequestParam("groupId") Long groupId, @RequestParam("groupType") String groupType)
             throws DrugProgrammeException {
         try {
-            String browserTabId = WebUtils.getCookie(request, TAB_ID).getValue();
+            String browserTabId = ControllerUtils.getTabId(request, TAB_ID);
             DrugProgramWorkflow workflow = ControllerUtils.getProgrammeWorkflow(request.getSession(), browserTabId);
             GroupRuleBase grp = workflow.getGroup(groupId.toString() + groupType);
             ControllerUtils.setProgrammesEditGroup(request.getSession(), grp);
@@ -421,7 +421,7 @@ public class DrugProgrammeController extends AbstractController {
     public GroupRuleBase refreshGroupById(final HttpServletRequest request, @RequestParam("groupId") Long groupId, @RequestParam("groupType") String groupType)
             throws DrugProgrammeException {
         try {
-            String browserTabId = WebUtils.getCookie(request, TAB_ID).getValue();
+            String browserTabId = ControllerUtils.getTabId(request, TAB_ID);
             DrugProgramWorkflow workflow = ControllerUtils.getProgrammeWorkflow(request.getSession(), browserTabId);
             GroupRuleBase group = workflow.getGroup(groupId.toString() + groupType);
             if (group.getDataSource() != null && StringUtils.hasLength(group.getDataSource())) {
@@ -438,7 +438,7 @@ public class DrugProgrammeController extends AbstractController {
     @ResponseStatus(HttpStatus.OK)
     public void saveGroupValues(final HttpServletRequest request, @RequestBody DrugProgrammeGroupValuesDTO data) throws DrugProgrammeException {
         try {
-            DrugProgramWorkflow workflow = ControllerUtils.getProgrammeWorkflow(request.getSession(), WebUtils.getCookie(request, TAB_ID).getValue());
+            DrugProgramWorkflow workflow = ControllerUtils.getProgrammeWorkflow(request.getSession(), ControllerUtils.getTabId(request, TAB_ID));
             GroupRuleBase grp = workflow.getGroup(data.getId().toString() + data.getGroupType());
             grp.getValues().clear();
             for (ProjectGroupValueDTO val : data.getValues()) {
@@ -469,7 +469,7 @@ public class DrugProgrammeController extends AbstractController {
     @ResponseStatus(HttpStatus.OK)
     public void deleteGroupValues(final HttpServletRequest request, @RequestBody DrugProgrammeGroupValuesDTO data) throws DrugProgrammeException {
         try {
-            String browserTabId = WebUtils.getCookie(request, TAB_ID).getValue();
+            String browserTabId = ControllerUtils.getTabId(request, TAB_ID);
             DrugProgramWorkflow workflow = ControllerUtils.getProgrammeWorkflow(request.getSession(), browserTabId);
             GroupRuleBase grp = workflow.getGroup(data.getId().toString() + data.getGroupType());
             grp.getValues().clear();
@@ -504,7 +504,7 @@ public class DrugProgrammeController extends AbstractController {
                                               @RequestParam("groupType") String groupType)
             throws DrugProgrammeException {
         try {
-            String browserTabId = WebUtils.getCookie(request, TAB_ID).getValue();
+            String browserTabId = ControllerUtils.getTabId(request, TAB_ID);
 
             DrugProgramWorkflow workflow = ControllerUtils.getProgrammeWorkflow(request.getSession(), browserTabId);
             GroupRuleBase grp = workflow.getGroup(groupId.toString() + groupType);
@@ -540,7 +540,7 @@ public class DrugProgrammeController extends AbstractController {
     public DrugProgramWorkflow addProgrammeInACUITY(final HttpServletRequest request, @RequestBody ProjectRule project) throws DrugProgrammeException {
         try {
             HttpSession session = request.getSession();
-            String browserTabId = WebUtils.getCookie(request, TAB_ID).getValue();
+            String browserTabId = ControllerUtils.getTabId(request, TAB_ID);
 
             ControllerUtils.clearProgrammeWorkflow(session, browserTabId);
             DrugProgramWorkflow workflow = ControllerUtils.getProgrammeWorkflow(session, browserTabId);
@@ -560,7 +560,7 @@ public class DrugProgrammeController extends AbstractController {
     @ResponseBody
     public DrugProgramWorkflow revertStudyInACUITY(final HttpServletRequest request, @RequestParam("drugId") String drugId) throws DrugProgrammeException {
         try {
-            String browserTabId = WebUtils.getCookie(request, TAB_ID).getValue();
+            String browserTabId = ControllerUtils.getTabId(request, TAB_ID);
 
             ControllerUtils.clearProgrammeWorkflow(request.getSession(), browserTabId);
             DrugProgramWorkflow workflow = ControllerUtils.getProgrammeWorkflow(request.getSession(), browserTabId);
@@ -587,7 +587,7 @@ public class DrugProgrammeController extends AbstractController {
     @RequestMapping(method = RequestMethod.POST, value = "/programme-get-summary")
     @ResponseBody
     public DrugProgramWorkflow getSummaryData(final HttpServletRequest request) {
-        return ControllerUtils.getProgrammeWorkflow(request.getSession(), WebUtils.getCookie(request, TAB_ID).getValue());
+        return ControllerUtils.getProgrammeWorkflow(request.getSession(), ControllerUtils.getTabId(request, TAB_ID));
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/programme-total-count")
@@ -607,10 +607,10 @@ public class DrugProgrammeController extends AbstractController {
         try {
             ProjectRule selectedProject = ControllerUtils.getProgrammeWorkflow(
                     request.getSession(),
-                    WebUtils.getCookie(request, TAB_ID).getValue()
+                    ControllerUtils.getTabId(request, TAB_ID)
             )
                     .getSelectedProject();
-            if (selectedProject.getId() != null && selectedProject.getCompleted() != DrugProgrammeWizardService.PROJECT_COMPLETED) {
+            if (selectedProject != null && selectedProject.getId() != null && selectedProject.getCompleted() != DrugProgrammeWizardService.PROJECT_COMPLETED) {
                 selectedProject.setCompleted(DrugProgrammeWizardService.PROJECT_COMPLETED);
                 drugProgrammeService.projectCompleted(selectedProject.getId());
                 String name = selectedProject.getDrugId();

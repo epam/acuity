@@ -22,7 +22,8 @@ import {AbstractDataTypeFilter} from '../AbstractDataTypeFilter';
 
 @Component({
     selector: 'cieventsfilter',
-    templateUrl: 'CIEventsFilterComponent.html'
+    templateUrl: 'CIEventsFilterComponent.html',
+    standalone: false
 })
 export class CIEventsFilterComponent extends AbstractDataTypeFilter implements OnInit, OnDestroy, AfterViewInit {
     @Output()

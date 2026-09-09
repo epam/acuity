@@ -36,7 +36,8 @@ import {List} from 'immutable';
     selector: 'conmeds-track',
     templateUrl: 'ConmedsTrackComponent.html',
     styleUrls: ['../TimelineTrackComponent.css'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class ConmedsTrackComponent extends AbstractTrackComponent implements OnChanges {
     @Input() track: ITrack;

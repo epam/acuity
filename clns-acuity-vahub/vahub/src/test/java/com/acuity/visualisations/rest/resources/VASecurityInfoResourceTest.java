@@ -23,16 +23,16 @@ import com.acuity.va.security.acl.domain.DrugProgramme;
 import com.acuity.va.security.acl.domain.AcuityObjectIdentity;
 import com.google.gson.Gson;
 import com.jayway.jsonpath.JsonPath;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockServletContext;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
@@ -51,7 +51,7 @@ import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@RunWith(SpringJUnit4ClassRunner.class)
+@ExtendWith(SpringExtension.class)
 @ContextConfiguration(
         initializers = DisableAutowireRequiredInitializer.class,
         classes = {MockServletContext.class}
@@ -72,7 +72,7 @@ public class VASecurityInfoResourceTest {
     private String SUBJECT_ID1 = INSTANCE + "-7916598662";
     private String SUBJECT_ID2 = INSTANCE + "-5379462502";
 
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
         mvc = MockMvcBuilders.standaloneSetup(vASecurityInfoResource).build();

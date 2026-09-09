@@ -15,8 +15,8 @@
  */
 
 import {TestBed, inject} from '@angular/core/testing';
-import {HttpClientTestingModule} from '@angular/common/http/testing';
-import {HttpClient} from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import {Store, StoreModule} from '@ngrx/store';
 
 import {PopulationFiltersModel} from '../population/PopulationFiltersModel';
@@ -38,24 +38,24 @@ describe('GIVEN a TumourResponseFiltersModel class', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [HttpClientTestingModule, StoreModule.forRoot({trellisingReducer: trellisingReducer, sharedStateReducer: sharedStateReducer})],
-            providers: [
-                HttpClient,
-                {
-                    provide: DatasetViews, useClass: MockDatasetViews
-                },
-                {provide: FilterHttpService, useValue: new MockFilterHttpService()},
-                {provide: PopulationFiltersModel, deps: [FilterHttpService, FilterEventService]},
-                {provide: FilterEventService, useClass: MockFilterEventService},
-                {
-                    provide: TumourResponseFiltersModel,
-                    useFactory: (p: PopulationFiltersModel, f: FilterHttpService, e: FilterEventService,
-                                 d: DatasetViews, s: Store<ApplicationState>): TumourResponseFiltersModel =>
-                        new TumourResponseFiltersModel(p, f, e, d, s),
-                    deps: [PopulationFiltersModel, FilterHttpService, FilterEventService, DatasetViews, Store]
-                }
-            ]
-        });
+    imports: [StoreModule.forRoot({ trellisingReducer: trellisingReducer, sharedStateReducer: sharedStateReducer })],
+    providers: [
+        HttpClient,
+        {
+            provide: DatasetViews, useClass: MockDatasetViews
+        },
+        { provide: FilterHttpService, useValue: new MockFilterHttpService() },
+        { provide: PopulationFiltersModel, deps: [FilterHttpService, FilterEventService] },
+        { provide: FilterEventService, useClass: MockFilterEventService },
+        {
+            provide: TumourResponseFiltersModel,
+            useFactory: (p: PopulationFiltersModel, f: FilterHttpService, e: FilterEventService, d: DatasetViews, s: Store<ApplicationState>): TumourResponseFiltersModel => new TumourResponseFiltersModel(p, f, e, d, s),
+            deps: [PopulationFiltersModel, FilterHttpService, FilterEventService, DatasetViews, Store]
+        },
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting()
+    ]
+});
     });
 
     beforeEach(inject([TumourResponseFiltersModel, Store],

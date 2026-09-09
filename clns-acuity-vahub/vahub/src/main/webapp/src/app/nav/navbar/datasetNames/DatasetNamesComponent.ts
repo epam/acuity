@@ -20,7 +20,8 @@ import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, Outp
     selector: 'dataset-names',
     templateUrl: 'DatasetNamesComponent.html',
     styleUrls: ['DatasetNamesComponent.css'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class DatasetNamesComponent implements OnChanges {
     @Input() names: any[];
@@ -38,6 +39,6 @@ export class DatasetNamesComponent implements OnChanges {
 
     toggle(): void {
         this.isCollapsed = !this.isCollapsed;
-        setTimeout(this.toggleNavBar.emit(), 500);
+        setTimeout(() => this.toggleNavBar.emit(), 500);
     }
 }

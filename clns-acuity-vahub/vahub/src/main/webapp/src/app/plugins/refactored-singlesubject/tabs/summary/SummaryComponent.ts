@@ -25,7 +25,8 @@ import {SessionEventService} from '../../../../session/module';
     templateUrl: 'SummaryComponent.html',
     styleUrls: ['./SummaryComponent.css'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    selector: 'summary-component'
+    selector: 'summary-component',
+    standalone: false
 })
 export class SummaryComponent implements OnChanges {
     @Input() subjectDetail: any;

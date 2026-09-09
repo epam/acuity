@@ -28,13 +28,14 @@ import com.acuity.visualisations.rawdatamodel.vo.MedicalHistoryRaw;
 import com.acuity.visualisations.rawdatamodel.vo.Subject;
 import com.acuity.visualisations.rawdatamodel.vo.wrappers.MedicalHistory;
 import org.apache.commons.lang3.time.DateUtils;
-import org.assertj.core.api.JUnitSoftAssertions;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.assertj.core.api.SoftAssertions;
+import org.assertj.core.api.junit.jupiter.InjectSoftAssertions;
+import org.assertj.core.api.junit.jupiter.SoftAssertionsExtension;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -45,7 +46,7 @@ import java.util.stream.Collectors;
 
 import static com.acuity.visualisations.rawdatamodel.util.DateUtils.toDate;
 
-@RunWith(SpringRunner.class)
+@ExtendWith({SpringExtension.class, SoftAssertionsExtension.class})
 @SpringITTest
 public class MedicalHistoryFiltersServiceTest {
 
@@ -56,8 +57,8 @@ public class MedicalHistoryFiltersServiceTest {
     @MockBean(name = "eventDataProvider")
     private MedicalHistoryDatasetsDataProvider medicalHistoryDatasetsDataProvider;
 
-    @Rule
-    public final JUnitSoftAssertions softly = new JUnitSoftAssertions();
+    @InjectSoftAssertions
+    private SoftAssertions softly;
 
     private static final String CURRENT_MEDICATION = "current_medication_1";
     private static final String TERM = "term_1";

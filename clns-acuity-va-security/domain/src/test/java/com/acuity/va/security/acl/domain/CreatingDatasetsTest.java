@@ -17,7 +17,7 @@
 package com.acuity.va.security.acl.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import org.junit.*;
+import org.junit.jupiter.api.*;
 
 /**
  *

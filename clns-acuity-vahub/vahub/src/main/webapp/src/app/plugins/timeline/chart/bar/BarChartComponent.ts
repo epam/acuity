@@ -36,7 +36,8 @@ import {AbstractChartComponent} from '../AbstractChartComponent';
     selector: 'timeline-barchart',
     template: '<div class="row" id="intro9"></div>',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    providers: [BarChartPlotconfigService]
+    providers: [BarChartPlotconfigService],
+    standalone: false
 })
 export class BarChartComponent extends AbstractChartComponent implements OnInit, OnChanges, OnDestroy {
     // passed in to add additional configurations

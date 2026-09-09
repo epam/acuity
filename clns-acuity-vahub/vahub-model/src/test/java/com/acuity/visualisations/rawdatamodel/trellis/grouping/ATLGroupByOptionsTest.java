@@ -21,16 +21,19 @@ import com.acuity.visualisations.rawdatamodel.vo.AssessedTargetLesionRaw;
 import com.acuity.visualisations.rawdatamodel.vo.Subject;
 import com.acuity.visualisations.rawdatamodel.vo.TargetLesionRaw;
 import com.acuity.visualisations.rawdatamodel.vo.wrappers.AssessedTargetLesion;
-import org.assertj.core.api.JUnitSoftAssertions;
-import org.junit.Rule;
-import org.junit.Test;
+import org.assertj.core.api.SoftAssertions;
+import org.assertj.core.api.junit.jupiter.InjectSoftAssertions;
+import org.assertj.core.api.junit.jupiter.SoftAssertionsExtension;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 
 import static com.acuity.visualisations.rawdatamodel.trellis.grouping.ATLGroupByOptions.ASSESSMENT_WEEK;
 
+@ExtendWith(SoftAssertionsExtension.class)
 public class ATLGroupByOptionsTest {
 
-    @Rule
-    public final JUnitSoftAssertions softly = new JUnitSoftAssertions();
+    @InjectSoftAssertions
+    private SoftAssertions softly;
 
     @Test
     public void testAssessmentWeek() {

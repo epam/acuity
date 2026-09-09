@@ -24,8 +24,8 @@ import com.acuity.visualisations.rawdatamodel.vo.FilterQuery;
 import com.acuity.visualisations.rawdatamodel.vo.FilterResult;
 import com.acuity.visualisations.rawdatamodel.vo.Subject;
 import com.acuity.visualisations.rawdatamodel.vo.wrappers.Biomarker;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -39,7 +39,7 @@ import static com.acuity.visualisations.config.util.TestConstants.DUMMY_ACUITY_V
 import static com.google.common.collect.Lists.newArrayList;
 import static com.google.common.collect.Sets.newHashSet;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Matchers.any;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 public class BiomarkerFilterServiceTest {
@@ -107,7 +107,7 @@ public class BiomarkerFilterServiceTest {
     @InjectMocks
     private BiomarkerFilterService filterService;
 
-    @Before
+    @BeforeEach
     public void setup() {
         MockitoAnnotations.initMocks(this);
     }

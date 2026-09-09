@@ -32,7 +32,7 @@ import {
     UpdateTableConfig
 } from '../actions/SingleSubjectViewActions';
 import {getAvailableSubjects, getTabId} from '../../../../common/store/reducers/SharedStateReducer';
-import {ColDef} from 'ag-grid/main';
+import {ColDef} from 'ag-grid-community';
 import {DoseColumnModel} from '../../datatypes/dose/DoseColumnModel';
 import {DoseDiscontinuationColumnModel} from '../../datatypes/dose-discontinuation/DoseDiscontinuationColumnModel';
 import {AdverseEventsColumnModel} from '../../datatypes/adverse-events/AdverseEventsColumnModel';
@@ -53,7 +53,7 @@ import {RenalColumnsModel} from '../../datatypes/renal/RenalColumnsModel';
 import {LungFunctionColumnModel} from '../../datatypes/lungfunction/LungFunctionColumnModel';
 import {getAvailableDetailsOnDemandColumns} from '../../../../common/trellising/detailsondemand/store/reducers/DetailsOnDemandReducer';
 import {ActionWithPayload} from '../../../../common/trellising/store/actions/TrellisingActionCreator';
-import {ColGroupDef} from 'ag-grid';
+import {ColGroupDef} from 'ag-grid-community';
 
 export const SingleSubjectViewTableConfigRecord = Record({
     isToolPanelShown: false

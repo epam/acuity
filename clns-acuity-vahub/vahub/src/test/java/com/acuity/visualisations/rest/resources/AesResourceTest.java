@@ -34,9 +34,9 @@ import com.acuity.va.security.acl.domain.Datasets;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -44,7 +44,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockServletContext;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
@@ -61,9 +61,9 @@ import static com.acuity.visualisations.config.util.TestConstants.DUMMY_DETECT_D
 import static com.google.common.collect.Lists.newArrayList;
 import static com.google.common.collect.Sets.newHashSet;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.anyLong;
-import static org.mockito.Matchers.eq;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
@@ -71,7 +71,7 @@ import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@RunWith(SpringJUnit4ClassRunner.class)
+@ExtendWith(SpringExtension.class)
 @ContextConfiguration(
         initializers = DisableAutowireRequiredInitializer.class,
         classes = {MockServletContext.class}
@@ -95,7 +95,7 @@ public class AesResourceTest {
     private MockMvc mvc;
     private static ObjectMapper mapper;
 
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
         mvc = MockMvcBuilders.standaloneSetup(aesResource).build();
@@ -109,8 +109,8 @@ public class AesResourceTest {
 
         AeFilters aeFilters = new AeFilters();
         aeFilters.setCausality(new com.acuity.visualisations.rawdatamodel.filters.SetFilter<>(newArrayList("abc")));
-        com.acuity.visualisations.rawdatamodel.filters.PopulationFilters populationFilters
-                = new com.acuity.visualisations.rawdatamodel.filters.PopulationFilters();
+        PopulationFilters populationFilters
+                = new PopulationFilters();
 
         AesRequest aesRequest = new AesRequest();
         aesRequest.setAesFilters(aeFilters);
@@ -120,7 +120,7 @@ public class AesResourceTest {
         when(mockAesService.getAvailableFilters(
                 any(Datasets.class),
                 any(AeFilters.class),
-                any(com.acuity.visualisations.rawdatamodel.filters.PopulationFilters.class))).
+                any(PopulationFilters.class))).
                 thenReturn(aeFilters);
         //when(mockAesFilterService.getAvailableFilters(any(Datasets.class), any(AesFilters.class), any(PopulationFilters.class))).thenReturn(aesFilters);
 
@@ -140,7 +140,7 @@ public class AesResourceTest {
         verify(mockAesService, times(1)).getAvailableFilters(
                 eq(DUMMY_DETECT_DATASETS),
                 any(AeFilters.class),
-                any(com.acuity.visualisations.rawdatamodel.filters.PopulationFilters.class));
+                any(PopulationFilters.class));
         verifyNoMoreInteractions(mockAesService);
     }
 
@@ -263,12 +263,12 @@ public class AesResourceTest {
         requestBody.setDatasets(DUMMY_DETECT_DATASETS.getDatasetsList());
         requestBody.setEventIds(newArrayList("12"));
         requestBody.setFromPlot("cerebrovascular");
-        requestBody.setPopulationFilters(com.acuity.visualisations.rawdatamodel.filters.PopulationFilters.empty());
+        requestBody.setPopulationFilters(PopulationFilters.empty());
 
         List<String> mockCerebrovascularResponse = newArrayList("1");
 
         when(mockCerebrovascularService.getAssociatedAeNumbersFromEventIds(eq(DUMMY_DETECT_DATASETS),
-                any(com.acuity.visualisations.rawdatamodel.filters.PopulationFilters.class), any(List.class)))
+                any(PopulationFilters.class), any(List.class)))
                 .thenReturn(mockCerebrovascularResponse);
 
         MockHttpServletRequestBuilder post = MockMvcRequestBuilders.
@@ -288,7 +288,7 @@ public class AesResourceTest {
 
         verify(mockCerebrovascularService, times(1))
                 .getAssociatedAeNumbersFromEventIds(eq(DUMMY_DETECT_DATASETS),
-                        any(com.acuity.visualisations.rawdatamodel.filters.PopulationFilters.class), any(List.class));
+                        any(PopulationFilters.class), any(List.class));
         verifyNoMoreInteractions(mockCerebrovascularService);
         verifyNoMoreInteractions(mockCvotEndpointService);
         verifyNoMoreInteractions(mockCIEventService);
@@ -301,12 +301,12 @@ public class AesResourceTest {
         requestBody.setDatasets(DUMMY_DETECT_DATASETS.getDatasetsList());
         requestBody.setEventIds(newArrayList("12"));
         requestBody.setFromPlot("cvot");
-        requestBody.setPopulationFilters(com.acuity.visualisations.rawdatamodel.filters.PopulationFilters.empty());
+        requestBody.setPopulationFilters(PopulationFilters.empty());
 
         List<String> mockCvotResponse = newArrayList("2");
 
         when(mockCvotEndpointService.getAssociatedAeNumbersFromEventIds(eq(DUMMY_DETECT_DATASETS),
-                any(com.acuity.visualisations.rawdatamodel.filters.PopulationFilters.class), any(List.class)))
+                any(PopulationFilters.class), any(List.class)))
                 .thenReturn(mockCvotResponse);
 
         MockHttpServletRequestBuilder post = MockMvcRequestBuilders.
@@ -326,7 +326,7 @@ public class AesResourceTest {
 
         verify(mockCvotEndpointService, times(1))
                 .getAssociatedAeNumbersFromEventIds(eq(DUMMY_DETECT_DATASETS),
-                        any(com.acuity.visualisations.rawdatamodel.filters.PopulationFilters.class), any(List.class));
+                        any(PopulationFilters.class), any(List.class));
         verifyNoMoreInteractions(mockCerebrovascularService);
         verifyNoMoreInteractions(mockCvotEndpointService);
         verifyNoMoreInteractions(mockCIEventService);
@@ -339,12 +339,12 @@ public class AesResourceTest {
         requestBody.setDatasets(DUMMY_DETECT_DATASETS.getDatasetsList());
         requestBody.setEventIds(newArrayList("12"));
         requestBody.setFromPlot("cievents");
-        requestBody.setPopulationFilters(com.acuity.visualisations.rawdatamodel.filters.PopulationFilters.empty());
+        requestBody.setPopulationFilters(PopulationFilters.empty());
 
         List<String> mockCieventsResponse = newArrayList("3");
 
         when(mockCIEventService.getAssociatedAeNumbersFromEventIds(eq(DUMMY_DETECT_DATASETS),
-                any(com.acuity.visualisations.rawdatamodel.filters.PopulationFilters.class), any(List.class)))
+                any(PopulationFilters.class), any(List.class)))
                 .thenReturn(mockCieventsResponse);
 
         MockHttpServletRequestBuilder post = MockMvcRequestBuilders.
@@ -364,7 +364,7 @@ public class AesResourceTest {
 
         verify(mockCIEventService, times(1))
                 .getAssociatedAeNumbersFromEventIds(eq(DUMMY_DETECT_DATASETS),
-                        any(com.acuity.visualisations.rawdatamodel.filters.PopulationFilters.class), any(List.class));
+                        any(PopulationFilters.class), any(List.class));
         verifyNoMoreInteractions(mockCerebrovascularService);
         verifyNoMoreInteractions(mockCvotEndpointService);
         verifyNoMoreInteractions(mockCIEventService);

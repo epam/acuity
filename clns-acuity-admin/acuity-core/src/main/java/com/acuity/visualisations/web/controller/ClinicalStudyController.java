@@ -90,9 +90,9 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.util.WebUtils;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.Writer;
 import java.util.ArrayList;
@@ -217,7 +217,7 @@ public class ClinicalStudyController extends AbstractController {
                                          @ModelAttribute("studyIds") String studyIdsString)
             throws ClinicalStudyException {
         try {
-            String browserTabId = WebUtils.getCookie(request, TAB_ID).getValue();
+            String browserTabId = ControllerUtils.getTabId(request, TAB_ID);
             final ModelAndView modelAndView = new ModelAndView(VIEW_NAME);
             HttpSession session = request.getSession();
             ControllerUtils.clearClinicalStudyWorkflow(session, browserTabId);
@@ -359,7 +359,7 @@ public class ClinicalStudyController extends AbstractController {
             throws ClinicalStudyException {
         try {
             HttpSession session = request.getSession();
-            String browserTabId = WebUtils.getCookie(request, TAB_ID).getValue();
+            String browserTabId = ControllerUtils.getTabId(request, TAB_ID);
             Map<String, StudyRule> searchResult = ControllerUtils.getStudySearchResult(session);
 
             ControllerUtils.clearClinicalStudyWorkflow(session, browserTabId);
@@ -439,7 +439,7 @@ public class ClinicalStudyController extends AbstractController {
     @ResponseStatus(value = HttpStatus.OK)
     public void editCBioPortalConfig(final HttpServletRequest request, @RequestBody StudyRule updatedStudy) throws ClinicalStudyException {
         try {
-            String browserTabId = WebUtils.getCookie(request, TAB_ID).getValue();
+            String browserTabId = ControllerUtils.getTabId(request, TAB_ID);
             ClinicalStudyWorkflow workflow = ControllerUtils.getClinicalStudyWorkflow(request.getSession(), browserTabId);
             StudyRule study = workflow.getSelectedStudy();
             study.setProfilesMask(updatedStudy.getProfilesMask());
@@ -459,7 +459,7 @@ public class ClinicalStudyController extends AbstractController {
     @ResponseBody
     public FileRuleDTO addFileRule(final HttpServletRequest request, @RequestBody FileRuleDTO fileRuleDTO) throws ClinicalStudyException {
         try {
-            String browserTabId = WebUtils.getCookie(request, TAB_ID).getValue();
+            String browserTabId = ControllerUtils.getTabId(request, TAB_ID);
             ClinicalStudyWorkflow workflow = ControllerUtils.getClinicalStudyWorkflow(request.getSession(), browserTabId);
 
             StudyRule studyRule = workflow.getSelectedStudy();
@@ -557,7 +557,7 @@ public class ClinicalStudyController extends AbstractController {
                                                      @RequestParam(required = false) Boolean replaceExisting,
                                                      @RequestParam MultipartFile upload) throws ClinicalStudyException {
         try {
-            String browserTabId = WebUtils.getCookie(request, TAB_ID).getValue();
+            String browserTabId = ControllerUtils.getTabId(request, TAB_ID);
             ClinicalStudyWorkflow workflow = ControllerUtils.getClinicalStudyWorkflow(request.getSession(), browserTabId);
             replaceExisting = replaceExisting == null ? false : replaceExisting;
             List<MappingStatusDTO> result = studyMappingsService.importMappings(upload.getInputStream(), workflow.getSelectedStudy(), replaceExisting);
@@ -578,7 +578,7 @@ public class ClinicalStudyController extends AbstractController {
     @RequestMapping("/export-study-mapping")
     public void exportStudyMapping(final HttpServletRequest request, final HttpServletResponse response) throws ClinicalStudyException {
         try {
-            String browserTabId = WebUtils.getCookie(request, TAB_ID).getValue();
+            String browserTabId = ControllerUtils.getTabId(request, TAB_ID);
             ClinicalStudyWorkflow workflow = ControllerUtils.getClinicalStudyWorkflow(request.getSession(), browserTabId);
             List<FileRule> fileRules = workflow.getSelectedStudy().getFileRules();
             response.setContentType("application/csv");
@@ -597,11 +597,13 @@ public class ClinicalStudyController extends AbstractController {
     @ResponseBody
     public List<FileRuleDTO> getFileRules(final HttpServletRequest request) throws ClinicalStudyException {
         try {
-            String tabId = WebUtils.getCookie(request, TAB_ID).getValue();
+            String tabId = ControllerUtils.getTabId(request, TAB_ID);
             ClinicalStudyWorkflow workflow = ControllerUtils.getClinicalStudyWorkflow(request.getSession(), tabId);
-            return workflow
-                    .getSelectedStudy()
-                    .getFileRules()
+            StudyRule study = workflow.getSelectedStudy();
+            if (study == null) {
+                throw new IllegalStateException("No study selected in current session tab");
+            }
+            return study.getFileRules()
                     .stream()
                     .map(FileRuleDTO::new)
                     .collect(Collectors.toList());
@@ -614,7 +616,7 @@ public class ClinicalStudyController extends AbstractController {
     @ResponseBody
     public List<MappingStatusDTO> deleteFileRule(final HttpServletRequest request, @RequestParam Long id) throws ClinicalStudyException {
         try {
-            String browserTabId = WebUtils.getCookie(request, TAB_ID).getValue();
+            String browserTabId = ControllerUtils.getTabId(request, TAB_ID);
             ClinicalStudyWorkflow workflow = ControllerUtils.getClinicalStudyWorkflow(request.getSession(), browserTabId);
 
             StudyRule study = workflow.getSelectedStudy();
@@ -697,9 +699,13 @@ public class ClinicalStudyController extends AbstractController {
     @ResponseBody
     public List<MappingStatusDTO> saveMappingRules(final HttpServletRequest request, @RequestBody MapRulesDTO mapRules) throws ClinicalStudyException {
         try {
-            String browserTabId = WebUtils.getCookie(request, TAB_ID).getValue();
+            String browserTabId = ControllerUtils.getTabId(request, TAB_ID);
+            log.info("saveMappingRules called, tabId={}, fileRuleId={}", browserTabId, mapRules.getFileRuleId());
             ClinicalStudyWorkflow workflow = ControllerUtils.getClinicalStudyWorkflow(request.getSession(), browserTabId);
             StudyRule study = workflow.getSelectedStudy();
+            if (study == null) {
+                throw new IllegalStateException("No study selected in current session tab");
+            }
             study.setMappingModifiedDate(new Date());
             selectClinicalStudy(study, workflow);
             if (!permissionHelper.isCurrentUserDrugProgrammeAdmin(study.getProjectId())) {
@@ -775,7 +781,7 @@ public class ClinicalStudyController extends AbstractController {
     @ResponseBody
     public ClinicalStudyWorkflow getSummary(final HttpServletRequest request) throws ClinicalStudyException {
         try {
-            String browserTabId = WebUtils.getCookie(request, TAB_ID).getValue();
+            String browserTabId = ControllerUtils.getTabId(request, TAB_ID);
             return ControllerUtils.getClinicalStudyWorkflow(request.getSession(), browserTabId);
         } catch (Exception e) {
             throw new ClinicalStudyException("Exception caught when retrieving dataset summary: ", e);
@@ -795,7 +801,7 @@ public class ClinicalStudyController extends AbstractController {
         try {
             response.setContentType(TEXT_PLAIN);
 
-            String browserTabId = WebUtils.getCookie(request, TAB_ID).getValue();
+            String browserTabId = ControllerUtils.getTabId(request, TAB_ID);
             ClinicalStudyWorkflow workflow = ControllerUtils.getClinicalStudyWorkflow(request.getSession(), browserTabId);
 
             StudyRule study = workflow.getSelectedStudy();
@@ -832,7 +838,7 @@ public class ClinicalStudyController extends AbstractController {
             throws ClinicalStudyException {
         try {
             response.setContentType(TEXT_PLAIN);
-            String browserTabId = WebUtils.getCookie(request, TAB_ID).getValue();
+            String browserTabId = ControllerUtils.getTabId(request, TAB_ID);
 
             ClinicalStudyWorkflow workflow = ControllerUtils.getClinicalStudyWorkflow(request.getSession(), browserTabId);
             String idString = request.getParameter("id");
@@ -899,7 +905,7 @@ public class ClinicalStudyController extends AbstractController {
     @ResponseBody
     public GroupRuleBase deleteGroup(final HttpServletRequest request, @RequestParam("groupId") Long groupId) throws ClinicalStudyException {
         try {
-            String browserTabId = WebUtils.getCookie(request, TAB_ID).getValue();
+            String browserTabId = ControllerUtils.getTabId(request, TAB_ID);
 
             ClinicalStudyWorkflow workflow = ControllerUtils.getClinicalStudyWorkflow(request.getSession(), browserTabId);
             StudyRule study = workflow.getSelectedStudy();
@@ -923,7 +929,7 @@ public class ClinicalStudyController extends AbstractController {
     @ResponseBody
     public GroupRuleBase refreshGroupById(final HttpServletRequest request, @RequestParam("groupId") Long groupId) throws ClinicalStudyException {
         try {
-            String browserTabId = WebUtils.getCookie(request, TAB_ID).getValue();
+            String browserTabId = ControllerUtils.getTabId(request, TAB_ID);
 
             ClinicalStudyWorkflow workflow = ControllerUtils.getClinicalStudyWorkflow(request.getSession(), browserTabId);
             GroupRuleBase group = workflow.getGroup(groupId);
@@ -941,7 +947,7 @@ public class ClinicalStudyController extends AbstractController {
     @ResponseBody
     public void saveGroupValues(final HttpServletRequest request, @RequestBody SubjectGroupValuesDTO dto) throws ClinicalStudyException {
         try {
-            String browserTabId = WebUtils.getCookie(request, TAB_ID).getValue();
+            String browserTabId = ControllerUtils.getTabId(request, TAB_ID);
 
             ClinicalStudyWorkflow workflow = ControllerUtils.getClinicalStudyWorkflow(request.getSession(), browserTabId);
 
@@ -970,7 +976,7 @@ public class ClinicalStudyController extends AbstractController {
     @ResponseBody
     public List<GroupValueBase> getValuesData(final HttpServletRequest request, @RequestParam("groupId") Long groupId) throws ClinicalStudyException {
         try {
-            String browserTabId = WebUtils.getCookie(request, TAB_ID).getValue();
+            String browserTabId = ControllerUtils.getTabId(request, TAB_ID);
 
             ClinicalStudyWorkflow workflow = ControllerUtils.getClinicalStudyWorkflow(request.getSession(), browserTabId);
             GroupRuleBase grp = workflow.getGroup(groupId);
@@ -1017,7 +1023,7 @@ public class ClinicalStudyController extends AbstractController {
     public ClinicalStudyWorkflow addStudyInACUITY(final HttpServletRequest request, @RequestBody StudyRule study) throws ClinicalStudyException {
         try {
             HttpSession session = request.getSession();
-            String browserTabId = WebUtils.getCookie(request, TAB_ID).getValue();
+            String browserTabId = ControllerUtils.getTabId(request, TAB_ID);
             ControllerUtils.clearClinicalStudyWorkflow(session, browserTabId);
 
             ClinicalStudyWorkflow workflow = ControllerUtils.getClinicalStudyWorkflow(session, browserTabId);
@@ -1038,7 +1044,7 @@ public class ClinicalStudyController extends AbstractController {
             throws ClinicalStudyException {
         try {
             HttpSession session = request.getSession();
-            String browserTabId = WebUtils.getCookie(request, TAB_ID).getValue();
+            String browserTabId = ControllerUtils.getTabId(request, TAB_ID);
             ControllerUtils.clearClinicalStudyWorkflow(session, browserTabId);
 
             ClinicalStudyWorkflow workflow = ControllerUtils.getClinicalStudyWorkflow(session, browserTabId);
@@ -1111,7 +1117,7 @@ public class ClinicalStudyController extends AbstractController {
     @RequestMapping(method = RequestMethod.POST, value = "/study-setup/get-alt-lab-codes")
     @ResponseBody
     public List<CustomLabcodeLookup> getAltLabCodes(HttpServletRequest request) throws ClinicalStudyException {
-        String browserTabId = WebUtils.getCookie(request, TAB_ID).getValue();
+        String browserTabId = ControllerUtils.getTabId(request, TAB_ID);
         ClinicalStudyWorkflow workflow = ControllerUtils.getClinicalStudyWorkflow(request.getSession(), browserTabId);
         return studyAltLabCodeService.getAltLabCodes(workflow.getSelectedStudy().getId());
     }
@@ -1129,7 +1135,7 @@ public class ClinicalStudyController extends AbstractController {
     @RequestMapping(method = RequestMethod.POST, value = "/study-setup/get-excluding-values")
     @ResponseBody
     public List<ExcludingValue> getExcludingValues(HttpServletRequest request) throws ClinicalStudyException {
-        String browserTabId = WebUtils.getCookie(request, TAB_ID).getValue();
+        String browserTabId = ControllerUtils.getTabId(request, TAB_ID);
 
         ClinicalStudyWorkflow workflow = ControllerUtils.getClinicalStudyWorkflow(request.getSession(), browserTabId);
         List<ExcludingValue> res = workflow.getSelectedStudy().getExcludingValues();
@@ -1198,7 +1204,7 @@ public class ClinicalStudyController extends AbstractController {
     @RequestMapping(method = RequestMethod.POST, value = "/study-setup/history")
     @ResponseBody
     public AuditController.Audits getHistory(HttpServletRequest request, @RequestBody AuditController.Page page) {
-        String browserTabId = WebUtils.getCookie(request, TAB_ID).getValue();
+        String browserTabId = ControllerUtils.getTabId(request, TAB_ID);
 
         ClinicalStudyWorkflow workflow = ControllerUtils.getClinicalStudyWorkflow(request.getSession(), browserTabId);
         StudyRule studyRule = workflow.getSelectedStudy();
@@ -1223,7 +1229,7 @@ public class ClinicalStudyController extends AbstractController {
     @RequestMapping(value = "/study-setup/selected-study-subject-groupings")
     @ResponseBody
     public StudySubjectGrouping getStudySubjectGrouping(final HttpServletRequest request) {
-        String browserTabId = WebUtils.getCookie(request, TAB_ID).getValue();
+        String browserTabId = ControllerUtils.getTabId(request, TAB_ID);
 
         ClinicalStudyWorkflow workflow = ControllerUtils.getClinicalStudyWorkflow(request.getSession(), browserTabId);
         StudyRule studyRule = workflow.getSelectedStudy();
@@ -1237,7 +1243,7 @@ public class ClinicalStudyController extends AbstractController {
     @ResponseStatus(value = HttpStatus.OK)
     public void saveStudySubjectGroupings(HttpServletRequest request,
                                           @RequestBody StudySubjectGrouping studySubjectGrouping) {
-        String browserTabId = WebUtils.getCookie(request, TAB_ID).getValue();
+        String browserTabId = ControllerUtils.getTabId(request, TAB_ID);
 
         ClinicalStudyWorkflow workflow = ControllerUtils.getClinicalStudyWorkflow(request.getSession(), browserTabId);
 
@@ -1250,7 +1256,7 @@ public class ClinicalStudyController extends AbstractController {
     @ResponseBody
     public Map<GroupRuleBase.ProjectGroupType, List<GroupRuleBase>> getProjectGroupings(final HttpServletRequest request) throws ClinicalStudyException {
         try {
-            String browserTabId = WebUtils.getCookie(request, TAB_ID).getValue();
+            String browserTabId = ControllerUtils.getTabId(request, TAB_ID);
 
             ClinicalStudyWorkflow workflow = ControllerUtils.getClinicalStudyWorkflow(request.getSession(), browserTabId);
             List<GroupRuleBase> availableProjectGroupings = workflow.getAvailableProjectGroupings();
@@ -1269,7 +1275,7 @@ public class ClinicalStudyController extends AbstractController {
     public List<GroupRuleBase> selectProjectGroupings(final HttpServletRequest request,
                                                       @RequestParam(value = "ids[]", required = false) List<Long> ids) throws ClinicalStudyException {
         try {
-            String browserTabId = WebUtils.getCookie(request, TAB_ID).getValue();
+            String browserTabId = ControllerUtils.getTabId(request, TAB_ID);
 
             ClinicalStudyWorkflow workflow = ControllerUtils.getClinicalStudyWorkflow(request.getSession(), browserTabId);
             StudyRule studyRule = workflow.getSelectedStudy();
@@ -1288,11 +1294,14 @@ public class ClinicalStudyController extends AbstractController {
     }
 
     private StudyRule extractClinicalStudyRuleOrThrowError(final HttpServletRequest request) throws AccessDeniedException {
-        String browserTabId = WebUtils.getCookie(request, TAB_ID).getValue();
+        String browserTabId = ControllerUtils.getTabId(request, TAB_ID);
         ClinicalStudyWorkflow workflow = ControllerUtils.getClinicalStudyWorkflow(request.getSession(), browserTabId);
 
         StudyRule study = workflow.getSelectedStudy();
 
+        if (study == null) {
+            throw new IllegalStateException("No study selected in current session tab");
+        }
         if (!permissionHelper.isCurrentUserDrugProgrammeAdmin(study.getProjectId())) {
             throw new AccessDeniedException(ACCESS_DENIED_MESSAGE + study.getStudyCode());
         }

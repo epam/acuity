@@ -347,6 +347,10 @@ public class PopulationService implements DoDService<Subject>, SsvSummaryTableSe
 
         return new AxisOptions<>(
                 Stream.of(options)
+                        .filter(o -> filteredData.stream()
+                                .map(s -> Attributes.get(o.getAttribute(), s))
+                                .flatMap(v -> v instanceof Collection ? ((Collection<?>) v).stream() : Stream.of(v))
+                                .anyMatch(v -> v != null && !Attributes.DEFAULT_EMPTY_VALUE.equals(v.toString())))
                         .map(o -> new AxisOption<>(o,
                                 Attributes.isTimestampOption(o),
                                 Attributes.isTimestampOptionSupportDuration(o),

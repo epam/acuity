@@ -44,7 +44,8 @@ import {ChartEvents} from '../../../../../../../vahub-charts/types/interfaces';
     selector: 'lineplot',
     template: '<div></div>',
     providers: [LinePlotConfigService, LinePlotService],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class LinePlotComponent extends AbstractPlotComponent implements OnChanges, OnDestroy {
     @Input() plotData: List<OutputOvertimeLineChartData>;
@@ -154,7 +155,7 @@ export class LinePlotComponent extends AbstractPlotComponent implements OnChange
             });
             this.currentSelection = selection;
         }
-        this.chart.update();
+        this.chart?.update();
     }
 
     protected removeSelection(): void {
@@ -166,7 +167,7 @@ export class LinePlotComponent extends AbstractPlotComponent implements OnChange
                 });
             });
         }
-        this.chart.update();
+        this.chart?.update();
     }
 
     protected pointInSelectionRectangle(point, {xMin, xMax, yMin, yMax}): boolean {

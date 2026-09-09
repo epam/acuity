@@ -251,7 +251,7 @@ public class CustomUserDetailsManager extends JdbcUserDetailsManager {
      * @return list of usernames
      */
     public List<String> findUsersNotInGroup(String groupName) {
-        Assert.hasText(groupName);
+        Assert.hasText(groupName, "groupName must not be empty");
         return getJdbcTemplate().queryForList(findUsersNotInGroup, new String[]{groupName}, String.class);
     }
 

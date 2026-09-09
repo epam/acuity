@@ -22,7 +22,8 @@ import {AbstractDataTypeFilter} from '../AbstractDataTypeFilter';
 
 @Component({
     selector: 'cvotfilter',
-    templateUrl: 'CvotFilterComponent.html'
+    templateUrl: 'CvotFilterComponent.html',
+    standalone: false
 })
 export class CvotFilterComponent extends AbstractDataTypeFilter implements OnInit, OnDestroy, AfterViewInit {
     @Output()

@@ -33,4 +33,17 @@ public class AesChordDetailsOnDemandRequest extends DatasetsRequest {
     private List<SortAttrs> sortAttrs;
     private int start;
     private int end;
+
+    public Set<ChordContributor> getEventIds() {
+        return eventIds;
+    }
+    public List<SortAttrs> getSortAttrs() {
+        return sortAttrs;
+    }
+    public int getStart() {
+        return start;
+    }
+    public int getEnd() {
+        return end;
+    }
 }

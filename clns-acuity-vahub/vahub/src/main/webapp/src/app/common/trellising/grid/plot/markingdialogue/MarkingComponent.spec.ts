@@ -31,8 +31,8 @@ import {MarkingDialogue} from './MarkingDialogue';
 import {ISelection, ISelectionDetail} from '../../../store';
 import {AesHttpService} from '../../../../../data/aes';
 import {SessionEventService} from '../../../../../session/module';
-import {HttpClient} from '@angular/common/http';
-import {HttpClientTestingModule} from '@angular/common/http/testing';
+import { HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 
 describe('GIVEN MarkingComponent', () => {
 
@@ -41,23 +41,22 @@ describe('GIVEN MarkingComponent', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            declarations: [MarkingComponent],
-            imports: [
-                CommonModule,
-                FormsModule,
-                HttpClientTestingModule
-            ],
-            providers: [
-                {provide: FilterEventService, useClass: MockFilterEventService},
-                {provide: PopulationFiltersModel, useClass: PopulationFiltersModel, deps: [FilterEventService]},
-                {provide: AesFiltersModel, useClass: AesFiltersModel, deps: [FilterEventService]},
-                {provide: Location, useClass: SpyLocation},
-                {provide: Router, useClass: MockRouter},
-                {provide: AesHttpService, useClass: AesHttpService, deps: [HttpClient, PopulationFiltersModel, AesFiltersModel]},
-                {provide: SessionEventService, useClass: MockSessionEventService},
-                {provide: DatasetViews, useClass: MockDatasetViews}
-            ]
-        });
+    declarations: [MarkingComponent],
+    imports: [CommonModule,
+        FormsModule],
+    providers: [
+        { provide: FilterEventService, useClass: MockFilterEventService },
+        { provide: PopulationFiltersModel, useClass: PopulationFiltersModel, deps: [FilterEventService] },
+        { provide: AesFiltersModel, useClass: AesFiltersModel, deps: [FilterEventService] },
+        { provide: Location, useClass: SpyLocation },
+        { provide: Router, useClass: MockRouter },
+        { provide: AesHttpService, useClass: AesHttpService, deps: [HttpClient, PopulationFiltersModel, AesFiltersModel] },
+        { provide: SessionEventService, useClass: MockSessionEventService },
+        { provide: DatasetViews, useClass: MockDatasetViews },
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting()
+    ]
+});
 
         fixture = TestBed.createComponent(MarkingComponent);
         component = fixture.componentInstance;

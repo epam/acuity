@@ -24,7 +24,8 @@ import {PlotSettings, TrellisCategory} from '../../../../common/trellising/store
 @Component({
     selector: 'aes-chord-settings',
     templateUrl: 'AesChordSettingsComponent.html',
-    styleUrls: ['../../../filters.css']
+    styleUrls: ['../../../filters.css'],
+    standalone: false
 })
 export class AesChordSettingsComponent implements OnInit {
     minDays = 0;

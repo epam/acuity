@@ -15,7 +15,7 @@
  */
 
 import {Injectable} from '@angular/core';
-import {ColDef} from 'ag-grid/main';
+import {ColDef} from 'ag-grid-community';
 import {List} from 'immutable';
 import {AbstractColumnModel} from '../AbstractColumnModel';
 
@@ -25,12 +25,12 @@ export class DoseDiscontinuationColumnModel extends AbstractColumnModel {
         {field: 'studyId', headerName: 'Study id'},
         {field: 'studyPart', headerName: 'Study part'},
         {field: 'subjectId', headerName: 'Subject id'},
-        {field: 'studyDrug', headerName: 'Study drug', enableRowGroup: true},
-        {field: 'discDate', headerName: 'Date of IP discontinuation', enableRowGroup: true},
-        {field: 'studyDayAtIpDiscontinuation', headerName: 'Study day at IP discontinuation', enableValue: true},
-        {field: 'discReason', headerName: 'Main reason for IP discontinuation', enableRowGroup: true},
-        {field: 'ipDiscSpec', headerName: 'IP discontinuation specification', enableRowGroup: true},
-        {field: 'subjectDecisionSpec', headerName: 'Subject decision specification', enableRowGroup: true},
-        {field: 'subjectDecisionSpecOther', headerName: 'Other subject decision specification', enableRowGroup: true},
+        {field: 'studyDrug', headerName: 'Study drug'},
+        {field: 'discDate', headerName: 'Date of IP discontinuation'},
+        {field: 'studyDayAtIpDiscontinuation', headerName: 'Study day at IP discontinuation'},
+        {field: 'discReason', headerName: 'Main reason for IP discontinuation'},
+        {field: 'ipDiscSpec', headerName: 'IP discontinuation specification'},
+        {field: 'subjectDecisionSpec', headerName: 'Subject decision specification'},
+        {field: 'subjectDecisionSpecOther', headerName: 'Other subject decision specification'},
     ]);
 }

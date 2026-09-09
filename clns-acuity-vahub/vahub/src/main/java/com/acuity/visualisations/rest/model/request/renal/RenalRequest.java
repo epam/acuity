@@ -24,7 +24,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
@@ -37,4 +37,11 @@ public class RenalRequest extends DatasetsRequest {
 
     @NotNull
     private RenalFilters renalFilters;
+
+    public PopulationFilters getPopulationFilters() {
+        return populationFilters;
+    }
+    public RenalFilters getRenalFilters() {
+        return renalFilters;
+    }
 }

@@ -18,6 +18,7 @@ import {Component} from '@angular/core';
 import {TChartComponent} from '../../TChartComponent';
 
 @Component({
-    template: '<trellising-component [tabId]="tabId.LAB_LINEPLOT"></trellising-component>'
+    template: '<trellising-component [tabId]="tabId.LAB_LINEPLOT"></trellising-component>',
+    standalone: false
 })
 export class LabsRangePlotComponent extends TChartComponent { }

@@ -28,9 +28,11 @@ import com.acuity.visualisations.rawdatamodel.vo.compatibility.TrellisedBarChart
 import com.acuity.visualisations.rawdatamodel.vo.plots.BarChartData;
 import com.acuity.visualisations.rawdatamodel.vo.plots.BarChartEntry;
 import com.acuity.visualisations.rawdatamodel.vo.wrappers.CIEvent;
-import org.assertj.core.api.JUnitSoftAssertions;
-import org.junit.Rule;
-import org.junit.Test;
+import org.assertj.core.api.SoftAssertions;
+import org.assertj.core.api.junit.jupiter.InjectSoftAssertions;
+import org.assertj.core.api.junit.jupiter.SoftAssertionsExtension;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -38,10 +40,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@ExtendWith(SoftAssertionsExtension.class)
 public class ColoredBarChartUIModelServiceTest {
 
-    @Rule
-    public final JUnitSoftAssertions softly = new JUnitSoftAssertions();
+    @InjectSoftAssertions
+    private SoftAssertions softly;
     private ColoredBarChartUIModelService coloredBarChartUIModelService = new ColoredBarChartUIModelService(new BarChartColoringService());
 
     @Test

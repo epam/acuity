@@ -15,7 +15,7 @@
  */
 
 import {inject, TestBed} from '@angular/core/testing';
-import {Http, HttpModule} from '@angular/http';
+import { HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 import {LungFunctionFiltersModel} from './LungFunctionFiltersModel';
 import {PopulationFiltersModel} from '../population/PopulationFiltersModel';
@@ -35,23 +35,23 @@ describe('GIVEN a LungFunctionFiltersModel class', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [HttpModule],
-            providers: [
-                {provide: FilterHttpService, useClass: MockFilterHttpService},
-                Http,
-                {provide: DatasetViews, useClass: MockDatasetViews},
-                SessionHttpService,
-                SessionEventService,
-                {provide: PopulationFiltersModel, deps: [FilterHttpService, FilterEventService]},
-                {provide: FilterEventService, useValue: new MockFilterEventService()},
-                {
-                    provide: LungFunctionFiltersModel,
-                    useFactory: (p: PopulationFiltersModel, f: FilterHttpService, e: FilterEventService, d: DatasetViews): LungFunctionFiltersModel =>
-                        new LungFunctionFiltersModel(p, f, e, d),
-                    deps: [PopulationFiltersModel, FilterHttpService, FilterEventService, DatasetViews]
-                }
-            ]
-        });
+    imports: [],
+    providers: [
+        { provide: FilterHttpService, useClass: MockFilterHttpService },
+        Http,
+        { provide: DatasetViews, useClass: MockDatasetViews },
+        SessionHttpService,
+        SessionEventService,
+        { provide: PopulationFiltersModel, deps: [FilterHttpService, FilterEventService] },
+        { provide: FilterEventService, useValue: new MockFilterEventService() },
+        {
+            provide: LungFunctionFiltersModel,
+            useFactory: (p: PopulationFiltersModel, f: FilterHttpService, e: FilterEventService, d: DatasetViews): LungFunctionFiltersModel => new LungFunctionFiltersModel(p, f, e, d),
+            deps: [PopulationFiltersModel, FilterHttpService, FilterEventService, DatasetViews]
+        },
+        provideHttpClient(withInterceptorsFromDi())
+    ]
+});
     });
 
     describe('WHEN constructing', () => {

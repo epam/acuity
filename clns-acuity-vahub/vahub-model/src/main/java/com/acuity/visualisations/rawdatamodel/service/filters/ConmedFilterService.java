@@ -33,7 +33,6 @@ public class ConmedFilterService extends AbstractEventFilterService<Conmed, Filt
         Collection<Conmed> filteredLabEvents = filteredResult.getFilteredResult();
 
         return filteredLabEvents.parallelStream()
-                .distinct()
                 .collect(new FilterSummaryStatisticsCollector<>(ConmedFiltersSummaryStatistics.class))
                 .getFilters();
     }

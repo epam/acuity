@@ -15,7 +15,7 @@
  */
 
 import {inject, TestBed} from '@angular/core/testing';
-import {HttpClientTestingModule} from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import * as  _ from 'lodash';
 
 import {
@@ -77,60 +77,62 @@ import {sharedStateReducer} from '../../common/store/reducers/SharedStateReducer
 import {trellisingReducer} from '../../common/trellising/store/reducer/TrellisingReducer';
 import {PkOverallResponseFiltersModel} from '../dataTypes/module';
 import {UserPermissions} from '../../security/module';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe('GIVEN a SelectedFiltersModel class', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [HttpClientTestingModule,
-                StoreModule.forRoot({sharedStateReducer: sharedStateReducer, trellisingReducer: trellisingReducer})],
-            providers: [
-                SelectedFiltersModel,
-                CohortEditorService,
-                FilterReloadService,
-                TimelineDispatcher,
-                TrellisingDispatcher,
-                FiltersUtils,
-                SeriousAesFiltersModel,
-                CardiacFiltersModel,
-                PopulationFiltersModel,
-                AesFiltersModel,
-                ConmedsFiltersModel,
-                DoseFiltersModel,
-                LabsFiltersModel,
-                LiverFunctionFiltersModel,
-                ExacerbationsFiltersModel,
-                LungFunctionFiltersModel,
-                RenalFiltersModel,
-                DeathFiltersModel,
-                VitalsFiltersModel,
-                DoseDiscontinuationFiltersModel,
-                MedicalHistoryFiltersModel,
-                LiverDiagnosticInvestigationFiltersModel,
-                AlcoholFiltersModel,
-                LiverRiskFactorsFiltersModel,
-                SurgicalHistoryFiltersModel,
-                NicotineFiltersModel,
-                RecistFiltersModel,
-                CIEventsFiltersModel,
-                CerebrovascularFiltersModel,
-                BiomarkersFiltersModel,
-                CvotFiltersModel,
-                CohortFiltersModel,
-                ExposureFiltersModel,
-                DoseProportionalityFiltersModel,
-                TumourResponseFiltersModel,
-                PatientDataFiltersModel,
-                CtDnaFiltersModel,
-                PkOverallResponseFiltersModel,
-                UserPermissions,
-                {provide: TimelineConfigService, useClass: MockTimelineConfigService},
-                {provide: FilterHttpService, useClass: MockFilterHttpService},
-                {provide: DatasetViews, useClass: MockDatasetViews},
-                {provide: FilterEventService, useClass: MockFilterEventService},
-                {provide: SessionEventService, useClass: MockSessionEventService}
-            ]
-        });
+    imports: [StoreModule.forRoot({ sharedStateReducer: sharedStateReducer, trellisingReducer: trellisingReducer })],
+    providers: [
+        SelectedFiltersModel,
+        CohortEditorService,
+        FilterReloadService,
+        TimelineDispatcher,
+        TrellisingDispatcher,
+        FiltersUtils,
+        SeriousAesFiltersModel,
+        CardiacFiltersModel,
+        PopulationFiltersModel,
+        AesFiltersModel,
+        ConmedsFiltersModel,
+        DoseFiltersModel,
+        LabsFiltersModel,
+        LiverFunctionFiltersModel,
+        ExacerbationsFiltersModel,
+        LungFunctionFiltersModel,
+        RenalFiltersModel,
+        DeathFiltersModel,
+        VitalsFiltersModel,
+        DoseDiscontinuationFiltersModel,
+        MedicalHistoryFiltersModel,
+        LiverDiagnosticInvestigationFiltersModel,
+        AlcoholFiltersModel,
+        LiverRiskFactorsFiltersModel,
+        SurgicalHistoryFiltersModel,
+        NicotineFiltersModel,
+        RecistFiltersModel,
+        CIEventsFiltersModel,
+        CerebrovascularFiltersModel,
+        BiomarkersFiltersModel,
+        CvotFiltersModel,
+        CohortFiltersModel,
+        ExposureFiltersModel,
+        DoseProportionalityFiltersModel,
+        TumourResponseFiltersModel,
+        PatientDataFiltersModel,
+        CtDnaFiltersModel,
+        PkOverallResponseFiltersModel,
+        UserPermissions,
+        { provide: TimelineConfigService, useClass: MockTimelineConfigService },
+        { provide: FilterHttpService, useClass: MockFilterHttpService },
+        { provide: DatasetViews, useClass: MockDatasetViews },
+        { provide: FilterEventService, useClass: MockFilterEventService },
+        { provide: SessionEventService, useClass: MockSessionEventService },
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting()
+    ]
+});
     });
 
     describe('WHEN constructing', () => {

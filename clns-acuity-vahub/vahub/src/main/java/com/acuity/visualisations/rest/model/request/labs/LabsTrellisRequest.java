@@ -21,7 +21,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
@@ -31,4 +31,8 @@ public class LabsTrellisRequest extends LabsRequest {
     @JsonProperty("yAxisOption")
     private LabGroupByOptions yAxisOption;
 
+
+    public LabGroupByOptions getYAxisOption() {
+        return yAxisOption;
+    }
 }

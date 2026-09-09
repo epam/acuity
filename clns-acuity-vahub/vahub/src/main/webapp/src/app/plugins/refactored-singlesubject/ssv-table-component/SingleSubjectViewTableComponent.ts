@@ -20,7 +20,7 @@ import {
 } from '@angular/core';
 import {ApplicationState} from '../../../common/store/models/ApplicationState';
 import {Store} from '@ngrx/store';
-import {GridOptions} from 'ag-grid';
+import {GridOptions} from 'ag-grid-community';
 import {List} from 'immutable';
 import {Subscription} from 'rxjs/Subscription';
 import * as _ from 'lodash';
@@ -32,7 +32,8 @@ import * as fromTrellising from '../../../common/trellising/store/reducer/Trelli
     templateUrl: 'SingleSubjectViewTableComponent.html',
     selector: 'single-subject-view-table',
     styleUrls: ['SingleSubjectViewTableComponent.css'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class SingleSubjectViewTableComponent implements OnChanges, OnInit, AfterViewInit, OnDestroy {
 
@@ -50,21 +51,18 @@ export class SingleSubjectViewTableComponent implements OnChanges, OnInit, After
     height: string;
 
     gridOptions: GridOptions = {
-        showToolPanel: this.isToolPanelShown,
-        enableSorting: true,
-        enableColResize: true,
         suppressLoadingOverlay: true,
         suppressNoRowsOverlay: true,
         rowSelection: 'multiple',
-        getContextMenuItems: () => {
-            return [
-                'copy',
-                'copyWithHeaders',
-                'separator',
-                'toolPanel'
-            ];
-        },
+        enableCellTextSelection: true,
+        ensureDomOrder: true,
+        onFirstDataRendered: (params) => setTimeout(() => params.api.sizeColumnsToFit()),
         defaultColDef: {
+            sortable: true,
+            resizable: true,
+            filter: true,
+            floatingFilter: true,
+            tooltipValueGetter: (params) => params.value,
             comparator: (valueA, valueB) => {
                 // sometimes column has mixed string and numeric data due to
                 // conversion of string values in SingleSubjectViewEffects.getTabData effect
@@ -120,6 +118,12 @@ export class SingleSubjectViewTableComponent implements OnChanges, OnInit, After
         this.gridOptions.api.setQuickFilter((<HTMLInputElement> searchTerm.target).value);
     }
 
+    exportCsv(): void {
+        if (this.gridOptions.api) {
+            this.gridOptions.api.exportDataAsCsv();
+        }
+    }
+
     ngOnDestroy(): void {
         if (this.isToolPanelShown !== undefined && this.tabId) {
             const currentTabConfig = {
@@ -136,7 +140,7 @@ export class SingleSubjectViewTableComponent implements OnChanges, OnInit, After
     }
 
     showToolPanelChange(): void {
-        this.gridOptions.api.showToolPanel(this.isToolPanelShown);
+        
     }
 
     private setTableHeight(): void {

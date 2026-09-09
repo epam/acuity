@@ -19,10 +19,12 @@ package com.acuity.visualisations.rawdatamodel.metadata;
 import com.acuity.visualisations.common.study.metadata.MetadataItem;
 import com.acuity.visualisations.rawdatamodel.service.event.PkResultWithResponseService;
 import com.acuity.va.security.acl.domain.Datasets;
-import org.assertj.core.api.JUnitSoftAssertions;
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
+import org.assertj.core.api.SoftAssertions;
+import org.assertj.core.api.junit.jupiter.InjectSoftAssertions;
+import org.assertj.core.api.junit.jupiter.SoftAssertionsExtension;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -34,9 +36,10 @@ import static com.acuity.visualisations.rawdatamodel.Constants.DATASETS;
 import static com.google.common.collect.Lists.newArrayList;
 import static net.javacrumbs.jsonunit.fluent.JsonFluentAssert.assertThatJson;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Matchers.any;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
+@ExtendWith(SoftAssertionsExtension.class)
 public class RecistPkResultModuleMetadataTest {
 
     @InjectMocks
@@ -44,10 +47,10 @@ public class RecistPkResultModuleMetadataTest {
     @Mock
     private PkResultWithResponseService pkResultWithResponseService;
 
-    @Rule
-    public final JUnitSoftAssertions softly = new JUnitSoftAssertions();
+    @InjectSoftAssertions
+    private SoftAssertions softly;
 
-    @Before
+    @BeforeEach
     public void setup() {
         MockitoAnnotations.initMocks(this);
     }

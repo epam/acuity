@@ -26,6 +26,9 @@ public class SdtmEntityMH extends SdtmEntity {
     private String fastresc;
     private String mhscat;
     private String mhstdtc;
+    private String mhendtc;
+    private String mhdecod;
+    private String mhbodsys;
 
     public String getMhterm() {
         return mhterm;
@@ -43,6 +46,18 @@ public class SdtmEntityMH extends SdtmEntity {
         return mhstdtc;
     }
 
+    public String getMhendtc() {
+        return mhendtc;
+    }
+
+    public String getMhdecod() {
+        return mhdecod;
+    }
+
+    public String getMhbodsys() {
+        return mhbodsys;
+    }
+
     @Override
     public void read(TableRow row) {
         seq = readString(row, "MHSEQ");
@@ -50,5 +65,8 @@ public class SdtmEntityMH extends SdtmEntity {
         fastresc = readString(row, "FASTRESC");
         mhscat = readString(row, "MHSCAT");
         mhstdtc = readString(row, "MHSTDTC");
+        mhendtc = readString(row, "MHENDTC");
+        mhdecod = readString(row, "MHDECOD");
+        mhbodsys = readString(row, "MHBODSYS");
     }
 }

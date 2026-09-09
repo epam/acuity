@@ -21,7 +21,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 
 /**
  * Request for lung function trellising
@@ -32,5 +32,9 @@ public class LungFunctionTrellisRequest extends LungFunctionRequest {
     @NotNull
     @JsonProperty("resultType")
     private LungFunctionGroupByOptions yAxisOption;
+
+    public LungFunctionGroupByOptions getYAxisOption() {
+        return yAxisOption;
+    }
 }
 

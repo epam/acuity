@@ -34,7 +34,8 @@ import {List} from 'immutable';
     selector: 'timeline-linechart',
     template: '<div class="row"></div>',
     providers: [LineChartPlotconfigService],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class LineChartComponent extends AbstractChartComponent implements OnDestroy {
 

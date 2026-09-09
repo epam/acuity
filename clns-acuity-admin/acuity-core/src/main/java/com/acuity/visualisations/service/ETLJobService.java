@@ -33,7 +33,7 @@ import org.springframework.core.env.Environment;
 import org.springframework.scheduling.quartz.CronTriggerFactoryBean;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.PostConstruct;
+import jakarta.annotation.PostConstruct;
 import java.text.ParseException;
 import java.time.LocalDate;
 import java.util.Map;

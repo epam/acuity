@@ -17,13 +17,14 @@
 import {
     ChangeDetectionStrategy, Component, Input, OnInit
 } from '@angular/core';
-import {ColDef, GridOptions} from 'ag-grid';
+import {ColDef, GridOptions} from 'ag-grid-community';
 import {List} from 'immutable';
 
 @Component({
     templateUrl: 'SubjectSummaryTableComponent.html',
     selector: 'summary-table',
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class SubjectSummaryTableComponent implements OnInit {
 
@@ -34,28 +35,30 @@ export class SubjectSummaryTableComponent implements OnInit {
     gridOptions: GridOptions;
     hasMuchData: boolean;
 
+    exportCsv(): void {
+        if (this.gridOptions && this.gridOptions.api) {
+            this.gridOptions.api.exportDataAsCsv();
+        }
+    }
+
     ngOnInit(): void {
         this.hasMuchData = this.tabTableData.length > this.MUCH_DATA_NUMBER;
         this.gridOptions = {
-            enableSorting: true,
-            enableColResize: true,
             suppressLoadingOverlay: true,
             suppressNoRowsOverlay: true,
             rowSelection: 'multiple',
+            enableCellTextSelection: true,
+            ensureDomOrder: true,
             domLayout: !this.hasMuchData ? 'autoHeight' : undefined,
             defaultColDef: {
-                menuTabs: []
-            },
-            getContextMenuItems: () => {
-                return [
-                    'copy',
-                    'copyWithHeaders',
-                    'separator',
-                    'toolPanel'
-                ];
+                sortable: true,
+                resizable: true,
+                filter: true,
+                floatingFilter: true,
+                tooltipValueGetter: (params) => params.value
             },
             onGridReady: () => {
-                this.gridOptions.api.sizeColumnsToFit();
+                setTimeout(() => this.gridOptions.api.sizeColumnsToFit());
             }
         };
     }

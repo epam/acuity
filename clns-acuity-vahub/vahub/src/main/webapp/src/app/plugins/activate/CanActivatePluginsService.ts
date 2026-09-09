@@ -15,7 +15,7 @@
  */
 
 import {Injectable} from '@angular/core';
-import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from '@angular/router';
+import { ActivatedRouteSnapshot, Router, RouterStateSnapshot } from '@angular/router';
 import {Observable} from 'rxjs/Observable';
 import * as  _ from 'lodash';
 import {Map} from 'immutable';
@@ -37,7 +37,7 @@ import {getColumnNames} from '../../common/utils/Utils';
 import {UpdateSelectedSubject} from '../refactored-singlesubject/store/actions/SingleSubjectViewActions';
 
 @Injectable()
-export class CanActivatePlugins implements CanActivate {
+export class CanActivatePlugins  {
 
     constructor(private sessionEventService: SessionEventService,
                 private _store: Store<AppStore>,

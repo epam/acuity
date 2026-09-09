@@ -31,7 +31,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 @ToString(callSuper = true)
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = false)
 public final class Radiotherapy extends SubjectAwareWrapper<RadiotherapyRaw> implements HasStartEndDate, Serializable {
 
     public static final String RADIOTHERAPY_LABEL = "Radiotherapy";

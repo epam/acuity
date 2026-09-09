@@ -19,21 +19,22 @@ package com.acuity.va.security.common.service;
 import com.acuity.va.security.acl.domain.ActiveDirectoryRecord;
 import com.acuity.va.security.common.config.AzureActiveProfilesResolver;
 import com.acuity.va.security.common.config.TestConfig;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.List;
 import java.util.NoSuchElementException;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @SpringBootTest(classes = {TestConfig.class})
 @ActiveProfiles(resolver = AzureActiveProfilesResolver.class)
 public class PeopleResourceClientITCase {
@@ -49,9 +50,9 @@ public class PeopleResourceClientITCase {
         assertThat(fullName).isEqualTo("yourOrg_user-name");
     }
 
-    @Test(expected = NoSuchElementException.class)
+    @Test
     public void shouldntGetUsersFullname() {
-        peopleResourceClient.getFullName("someNotExistingId");
+        assertThrows(NoSuchElementException.class, () -> peopleResourceClient.getFullName("someNotExistingId"));
     }
 
     @Test

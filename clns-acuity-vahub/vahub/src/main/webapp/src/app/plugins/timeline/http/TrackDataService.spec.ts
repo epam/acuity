@@ -15,7 +15,7 @@
  */
 
 import {inject, TestBed} from '@angular/core/testing';
-import {HttpClientTestingModule} from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import {
     MockDatasetViews,
     MockEnvService,
@@ -71,55 +71,58 @@ import {SpirometryTrackDataService} from './spirometry/SpirometryTrackDataServic
 import {DatasetViews} from '../../../security/DatasetViews';
 import {PatientDataTrackDataService} from './patientdata/PatientDataTrackDataService';
 import {PatientDataTrackDataTransformer} from './patientdata/PatientDataTrackDataTransformer';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe('GIVEN a TrackDataService class', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [HttpClientTestingModule],
-            providers: [
-                {provide: EnvService, useValue: new MockEnvService()},
-                TrackUtilDataService,
-                StatusTrackDataService,
-                AesTrackDataService,
-                AesTrackDataTransformer,
-                DoseTrackDataTransformer,
-                ConmedsTrackDataTransformer,
-                ExacerbationsTrackDataTransformer,
-                EcgTrackDataTransformer,
-                VitalsTrackDataTransformer,
-                PatientDataTrackDataTransformer,
-                LabsTrackDataService,
-                LabsTrackDataTransformer,
-                TrackUtilDataTransformer,
-                StatusTrackDataTransformer,
-                SpirometryTrackDataTransformer,
-                SessionHttpService,
-                FilterHttpService,
-                TrackDataService,
-                DoseTrackDataService,
-                ConmedsTrackDataService,
-                ExacerbationsTrackDataService,
-                EcgTrackDataService,
-                VitalsTrackDataService,
-                SpirometryTrackDataService,
-                PatientDataTrackDataService,
-                {provide: DatasetViews, useClass: MockDatasetViews},
-                {provide: SessionEventService, useClass: MockSessionEventService},
-                {provide: FilterEventService, useClass: MockFilterEventService},
-                {provide: PopulationFiltersModel, useClass: PopulationFiltersModel, deps: [FilterEventService]},
-                {provide: LungFunctionFiltersModel, useClass: LungFunctionFiltersModel, deps: [FilterEventService]},
-                {provide: AesFiltersModel, useClass: AesFiltersModel, deps: [FilterEventService]},
-                {provide: ConmedsFiltersModel, useClass: ConmedsFiltersModel, deps: [FilterEventService]},
-                {provide: DoseFiltersModel, useClass: DoseFiltersModel, deps: [FilterEventService]},
-                {provide: LabsFiltersModel, useClass: LabsFiltersModel, deps: [FilterEventService]},
-                {provide: VitalsFiltersModel, useClass: VitalsFiltersModel, deps: [FilterEventService]},
-                {provide: CardiacFiltersModel, useClass: CardiacFiltersModel, deps: [FilterEventService]},
-                {provide: LungFunctionFiltersModel, useClass: LungFunctionFiltersModel, deps: [FilterEventService]},
-                {provide: ExacerbationsFiltersModel, useClass: ExacerbationsFiltersModel, deps: [FilterEventService]},
-                {provide: PatientDataFiltersModel, useClass: PatientDataFiltersModel, deps: [FilterEventService]}
-            ]
-        });
+    imports: [],
+    providers: [
+        { provide: EnvService, useValue: new MockEnvService() },
+        TrackUtilDataService,
+        StatusTrackDataService,
+        AesTrackDataService,
+        AesTrackDataTransformer,
+        DoseTrackDataTransformer,
+        ConmedsTrackDataTransformer,
+        ExacerbationsTrackDataTransformer,
+        EcgTrackDataTransformer,
+        VitalsTrackDataTransformer,
+        PatientDataTrackDataTransformer,
+        LabsTrackDataService,
+        LabsTrackDataTransformer,
+        TrackUtilDataTransformer,
+        StatusTrackDataTransformer,
+        SpirometryTrackDataTransformer,
+        SessionHttpService,
+        FilterHttpService,
+        TrackDataService,
+        DoseTrackDataService,
+        ConmedsTrackDataService,
+        ExacerbationsTrackDataService,
+        EcgTrackDataService,
+        VitalsTrackDataService,
+        SpirometryTrackDataService,
+        PatientDataTrackDataService,
+        { provide: DatasetViews, useClass: MockDatasetViews },
+        { provide: SessionEventService, useClass: MockSessionEventService },
+        { provide: FilterEventService, useClass: MockFilterEventService },
+        { provide: PopulationFiltersModel, useClass: PopulationFiltersModel, deps: [FilterEventService] },
+        { provide: LungFunctionFiltersModel, useClass: LungFunctionFiltersModel, deps: [FilterEventService] },
+        { provide: AesFiltersModel, useClass: AesFiltersModel, deps: [FilterEventService] },
+        { provide: ConmedsFiltersModel, useClass: ConmedsFiltersModel, deps: [FilterEventService] },
+        { provide: DoseFiltersModel, useClass: DoseFiltersModel, deps: [FilterEventService] },
+        { provide: LabsFiltersModel, useClass: LabsFiltersModel, deps: [FilterEventService] },
+        { provide: VitalsFiltersModel, useClass: VitalsFiltersModel, deps: [FilterEventService] },
+        { provide: CardiacFiltersModel, useClass: CardiacFiltersModel, deps: [FilterEventService] },
+        { provide: LungFunctionFiltersModel, useClass: LungFunctionFiltersModel, deps: [FilterEventService] },
+        { provide: ExacerbationsFiltersModel, useClass: ExacerbationsFiltersModel, deps: [FilterEventService] },
+        { provide: PatientDataFiltersModel, useClass: PatientDataFiltersModel, deps: [FilterEventService] },
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting()
+    ]
+});
     });
 
     let subjects: ISubject[] = [];

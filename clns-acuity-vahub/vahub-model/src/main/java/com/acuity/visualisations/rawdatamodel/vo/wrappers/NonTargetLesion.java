@@ -30,7 +30,7 @@ import java.io.Serializable;
 import java.util.OptionalInt;
 
 @ToString(callSuper = true)
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = false)
 public final class NonTargetLesion extends SubjectAwareWrapper<NonTargetLesionRaw> implements Serializable {
 
     public NonTargetLesion(NonTargetLesionRaw event, Subject subject) {

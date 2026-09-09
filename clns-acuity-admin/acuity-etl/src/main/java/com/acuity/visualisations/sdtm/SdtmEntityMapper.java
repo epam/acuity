@@ -28,6 +28,7 @@ import com.acuity.visualisations.model.output.entities.LVEF;
 import com.acuity.visualisations.model.output.entities.Laboratory;
 import com.acuity.visualisations.model.output.entities.MedDosDisc;
 import com.acuity.visualisations.model.output.entities.MedDosingSchedule;
+import com.acuity.visualisations.model.output.entities.MedicalHistory;
 import com.acuity.visualisations.model.output.entities.Medicine;
 import com.acuity.visualisations.model.output.entities.Patient;
 import com.acuity.visualisations.model.output.entities.PrimaryTumourLocation;
@@ -113,16 +114,22 @@ public class SdtmEntityMapper {
         try {
             if (!isEmpty(val)) {
                 Temporal value = sdtmDateParser.parse(val);
-                if (value instanceof LocalDate) {
-                    LocalDateTime.from(value);
-                } else if (value instanceof LocalDateTime) {
+                if (value instanceof LocalDateTime) {
                     return (LocalDateTime) value;
                 }
+                // Some formats may parse to a LocalDate (date-only). Use start of day in system default zone.
+                if (value instanceof LocalDate) {
+                    return ((LocalDate) value).atStartOfDay();
+                }
             }
-            return null;
-        } catch (Exception e) {
-            return null;
+        } catch (Exception ignored) {
+            // fall through to ISO-8601 parser attempts below
         }
+        // Fallbacks for common ISO-8601 forms produced by SDTM (with timezone offsets / Z suffix)
+        try { return java.time.OffsetDateTime.parse(val).toLocalDateTime(); } catch (Exception ignored) {}
+        try { return java.time.ZonedDateTime.parse(val).toLocalDateTime(); } catch (Exception ignored) {}
+        try { return LocalDateTime.parse(val); } catch (Exception ignored) {}
+        return null;
     }
 
     private BigDecimal parseBigDecimal(Double val) {
@@ -573,6 +580,7 @@ public class SdtmEntityMapper {
         entity.setVisit(parseBigDecimal(sdtmEntity.getVisitnum()));
         entity.setDate(parseLocalDateTime(sdtmEntity.getLbdtc()));
         entity.setSubject(SdtmParsers.parseSubject(sdtmKey.getSubjectId()));
+        entity.setDomain("LB");
         return entity;
     }
 
@@ -581,6 +589,7 @@ public class SdtmEntityMapper {
         entity.setVisit(parseBigDecimal(sdtmEntity.getVisitnum()));
         entity.setDate(parseLocalDateTime(sdtmEntity.getVsdtc()));
         entity.setSubject(SdtmParsers.parseSubject(sdtmKey.getSubjectId()));
+        entity.setDomain("VS");
         return entity;
     }
 
@@ -589,6 +598,7 @@ public class SdtmEntityMapper {
         entity.setVisit(parseBigDecimal(sdtmEntity.getVisitnum()));
         entity.setDate(parseLocalDateTime(sdtmEntity.getEgdtc()));
         entity.setSubject(SdtmParsers.parseSubject(sdtmKey.getSubjectId()));
+        entity.setDomain("EG");
         return entity;
     }
 
@@ -597,6 +607,7 @@ public class SdtmEntityMapper {
         entity.setVisit(parseBigDecimal(sdtmEntity.getVisitnum()));
         entity.setDate(parseLocalDateTime(sdtmEntity.getZedtc()));
         entity.setSubject(SdtmParsers.parseSubject(sdtmKey.getSubjectId()));
+        entity.setDomain("ZE");
         return entity;
     }
 
@@ -614,6 +625,8 @@ public class SdtmEntityMapper {
         entity.setRefLow(parseBigDecimal(sdtmEntity.getLbstnrlo()));
         entity.setRefHigh(parseBigDecimal(sdtmEntity.getLbstnrhi()));
 
+        entity.setDomain("LB");
+
         return entity;
     }
 
@@ -628,6 +641,9 @@ public class SdtmEntityMapper {
         entity.setTestName(sdtmEntity.getVstest());
         entity.setTestResult(parseBigDecimal(sdtmEntity.getVsstresn()));
         entity.setResultUnit(sdtmEntity.getVsstresu());
+
+        entity.setDomain("VS");
+
         return entity;
     }
 
@@ -682,6 +698,8 @@ public class SdtmEntityMapper {
         entity.setMethodOther(StringUtils.isEmpty(sdtmEntity.getEgmethod()) ? null
                 : (isLvefMethodValid(sdtmEntity.getEgmethod()) ? null : sdtmEntity.getEgmethod()));
 
+        entity.setDomain("EG");
+
         return entity;
     }
 
@@ -698,6 +716,8 @@ public class SdtmEntityMapper {
                 : (isLvefMethodValid(sdtmEntity.getZemethod()) ? sdtmEntity.getZemethod() : "Other"));
         entity.setMethodOther(StringUtils.isEmpty(sdtmEntity.getZemethod()) ? null
                 : (isLvefMethodValid(sdtmEntity.getZemethod()) ? null : sdtmEntity.getZemethod()));
+
+        entity.setDomain("ZE");
 
         return entity;
     }
@@ -717,6 +737,19 @@ public class SdtmEntityMapper {
                 entity.setOriginalDiagnosisDate(parseLocalDateTime(mhItem.getMhstdtc()));
             }
         }
+        return entity;
+    }
+
+    public MedicalHistory mapMedicalHistory(SdtmEntityMH sdtmEntity, SdtmKey sdtmKey) throws InvalidDataFormatException {
+        MedicalHistory entity = new MedicalHistory();
+        entity.setStudyName(sdtmKey.getStudyId());
+        entity.setSubject(SdtmParsers.parseSubject(sdtmKey.getSubjectId()));
+        entity.setTerm(sdtmEntity.getMhterm());
+        entity.setCategory(sdtmEntity.getMhscat());
+        entity.setPtName(sdtmEntity.getMhdecod());
+        entity.setSocName(sdtmEntity.getMhbodsys());
+        entity.setStartDate(parseLocalDateTime(sdtmEntity.getMhstdtc()));
+        entity.setEndDate(parseLocalDateTime(sdtmEntity.getMhendtc()));
         return entity;
     }
 

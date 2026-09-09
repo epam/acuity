@@ -25,10 +25,12 @@ import com.acuity.visualisations.rawdatamodel.vo.QtProlongationRaw;
 import com.acuity.visualisations.rawdatamodel.vo.StudyInfoAdministrationDetail;
 import com.acuity.visualisations.rawdatamodel.vo.Subject;
 import com.acuity.visualisations.rawdatamodel.vo.wrappers.QtProlongation;
-import org.assertj.core.api.JUnitSoftAssertions;
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
+import org.assertj.core.api.SoftAssertions;
+import org.assertj.core.api.junit.jupiter.InjectSoftAssertions;
+import org.assertj.core.api.junit.jupiter.SoftAssertionsExtension;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -42,10 +44,11 @@ import static com.google.common.collect.Lists.newArrayList;
 import static java.lang.Boolean.FALSE;
 import static java.lang.Boolean.TRUE;
 import static java.util.Collections.emptyList;
-import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.anyCollectionOf;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyCollection;
 import static org.mockito.Mockito.when;
 
+@ExtendWith(SoftAssertionsExtension.class)
 public class QtProlongationModuleMetadataTest {
     @InjectMocks
     private QtProlongationModuleMetadata qtProlongationModuleMetadata;
@@ -55,10 +58,10 @@ public class QtProlongationModuleMetadataTest {
     private DoDCommonService doDCommonService;
     @Mock
     private StudyInfoRepository studyInfoRepository;
-    @Rule
-    public final JUnitSoftAssertions softly = new JUnitSoftAssertions();
+    @InjectSoftAssertions
+    private SoftAssertions softly;
 
-    @Before
+    @BeforeEach
     public void setup() {
         MockitoAnnotations.initMocks(this);
         qtProlongationModuleMetadata.datasetsDataProvider
@@ -74,7 +77,7 @@ public class QtProlongationModuleMetadataTest {
                 new QtProlongation(QtProlongationRaw.builder().build(), new Subject()),
                 new QtProlongation(QtProlongationRaw.builder().alertLevel("High").build(), new Subject()),
                 new QtProlongation(QtProlongationRaw.builder().alertLevel("Low").build(), new Subject())));
-        when(doDCommonService.getDoDColumns(any(Column.DatasetType.class), anyCollectionOf(QtProlongation.class)))
+        when(doDCommonService.getDoDColumns(any(Column.DatasetType.class), anyCollection()))
                 .thenReturn(new HashMap<>());
 
 
@@ -87,7 +90,7 @@ public class QtProlongationModuleMetadataTest {
     @Test
     public void shouldGetMetadataNoData() {
         when(qtProlongationDatasetsDataProvider.loadData(DUMMY_ACUITY_DATASETS)).thenReturn(emptyList());
-        when(doDCommonService.getDoDColumns(any(Column.DatasetType.class), anyCollectionOf(QtProlongation.class)))
+        when(doDCommonService.getDoDColumns(any(Column.DatasetType.class), anyCollection()))
                 .thenReturn(new HashMap<>());
 
         MetadataItem metadataItem = qtProlongationModuleMetadata.getMetadataItem(DUMMY_ACUITY_DATASETS);

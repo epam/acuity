@@ -22,8 +22,8 @@ import java.time.temporal.Temporal;
 import java.util.Calendar;
 import java.util.Date;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import com.acuity.visualisations.exception.InvalidDataFormatException;
 import com.acuity.visualisations.transform.rule.ParserRule;
@@ -38,10 +38,10 @@ public class DateParserTest {
         Temporal date = dateParser.parse(dateStr);
 
 
-        Assert.assertEquals(date.getClass(), LocalDateTime.class);
-        Assert.assertEquals(22, ((LocalDateTime)date).getDayOfMonth());
-        Assert.assertEquals(Month.JULY, ((LocalDateTime)date).getMonth());
-        Assert.assertEquals(2013, ((LocalDateTime)date).getYear());
+        Assertions.assertEquals(date.getClass(), LocalDateTime.class);
+        Assertions.assertEquals(22, ((LocalDateTime)date).getDayOfMonth());
+        Assertions.assertEquals(Month.JULY, ((LocalDateTime)date).getMonth());
+        Assertions.assertEquals(2013, ((LocalDateTime)date).getYear());
     }
 
 	@Test
@@ -51,10 +51,10 @@ public class DateParserTest {
 		DateParser dateParser = new DateParser(ParserRule.DAY_FIRST);
 		Temporal date = dateParser.parse(dateStr);
 
-		Assert.assertEquals(date.getClass(), LocalDateTime.class);
-		Assert.assertEquals(1, ((LocalDateTime)date).getDayOfMonth());
-		Assert.assertEquals(Month.JANUARY, ((LocalDateTime)date).getMonth());
-		Assert.assertEquals(2012, ((LocalDateTime)date).getYear());
+		Assertions.assertEquals(date.getClass(), LocalDateTime.class);
+		Assertions.assertEquals(1, ((LocalDateTime)date).getDayOfMonth());
+		Assertions.assertEquals(Month.JANUARY, ((LocalDateTime)date).getMonth());
+		Assertions.assertEquals(2012, ((LocalDateTime)date).getYear());
 	}
 
 	@Test
@@ -64,10 +64,10 @@ public class DateParserTest {
 		DateParser dateParser = new DateParser(ParserRule.DAY_FIRST);
 		Temporal date = dateParser.parse(dateStr);
 
-		Assert.assertEquals(date.getClass(), LocalDateTime.class);
-		Assert.assertEquals(1, ((LocalDateTime)date).getDayOfMonth());
-		Assert.assertEquals(Month.JANUARY, ((LocalDateTime)date).getMonth());
-		Assert.assertEquals(2012, ((LocalDateTime)date).getYear());
+		Assertions.assertEquals(date.getClass(), LocalDateTime.class);
+		Assertions.assertEquals(1, ((LocalDateTime)date).getDayOfMonth());
+		Assertions.assertEquals(Month.JANUARY, ((LocalDateTime)date).getMonth());
+		Assertions.assertEquals(2012, ((LocalDateTime)date).getYear());
 	}
 
     @Test
@@ -79,10 +79,10 @@ public class DateParserTest {
 		Temporal date = dateParser.parse(dateStr);
 
 
-		Assert.assertEquals(date.getClass(), LocalDateTime.class);
-		Assert.assertEquals(30, ((LocalDateTime)date).getDayOfMonth());
-		Assert.assertEquals(Month.MARCH, ((LocalDateTime)date).getMonth());
-		Assert.assertEquals(2014, ((LocalDateTime)date).getYear());
+		Assertions.assertEquals(date.getClass(), LocalDateTime.class);
+		Assertions.assertEquals(30, ((LocalDateTime)date).getDayOfMonth());
+		Assertions.assertEquals(Month.MARCH, ((LocalDateTime)date).getMonth());
+		Assertions.assertEquals(2014, ((LocalDateTime)date).getYear());
     }
 
 	@Test
@@ -95,12 +95,12 @@ public class DateParserTest {
 
 		DateParser dateParser = new DateParser(ParserRule.DAY_FIRST);
 		Temporal parsed = dateParser.parse(dateStr);
-		Assert.assertEquals(parsed.getClass(), LocalDateTime.class);
+		Assertions.assertEquals(parsed.getClass(), LocalDateTime.class);
 		Date parsedDate = Date.from(((LocalDateTime)parsed).toLocalDate().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
 
 		String expectedDateStr = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG).format(expectedDate);
 		String parsedDateStr = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG).format(parsedDate);
-		Assert.assertTrue("Expected: " + expectedDateStr + ", parsed: " + parsedDateStr, parsedDate.compareTo(expectedDate) == 0);
+		Assertions.assertTrue(parsedDate.compareTo(expectedDate) == 0, "Expected: " + expectedDateStr + ", parsed: " + parsedDateStr);
 	}
 	@Test
 	public void test2() throws InvalidDataFormatException {
@@ -112,12 +112,12 @@ public class DateParserTest {
 
 		DateParser dateParser = new DateParser(ParserRule.DAY_FIRST);
 		Temporal parsed = dateParser.parse(dateStr);
-		Assert.assertEquals(parsed.getClass(), LocalDateTime.class);
+		Assertions.assertEquals(parsed.getClass(), LocalDateTime.class);
 		Date parsedDate = Date.from(((LocalDateTime) parsed).toLocalDate().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
 
 		String expectedDateStr = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG).format(expectedDate);
 		String parsedDateStr = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG).format(parsedDate);
-		Assert.assertTrue("Expected: " + expectedDateStr + ", parsed: " + parsedDateStr, parsedDate.compareTo(expectedDate) == 0);
+		Assertions.assertTrue(parsedDate.compareTo(expectedDate) == 0, "Expected: " + expectedDateStr + ", parsed: " + parsedDateStr);
 	}
 
 //	@Test
@@ -126,11 +126,11 @@ public class DateParserTest {
 //
 //		DateParser dateParser = new DateParser(ParserRule.DAY_FIRST);
 //		Temporal parsed = dateParser.parse(dateStr);
-//		Assert.assertEquals(parsed.getClass(), LocalTime.class);
+//		Assertions.assertEquals(parsed.getClass(), LocalTime.class);
 //
-//		Assert.assertEquals(12, ((LocalTime)parsed).getHour());
-//		Assert.assertEquals(20, ((LocalTime)parsed).getMinute());
-//		Assert.assertEquals(0, ((LocalTime)parsed).getSecond());
+//		Assertions.assertEquals(12, ((LocalTime)parsed).getHour());
+//		Assertions.assertEquals(20, ((LocalTime)parsed).getMinute());
+//		Assertions.assertEquals(0, ((LocalTime)parsed).getSecond());
 //
 //	}
 
@@ -144,12 +144,12 @@ public class DateParserTest {
 
 		DateParser dateParser = new DateParser(ParserRule.DAY_FIRST);
 		Temporal parsed = dateParser.parse(dateStr);
-		Assert.assertEquals(parsed.getClass(), LocalDateTime.class);
+		Assertions.assertEquals(parsed.getClass(), LocalDateTime.class);
 		Date parsedDate = Date.from(((LocalDateTime) parsed).toLocalDate().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
 
 		String expectedDateStr = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG).format(expectedDate);
 		String parsedDateStr = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG).format(parsedDate);
-		Assert.assertTrue("Expected: " + expectedDateStr + ", parsed: " + parsedDateStr, parsedDate.compareTo(expectedDate) == 0);
+		Assertions.assertTrue(parsedDate.compareTo(expectedDate) == 0, "Expected: " + expectedDateStr + ", parsed: " + parsedDateStr);
 	}
 
 	@Test
@@ -162,12 +162,12 @@ public class DateParserTest {
 
 		DateParser dateParser = new DateParser(ParserRule.DAY_FIRST);
 		Temporal parsed = dateParser.parse(dateStr);
-		Assert.assertEquals(parsed.getClass(), LocalDateTime.class);
+		Assertions.assertEquals(parsed.getClass(), LocalDateTime.class);
 		Date parsedDate = Date.from(((LocalDateTime) parsed).toLocalDate().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
 
 		String expectedDateStr = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG).format(expectedDate);
 		String parsedDateStr = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG).format(parsedDate);
-		Assert.assertTrue("Expected: " + expectedDateStr + ", parsed: " + parsedDateStr, parsedDate.compareTo(expectedDate) == 0);
+		Assertions.assertTrue(parsedDate.compareTo(expectedDate) == 0, "Expected: " + expectedDateStr + ", parsed: " + parsedDateStr);
 	}
 
 	@Test
@@ -180,12 +180,12 @@ public class DateParserTest {
 
 		DateParser dateParser = new DateParser(ParserRule.DAY_FIRST);
 		Temporal parsed = dateParser.parse(dateStr);
-		Assert.assertEquals(parsed.getClass(), LocalDateTime.class);
+		Assertions.assertEquals(parsed.getClass(), LocalDateTime.class);
 		Date parsedDate = Date.from(((LocalDateTime) parsed).toLocalDate().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
 
 		String expectedDateStr = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG).format(expectedDate);
 		String parsedDateStr = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG).format(parsedDate);
-		Assert.assertTrue("Expected: " + expectedDateStr + ", parsed: " + parsedDateStr, parsedDate.compareTo(expectedDate) == 0);
+		Assertions.assertTrue(parsedDate.compareTo(expectedDate) == 0, "Expected: " + expectedDateStr + ", parsed: " + parsedDateStr);
 	}
 
 	@Test
@@ -198,12 +198,12 @@ public class DateParserTest {
 
 		DateParser dateParser = new DateParser(ParserRule.MONTH_FIRST);
 		Temporal parsed = dateParser.parse(dateStr);
-		Assert.assertEquals(parsed.getClass(), LocalDateTime.class);
+		Assertions.assertEquals(parsed.getClass(), LocalDateTime.class);
 		Date parsedDate = Date.from(((LocalDateTime) parsed).toLocalDate().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
 
 		String expectedDateStr = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG).format(expectedDate);
 		String parsedDateStr = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG).format(parsedDate);
-		Assert.assertTrue("Expected: " + expectedDateStr + ", parsed: " + parsedDateStr, parsedDate.compareTo(expectedDate) == 0);
+		Assertions.assertTrue(parsedDate.compareTo(expectedDate) == 0, "Expected: " + expectedDateStr + ", parsed: " + parsedDateStr);
 	}
 
 	@Test
@@ -219,12 +219,12 @@ public class DateParserTest {
 		Temporal parsed = dateParser.parse(dateStr);
 		parsed = dateParser.parse(dateStr);
 		parsed = dateParser.parse(dateStr);
-		Assert.assertEquals(parsed.getClass(), LocalDateTime.class);
+		Assertions.assertEquals(parsed.getClass(), LocalDateTime.class);
 		Date parsedDate = Date.from(((LocalDateTime)parsed).toLocalDate().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
 
 		String expectedDateStr = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG).format(expectedDate);
 		String parsedDateStr = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG).format(parsedDate);
-		Assert.assertTrue("Expected: " + expectedDateStr + ", parsed: " + parsedDateStr, parsedDate.compareTo(expectedDate) == 0);
+		Assertions.assertTrue(parsedDate.compareTo(expectedDate) == 0, "Expected: " + expectedDateStr + ", parsed: " + parsedDateStr);
 	}
 
 	@Test
@@ -237,12 +237,12 @@ public class DateParserTest {
 
 		DateParser dateParser = new DateParser(ParserRule.MONTH_FIRST);
 		Temporal parsed = dateParser.parse(dateStr);
-		Assert.assertEquals(parsed.getClass(), LocalDateTime.class);
+		Assertions.assertEquals(parsed.getClass(), LocalDateTime.class);
 		Date parsedDate = Date.from(((LocalDateTime) parsed).toLocalDate().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
 
 		String expectedDateStr = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG).format(expectedDate);
 		String parsedDateStr = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG).format(parsedDate);
-		Assert.assertTrue("Expected: " + expectedDateStr + ", parsed: " + parsedDateStr, parsedDate.compareTo(expectedDate) == 0);
+		Assertions.assertTrue(parsedDate.compareTo(expectedDate) == 0, "Expected: " + expectedDateStr + ", parsed: " + parsedDateStr);
 	}
 
 	@Test
@@ -255,12 +255,12 @@ public class DateParserTest {
 
 		DateParser dateParser = new DateParser(ParserRule.MONTH_FIRST);
 		Temporal parsed = dateParser.parse(dateStr);
-		Assert.assertEquals(parsed.getClass(), LocalDateTime.class);
+		Assertions.assertEquals(parsed.getClass(), LocalDateTime.class);
 		Date parsedDate = Date.from(((LocalDateTime) parsed).toLocalDate().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
 
 		String expectedDateStr = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG).format(expectedDate);
 		String parsedDateStr = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG).format(parsedDate);
-		Assert.assertTrue("Expected: " + expectedDateStr + ", parsed: " + parsedDateStr, parsedDate.compareTo(expectedDate) == 0);
+		Assertions.assertTrue(parsedDate.compareTo(expectedDate) == 0, "Expected: " + expectedDateStr + ", parsed: " + parsedDateStr);
 	}
 
 	@Test
@@ -273,11 +273,11 @@ public class DateParserTest {
 
 		DateParser dateParser = new DateParser(ParserRule.MONTH_FIRST);
 		Temporal parsed = dateParser.parse(dateStr);
-		Assert.assertEquals(parsed.getClass(), LocalDateTime.class);
+		Assertions.assertEquals(parsed.getClass(), LocalDateTime.class);
 		Date parsedDate = Date.from(((LocalDateTime) parsed).toLocalDate().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
 
 		String expectedDateStr = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG).format(expectedDate);
 		String parsedDateStr = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG).format(parsedDate);
-		Assert.assertTrue("Expected: " + expectedDateStr + ", parsed: " + parsedDateStr, parsedDate.compareTo(expectedDate) == 0);
+		Assertions.assertTrue(parsedDate.compareTo(expectedDate) == 0, "Expected: " + expectedDateStr + ", parsed: " + parsedDateStr);
 	}
 }

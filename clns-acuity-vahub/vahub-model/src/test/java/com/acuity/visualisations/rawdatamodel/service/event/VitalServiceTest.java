@@ -43,15 +43,15 @@ import com.acuity.visualisations.rawdatamodel.vo.compatibility.TrellisedRangePlo
 import com.acuity.visualisations.rawdatamodel.vo.plots.SelectionDetail;
 import com.acuity.visualisations.rawdatamodel.vo.wrappers.Vital;
 import com.acuity.va.security.acl.domain.Datasets;
-import org.assertj.core.api.JUnitSoftAssertions;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.experimental.categories.Category;
-import org.junit.runner.RunWith;
+import org.assertj.core.api.SoftAssertions;
+import org.assertj.core.api.junit.jupiter.InjectSoftAssertions;
+import org.assertj.core.api.junit.jupiter.SoftAssertionsExtension;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
@@ -75,10 +75,10 @@ import static com.acuity.visualisations.rawdatamodel.util.DateUtils.toDate;
 import static com.google.common.collect.Lists.newArrayList;
 import static java.util.stream.Collectors.toSet;
 import static org.assertj.core.api.Assertions.tuple;
-import static org.mockito.Matchers.any;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
-@RunWith(SpringRunner.class)
+@ExtendWith({SpringExtension.class, SoftAssertionsExtension.class})
 @ContextConfiguration(classes = TestConfig.class)
 public class VitalServiceTest {
 
@@ -93,8 +93,8 @@ public class VitalServiceTest {
     @Autowired
     private DoDCommonService tableService;
 
-    @Rule
-    public final JUnitSoftAssertions softly = new JUnitSoftAssertions();
+    @InjectSoftAssertions
+    private SoftAssertions softly;
 
     private final Subject subject1 = Subject.builder()
             .clinicalStudyCode(String.valueOf(DUMMY_DETECT_DATASET.getId()))
@@ -226,7 +226,7 @@ public class VitalServiceTest {
     }
 
     @Test
-    @Category(RangeChartTests.class)
+    
     public void shouldGetRangePlotData() {
         when(vitalDatasetsDataProvider.loadData(any(Datasets.class))).thenReturn(newArrayList(vital1, vital6, vital7));
         when(populationDatasetsDataProvider.loadData(any(Datasets.class))).thenReturn(Collections.singleton(subject1));
@@ -255,7 +255,7 @@ public class VitalServiceTest {
     }
 
     @Test
-    @Category(RangeChartTests.class)
+    
     public void shouldGetRangePlotDataWithCorrectXOrder() {
         when(vitalDatasetsDataProvider.loadData(any(Datasets.class))).thenReturn(newArrayList(vital1, vital6, vital7));
         when(populationDatasetsDataProvider.loadData(any(Datasets.class))).thenReturn(Collections.singleton(subject1));

@@ -18,7 +18,7 @@ package com.acuity.visualisations.rawdatamodel.trellis.grouping;
 
 import com.acuity.visualisations.rawdatamodel.util.DaysUtil;
 import org.assertj.core.api.Assertions;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class DateBinTest {
     @Test

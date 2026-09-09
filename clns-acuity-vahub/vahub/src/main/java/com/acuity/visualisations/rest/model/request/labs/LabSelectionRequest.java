@@ -23,7 +23,7 @@ import com.acuity.visualisations.rawdatamodel.vo.wrappers.Lab;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
@@ -32,4 +32,8 @@ public class LabSelectionRequest extends LabsRequest {
     @NotNull
     private ChartSelection<Lab, LabGroupByOptions, ChartSelectionItemRange<Lab, LabGroupByOptions, Double>> selection;
 
+
+    public ChartSelection<Lab, LabGroupByOptions, ChartSelectionItemRange<Lab, LabGroupByOptions, Double>> getSelection() {
+        return selection;
+    }
 }

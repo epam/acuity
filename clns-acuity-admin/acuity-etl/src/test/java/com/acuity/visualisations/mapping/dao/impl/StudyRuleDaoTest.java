@@ -18,8 +18,8 @@ package com.acuity.visualisations.mapping.dao.impl;
 
 
 import com.acuity.visualisations.mapping.StudyType;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -38,28 +38,28 @@ public class StudyRuleDaoTest {
         StudyType fff = new StudyType(false, false, false);
 
         //Check empty
-        Assert.assertEquals(sql,
+        Assertions.assertEquals(sql,
                 StudyRuleDao.createSqlSelectStudyRules(Collections.<StudyType>emptyList()));
 
-        Assert.assertEquals(sql,
+        Assertions.assertEquals(sql,
                 StudyRuleDao.createSqlSelectStudyRules(Arrays.asList(nnn)));
 
-        Assert.assertEquals(sql,
+        Assertions.assertEquals(sql,
                 StudyRuleDao.createSqlSelectStudyRules(Arrays.asList(nnn, nnn)));
 
-        Assert.assertEquals(sql + " and ((MSR_RANDOMISED=true and MSR_REGULATORY=true))",
+        Assertions.assertEquals(sql + " and ((MSR_RANDOMISED=true and MSR_REGULATORY=true))",
                 StudyRuleDao.createSqlSelectStudyRules(Arrays.asList(ntt)));
 
-        Assert.assertEquals(sql + " and ((MSR_REGULATORY=true))",
+        Assertions.assertEquals(sql + " and ((MSR_REGULATORY=true))",
                 StudyRuleDao.createSqlSelectStudyRules(Arrays.asList(nnt)));
 
-        Assert.assertEquals(sql + " and ((MSR_BLINDED=true and MSR_REGULATORY=true))",
+        Assertions.assertEquals(sql + " and ((MSR_BLINDED=true and MSR_REGULATORY=true))",
                 StudyRuleDao.createSqlSelectStudyRules(Arrays.asList(tnt)));
 
-        Assert.assertEquals(sql + " and ((MSR_BLINDED=true and MSR_RANDOMISED=true and MSR_REGULATORY=true))",
+        Assertions.assertEquals(sql + " and ((MSR_BLINDED=true and MSR_RANDOMISED=true and MSR_REGULATORY=true))",
                 StudyRuleDao.createSqlSelectStudyRules(Arrays.asList(ttt)));
 
-        Assert.assertEquals(sql + " and ((MSR_BLINDED=true and MSR_RANDOMISED=true and MSR_REGULATORY=true) or (MSR_BLINDED=false and MSR_RANDOMISED=false and MSR_REGULATORY=false))",
+        Assertions.assertEquals(sql + " and ((MSR_BLINDED=true and MSR_RANDOMISED=true and MSR_REGULATORY=true) or (MSR_BLINDED=false and MSR_RANDOMISED=false and MSR_REGULATORY=false))",
                 StudyRuleDao.createSqlSelectStudyRules(Arrays.asList(ttt, fff)));
 
     }

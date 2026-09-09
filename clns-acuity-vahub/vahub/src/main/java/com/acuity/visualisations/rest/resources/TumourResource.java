@@ -51,8 +51,6 @@ import com.acuity.visualisations.rest.model.request.tumour.TumourTldRequest;
 import com.acuity.visualisations.rest.model.request.DetailsOnDemandRequest;
 import com.acuity.visualisations.rest.model.request.SubjectIdsRequest;
 import com.acuity.visualisations.rest.util.Constants;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;
@@ -61,8 +59,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.http.HttpServletResponse;
-import javax.validation.Valid;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.validation.Valid;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
@@ -94,12 +92,6 @@ public class TumourResource {
     @Autowired
     private TumourColumnRangeService tumourColumnRangeService;
 
-    @ApiOperation(
-            value = "Gets the available trellising and options",
-            nickname = "availableTrellising",
-            response = List.class,
-            httpMethod = "POST"
-    )
     @RequestMapping(value = "/trellising", method = POST)
     @Cacheable(condition = Constants.EMPTY_EVENT_AND_POPULATION_FILTER)
     public Set<GroupByOption> getAvailableTrellising(@RequestBody @Valid TumourRequest requestBody) {
@@ -112,13 +104,6 @@ public class TumourResource {
      * @param requestBody selected target lesion filters by client
      * @return available target lesion filters
      */
-    @ApiOperation(
-            value = "Gets the available target lesion filters for the currently selected target lesion filters"
-                    + "for the waterfall plot",
-            nickname = "getAvailableWaterfallFilters",
-            response = AssessedTargetLesionFilters.class,
-            httpMethod = "POST"
-    )
     @RequestMapping(value = "/waterfall-filters", method = POST)
     @Cacheable(condition = Constants.EMPTY_EVENT_AND_POPULATION_FILTER)
     public Filters<AssessedTargetLesion> getAvailableWaterfallFilters(
@@ -135,16 +120,9 @@ public class TumourResource {
                 requestBody.getPopulationFilters(), getWaterfallSettingsPatched(yAxis, null, needToAddBestResponseEvents));
     }
 
-    @ApiOperation(
-            value = "Gets the subjects in available target lesion filters for the currently selected target lesion and population filters",
-            nickname = "getSubjects",
-            response = TumourRequest.class,
-            httpMethod = "POST"
-    )
     @RequestMapping(value = "/filters-subjects", method = POST)
     @Cacheable(condition = Constants.EMPTY_EVENT_AND_POPULATION_FILTER)
     public List<String> getSubjects(
-            @ApiParam(value = "TumourRequest: Target lesion and Population Filters e.g. {tumourFilters : {}, populationFilters: {}}", required = true)
             @RequestBody TumourRequest requestBody) {
         return tumourWaterfallService.getSubjects(requestBody.getDatasetsObject(),
                 requestBody.getEventFilters(), requestBody.getPopulationFilters());
@@ -160,33 +138,17 @@ public class TumourResource {
                         requestBody.getPopulationFilters(), requestBody.getTherapiesSettings());
     }
 
-    @ApiOperation(
-            value = "Gets the subjects in available 'Prior therapy vs ToC' filters for the currently selected therapy and population filters",
-            nickname = "getTherapySubjects",
-            response = List.class,
-            httpMethod = "POST"
-    )
     @RequestMapping(value = "/therapy-filters-subjects", method = POST)
     @Cacheable(condition = Constants.EMPTY_EVENT_AND_POPULATION_FILTER)
     public List<String> getTherapySubjects(
-            @ApiParam(value = "TherapyRequest: Therapy and Population Filters e.g. {therapyFilters : {}, populationFilters: {}}", required = true)
             @RequestBody TumourTherapyRequest requestBody) {
         return tumourColumnRangeService.getSubjects(requestBody.getDatasetsObject(),
                 requestBody.getEventFilters(), requestBody.getPopulationFilters());
     }
 
-    @ApiOperation(
-            value = "Gets the best change in target lesion diameter for each subject on the waterfall chart",
-            nickname = "getTumourDataOnWaterfall",
-            response = List.class,
-            httpMethod = "POST"
-    )
     @RequestMapping(value = "/waterfall", method = POST)
     @Cacheable(condition = Constants.EMPTY_EVENT_AND_POPULATION_FILTER)
     public List<TrellisedWaterfallChart<AssessedTargetLesion, ATLGroupByOptions>> getTumourBestChangeOnWaterfall(
-            @ApiParam(value = "TumourRequest: Request parameters for plots e.g. "
-                    + "{trellising : [{trellisedBy: 'SUBJECT', options: ['subject1, subject2']}], "
-                    + "tumourFilters: {}, populationFilters: {}}", required = true)
             @RequestBody TumourTldRequest requestBody) {
 
         return tumourWaterfallService.getTumourDataOnWaterfall(requestBody.getDatasetsObject(),
@@ -220,18 +182,9 @@ public class TumourResource {
                 requestBody.getPopulationFilters());
     }
 
-    @ApiOperation(
-            value = "Gets the time on compound vs previous therapy for subjects on the column range chart",
-            nickname = "getTumourTherapyOnColumnRange",
-            response = List.class,
-            httpMethod = "POST"
-    )
     @RequestMapping(value = "/prior-therapy", method = POST)
     @Cacheable(condition = Constants.EMPTY_EVENT_AND_POPULATION_FILTER)
     public List<TrellisedColumnRangeChart<Subject, PopulationGroupByOptions>> getTumourTherapyOnColumnRange(
-            @ApiParam(value = "TumourRequest: Request parameters for plots e.g. "
-                    + "{trellising : [{trellisedBy: 'SUBJECT', options: ['subject1, subject2']}], "
-                    + "therapyFilters: {}, populationFilters: {}}", required = true)
             @RequestBody TumourColumnRangeRequest requestBody) {
 
         return tumourColumnRangeService.getTumourTherapyOnColumnRange(requestBody.getDatasetsObject(),
@@ -269,18 +222,9 @@ public class TumourResource {
                 requestBody.getPopulationFilters(), requestBody.getSelection());
     }
 
-    @ApiOperation(
-            value = "Gets all changes in target lesion diameter for each subject over time on linechart",
-            nickname = "getTumourChangesOverTimeOnLinechart",
-            response = List.class,
-            httpMethod = "POST"
-    )
     @RequestMapping(value = "/linechart", method = POST)
     @Cacheable(condition = Constants.EMPTY_EVENT_AND_POPULATION_FILTER)
     public List<TrellisedLineFloatChart<AssessedTargetLesion, ATLGroupByOptions, OutputLineChartData>> getTumourChangesOverTimeOnLinechart(
-            @ApiParam(value = "TumourLinechartRequest: Request parameters for the waterfall plots e.g. "
-                    + "{trellising : [{trellisedBy: 'SUBJECT', options: ['subject1, subject2']}], "
-                    + "tumourFilters: {}, populationFilters: {}}", required = true)
             @RequestBody TumourTldRequest requestBody) {
 
         return tumourLineChartService.getTumourAllChangesOnLinechart(requestBody.getDatasetsObject(),
@@ -288,12 +232,6 @@ public class TumourResource {
                         .getSettings()));
     }
 
-    @ApiOperation(
-            value = "Gets all changes in target lesion diameter for each subject over time on linechart",
-            nickname = "getTumourChangesOverTimeOnLinechart",
-            response = List.class,
-            httpMethod = "POST"
-    )
     @RequestMapping(value = "/linechart-by-lesion", method = POST)
     @Cacheable(condition = Constants.EMPTY_EVENT_AND_POPULATION_FILTER)
     public List<TrellisedLineFloatChart<AssessedTargetLesion, ATLGroupByOptions, OutputLineChartData>> getTLDOverTimeLinechartByLesion(
@@ -389,15 +327,8 @@ public class TumourResource {
         return ChartGroupByOptionsFiltered.builder(settings).build();
     }
 
-    @ApiOperation(
-            value = "Retrieve selection details over selected TL diameters at linechart",
-            nickname = "getSelectionDetailOverLinechartDiameters",
-            response = SelectionDetail.class,
-            httpMethod = "POST"
-    )
     @RequestMapping(value = "/linechart/selection", method = POST)
     public SelectionDetail getSelectionDetailOverLinechartDiameters(
-            @ApiParam(value = "TumourSelectionRequest: Request parameters for obtaining selection details", required = true)
             @RequestBody
                     TumourSelectionRequest requestBody) {
 
@@ -416,9 +347,7 @@ public class TumourResource {
 
     @RequestMapping(value = "/linechart-xaxis", method = POST)
     @Cacheable(condition = Constants.EMPTY_EVENT_AND_POPULATION_FILTER)
-    public AxisOptions<ATLGroupByOptions> getLineChartXAxis(@ApiParam(
-            value = "TumourRequest:  Tumour and Population Filters e.g. {tumourFilters : {}, populationFilters: {}}", required = true)
-                                                            @RequestBody @Valid TumourRequest requestBody) {
+    public AxisOptions<ATLGroupByOptions> getLineChartXAxis(@RequestBody @Valid TumourRequest requestBody) {
         return tumourLineChartService.getAvailableLineChartXAxis(requestBody.getDatasetsObject(),
                 requestBody.getEventFilters(),
                 requestBody.getPopulationFilters());
@@ -426,9 +355,7 @@ public class TumourResource {
 
     @RequestMapping(value = "/linechart-by-lesion-xaxis", method = POST)
     @Cacheable(condition = Constants.EMPTY_EVENT_AND_POPULATION_FILTER)
-    public AxisOptions<ATLGroupByOptions> getLineChartByLesionXAxis(@ApiParam(
-            value = "TumourRequest:  Tumour and Population Filters e.g. {tumourFilters : {}, populationFilters: {}}", required = true)
-                                                                    @RequestBody @Valid TumourRequest requestBody) {
+    public AxisOptions<ATLGroupByOptions> getLineChartByLesionXAxis(@RequestBody @Valid TumourRequest requestBody) {
         return tumourLineChartService.getAvailableLineChartByLesionXAxis(requestBody.getDatasetsObject(),
                 requestBody.getEventFilters(),
                 requestBody.getPopulationFilters());
@@ -442,12 +369,6 @@ public class TumourResource {
                 requestBody.getStart(), (long) requestBody.getEnd() - requestBody.getStart());
     }
 
-    @ApiOperation(
-            value = "Downloads all of the data for the details on demand table",
-            nickname = "downloadAllDetailsOnDemandData",
-            response = List.class,
-            httpMethod = "POST"
-    )
     @RequestMapping(value = "/download-details-on-demand", method = POST)
     public void downloadAllDetailsOnDemandData(@RequestBody @Valid TumourRequest requestBody,
                                                HttpServletResponse response) throws IOException {
@@ -462,12 +383,6 @@ public class TumourResource {
         response.setContentType("txt/csv");
     }
 
-    @ApiOperation(
-            value = "Downloads data for the details on demand table for the selected IDs",
-            nickname = "downloadSelectedDetailsOnDemandData",
-            response = List.class,
-            httpMethod = "POST"
-    )
     @RequestMapping(value = "/download-selected-details-on-demand", method = POST)
     public void downloadSelectedDetailsOnDemandData(@RequestBody @Valid DetailsOnDemandRequest requestBody,
                                                     HttpServletResponse response) throws IOException {
@@ -478,7 +393,6 @@ public class TumourResource {
     }
     @RequestMapping(value = "/selection-by-subjectids", method = POST)
     public SelectionDetail getSelectionBySubjectIds(
-            @ApiParam(value = "SubjectIdsRequest: Current datasets and subjects ids", required = true)
             @RequestBody SubjectIdsRequest requestBody) {
         return tumourLineChartService.getSelectionBySubjectIds(requestBody.getDatasetsObject(), requestBody.getSubjectIds());
     }

@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
-import {HttpClientTestingModule} from '@angular/common/http/testing';
-import {HttpClient} from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import {ComponentFixture, ComponentFixtureAutoDetect, inject, TestBed} from '@angular/core/testing';
-import {AgGridModule} from 'ag-grid-angular/main';
+import {AgGridModule} from 'ag-grid-angular';
 
 import {AesFiltersModel, FilterEventService, PopulationFiltersModel} from '../../../filters/module';
 import {DropdownComponentModule, StudyService} from '../../../common/module';
@@ -44,35 +44,34 @@ describe('GIVEN AesTableComponent', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            declarations: [AesTableComponent],
-            imports: [
-                HttpClientTestingModule,
-                DropdownComponentModule,
-                ModalMessageComponentModule,
-                AgGridModule.withComponents([
-                    AesTableComponent
-                ])
-            ],
-            providers: [
-                AesTableDropdownModel,
-                FilterEventService,
-                HttpClient,
-                {provide: SessionEventService, useClass: MockSessionEventService},
-                {provide: ComponentFixtureAutoDetect, useValue: true},
-                {provide: FilterEventService, useClass: MockFilterEventService},
-                {provide: TrellisingDispatcher, useClass: MockTrellisingDispatcher},
-                {provide: TimelineDispatcher, useClass: MockTimelineDispatcher},
-                {provide: StudyService, useClass: MockStudyService},
-                {provide: PopulationFiltersModel, useClass: PopulationFiltersModel, deps: [FilterEventService]},
-                {provide: AesFiltersModel, useClass: AesFiltersModel, deps: [FilterEventService]},
-                {
-                    provide: AesTableHttpService,
-                    useClass: AesTableHttpService,
-                    deps: [HttpClient, PopulationFiltersModel, AesFiltersModel]
-                },
-                AesTableServiceCommunity
-            ]
-        });
+    declarations: [AesTableComponent],
+    imports: [DropdownComponentModule,
+        ModalMessageComponentModule,
+        AgGridModule.withComponents([
+            AesTableComponent
+        ])],
+    providers: [
+        AesTableDropdownModel,
+        FilterEventService,
+        HttpClient,
+        { provide: SessionEventService, useClass: MockSessionEventService },
+        { provide: ComponentFixtureAutoDetect, useValue: true },
+        { provide: FilterEventService, useClass: MockFilterEventService },
+        { provide: TrellisingDispatcher, useClass: MockTrellisingDispatcher },
+        { provide: TimelineDispatcher, useClass: MockTimelineDispatcher },
+        { provide: StudyService, useClass: MockStudyService },
+        { provide: PopulationFiltersModel, useClass: PopulationFiltersModel, deps: [FilterEventService] },
+        { provide: AesFiltersModel, useClass: AesFiltersModel, deps: [FilterEventService] },
+        {
+            provide: AesTableHttpService,
+            useClass: AesTableHttpService,
+            deps: [HttpClient, PopulationFiltersModel, AesFiltersModel]
+        },
+        AesTableServiceCommunity,
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting()
+    ]
+});
 
         fixture = TestBed.createComponent(AesTableComponent);
         component = fixture.componentInstance;

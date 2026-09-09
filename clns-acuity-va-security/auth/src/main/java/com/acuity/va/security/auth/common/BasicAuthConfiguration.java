@@ -17,49 +17,52 @@
 package com.acuity.va.security.auth.common;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.authentication.configurers.provisioning.InMemoryUserDetailsManagerConfigurer;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 @Order(2)
-public class BasicAuthConfiguration extends WebSecurityConfigurerAdapter {
+public class BasicAuthConfiguration {
 
     public static final String REMOTE_USER = "REMOTE_USER";
 
-    private BasicAuthProperties properties;
+    private final BasicAuthProperties properties;
 
     @Autowired
     public BasicAuthConfiguration(BasicAuthProperties properties) {
         this.properties = properties;
     }
 
-    @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        InMemoryUserDetailsManagerConfigurer<AuthenticationManagerBuilder> userDetailsManagerConfigurer = auth.inMemoryAuthentication();
-
-        for (BasicAuthUser user : properties.getUsers()) {
-            userDetailsManagerConfigurer
-                    .withUser(user.getUsername())
-                    .password(user.getPassword())
-                    .authorities(user.getAuthorities())
-                    .roles(user.getRoles());
-        }
+    @Bean
+    public SecurityFilterChain basicAuthFilterChain(HttpSecurity http) throws Exception {
+        http.securityMatcher("/resources/security/**")
+            .authorizeHttpRequests(auth -> auth.anyRequest().hasRole(REMOTE_USER))
+            .httpBasic(Customizer.withDefaults())
+            .csrf(csrf -> csrf.disable())
+            .anonymous(anon -> anon.disable());
+        return http.build();
     }
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http
-                .antMatcher("/resources/security/**")
-                .authorizeRequests()
-                .anyRequest().hasRole(REMOTE_USER)
-                .and()
-                .httpBasic()
-                .and()
-                .csrf().disable()
-                .anonymous().disable();
+    @Bean
+    public InMemoryUserDetailsManager basicAuthUserDetailsManager() {
+        InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
+        for (BasicAuthUser user : properties.getUsers()) {
+            String[] roles = user.getRoles() != null ? user.getRoles() : new String[0];
+            String[] auths = user.getAuthorities() != null ? user.getAuthorities() : new String[0];
+            UserDetails details = User.withUsername(user.getUsername())
+                .password("{noop}" + user.getPassword())
+                .roles(roles)
+                .authorities(auths)
+                .build();
+            manager.createUser(details);
+        }
+        return manager;
     }
 }

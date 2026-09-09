@@ -26,14 +26,15 @@ import com.acuity.visualisations.rawdatamodel.vo.LiverDiagRaw;
 import com.acuity.visualisations.rawdatamodel.vo.Subject;
 import com.acuity.visualisations.rawdatamodel.vo.wrappers.LiverDiag;
 import com.acuity.va.security.acl.domain.Datasets;
-import org.assertj.core.api.JUnitSoftAssertions;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.assertj.core.api.SoftAssertions;
+import org.assertj.core.api.junit.jupiter.InjectSoftAssertions;
+import org.assertj.core.api.junit.jupiter.SoftAssertionsExtension;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.Collections;
 import java.util.Date;
@@ -41,10 +42,10 @@ import java.util.List;
 import java.util.Map;
 
 import static org.assertj.core.groups.Tuple.tuple;
-import static org.mockito.Matchers.any;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
-@RunWith(SpringRunner.class)
+@ExtendWith({SpringExtension.class, SoftAssertionsExtension.class})
 @ContextConfiguration(classes = TestConfig.class)
 public class LiverDiagServiceTest {
     private static final String SUBJECT_ID = "sid1";
@@ -68,8 +69,8 @@ public class LiverDiagServiceTest {
     @Autowired
     private DoDCommonService doDCommonService;
 
-    @Rule
-    public final JUnitSoftAssertions softly = new JUnitSoftAssertions();
+    @InjectSoftAssertions
+    private SoftAssertions softly;
 
     private Subject SUBJECT1 = Subject.builder().subjectId(SUBJECT_ID).subjectCode(SUBJECT_ID).clinicalStudyCode(STUDY_CODE).studyPart(STUDY_PART)
             .firstTreatmentDate(DateUtils.toDate("01.03.2017"))

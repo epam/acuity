@@ -26,7 +26,7 @@ import java.io.Serializable;
 import java.util.List;
 
 @Data
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = false)
 @ToString
 public final class SubjectAesDetail extends SubjectSummary implements Serializable {
     @Builder

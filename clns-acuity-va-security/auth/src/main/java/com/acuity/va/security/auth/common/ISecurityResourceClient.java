@@ -21,9 +21,9 @@
  */
 package com.acuity.va.security.auth.common;
 
-import com.acuity.va.security.acl.domain.Dataset;
 import com.acuity.va.security.acl.domain.AcuityObjectIdentityWithPermission;
 import com.acuity.va.security.acl.domain.AcuitySidDetails;
+import com.acuity.va.security.acl.domain.Dataset;
 import org.springframework.cache.annotation.Cacheable;
 
 import java.io.IOException;

@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
-import {HttpClient} from '@angular/common/http';
-import {HttpClientTestingModule} from '@angular/common/http/testing';
+import { HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import {async, inject, TestBed} from '@angular/core/testing';
 import {RenalHttpService} from './RenalHttpService';
 import {PopulationFiltersModel, RenalFiltersModel} from '../../filters/module';
@@ -40,14 +40,16 @@ describe('GIVEN RenalHttpService', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [HttpClientTestingModule],
-            providers: [
-                {provide: HttpClient, useClass: MockHttpClient},
-                {provide: PopulationFiltersModel, useClass: MockFilterModel},
-                {provide: RenalFiltersModel, useClass: MockFilterModel},
-                {provide: RenalHttpService, useClass: RenalHttpService, deps: [HttpClient, PopulationFiltersModel, RenalFiltersModel]},
-            ]
-        });
+    imports: [],
+    providers: [
+        { provide: HttpClient, useClass: MockHttpClient },
+        { provide: PopulationFiltersModel, useClass: MockFilterModel },
+        { provide: RenalFiltersModel, useClass: MockFilterModel },
+        { provide: RenalHttpService, useClass: RenalHttpService, deps: [HttpClient, PopulationFiltersModel, RenalFiltersModel] },
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+    ]
+});
     });
 
     describe('WHEN we download all the details on demand data', () => {

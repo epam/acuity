@@ -50,7 +50,6 @@ export abstract class CanDeactivateBase {
     }
 
     setAsPopulation(): void {
-        console.log('Set as population');
         this.filtersService.getSubjectsInFilters(this.filterId).subscribe((subjectIds) => {
             this.populationFiltersModel.setAsPopulation(subjectIds);
         });

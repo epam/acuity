@@ -40,15 +40,16 @@ const COLLAPSED_HEIGHT = 48;
 @Component({
     selector: 'selected-filters',
     templateUrl: 'SelectedFiltersComponent.html',
-    styleUrls: ['./SelectedFiltersComponent.css']
+    styleUrls: ['./SelectedFiltersComponent.css'],
+    standalone: false
 })
 export class SelectedFiltersComponent implements OnInit, OnDestroy {
 
     @Input()
     id: string;
 
-    @ViewChild('populationWidgetsContainer') populationWidgetsContainer: ElementRef;
-    @ViewChild('eventWidgetsContainer') eventWidgetsContainer: ElementRef;
+    @ViewChild('populationWidgetsContainer', { static: false }) populationWidgetsContainer: ElementRef;
+    @ViewChild('eventWidgetsContainer', { static: false }) eventWidgetsContainer: ElementRef;
     populationFiltersCollapsed: boolean;
     populationWidgetHeight: number;
     populationExpandCollapseEnabled: boolean;

@@ -17,7 +17,7 @@
 /* tslint:disable */
 
 import {BaseEventService} from './module';
-import {Response, ResponseOptions} from '@angular/http';
+
 import {PlotSettings, TabId} from './trellising/store';
 import {Subject} from 'rxjs/Subject';
 import {Observable} from 'rxjs/Observable';

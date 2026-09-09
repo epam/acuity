@@ -23,7 +23,6 @@ import com.acuity.visualisations.rawdatamodel.dataset.info.InfoService;
 import com.acuity.visualisations.rest.config.logging.EnhancedLoggingFilter;
 import com.acuity.va.security.acl.domain.Dataset;
 import com.acuity.va.security.acl.domain.Datasets;
-import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -93,12 +92,6 @@ public class RefreshCacheResource {
     @Autowired
     private InfoService infoService;
 
-    @ApiOperation(
-            value = "Clear detect cache for dataset",
-            nickname = "clearDetectCacheForDataset",
-            response = ResponseEntity.class,
-            httpMethod = "GET"
-    )
     @RequestMapping(value = "/clear/detect/{id}", method = GET)
     public ResponseEntity clearDetectCacheForDataset(@PathVariable("id") Long id) {
 
@@ -107,12 +100,6 @@ public class RefreshCacheResource {
         return cacheService.tryLock(fn);
     }
 
-    @ApiOperation(
-            value = "Clear acuity cache for dataset",
-            nickname = "clearAcuityCacheForDataset",
-            response = ResponseEntity.class,
-            httpMethod = "GET"
-    )
     @RequestMapping(value = "/clear/acuity/{id}", method = GET)
     public ResponseEntity clearAcuityCacheForDataset(@PathVariable("id") Long id) {
 
@@ -125,12 +112,6 @@ public class RefreshCacheResource {
      * @deprecated
      */
     @Deprecated
-    @ApiOperation(
-            value = "Clear detect cache fpr etl",
-            nickname = "clearDetectCacheForETL",
-            response = ResponseEntity.class,
-            httpMethod = "GET"
-    )
     @RequestMapping(value = "/clear", method = GET)
     public ResponseEntity clearDetectCacheForETL() {
 
@@ -138,12 +119,6 @@ public class RefreshCacheResource {
         return cacheService.tryLock(fn);
     }
 
-    @ApiOperation(
-            value = "Refresh all filters and caches",
-            nickname = "clearAllFiltersAndCaches",
-            response = ResponseEntity.class,
-            httpMethod = "GET"
-    )
     @RequestMapping(value = "/refresh/all", method = GET)
     public ResponseEntity refreshAllFiltersAndCaches() {
 
@@ -151,12 +126,6 @@ public class RefreshCacheResource {
         return cacheService.tryLock(fn);
     }
 
-    @ApiOperation(
-            value = "Refresh detect filters and caches",
-            nickname = "clearDetectFiltersAndCaches",
-            response = ResponseEntity.class,
-            httpMethod = "GET"
-    )
     @RequestMapping(value = "/refresh/detect", method = GET)
     public ResponseEntity refreshDetectFiltersAndCaches() {
 
@@ -164,12 +133,6 @@ public class RefreshCacheResource {
         return cacheService.tryLock(fn);
     }
 
-    @ApiOperation(
-            value = "Refresh acuity filters and caches",
-            nickname = "clearAcuityFiltersAndCaches",
-            response = ResponseEntity.class,
-            httpMethod = "GET"
-    )
     @RequestMapping(value = "/refresh/acuity", method = GET)
     public ResponseEntity refreshAcuityFiltersAndCaches() {
 
@@ -177,12 +140,6 @@ public class RefreshCacheResource {
         return cacheService.tryLock(fn);
     }
 
-    @ApiOperation(
-            value = "Reload acuity filters and caches and reload info cache",
-            nickname = "reloadAcuityFiltersAndCachesForDatasetsAndReloadInfoCache",
-            response = ResponseEntity.class,
-            httpMethod = "GET"
-    )
     @RequestMapping(value = "/reload/acuity/{id}", method = GET)
     public ResponseEntity reloadAcuityFiltersAndCachesForDatasetsAndReloadInfoCache(@PathVariable("id") Long id)
             throws ExecutionException, InterruptedException {
@@ -203,12 +160,6 @@ public class RefreshCacheResource {
         return futureTask.get();
     }
 
-    @ApiOperation(
-            value = "Reload detect filters and caches and reload info cache",
-            nickname = "reloadDetectFiltersAndCachesForDatasetsAndReloadInfoCache",
-            response = ResponseEntity.class,
-            httpMethod = "GET"
-    )
     @RequestMapping(value = "/reload/detect/{id}", method = GET)
     public ResponseEntity reloadDetectFiltersAndCachesForDatasetsAndReloadInfoCache(@PathVariable("id") Long id)
             throws ExecutionException, InterruptedException {
@@ -235,12 +186,6 @@ public class RefreshCacheResource {
         authentication.ifPresent(EnhancedLoggingFilter::register);
     }
 
-    @ApiOperation(
-            value = "Lists the datasets in the priming cache",
-            nickname = "listPrimedCachedDatasets",
-            response = List.class,
-            httpMethod = "GET"
-    )
     @RequestMapping(value = "/primedcaches", method = GET)
     public List<Dataset> listPrimedCachedDatasets() {
 
@@ -254,12 +199,6 @@ public class RefreshCacheResource {
                 }).filter(Objects::nonNull).collect(toList());
     }
 
-    @ApiOperation(
-            value = "Lists the missing datasets in the priming cache",
-            nickname = "listMissedPrimedCachedDatasets",
-            response = List.class,
-            httpMethod = "GET"
-    )
     @RequestMapping(value = "/missedprimedcaches", method = GET)
     public Collection<Dataset> listMissedPrimedCachedDatasets() {
         List<Dataset> listPrimedCachedDatasets = listPrimedCachedDatasets().stream()

@@ -15,8 +15,7 @@
  */
 
 import {Injectable} from '@angular/core';
-import {Response} from '@angular/http';
-import {HttpClient} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 
 import {
@@ -69,7 +68,7 @@ export class TrackUtilDataService {
             };
 
             return this.http.post(path, JSON.stringify(postData))
-                .map((response: Response) => {
+                .map((response: any) => {
                     return this.trackUtilDataTransformer.transformPossibleTrackData(response);
                 });
         } else {
@@ -83,7 +82,7 @@ export class TrackUtilDataService {
         let populationFilters: PopulationFiltersModel = this.populationFiltersModel;
         if (chosenSubjects) {
             populationFilters = _.cloneDeep(this.populationFiltersModel);
-            _.find(populationFilters.itemsModels, {'displayName': 'Subject ID'})['appliedSelectedValues'] = chosenSubjects;
+            _.find(populationFilters.itemsModels, <any>{'displayName': 'Subject ID'})['appliedSelectedValues'] = chosenSubjects;
         }
 
         if (this.sessionEventService.currentSelectedDatasets) {
@@ -108,7 +107,7 @@ export class TrackUtilDataService {
             };
 
             return this.http.post(path, JSON.stringify(postData))
-                .map((response: Response) => {
+                .map((response: any) => {
                     return this.trackUtilDataTransformer.transformSelectedSubjectIds(response);
                 });
         } else {

@@ -25,7 +25,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = false)
 @ToString(callSuper = true)
 public final class QtProlongation extends SubjectAwareWrapper<QtProlongationRaw> implements Serializable {
     public QtProlongation(QtProlongationRaw event, Subject subject) {

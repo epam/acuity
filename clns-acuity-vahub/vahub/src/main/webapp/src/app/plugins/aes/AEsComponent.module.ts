@@ -18,7 +18,7 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
-import {AgGridModule} from 'ag-grid-angular/main';
+import {AgGridModule} from 'ag-grid-angular';
 
 import {AEsComponent} from './AEsComponent';
 import {AesTableComponent} from './aestable/AesTableComponent';
@@ -41,14 +41,7 @@ import {AesTableServiceCommunity} from './aestable/AesTableServiceCommunity';
         CommonModule,
         FormsModule,
         RouterModule,
-        AgGridModule.withComponents([
-            AEsComponent,
-            AesTableComponent,
-            AesStackedBarChartComponent,
-            AesOverTimeComponent,
-            TolerabilityComponent,
-            AEsTabsComponent
-        ]),
+        AgGridModule,
         DropdownComponentModule,
         TrellisingComponentModule,
         SpotfireComponentModule,

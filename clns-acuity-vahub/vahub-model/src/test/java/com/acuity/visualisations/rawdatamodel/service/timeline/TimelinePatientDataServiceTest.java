@@ -32,15 +32,16 @@ import com.acuity.visualisations.rawdatamodel.vo.PatientDataRaw;
 import com.acuity.visualisations.rawdatamodel.vo.Subject;
 import com.acuity.visualisations.rawdatamodel.vo.wrappers.PatientData;
 import com.acuity.va.security.acl.domain.Datasets;
-import org.assertj.core.api.JUnitSoftAssertions;
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.assertj.core.api.SoftAssertions;
+import org.assertj.core.api.junit.jupiter.InjectSoftAssertions;
+import org.assertj.core.api.junit.jupiter.SoftAssertionsExtension;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.Arrays;
 import java.util.Date;
@@ -56,10 +57,10 @@ import static com.acuity.visualisations.rawdatamodel.vo.GroupByOption.TimestampT
 import static com.google.common.collect.Lists.newArrayList;
 import static com.google.common.collect.Sets.newHashSet;
 import static org.assertj.core.groups.Tuple.tuple;
-import static org.mockito.Matchers.any;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
-@RunWith(SpringRunner.class)
+@ExtendWith({SpringExtension.class, SoftAssertionsExtension.class})
 @ContextConfiguration(classes = TestConfig.class)
 public class TimelinePatientDataServiceTest {
 
@@ -70,8 +71,8 @@ public class TimelinePatientDataServiceTest {
     @MockBean
     private PatientDataDatasetsDataProvider patientDataDatasetsDataProvider;
 
-    @Rule
-    public final JUnitSoftAssertions softly = new JUnitSoftAssertions();
+    @InjectSoftAssertions
+    private SoftAssertions softly;
 
     private HashMap<String, Date> drugs1 = new HashMap<>();
     {
@@ -145,7 +146,7 @@ public class TimelinePatientDataServiceTest {
     private List<PatientData> patientDataList = newArrayList(patientData1, patientData2, patientData3,
             patientData4, patientData5, patientData6);
 
-    @Before
+    @BeforeEach
     public void setUp() {
         when(populationDatasetsDataProvider.loadData(any(Datasets.class))).thenReturn(subjects);
         when(patientDataDatasetsDataProvider.loadData(any(Datasets.class))).thenReturn(patientDataList);

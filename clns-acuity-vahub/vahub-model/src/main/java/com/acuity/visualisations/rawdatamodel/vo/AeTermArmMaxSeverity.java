@@ -25,7 +25,7 @@ import lombok.ToString;
  *
  * @author ksnd199
  */
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = false)
 @ToString(callSuper = true)
 @Getter
 @NoArgsConstructor

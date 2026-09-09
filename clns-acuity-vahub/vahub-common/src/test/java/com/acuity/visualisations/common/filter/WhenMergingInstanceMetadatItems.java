@@ -18,7 +18,7 @@ package com.acuity.visualisations.common.filter;
 
 import com.acuity.visualisations.common.study.metadata.InstanceMetadata;
 import com.acuity.visualisations.common.study.metadata.MetadataItem;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
 

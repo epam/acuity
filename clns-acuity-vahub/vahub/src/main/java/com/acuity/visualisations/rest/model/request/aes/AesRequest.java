@@ -31,4 +31,8 @@ public class AesRequest extends EventFilterRequestPopulationAware<AeFilters> {
     public AeFilters getEventFilters() {
         return aesFilters;
     }
+
+    public AeFilters getAesFilters() {
+        return aesFilters;
+    }
 }

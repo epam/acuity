@@ -20,7 +20,8 @@ import {Explanation} from '../../utils/ExplanationUtils';
 @Component({
     selector: 'explanation-modal',
     templateUrl: 'ExplanationModalComponent.html',
-    styleUrls: ['./ExplanationModalComponent.css']
+    styleUrls: ['./ExplanationModalComponent.css'],
+    standalone: false
 })
 export class ExplanationModalComponent implements OnDestroy {
     @Input() explanationContent: Explanation;

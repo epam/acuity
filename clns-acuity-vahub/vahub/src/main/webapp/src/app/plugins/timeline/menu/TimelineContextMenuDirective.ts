@@ -19,7 +19,8 @@ import {TimelineContextMenuModel} from './TimelineContextMenuModel';
 import {ITimelineContextMenuItem} from './ITimelineContextMenuItem';
 
 @Directive({
-    selector: '[contextMenu]'
+    selector: '[contextMenu]',
+    standalone: false
 })
 export class TimelineContextMenuDirective {
     @Input() contextMenu: ITimelineContextMenuItem[];

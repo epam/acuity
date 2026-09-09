@@ -30,4 +30,8 @@ import lombok.NonNull;
 public class ExposureLineChartRequest extends ExposureRequest {
     @NonNull
     private ChartGroupByOptionsFiltered<Exposure, ExposureGroupByOptions> settings;
+
+    public ChartGroupByOptionsFiltered<Exposure, ExposureGroupByOptions> getSettings() {
+        return settings;
+    }
 }

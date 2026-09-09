@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {ReflectiveInjector} from '@angular/core';
+import {Injector} from '@angular/core';
 import {clone, isNull, isEmpty} from 'lodash';
 import * as moment from 'moment';
 
@@ -33,7 +33,7 @@ export class RangeDateFilterItemModel extends BaseRangeFilterItemModel {
 
     constructor(key: string, displayName: string) {
         super(FILTER_TYPE.RANGE_DATE, key, displayName);
-        this.dateUtilsService = ReflectiveInjector.resolveAndCreate([DateUtilsService]).get(DateUtilsService);
+        this.dateUtilsService = Injector.create({providers: [{provide: DateUtilsService, useClass: DateUtilsService, deps: []}]}).get(DateUtilsService);
         this.reset();
     }
 

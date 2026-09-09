@@ -24,7 +24,8 @@ import {AbstractDataTypeFilter} from '../AbstractDataTypeFilter';
 @Component({
     selector: 'populationfilter',
     templateUrl: 'PopulationFilterComponent.html',
-    styleUrls: ['../../filters.css']
+    styleUrls: ['../../filters.css'],
+    standalone: false
 })
 export class PopulationFilterComponent extends AbstractDataTypeFilter implements OnInit, OnDestroy, AfterViewInit {
 
@@ -51,7 +52,6 @@ export class PopulationFilterComponent extends AbstractDataTypeFilter implements
 
     ngOnInit(): void {
         this.filtersModel.firstEventEmitted = false;
-        console.log('PopulationFilterComponent ngOnInit');
     }
 
     ngOnDestroy(): void {

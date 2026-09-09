@@ -43,14 +43,15 @@ import com.acuity.visualisations.rawdatamodel.vo.compatibility.TrellisedOvertime
 import com.acuity.visualisations.rawdatamodel.vo.plots.SelectionDetail;
 import com.acuity.visualisations.rawdatamodel.vo.wrappers.CIEvent;
 import com.acuity.va.security.acl.domain.Datasets;
-import org.assertj.core.api.JUnitSoftAssertions;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.assertj.core.api.SoftAssertions;
+import org.assertj.core.api.junit.jupiter.InjectSoftAssertions;
+import org.assertj.core.api.junit.jupiter.SoftAssertionsExtension;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -79,10 +80,10 @@ import static com.acuity.visualisations.rawdatamodel.trellis.grouping.ChartGroup
 import static com.acuity.visualisations.rawdatamodel.trellis.grouping.ChartGroupByOptions.ChartGroupBySetting.X_AXIS;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.tuple;
-import static org.mockito.Matchers.any;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
-@RunWith(SpringRunner.class)
+@ExtendWith({SpringExtension.class, SoftAssertionsExtension.class})
 @ContextConfiguration(classes = TestConfig.class)
 public class CIEventServiceTest {
 
@@ -107,8 +108,8 @@ public class CIEventServiceTest {
                 .build();
     }
 
-    @Rule
-    public final JUnitSoftAssertions softly = new JUnitSoftAssertions();
+    @InjectSoftAssertions
+    private SoftAssertions softly;
     @Autowired
     private CIEventService ciEventService;
     @MockBean
@@ -330,8 +331,8 @@ public class CIEventServiceTest {
         final ChartGroupByOptions.ChartGroupBySettingsBuilder<CIEvent, CIEventGroupByOptions> settings = ChartGroupByOptions.builder();
         //settings.withOption(COLOR_BY, CIEventGroupByOptions.NONE));
         settings.withOption(X_AXIS, CIEventGroupByOptions.START_DATE.getGroupByOptionAndParams(
-                GroupByOption.Params.builder()
-                        .with(GroupByOption.Param.BIN_SIZE, 1)
+                Params.builder()
+                        .with(Param.BIN_SIZE, 1)
                         .with(Param.TIMESTAMP_TYPE, TimestampType.DAYS_SINCE_FIRST_DOSE)
                         .build()));
 //        final ChartGroupByOptions.GroupByOptionAndParams<CIEventGroupByOptions> trellis = ARM.getGroupByOptionAndParams();
@@ -377,8 +378,8 @@ public class CIEventServiceTest {
         final ChartGroupByOptions.ChartGroupBySettingsBuilder<CIEvent, CIEventGroupByOptions> settings = ChartGroupByOptions.builder();
         settings.withOption(COLOR_BY, CIEventGroupByOptions.CI_SYMPTOMS_DURATION.getGroupByOptionAndParams());
         settings.withOption(X_AXIS, CIEventGroupByOptions.START_DATE.getGroupByOptionAndParams(
-                GroupByOption.Params.builder()
-                        .with(GroupByOption.Param.BIN_SIZE, 60)
+                Params.builder()
+                        .with(Param.BIN_SIZE, 60)
                         .with(Param.TIMESTAMP_TYPE, TimestampType.DAYS_SINCE_RANDOMISATION)
                         .build()));
         final ChartGroupByOptionsFiltered.ChartGroupBySettingsFilteredBuilder<CIEvent, CIEventGroupByOptions> settingsWithFilterBy =

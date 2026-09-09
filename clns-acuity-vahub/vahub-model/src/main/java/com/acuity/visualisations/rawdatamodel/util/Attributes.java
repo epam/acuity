@@ -279,6 +279,9 @@ public final class Attributes {
 
     @SneakyThrows
     public static <T, G extends Enum<G> & GroupByOption<T>> boolean isPopulationOption(G option) {
+        if (option instanceof PopulationGroupByOptions) {
+            return true;
+        }
         //this is a bit hacked to tune performance
         Boolean res = IS_POPULATION_OPTION_CACHE.get(option);
         if (res == null) {
@@ -304,7 +307,7 @@ public final class Attributes {
     }
 
     /**
-     * This tells that option has {@link com.acuity.visualisations.rawdatamodel.trellis.grouping.annotations.BinableOption} annotation
+     * This tells that option has {@link BinableOption} annotation
      * that means that option supports {@link GroupByOption.Param#BIN_SIZE} parameter
      * */
     @SneakyThrows
@@ -313,7 +316,7 @@ public final class Attributes {
     }
 
     /**
-     * This tells that option has {@link com.acuity.visualisations.rawdatamodel.trellis.grouping.annotations.HasDrugOption} annotation
+     * This tells that option has {@link HasDrugOption} annotation
      * that means that option supports {@link GroupByOption.Param#DRUG_NAME} parameter
      */
     @SneakyThrows
@@ -322,7 +325,7 @@ public final class Attributes {
     }
 
     /**
-     * This tells that option has {@link com.acuity.visualisations.rawdatamodel.trellis.grouping.annotations.TimestampOption} annotation
+     * This tells that option has {@link TimestampOption} annotation
      * that means that option supports {@link GroupByOption.TimestampType} parameter
      * */
     @SneakyThrows
@@ -331,7 +334,7 @@ public final class Attributes {
     }
 
     /**
-     * This tells that option has {@link com.acuity.visualisations.rawdatamodel.trellis.grouping.annotations.TimestampOption} annotation
+     * This tells that option has {@link TimestampOption} annotation
      * that means that option supports {@link GroupByOption.TimestampType} parameter
      * */
     @SneakyThrows

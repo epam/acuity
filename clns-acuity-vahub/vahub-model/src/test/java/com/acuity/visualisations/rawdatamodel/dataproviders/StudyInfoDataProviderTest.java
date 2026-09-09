@@ -24,8 +24,8 @@ import com.acuity.visualisations.rawdatamodel.vo.Subject;
 import com.acuity.va.security.acl.domain.Dataset;
 import com.acuity.va.security.acl.domain.AcuityDataset;
 import com.google.common.collect.Lists;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
@@ -64,7 +64,7 @@ public class StudyInfoDataProviderTest {
     );
 
     @SuppressWarnings("unchecked")
-    @Before
+    @BeforeEach
     public void before() {
         MockitoAnnotations.initMocks(this);
         when(studyInfoRepository.getRawData(Mockito.anyLong())).thenReturn(Collections.emptyList());
@@ -74,8 +74,8 @@ public class StudyInfoDataProviderTest {
         when(populationRepository.getRawData(1L)).thenReturn(subjects);
 
         when(dataProvider.getData(Mockito.any(), Mockito.any(), Mockito.any()))
-                .thenAnswer(invocation -> invocation.getArgumentAt(2, Function.class)
-                        .apply(invocation.getArgumentAt(1, Dataset.class)));
+                .thenAnswer(invocation -> invocation.<Function>getArgument(2)
+                        .apply(invocation.<Dataset>getArgument(1)));
     }
 
     @Test

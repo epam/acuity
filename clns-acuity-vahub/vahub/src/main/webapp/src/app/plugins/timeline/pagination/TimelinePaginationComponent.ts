@@ -23,7 +23,8 @@ import * as  _ from 'lodash';
     selector: 'timeline-pagination',
     templateUrl: 'TimelinePaginationComponent.html',
     styleUrls: ['./TimelinePaginationComponent.css'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class TimelinePaginationComponent implements OnChanges {
     @Input() numberOfSubjects: number;

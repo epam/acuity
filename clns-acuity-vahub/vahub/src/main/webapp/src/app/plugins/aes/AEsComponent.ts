@@ -20,10 +20,11 @@ import {CollapseTabsDirective} from '../../common/directives/CollapseTabsDirecti
 import {PluginsService} from '../PluginsService';
 
 @Component({
-    templateUrl: 'AEsComponent.html'
+    templateUrl: 'AEsComponent.html',
+    standalone: false
 })
 export class AEsComponent extends AbstractPluginComponent implements AfterViewInit {
-    @ViewChild(CollapseTabsDirective) collapseTabsDirective;
+    @ViewChild(CollapseTabsDirective, { static: false }) collapseTabsDirective;
 
     dropdownOpen = false;
 

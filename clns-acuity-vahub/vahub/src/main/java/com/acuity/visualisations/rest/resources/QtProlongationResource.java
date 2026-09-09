@@ -29,8 +29,6 @@ import com.acuity.visualisations.rest.model.request.qtprolongation.QtProlongatio
 import com.acuity.visualisations.rest.model.request.qtprolongation.QtProlongationRequest;
 import com.acuity.visualisations.rest.model.request.DetailsOnDemandRequest;
 import com.acuity.visualisations.rest.util.Constants;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;
@@ -39,8 +37,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.http.HttpServletResponse;
-import javax.validation.Valid;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.validation.Valid;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
@@ -61,18 +59,9 @@ public class QtProlongationResource {
     @Autowired
     private QtProlongationService qtProlongationService;
 
-    @ApiOperation(
-            value = "Gets the bar charts for requested trellising",
-            nickname = "getBarChartData",
-            response = List.class,
-            httpMethod = "POST"
-    )
     @RequestMapping(value = "/countsbarchart", method = POST)
     @Cacheable(condition = Constants.EMPTY_EVENT_AND_POPULATION_FILTER)
     public List<TrellisedBarChart<QtProlongation, QtProlongationGroupByOptions>> getBarChartData(
-            @ApiParam(value = "QtProlongationBarChartRequest: Request parameters for the bar chart plots e.g. "
-                    + "{trellising : [{trellisedBy: '', options: ['', '']}], "
-                    + "qtProlongationFilters: {}, populationFilters: {}, countType:'COUNT_OF_EVENTS'", required = true)
             @RequestBody QtProlongationBarChartRequest requestBody) {
         return qtProlongationService.getBarChart(
                 requestBody.getDatasetsObject(),
@@ -82,18 +71,9 @@ public class QtProlongationResource {
                 requestBody.getCountType());
     }
 
-    @ApiOperation(
-            value = "Gets the available trellising and options",
-            nickname = "getAvailableTrellising",
-            response = Set.class,
-            httpMethod = "POST"
-    )
     @RequestMapping(value = "/trellising", method = POST)
     @Cacheable(condition = Constants.EMPTY_EVENT_AND_POPULATION_FILTER)
     public List<TrellisOptions<QtProlongationGroupByOptions>> getAvailableTrellising(
-            @ApiParam(value = "QtProlongationTrellisingRequest:  QtProlongation and Population Filters e.g. "
-                    + "{qtProlongationFilters : {}, populationFilters: {}}",
-                    required = true)
             @RequestBody @Valid QtProlongationRequest requestBody) {
         return qtProlongationService.getTrellisOptions(
                 requestBody.getDatasetsObject(),
@@ -101,30 +81,15 @@ public class QtProlongationResource {
                 requestBody.getPopulationFilters());
     }
 
-    @ApiOperation(
-            value = "Gets the available bar chart axis",
-            nickname = "getBarChartXAxis",
-            response = List.class,
-            httpMethod = "POST"
-    )
     @RequestMapping(value = "/countsbarchart-xaxis", method = POST)
     @Cacheable(condition = Constants.EMPTY_EVENT_AND_POPULATION_FILTER)
-    public AxisOptions<QtProlongationGroupByOptions> getBarChartXAxis(@ApiParam(
-            value = "QtProlongationRequest:  QtProlongation and Population Filters e.g."
-                    + " {qtProlongationFilters : {}, populationFilters: {}}", required = true)
-                                                                      @RequestBody
+    public AxisOptions<QtProlongationGroupByOptions> getBarChartXAxis(@RequestBody
                                                                       @Valid QtProlongationRequest requestBody) {
         return qtProlongationService.getAvailableBarChartXAxis(requestBody.getDatasetsObject(),
                 requestBody.getEventFilters(),
                 requestBody.getPopulationFilters());
     }
 
-    @ApiOperation(
-            value = "Gets selection details for bar chart",
-            nickname = "getSelectionDetailWithinBarChart",
-            response = SelectionDetail.class,
-            httpMethod = "POST"
-    )
     @RequestMapping(value = "/selection", method = POST)
     public SelectionDetail getSelectionDetailWithinBarChart(
             @RequestBody @Valid QtProlongationBarChartSelectionRequest requestBody) {
@@ -134,19 +99,9 @@ public class QtProlongationResource {
                 requestBody.getSelection());
     }
 
-    @ApiOperation(
-            value = "Gets the subjects in available qtProlongation filters for "
-                    + "the currently selected qtProlongation and population filters",
-            nickname = "getSubjects",
-            response = QtProlongationFilters.class,
-            httpMethod = "POST"
-    )
     @RequestMapping(value = "/filters-subjects", method = POST)
     @Cacheable(condition = Constants.EMPTY_EVENT_AND_POPULATION_FILTER)
     public List<String> getSubjects(
-            @ApiParam(value = "QtProlongationRequest:"
-                    + " QtProlongation and Population Filters e.g. {qtProlongationFilters : {}, populationFilters: {}}",
-                    required = true)
             @RequestBody QtProlongationRequest requestBody) {
         return qtProlongationService.getSubjects(
                 requestBody.getDatasetsObject(),
@@ -157,8 +112,6 @@ public class QtProlongationResource {
     @RequestMapping(value = "/colorby-options", method = POST)
     @Cacheable(condition = Constants.EMPTY_EVENT_AND_POPULATION_FILTER)
     public List<TrellisOptions<QtProlongationGroupByOptions>> getAvailableColorBy(
-            @ApiParam(value = "QtProlongationRequest: QtProlongation and Population Filters e.g. "
-                    + "{qtProlongationFilters : {}, populationFilters: {}}", required = true)
             @RequestBody @Valid QtProlongationRequest requestBody) {
         return qtProlongationService.getBarChartColorBy(
                 requestBody.getDatasetsObject(),
@@ -169,8 +122,6 @@ public class QtProlongationResource {
 
     @RequestMapping(value = "/details-on-demand", method = POST)
     public List<Map<String, String>> getDetailsOnDemandData(
-            @ApiParam(value = "Details On Demand Request body: A list of event IDs to get the data for e.g. "
-                    + "['ev-1', 'ev-2']", required = true)
             @RequestBody @Valid DetailsOnDemandRequest requestBody) {
 
         return qtProlongationService.getDetailsOnDemandData(
@@ -181,12 +132,6 @@ public class QtProlongationResource {
                 (long) requestBody.getEnd() - requestBody.getStart());
     }
 
-    @ApiOperation(
-            value = "Downloads all of the data for the details on demand table",
-            nickname = "downloadAllDetailsOnDemandData",
-            response = List.class,
-            httpMethod = "POST"
-    )
     @RequestMapping(value = "/download-details-on-demand", method = POST)
     public void downloadAllDetailsOnDemandData(@RequestBody @Valid QtProlongationRequest requestBody,
                                                HttpServletResponse response) throws IOException {
@@ -198,12 +143,6 @@ public class QtProlongationResource {
                 requestBody.getPopulationFilters());
     }
 
-    @ApiOperation(
-            value = "Downloads data for the details on demand table for the selected IDs",
-            nickname = "downloadSelectedDetailsOnDemandData",
-            response = List.class,
-            httpMethod = "POST"
-    )
     @RequestMapping(value = "/download-selected-details-on-demand", method = POST)
     public void downloadSelectedDetailsOnDemandData(@RequestBody @Valid DetailsOnDemandRequest requestBody,
                                                     HttpServletResponse response) throws IOException {

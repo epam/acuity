@@ -44,16 +44,16 @@ import com.acuity.va.security.acl.domain.Datasets;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockServletContext;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
@@ -85,7 +85,7 @@ import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@RunWith(SpringJUnit4ClassRunner.class)
+@ExtendWith(SpringExtension.class)
 @ContextConfiguration(
         initializers = DisableAutowireRequiredInitializer.class,
         classes = {MockServletContext.class}
@@ -103,7 +103,7 @@ public class LabsResourceTest {
     private MockMvc mvc;
     private static ObjectMapper mapper;
 
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
         mvc = MockMvcBuilders.standaloneSetup(labsResource).build();
@@ -119,12 +119,12 @@ public class LabsResourceTest {
 
         LabsRequest labsRequest = new LabsRequest();
         labsRequest.setLabsFilters(labsFilters);
-        labsRequest.setPopulationFilters(new com.acuity.visualisations.rawdatamodel.filters.PopulationFilters());
+        labsRequest.setPopulationFilters(new PopulationFilters());
         labsRequest.setDatasets(DUMMY_DETECT_DATASETS.getDatasetsList());
 
         when(mockLabsJavaService.getAvailableFilters(
                 any(Datasets.class), any(LabFilters.class),
-                any(com.acuity.visualisations.rawdatamodel.filters.PopulationFilters.class)))
+                any(PopulationFilters.class)))
             .thenReturn(labsFilters);
 
         MockHttpServletRequestBuilder post = MockMvcRequestBuilders.
@@ -143,7 +143,7 @@ public class LabsResourceTest {
         verify(mockLabsJavaService, times(1)).getAvailableFilters(
                 eq(DUMMY_DETECT_DATASETS),
                 any(LabFilters.class),
-                any(com.acuity.visualisations.rawdatamodel.filters.PopulationFilters.class));
+                any(PopulationFilters.class));
         verifyNoMoreInteractions(mockLabsJavaService);
     }
 
@@ -154,14 +154,14 @@ public class LabsResourceTest {
 
         LabsRequest labsRequest = new LabsRequest();
         labsRequest.setLabsFilters(labsFilters);
-        labsRequest.setPopulationFilters(new com.acuity.visualisations.rawdatamodel.filters.PopulationFilters());
+        labsRequest.setPopulationFilters(new PopulationFilters());
         labsRequest.setDatasets(DUMMY_DETECT_DATASETS.getDatasetsList());
 
         List<String> mockResponse = newArrayList("subj-1", "subj2");
 
         when(mockLabsJavaService.getSubjects(
                 any(Datasets.class), any(LabFilters.class),
-                any(com.acuity.visualisations.rawdatamodel.filters.PopulationFilters.class)))
+                any(PopulationFilters.class)))
         .thenReturn(mockResponse);
 
         MockHttpServletRequestBuilder post = MockMvcRequestBuilders.
@@ -179,7 +179,7 @@ public class LabsResourceTest {
         assertThat(response).isEqualTo(mockResponse);
         verify(mockLabsJavaService, times(1)).getSubjects(
                 eq(DUMMY_DETECT_DATASETS),
-                any(LabFilters.class), any(com.acuity.visualisations.rawdatamodel.filters.PopulationFilters.class));
+                any(LabFilters.class), any(PopulationFilters.class));
         verifyNoMoreInteractions(mockLabsJavaService);
     }
 
@@ -187,8 +187,8 @@ public class LabsResourceTest {
     public void shouldGetAvailableTrellising() throws Exception {
 
         LabFilters labsFilters = new LabFilters();
-        com.acuity.visualisations.rawdatamodel.filters.PopulationFilters populationFilters =
-                new com.acuity.visualisations.rawdatamodel.filters.PopulationFilters();
+        PopulationFilters populationFilters =
+                new PopulationFilters();
 
         LabsTrellisRequest requestBody = new LabsTrellisRequest();
         requestBody.setLabsFilters(labsFilters);
@@ -197,11 +197,11 @@ public class LabsResourceTest {
         requestBody.setDatasets(DUMMY_DETECT_DATASETS.getDatasetsList());
         //requestBody.setSettings(ChartGroupByOptionsFiltered.<Lab, LabGroupByOptions>builder(null).build());
 
-        List<com.acuity.visualisations.rawdatamodel.trellis.TrellisOptions<LabGroupByOptions>> response =
-                newArrayList(new com.acuity.visualisations.rawdatamodel.trellis.TrellisOptions<LabGroupByOptions>());
+        List<TrellisOptions<LabGroupByOptions>> response =
+                newArrayList(new TrellisOptions<LabGroupByOptions>());
 
         when(mockLabsJavaService.getTrellisOptions(any(Datasets.class), any(Filters.class),
-                any(com.acuity.visualisations.rawdatamodel.filters.PopulationFilters.class), any())).thenReturn(response);
+                any(PopulationFilters.class), any())).thenReturn(response);
 
         MockHttpServletRequestBuilder post = MockMvcRequestBuilders.
                 post("/resources/labs/trellising").
@@ -213,7 +213,7 @@ public class LabsResourceTest {
                 .andExpect(status().isOk())
                 .andReturn();
 
-        List<com.acuity.visualisations.rawdatamodel.trellis.TrellisOptions<LabGroupByOptions>> returnedValue
+        List<TrellisOptions<LabGroupByOptions>> returnedValue
                 = mapper.readValue(result.getResponse().getContentAsString(),
                     new TypeReference<List<TrellisOptions<LabGroupByOptions>>>() {
         });
@@ -221,7 +221,7 @@ public class LabsResourceTest {
         assertThat(returnedValue).isEqualTo(response);
         verify(mockLabsJavaService, times(1))
                 .getTrellisOptions(eq(DUMMY_DETECT_DATASETS),
-                        any(Filters.class), any(com.acuity.visualisations.rawdatamodel.filters.PopulationFilters.class), any());
+                        any(Filters.class), any(PopulationFilters.class), any());
         verifyNoMoreInteractions(mockLabsJavaService);
     }
 
@@ -249,15 +249,15 @@ public class LabsResourceTest {
 
         labsBoxPlotRequest.setSettings(settingsFiltered);
         labsBoxPlotRequest.setLabsFilters(new LabFilters());
-        labsBoxPlotRequest.setPopulationFilters(new com.acuity.visualisations.rawdatamodel.filters.PopulationFilters());
+        labsBoxPlotRequest.setPopulationFilters(new PopulationFilters());
         labsBoxPlotRequest.setDatasets(DUMMY_DETECT_DATASETS.getDatasetsList());
         labsBoxPlotRequest.setStatType(StatType.MEDIAN);
 
-        List<com.acuity.visualisations.rawdatamodel.vo.compatibility.TrellisedBoxPlot<Lab, LabGroupByOptions>> response =
-                newArrayList(new com.acuity.visualisations.rawdatamodel.vo.compatibility.TrellisedBoxPlot<>());
+        List<TrellisedBoxPlot<Lab, LabGroupByOptions>> response =
+                newArrayList(new TrellisedBoxPlot<>());
 
         when(mockLabsJavaService.getBoxPlot(any(Datasets.class), any(ChartGroupByOptionsFiltered.class), any(Filters.class),
-                any(com.acuity.visualisations.rawdatamodel.filters.PopulationFilters.class))).thenReturn(response);
+                any(PopulationFilters.class))).thenReturn(response);
 
         MockHttpServletRequestBuilder post = MockMvcRequestBuilders.
                 post("/resources/labs/boxplot").
@@ -276,7 +276,7 @@ public class LabsResourceTest {
 
         assertThat(returnedBoxPlotStats).isEqualTo(response);
         verify(mockLabsJavaService, times(1)).getBoxPlot(any(Datasets.class), any(ChartGroupByOptionsFiltered.class), any(Filters.class),
-                any(com.acuity.visualisations.rawdatamodel.filters.PopulationFilters.class));
+                any(PopulationFilters.class));
         verifyNoMoreInteractions(mockLabsJavaService);
     }
 
@@ -392,7 +392,7 @@ public class LabsResourceTest {
         LabSelectionRequest requestBody = new LabSelectionRequest();
         requestBody.setDatasets(DUMMY_DETECT_DATASETS.getDatasetsList());
         requestBody.setLabsFilters(LabFilters.empty());
-        requestBody.setPopulationFilters(com.acuity.visualisations.rawdatamodel.filters.PopulationFilters.empty());
+        requestBody.setPopulationFilters(PopulationFilters.empty());
 
         final HashMap<LabGroupByOptions, Object> selectedTrellises = new HashMap<>();
         selectedTrellises.put(MEASUREMENT, "PH-HYPO");
@@ -447,14 +447,14 @@ public class LabsResourceTest {
         LabStatsRequest requestBody = new LabStatsRequest();
         requestBody.setSettings(ChartGroupByOptionsFiltered.<Lab, LabGroupByOptions>builder(settings).build());
         requestBody.setLabsFilters(new LabFilters());
-        requestBody.setPopulationFilters(new com.acuity.visualisations.rawdatamodel.filters.PopulationFilters());
+        requestBody.setPopulationFilters(new PopulationFilters());
         requestBody.setDatasets(DUMMY_DETECT_DATASETS.getDatasetsList());
 
         List<com.acuity.visualisations.rawdatamodel.vo.compatibility.TrellisedShiftPlot<Lab, LabGroupByOptions>> response =
                 newArrayList(new com.acuity.visualisations.rawdatamodel.vo.compatibility.TrellisedShiftPlot<>());
 
         when(mockLabsJavaService.getShiftPlot(any(Datasets.class), any(ChartGroupByOptionsFiltered.class), any(Filters.class),
-                any(com.acuity.visualisations.rawdatamodel.filters.PopulationFilters.class))).thenReturn(response);
+                any(PopulationFilters.class))).thenReturn(response);
 
         MockHttpServletRequestBuilder post = MockMvcRequestBuilders.
                 post("/resources/labs/shift-plot").
@@ -473,7 +473,7 @@ public class LabsResourceTest {
 
         assertThat(returnedBoxPlotStats).isEqualTo(response);
         verify(mockLabsJavaService, times(1)).getShiftPlot(any(Datasets.class), any(ChartGroupByOptionsFiltered.class), any(Filters.class),
-                any(com.acuity.visualisations.rawdatamodel.filters.PopulationFilters.class));
+                any(PopulationFilters.class));
         verifyNoMoreInteractions(mockLabsJavaService);
     }
 
@@ -484,7 +484,7 @@ public class LabsResourceTest {
         LabStatsRequest requestBody = new LabStatsRequest();
         requestBody.setSettings(ChartGroupByOptionsFiltered.<Lab, LabGroupByOptions>builder(settings).build());
         requestBody.setLabsFilters(new LabFilters());
-        requestBody.setPopulationFilters(new com.acuity.visualisations.rawdatamodel.filters.PopulationFilters());
+        requestBody.setPopulationFilters(new PopulationFilters());
         requestBody.setDatasets(DUMMY_DETECT_DATASETS.getDatasetsList());
         requestBody.setStatType(StatType.MEDIAN);
 
@@ -492,7 +492,7 @@ public class LabsResourceTest {
                 newArrayList(new TrellisedRangePlot<Lab, LabGroupByOptions>());
 
         when(mockLabsJavaService.getRangePlot(any(Datasets.class), any(ChartGroupByOptionsFiltered.class), any(Filters.class),
-                any(com.acuity.visualisations.rawdatamodel.filters.PopulationFilters.class), any(StatType.class))
+                any(PopulationFilters.class), any(StatType.class))
         ).thenReturn(mockResponse);
 
         MockHttpServletRequestBuilder post = MockMvcRequestBuilders.
@@ -514,7 +514,7 @@ public class LabsResourceTest {
         verify(mockLabsJavaService, times(1)).getRangePlot(
                 any(Datasets.class),
                 any(ChartGroupByOptionsFiltered.class), any(Filters.class),
-                any(com.acuity.visualisations.rawdatamodel.filters.PopulationFilters.class),
+                any(PopulationFilters.class),
                 any(StatType.class));
     }
 }

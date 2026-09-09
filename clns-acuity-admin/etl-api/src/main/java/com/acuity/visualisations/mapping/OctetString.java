@@ -16,7 +16,7 @@
 
 package com.acuity.visualisations.mapping;
 
-import javax.xml.bind.DatatypeConverter;
+import jakarta.xml.bind.DatatypeConverter;
 import java.io.Serializable;
 import java.util.Arrays;
 

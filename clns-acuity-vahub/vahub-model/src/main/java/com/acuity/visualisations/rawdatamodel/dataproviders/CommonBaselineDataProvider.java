@@ -21,6 +21,9 @@ import com.acuity.visualisations.rawdatamodel.vo.TargetLesionRaw;
 import com.acuity.visualisations.rawdatamodel.vo.wrappers.EventWrapper;
 import com.acuity.visualisations.rawdatamodel.vo.wrappers.TargetLesion;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
@@ -32,9 +35,13 @@ import java.util.stream.Collectors;
 
 public interface CommonBaselineDataProvider {
 
+    Logger log = LoggerFactory.getLogger(CommonBaselineDataProvider.class);
+
     default Map<String, Date> defineBaselineDatePerSubject(Map<String, List<TargetLesionRaw>> tlBySubject, Collection<Subject> subjects) {
-        Map<String, Date> subjectFirstDoseDate = subjects.stream()
-                .collect(Collectors.toMap(Subject::getSubjectId, Subject::getBaselineDate));
+        // Collectors.toMap() rejects null values — subjects without a baseline date would cause NPE.
+        // Use forEach with a plain HashMap to allow null values.
+        Map<String, Date> subjectFirstDoseDate = new HashMap<>();
+        subjects.forEach(s -> subjectFirstDoseDate.put(s.getSubjectId(), s.getBaselineDate()));
 
         // cannot merge null values to HashMap using Collectors.toMap()
         // see https://stackoverflow.com/questions/24630963/java-8-nullpointerexception-in-collectors-tomap
@@ -45,6 +52,9 @@ public interface CommonBaselineDataProvider {
                             .distinct()
                             .collect(Collectors.toList());
                     Date value = getBaselineDate(lesionDates, subjectFirstDoseDate.get(v.getKey())).orElse(null);
+                    if (value == null) {
+                        log.warn("Subject {} has no baseline date — excluded from baseline calculation", v.getKey());
+                    }
                     m.put(v.getKey(), value);
                 }, HashMap::putAll);
     }

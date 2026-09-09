@@ -22,7 +22,8 @@ import {Subject} from 'rxjs/Subject';
     selector: 'single-subject-search-input',
     templateUrl: 'SingleSubjectSearchInputComponent.html',
     styleUrls: ['SingleSubjectSearchInputComponent.css'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class SingleSubjectSearchInputComponent {
     @Input() selectedSubjectId: string;

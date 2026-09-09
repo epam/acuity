@@ -22,7 +22,8 @@ import {AbstractDataTypeFilter} from '../AbstractDataTypeFilter';
 
 @Component({
     selector: 'ctdna-filter',
-    templateUrl: 'CtDnaFilterComponent.html'
+    templateUrl: 'CtDnaFilterComponent.html',
+    standalone: false
 })
 export class CtDnaFilterComponent extends AbstractDataTypeFilter implements OnInit, OnDestroy, AfterViewInit {
     @Output()

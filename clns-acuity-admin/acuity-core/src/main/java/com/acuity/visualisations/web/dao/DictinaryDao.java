@@ -26,7 +26,7 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import javax.annotation.PostConstruct;
+import jakarta.annotation.PostConstruct;
 import javax.sql.DataSource;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -83,16 +83,16 @@ public class DictinaryDao {
         MapSqlParameterSource params = new MapSqlParameterSource("in", terms);
         List<TermCount> result = npjdbc.query(sql, params, ROW_MAPPER);
 
-        List<DictinaryDao.TermCount> out = new ArrayList<>();
+        List<TermCount> out = new ArrayList<>();
         t:
         for (String term : terms) {
-            for (DictinaryDao.TermCount termCount : result) {
+            for (TermCount termCount : result) {
                 if (term.equals(termCount.term)) {
                     out.add(termCount);
                     continue t;
                 }
             }
-            out.add(new DictinaryDao.TermCount(term, 0));
+            out.add(new TermCount(term, 0));
         }
         return out;
     }

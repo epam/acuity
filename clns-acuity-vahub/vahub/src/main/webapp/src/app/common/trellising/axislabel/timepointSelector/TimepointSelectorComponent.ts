@@ -21,6 +21,7 @@ import {DisplayedGroupBySetting} from '../../store/actions/TrellisingActionCreat
 @Component({
     selector: 'timepoint-selector',
     templateUrl: 'TimepointSelectorComponent.html',
+    standalone: false
 })
 export class TimepointSelectorComponent {
     @Input() label: string;

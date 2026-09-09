@@ -35,8 +35,6 @@ import com.acuity.visualisations.rawdatamodel.dataset.info.vo.StudySelectionData
 import com.acuity.visualisations.rawdatamodel.dataset.info.vo.StudyWarnings;
 import com.acuity.visualisations.rawdatamodel.vo.StudyInfo;
 import com.acuity.visualisations.rest.util.Constants;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -61,7 +59,6 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
  * Created by ksnd199.
  */
 @RestController
-@Api(value = "/resources/study", description = "rest endpoints for for a study")
 @RequestMapping(value = "/resources/study",
         consumes = {APPLICATION_JSON_VALUE, ALL_VALUE},
         produces = APPLICATION_JSON_VALUE
@@ -76,12 +73,6 @@ public class StudyResource {
     private final StudyInfoDataProvider studyInfoDataProvider;
     private final PermissionsStrategy permissionsStrategy;
 
-    @ApiOperation(
-            value = "Gets the information for the study",
-            nickname = "getMetadataInfo",
-            response = String.class,
-            httpMethod = "POST"
-    )
     @PreAuthorize(Constants.PRE_AUTHORISE_VISUALISATION)
     @RequestMapping(value = "/info", method = POST)
     @LogOperation(name = "STUDY_METADATA", logOnlyOnSuccess = true, value = {
@@ -101,7 +92,6 @@ public class StudyResource {
         return instanceMetadata.build();
     }
 
-    @ApiOperation("Gets all user study info for cached datasets")
     @GetMapping(value = "/available_study_info")
     public CombinedStudyInfo<AcuityObjectIdentity> getUserStudyInfo() {
         AcuitySidDetails acuityUserDetails = security.getAcuityUserDetails();

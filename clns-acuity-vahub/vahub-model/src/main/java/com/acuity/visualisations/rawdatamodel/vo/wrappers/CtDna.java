@@ -27,7 +27,7 @@ import lombok.ToString;
 
 import java.io.Serializable;
 
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = false)
 @ToString(callSuper = true)
 public final class CtDna extends SubjectAwareWrapper<CtDnaRaw> implements Serializable {
 

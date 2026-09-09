@@ -27,16 +27,16 @@ import com.acuity.va.security.acl.domain.Datasets;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockServletContext;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
@@ -51,9 +51,10 @@ import java.util.Map;
 import static com.acuity.visualisations.config.util.TestConstants.DUMMY_ACUITY_DATASETS;
 import static com.google.common.collect.Sets.newHashSet;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.anyInt;
-import static org.mockito.Matchers.eq;
+import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.ArgumentMatchers.nullable;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
@@ -61,7 +62,7 @@ import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@RunWith(SpringJUnit4ClassRunner.class)
+@ExtendWith(SpringExtension.class)
 @ContextConfiguration(
         initializers = DisableAutowireRequiredInitializer.class,
         classes = {MockServletContext.class}
@@ -81,7 +82,7 @@ public class LiverDetailsOnDemandTest {
 
     private ObjectMapper mapper = new ObjectMapper();
 
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
         mvc = MockMvcBuilders.standaloneSetup(liverResource).build();
@@ -104,8 +105,8 @@ public class LiverDetailsOnDemandTest {
                 eq(DUMMY_ACUITY_DATASETS),
                 any(),
                 any(),
-                anyInt(),
-                anyInt())).thenReturn(mockResponse);
+                anyLong(),
+                anyLong())).thenReturn(mockResponse);
 
         MockHttpServletRequestBuilder post = MockMvcRequestBuilders
                 .post(URL_ROOT + "/details-on-demand")
@@ -122,7 +123,7 @@ public class LiverDetailsOnDemandTest {
                 });
 
         assertThat(response).isEqualTo(mockResponse);
-        verify(liverService, times(1)).getDetailsOnDemandData(any(Datasets.class), any(), any(), anyInt(), anyInt());
+        verify(liverService, times(1)).getDetailsOnDemandData(any(Datasets.class), any(), any(), anyLong(), anyLong());
         verifyNoMoreInteractions(liverService);
     }
 

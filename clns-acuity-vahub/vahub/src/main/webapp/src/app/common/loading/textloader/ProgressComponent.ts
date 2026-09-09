@@ -32,7 +32,8 @@ import {TabId, MAX_NUMBER} from '../../trellising/store';
 @Component({
     selector: 'progress-messages',
     templateUrl: 'ProgressComponent.html',
-    styleUrls: ['ProgressComponent.css']
+    styleUrls: ['ProgressComponent.css'],
+    standalone: false
 })
 export class ProgressComponent implements OnInit, OnChanges, OnDestroy {
     public messages = [

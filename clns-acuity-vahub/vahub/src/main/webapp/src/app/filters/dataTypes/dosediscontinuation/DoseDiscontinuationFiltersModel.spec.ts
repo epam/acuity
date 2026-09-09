@@ -15,7 +15,7 @@
  */
 
 import {inject, TestBed} from '@angular/core/testing';
-import {HttpClientTestingModule} from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 
 import {DoseDiscontinuationFiltersModel} from './DoseDiscontinuationFiltersModel';
 import {PopulationFiltersModel} from '../population/PopulationFiltersModel';
@@ -24,6 +24,7 @@ import {FilterEventService} from '../../event/FilterEventService';
 
 import {MockDatasetViews, MockFilterEventService} from '../../../common/MockClasses';
 import {DatasetViews} from '../../../security/DatasetViews';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 class MockFilterHttpService {
 }
@@ -33,21 +34,21 @@ describe('GIVEN a DoseDiscontinuationFiltersModel class', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [HttpClientTestingModule],
-            providers: [
-                {provide: DatasetViews, useClass: MockDatasetViews},
-                {provide: FilterHttpService, useClass: MockFilterHttpService},
-                {provide: PopulationFiltersModel, deps: [FilterHttpService, FilterEventService]},
-                {provide: FilterEventService, useClass: MockFilterEventService},
-                {
-                    provide: DoseDiscontinuationFiltersModel,
-                    useFactory: (p: PopulationFiltersModel, f: FilterHttpService,
-                                 e: FilterEventService, d: DatasetViews): DoseDiscontinuationFiltersModel =>
-                        new DoseDiscontinuationFiltersModel(p, f, e, d),
-                    deps: [PopulationFiltersModel, FilterHttpService, FilterEventService, DatasetViews]
-                }
-            ]
-        });
+    imports: [],
+    providers: [
+        { provide: DatasetViews, useClass: MockDatasetViews },
+        { provide: FilterHttpService, useClass: MockFilterHttpService },
+        { provide: PopulationFiltersModel, deps: [FilterHttpService, FilterEventService] },
+        { provide: FilterEventService, useClass: MockFilterEventService },
+        {
+            provide: DoseDiscontinuationFiltersModel,
+            useFactory: (p: PopulationFiltersModel, f: FilterHttpService, e: FilterEventService, d: DatasetViews): DoseDiscontinuationFiltersModel => new DoseDiscontinuationFiltersModel(p, f, e, d),
+            deps: [PopulationFiltersModel, FilterHttpService, FilterEventService, DatasetViews]
+        },
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting()
+    ]
+});
     });
 
     beforeEach(inject([DoseDiscontinuationFiltersModel], (_doseDiscontinuationFiltersModel: DoseDiscontinuationFiltersModel) => {

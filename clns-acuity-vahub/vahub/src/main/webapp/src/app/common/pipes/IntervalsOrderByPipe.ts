@@ -18,7 +18,10 @@ import {Pipe, PipeTransform} from '@angular/core';
 import * as  _ from 'lodash';
 import {MAX_NUMBER} from '../trellising/store/ITrellising';
 
-@Pipe({name: 'intervalsSort'})
+@Pipe({
+    name: 'intervalsSort',
+    standalone: false
+})
 export class IntervalsOrderByPipe implements PipeTransform {
     transform(array: Array<any>, groupName, sortProperty = 'label'): Array<any> {
         if (['WEIGHT', 'HEIGHT', 'TOTAL_DURATION_ON_STUDY', 'DOSE', 'DURATION_ON_STUDY'].indexOf(groupName) === -1 || _.isEmpty(array)) {

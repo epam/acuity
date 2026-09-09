@@ -40,6 +40,12 @@
             <groupId>com.googlecode.cqengine</groupId>
             <artifactId>cqengine</artifactId>
             <version>2.9.2</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.antlr</groupId>
+                    <artifactId>antlr4-runtime</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>com.acuity.visualisations</groupId>
@@ -74,11 +80,11 @@
             <version>2.4.0</version>
         </dependency>
 
-        <!-- Documents creation -->
+        <!-- Documents creation — docx4j 11.x uses jakarta.xml.bind.* (full EE 10 namespace migration) -->
         <dependency>
             <groupId>org.docx4j</groupId>
-            <artifactId>docx4j</artifactId>
-            <version>3.3.3</version>
+            <artifactId>docx4j-JAXB-ReferenceImpl</artifactId>
+            <version>11.5.3</version>
             <exclusions>
                 <exclusion>
                     <groupId>com.fasterxml.jackson.core</groupId>
@@ -87,10 +93,6 @@
                 <exclusion>
                     <groupId>org.slf4j</groupId>
                     <artifactId>slf4j-api</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.slf4j</groupId>
-                    <artifactId>slf4j-log4j12</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
@@ -118,9 +120,8 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
-            <version>3.1.0</version>
+            <groupId>jakarta.servlet</groupId>
+            <artifactId>jakarta.servlet-api</artifactId>
             <scope>test</scope>
         </dependency>
 
@@ -159,6 +160,9 @@
                         <goals>
                             <goal>generate</goal>
                         </goals>
+                        <configuration>
+                            <skip>${typescript-generator.skip}</skip>
+                        </configuration>
                     </execution>
                 </executions>
                 <configuration>
@@ -245,6 +249,7 @@
                         <class>com.acuity.visualisations.rawdatamodel.vo.AesTable</class>
                         <class>com.acuity.visualisations.rawdatamodel.vo.compatibility.OutputChordDiagramData</class>
                         <class>com.acuity.visualisations.rawdatamodel.vo.wrappers.Ae$TermLevel</class>
+                        <class>com.acuity.visualisations.rawdatamodel.trellis.grouping.PopulationGroupByOptions</class>
                         <!-- Va Security -->
                         <class>com.acuity.va.security.acl.domain.AcuityObjectIdentityWithPermission</class>
                     </classes>
@@ -254,7 +259,7 @@
                     <namespace>InMemory</namespace>
                     <sortDeclarations>true</sortDeclarations>
                     <noFileComment>true</noFileComment>
-                    <mapEnum>asInlineUnion</mapEnum>
+                    <mapEnum>asUnion</mapEnum>
                     <outputFile>target/vahub-model.d.ts</outputFile>
                 </configuration>
             </plugin>

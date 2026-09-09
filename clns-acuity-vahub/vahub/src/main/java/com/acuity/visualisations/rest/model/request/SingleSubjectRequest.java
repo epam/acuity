@@ -26,4 +26,5 @@ public class SingleSubjectRequest<T> extends DatasetsRequest {
 
     private String subjectId;
     private T eventFilters;
+
 }

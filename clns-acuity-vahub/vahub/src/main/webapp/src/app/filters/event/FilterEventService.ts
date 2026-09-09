@@ -86,158 +86,127 @@ export class FilterEventService extends BaseEventService {
     }
 
     setPopulationFilter(currentPopulationFilter: any): void {
-        console.log('setting Population Filter ' + JSON.stringify(currentPopulationFilter));
         this.populationFilter.next(currentPopulationFilter);
     }
 
     setAesFilter(currentAesFilter: any): void {
-        console.log('setting Aes Filter ' + JSON.stringify(currentAesFilter));
         this.aesFilter.next(currentAesFilter);
     }
 
     setCerebrovascularFilter(currentFilter: any): void {
-        console.log('setting Cerebrovascular Filter ' + JSON.stringify(currentFilter));
         this.cerebrovascularFilter.next(currentFilter);
     }
 
     setCvotFilter(currentCvotFilter: any): void {
-        console.log('setting CVOT Filter ' + JSON.stringify(currentCvotFilter));
         this.cvotFilter.next(currentCvotFilter);
     }
 
     setSeriousAesFilter(currentSeriousAesFilter: any): void {
-        console.log('setting seriousAes Filter ' + JSON.stringify(currentSeriousAesFilter));
         this.seriousAesFilter.next(currentSeriousAesFilter);
     }
 
     setLabsFilter(currentLabsFilter: any): void {
-        console.log('setting Labs Filter ' + JSON.stringify(currentLabsFilter));
         this.labsFilter.next(currentLabsFilter);
     }
 
     setVitalsFilter(currentVitalsFilter: any): void {
-        console.log('setting Vitals Filter ' + JSON.stringify(currentVitalsFilter));
         this.vitalsFilter.next(currentVitalsFilter);
     }
 
     setPatientDataFilter(currentPatientDataFilter: any): void {
-        console.log('setting Patient Data Filter ' + JSON.stringify(currentPatientDataFilter));
         this.patientDataFilter.next(currentPatientDataFilter);
     }
 
 
     setExacerbationsFilter(currentExacerbationsFilter: any): void {
-        console.log('setting Exacerbations Filter ' + JSON.stringify(currentExacerbationsFilter));
         this.exacerbationsFilter.next(currentExacerbationsFilter);
     }
 
     setTumourResponseFilter(currentTumourResponseFilter: any): void {
-        console.log('setting tumour response Filter ' + JSON.stringify(currentTumourResponseFilter));
         this.tumourResponseFilter.next(currentTumourResponseFilter);
     }
 
     setLungFunctionFilter(currentLungFunctionFilter: any): void {
-        console.log('setting lung function Filter ' + JSON.stringify(currentLungFunctionFilter));
         this.lungFunctionFilter.next(currentLungFunctionFilter);
     }
 
     setCardiacFilter(currentCardiacFilter: any): void {
-        console.log('setting cardiac Filter ' + JSON.stringify(currentCardiacFilter));
         this.cardiacFilter.next(currentCardiacFilter);
     }
 
     setRenalFilter(currentRenalFilter: any): void {
-        console.log('setting Renal Filter ' + JSON.stringify(currentRenalFilter));
         this.renalFilter.next(currentRenalFilter);
     }
 
     setRecistFilter(currentRecistFilter: any): void {
-        console.log('setting Recist Filter ' + JSON.stringify(currentRecistFilter));
         this.recistFilter.next(currentRecistFilter);
     }
 
     setLiverFunctionFilter(currentLiverFunctionFilter: any): void {
-        console.log('setting Liver Function Filter ' + JSON.stringify(currentLiverFunctionFilter));
         this.liverFilter.next(currentLiverFunctionFilter);
     }
 
     setConmedsFilter(currentConmedsFilter: any): void {
-        console.log('setting Conmeds Filter ' + JSON.stringify(currentConmedsFilter));
         this.conmedsFilter.next(currentConmedsFilter);
     }
 
     setDoseFilter(currentDoseFilter: any): void {
-        console.log('setting Dose Filter ' + JSON.stringify(currentDoseFilter));
         this.doseFilter.next(currentDoseFilter);
     }
 
     setDeathFilter(currentDeathFilter: any): void {
-        console.log('setting Dose Filter ' + JSON.stringify(currentDeathFilter));
         this.deathFilter.next(currentDeathFilter);
     }
 
     setDoseDiscontinuationFilter(currentDoseDiscontinuationFilter: any): void {
-        console.log('setting Dose Discontinuation Filter ' + JSON.stringify(currentDoseDiscontinuationFilter));
         this.doseDiscontinuationFilter.next(currentDoseDiscontinuationFilter);
     }
 
     setMedicalHistoryFilter(currentMedicalHistoryFilter: any): void {
-        console.log('setting Medical History Filter ' + JSON.stringify(currentMedicalHistoryFilter));
         this.medicalHistoryFilter.next(currentMedicalHistoryFilter);
     }
 
     setSurgicalHistoryFilter(currentSurgicalHistoryFilter: any): void {
-        console.log('setting Surgical History Filter ' + JSON.stringify(currentSurgicalHistoryFilter));
         this.surgicalHistoryFilter.next(currentSurgicalHistoryFilter);
     }
 
     setLiverDiagnosticInvestigationFilter(currentLiverDiagnosticInvestigationFilter: any): void {
-        console.log('setting Dose Discontinuation Filter ' + JSON.stringify(currentLiverDiagnosticInvestigationFilter));
         this.liverDiagnosticInvestigationFilter.next(currentLiverDiagnosticInvestigationFilter);
     }
 
     setLiverRiskFactorsFilter(currentLiverRiskFactorsFilter: any): void {
-        console.log('setting Dose Discontinuation Filter ' + JSON.stringify(currentLiverRiskFactorsFilter));
         this.liverRiskFactorsFilter.next(currentLiverRiskFactorsFilter);
     }
 
     setAlcoholFilter(currentAlcoholFilter: any): void {
-        console.log('setting Alcohol Filter ' + JSON.stringify(currentAlcoholFilter));
         this.alcoholFilter.next(currentAlcoholFilter);
     }
 
     setNicotineFilter(currentNicotineFilter: any): void {
-        console.log('setting Dose Discontinuation Filter ' + JSON.stringify(currentNicotineFilter));
         this.nicotineFilter.next(currentNicotineFilter);
     }
 
     setCIEventsFilter(currentCIEventsFilter: any): void {
-        console.log('setting CI Events Filter ' + JSON.stringify(currentCIEventsFilter));
         this.cieventsFilter.next(currentCIEventsFilter);
     }
 
     setBiomarkersFilter(currentBiomarkersFilter: any): void {
-        console.log('setting Biomarkers Filter ' + JSON.stringify(currentBiomarkersFilter));
         this.biomarkersFilter.next(currentBiomarkersFilter);
     }
 
     setExposureFilter(currentExposureFilter: any): void {
-        console.log('setting Exposure Filter ' + JSON.stringify(currentExposureFilter));
         this.exposureFilter.next(currentExposureFilter);
     }
 
     setDoseProportionalityFilter(currentDoseProportionalityFilter: any): void {
-        console.log('setting DoseProportionality Filter ' + JSON.stringify(currentDoseProportionalityFilter));
         this.doseProportionalityFilter.next(currentDoseProportionalityFilter);
     }
 
     setPkResultOverallResponseFilter(currentPkResultOverallResponseFilter: any): void {
-        console.log('setting PkResultOverallResponse Filter ' + JSON.stringify(currentPkResultOverallResponseFilter));
         this.pkResultOverallResponseFilter.next(currentPkResultOverallResponseFilter);
     }
 
     setCtDnaFilter(currentCtDnaFilter: any): void {
-        console.log('setting CtDna Filter ' + JSON.stringify(currentCtDnaFilter));
         this.ctDnaFilter.next(currentCtDnaFilter);
     }
 }

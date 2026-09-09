@@ -19,7 +19,8 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 @Component({
     selector: 'range-setting',
     templateUrl: 'RangeSettingsComponent.html',
-    styleUrls: ['../dataTypes/PlotSettings.css']
+    styleUrls: ['../dataTypes/PlotSettings.css'],
+    standalone: false
 })
 export class RangeSettingsComponent implements OnInit {
     @Input() id: string;

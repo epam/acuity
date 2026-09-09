@@ -46,15 +46,15 @@ import com.acuity.visualisations.rawdatamodel.vo.plots.BoxplotCalculationObject;
 import com.acuity.visualisations.rawdatamodel.vo.plots.SelectionDetail;
 import com.acuity.visualisations.rawdatamodel.vo.wrappers.Renal;
 import com.acuity.va.security.acl.domain.Datasets;
-import org.assertj.core.api.JUnitSoftAssertions;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.experimental.categories.Category;
-import org.junit.runner.RunWith;
+import org.assertj.core.api.SoftAssertions;
+import org.assertj.core.api.junit.jupiter.InjectSoftAssertions;
+import org.assertj.core.api.junit.jupiter.SoftAssertionsExtension;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.text.DecimalFormat;
 import java.util.Arrays;
@@ -90,10 +90,10 @@ import static com.google.common.collect.Lists.newArrayList;
 import static java.util.Arrays.asList;
 import static org.assertj.core.api.Assertions.within;
 import static org.assertj.core.groups.Tuple.tuple;
-import static org.mockito.Matchers.any;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
-@RunWith(SpringRunner.class)
+@ExtendWith({SpringExtension.class, SoftAssertionsExtension.class})
 @ContextConfiguration(classes = TestConfig.class)
 public class RenalServiceTest {
 
@@ -110,8 +110,8 @@ public class RenalServiceTest {
     @Autowired
     private DoDCommonService tableService ;
 
-    @Rule
-    public final JUnitSoftAssertions softly = new JUnitSoftAssertions();
+    @InjectSoftAssertions
+    private SoftAssertions softly;
 
     // Double.toString(1d) yields "1.0" while decimalFormat.format(1d) yields "1"
     private final static DecimalFormat decimalFormat = new DecimalFormat();
@@ -211,7 +211,7 @@ public class RenalServiceTest {
             .measurementTimePoint(toDate("07.06.2015")).value(83.).labCode("code1").unit("unit1").build().runPrecalculations(), SUBJECT5);
 
     @Test
-    @Category(BoxPlotTests.class)
+    
     public void shouldGetBoxPlotXAxisOptions() {
         when(renalDatasetsDataProvider.loadData(any())).thenReturn(Collections.singletonList(RENAL1));
         when(populationDatasetsDataProvider.loadData(any(Datasets.class))).thenReturn(Collections.singletonList(SUBJECT_1_WITH_ARM));
@@ -224,7 +224,7 @@ public class RenalServiceTest {
     }
 
     @Test
-    @Category(BoxPlotTests.class)
+    
     public void shouldGetBoxPlotTrellisOptionsWithYAxisOption() {
         when(renalDatasetsDataProvider.loadData(any())).thenReturn(Arrays.asList(RENAL2, RENAL3));
         when(populationDatasetsDataProvider.loadData(any(Datasets.class)))
@@ -242,7 +242,7 @@ public class RenalServiceTest {
     }
 
     @Test
-    @Category(BoxPlotTests.class)
+    
     public void shouldGetBoxPlotData() {
         when(renalDatasetsDataProvider.loadData(any())).thenReturn(Arrays.asList(RENAL2, RENAL3));
         when(populationDatasetsDataProvider.loadData(any(Datasets.class)))
@@ -269,7 +269,7 @@ public class RenalServiceTest {
     }
 
     @Test
-    @Category(BoxPlotTests.class)
+    
     public void shouldGetBoxPlotDataWithVisitDiscXAxisOption() {
         // Given
         when(renalDatasetsDataProvider.loadData(any())).thenReturn(Arrays.asList(RENAL4, RENAL5, RENAL6));
@@ -299,7 +299,7 @@ public class RenalServiceTest {
     }
 
     @Test
-    @Category(BoxPlotTests.class)
+    
     public void shouldGetBoxPlotSelectionWhenTrellisedByMeasurementAndArm() {
         // Given
         when(renalDatasetsDataProvider.loadData(any())).thenReturn(Arrays.asList(RENAL7, RENAL8, RENAL9));
@@ -339,7 +339,7 @@ public class RenalServiceTest {
     }
 
     @Test
-    @Category(BoxPlotTests.class)
+    
     public void shouldGetBoxPlotSelectionWhenSingleXMatch() {
         // Given
         when(renalDatasetsDataProvider.loadData(any())).thenReturn(Arrays.asList(RENAL7, RENAL8, RENAL9));
@@ -449,7 +449,7 @@ public class RenalServiceTest {
     }
 
     @Test
-    @Category(BoxPlotTests.class)
+    
     public void shouldGetRangePlotSelectionWhenSingleXMatch() {
         // Given
         List<Renal> events = Arrays.asList(RENAL1, RENAL2, RENAL3);
@@ -486,7 +486,7 @@ public class RenalServiceTest {
     }
 
 //    @Test
-//    @Category(RangeChartTests.class)
+//    
 //    public void shouldGetRangePlotData() {
 //        when(renalDatasetsDataProvider.loadData(any(Datasets.class))).thenReturn(newArrayList(RENAL1, RENAL2, RENAL3));
 //        when(populationDatasetsDataProvider.loadData(any(Datasets.class)))

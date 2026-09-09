@@ -34,7 +34,8 @@ import {EXPLANATION_MAP} from '../../utils/ExplanationUtils';
 @Component({
     selector: 'trellising-component',
     templateUrl: 'TrellisingComponent.html',
-    styleUrls: ['./style.css']
+    styleUrls: ['./style.css'],
+    standalone: false
 })
 
 export class TrellisingComponent implements OnInit, OnDestroy {
@@ -91,7 +92,7 @@ export class TrellisingComponent implements OnInit, OnDestroy {
         }
     }
 
-    private isSingleSubjectView(): boolean {
+    public isSingleSubjectView(): boolean {
         return window.location.hash.indexOf('singlesubject') !== -1;
     }
 

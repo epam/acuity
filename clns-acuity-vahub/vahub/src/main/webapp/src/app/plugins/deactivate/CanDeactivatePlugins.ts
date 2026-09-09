@@ -15,7 +15,7 @@
  */
 
 import {Observable} from 'rxjs/Observable';
-import {ActivatedRouteSnapshot, RouterStateSnapshot, CanDeactivate} from '@angular/router';
+import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import {Injectable} from '@angular/core';
 import {Store} from '@ngrx/store';
 
@@ -28,7 +28,7 @@ import {ClearSubjectSelection} from '../refactored-singlesubject/store/actions/S
 import {ApplicationState} from '../../common/store/models/ApplicationState';
 
 @Injectable()
-export class CanDeactivatePlugins implements CanDeactivate<PluginsComponent> {
+export class CanDeactivatePlugins  {
 
     constructor(private trellisingDispatcher: TrellisingDispatcher,
                 private _timlineStore: Store<AppStore>,

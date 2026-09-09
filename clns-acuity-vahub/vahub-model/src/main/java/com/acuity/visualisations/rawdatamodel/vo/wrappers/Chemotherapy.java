@@ -29,7 +29,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 @ToString(callSuper = true)
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = false)
 public final class Chemotherapy extends SubjectAwareWrapper<ChemotherapyRaw> implements HasStartEndDate, Serializable {
 
     public static final String CHEMOTHERAPY = "Chemotherapy";

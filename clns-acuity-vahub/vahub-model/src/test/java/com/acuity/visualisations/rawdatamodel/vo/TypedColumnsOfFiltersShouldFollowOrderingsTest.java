@@ -20,9 +20,11 @@ import com.acuity.visualisations.rawdatamodel.util.ClassScanner;
 import com.acuity.visualisations.rawdatamodel.util.Column;
 import lombok.SneakyThrows;
 import one.util.streamex.StreamEx;
-import org.assertj.core.api.JUnitSoftAssertions;
-import org.junit.Rule;
-import org.junit.Test;
+import org.assertj.core.api.SoftAssertions;
+import org.assertj.core.api.junit.jupiter.InjectSoftAssertions;
+import org.assertj.core.api.junit.jupiter.SoftAssertionsExtension;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 
 import java.util.Arrays;
 import java.util.Comparator;
@@ -36,6 +38,7 @@ import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+@ExtendWith(SoftAssertionsExtension.class)
 public class TypedColumnsOfFiltersShouldFollowOrderingsTest {
 
     private static final String FILTERS_PACKAGE = "com.acuity.visualisations.rawdatamodel";
@@ -49,8 +52,8 @@ public class TypedColumnsOfFiltersShouldFollowOrderingsTest {
                     .getValue().stream()
                     .map(Column::displayName)
                     .collect(Collectors.toSet()).size() != 1;
-    @Rule
-    public final JUnitSoftAssertions softly = new JUnitSoftAssertions();
+    @InjectSoftAssertions
+    private SoftAssertions softly;
 
     @Test
     public void compositeClassesShouldNotHaveColumnOrderingsDuplicates() {

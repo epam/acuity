@@ -30,18 +30,18 @@ with sourceTable as (
         when
         --if AE end date later than the earliest date from death date and current date-time,
             aes_end_date_raw is not null
-            and least(coalesce(dth_date, oracle.sysdate()), oracle.sysdate()) < aes_end_date_raw
+            and least(coalesce(dth_date, NOW()), NOW()) < aes_end_date_raw
         --ETL should save the earliest date from death date and current date-time as AE end date to the DB
-            then least(coalesce(dth_date, oracle.sysdate()), oracle.sysdate())
+            then least(coalesce(dth_date, NOW()), NOW())
         when
         --if AE doesn't have an end date, withdrawal/completion date is not null and AE was started after withdrawal/completion date,
         --and last visit date after ae start date
-        --DECODE(SIGN(aes_start_date - coalesce(vis_date, aes_start_date)), 1, oracle.sysdate(), coalesce(vis_date, oracle.sysdate()) means use vis_date if vis_date >= aes_start_date or use current date otherwise
+        --DECODE(SIGN(aes_start_date - coalesce(vis_date, aes_start_date)), 1, NOW(), coalesce(vis_date, NOW()) means use vis_date if vis_date >= aes_start_date or use current date otherwise
             aes_end_date_raw is null
             and wc_withdrawal_completion_date is not null
             and aes_start_date > wc_withdrawal_completion_date
         --ETL should save the earliest date from death date, last visit date and current date-time as AE end date to the DB
-            then coalesce(dth_date, least(CASE WHEN SIGN(extract(day FROM(aes_start_date - coalesce(vis_date, aes_start_date))))::integer = 1 THEN oracle.sysdate() ELSE coalesce(vis_date, oracle.sysdate()) END, oracle.sysdate()))
+            then coalesce(dth_date, least(CASE WHEN SIGN(extract(day FROM(aes_start_date - coalesce(vis_date, aes_start_date))))::integer = 1 THEN NOW() ELSE coalesce(vis_date, NOW()) END, NOW()))
         when
         --if AE doesn't have an end date and there is no withdrawal/completion date, but death date is present
             aes_end_date_raw is null
@@ -51,19 +51,19 @@ with sourceTable as (
             then dth_date
         when
         --if AE doesn't have an end date and there is no withdrawal/completion date and death date, and last visit is after ae start date
-        --DECODE(SIGN(aes_start_date - coalesce(vis_date, aes_start_date)), 1, oracle.sysdate(), coalesce(vis_date, oracle.sysdate()) means use vis_date if vis_date >= aes_start_date or use current date otherwise
+        --DECODE(SIGN(aes_start_date - coalesce(vis_date, aes_start_date)), 1, NOW(), coalesce(vis_date, NOW()) means use vis_date if vis_date >= aes_start_date or use current date otherwise
             aes_end_date_raw is null
             and wc_withdrawal_completion_date is null
             and dth_date is null
         --ETL should save the earliest date from last visit date and current date-time as AE end date to the DB
-            then least(CASE WHEN SIGN (extract(day FROM(aes_start_date - coalesce(vis_date, aes_start_date))))::integer = 1 THEN oracle.sysdate() ELSE coalesce(vis_date, oracle.sysdate()) END, oracle.sysdate())
+            then least(CASE WHEN SIGN(extract(day FROM(aes_start_date - coalesce(vis_date, aes_start_date))))::integer = 1 THEN NOW() ELSE coalesce(vis_date, NOW()) END, NOW())
         when
         --if AE doesn't have an end date, withdrawal/completion date is not null and AE was started before withdrawal/completion date,
             aes_end_date_raw is null
             and wc_withdrawal_completion_date is not null
             and aes_start_date <= wc_withdrawal_completion_date
         --ETL should save the first not null date (COALESCE) from death date, max(withdrawal/completion date and last visit date) and current date-time
-            then coalesce(dth_date, greatest(wc_withdrawal_completion_date, coalesce(vis_date, wc_withdrawal_completion_date)), oracle.sysdate())
+            then coalesce(dth_date, greatest(wc_withdrawal_completion_date, coalesce(vis_date, wc_withdrawal_completion_date)), NOW())
         else
           aes_end_date
         end
@@ -75,7 +75,7 @@ with sourceTable as (
           aes_end_date_raw is null
           or (
             aes_end_date_raw is not null
-            and aes_end_date_raw > oracle.sysdate()
+            and aes_end_date_raw > NOW()
           )
       )
       THEN '1' ELSE '0' END
@@ -85,7 +85,7 @@ with sourceTable as (
           aes_end_date_raw is null
           or (
             aes_end_date_raw is not null
-            and aes_end_date_raw > oracle.sysdate()
+            and aes_end_date_raw > NOW()
           )
           or (
             aes_end_date_raw is not null
@@ -136,7 +136,7 @@ WHERE sourceTable.aes_id = result_ae_severity.aes_id
 DELETE
 FROM RESULT_AE_SEVERITY
 WHERE (AES_START_DATE > AES_END_DATE
-OR AES_START_DATE     > oracle.sysdate())
+OR AES_START_DATE     > NOW())
 AND (SELECT pat_std_id
   FROM result_patient
   INNER JOIN result_ae

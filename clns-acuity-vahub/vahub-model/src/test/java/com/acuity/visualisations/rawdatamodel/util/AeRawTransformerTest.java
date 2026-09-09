@@ -21,7 +21,7 @@ import com.acuity.visualisations.rawdatamodel.vo.AeSeverity;
 import com.acuity.visualisations.rawdatamodel.vo.AeSeverityRaw;
 import com.acuity.visualisations.rawdatamodel.vo.Subject;
 import com.google.common.collect.ImmutableMap;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Collection;
 import java.util.Date;

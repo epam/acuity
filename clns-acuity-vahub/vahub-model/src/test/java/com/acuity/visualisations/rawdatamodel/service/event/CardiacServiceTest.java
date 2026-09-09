@@ -23,11 +23,12 @@ import com.acuity.visualisations.rawdatamodel.util.DateUtils;
 import com.acuity.visualisations.rawdatamodel.vo.CardiacRaw;
 import com.acuity.visualisations.rawdatamodel.vo.Subject;
 import com.acuity.visualisations.rawdatamodel.vo.wrappers.Cardiac;
-import org.assertj.core.api.JUnitSoftAssertions;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.assertj.core.api.SoftAssertions;
+import org.assertj.core.api.junit.jupiter.InjectSoftAssertions;
+import org.assertj.core.api.junit.jupiter.SoftAssertionsExtension;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.Collections;
 import java.util.Date;
@@ -36,13 +37,13 @@ import java.util.Map;
 
 import static com.acuity.visualisations.rawdatamodel.util.DaysUtil.toDate;
 
-@RunWith(SpringRunner.class)
+@ExtendWith({SpringExtension.class, SoftAssertionsExtension.class})
 @SpringITTest
 public class CardiacServiceTest {
     private DoDCommonService tableService = new DoDCommonService();
 
-    @Rule
-    public final JUnitSoftAssertions softly = new JUnitSoftAssertions();
+    @InjectSoftAssertions
+    private SoftAssertions softly;
 
     private static Subject subject1 = Subject.builder()
             .subjectId("sid1")

@@ -18,7 +18,7 @@ package com.acuity.va.security.acl.service;
 
 import com.acuity.va.security.acl.domain.AcuityDataset;
 import com.acuity.va.security.acl.domain.AcuityObjectIdentityWithPermission;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 
 import org.slf4j.Logger;
@@ -28,19 +28,19 @@ import com.acuity.va.security.acl.domain.AcuitySidDetails;
 
 import static com.acuity.va.security.acl.permissions.AcuityPermissions.VIEW_VISUALISATIONS;
 import java.util.List;
-import org.junit.Before;
-import org.junit.Ignore;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.springframework.test.util.ReflectionTestUtils;
 
 
-@Ignore
+@Disabled
 public class AcuitySecurityResourceClientITCase {
 
     private static final Logger LOG = LoggerFactory.getLogger(AcuitySecurityResourceClientITCase.class);
 
     private final AcuitySecurityResourceClient acuitySecurityResourceClient = new AcuitySecurityResourceClient();
 
-    @Before
+    @BeforeEach
     public void before() {
         ReflectionTestUtils.setField(acuitySecurityResourceClient, "url", "");
         ReflectionTestUtils.setField(acuitySecurityResourceClient, "username", "");

@@ -49,15 +49,16 @@ import com.acuity.visualisations.rawdatamodel.vo.wrappers.Ae;
 import com.acuity.visualisations.rawdatamodel.vo.wrappers.SubjectAwareWrapper;
 import com.acuity.va.security.acl.domain.Datasets;
 import com.google.common.collect.ImmutableMap;
-import org.assertj.core.api.JUnitSoftAssertions;
+import org.assertj.core.api.SoftAssertions;
+import org.assertj.core.api.junit.jupiter.InjectSoftAssertions;
+import org.assertj.core.api.junit.jupiter.SoftAssertionsExtension;
 import org.assertj.core.groups.Tuple;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -93,11 +94,11 @@ import static java.lang.Boolean.TRUE;
 import static java.util.stream.Collectors.toSet;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.tuple;
-import static org.mockito.Matchers.any;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 
-@RunWith(SpringRunner.class)
+@ExtendWith({SpringExtension.class, SoftAssertionsExtension.class})
 @ContextConfiguration(classes = TestConfig.class)
 public class AeServiceTest {
 
@@ -286,8 +287,8 @@ public class AeServiceTest {
 
     private static final List<Ae> AE_EVENTS = newArrayList(EVENT1_SUBJECT1, EVENT2_SUBJECT1, EVENT3_SUBJECT1);
 
-    @Rule
-    public final JUnitSoftAssertions softly = new JUnitSoftAssertions();
+    @InjectSoftAssertions
+    private SoftAssertions softly;
     @Autowired
     private AeService aeService;
     @MockBean
@@ -653,8 +654,8 @@ public class AeServiceTest {
         settings.withOption(COLOR_BY, AeGroupByOptions.MAX_SEVERITY_GRADE.getGroupByOptionAndParams());
         settings.withOption(X_AXIS, AeGroupByOptions.OVERTIME_DURATION.getGroupByOptionAndParams(
                 GroupByOption.Params.builder()
-                        .with(GroupByOption.Param.BIN_INCL_DURATION, true)
-                        .with(GroupByOption.Param.BIN_SIZE, 1)
+                        .with(Param.BIN_INCL_DURATION, true)
+                        .with(Param.BIN_SIZE, 1)
                         .with(Param.TIMESTAMP_TYPE, TimestampType.DAYS_SINCE_FIRST_DOSE)
                         .build()));
         final ChartGroupByOptions.GroupByOptionAndParams<Ae, AeGroupByOptions> trellis = ARM.getGroupByOptionAndParams();
@@ -797,7 +798,7 @@ public class AeServiceTest {
         settings.withOption(X_AXIS, AeGroupByOptions.OVERTIME_DURATION.getGroupByOptionAndParams(
                 GroupByOption.Params.builder()
                         .with(Param.BIN_INCL_DURATION, true)
-                        .with(GroupByOption.Param.BIN_SIZE, 1)
+                        .with(Param.BIN_SIZE, 1)
                         .with(Param.TIMESTAMP_TYPE, TimestampType.DATE)
                         .build()));
         //final ChartGroupByOptions.GroupByOptionAndParams<AeGroupByOptions> trellis = ARM.getGroupByOptionAndParams();
@@ -980,7 +981,7 @@ public class AeServiceTest {
                 GroupByOption.Params.builder()
                         //NO DURACTION, JUST START DATES
                         .with(Param.BIN_INCL_DURATION, false)
-                        .with(GroupByOption.Param.BIN_SIZE, 1)
+                        .with(Param.BIN_SIZE, 1)
                         .with(Param.TIMESTAMP_TYPE, TimestampType.DATE)
                         .build()));
         final ChartGroupByOptions.GroupByOptionAndParams<Ae, AeGroupByOptions> trellis = ARM.getGroupByOptionAndParams();

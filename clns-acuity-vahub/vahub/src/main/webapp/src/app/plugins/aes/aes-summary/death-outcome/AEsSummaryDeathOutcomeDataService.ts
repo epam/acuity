@@ -16,7 +16,7 @@
 
 import {Injectable} from '@angular/core';
 import {flatMap, groupBy, map, reduce} from 'lodash';
-import {ColDef} from 'ag-grid/main';
+import {ColDef} from 'ag-grid-community';
 
 import {AEsSummaryDataService} from '../AEsSummaryDataService';
 import {

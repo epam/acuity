@@ -26,9 +26,6 @@ import com.acuity.visualisations.rawdatamodel.vo.wrappers.PatientData;
 import com.acuity.visualisations.rest.model.request.patient.data.PatientDataRequest;
 import com.acuity.visualisations.rest.model.request.patient.data.TimelinePatientDataRequest;
 import com.acuity.visualisations.rest.util.Constants;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;
@@ -37,7 +34,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import java.util.List;
 
 import static com.acuity.visualisations.rawdatamodel.trellis.grouping.ChartGroupByOptions.ChartGroupBySetting.X_AXIS;
@@ -45,7 +42,6 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 @RestController
-@Api(value = "/resources/timeline/patientdata/", description = "rest endpoints for for patient data timeline")
 @RequestMapping(value = "/resources/timeline/patientdata/",
         consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
 @PreAuthorize(Constants.PRE_AUTHORISE_VISUALISATION)
@@ -61,32 +57,18 @@ public class TimelinePatientDataResource {
      * @param requestBody selected population filters and patient data filters by client
      * @return list of available filters
      */
-    @ApiOperation(
-            value = "Gets the available patient data filters for the currently selected patient data and population filters",
-            nickname = "availablePatientDataFilters",
-            response = PatientDataFilters.class,
-            httpMethod = "POST"
-    )
     @RequestMapping(value = "/filters", method = POST)
     @Cacheable(condition = Constants.EMPTY_EVENT_AND_POPULATION_FILTER)
     public Filters<PatientData> getAvailableFilters(
-            @ApiParam(value = "", required = true)
             @RequestBody PatientDataRequest requestBody) {
 
         return timelinePatientDataService.getAvailableFilters(
                 requestBody.getDatasetsObject(), requestBody.getPatientDataFilters(), requestBody.getPopulationFilters());
     }
 
-    @ApiOperation(
-            value = "Gets the patient data summary information for the timeline for the currently selected population and patient data filters",
-            nickname = "getPatientDataSummaries",
-            response = List.class,
-            httpMethod = "POST"
-    )
     @RequestMapping(value = "/patientdatasummaries", method = POST)
     @Cacheable(condition = Constants.EMPTY_EVENT_AND_POPULATION_FILTER)
     public List<SubjectPatientDataSummary> getPatientDataSummaries(
-            @ApiParam(value = "", required = true)
             @RequestBody @Valid TimelinePatientDataRequest requestBody) {
 
         return timelinePatientDataService.
@@ -102,16 +84,9 @@ public class TimelinePatientDataResource {
      * @param requestBody selected population filters and patient data filters by client
      * @return list of patient details
      */
-    @ApiOperation(
-            value = "Gets the aes detail information for the timeline for the currently selected population and patient data filters",
-            nickname = "getPatientDataDetails",
-            response = List.class,
-            httpMethod = "POST"
-    )
     @RequestMapping(value = "/patientdatadetails", method = POST)
     @Cacheable(condition = Constants.EMPTY_EVENT_AND_POPULATION_FILTER)
     public List<SubjectPatientDataDetail> getPatientDataDetails(
-            @ApiParam(value = "", required = true)
             @RequestBody TimelinePatientDataRequest requestBody) {
 
         return timelinePatientDataService.

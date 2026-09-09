@@ -19,16 +19,16 @@ package com.acuity.va.security.acl.service;
 import com.acuity.va.security.acl.domain.AcuityObjectIdentityWithInitialLockDown;
 import com.acuity.va.security.acl.domain.DetectDataset;
 import com.acuity.va.security.acl.domain.vasecurity.DatasetInfo;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.List;
-import org.junit.Ignore;
+import org.junit.jupiter.api.Disabled;
 
 
-@Ignore
+@Disabled
 public class VASecurityResourceClientITCase {
 
     private static final Logger LOG = LoggerFactory.getLogger(VASecurityResourceClientITCase.class);

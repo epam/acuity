@@ -21,7 +21,7 @@ import com.acuity.visualisations.rest.model.request.EventFilterRequestPopulation
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
@@ -32,6 +32,10 @@ public class CerebrovascularRequest extends EventFilterRequestPopulationAware<Ce
 
     @Override
     public CerebrovascularFilters getEventFilters() {
+        return cerebrovascularFilters;
+    }
+
+    public CerebrovascularFilters getCerebrovascularFilters() {
         return cerebrovascularFilters;
     }
 }

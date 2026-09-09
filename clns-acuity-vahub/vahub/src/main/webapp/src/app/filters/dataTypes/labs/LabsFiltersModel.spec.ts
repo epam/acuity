@@ -15,7 +15,7 @@
  */
 
 import {inject, TestBed} from '@angular/core/testing';
-import {HttpClientTestingModule} from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 
 import {LabsFiltersModel} from './LabsFiltersModel';
 import {PopulationFiltersModel} from '../population/PopulationFiltersModel';
@@ -26,6 +26,7 @@ import {FilterEventService} from '../../event/FilterEventService';
 import {SessionEventService} from '../../../session/event/SessionEventService';
 import {MockDatasetViews, MockFilterEventService} from '../../../common/MockClasses';
 import {DatasetViews} from '../../../security/DatasetViews';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 class MockFilterHttpService {
 }
@@ -35,22 +36,22 @@ describe('GIVEN a LabsFiltersModel class', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [HttpClientTestingModule],
-            providers: [
-                SessionEventService,
-                {provide: DatasetViews, useClass: MockDatasetViews},
-                {provide: FilterHttpService, useValue: new MockFilterHttpService()},
-                {provide: PopulationFiltersModel, deps: [FilterHttpService, FilterEventService]},
-                {provide: FilterEventService, useClass: MockFilterEventService},
-                {
-                    provide: LabsFiltersModel,
-                    useFactory: (p: PopulationFiltersModel, f: FilterHttpService,
-                                 e: FilterEventService, d: DatasetViews): LabsFiltersModel =>
-                        new LabsFiltersModel(p, f, e, d),
-                    deps: [PopulationFiltersModel, FilterHttpService, FilterEventService, DatasetViews]
-                }
-            ]
-        });
+    imports: [],
+    providers: [
+        SessionEventService,
+        { provide: DatasetViews, useClass: MockDatasetViews },
+        { provide: FilterHttpService, useValue: new MockFilterHttpService() },
+        { provide: PopulationFiltersModel, deps: [FilterHttpService, FilterEventService] },
+        { provide: FilterEventService, useClass: MockFilterEventService },
+        {
+            provide: LabsFiltersModel,
+            useFactory: (p: PopulationFiltersModel, f: FilterHttpService, e: FilterEventService, d: DatasetViews): LabsFiltersModel => new LabsFiltersModel(p, f, e, d),
+            deps: [PopulationFiltersModel, FilterHttpService, FilterEventService, DatasetViews]
+        },
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting()
+    ]
+});
     });
 
     beforeEach(inject([LabsFiltersModel], (_labsFiltersModel: LabsFiltersModel) => {

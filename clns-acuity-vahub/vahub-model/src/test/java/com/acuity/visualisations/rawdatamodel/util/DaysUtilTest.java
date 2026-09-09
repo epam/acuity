@@ -17,7 +17,7 @@
 package com.acuity.visualisations.rawdatamodel.util;
 
 import org.apache.commons.lang3.tuple.MutablePair;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Date;
 
@@ -188,7 +188,7 @@ public class DaysUtilTest {
         final MutablePair<Date, Date> event2 = MutablePair.of(DATE_3, DATE_4);
         DaysUtil.sortEventsByStartDate(event1, event2);
         Date startFirst = event1.getLeft();
-        assertThat(event1.getLeft()).isEqualTo(null);
+        assertThat(event1.getLeft()).isNull();
         assertThat(event1.getRight().equals(DATE_2));
         assertThat(event2.getLeft().equals(DATE_3));
         assertThat(event2.getRight().equals(DATE_4));
@@ -199,7 +199,7 @@ public class DaysUtilTest {
         final MutablePair<Date, Date> event1 = MutablePair.of(DATE_3, DATE_4);
         final MutablePair<Date, Date> event2 = MutablePair.of(null, DATE_2);
         DaysUtil.sortEventsByStartDate(event1, event2);
-        assertThat(event1.getLeft()).isEqualTo(null);
+        assertThat(event1.getLeft()).isNull();
         assertThat(event1.getRight().equals(DATE_2));
         assertThat(event2.getLeft().equals(DATE_3));
         assertThat(event2.getRight().equals(DATE_4));

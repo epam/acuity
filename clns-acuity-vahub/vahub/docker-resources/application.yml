@@ -48,8 +48,6 @@ acuity:
     username: ${VAHUB_USERNAME:}
     password: ${VAHUB_PASSWORD:}
   # for VASecurity authorization module used in all ACUITY apps (basic authentication settings; should be here as long as basic authentication is used)
-  # LocalAuthConfiguration builds this in-memory user unconditionally, even under
-  # local-no-security - a blank username (unlike password) crashes startup
   security:
     basic-auth:
       users:
