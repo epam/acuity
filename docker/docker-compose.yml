@@ -1,7 +1,7 @@
 name: acuity
 services:
-  postgres:
-    image: acuity-postgres
+  acuity-postgres:
+    image: 897021975362.dkr.ecr.us-east-1.amazonaws.com/epm-lstr-acuity/postgres
     profiles: [main, initdb]
     restart: always
     ports:
@@ -18,20 +18,21 @@ services:
       retries: 10
 
   flyway:
-    image: acuity-flyway
+    image: 897021975362.dkr.ecr.us-east-1.amazonaws.com/epm-lstr-acuity/flyway
     profiles: [main, initdb]
     environment:
-      FLYWAY_URL: ${FLYWAY_URL:-jdbc:postgresql://postgres:5432/acuity_db}
+      # host must match the acuity-postgres service name below (app defaults in application.yml expect that hostname too)
+      FLYWAY_URL: ${FLYWAY_URL:-jdbc:postgresql://acuity-postgres:5432/acuity_db}
       FLYWAY_USER: ${FLYWAY_USER:-dbadmin}
       FLYWAY_PASSWORD: ${FLYWAY_PASSWORD:-test}
       # must match POSTGRES_PASSWORD in the app env files - it's the password migrations assign the acuity role
       FLYWAY_ACUITY_PASSWORD: ${FLYWAY_ACUITY_PASSWORD:-test}
     depends_on:
-      postgres:
+      acuity-postgres:
         condition: service_healthy
 
   adminui:
-    image: acuity-admin
+    image: 897021975362.dkr.ecr.us-east-1.amazonaws.com/epm-lstr-acuity/admin
     profiles: [main]
     ports:
       - "9090:8000"
@@ -43,7 +44,7 @@ services:
         condition: service_completed_successfully
 
   vahub:
-    image: acuity-va-hub
+    image: 897021975362.dkr.ecr.us-east-1.amazonaws.com/epm-lstr-acuity/va-hub
     profiles: [main]
     ports:
       - "8080:8000"
