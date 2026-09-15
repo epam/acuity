@@ -46,6 +46,9 @@ resource "aws_instance" "bastion" {
   iam_instance_profile        = aws_iam_instance_profile.bastion.name
   associate_public_ip_address = true
 
+  lifecycle {
+    ignore_changes = [ami]
+  }
 
   root_block_device {
     volume_type = "gp3"
