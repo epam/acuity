@@ -19,8 +19,9 @@ Compose project name: `acuity`. Startup order is enforced via healthchecks and
 | `acuity-va-hub` | 8080 | `main` | VAHub backend API (Spring Boot JAR). |
 | `acuity-va-hub-ui` | 3000 | `main` | VAHub Angular SPA served by nginx, which proxies `/resources/*` to `acuity-va-hub`. |
 
-`va-security`, `admin` and `va-hub` start after `flyway-migrate` completes.
-`va-hub-ui` starts after `va-hub`.
+`acuity-admin` and `acuity-va-hub` start after `acuity-flyway-migrate`
+completes.
+`acuity-va-hub-ui` starts after `acuity-va-hub`.
 
 **Profiles**: `main` is the full stack (default). `initdb` is just
 postgres + the migration — useful for setting up the DB alone. Selected via

@@ -708,9 +708,10 @@ public class ClinicalStudyController extends AbstractController {
             }
             study.setMappingModifiedDate(new Date());
             selectClinicalStudy(study, workflow);
-            if (!permissionHelper.isCurrentUserDrugProgrammeAdmin(study.getProjectId())) {
+            // there were separate permissions for some studies, but since security is removed, it doesn't make sense anymore
+/*            if (!permissionHelper.isCurrentUserDrugProgrammeAdmin(study.getProjectId())) {
                 throw new AccessDeniedException(ACCESS_DENIED_MESSAGE + study.getStudyCode());
-            }
+            }*/
             FileRule fileRule = study.getFileRule(mapRules.getFileRuleId());
             fileRule.setStudyRule(study);
             fileRule.setAcuityEnabled(mapRules.isStudyAcuityEnabled());

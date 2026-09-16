@@ -17,7 +17,7 @@ services:
       timeout: 5s
       retries: 10
 
-  flyway:
+  acuity-flyway-migrate:
     image: 897021975362.dkr.ecr.us-east-1.amazonaws.com/epm-lstr-acuity/flyway
     profiles: [main, initdb]
     environment:
@@ -31,7 +31,7 @@ services:
       acuity-postgres:
         condition: service_healthy
 
-  adminui:
+  acuity-admin:
     image: 897021975362.dkr.ecr.us-east-1.amazonaws.com/epm-lstr-acuity/admin
     profiles: [main]
     ports:
@@ -40,17 +40,17 @@ services:
     volumes:
       - ./local-file-storage:/usr/root/local-file-storage
     depends_on:
-      flyway:
+      acuity-flyway-migrate:
         condition: service_completed_successfully
 
-  vahub:
+  acuity-va-hub:
     image: 897021975362.dkr.ecr.us-east-1.amazonaws.com/epm-lstr-acuity/va-hub
     profiles: [main]
     ports:
       - "8080:8000"
     env_file: env-configs/va-hub.env
     depends_on:
-      flyway:
+      acuity-flyway-migrate:
         condition: service_completed_successfully
 volumes:
   pgdata:
