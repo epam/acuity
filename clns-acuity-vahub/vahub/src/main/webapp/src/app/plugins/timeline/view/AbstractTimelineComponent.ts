@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {OnInit, OnDestroy} from '@angular/core';
+import {Directive, OnInit, OnDestroy} from '@angular/core';
 import {Store} from '@ngrx/store';
 import {Subscription} from 'rxjs/Subscription';
 import {AppStore, ISubject, ITrack} from './../store/ITimeline';
@@ -28,10 +28,13 @@ import {TimelineDispatcher} from '../store/dispatcher/TimelineDispatcher';
 import {TimelineObservables} from '../store/observable/TimelineObservables';
 import {ApplicationState} from '../../../common/store/models/ApplicationState';
 
+@Directive()
 export class AbstractTimelineComponent<T extends TrackDataService> implements OnInit, OnDestroy {
 
     timelineId: string;
     public timeline: Timeline<T>;
+    public isLoading: any;
+    public selectedSubjectId: any;
     public maxHeight = 'calc(100vh - 315px)';
     private trackServiceSubscription: Subscription;
     private spirometryYAxisValueSubscription: Subscription;
@@ -62,6 +65,8 @@ export class AbstractTimelineComponent<T extends TrackDataService> implements On
             this.timelineObservables
         );
         this.timeline.init();
+        this.isLoading = this.timeline.loading;
+        this.selectedSubjectId = this.timeline.subjects;
         this.linkToTrackService();
         this.linkToConfigurationService();
         this.listenToSubjectChanges();

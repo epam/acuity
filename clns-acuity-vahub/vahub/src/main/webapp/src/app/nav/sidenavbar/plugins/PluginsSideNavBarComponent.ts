@@ -21,7 +21,8 @@ import {DatasetViews, UserPermissions} from '../../../security/module';
 @Component({
     selector: 'plugins-side-nav-bar',
     templateUrl: 'PluginsSideNavBarComponent.html',
-    styleUrls: ['../SideNavBarStyles.css']
+    styleUrls: ['../SideNavBarStyles.css'],
+    standalone: false
 })
 export class PluginsSideNavBarComponent {
 

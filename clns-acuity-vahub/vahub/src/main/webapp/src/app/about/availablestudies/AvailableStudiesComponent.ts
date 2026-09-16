@@ -33,7 +33,8 @@ import {ConfigurationService} from '../../configuration/ConfigurationService';
     selector: 'available-studies',
     templateUrl: 'AvailableStudiesComponent.html',
     styleUrls: ['../../studyselection/StudySelectionComponent.css'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 
 export class AvailableStudiesComponent implements OnInit, OnDestroy {

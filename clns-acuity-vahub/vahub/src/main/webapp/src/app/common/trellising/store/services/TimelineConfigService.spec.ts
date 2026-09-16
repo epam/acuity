@@ -15,7 +15,7 @@
  */
 
 import {inject, TestBed} from '@angular/core/testing';
-import {HttpClientTestingModule} from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 
 import {TabId} from '../ITrellising';
 import {TrackName} from '../../../../plugins/timeline/store/ITimeline';
@@ -24,25 +24,28 @@ import {LabsFiltersModel, PopulationFiltersModel} from '../../../../filters/modu
 import {MockFilterModel} from '../../../MockClasses';
 import {DatasetViews} from '../../../../security/DatasetViews';
 import {StudyService} from '../../../StudyService';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe('GIVEN TimelineConfigService', () => {
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [HttpClientTestingModule],
-            providers: [
-                StudyService,
-                {provide: DatasetViews, deps: [StudyService]},
-                PopulationFiltersModel,
-                {provide: LabsFiltersModel, useClass: MockFilterModel},
-                {
-                    provide: TimelineConfigService,
-                    useFactory: (labs: LabsFiltersModel, datasetViews: DatasetViews): TimelineConfigService => {
-                        return new TimelineConfigService(labs, datasetViews);
-                    },
-                    deps: [LabsFiltersModel, DatasetViews]
-                }
-            ]
-        });
+    imports: [],
+    providers: [
+        StudyService,
+        { provide: DatasetViews, deps: [StudyService] },
+        PopulationFiltersModel,
+        { provide: LabsFiltersModel, useClass: MockFilterModel },
+        {
+            provide: TimelineConfigService,
+            useFactory: (labs: LabsFiltersModel, datasetViews: DatasetViews): TimelineConfigService => {
+                return new TimelineConfigService(labs, datasetViews);
+            },
+            deps: [LabsFiltersModel, DatasetViews]
+        },
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting()
+    ]
+});
     });
 
     describe('WHEN we navigate from AEs counts', () => {

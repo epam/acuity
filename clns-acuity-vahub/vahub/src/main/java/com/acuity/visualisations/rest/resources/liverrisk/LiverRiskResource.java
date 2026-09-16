@@ -22,7 +22,6 @@ import com.acuity.visualisations.rest.model.request.SingleSubjectRequest;
 import com.acuity.visualisations.rest.model.request.liverrisk.LiverRiskRequest;
 import com.acuity.visualisations.rest.model.response.DetailsOnDemandResponse;
 import com.acuity.visualisations.rest.util.Constants;
-import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;
@@ -32,10 +31,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 
 @RestController
-@Api(description = "rest endpoints for liver risk")
 @RequestMapping("/resources/liver-risk/")
 @PreAuthorize(Constants.PRE_AUTHORISE_VISUALISATION)
 @CacheConfig(keyGenerator = "datasetsKeyGenerator", cacheResolver = "refreshableCacheResolver")

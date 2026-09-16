@@ -50,11 +50,6 @@ export class StatusTrackDataTransformer extends TrackDataTransformer {
             trackData.push(this.transformDatePoint(EventDateType.WITHDRAWAL_COMPLETION, apiTrackData.completion));
         }
 
-        // death
-        if (apiTrackData.death) {
-            trackData.push(this.transformDatePoint(EventDateType.DEATH, apiTrackData.death));
-        }
-
         // first treatment
         if (apiTrackData.firstTreatment) {
             trackData.push(this.transformDatePoint(EventDateType.FIRST_DOSE, apiTrackData.firstTreatment));
@@ -85,8 +80,14 @@ export class StatusTrackDataTransformer extends TrackDataTransformer {
             trackData.push(this.transformDatePoint(EventDateType.ONGOING, apiTrackData.ongoing));
         }
 
+        // death — pushed last so it renders on top when it coincides with another symbol (e.g. last dose on day of death)
+        if (apiTrackData.death && apiTrackData.death.dayHour != null) {
+            trackData.push(this.transformDatePoint(EventDateType.DEATH, apiTrackData.death));
+        }
+
         return {
             subjectId: apiTrackData.subjectId,
+            subject: apiTrackData.subject,
             data: trackData
         };
     }

@@ -30,7 +30,7 @@ import lombok.ToString;
 import java.io.Serializable;
 import java.util.Date;
 
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = false)
 @ToString(callSuper = true)
 public final class Cerebrovascular extends SubjectAwareWrapper<CerebrovascularRaw> implements HasStartDate, Serializable, HasAssociatedAe {
 

@@ -30,7 +30,7 @@ import java.io.Serializable;
 import java.util.OptionalInt;
 
 @ToString(callSuper = true)
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = false)
 public final class Death extends SubjectAwareWrapper<DeathRaw> implements Serializable {
 
     public Death(DeathRaw event, Subject subject) {

@@ -24,13 +24,13 @@ import com.acuity.va.security.acl.permissions.AclPermissionCalculator;
 import com.acuity.va.security.config.annotation.FlatXmlNullDataSetLoader;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
 import com.github.springtestdbunit.annotation.DbUnitConfiguration;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.acls.model.MutableAcl;
 import org.springframework.security.acls.model.Permission;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import static com.acuity.va.security.acl.domain.AcuitySidDetails.toUser;
 import static com.acuity.va.security.acl.permissions.AcuityCumulativePermissionsAsRoles.AUTHORISED_USER;
@@ -42,7 +42,7 @@ import static com.acuity.va.security.acl.permissions.AcuityPermissions.VIEW_PROA
 import static com.google.common.collect.Lists.newArrayList;
 import static org.assertj.core.api.Assertions.assertThat;
 
-@RunWith(SpringJUnit4ClassRunner.class)
+@ExtendWith(SpringExtension.class)
 @TransactionalMyBatisDBUnitH2Test
 @DatabaseSetup({"/dbunit/security/dbunit-all-security.xml"})
 @DbUnitConfiguration(dataSetLoader = FlatXmlNullDataSetLoader.class)

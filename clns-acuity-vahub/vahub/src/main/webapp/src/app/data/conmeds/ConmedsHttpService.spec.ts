@@ -22,8 +22,8 @@ import {AesFiltersModel, ConmedsFiltersModel, PopulationFiltersModel} from '../.
 import {MockFilterModel, MockHttpClient} from '../../common/MockClasses';
 
 import * as utils from '../../common/utils/Utils';
-import {HttpClient} from '@angular/common/http';
-import {HttpClientTestingModule} from '@angular/common/http/testing';
+import { HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import {AesHttpService} from '../aes';
 import {Observable} from 'rxjs/Observable';
 
@@ -46,34 +46,38 @@ describe('GIVEN ConmedsHttpService', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [HttpClientTestingModule],
-            providers: [
-                {provide: HttpClient, useClass: MockHttpClient},
-                {provide: PopulationFiltersModel, useClass: MockFilterModel},
-                {provide: ConmedsFiltersModel, useClass: MockFilterModel},
-                {
-                    provide: ConmedsHttpService,
-                    useClass: ConmedsHttpService,
-                    deps: [HttpClient, PopulationFiltersModel, ConmedsFiltersModel]
-                },
-            ]
-        });
+    imports: [],
+    providers: [
+        { provide: HttpClient, useClass: MockHttpClient },
+        { provide: PopulationFiltersModel, useClass: MockFilterModel },
+        { provide: ConmedsFiltersModel, useClass: MockFilterModel },
+        {
+            provide: ConmedsHttpService,
+            useClass: ConmedsHttpService,
+            deps: [HttpClient, PopulationFiltersModel, ConmedsFiltersModel]
+        },
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+    ]
+});
     });
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [HttpClientTestingModule],
-            providers: [
-                {provide: HttpClient, useClass: MockHttpClient},
-                {provide: PopulationFiltersModel, useClass: MockFilterModel},
-                {provide: AesFiltersModel, useClass: MockFilterModel},
-                {
-                    provide: AesHttpService,
-                    useClass: AesHttpService,
-                    deps: [HttpClient, PopulationFiltersModel, AesFiltersModel]
-                },
-            ]
-        });
+    imports: [],
+    providers: [
+        { provide: HttpClient, useClass: MockHttpClient },
+        { provide: PopulationFiltersModel, useClass: MockFilterModel },
+        { provide: AesFiltersModel, useClass: MockFilterModel },
+        {
+            provide: AesHttpService,
+            useClass: AesHttpService,
+            deps: [HttpClient, PopulationFiltersModel, AesFiltersModel]
+        },
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+    ]
+});
     });
 
 

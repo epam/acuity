@@ -27,20 +27,17 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.5.4.RELEASE</version>
+        <version>3.3.5</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
     <properties>
-        <java-version>1.8</java-version>
+        <java-version>17</java-version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <spring.version>4.3.7.RELEASE</spring.version>
         <jersey.version>2.7</jersey.version>
-        <spring.security.version>4.2.3.RELEASE</spring.security.version>
-        <spring.boot.version>1.5.4.RELEASE</spring.boot.version>
+        <spring.boot.version>2.7.18</spring.boot.version>
         <slf4j.version>1.7.6</slf4j.version>
         <logback.version>1.2.1</logback.version>
-        <jackson.version>2.8.8</jackson.version>
         <jtds.version>1.2.6</jtds.version>
         <spring.profile>default</spring.profile>
         <maven.javadoc.skip>true</maven.javadoc.skip>
@@ -52,7 +49,7 @@
             <dependency>
                 <groupId>org.postgresql</groupId>
                 <artifactId>postgresql</artifactId>
-                <version>9.4.1212.jre7</version>
+                <version>42.7.3</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -64,7 +61,6 @@
         <module>domain</module>
         <module>security</module>
         <module>rest</module>
-        <module>web</module>
         <module>auth</module>
     </modules>
 
@@ -157,7 +153,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.1</version>
+                <version>3.11.0</version>
                 <configuration>
                     <source>${java-version}</source>
                     <target>${java-version}</target>

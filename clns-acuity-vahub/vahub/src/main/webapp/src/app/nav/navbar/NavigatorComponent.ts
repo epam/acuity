@@ -39,11 +39,12 @@ const COLLAPSED_HEIGHT = 51;
 @Component({
     selector: 'navigator',
     templateUrl: 'NavigatorComponent.html',
-    styleUrls: ['./NavigatorComponent.css']
+    styleUrls: ['./NavigatorComponent.css'],
+    standalone: false
 })
 export class NavigatorComponent implements OnInit, OnDestroy {
 
-    @ViewChild('navBarStudiesContainer') navBarStudiesContainer: ElementRef;
+    @ViewChild('navBarStudiesContainer', { static: false }) navBarStudiesContainer: ElementRef;
     navBarStudiesCollapsed: boolean;
     navBarStudiesExpandCollapseEnabled: boolean;
     studySelectionSubscription: Subscription;

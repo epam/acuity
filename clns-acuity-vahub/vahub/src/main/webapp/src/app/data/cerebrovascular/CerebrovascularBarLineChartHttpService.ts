@@ -15,7 +15,7 @@
  */
 
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import {CerebrovascularFiltersModel, PopulationFiltersModel} from '../../filters/dataTypes/module';
 import {fromJS, List} from 'immutable';

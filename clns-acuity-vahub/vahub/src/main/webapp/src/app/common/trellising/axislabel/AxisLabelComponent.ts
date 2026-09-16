@@ -14,12 +14,13 @@
  * limitations under the License.
  */
 
-import {EventEmitter, Input, Output} from '@angular/core';
+import {Directive, EventEmitter, Input, Output} from '@angular/core';
 import {AxisLabelService} from './AxisLabelService';
 import {Subscription} from 'rxjs/Subscription';
 import {DynamicAxis, TabId} from '../store';
 import {GroupBySetting, XAxisOptions} from '../store/actions/TrellisingActionCreator';
 
+@Directive()
 export class AxisLabelComponent {
 
     public isOpen: boolean;

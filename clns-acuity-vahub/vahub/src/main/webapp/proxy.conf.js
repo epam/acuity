@@ -1,6 +1,6 @@
 const PROXY_CONFIG = {
     "/resources": {
-        "target": "http://localhost:8000",
+        "target": "http://localhost:8080",
         "secure": false
     }
 };

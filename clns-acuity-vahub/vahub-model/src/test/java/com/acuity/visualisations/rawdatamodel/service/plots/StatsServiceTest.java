@@ -42,13 +42,13 @@ import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
-import org.assertj.core.api.JUnitSoftAssertions;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.experimental.categories.Category;
-import org.junit.runner.RunWith;
+import org.assertj.core.api.SoftAssertions;
+import org.assertj.core.api.junit.jupiter.InjectSoftAssertions;
+import org.assertj.core.api.junit.jupiter.SoftAssertionsExtension;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -59,13 +59,13 @@ import java.util.Objects;
 
 import static org.assertj.core.groups.Tuple.tuple;
 
-@RunWith(SpringRunner.class)
+@ExtendWith({SpringExtension.class, SoftAssertionsExtension.class})
 @ContextConfiguration(classes = TestConfig.class)
-@Category({BoxPlotTests.class, RangeChartTests.class, ShiftPlotTests.class})
+
 public class StatsServiceTest {
 
-    @Rule
-    public final JUnitSoftAssertions softly = new JUnitSoftAssertions();
+    @InjectSoftAssertions
+    private SoftAssertions softly;
 
     @Test
     public void shouldGetBoxplotStats() {

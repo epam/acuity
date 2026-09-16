@@ -17,7 +17,7 @@
 package com.acuity.visualisations.rawdatamodel.vo;
 
 import com.acuity.visualisations.rawdatamodel.util.DaysUtil;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Date;
 

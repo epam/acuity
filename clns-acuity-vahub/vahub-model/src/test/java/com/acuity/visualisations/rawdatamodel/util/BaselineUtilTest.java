@@ -22,9 +22,11 @@ import com.google.common.collect.ImmutableList;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.NotImplementedException;
-import org.assertj.core.api.JUnitSoftAssertions;
-import org.junit.Rule;
-import org.junit.Test;
+import org.assertj.core.api.SoftAssertions;
+import org.assertj.core.api.junit.jupiter.InjectSoftAssertions;
+import org.assertj.core.api.junit.jupiter.SoftAssertionsExtension;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 
 import java.util.Collections;
 import java.util.Date;
@@ -33,6 +35,7 @@ import java.util.OptionalDouble;
 import static com.acuity.visualisations.rawdatamodel.util.DaysUtil.toDate;
 import static org.assertj.core.api.Java6Assertions.assertThat;
 
+@ExtendWith(SoftAssertionsExtension.class)
 public class BaselineUtilTest {
 
     @Test
@@ -102,8 +105,8 @@ public class BaselineUtilTest {
         BaselineUtil.defineBaselinesForEvents(Collections.singleton(() -> new Date(0)), e -> Subject.builder().build(), (a, b) -> null);
     }
 
-    @Rule
-    public final JUnitSoftAssertions softly = new JUnitSoftAssertions();
+    @InjectSoftAssertions
+    private SoftAssertions softly;
 
     @Test
     public void shouldChooseSummaryBaselineDateProperly() {

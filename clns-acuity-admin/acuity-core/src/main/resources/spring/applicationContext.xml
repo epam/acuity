@@ -9,7 +9,5 @@
     <import resource="applicationContext-mybatis.xml" />
     <import resource="applicationContext-scheduler.xml"/>
     <import resource="applicationContext-email.xml"/>
-    <bean id="cacheManager" class="com.acuity.visualisations.web.service.CustomEhCacheCacheManager" p:cacheManager-ref="ehcache"/>
-    <bean id="ehcache" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean" p:shared="true" p:configLocation="classpath:ehcache.xml"/>
     <context:property-placeholder location="classpath:/git.properties" ignore-unresolvable="true"/>
 </beans>

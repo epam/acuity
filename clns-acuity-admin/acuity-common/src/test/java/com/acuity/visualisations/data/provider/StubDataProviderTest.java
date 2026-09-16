@@ -20,12 +20,12 @@ import com.acuity.visualisations.data.Data;
 import com.acuity.visualisations.data.provider.azure.AzureFileStorageDataProvider;
 import com.acuity.visualisations.data.provider.local.LocalFileSystemDataProvider;
 import com.acuity.visualisations.data.provider.samba.SambaDataProvider;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.runners.MockitoJUnitRunner;
 
 import java.util.List;
 import java.util.stream.Stream;
@@ -34,7 +34,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.anyString;
 import static org.mockito.Mockito.when;
 
-@RunWith(MockitoJUnitRunner.class)
+@ExtendWith(MockitoExtension.class)
 public class StubDataProviderTest {
 
     private static final String LOCAL_STORAGE_PREFIX = "local://";
@@ -52,7 +52,7 @@ public class StubDataProviderTest {
     @InjectMocks
     private MatchingDataProvider matchingDataProvider;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         when(providers.stream())
                 .thenReturn(

@@ -22,7 +22,7 @@ import java.io.IOException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import static com.google.common.collect.Lists.newArrayList;
 import java.io.StringWriter;
-import org.junit.*;
+import org.junit.jupiter.api.*;
 import static com.google.common.collect.Lists.newArrayList;
 
 
@@ -34,7 +34,7 @@ public class SerializingAcuityObjectIdentityTest {
     
     private static ObjectMapper mapper;
     
-    @BeforeClass
+    @BeforeAll
     public static void beforeClass() {
         mapper = new ObjectMapper();
         mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);

@@ -14,19 +14,15 @@
  * limitations under the License.
  */
 
+import {animate, state, style, transition, trigger} from '@angular/animations';
 import {
-    animate,
     ChangeDetectionStrategy,
     Component,
     EventEmitter,
     Input,
     OnChanges, OnDestroy, OnInit,
     Output,
-    SimpleChanges,
-    state,
-    style,
-    transition,
-    trigger
+    SimpleChanges
 } from '@angular/core';
 import {TimelineAxisLabelService} from './TimelineAxisLabelService';
 import {DynamicAxis, TabId} from '../../../common/trellising/store/ITrellising';
@@ -40,12 +36,13 @@ import * as _ from 'lodash';
     styleUrls: ['TimelineAxisLabelComponent.css'],
     animations: [
         trigger('openClose', [
-            state('collapsed, void', style({opacity: '0', bottom: '0px'})),
-            state('expanded', style({opacity: '1', bottom: '160px'})),
-            transition('collapsed <=> expanded', [animate(500, style({opacity: '1', bottom: '160px'}))])
+            state('collapsed, void', style({ opacity: '0', bottom: '0px' })),
+            state('expanded', style({ opacity: '1', bottom: '160px' })),
+            transition('collapsed <=> expanded', [animate(500, style({ opacity: '1', bottom: '160px' }))])
         ])
     ],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class TimelineAxisLabelComponent extends AxisLabelComponent implements OnChanges, OnInit, OnDestroy {
     @Input() option: string | DynamicAxis;

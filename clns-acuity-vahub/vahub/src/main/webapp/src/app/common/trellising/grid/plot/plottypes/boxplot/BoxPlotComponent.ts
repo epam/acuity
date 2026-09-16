@@ -48,7 +48,8 @@ import {ChartMouseEvent} from '../../../../../../../vahub-charts/types/interface
     selector: 'boxplot',
     template: '<div></div>',
     providers: [BoxPlotConfigService, BoxPlotService],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class BoxPlotComponent extends AbstractPlotComponent implements OnChanges, OnDestroy {
     private lastPlotData: BoxPlotData;
@@ -106,7 +107,7 @@ export class BoxPlotComponent extends AbstractPlotComponent implements OnChanges
         }
         if (changes['selection'] && !is(changes['selection'].previousValue, changes['selection'].currentValue)) {
             this.updateSelectionRendering();
-            this.chart.update();
+            this.chart?.update();
         }
     }
 
@@ -134,16 +135,16 @@ export class BoxPlotComponent extends AbstractPlotComponent implements OnChanges
     }
 
     protected getCategories(event: ChartMouseEvent): string[] {
-        let categories: string[];
-        if (this.chart.xAxis[0].categories.length > 0) {
-            categories = <string[]> map(this.plotData.toJS().slice(event.xAxis[0].min + 0.5, event.xAxis[0].max + 1), 'x');
+        const rawData = this.plotData.toJS();
+        if (this.isCategorical) {
+            // Categorical: getReversedScaledValue returns a category index, so slice by index.
+            return <string[]> map(rawData.slice(event.xAxis[0].min + 0.5, event.xAxis[0].max + 1), 'x');
         } else {
-            categories = <string[]> chain(this.plotData.toJS())
+            return <string[]> chain(rawData)
+                .filter((d: any) => Number(d.x) >= event.xAxis[0].min && Number(d.x) <= event.xAxis[0].max)
                 .map('x')
-                .filter(x => event.xAxis[0].min <= Number(x) && event.xAxis[0].max >= Number(x))
                 .value();
         }
-        return categories;
     }
 
     protected updateZoomX(): void {
@@ -262,7 +263,7 @@ export class BoxPlotComponent extends AbstractPlotComponent implements OnChanges
             this.removeSelection();
 
             this.currentSelection = selection;
-            this.chart.update();
+            this.chart?.update();
         }
     }
 

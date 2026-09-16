@@ -15,12 +15,12 @@
  */
 
 import {async, inject, TestBed} from '@angular/core/testing';
-import {HttpClient} from '@angular/common/http';
+import { HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import {CardiacHttpService} from './CardiacHttpService';
 import {CardiacFiltersModel, PopulationFiltersModel} from '../../filters/module';
 import * as utils from '../../common/utils/Utils';
 import {MockFilterModel, MockHttpClient} from '../../common/MockClasses';
-import {HttpClientTestingModule} from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import {Observable} from 'rxjs/Observable';
 import Dataset = Request.Dataset;
 import DetailsOnDemandResponse = Request.DetailsOnDemandResponse;
@@ -42,15 +42,17 @@ describe('GIVEN CardiacHttpService', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [HttpClientTestingModule],
-            providers: [
-                {provide: HttpClient, useClass: MockHttpClient},
-                {provide: PopulationFiltersModel, useClass: MockFilterModel},
-                {provide: CardiacFiltersModel, useClass: MockFilterModel},
-                {provide: CardiacHttpService, useClass: CardiacHttpService,
-                    deps: [HttpClient, PopulationFiltersModel, CardiacFiltersModel]},
-            ]
-        });
+    imports: [],
+    providers: [
+        { provide: HttpClient, useClass: MockHttpClient },
+        { provide: PopulationFiltersModel, useClass: MockFilterModel },
+        { provide: CardiacFiltersModel, useClass: MockFilterModel },
+        { provide: CardiacHttpService, useClass: CardiacHttpService,
+            deps: [HttpClient, PopulationFiltersModel, CardiacFiltersModel] },
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+    ]
+});
     });
 
     describe('WHEN we get details on demand data', () => {

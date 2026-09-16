@@ -14,10 +14,11 @@
  * limitations under the License.
  */
 
-import {AfterViewInit, Directive, ElementRef, HostListener, Renderer} from '@angular/core';
+import {AfterViewInit, Directive, ElementRef, HostListener, Renderer2} from '@angular/core';
 
 @Directive({
-    selector: '[beta-tooltip]'
+    selector: '[beta-tooltip]',
+    standalone: false
 })
 
 export class BetaTooltipDirective implements AfterViewInit {
@@ -33,26 +34,28 @@ export class BetaTooltipDirective implements AfterViewInit {
     tooltip: HTMLElement;
 
     constructor(private element: ElementRef,
-                private renderer: Renderer) {
+                private renderer: Renderer2) {
 
     }
 
     ngAfterViewInit(): void {
-        this.tooltip = this.renderer.createElement(this.element.nativeElement, this.tooltipConfig.elementSelector);
+        this.tooltip = this.renderer.createElement(this.tooltipConfig.elementSelector);
+        this.renderer.appendChild(this.element.nativeElement, this.tooltip);
 
-        this.renderer.setElementClass(this.tooltip, this.tooltipConfig.bottomClassName, true);
-        this.renderer.setElementClass(this.tooltip, this.tooltipConfig.className, true);
-        this.renderer.createText(this.tooltip, this.tooltipConfig.notificationText);
+        this.renderer.addClass(this.tooltip, this.tooltipConfig.bottomClassName);
+        this.renderer.addClass(this.tooltip, this.tooltipConfig.className);
+        const text = this.renderer.createText(this.tooltipConfig.notificationText);
+        this.renderer.appendChild(this.tooltip, text);
     }
 
     @HostListener('mouseenter')
     onMouseEnter(): void {
-        this.renderer.setElementClass(this.tooltip, this.tooltipConfig.activeClassName, true);
+        this.renderer.addClass(this.tooltip, this.tooltipConfig.activeClassName);
     }
 
     @HostListener('mouseleave')
     onMouseLeave(): void {
-        this.renderer.setElementClass(this.tooltip, this.tooltipConfig.activeClassName, false);
+        this.renderer.removeClass(this.tooltip, this.tooltipConfig.activeClassName);
     }
 
     // private get tooltipPosition(): string {

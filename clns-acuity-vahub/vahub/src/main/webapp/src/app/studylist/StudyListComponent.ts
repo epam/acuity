@@ -23,7 +23,8 @@ import Dataset = Request.Dataset;
     selector: 'study-list',
     templateUrl: 'StudyListComponent.html',
     styleUrls: ['StudyListComponent.css'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 
 export class StudyListComponent {

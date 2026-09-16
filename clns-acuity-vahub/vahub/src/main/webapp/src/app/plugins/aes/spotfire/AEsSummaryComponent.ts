@@ -18,7 +18,8 @@ import {Component} from '@angular/core';
 import {DatasetViews} from '../../../security/module';
 
 @Component({
-    template: `<spotfire-component [moduletype]="'AESummaries'"></spotfire-component>`
+    template: `<spotfire-component [moduletype]="'AESummaries'"></spotfire-component>`,
+    standalone: false
 })
 export class AEsSummaryComponent {
 

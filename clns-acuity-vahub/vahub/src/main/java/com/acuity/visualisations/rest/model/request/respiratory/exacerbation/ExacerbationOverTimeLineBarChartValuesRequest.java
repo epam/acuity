@@ -22,11 +22,15 @@ import com.acuity.visualisations.rawdatamodel.vo.wrappers.Exacerbation;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
 public class ExacerbationOverTimeLineBarChartValuesRequest extends ExacerbationRequest {
     @NotNull
     private ChartGroupByOptionsFiltered<Exacerbation, ExacerbationGroupByOptions> settings;
+
+    public ChartGroupByOptionsFiltered<Exacerbation, ExacerbationGroupByOptions> getSettings() {
+        return settings;
+    }
 }

@@ -24,7 +24,8 @@ import {Subscription} from 'rxjs/Subscription';
 @Component({
     selector: 'timeline-track-selector',
     templateUrl: 'TimelineTrackSelectionComponent.html',
-    styleUrls: ['../../../../filters/filters.css', './TimelineTrackSelectionComponent.css']
+    styleUrls: ['../../../../filters/filters.css', './TimelineTrackSelectionComponent.css'],
+    standalone: false
 })
 export class TimelineTrackSelectionComponent implements OnInit, OnDestroy {
     private tracksSubscription: Subscription;

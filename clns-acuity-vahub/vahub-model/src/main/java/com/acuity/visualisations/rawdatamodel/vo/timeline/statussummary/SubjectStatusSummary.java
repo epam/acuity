@@ -34,7 +34,7 @@ import static com.google.common.collect.Lists.newArrayList;
  * @author ksnd199
  */
 @Data
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = false)
 @ToString(callSuper = true)
 @NoArgsConstructor
 public class SubjectStatusSummary extends SubjectSummary {

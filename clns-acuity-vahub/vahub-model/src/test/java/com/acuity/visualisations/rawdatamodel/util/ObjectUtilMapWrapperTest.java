@@ -16,8 +16,8 @@
 
 package com.acuity.visualisations.rawdatamodel.util;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -51,8 +51,8 @@ public class ObjectUtilMapWrapperTest {
         Set<ObjectUtil.MapWrapper<Integer>> set = new HashSet<>();
         set.add(mapAWrapped);
 
-        Assert.assertTrue(set.contains(mapAWrapped));
-        Assert.assertTrue(set.contains(mapBWrapped));
-        Assert.assertFalse(set.contains(mapCWrapped));
+        Assertions.assertTrue(set.contains(mapAWrapped));
+        Assertions.assertTrue(set.contains(mapBWrapped));
+        Assertions.assertFalse(set.contains(mapCWrapped));
     }
 }

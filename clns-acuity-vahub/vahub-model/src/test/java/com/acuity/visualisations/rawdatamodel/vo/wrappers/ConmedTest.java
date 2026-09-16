@@ -20,18 +20,21 @@ import com.acuity.visualisations.rawdatamodel.util.Constants;
 import com.acuity.visualisations.rawdatamodel.vo.ConmedRaw;
 import com.acuity.visualisations.rawdatamodel.vo.Subject;
 import org.apache.commons.lang3.time.DateUtils;
-import org.assertj.core.api.JUnitSoftAssertions;
-import org.junit.Rule;
-import org.junit.Test;
+import org.assertj.core.api.SoftAssertions;
+import org.assertj.core.api.junit.jupiter.InjectSoftAssertions;
+import org.assertj.core.api.junit.jupiter.SoftAssertionsExtension;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 
 import java.util.Date;
 
 import static com.acuity.visualisations.rawdatamodel.util.Attributes.DEFAULT_EMPTY_VALUE;
 
+@ExtendWith(SoftAssertionsExtension.class)
 public class ConmedTest {
 
-    @Rule
-    public final JUnitSoftAssertions softly = new JUnitSoftAssertions();
+    @InjectSoftAssertions
+    private SoftAssertions softly;
 
     @Test
     public void shouldProvideEmptyDatePriorToFieldsForNullBasicValues() {

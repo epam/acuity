@@ -24,14 +24,14 @@ import com.acuity.visualisations.rawdatamodel.vo.Subject;
 import com.acuity.visualisations.rawdatamodel.vo.wrappers.CvotEndpoint;
 import com.acuity.va.security.acl.domain.Dataset;
 import com.acuity.va.security.acl.domain.AcuityDataset;
-import org.junit.Ignore;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -53,7 +53,7 @@ import java.util.stream.IntStream;
 import static com.acuity.visualisations.config.util.TestConstants.DUMMY_ACUITY_DATASET_42;
 import static org.assertj.core.api.Assertions.assertThat;
 
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = {TestConfig.class, DataProviderConfiguration.class})
 @TestPropertySource(properties = "env.name=mock")
 public class DataProviderTest extends DataProviderAwareTest {
@@ -157,7 +157,7 @@ public class DataProviderTest extends DataProviderAwareTest {
     }
 
     @Test
-    @Ignore("Manual performance test, unignore when need to run")
+    @Disabled("Manual performance test, unignore when need to run")
     public void testCachingPerformance() throws InterruptedException {
         final List<Object> errorCnt = new ArrayList<>();
         List<Long> queryTimes = new ArrayList<>();

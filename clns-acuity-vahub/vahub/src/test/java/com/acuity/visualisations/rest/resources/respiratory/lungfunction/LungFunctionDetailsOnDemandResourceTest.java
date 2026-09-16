@@ -25,13 +25,13 @@ import com.acuity.visualisations.rest.model.request.DetailsOnDemandRequest;
 import com.acuity.va.security.acl.domain.Datasets;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.ImmutableList;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.Collections;
@@ -42,17 +42,17 @@ import java.util.Map;
 import static com.acuity.visualisations.config.util.TestConstants.DUMMY_DETECT_DATASETS;
 import static org.hamcrest.Matchers.hasKey;
 import static org.hamcrest.Matchers.hasValue;
-import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.anyInt;
-import static org.mockito.Matchers.anyList;
-import static org.mockito.Matchers.anySet;
+import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.ArgumentMatchers.nullable;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anySet;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@RunWith(SpringRunner.class)
-@WebMvcTest(controllers = LungFunctionDetailsOnDemandResource.class, secure = false)
+@ExtendWith(SpringExtension.class)
+@WebMvcTest(controllers = LungFunctionDetailsOnDemandResource.class)
 public class LungFunctionDetailsOnDemandResourceTest {
 
     private static final String BASE_URL = "/resources/respiratory/lung-function/details-on-demand";
@@ -75,13 +75,13 @@ public class LungFunctionDetailsOnDemandResourceTest {
         request.setEnd(10);
         request.setDatasets(DUMMY_DETECT_DATASETS.getDatasetsList());
 
-        Map<String, Object> dodMap = new HashMap<>();
+        Map<String, String> dodMap = new HashMap<>();
         dodMap.put("column_1", "value_1");
         dodMap.put("column_2", "value_2");
 
-        List<Map<String, Object>> detailsOnDemandData = Collections.singletonList(dodMap);
+        List<Map<String, String>> detailsOnDemandData = Collections.singletonList(dodMap);
 
-        when(lungFunctionService.getDetailsOnDemandData(any(Datasets.class), anySet(), anyList(), anyInt(), anyInt()))
+        when(lungFunctionService.getDetailsOnDemandData(any(Datasets.class), anySet(), nullable(List.class), anyLong(), anyLong()))
                 .thenReturn(detailsOnDemandData);
 
         this.mvc.perform(post(BASE_URL + "/data")

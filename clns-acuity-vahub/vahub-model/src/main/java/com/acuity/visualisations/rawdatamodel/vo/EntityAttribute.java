@@ -17,8 +17,10 @@
 package com.acuity.visualisations.rawdatamodel.vo;
 
 import com.googlecode.cqengine.attribute.Attribute;
+import com.googlecode.cqengine.attribute.SimpleNullableAttribute;
+import com.googlecode.cqengine.attribute.support.FunctionalMultiValueNullableAttribute;
 import com.googlecode.cqengine.attribute.support.MultiValueFunction;
-import com.googlecode.cqengine.query.QueryFactory;
+import com.googlecode.cqengine.query.option.QueryOptions;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -40,8 +42,17 @@ public abstract class EntityAttribute<T> {
         private Function<T, ?> function;
 
         @Override
+        @SuppressWarnings({"unchecked", "rawtypes"})
         protected Attribute<T, ?> getCqEngineAttrInst()  {
-            return QueryFactory.nullableAttribute(getName(), (T t) -> function.apply(t));
+            // Use 3-arg constructor with explicit Object.class for both O and A to bypass
+            // typetools TypeResolver which uses sun.reflect.ConstantPool removed in Java 17+.
+            Function<T, ?> fn = function;
+            return (Attribute<T, ?>) (Attribute) new SimpleNullableAttribute<Object, Object>(Object.class, Object.class, getName()) {
+                @Override
+                public Object getValue(Object o, QueryOptions queryOptions) {
+                    return fn.apply((T) o);
+                }
+            };
         }
 
         @Override
@@ -63,8 +74,12 @@ public abstract class EntityAttribute<T> {
         private Class<A> attributeType;
 
         @Override
+        @SuppressWarnings({"unchecked", "rawtypes"})
         protected Attribute<O, ?> getCqEngineAttrInst()  {
-            return QueryFactory.nullableAttribute(attributeType, getName(), function);
+            // Use FunctionalMultiValueNullableAttribute with explicit Object.class for O to
+            // bypass typetools TypeResolver which uses sun.reflect.ConstantPool removed in Java 17+.
+            return (Attribute<O, ?>) (Attribute) new FunctionalMultiValueNullableAttribute<Object, A, I>(
+                    Object.class, attributeType, getName(), true, (Object o) -> function.apply((O) o));
         }
 
         @Override
@@ -80,7 +95,7 @@ public abstract class EntityAttribute<T> {
     private final Attribute<T, ?> cqEngineAttr = getCqEngineAttrInst();
 
     public static <T> EntityAttribute<T> attribute(String name, Function<T, ?> function) {
-        return new EntityAttribute.SimpleEntityAttribute<T>(name, function);
+        return new SimpleEntityAttribute<T>(name, function);
     }
 
     public static <O, A, I extends Iterable<A>> EntityAttribute<O> attribute(String name, MultiValueFunction<O, A, I> function, Class<A> attributeType) {

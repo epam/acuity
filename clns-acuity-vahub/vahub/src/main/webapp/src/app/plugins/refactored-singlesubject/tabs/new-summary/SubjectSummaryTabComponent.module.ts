@@ -24,7 +24,7 @@ import {SubjectInfoComponent} from './summary-section/subject-info/SubjectInfoCo
 import {ProgressComponentModule} from '../../../../common/loading/ProgressComponent.module';
 import {CommonPipesModule} from '../../../../common/pipes/CommonPipes.module';
 import {SubjectSummaryTableComponent} from './summary-section/summary-table/SubjectSummaryTableComponent';
-import {AgGridModule} from 'ag-grid-angular/main';
+import {AgGridModule} from 'ag-grid-angular';
 
 @NgModule({
     imports: [
@@ -32,9 +32,7 @@ import {AgGridModule} from 'ag-grid-angular/main';
         FormsModule,
         ProgressComponentModule,
         CommonPipesModule,
-        AgGridModule.withComponents([
-            SubjectSummaryTableComponent
-        ])
+        AgGridModule
     ],
     declarations: [
         SubjectSummaryTabComponent,

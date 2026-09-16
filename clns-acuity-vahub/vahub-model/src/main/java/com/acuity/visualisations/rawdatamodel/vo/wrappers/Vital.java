@@ -34,7 +34,7 @@ import java.util.Date;
 
 import static com.acuity.visualisations.rawdatamodel.util.Column.Type.DOD;
 
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = false)
 @ToString(callSuper = true)
 public final class Vital extends SubjectAwareWrapper<VitalRaw> implements HasDaysSinceFirstDose, HasValueAndBaseline,
         HasBaselineDate, HasStartDate, Serializable {

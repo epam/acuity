@@ -126,7 +126,7 @@ public class AclResource extends BaseResource {
             return securityAclService.getAllPermissionForAcl(acuityAclObjectIdentity);
         } catch (org.springframework.security.acls.model.NotFoundException nfe) {
             LOG.error("Unable get all permissions to " + acuityAclObjectIdentity, nfe);
-            throw new WebApplicationException(acuityAclObjectIdentity + " not found", Response.Status.NOT_FOUND);
+            throw new WebApplicationException(acuityAclObjectIdentity + " not found", Status.NOT_FOUND);
         }
     }
 
@@ -150,7 +150,7 @@ public class AclResource extends BaseResource {
             return securityAclService.getGrantedUsersForAcl(acuityAclObjectIdentity);
         } catch (NotFoundException nfe) {
             LOG.error("Unable get all users all permissions to " + acuityAclObjectIdentity, nfe);
-            throw new WebApplicationException(acuityAclObjectIdentity + " not found", Response.Status.NOT_FOUND);
+            throw new WebApplicationException(acuityAclObjectIdentity + " not found", Status.NOT_FOUND);
         }
     }
 
@@ -231,11 +231,11 @@ public class AclResource extends BaseResource {
             return Response.noContent().build();
         } catch (IllegalArgumentException iae) {
             LOG.error("Unable to find {}", detectDataset, iae);
-            throw new WebApplicationException(detectDataset + " not found", Response.Status.NOT_FOUND);
+            throw new WebApplicationException(detectDataset + " not found", Status.NOT_FOUND);
         } catch (Exception nfe) {
             LOG.error("Unable to set lockdown status {} for {}", lockdownStatus, detectDataset, nfe);
             throw new WebApplicationException("Unable to set lockdown status " + lockdownStatus + " for " + detectDataset,
-                    Response.Status.INTERNAL_SERVER_ERROR);
+                    Status.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -282,11 +282,11 @@ public class AclResource extends BaseResource {
             return Response.noContent().build();
         } catch (IllegalArgumentException iae) {
             LOG.error("Unable to find {}", detectDataset, iae);
-            throw new WebApplicationException(detectDataset + " not found", Response.Status.NOT_FOUND);
+            throw new WebApplicationException(detectDataset + " not found", Status.NOT_FOUND);
         } catch (Exception nfe) {
             LOG.error("Unable to set inherit permissions status {} for {}", true, detectDataset, nfe);
             throw new WebApplicationException("Unable to set inherit permissions status status " + true + " for " + detectDataset,
-                    Response.Status.INTERNAL_SERVER_ERROR);
+                    Status.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -339,7 +339,7 @@ public class AclResource extends BaseResource {
             // the security on the method is done by the fisrt permission mask, so make sure more than one isnt been passed to bypass security
             if (ups.stream().map(up -> up.getPermissionMask()).distinct().count() != 1) {
                 LOG.error("More than 1 permission mask in the array of UserPermissions");
-                throw new WebApplicationException("Permission masks must all be the same", Response.Status.PRECONDITION_FAILED);
+                throw new WebApplicationException("Permission masks must all be the same", Status.PRECONDITION_FAILED);
             }
 
             // checks that all prids are valid before an interaction with db
@@ -387,7 +387,7 @@ public class AclResource extends BaseResource {
             throw new WebApplicationException(iae.getMessage(), response);
         } catch (org.springframework.security.acls.model.NotFoundException nfe) {
             LOG.error("Unable to add permissions " + ups + " to " + acuityAclObjectIdentity, nfe);
-            throw new WebApplicationException(acuityAclObjectIdentity + " not found", Response.Status.NOT_FOUND);
+            throw new WebApplicationException(acuityAclObjectIdentity + " not found", Status.NOT_FOUND);
         }
     }
 
@@ -432,10 +432,10 @@ public class AclResource extends BaseResource {
             return Response.noContent().build();
         } catch (org.springframework.security.acls.model.NotFoundException nfe) {
             LOG.error("Unable to remove permission " + permissionMask + " for Sid " + sid + " to " + acuityAclObjectIdentity, nfe);
-            throw new WebApplicationException(acuityAclObjectIdentity + " not found", Response.Status.NOT_FOUND);
+            throw new WebApplicationException(acuityAclObjectIdentity + " not found", Status.NOT_FOUND);
         } catch (Exception nfe) {
             LOG.error("Unable to remove scheduled permission for Sid " + sid + " to " + acuityAclObjectIdentity, nfe);
-            throw new WebApplicationException(acuityAclObjectIdentity + " not found", Response.Status.INTERNAL_SERVER_ERROR);
+            throw new WebApplicationException(acuityAclObjectIdentity + " not found", Status.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -499,7 +499,7 @@ public class AclResource extends BaseResource {
                     + " to " + acuityAclObjectIdentity, nfe);
             throw new WebApplicationException("Unable to set view packages permissions " + vup.getViewPermissionMasks()
                     + " for User " + vup.getAcuitySidDetails().getSidAsString()
-                    + " to " + acuityAclObjectIdentity, Response.Status.NOT_FOUND);
+                    + " to " + acuityAclObjectIdentity, Status.NOT_FOUND);
         }
     }
 
@@ -542,7 +542,7 @@ public class AclResource extends BaseResource {
                     + " to " + acuityAclObjectIdentity, nfe);
             throw new WebApplicationException("Unable to set extra view packages permissions " + vup.getViewPermissionMasks()
                     + " for User " + vup.getAcuitySidDetails().getSidAsString()
-                    + " to " + acuityAclObjectIdentity, Response.Status.NOT_FOUND);
+                    + " to " + acuityAclObjectIdentity, Status.NOT_FOUND);
         }
     }
 

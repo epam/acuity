@@ -16,9 +16,9 @@
 
 import {Injectable} from '@angular/core';
 import {fromJS, List, Map} from 'immutable';
-import {HttpClient} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
-import {omit} from '@ngrx/store/src/utils';
+import {omit} from 'lodash';
 
 import {BaseChartsHttpService} from '../BaseChartsHttpService';
 import {PopulationFiltersModel} from '../../filters/dataTypes/population/PopulationFiltersModel';

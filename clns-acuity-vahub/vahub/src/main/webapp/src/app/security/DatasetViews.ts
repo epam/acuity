@@ -352,9 +352,10 @@ export class DatasetViews {
     getSubjectEcodeById(subjectId: string): string {
         if (!isEmpty(this.studyService.metadataInfo) && !isEmpty(this.studyService.metadataInfo['population'])
             && !isEmpty(this.studyService.metadataInfo['population'].patientList)) {
-            return this.studyService.metadataInfo['population'].patientList.find((subject) => {
+            const match = this.studyService.metadataInfo['population'].patientList.find((subject) => {
                 return subject.patientId === subjectId;
-            }).subjectCode;
+            });
+            return match ? match.subjectCode : subjectId;
         } else {
             return subjectId;
         }
@@ -363,9 +364,13 @@ export class DatasetViews {
     getSubjectIdByEcode(subjectCode: string): string {
         if (!isEmpty(this.studyService.metadataInfo) && !isEmpty(this.studyService.metadataInfo['population'])
             && !isEmpty(this.studyService.metadataInfo['population'].patientList)) {
-            return this.studyService.metadataInfo['population'].patientList.find((subject) => {
+            const match = this.studyService.metadataInfo['population'].patientList.find((subject) => {
                 return subject.subjectCode === subjectCode;
-            }).patientId;
+            });
+            if (!match) {
+                console.warn(`getSubjectIdByEcode: no patient found for subjectCode ${subjectCode} — falling back to code as ID`);
+            }
+            return match ? match.patientId : subjectCode;
         } else {
             return subjectCode;
         }

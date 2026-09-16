@@ -34,6 +34,8 @@ import com.acuity.visualisations.rawdatamodel.vo.plots.BoxplotCalculationObject;
 import com.acuity.visualisations.rawdatamodel.vo.plots.RangeChartCalculationObject;
 import com.acuity.visualisations.rawdatamodel.vo.plots.SelectionDetail;
 import com.acuity.visualisations.rawdatamodel.vo.plots.ShiftPlotCalculationObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.apache.commons.math3.analysis.function.Sqrt;
 import org.apache.commons.math3.stat.descriptive.moment.Mean;
 import org.apache.commons.math3.stat.descriptive.moment.StandardDeviation;
@@ -74,6 +76,8 @@ import static java.util.stream.Collectors.toSet;
 public class StatsPlotService<T extends HasStringId & HasSubject, G extends Enum<G> & GroupByOption<T>>
         implements SimpleSelectionSupportService<T, G> {
 
+    private static final Logger log = LoggerFactory.getLogger(StatsPlotService.class);
+
     @TimeMe
     @ValidateChartOptions(
             required = {ChartGroupByOptions.ChartGroupBySetting.Y_AXIS},
@@ -92,13 +96,27 @@ public class StatsPlotService<T extends HasStringId & HasSubject, G extends Enum
         return (Collection<T> events) -> {
             Percentile percentile = new Percentile().withEstimationType(Percentile.EstimationType.R_7);
             final BoxplotCalculationObject.BoxplotCalculationObjectBuilder builder = BoxplotCalculationObject.builder();
-            final Map<T, GroupByKey<T, G>> mapped = events.stream().collect(toMap(e -> e, e -> Attributes.get(settings, e)))
-                    .entrySet().stream().filter(e -> e.getValue().getValue(ChartGroupByOptions.ChartGroupBySetting.Y_AXIS) instanceof Double)
-                    .collect(toMap(Map.Entry::getKey, Map.Entry::getValue));
-            final double[] yValues = mapped.entrySet().stream().map(e -> e.getValue().getValue(ChartGroupByOptions.ChartGroupBySetting.Y_AXIS))
+            // Event wrapper classes (e.g. Lab) carry @EqualsAndHashCode(callSuper = false)
+            // with no own fields, making every wrapper instance equal to every other.
+            // Using the wrapper as a Map key therefore collapses the entire group to ONE
+            // entry, giving median = Q1 = Q3 = whisker = that single value.
+            //
+            // Fix: deduplicate by event ID (which IS unique via the underlying raw entity's
+            // @EqualsAndHashCode(of = "id")), then keep the result as a List so we never
+            // use the wrapper as a Map key.
+            final List<Map.Entry<T, GroupByKey<T, G>>> uniquePairs = events.stream()
+                    .collect(toMap(HasStringId::getId, Function.identity(), (a, b) -> {
+                        log.warn("Duplicate event ID in deduplication toMap — discarding: {}", b.getId());
+                        return a;
+                    }))
+                    .values().stream()
+                    .map(e -> Map.entry(e, Attributes.get(settings, e)))
+                    .filter(e -> e.getValue().getValue(ChartGroupByOptions.ChartGroupBySetting.Y_AXIS) instanceof Double)
+                    .collect(toList());
+            final double[] yValues = uniquePairs.stream()
+                    .map(e -> e.getValue().getValue(ChartGroupByOptions.ChartGroupBySetting.Y_AXIS))
                     .mapToDouble(e -> (Double) e).sorted().toArray();
             if (yValues.length > 0) {
-
 
                 double median = percentile.evaluate(yValues, 50);
                 double upperQuartile = percentile.evaluate(yValues, 75);
@@ -114,13 +132,13 @@ public class StatsPlotService<T extends HasStringId & HasSubject, G extends Enum
                         .max()
                         .orElse(upperQuartile + tukeyIqr);
 
-                final Set<BoxPlotOutlier> outliers = mapped.entrySet().stream().filter(
-                        e -> (Double) e.getValue().getValue(ChartGroupByOptions.ChartGroupBySetting.Y_AXIS) < lowerWhisker
+                final Set<BoxPlotOutlier> outliers = uniquePairs.stream()
+                        .filter(e -> (Double) e.getValue().getValue(ChartGroupByOptions.ChartGroupBySetting.Y_AXIS) < lowerWhisker
                                 || (Double) e.getValue().getValue(ChartGroupByOptions.ChartGroupBySetting.Y_AXIS) > upperWhisker)
                         .map(e -> new BoxPlotOutlier(round((Double) e.getValue().getValue(ChartGroupByOptions.ChartGroupBySetting.Y_AXIS), 2),
                                 e.getKey().getSubjectId())).collect(toSet());
-                builder.subjectCount(mapped.keySet().stream().map(e -> e.getSubjectId()).distinct().count());
-                builder.eventCount((long) mapped.size());
+                builder.subjectCount(uniquePairs.stream().map(e -> e.getKey().getSubjectId()).distinct().count());
+                builder.eventCount((long) uniquePairs.size());
                 builder.median(round(median, 2));
                 builder.upperQuartile(round(upperQuartile, 2));
                 builder.lowerQuartile(round(lowerQuartile, 2));

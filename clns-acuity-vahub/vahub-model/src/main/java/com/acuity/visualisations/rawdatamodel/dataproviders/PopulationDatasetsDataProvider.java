@@ -178,7 +178,7 @@ public class PopulationDatasetsDataProvider extends DatasetsDataProvider<Subject
 
                     Map<String, Subject.SubjectEthnicGroup> ethnicGroupBySubject = populationRepository.getSubjectEthnicGroup(dataset
                             .getId()).stream()
-                            .collect(Collectors.toMap(Subject.SubjectEthnicGroup::getSubjectId, Function.identity()));
+                            .collect(Collectors.toMap(Subject.SubjectEthnicGroup::getSubjectId, Function.identity(), (s1, s2) -> s1));
 
                     Map<String, List<Subject.SubjectVitalsInfo>> vitalsInfoBySubject = populationRepository.getSubjectVitalsInfo(dataset
                             .getId()).stream()

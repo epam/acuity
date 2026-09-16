@@ -32,7 +32,8 @@ import {
                            [selectedSubject]="selectedSubjectId$ | async"
                            [loading]="isLoading$ | async">
         </summary-component>`,
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class SummaryTabComponent implements OnInit {
 

@@ -16,7 +16,7 @@
 
 package com.acuity.visualisations.rawdatamodel.service.timeline.common.vo;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static com.acuity.visualisations.rawdatamodel.vo.timeline.day.hour.DayHourConvertor.getDayHourAsString;
 import static org.assertj.core.api.Assertions.assertThat;

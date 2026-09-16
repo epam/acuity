@@ -34,8 +34,8 @@ import com.acuity.va.security.acl.domain.AcuitySidDetails;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentMatcher;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -54,7 +54,7 @@ import java.util.HashSet;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Matchers.eq;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
@@ -80,7 +80,7 @@ public class StudyResourceTest {
     private MockMvc mvc;
     private static ObjectMapper mapper;
 
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
         mvc = MockMvcBuilders.standaloneSetup(studyResource).build();
@@ -124,8 +124,8 @@ public class StudyResourceTest {
 
         when(studyInfoDataProvider.getData(Mockito.argThat(new ArgumentMatcher<Dataset>() {
             @Override
-            public boolean matches(Object item) {
-                return item instanceof Dataset && ((Dataset) item).getId() == 3L;
+            public boolean matches(Dataset item) {
+                return item != null && item.getId() == 3L;
             }
         })))
                 .thenReturn(Collections.singletonList(studyInfoR));

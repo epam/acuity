@@ -18,10 +18,10 @@ package com.acuity.visualisations.data.provider.local;
 
 import au.com.bytecode.opencsv.CSVReader;
 import com.acuity.visualisations.data.Data;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.runners.MockitoJUnitRunner;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.test.util.ReflectionTestUtils;
 
 import java.io.IOException;
@@ -33,7 +33,7 @@ import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@RunWith(MockitoJUnitRunner.class)
+@ExtendWith(MockitoExtension.class)
 public class LocalFileSystemDataProviderTest {
 
     private static final String CURRENT_TEST_DIRECTORY = System.getProperty("user.dir");
@@ -43,7 +43,7 @@ public class LocalFileSystemDataProviderTest {
 
     LocalFileSystemDataProvider localFileSystemDataProvider = new LocalFileSystemDataProvider();
 
-    @Before
+    @BeforeEach
     public void setUp() {
         ReflectionTestUtils.setField(localFileSystemDataProvider, "path", CURRENT_TEST_DIRECTORY);
         ReflectionTestUtils.setField(localFileSystemDataProvider, "prefix", PREFIX);

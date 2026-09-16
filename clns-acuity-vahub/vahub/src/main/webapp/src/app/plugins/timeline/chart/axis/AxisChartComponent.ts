@@ -35,7 +35,8 @@ import {CustomPlotConfig} from '../../../../../vahub-charts/types/interfaces';
     selector: 'timeline-xaxis',
     template: '<div></div>',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    providers: [AxisChartPlotConfigService]
+    providers: [AxisChartPlotConfigService],
+    standalone: false
 })
 export class AxisChartComponent implements OnChanges, OnDestroy {
 

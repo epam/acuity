@@ -24,9 +24,6 @@ import com.acuity.visualisations.rest.model.request.respiratory.exacerbation.Exa
 import com.acuity.visualisations.rest.model.response.respiratory.exacerbation.ExacerbationBarChartResponse;
 import com.acuity.visualisations.rest.model.response.respiratory.exacerbation.ExacerbationBarChartXAxisResponse;
 import com.acuity.visualisations.rest.model.response.respiratory.exacerbation.ExacerbationColorByOptionsResponse;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;
@@ -36,13 +33,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 
 import static com.acuity.visualisations.rest.util.Constants.PRE_AUTHORISE_VISUALISATION;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @RestController
-@Api(description = "rest endpoints for exacerbation bar chart")
 @RequestMapping(value = "/resources/respiratory/exacerbation/bar-chart",
         consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
 @PreAuthorize(PRE_AUTHORISE_VISUALISATION)
@@ -52,7 +48,6 @@ public class ExacerbationBarChartResource {
 
     private final ExacerbationService exacerbationService;
 
-    @ApiOperation("Gets the available x-axis options")
     @PostMapping("x-axis")
     @Cacheable
     public ExacerbationBarChartXAxisResponse getXAxis(@RequestBody @Valid ExacerbationRequest requestBody) {
@@ -61,11 +56,9 @@ public class ExacerbationBarChartResource {
                 requestBody.getPopulationFilters()));
     }
 
-    @ApiOperation("Gets the available color-by options")
     @PostMapping("color-by-options")
     @Cacheable
     public ExacerbationColorByOptionsResponse getColorByOptions(
-            @ApiParam(value = "exacerbation Function and Population Filters e.g. {exacerbationFilters : {}, populationFilters: {}}", required = true)
             @RequestBody ExacerbationRequest requestBody) {
 
         return new ExacerbationColorByOptionsResponse(exacerbationService.getBarChartColorByOptions(
@@ -74,12 +67,9 @@ public class ExacerbationBarChartResource {
                 requestBody.getPopulationFilters()));
     }
 
-    @ApiOperation("Gets the data for bar chart in available exacerbation filters for the currently selected exacerbation and population filters")
     @PostMapping("values")
     @Cacheable
     public ExacerbationBarChartResponse getBarChartData(
-            @ApiParam(value = "ExacerbationssRequest:  Exacerbations and Population Filters e.g. {exacerbationsFilters : {}, populationFilters: {}}",
-                    required = true)
             @RequestBody ExacerbationBarChartRequest requestBody) {
 
         return new ExacerbationBarChartResponse(exacerbationService.getBarChart(
@@ -90,14 +80,9 @@ public class ExacerbationBarChartResource {
                 requestBody.getCountType()));
     }
 
-    @ApiOperation("Gets selection detail for exacerbation grouped bar chart")
     @PostMapping("selection")
     @Cacheable
     public SelectionDetail getSelection(
-            @ApiParam(value = "Request parameters for the exacerbations over time trellising e.g. "
-                    + "{trellising : [{trellisedBy: 'ARM', options: ['Placebo']}], series: [],"
-                    + "periodType: 'DAYS_SINCE_FIRST_TREATMENT', categoryType: 'COUNTS_INCLUDING_DURATION',"
-                    + "populationFilters: {}, exacerbationsFilters: {}, minX: 0, maxX: 1, minY: 0, maxY: 10}", required = true)
             @RequestBody @Valid ExacerbationSelectionRequest requestBody) {
         return exacerbationService.getSelectionDetails(
                 requestBody.getDatasetsObject(),

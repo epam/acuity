@@ -17,13 +17,10 @@
 package com.acuity.va.security.auth.common;
 
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.ContentNegotiationConfigurer;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
-public class ContentNegotiationConfig extends WebMvcConfigurerAdapter {
-    @Override
-    public void configureContentNegotiation(final ContentNegotiationConfigurer configurer) {
-        configurer.favorPathExtension(false);
-    }
+public class ContentNegotiationConfig implements WebMvcConfigurer {
+    // favorPathExtension removed in Spring MVC 6 — path extension content negotiation
+    // is disabled by default in Spring Boot 3.x, so no override needed.
 }

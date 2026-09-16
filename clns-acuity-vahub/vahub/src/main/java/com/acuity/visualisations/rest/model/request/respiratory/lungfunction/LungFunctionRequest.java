@@ -22,7 +22,7 @@ import com.acuity.va.security.acl.domain.DatasetsRequest;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 
 /**
  * Request for lung function charts
@@ -35,5 +35,12 @@ public class LungFunctionRequest extends DatasetsRequest {
 
     @NotNull
     private LungFunctionFilters lungFunctionFilters;
+
+    public PopulationFilters getPopulationFilters() {
+        return populationFilters;
+    }
+    public LungFunctionFilters getLungFunctionFilters() {
+        return lungFunctionFilters;
+    }
 }
 

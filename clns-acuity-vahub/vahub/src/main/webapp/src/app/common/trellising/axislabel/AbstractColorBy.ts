@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {Input} from '@angular/core';
+import {Directive, Input} from '@angular/core';
 import {List} from 'immutable';
 
 import {ITrellises, TrellisCategory} from '../store';
@@ -25,6 +25,7 @@ import {ColorByService} from './ColorByService';
  * This is a abstract class which contains base behavior for legend-control and table-axis.
  * These components are responsible for managing trellising option, but use different templates
  */
+@Directive()
 export class AbstractColorBy {
     isOpen = false;
     option: ColorByOption;

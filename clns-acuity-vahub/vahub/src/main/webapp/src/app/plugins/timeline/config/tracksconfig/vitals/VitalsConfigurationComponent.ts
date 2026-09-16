@@ -19,7 +19,8 @@ import {VitalsYAxisValue} from '../../../store/ITimeline';
 
 @Component({
     selector: 'vitals-config',
-    templateUrl: 'VitalsConfigurationComponent.html'
+    templateUrl: 'VitalsConfigurationComponent.html',
+    standalone: false
 })
 export class VitalsConfigurationComponent implements OnChanges {
     @Input() vitalsYAxisValue: VitalsYAxisValue;

@@ -22,7 +22,8 @@ import {RangeModel} from './RangeModel';
 
 @Component({
     selector: 'zoombar',
-    templateUrl: 'ZoombarComponent.html'
+    templateUrl: 'ZoombarComponent.html',
+    standalone: false
 })
 export class ZoombarComponent implements OnChanges {
 

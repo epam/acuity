@@ -29,7 +29,8 @@ import {Observable} from 'rxjs/Observable';
 @Component({
     selector: 'ssv-tabs',
     templateUrl: 'SingleSubjectTabsComponent.html',
-    styleUrls: ['./SingleSubjectTabsComponent.css']
+    styleUrls: ['./SingleSubjectTabsComponent.css'],
+    standalone: false
 })
 export class SingleSubjectTabsComponent {
     tabRecords = new TabRecords();

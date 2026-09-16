@@ -23,20 +23,20 @@ import com.acuity.visualisations.mapping.dao.IMappingRuleDao;
 import com.acuity.visualisations.mapping.dao.IRelationDao;
 import com.acuity.visualisations.mapping.dao.impl.StudyRuleDao;
 import com.acuity.visualisations.mapping.entity.*;
-import junitparams.JUnitParamsRunner;
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.ExpectedException;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.mockito.junit.jupiter.MockitoExtension;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 
 
-@RunWith(JUnitParamsRunner.class)
+@ExtendWith(MockitoExtension.class)
 public class WhenRunningStudyMappingsServicePartial {
 
     @InjectMocks
@@ -51,10 +51,7 @@ public class WhenRunningStudyMappingsServicePartial {
     @Mock
     IMappingRuleDao mappingRuleDao;
 
-    @Rule
-    public ExpectedException thrown = ExpectedException.none();
-
-    @Before
+    @BeforeEach
     public void initMocks() {
         MockitoAnnotations.initMocks(this);
     }
@@ -75,7 +72,7 @@ public class WhenRunningStudyMappingsServicePartial {
         studyRule.setFileRules(Arrays.asList(fileRule1));
         service.validateStudyEnabled(studyRule);
 
-        verifyZeroInteractions(studyRuleDao);
+        verifyNoInteractions(studyRuleDao);
     }
 
     @Test
@@ -123,14 +120,14 @@ public class WhenRunningStudyMappingsServicePartial {
 
         service.validateStudyEnabled(studyRule);
 
-        verifyZeroInteractions(studyRuleDao);
+        verifyNoInteractions(studyRuleDao);
     }
 
     @Test
     public void thenMappingRuleDeleteOperationShouldFail_IfArgumentsIsNull() {
-        thrown.expect(NullPointerException.class);
-        thrown.expectMessage("rule");
-        service.deleteMappingRule(null);
+        NullPointerException ex = assertThrows(NullPointerException.class,
+                () -> service.deleteMappingRule(null));
+        assertThat(ex.getMessage()).contains("rule");
     }
 
     @Test
@@ -139,6 +136,6 @@ public class WhenRunningStudyMappingsServicePartial {
         service.deleteMappingRule(rule);
         rule.setColumnRules(Collections.emptyList());
         service.deleteMappingRule(rule);
-        verifyZeroInteractions(relationDao);
+        verifyNoInteractions(relationDao);
     }
 }

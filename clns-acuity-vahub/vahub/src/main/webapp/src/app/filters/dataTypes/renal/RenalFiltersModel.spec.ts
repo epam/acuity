@@ -15,8 +15,8 @@
  */
 
 import {TestBed, inject} from '@angular/core/testing';
-import {HttpClientTestingModule} from '@angular/common/http/testing';
-import {HttpClient} from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 import {RenalFiltersModel} from './RenalFiltersModel';
 import {PopulationFiltersModel} from '../population/PopulationFiltersModel';
@@ -33,21 +33,22 @@ describe('GIVEN RenalFiltersModel', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [HttpClientTestingModule],
-            providers: [
-                {provide: FilterHttpService, useClass: MockFilterHttpService},
-                HttpClient,
-                {provide: DatasetViews, useClass: MockDatasetViews},
-                {provide: PopulationFiltersModel, deps: [FilterHttpService, FilterEventService]},
-                {provide: FilterEventService, useValue: new MockFilterEventService()},
-                {
-                    provide: RenalFiltersModel,
-                    useFactory: (p: PopulationFiltersModel, f: FilterHttpService, e: FilterEventService, d: DatasetViews): RenalFiltersModel =>
-                        new RenalFiltersModel(p, f, e, d),
-                    deps: [PopulationFiltersModel, FilterHttpService, FilterEventService, DatasetViews]
-                }
-            ]
-        });
+    imports: [],
+    providers: [
+        { provide: FilterHttpService, useClass: MockFilterHttpService },
+        HttpClient,
+        { provide: DatasetViews, useClass: MockDatasetViews },
+        { provide: PopulationFiltersModel, deps: [FilterHttpService, FilterEventService] },
+        { provide: FilterEventService, useValue: new MockFilterEventService() },
+        {
+            provide: RenalFiltersModel,
+            useFactory: (p: PopulationFiltersModel, f: FilterHttpService, e: FilterEventService, d: DatasetViews): RenalFiltersModel => new RenalFiltersModel(p, f, e, d),
+            deps: [PopulationFiltersModel, FilterHttpService, FilterEventService, DatasetViews]
+        },
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting()
+    ]
+});
     });
 
     describe('WHEN getName is called', () => {

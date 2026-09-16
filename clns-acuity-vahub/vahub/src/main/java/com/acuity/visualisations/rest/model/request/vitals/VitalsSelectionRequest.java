@@ -23,7 +23,7 @@ import com.acuity.visualisations.rawdatamodel.vo.wrappers.Vital;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
@@ -31,4 +31,9 @@ public class VitalsSelectionRequest extends VitalsRequest {
     @NotNull
     private ChartSelection<Vital, VitalGroupByOptions,
             ChartSelectionItemRange<Vital, VitalGroupByOptions, Double>> selection;
+
+    public ChartSelection<Vital, VitalGroupByOptions,
+            ChartSelectionItemRange<Vital, VitalGroupByOptions, Double>> getSelection() {
+        return selection;
+    }
 }

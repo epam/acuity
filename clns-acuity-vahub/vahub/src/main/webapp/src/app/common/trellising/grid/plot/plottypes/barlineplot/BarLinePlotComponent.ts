@@ -46,7 +46,8 @@ import {ChartEvents, ChartMouseEvent} from '../../../../../../../vahub-charts/ty
     selector: 'barlineplot',
     template: '<div></div>',
     providers: [BarLineService, BarLinePlotConfigService],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class BarLinePlotComponent extends AbstractPlotComponent implements OnChanges, OnDestroy {
 
@@ -98,7 +99,7 @@ export class BarLinePlotComponent extends AbstractPlotComponent implements OnCha
         }
         if (changes['selection'] && !is(changes['selection'].previousValue, changes['selection'].currentValue)) {
             this.updateSelectionRendering();
-            this.chart.update();
+            this.chart?.update();
         }
 
     }

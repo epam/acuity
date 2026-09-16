@@ -15,12 +15,12 @@
  */
 
 import {Injectable} from '@angular/core';
-import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from '@angular/router';
+import { ActivatedRouteSnapshot, Router, RouterStateSnapshot } from '@angular/router';
 import {Observable} from 'rxjs/Observable';
 import {DatasetViews} from '../../../security/DatasetViews';
 
 @Injectable()
-export class CanActivateExposureSpotfire implements CanActivate {
+export class CanActivateExposureSpotfire  {
     constructor(private router: Router,
                 private datasetViews: DatasetViews) {
     }

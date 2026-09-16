@@ -27,7 +27,7 @@ import lombok.ToString;
 import java.io.Serializable;
 
 @ToString(callSuper = true)
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = false)
 public class SecondTimeOfProgression extends SubjectAwareWrapper<SecondTimeOfProgressionRaw> implements Serializable {
     public SecondTimeOfProgression(SecondTimeOfProgressionRaw event, Subject subject) {
         super(event, subject);

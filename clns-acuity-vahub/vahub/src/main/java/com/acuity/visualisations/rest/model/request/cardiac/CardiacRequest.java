@@ -32,5 +32,12 @@ public class CardiacRequest extends DatasetsRequest {
 
     @NotNull
     private CardiacFilters cardiacFilters;
+
+    public PopulationFilters getPopulationFilters() {
+        return populationFilters;
+    }
+    public CardiacFilters getCardiacFilters() {
+        return cardiacFilters;
+    }
 }
 

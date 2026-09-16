@@ -20,7 +20,8 @@ import {List} from 'immutable';
 import * as  _ from 'lodash';
 
 @Pipe({
-    name: 'ordertrack'
+    name: 'ordertrack',
+    standalone: false
 })
 export class OrderTrackPipe implements PipeTransform {
     /**

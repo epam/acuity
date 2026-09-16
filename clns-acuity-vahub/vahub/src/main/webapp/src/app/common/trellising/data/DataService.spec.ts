@@ -22,22 +22,23 @@ import {TabId} from '../store';
 import {Observable} from 'rxjs/Observable';
 import {SessionEventService} from '../../../session/event/SessionEventService';
 import {StudyService} from '../../StudyService';
-import {HttpClientModule} from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe('GIVEN DataService', () => {
     beforeEach(() => {
         TestBed.configureTestingModule({
-            providers: [
-                {
-                    provide: HttpServiceFactory,
-                    useClass: MockHttpServiceFactory
-                },
-                {provide: SessionEventService, useClass: MockSessionEventService},
-                {provide: StudyService, useClass: MockStudyService},
-                DataService
-            ],
-            imports: [HttpClientModule]
-        });
+    imports: [],
+    providers: [
+        {
+            provide: HttpServiceFactory,
+            useClass: MockHttpServiceFactory
+        },
+        { provide: SessionEventService, useClass: MockSessionEventService },
+        { provide: StudyService, useClass: MockStudyService },
+        DataService,
+        provideHttpClient(withInterceptorsFromDi())
+    ]
+});
 
     });
 

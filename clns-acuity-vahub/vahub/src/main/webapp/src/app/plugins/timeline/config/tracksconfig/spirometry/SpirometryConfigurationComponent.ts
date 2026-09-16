@@ -19,7 +19,8 @@ import {SpirometryYAxisValue} from '../../../store/ITimeline';
 
 @Component({
     selector: 'spirometry-config',
-    templateUrl: 'SpirometryConfigurationComponent.html'
+    templateUrl: 'SpirometryConfigurationComponent.html',
+    standalone: false
 })
 export class SpirometryConfigurationComponent implements OnChanges {
     @Input() spirometryYAxisValue: SpirometryYAxisValue;

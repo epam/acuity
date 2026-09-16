@@ -27,7 +27,8 @@ import {TChartComponent} from '../../TChartComponent';
         :host /deep/ new-trellis-xaxis .axis-container {
             width: 100%;
         }`
-    ]
+    ],
+    standalone: false
 })
 
 export class OverallResponsePlotComponent extends TChartComponent {

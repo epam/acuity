@@ -16,20 +16,28 @@
 
 package com.acuity.visualisations.web.controller;
 
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletResponse;
 
 @Controller
 public class TabCookieController {
     private static final String TAB_ID = "TabId";
 
-    @RequestMapping(value = "/setTabCookie", method = RequestMethod.POST)
-    public void setBrowserTabId(final HttpServletResponse response, @RequestBody String browserTabId) {
-        response.addCookie(new Cookie(TAB_ID, browserTabId));
+    @RequestMapping(value = "/setTabCookie", method = RequestMethod.POST,
+            consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.TEXT_PLAIN_VALUE, MediaType.ALL_VALUE})
+    @ResponseBody
+    public void setBrowserTabId(final HttpServletResponse response,
+                                @RequestBody(required = false) String browserTabId) {
+        if (browserTabId != null && !browserTabId.isEmpty()) {
+            String tabId = browserTabId.trim().replaceAll("^\"|\"$", "");
+            response.addCookie(new Cookie(TAB_ID, tabId));
+        }
     }
 }

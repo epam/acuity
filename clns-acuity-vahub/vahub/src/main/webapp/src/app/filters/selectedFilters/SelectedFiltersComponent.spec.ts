@@ -16,7 +16,7 @@
 
 import {TestBed, inject} from '@angular/core/testing';
 import {Router} from '@angular/router';
-import {HttpClientTestingModule} from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import {Location} from '@angular/common';
 import {SpyLocation} from '@angular/common/testing';
 import * as  _ from 'lodash';
@@ -44,38 +44,41 @@ import {TrellisingDispatcher} from '../../common/trellising/store/dispatcher/Tre
 import {SessionEventService} from '../../session/event/SessionEventService';
 import {FilterHttpService} from '../http/FilterHttpService';
 import {Store} from '@ngrx/store';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe('GIVEN SelectedFilterComponent', () => {
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [HttpClientTestingModule],
-            providers: [
-                TimelineTrackService,
-                CohortEditorService,
-                FilterReloadService,
-                CohortFiltersModel,
-                TimelineDispatcher,
-                PopulationFiltersModel,
-                {provide: SessionEventService, useClass: MockSessionEventService},
-                {provide: FiltersUtils, useClass: MockFiltersUtils},
-                {provide: Location, useClass: SpyLocation},
-                {provide: Router, useClass: MockRouter},
-                {provide: FilterEventService, useClass: MockFilterEventService},
-                {provide: Store},
-                {provide: FilterHttpService, useClass: MockFilterHttpService},
-                {provide: StudyService, useClass: StudyService},
-                {provide: DatasetViews, useClass: DatasetViews, deps: [StudyService]},
-                {provide: SelectedFiltersModel, useClass: SelectedFiltersModel},
-                {provide: AesFiltersModel, useClass: AesFiltersModel, deps: [FilterEventService]},
-                {provide: TrellisingDispatcher, useClass: MockTrellisingDispatcher},
-                {
-                    provide: SelectedFiltersComponent, useClass: SelectedFiltersComponent,
-                    deps: [Router, FilterEventService,
-                        SelectedFiltersModel, TimelineTrackService, DatasetViews, Location, FiltersUtils
-                    ]
-                }
+    imports: [],
+    providers: [
+        TimelineTrackService,
+        CohortEditorService,
+        FilterReloadService,
+        CohortFiltersModel,
+        TimelineDispatcher,
+        PopulationFiltersModel,
+        { provide: SessionEventService, useClass: MockSessionEventService },
+        { provide: FiltersUtils, useClass: MockFiltersUtils },
+        { provide: Location, useClass: SpyLocation },
+        { provide: Router, useClass: MockRouter },
+        { provide: FilterEventService, useClass: MockFilterEventService },
+        { provide: Store },
+        { provide: FilterHttpService, useClass: MockFilterHttpService },
+        { provide: StudyService, useClass: StudyService },
+        { provide: DatasetViews, useClass: DatasetViews, deps: [StudyService] },
+        { provide: SelectedFiltersModel, useClass: SelectedFiltersModel },
+        { provide: AesFiltersModel, useClass: AesFiltersModel, deps: [FilterEventService] },
+        { provide: TrellisingDispatcher, useClass: MockTrellisingDispatcher },
+        {
+            provide: SelectedFiltersComponent, useClass: SelectedFiltersComponent,
+            deps: [Router, FilterEventService,
+                SelectedFiltersModel, TimelineTrackService, DatasetViews, Location, FiltersUtils
             ]
-        });
+        },
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting()
+    ]
+});
     });
 
     describe('WHEN on the Timeline page', () => {

@@ -21,7 +21,7 @@ import com.acuity.visualisations.rawdatamodel.service.timeline.data.TimelineColl
 import com.acuity.visualisations.rawdatamodel.util.DaysUtil;
 import com.acuity.visualisations.rawdatamodel.vo.HasStartEndDate;
 import lombok.Value;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.Date;

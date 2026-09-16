@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
-import {HttpClient} from '@angular/common/http';
-import {HttpClientTestingModule} from '@angular/common/http/testing';
+import { HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import {async, inject, TestBed} from '@angular/core/testing';
 
 import {LiverHttpService} from './LiverHttpService';
@@ -55,20 +55,22 @@ describe('GIVEN LiverHttpService', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [HttpClientTestingModule],
-            providers: [
-                {provide: HttpClient, useClass: MockHttpClient},
-                {provide: PopulationFiltersModel, useValue: new MockFilterModel()},
-                {provide: LiverFunctionFiltersModel, useValue: new MockFilterModel()},
-                FilterEventService,
-                FilterHttpService,
-                {
-                    provide: LiverHttpService,
-                    useClass: LiverHttpService,
-                    deps: [HttpClient, PopulationFiltersModel, LiverFunctionFiltersModel]
-                },
-            ]
-        });
+    imports: [],
+    providers: [
+        { provide: HttpClient, useClass: MockHttpClient },
+        { provide: PopulationFiltersModel, useValue: new MockFilterModel() },
+        { provide: LiverFunctionFiltersModel, useValue: new MockFilterModel() },
+        FilterEventService,
+        FilterHttpService,
+        {
+            provide: LiverHttpService,
+            useClass: LiverHttpService,
+            deps: [HttpClient, PopulationFiltersModel, LiverFunctionFiltersModel]
+        },
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+    ]
+});
     });
 
     describe('WHEN we get details on demand data', () => {

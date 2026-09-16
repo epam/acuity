@@ -21,7 +21,7 @@ import {TabStoreUtils} from '../utils/TabStoreUtils';
 
 export class InitialTrellisService {
     private static findAndInsert(initial: ITrellises[], trellises: ITrellises[], ...trellisedBy: string[]): void {
-        const trellis: ITrellises[] = trellisedBy.map((x) => <ITrellises>_.find(trellises, {'trellisedBy': x}));
+        const trellis: ITrellises[] = trellisedBy.map((x) => <ITrellises>_.find(trellises, <any>{'trellisedBy': x}));
         const firstTrellis = _.find(trellis, (x) => x !== undefined);
         if (firstTrellis) {
             initial.push(firstTrellis);
@@ -154,8 +154,8 @@ export class InitialTrellisService {
             baseTrellisesJS = baseTrellises.size > 0 ? baseTrellises.toJS() : [];
         }
         const currentNonMandatory: any[] =
-            currentTrellisesJS ? _.filter(currentTrellisesJS, {'category': trellisCategory}) : currentTrellisesJS;
-        const baseNonMandatory: any[] = baseTrellisesJS ? _.filter(baseTrellisesJS, {'category': trellisCategory}) : baseTrellisesJS;
+            currentTrellisesJS ? _.filter(currentTrellisesJS, <any>{'category': trellisCategory}) : currentTrellisesJS;
+        const baseNonMandatory: any[] = baseTrellisesJS ? _.filter(baseTrellisesJS, <any>{'category': trellisCategory}) : baseTrellisesJS;
         return currentNonMandatory.length === 0 && baseNonMandatory.length > 0;
     }
 
@@ -191,13 +191,13 @@ export class InitialTrellisService {
         const initialTrellis: ITrellises[] = [];
 
         const currentNonMandatoryTrellis: any[] =
-            currentTrellisesJS ? _.filter(currentTrellisesJS, {'category': TrellisCategory.NON_MANDATORY_TRELLIS}) : currentTrellisesJS;
-        const nonMandatoryTrellis: any[] = _.filter(trellisesJS, {'category': TrellisCategory.NON_MANDATORY_TRELLIS});
+            currentTrellisesJS ? _.filter(currentTrellisesJS, <any>{'category': TrellisCategory.NON_MANDATORY_TRELLIS}) : currentTrellisesJS;
+        const nonMandatoryTrellis: any[] = _.filter(trellisesJS, <any>{'category': TrellisCategory.NON_MANDATORY_TRELLIS});
         const currentNonMandatorySeries: any[] =
-            currentTrellisesJS ? _.filter(currentTrellisesJS, {'category': TrellisCategory.NON_MANDATORY_SERIES}) : currentTrellisesJS;
-        const nonMandatorySeries: any[] = _.filter(trellisesJS, {'category': TrellisCategory.NON_MANDATORY_SERIES});
-        const mandatoryTrellis: any[] = _.filter(trellisesJS, {'category': TrellisCategory.MANDATORY_TRELLIS});
-        const mandatoryHigherTrellis: any[] = _.filter(trellisesJS, {'category': TrellisCategory.MANDATORY_HIGHER_LEVEL});
+            currentTrellisesJS ? _.filter(currentTrellisesJS, <any>{'category': TrellisCategory.NON_MANDATORY_SERIES}) : currentTrellisesJS;
+        const nonMandatorySeries: any[] = _.filter(trellisesJS, <any>{'category': TrellisCategory.NON_MANDATORY_SERIES});
+        const mandatoryTrellis: any[] = _.filter(trellisesJS, <any>{'category': TrellisCategory.MANDATORY_TRELLIS});
+        const mandatoryHigherTrellis: any[] = _.filter(trellisesJS, <any>{'category': TrellisCategory.MANDATORY_HIGHER_LEVEL});
 
         if (mandatoryHigherTrellis.length > 0) {
             mandatoryHigherTrellis.forEach((trellis) => {

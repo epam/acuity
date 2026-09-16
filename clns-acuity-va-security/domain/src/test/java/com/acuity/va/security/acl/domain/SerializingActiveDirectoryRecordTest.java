@@ -18,8 +18,8 @@ package com.acuity.va.security.acl.domain;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.io.StringWriter;
@@ -31,7 +31,7 @@ public class SerializingActiveDirectoryRecordTest {
     
     private static ObjectMapper mapper;
 
-    @BeforeClass
+    @BeforeAll
     public static void beforeClass() {
         mapper = new ObjectMapper();
         mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);

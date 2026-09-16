@@ -16,7 +16,7 @@
 
 package com.acuity.visualisations.rawdatamodel.vo.wrappers;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

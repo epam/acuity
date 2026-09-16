@@ -24,7 +24,7 @@ import lombok.ToString;
 import java.io.Serializable;
 
 @Data
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = false)
 @ToString(callSuper = true)
 public class ConmedSingleEvent extends EventInterval implements Serializable {
     protected String conmed;

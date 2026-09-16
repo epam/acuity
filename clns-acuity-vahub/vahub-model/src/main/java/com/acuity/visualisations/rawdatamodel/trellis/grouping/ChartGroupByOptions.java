@@ -149,7 +149,7 @@ public class ChartGroupByOptions<T, G extends Enum<G> & GroupByOption<T>>
 
     /**
      * It will extend annotated with {@link AcceptsAttributeContext} annotation grouping options params with
-     * {@link com.acuity.visualisations.rawdatamodel.vo.GroupByOption.Param#CONTEXT} param
+     * {@link GroupByOption.Param#CONTEXT} param
      * using provided attributesContext object and return updated settings
      */
     public ChartGroupByOptions<T, G> supplyContext(Map<G, Object> attributesContext) {
@@ -186,7 +186,7 @@ public class ChartGroupByOptions<T, G extends Enum<G> & GroupByOption<T>>
             this.trellisOptions = new HashSet<>(trellisOptions);
         }
 
-        public ChartGroupBySettingsBuilder<T, G> withOption(ChartGroupByOptions.ChartGroupBySetting setting, GroupByOptionAndParams<T, G> option) {
+        public ChartGroupBySettingsBuilder<T, G> withOption(ChartGroupBySetting setting, GroupByOptionAndParams<T, G> option) {
             options.put(setting, option);
             return this;
         }

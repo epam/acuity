@@ -21,7 +21,8 @@ import * as utils from './common/utils/Utils';
 import {UserActivityHttpService} from './UserActivityHttpService';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import {DateUtilsService} from './common/utils/DateUtilsService';
-import {HttpClientTestingModule} from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 class MockSessionEventService {
     currentDatasets: BehaviorSubject<any> = new BehaviorSubject<any>([]);
@@ -55,17 +56,19 @@ describe('GIVEN a UserActivityService class', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [HttpClientTestingModule],
-            providers: [
-                DateUtilsService,
-                UserActivityHttpService,
-                {
-                    provide: SessionEventService,
-                    useClass: MockSessionEventService
-                },
-                UserActivityService
-            ]
-        });
+    imports: [],
+    providers: [
+        DateUtilsService,
+        UserActivityHttpService,
+        {
+            provide: SessionEventService,
+            useClass: MockSessionEventService
+        },
+        UserActivityService,
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting()
+    ]
+});
     });
 
     beforeEach(inject([UserActivityService, SessionEventService], (_userActivityService: UserActivityService, _sessionEventService) => {

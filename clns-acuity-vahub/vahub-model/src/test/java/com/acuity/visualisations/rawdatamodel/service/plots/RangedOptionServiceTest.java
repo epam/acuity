@@ -32,9 +32,11 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 import org.apache.commons.collections.MapUtils;
-import org.assertj.core.api.JUnitSoftAssertions;
-import org.junit.Rule;
-import org.junit.Test;
+import org.assertj.core.api.SoftAssertions;
+import org.assertj.core.api.junit.jupiter.InjectSoftAssertions;
+import org.assertj.core.api.junit.jupiter.SoftAssertionsExtension;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 
 import java.util.Arrays;
 import java.util.Date;
@@ -46,10 +48,11 @@ import java.util.function.Function;
 
 import static java.util.Arrays.asList;
 
+@ExtendWith(SoftAssertionsExtension.class)
 public class RangedOptionServiceTest {
 
-    @Rule
-    public final JUnitSoftAssertions softly = new JUnitSoftAssertions();
+    @InjectSoftAssertions
+    private SoftAssertions softly;
 
     private static final Subject SUBJECT1 = Subject.builder().subjectId("id1")
             .firstTreatmentDate(DateUtils.toDate("01.01.2016")).age(34).weight(45.7)

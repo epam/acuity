@@ -24,7 +24,8 @@ import {Component, EventEmitter, OnInit, OnDestroy, Input} from '@angular/core';
  */
 @Component({
     selector: 'display-limit-modal-message',
-    templateUrl: 'DisplayLimitationMessageComponent.html'
+    templateUrl: 'DisplayLimitationMessageComponent.html',
+    standalone: false
 })
 export class DisplayLimitationMessageComponent implements OnInit {
 

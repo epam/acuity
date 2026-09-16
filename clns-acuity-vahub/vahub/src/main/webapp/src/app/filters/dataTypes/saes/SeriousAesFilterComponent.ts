@@ -22,7 +22,8 @@ import {AbstractDataTypeFilter} from '../AbstractDataTypeFilter';
 
 @Component({
     selector: 'serious-aes-filter',
-    templateUrl: 'SeriousAesFilterComponent.html'
+    templateUrl: 'SeriousAesFilterComponent.html',
+    standalone: false
 })
 export class SeriousAesFilterComponent extends AbstractDataTypeFilter implements OnInit, OnDestroy, AfterViewInit {
     @Output()

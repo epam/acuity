@@ -16,7 +16,10 @@
 
 import {Pipe, PipeTransform} from '@angular/core';
 
-@Pipe({ name: 'dodTitlePipe' })
+@Pipe({
+    name: 'dodTitlePipe',
+    standalone: false
+})
 export class DodTitlePipe implements PipeTransform {
     transform(name: string): string {
         switch (name) {

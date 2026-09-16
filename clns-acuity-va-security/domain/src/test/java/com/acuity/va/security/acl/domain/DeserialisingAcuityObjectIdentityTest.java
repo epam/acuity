@@ -24,7 +24,7 @@ import java.io.IOException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.StringWriter;
 import java.util.Arrays;
-import org.junit.*;
+import org.junit.jupiter.api.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -36,7 +36,7 @@ public class DeserialisingAcuityObjectIdentityTest {
 
     private static ObjectMapper mapper;
 
-    @BeforeClass
+    @BeforeAll
     public static void beforeClass() {
         mapper = new ObjectMapper();
         mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);

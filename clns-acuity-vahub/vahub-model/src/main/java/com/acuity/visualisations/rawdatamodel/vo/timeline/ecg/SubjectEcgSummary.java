@@ -26,7 +26,7 @@ import java.io.Serializable;
 import java.util.List;
 
 @Getter
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = false)
 @ToString(callSuper = true)
 public final class SubjectEcgSummary extends SubjectEcg implements Serializable {
     private List<EcgSummaryEvent> events;

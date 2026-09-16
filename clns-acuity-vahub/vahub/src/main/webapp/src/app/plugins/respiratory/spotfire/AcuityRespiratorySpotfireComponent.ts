@@ -17,7 +17,8 @@
 import {Component} from '@angular/core';
 
 @Component({
-    template: `<spotfire-component [moduletype]="'Respiratory'"></spotfire-component>`
+    template: `<spotfire-component [moduletype]="'Respiratory'"></spotfire-component>`,
+    standalone: false
 })
 export class AcuityRespiratorySpotfireComponent {
 

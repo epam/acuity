@@ -17,61 +17,31 @@
 package com.acuity.va.security.common.service;
 
 import com.acuity.va.security.acl.domain.ActiveDirectoryRecord;
-import com.acuity.va.security.auth.azure.graph.MicrosoftGraphClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.NoSuchElementException;
 
+/**
+ * Azure AD user lookup — no-ops when Azure SSO profile is not active.
+ */
 @Service
 public class PeopleResourceClient {
 
     private static final Logger LOG = LoggerFactory.getLogger(PeopleResourceClient.class);
 
-    @Autowired(required = false)
-    private MicrosoftGraphClient microsoftGraphClient;
-
-    /**
-     * Searches the Azure Active Directory for a user's display name
-     *
-     * @param userId - id of the user (email or prid)
-     * @return userIds display name
-     */
     public String getFullName(String userId) {
-
         if (userId == null) {
             return null;
         }
-        LOG.debug("Looking up fullname for {}", userId);
-
-        if (microsoftGraphClient == null) {
-            throw new RuntimeException("Azure profile is not enabled, unable to search users");
-        }
-
-        return microsoftGraphClient.getUserInfoByUserId(userId)
-                .stream().findFirst().map(ActiveDirectoryRecord::getDisplayName)
-                .orElseThrow(() -> new NoSuchElementException("Unknown user id: " + userId));
+        LOG.debug("Azure profile is not enabled, unable to look up full name for {}", userId);
+        return userId;
     }
 
-    /**
-     * Searches the Azure Active Directory for users matching the name passed in
-     *
-     * @param name - user's name/surname/display name/email address initial letters to search for
-     *             (case insensitive)
-     * @return list of users
-     */
     public List<ActiveDirectoryRecord> searchUsersByName(String name) {
-        LOG.debug("Looking up details for name {}", name);
-
-        if (microsoftGraphClient == null) {
-            LOG.debug("Azure profile is not enabled, unable to search users");
-            return Collections.emptyList();
-        }
-
-        return microsoftGraphClient.getUserInfoByName(name);
+        LOG.debug("Azure profile is not enabled, unable to search users by name {}", name);
+        return Collections.emptyList();
     }
 }

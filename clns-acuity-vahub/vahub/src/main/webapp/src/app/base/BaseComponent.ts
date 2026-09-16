@@ -25,6 +25,7 @@ import BrandingProperties = Request.BrandingProperties;
 @Component({
     selector: 'base-component',
     templateUrl: 'BaseComponent.html',
+    standalone: false
 })
 export class BaseComponent implements OnInit {
     RefreshTitle = 'Session timed out!';

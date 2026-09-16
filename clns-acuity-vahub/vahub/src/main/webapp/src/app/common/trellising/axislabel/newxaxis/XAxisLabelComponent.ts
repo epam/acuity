@@ -80,7 +80,8 @@ import {DisplayedGroupBySetting, GroupBySetting, XAxisOptions} from '../../store
                 }))
             ])
         ])
-    ]
+    ],
+    standalone: false
 })
 export class NewXAxisLabelComponent extends AxisLabelComponent implements OnInit, OnDestroy, OnChanges {
     textUtils = TextUtils;

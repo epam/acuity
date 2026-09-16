@@ -21,7 +21,7 @@ import {CIEventsFiltersModel, PopulationFiltersModel} from '../../filters/dataTy
 import {fromJS, List} from 'immutable';
 import {DynamicAxis, IPlot, PlotType} from '../../common/trellising/store';
 import {CIEventsHttpService} from './CIEventsHttpService';
-import {HttpClient} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import ChartGroupByOptionsFiltered = Request.ChartGroupByOptionsFiltered;
 import Dataset = Request.Dataset;
 import CIEventGroupByOptions = InMemory.CIEventGroupByOptions;

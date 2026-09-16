@@ -31,6 +31,7 @@ public class LVEF extends TimestampedEntity {
     private String methodOther;
     private String subject;
     private String part;
+    private String domain;
 
     @AcuityField(transform = AcuityFieldTransformation.MEASUREMENT_EVENT_12_00_00)
     private LocalDateTime date;
@@ -85,6 +86,14 @@ public class LVEF extends TimestampedEntity {
 
     public void setPart(String part) {
         this.part = part;
+    }
+
+    public String getDomain() {
+        return domain;
+    }
+
+    public void setDomain(String domain) {
+        this.domain = domain;
     }
 
     public LocalDateTime getDate() {

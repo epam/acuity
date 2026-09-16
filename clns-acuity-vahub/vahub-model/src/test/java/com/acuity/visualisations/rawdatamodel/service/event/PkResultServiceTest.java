@@ -44,17 +44,17 @@ import com.acuity.visualisations.rawdatamodel.vo.pkresult.CycleDay;
 import com.acuity.visualisations.rawdatamodel.vo.plots.SelectionDetail;
 import com.acuity.visualisations.rawdatamodel.vo.wrappers.PkResult;
 import com.acuity.va.security.acl.domain.Datasets;
-import org.assertj.core.api.JUnitSoftAssertions;
+import org.assertj.core.api.SoftAssertions;
+import org.assertj.core.api.junit.jupiter.InjectSoftAssertions;
+import org.assertj.core.api.junit.jupiter.SoftAssertionsExtension;
 import org.assertj.core.groups.Tuple;
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.experimental.categories.Category;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.text.DecimalFormat;
 import java.util.Arrays;
@@ -82,15 +82,15 @@ import static com.google.common.collect.Lists.newArrayList;
 import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.toSet;
 import static org.assertj.core.groups.Tuple.tuple;
-import static org.mockito.Matchers.any;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
-@RunWith(SpringRunner.class)
+@ExtendWith({SpringExtension.class, SoftAssertionsExtension.class})
 @ContextConfiguration(classes = TestConfig.class)
 public class PkResultServiceTest {
 
-    @Rule
-    public final JUnitSoftAssertions softly = new JUnitSoftAssertions();
+    @InjectSoftAssertions
+    private SoftAssertions softly;
 
     @Autowired
     private PkResultService pkResultService;
@@ -141,7 +141,7 @@ public class PkResultServiceTest {
     private static PkResult pkResultEmptyTimepoints = new PkResult(PkResultRaw.builder().id("id30").analyte("a1")
             .parameter("CMax").parameterValue(10.0).parameterUnit("mg").treatment(20.).build(), subject1);
 
-    @Before
+    @BeforeEach
     public void setUp() {
         when(pkResultDatasetsDataProvider.loadData(any())).thenReturn(newArrayList(pkResult11, pkResult12, pkResult13,
                 pkResult21, pkResult22, pkResult23, pkResult24, pkResult25, pkResult26, pkResult27, pkResultEmptyTimepoints));
@@ -149,7 +149,7 @@ public class PkResultServiceTest {
     }
 
     @Test
-    @Category(BoxPlotTests.class)
+    
     public void shouldGetBoxPlotXAxisOptions() {
         AxisOptions<PkResultGroupByOptions> result = pkResultService.getAvailableBoxPlotXAxis(DATASETS,
                 PkResultFilters.empty(), PopulationFilters.empty());
@@ -160,7 +160,7 @@ public class PkResultServiceTest {
     }
 
     @Test
-    @Category(BoxPlotTests.class)
+    
     public void testGetBoxPlotOptionsTimepointCycleDay() {
         List<PkResultTrellisOptions> result = testGetBoxPlotOptionsForOption(CYCLE_DAY.toString());
 
@@ -175,7 +175,7 @@ public class PkResultServiceTest {
     }
 
     @Test
-    @Category(BoxPlotTests.class)
+    
     public void testGetBoxPlotOptionsTimepointVisit() {
         List<PkResultTrellisOptions> result = testGetBoxPlotOptionsForOption(VISIT.toString());
 
@@ -188,7 +188,7 @@ public class PkResultServiceTest {
     }
 
     @Test
-    @Category(BoxPlotTests.class)
+    
     public void testGetBoxPlotOptionsTimepointVisitNumber() {
         List<PkResultTrellisOptions> result = testGetBoxPlotOptionsForOption(VISIT_NUMBER.toString());
 
@@ -216,7 +216,7 @@ public class PkResultServiceTest {
     }
 
     @Test
-    @Category(BoxPlotTests.class)
+    
     public void testGetBoxPlotDataTimepointCycleDay() {
 
         final ChartGroupByOptions<PkResult, PkResultGroupByOptions> settings = getPkResultSettings(CYCLE_DAY);
@@ -234,7 +234,7 @@ public class PkResultServiceTest {
     }
 
     @Test
-    @Category(BoxPlotTests.class)
+    
     public void testGetBoxPlotDataTimepointVisit() {
 
         final ChartGroupByOptions<PkResult, PkResultGroupByOptions> settings = getPkResultSettings(VISIT);
@@ -249,7 +249,7 @@ public class PkResultServiceTest {
     }
 
     @Test
-    @Category(BoxPlotTests.class)
+    
     public void testGetBoxPlotDataTimepointVisitNumber() {
 
         final ChartGroupByOptions<PkResult, PkResultGroupByOptions> settings = getPkResultSettings(VISIT_NUMBER);
@@ -281,7 +281,7 @@ public class PkResultServiceTest {
 
 
     @Test
-    @Category(BoxPlotTests.class)
+    
     public void testGetBoxPlotActualAndNominalDoses() {
 
         final ChartGroupByOptions<PkResult, PkResultGroupByOptions> settings = ChartGroupByOptions.<PkResult, PkResultGroupByOptions>builder()
@@ -321,7 +321,7 @@ public class PkResultServiceTest {
     }
 
     @Test
-    @Category(BoxPlotTests.class)
+    
     public void testGetTrellisOptions() {
         final List<TrellisOptions<PkResultGroupByOptions>> result
                 = pkResultService.getTrellisOptions(DATASETS, PkResultFilters.empty(), PopulationFilters.empty());
@@ -333,7 +333,7 @@ public class PkResultServiceTest {
     }
 
     @Test
-    @Category(BoxPlotTests.class)
+    
     public void testGetBoxPlotSelection() {
 
         final ChartGroupByOptions<PkResult, PkResultGroupByOptions> settings = getPkResultSettings(VISIT_NUMBER);

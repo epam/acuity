@@ -18,15 +18,19 @@ package com.acuity.visualisations.rest.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.CacheControl;
+import org.springframework.http.MediaType;
+import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.web.servlet.config.annotation.AsyncSupportConfigurer;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 @Configuration
-public class WebConfig extends WebMvcConfigurerAdapter {
+public class WebConfig implements WebMvcConfigurer {
 
     @Override
     public void configureAsyncSupport(AsyncSupportConfigurer configurer) {
@@ -41,7 +45,16 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     }
 
     @Override
-    public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/error").setViewName("error.html");
+    public void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
+        // Allow StringHttpMessageConverter to serve pre-built JSON strings as application/json.
+        // Without this, Spring MVC 6 cannot register endpoints that return String with
+        // produces = application/json (no converter matches String → application/json).
+        converters.stream()
+                .filter(c -> c instanceof StringHttpMessageConverter)
+                .map(c -> (StringHttpMessageConverter) c)
+                .findFirst()
+                .ifPresent(c -> c.setSupportedMediaTypes(
+                        Arrays.asList(MediaType.TEXT_PLAIN, MediaType.TEXT_HTML,
+                                MediaType.APPLICATION_JSON, MediaType.ALL)));
     }
 }

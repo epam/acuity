@@ -18,7 +18,8 @@ import {Component} from '@angular/core';
 import {AbstractPluginComponent} from '../AbstractPluginComponent';
 
 @Component({
-    templateUrl: 'ConmedsComponent.html'
+    templateUrl: 'ConmedsComponent.html',
+    standalone: false
 })
 
 export class ConmedsComponent extends AbstractPluginComponent {

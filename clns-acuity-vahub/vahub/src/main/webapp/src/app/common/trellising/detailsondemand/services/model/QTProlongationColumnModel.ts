@@ -16,7 +16,7 @@
 
 import {Injectable} from '@angular/core';
 import {List} from 'immutable';
-import {ColDef} from 'ag-grid';
+import {ColDef} from 'ag-grid-community';
 
 @Injectable()
 export class QTProlongationColumnModel {

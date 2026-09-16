@@ -21,7 +21,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 import java.util.Date;
 
 @Data
@@ -36,4 +36,17 @@ public class LoggingRequest extends DatasetsRequest {
     private String viewName;
     @NotNull
     private String visualisationName;
+
+    public String getAnalyticsSessionId() {
+        return analyticsSessionId;
+    }
+    public Date getAnalyticsSessionDate() {
+        return analyticsSessionDate;
+    }
+    public String getViewName() {
+        return viewName;
+    }
+    public String getVisualisationName() {
+        return visualisationName;
+    }
 }

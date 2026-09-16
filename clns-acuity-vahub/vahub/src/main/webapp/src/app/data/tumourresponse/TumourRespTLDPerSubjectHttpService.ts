@@ -15,8 +15,7 @@
  */
 
 import {getServerPath} from '../../common/utils/Utils';
-import {Response} from '@angular/http';
-import {HttpClient} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {fromJS, List} from 'immutable';
@@ -24,12 +23,14 @@ import {fromJS, List} from 'immutable';
 import {BaseChartsHttpService} from '../BaseChartsHttpService';
 import {DynamicAxis, IPlot, PlotType} from '../../common/trellising/store';
 import {PopulationFiltersModel} from '../../filters/dataTypes/population/PopulationFiltersModel';
+import {RecistFiltersModel} from '../../filters/dataTypes/recist/RecistFiltersModel';
 import Dataset = Request.Dataset;
 
 @Injectable()
 export class TumourRespTLDPerSubjectHttpService extends BaseChartsHttpService {
     constructor(private http: HttpClient,
-                private populationFiltersModel: PopulationFiltersModel) {
+                private populationFiltersModel: PopulationFiltersModel,
+                private recistFiltersModel: RecistFiltersModel) {
         super();
     }
 
@@ -37,7 +38,7 @@ export class TumourRespTLDPerSubjectHttpService extends BaseChartsHttpService {
         const path = getServerPath('tumour', 'linechart-by-lesion-xaxis');
         const postData: any = {
             populationFilters: this.populationFiltersModel.transformFiltersToServer(),
-            tumourFilters: {},
+            tumourFilters: this.recistFiltersModel.transformFiltersToServer(),
             datasets: currentDatasets
         };
         return this.http.post(path, JSON.stringify(postData)).map(res => res as DynamicAxis[]);
@@ -61,13 +62,13 @@ export class TumourRespTLDPerSubjectHttpService extends BaseChartsHttpService {
 
         const postData: any = {
             datasets,
-            tumourFilters: {},
+            tumourFilters: this.recistFiltersModel.transformFiltersToServer(),
             populationFilters: this.getSelectedSubjectsPopulationFilter(settings.mainPlotSelection),
             settings: settingsCopy
         };
 
         return this.http.post(path, JSON.stringify(postData))
-            .map((response: Response) => {
+            .map((response: any) => {
                 const data = <any>response;
                 return <List<IPlot>>fromJS(data.map((plotItem: any) => {
                     return {

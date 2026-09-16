@@ -21,7 +21,7 @@ import com.acuity.visualisations.rawdatamodel.service.event.SeriousAeService;
 import com.acuity.visualisations.rest.model.request.sae.SeriousAeRequest;
 import com.acuity.visualisations.rest.model.response.DetailsOnDemandResponse;
 import com.acuity.visualisations.rest.model.request.SingleSubjectRequest;
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 
 import com.acuity.visualisations.rest.util.Constants;
 import org.springframework.beans.factory.annotation.Autowired;

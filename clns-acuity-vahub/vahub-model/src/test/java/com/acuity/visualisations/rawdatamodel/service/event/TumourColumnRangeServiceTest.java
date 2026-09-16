@@ -48,16 +48,17 @@ import com.acuity.visualisations.rawdatamodel.vo.wrappers.DrugDose;
 import com.acuity.visualisations.rawdatamodel.vo.wrappers.Radiotherapy;
 import com.acuity.visualisations.rawdatamodel.vo.wrappers.SubjectExt;
 import com.acuity.va.security.acl.domain.Datasets;
-import org.assertj.core.api.JUnitSoftAssertions;
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.assertj.core.api.SoftAssertions;
+import org.assertj.core.api.junit.jupiter.InjectSoftAssertions;
+import org.assertj.core.api.junit.jupiter.SoftAssertionsExtension;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -88,10 +89,10 @@ import static com.acuity.visualisations.rawdatamodel.vo.wrappers.Radiotherapy.RA
 import static com.google.common.collect.Lists.newArrayList;
 import static java.util.Collections.singletonList;
 import static org.assertj.core.api.Assertions.tuple;
-import static org.mockito.Matchers.any;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
-@RunWith(SpringRunner.class)
+@ExtendWith({SpringExtension.class, SoftAssertionsExtension.class})
 @ContextConfiguration(classes = TestConfig.class)
 public class TumourColumnRangeServiceTest {
 
@@ -108,10 +109,10 @@ public class TumourColumnRangeServiceTest {
     @MockBean
     private SubjectExtDatasetsDataProvider subjectExtDatasetsDataProvider;
 
-    @Rule
-    public final JUnitSoftAssertions softly = new JUnitSoftAssertions();
+    @InjectSoftAssertions
+    private SoftAssertions softly;
 
-    @Before
+    @BeforeEach
     public void setup() {
         MockitoAnnotations.initMocks(this);
         when(populationDatasetsDataProvider.loadData(any(Datasets.class))).thenReturn(population);

@@ -24,7 +24,8 @@ import {ApplicationState} from '../../../../common/store/models/ApplicationState
     templateUrl: 'SubjectSummaryComponent.html',
     styleUrls: ['./SubjectSummaryComponent.css'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    selector: 'subject-summary-component'
+    selector: 'subject-summary-component',
+    standalone: false
 })
 export class SubjectSummaryComponent {
     @Input() loading: boolean;

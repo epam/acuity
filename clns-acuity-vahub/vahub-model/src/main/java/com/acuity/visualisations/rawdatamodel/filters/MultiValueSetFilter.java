@@ -30,7 +30,7 @@ import java.util.Collection;
  *
  */
 @ToString(callSuper = true)
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = false)
 @NoArgsConstructor
 public class MultiValueSetFilter<T extends Comparable<T>> extends SetFilter<T> {
 

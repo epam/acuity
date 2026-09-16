@@ -39,7 +39,8 @@ import {List} from 'immutable';
     selector: 'ecg-track',
     templateUrl: 'EcgTrackComponent.html',
     styleUrls: ['../TimelineTrackComponent.css'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class EcgTrackComponent extends AbstractTrackComponent implements OnInit, OnChanges, OnDestroy {
     @Input() track: ITrack;

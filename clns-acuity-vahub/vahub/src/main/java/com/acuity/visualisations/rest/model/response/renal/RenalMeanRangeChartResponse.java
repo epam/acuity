@@ -21,13 +21,15 @@ import com.acuity.visualisations.rawdatamodel.vo.compatibility.TrellisedRangePlo
 import com.acuity.visualisations.rawdatamodel.vo.wrappers.Renal;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.List;
 
 @Data
+@EqualsAndHashCode(callSuper = false)
 @AllArgsConstructor
 @NoArgsConstructor
 public class RenalMeanRangeChartResponse implements Serializable {

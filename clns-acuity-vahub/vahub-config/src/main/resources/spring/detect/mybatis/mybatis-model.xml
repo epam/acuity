@@ -34,11 +34,5 @@
         <property name="configLocation" value="classpath:spring/detect/mybatis/sql-map-config-rawdata-acuity.xml"/>
     </bean>
 
-    <mybatis:scan base-package="com.acuity.visualisations.model"
-                  annotation="com.acuity.visualisations.common.lookup.AcuityRepository"
-                  factory-ref="sqlSessionFactoryModelAcuity"/>
-    <mybatis:scan base-package="com.acuity.visualisations.rawdatamodel"
-                  annotation="com.acuity.visualisations.common.lookup.AcuityRepository"
-                  factory-ref="sqlSessionFactoryModelRawDataAcuity"/>
 
 </beans>

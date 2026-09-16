@@ -22,7 +22,8 @@ import {AbstractDataTypeFilter} from '../AbstractDataTypeFilter';
 
 @Component({
     selector: 'liver-diag-invest-filter',
-    templateUrl: 'LiverDiagnosticInvestigationFilterComponent.html'
+    templateUrl: 'LiverDiagnosticInvestigationFilterComponent.html',
+    standalone: false
 })
 export class LiverDiagnosticInvestigationFilterComponent extends AbstractDataTypeFilter implements OnInit, OnDestroy, AfterViewInit {
     @Output()

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {HttpClient} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {fromJS, List} from 'immutable';
 import {Observable} from 'rxjs/Observable';
@@ -93,13 +93,10 @@ export class DoseProportionalityHttpService extends BaseChartsHttpService {
             groupByOption: this.studyService.metadataInfo['pkResult']['availableYAxisOptions'][0],
             params: {}
         };
-        const trellisOptions = settings.settings.trellisOptions[0] ? [settings.settings.trellisOptions[0],
+        const trellisOptions = [
             {groupByOption: YAxisParameters.MEASUREMENT},
-            {
-                groupByOption: YAxisParameters.MEASUREMENT_TIMEPOINT,
-                params: params
-            }
-        ] : [];
+            {groupByOption: YAxisParameters.MEASUREMENT_TIMEPOINT, params: params}
+        ];
 
         const settingsCopy = {
             settings: {
@@ -150,9 +147,10 @@ export class DoseProportionalityHttpService extends BaseChartsHttpService {
                     'Y_AXIS': yAxis,
                     'X_AXIS': settings.settings.options['X_AXIS']
                 },
-                trellisOptions: [{groupByOption: settings.settings.trellisOptions[0].groupByOption, params: {}},
+                trellisOptions: [
                     {groupByOption: YAxisParameters.MEASUREMENT, params: {}},
-                    {groupByOption: YAxisParameters.MEASUREMENT_TIMEPOINT, params: params}]
+                    {groupByOption: YAxisParameters.MEASUREMENT_TIMEPOINT, params: params}
+                ]
             }
         };
         const postData: any = {

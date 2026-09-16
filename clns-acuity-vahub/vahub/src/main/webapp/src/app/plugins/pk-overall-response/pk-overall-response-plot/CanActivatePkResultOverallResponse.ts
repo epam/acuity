@@ -15,13 +15,13 @@
  */
 
 import {Injectable} from '@angular/core';
-import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from '@angular/router';
+import { ActivatedRouteSnapshot, Router, RouterStateSnapshot } from '@angular/router';
 import {Observable} from 'rxjs/Observable';
 import {DatasetViews} from '../../../security/DatasetViews';
 import {UserPermissions} from '../../../security/UserPermissions';
 
 @Injectable()
-export class CanActivatePkResultOverallResponse implements CanActivate {
+export class CanActivatePkResultOverallResponse  {
     constructor(private router: Router,
                 private datasetViews: DatasetViews,
                 private userPermissions: UserPermissions) {

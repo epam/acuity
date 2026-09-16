@@ -69,7 +69,9 @@ export function handleYAxisOptions(yAxisOptions: string): any {
             ASSESSMENT_TYPE: yAxisOptions.split(' ')[0].toUpperCase(),
             WEEK_NUMBER: parseInt(yAxisOptions.split(' ')[1], 10)
         } : {
-            ASSESSMENT_TYPE: yAxisOptions,
+            // Only 'BEST_CHANGE' and 'WEEK' are valid AssessmentType values server-side;
+            // other tabs' Y-axis groupByOptions (e.g. TL Diameters' PERCENTAGE_CHANGE) fall back to BEST_CHANGE.
+            ASSESSMENT_TYPE: yAxisOptions === 'BEST_CHANGE' ? yAxisOptions : 'BEST_CHANGE',
             WEEK_NUMBER: 0
         }
     };

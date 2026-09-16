@@ -20,7 +20,7 @@ import {CommonModule} from '@angular/common';
 import {SingleSubjectViewTableComponent} from './SingleSubjectViewTableComponent';
 import {ProgressComponentModule} from '../../../common/loading/ProgressComponent.module';
 import {CommonPipesModule} from '../../../common/pipes/CommonPipes.module';
-import {AgGridModule} from 'ag-grid-angular/main';
+import {AgGridModule} from 'ag-grid-angular';
 
 @NgModule({
     imports: [
@@ -28,9 +28,7 @@ import {AgGridModule} from 'ag-grid-angular/main';
         FormsModule,
         ProgressComponentModule,
         CommonPipesModule,
-        AgGridModule.withComponents([
-            SingleSubjectViewTableComponent
-        ])
+        AgGridModule
     ],
     declarations: [
         SingleSubjectViewTableComponent

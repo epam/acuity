@@ -25,13 +25,14 @@ import com.acuity.visualisations.rawdatamodel.vo.LungFunctionRaw;
 import com.acuity.visualisations.rawdatamodel.vo.Subject;
 import com.acuity.visualisations.rawdatamodel.vo.wrappers.LungFunction;
 import com.acuity.visualisations.rawdatamodel.vo.wrappers.SubjectAwareWrapper;
-import org.assertj.core.api.JUnitSoftAssertions;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.assertj.core.api.SoftAssertions;
+import org.assertj.core.api.junit.jupiter.InjectSoftAssertions;
+import org.assertj.core.api.junit.jupiter.SoftAssertionsExtension;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
@@ -42,15 +43,15 @@ import java.util.stream.Collectors;
 
 import static com.acuity.visualisations.rawdatamodel.util.DateUtils.toDate;
 
-@RunWith(SpringRunner.class)
+@ExtendWith({SpringExtension.class, SoftAssertionsExtension.class})
 @SpringBootTest(classes = TestConfig.class)
 public class LungFunctionFilterServiceTest {
 
     @Autowired
     private LungFunctionFilterService lungFunctionFilterService;
 
-    @Rule
-    public final JUnitSoftAssertions softly = new JUnitSoftAssertions();
+    @InjectSoftAssertions
+    private SoftAssertions softly;
 
     private final Subject subject1 = Subject.builder()
             .subjectId("E001")

@@ -25,15 +25,16 @@ import com.acuity.visualisations.rawdatamodel.vo.CardiacRaw;
 import com.acuity.visualisations.rawdatamodel.vo.Subject;
 import com.acuity.visualisations.rawdatamodel.vo.wrappers.Cardiac;
 import com.acuity.va.security.acl.domain.Datasets;
-import org.assertj.core.api.JUnitSoftAssertions;
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.assertj.core.api.SoftAssertions;
+import org.assertj.core.api.junit.jupiter.InjectSoftAssertions;
+import org.assertj.core.api.junit.jupiter.SoftAssertionsExtension;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.mockito.runners.MockitoJUnitRunner;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -42,12 +43,12 @@ import java.util.HashMap;
 import static com.acuity.visualisations.rawdatamodel.Constants.DATASETS;
 import static com.google.common.collect.Lists.newArrayList;
 import static net.javacrumbs.jsonunit.fluent.JsonFluentAssert.assertThatJson;
-import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.anyCollection;
-import static org.mockito.Matchers.eq;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyCollection;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.when;
 
-@RunWith(MockitoJUnitRunner.class)
+@ExtendWith({MockitoExtension.class, SoftAssertionsExtension.class})
 public class CardiacModuleMetadataTest {
     @InjectMocks
     private CardiacModuleMetadata moduleMetadata;
@@ -58,10 +59,10 @@ public class CardiacModuleMetadataTest {
     @Mock
     private AeService aeService;
 
-    @Rule
-    public final JUnitSoftAssertions softly = new JUnitSoftAssertions();
+    @InjectSoftAssertions
+    private SoftAssertions softly;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         MockitoAnnotations.initMocks(this);
         moduleMetadata.datasetsDataProvider = newArrayList(datasetsDataProvider);

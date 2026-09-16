@@ -29,7 +29,7 @@ import java.util.Collection;
 import java.util.List;
 
 @Data
-@EqualsAndHashCode(callSuper = false)
+@EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
 public class LabFilters extends UsedInTflFilters<Lab> {
 

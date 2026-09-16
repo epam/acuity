@@ -32,7 +32,6 @@ public class ExacerbationFilterService extends AbstractEventFilterService<Exacer
         Collection<Exacerbation> filteredLabEvents = filteredResult.getFilteredResult();
 
         return filteredLabEvents.stream()
-                .distinct()
                 .collect(new FilterSummaryStatisticsCollector<>(ExacerbationFiltersSummaryStatistics.class))
                 .getFilters();
     }

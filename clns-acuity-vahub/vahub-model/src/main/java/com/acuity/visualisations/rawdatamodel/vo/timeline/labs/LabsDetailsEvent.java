@@ -22,7 +22,7 @@ import lombok.EqualsAndHashCode;
 import java.io.Serializable;
 
 
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = false)
 @Data
 public class LabsDetailsEvent extends LabsSummaryEvent implements Serializable {
 

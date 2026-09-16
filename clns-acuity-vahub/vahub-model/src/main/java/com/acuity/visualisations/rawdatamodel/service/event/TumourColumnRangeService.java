@@ -457,7 +457,7 @@ public class TumourColumnRangeService implements ColorInitializer {
         return combined;
     }
 
-    @EqualsAndHashCode(callSuper = true)
+    @EqualsAndHashCode(callSuper = false)
     public static class TrellisOptionsWithDrug extends TrellisOptions<PopulationGroupByOptions> {
         @Getter
         @Setter

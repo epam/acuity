@@ -19,7 +19,8 @@ import {Component} from '@angular/core';
 @Component({
     selector: 'studyselection-side-nav-bar',
     templateUrl: 'StudySelectionSideNavBarComponent.html',
-    styleUrls: ['../SideNavBarStyles.css']
+    styleUrls: ['../SideNavBarStyles.css'],
+    standalone: false
 })
 export class StudySelectionSideNavBarComponent {
 

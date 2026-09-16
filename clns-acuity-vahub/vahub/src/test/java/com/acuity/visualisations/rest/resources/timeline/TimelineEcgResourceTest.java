@@ -28,8 +28,8 @@ import com.acuity.visualisations.rest.model.request.cardiac.EcgTimelineRequest;
 import com.acuity.va.security.acl.domain.Datasets;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -44,8 +44,9 @@ import java.util.List;
 
 import static com.acuity.visualisations.config.util.TestConstants.DUMMY_DETECT_DATASETS;
 import static com.google.common.collect.Lists.newArrayList;
-import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.eq;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.ArgumentMatchers.nullable;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
@@ -67,7 +68,7 @@ public class TimelineEcgResourceTest {
     private static ObjectMapper mapper;
     private static final String BASE_URL = "/resources/timeline/ecg";
 
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
         mvc = MockMvcBuilders.standaloneSetup(timelineEcgResource).build();
@@ -91,7 +92,7 @@ public class TimelineEcgResourceTest {
         timelineEcgRequest.setDatasets(DUMMY_DETECT_DATASETS.getDatasetsList());
 
         when(ecgTimelineService.getSummaries(any(Datasets.class), any(CardiacFilters.class), any(PopulationFilters.class),
-                any(DayZeroType.class), any(String.class))).thenReturn(response);
+                any(DayZeroType.class), nullable(String.class))).thenReturn(response);
 
         MockHttpServletRequestBuilder post = MockMvcRequestBuilders.
                 post(BASE_URL + "/summaries").
@@ -105,7 +106,7 @@ public class TimelineEcgResourceTest {
                 .andReturn();
 
         verify(ecgTimelineService, times(1)).getSummaries(eq(DUMMY_DETECT_DATASETS),
-                any(CardiacFilters.class), any(PopulationFilters.class), eq(DayZeroType.DAYS_SINCE_FIRST_DOSE), any(String.class));
+                any(CardiacFilters.class), any(PopulationFilters.class), eq(DayZeroType.DAYS_SINCE_FIRST_DOSE), nullable(String.class));
         verifyNoMoreInteractions(ecgTimelineService);
     }
 
@@ -124,7 +125,7 @@ public class TimelineEcgResourceTest {
         timelineEcgRequest.setDatasets(DUMMY_DETECT_DATASETS.getDatasetsList());
 
         when(ecgTimelineService.getDetails(any(Datasets.class), any(CardiacFilters.class), any(PopulationFilters.class),
-                any(DayZeroType.class), any(String.class))).thenReturn(response);
+                any(DayZeroType.class), nullable(String.class))).thenReturn(response);
 
         MockHttpServletRequestBuilder post = MockMvcRequestBuilders.
                 post(BASE_URL + "/details").
@@ -138,7 +139,7 @@ public class TimelineEcgResourceTest {
                 .andReturn();
 
         verify(ecgTimelineService, times(1)).getDetails(eq(DUMMY_DETECT_DATASETS),
-                any(CardiacFilters.class), any(PopulationFilters.class), eq(DayZeroType.DAYS_SINCE_FIRST_DOSE), any(String.class));
+                any(CardiacFilters.class), any(PopulationFilters.class), eq(DayZeroType.DAYS_SINCE_FIRST_DOSE), nullable(String.class));
         verifyNoMoreInteractions(ecgTimelineService);
     }
 }

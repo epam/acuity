@@ -29,14 +29,15 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jayway.restassured.RestAssured;
-import org.assertj.core.api.JUnitSoftAssertions;
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.assertj.core.api.SoftAssertions;
+import org.assertj.core.api.junit.jupiter.InjectSoftAssertions;
+import org.assertj.core.api.junit.jupiter.SoftAssertionsExtension;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.Collections;
 import java.util.List;
@@ -44,7 +45,7 @@ import java.util.List;
 import static com.acuity.visualisations.config.util.TestConstants.DUMMY_ACUITY_DATASETS;
 import static com.jayway.restassured.RestAssured.given;
 
-@RunWith(SpringJUnit4ClassRunner.class)
+@ExtendWith({SpringExtension.class, SoftAssertionsExtension.class})
 @FullStackITSpringApplicationConfiguration
 @ActiveProfiles(profiles = {"NoScheduledJobs", "it", "local-no-security", "fullStack"})
 public class TimelineDoseResourceFullStackIT {
@@ -54,7 +55,7 @@ public class TimelineDoseResourceFullStackIT {
 
     private static ObjectMapper mapper;
 
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
         RestAssured.port = port;
 
@@ -62,8 +63,8 @@ public class TimelineDoseResourceFullStackIT {
         mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
     }
 
-    @Rule
-    public JUnitSoftAssertions softly = new JUnitSoftAssertions();
+    @InjectSoftAssertions
+    private SoftAssertions softly;
 
     @Test
     public void shouldGetTrellisingOptionAsActualValue() throws Exception {

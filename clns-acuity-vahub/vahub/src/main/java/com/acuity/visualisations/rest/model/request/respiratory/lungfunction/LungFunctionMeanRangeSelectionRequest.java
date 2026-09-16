@@ -23,7 +23,7 @@ import com.acuity.visualisations.rawdatamodel.vo.wrappers.LungFunction;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 
 
 @Data
@@ -33,5 +33,10 @@ public class LungFunctionMeanRangeSelectionRequest extends LungFunctionRequest {
     private ChartSelection<LungFunction, LungFunctionGroupByOptions,
             ChartSelectionItem<LungFunction, LungFunctionGroupByOptions>> selection;
 
+
+    public ChartSelection<LungFunction, LungFunctionGroupByOptions,
+            ChartSelectionItem<LungFunction, LungFunctionGroupByOptions>> getSelection() {
+        return selection;
+    }
 }
 

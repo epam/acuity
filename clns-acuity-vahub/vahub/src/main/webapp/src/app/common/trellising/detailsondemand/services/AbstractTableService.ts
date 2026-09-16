@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {ColumnGroup, GridOptions} from 'ag-grid/main';
+import {ColumnGroup, GridOptions} from 'ag-grid-community';
 import {isEmpty, filter, map, isUndefined} from 'lodash';
 import {Map} from 'immutable';
 
@@ -47,10 +47,12 @@ export abstract class AbstractTableService {
         if (!this.gridOptionsMap.isEmpty() && Map.isMap(ids)) {
             const idsMap = ids as Map<string, string[]>;
             idsMap.mapKeys((key) => {
-                sortModelsList.push(this.gridOptionsMap.get(key).api.getSortModel());
+                const state = this.gridOptionsMap.get(key).columnApi.getColumnState();
+                sortModelsList.push(state.filter(c => c.sort != null).map(c => ({colId: c.colId, sort: c.sort})));
             });
         }
-        const sortModel = this.gridOptions.api.getSortModel();
+        const sortModel = this.gridOptions.columnApi.getColumnState()
+            .filter(c => c.sort != null).map(c => ({colId: c.colId, sort: c.sort}));
         if (!NEW_APPROACH_TAB_LIST.contains(tabId)) {
             return this.dataService.getDetailsOnDemandData(tabId, ids, 0, 1000, this.getSortBy(sortModel),
                 this.getSortDirection(sortModel));
@@ -112,7 +114,7 @@ export abstract class AbstractTableService {
             item.width = 205;
             return item;
         });
-        this.gridOptions.columnApi.setColumnState(changedState);
+        this.gridOptions.columnApi.applyColumnState({state: changedState});
     }
 
     abstract setColumnDefs(expandedGroupsIds: string[]): void;

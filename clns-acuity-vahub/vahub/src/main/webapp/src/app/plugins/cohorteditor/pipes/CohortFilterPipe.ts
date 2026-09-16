@@ -17,7 +17,10 @@
 import {Pipe, PipeTransform} from '@angular/core';
 import * as  _ from 'lodash';
 
-@Pipe({ name: 'cohortFilter' })
+@Pipe({
+    name: 'cohortFilter',
+    standalone: false
+})
 export class CohortFilterPipe implements PipeTransform {
 
     transform(input: any, args: string[]): string[] {

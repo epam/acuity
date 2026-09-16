@@ -234,7 +234,6 @@ export class PopulationFiltersModel extends AbstractFiltersModel {
             this.pendingRequest.unsubscribe();
         }
 
-        console.log('Sending ' + this.getName() + ' filters request');
         if (that.firstEventEmitted) {
             this.emitEvent(this.transformFiltersToServer(manuallyApplied));
         } else {
@@ -245,7 +244,6 @@ export class PopulationFiltersModel extends AbstractFiltersModel {
             getServerPath(this.getModulePath(), 'filters'),
             this.transformFiltersToServer(manuallyApplied)
         ).subscribe(res => {
-            console.log('Got ' + this.getName() + ' filters request');
             that.transformFiltersFromServer(res);
             if (that.firstTimeLoaded) {
                 that.hideEmptyFilters(that.datasetViews.getEmptyFilters(that.getName()));

@@ -19,7 +19,8 @@ import {EcgYAxisValue} from '../../../../store/ITimeline';
 
 @Component({
     selector: 'ecg-y-axis-config',
-    templateUrl: 'EcgYAxisConfigurationComponent.html'
+    templateUrl: 'EcgYAxisConfigurationComponent.html',
+    standalone: false
 })
 export class EcgYAxisConfigurationComponent implements OnChanges {
     @Input() ecgYAxisValue: EcgYAxisValue;

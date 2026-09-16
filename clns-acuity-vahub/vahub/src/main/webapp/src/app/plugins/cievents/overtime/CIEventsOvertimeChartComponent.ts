@@ -18,7 +18,8 @@ import {Component} from '@angular/core';
 import {TChartComponent} from '../../TChartComponent';
 
 @Component({
-    template: `<trellising-component [tabId]="tabId.CI_EVENT_OVERTIME"></trellising-component>`
+    template: `<trellising-component [tabId]="tabId.CI_EVENT_OVERTIME"></trellising-component>`,
+    standalone: false
 })
 export class CIEventsOvertimeChartComponent extends TChartComponent {
 

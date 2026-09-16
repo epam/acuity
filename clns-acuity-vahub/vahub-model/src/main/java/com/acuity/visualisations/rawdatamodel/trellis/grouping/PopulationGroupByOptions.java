@@ -19,7 +19,6 @@ package com.acuity.visualisations.rawdatamodel.trellis.grouping;
 import com.acuity.visualisations.rawdatamodel.trellis.grouping.annotations.AcceptsAttributeContext;
 import com.acuity.visualisations.rawdatamodel.trellis.grouping.annotations.BinableOption;
 import com.acuity.visualisations.rawdatamodel.trellis.grouping.annotations.HasDrugOption;
-import com.acuity.visualisations.rawdatamodel.trellis.grouping.annotations.PopulationGroupingOption;
 import com.acuity.visualisations.rawdatamodel.trellis.grouping.annotations.RangeOption;
 import com.acuity.visualisations.rawdatamodel.trellis.grouping.annotations.TimestampOption;
 import com.acuity.visualisations.rawdatamodel.vo.EntityAttribute;
@@ -34,29 +33,20 @@ import static com.acuity.visualisations.rawdatamodel.util.Attributes.getBinnedAt
 
 public enum PopulationGroupByOptions implements GroupByOption<Subject> {
 
-    @PopulationGroupingOption(NONE)
     NONE(null) {
         @Override
         public EntityAttribute<Subject> getAttribute() {
             return EntityAttribute.attribute("ALL", e -> "All");
         }
     },
-    @PopulationGroupingOption(STUDY_CODE)
     STUDY_CODE(Subject.Attributes.STUDY_CODE),
-    @PopulationGroupingOption(STUDY_NAME)
     STUDY_NAME(Subject.Attributes.STUDY_NAME),
-    @PopulationGroupingOption(STUDY_PART_ID)
     STUDY_PART_ID(Subject.Attributes.STUDY_PART),
-    @PopulationGroupingOption(PLANNED_TREATMENT_ARM)
     PLANNED_TREATMENT_ARM(Subject.Attributes.PLANNED_ARM),
-    @PopulationGroupingOption(ACTUAL_TREATMENT_ARM)
     ACTUAL_TREATMENT_ARM(Subject.Attributes.ACTUAL_ARM),
-    @PopulationGroupingOption(CENTER_NUMBER)
     CENTER_NUMBER(Subject.Attributes.SITE_ID),
-    @PopulationGroupingOption(SITE_ID)
     SITE_ID(Subject.Attributes.SITE_ID),
     @AcceptsAttributeContext(required = false)
-    @PopulationGroupingOption(RANDOMISATION_DATE)
     @RangeOption(RangeOption.RangeOptionType.DATE)
     RANDOMISATION_DATE(Subject.Attributes.DATE_OF_RANDOMISATION) {
         @Override
@@ -65,7 +55,6 @@ public enum PopulationGroupByOptions implements GroupByOption<Subject> {
         }
     },
     @AcceptsAttributeContext(required = false)
-    @PopulationGroupingOption(FIRST_TREATMENT_DATE)
     @RangeOption(RangeOption.RangeOptionType.DATE)
     FIRST_TREATMENT_DATE(Subject.Attributes.FIRST_TREATMENT_DATE) {
         @Override
@@ -74,7 +63,6 @@ public enum PopulationGroupByOptions implements GroupByOption<Subject> {
         }
     },
     @AcceptsAttributeContext(required = false)
-    @PopulationGroupingOption(LAST_TREATMENT_DATE)
     @RangeOption(RangeOption.RangeOptionType.DATE)
     LAST_TREATMENT_DATE(Subject.Attributes.LAST_TREATMENT_DATE) {
         @Override
@@ -82,10 +70,8 @@ public enum PopulationGroupByOptions implements GroupByOption<Subject> {
             return getSubjectRangedAttribute(getAttribute(), "LAST_TREATMENT_DATE", params);
         }
     },
-    @PopulationGroupingOption(DEATH)
     DEATH(Subject.Attributes.DEATH_FLAG),
     @AcceptsAttributeContext(required = false)
-    @PopulationGroupingOption(DATE_OF_DEATH)
     @RangeOption(RangeOption.RangeOptionType.DATE)
     DATE_OF_DEATH(Subject.Attributes.DATE_OF_DEATH) {
         @Override
@@ -93,16 +79,11 @@ public enum PopulationGroupByOptions implements GroupByOption<Subject> {
             return getSubjectRangedAttribute(getAttribute(), "DATE_OF_DEATH", params);
         }
     },
-    @PopulationGroupingOption(COUNTRY)
     COUNTRY(Subject.Attributes.COUNTRY),
-    @PopulationGroupingOption(COUNTRY_AND_REGION)
     COUNTRY_AND_REGION(Subject.Attributes.REGION),
-    @PopulationGroupingOption(SEX)
     SEX(Subject.Attributes.SEX),
-    @PopulationGroupingOption(RACE)
     RACE(Subject.Attributes.RACE),
     @AcceptsAttributeContext(required = false)
-    @PopulationGroupingOption(AGE)
     @RangeOption(RangeOption.RangeOptionType.LONG)
     AGE(Subject.Attributes.AGE) {
         @Override
@@ -111,7 +92,6 @@ public enum PopulationGroupByOptions implements GroupByOption<Subject> {
         }
     },
     @AcceptsAttributeContext(required = false)
-    @PopulationGroupingOption(DURATION_ON_STUDY)
     @RangeOption(RangeOption.RangeOptionType.LONG)
     DURATION_ON_STUDY(Subject.Attributes.DURATION_ON_STUDY) {
         @Override
@@ -119,17 +99,11 @@ public enum PopulationGroupByOptions implements GroupByOption<Subject> {
             return getSubjectRangedAttribute(getAttribute(), "DURATION_ON_STUDY", params);
         }
     },
-    @PopulationGroupingOption(WITHDRAWAL)
     WITHDRAWAL(Subject.Attributes.WITHDRAWAL),
-    @PopulationGroupingOption(REASON_FOR_WITHDRAWAL)
     REASON_FOR_WITHDRAWAL(Subject.Attributes.REASON_FOR_WITHDRAWAL),
-    @PopulationGroupingOption(CENTRE)
     CENTRE(Subject.Attributes.CENTER_NUMBER),
-    @PopulationGroupingOption(ETHNIC_GROUP)
     ETHNIC_GROUP(Subject.Attributes.ETHNIC_GROUP),
-    @PopulationGroupingOption(SPECIFIED_ETHNIC_GROUP)
     SPECIFIED_ETHNIC_GROUP(Subject.Attributes.SPEC_ETHNIC_GROUP),
-    @PopulationGroupingOption(ON_STUDY)
     @BinableOption
     @TimestampOption
     ON_STUDY(null) {
@@ -162,14 +136,13 @@ public enum PopulationGroupByOptions implements GroupByOption<Subject> {
             if (params == null) {
                 return getAttribute();
             }
-            final Object drugName = params.get(GroupByOption.Param.DRUG_NAME);
+            final Object drugName = params.get(Param.DRUG_NAME);
 
             return drugName == null ? getAttribute()
                     : EntityAttribute.attribute("MAX_DOSE_PER_ADMIN_OF_DRUG", (Subject s) -> s.getDrugsMaxDoses().get(drugName.toString()));
         }
     },
     @AcceptsAttributeContext(required = false)
-    @PopulationGroupingOption(WEIGHT)
     @RangeOption(RangeOption.RangeOptionType.DOUBLE)
     WEIGHT(Subject.Attributes.WEIGHT) {
         @Override
@@ -178,7 +151,6 @@ public enum PopulationGroupByOptions implements GroupByOption<Subject> {
         }
     },
     @AcceptsAttributeContext(required = false)
-    @PopulationGroupingOption(HEIGHT)
     @RangeOption(RangeOption.RangeOptionType.DOUBLE)
     HEIGHT(Subject.Attributes.HEIGHT) {
         @Override
@@ -187,7 +159,6 @@ public enum PopulationGroupByOptions implements GroupByOption<Subject> {
         }
     },
     @HasDrugOption
-    @PopulationGroupingOption(DISCONTINUATION)
     DISCONTINUATION(Subject.Attributes.DISC_MAP) {
         @Override
         public EntityAttribute<Subject> getAttribute(Params params) {
@@ -201,7 +172,6 @@ public enum PopulationGroupByOptions implements GroupByOption<Subject> {
         }
     },
     @HasDrugOption
-    @PopulationGroupingOption(MAIN_REASON_FOR_DISCONTINUATION)
     MAIN_REASON_FOR_DISCONTINUATION(Subject.Attributes.DISC_REASONS_MAP) {
         @Override
         public EntityAttribute<Subject> getAttribute(Params params) {
