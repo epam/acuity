@@ -18,6 +18,9 @@ package com.acuity.visualisations.rawdatamodel.dataproviders.config;
 
 import com.acuity.visualisations.rawdatamodel.dataproviders.common.kryo.KryoContext;
 import com.esotericsoftware.kryo.Kryo;
+import com.esotericsoftware.kryo.Serializer;
+import com.esotericsoftware.kryo.io.Input;
+import com.esotericsoftware.kryo.io.Output;
 import com.esotericsoftware.kryo.pool.KryoPool;
 import de.javakaffee.kryoserializers.CollectionsEmptyListSerializer;
 import de.javakaffee.kryoserializers.CollectionsEmptyMapSerializer;
@@ -28,6 +31,10 @@ import de.javakaffee.kryoserializers.CollectionsSingletonSetSerializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicLong;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.Collections;
 
 @Configuration
@@ -51,6 +58,9 @@ public class DataProviderConfiguration {
     // The Collections.empty*()/singleton*() serializers below are kept: they do NOT use reflection
     // (verified via javap - they just call the public Collections.emptyList()/singletonList(Object)
     // factory methods), so they remain safe on all JDK versions.
+    // Kryo 4 also reflectively serializes Atomic* types by default, which fails on Java 17+/21
+    // because java.util.concurrent.atomic is strongly encapsulated. Register explicit serializers
+    // for the common atomic wrappers so cached payloads do not require JVM --add-opens flags.
     private void registerCustomSerializers(Kryo kryo) {
         kryo.register(Collections.emptyList().getClass(), new CollectionsEmptyListSerializer());
         kryo.register(Collections.emptyMap().getClass(), new CollectionsEmptyMapSerializer());
@@ -58,6 +68,10 @@ public class DataProviderConfiguration {
         kryo.register(Collections.singletonList("").getClass(), new CollectionsSingletonListSerializer());
         kryo.register(Collections.singleton("").getClass(), new CollectionsSingletonSetSerializer());
         kryo.register(Collections.singletonMap("", "").getClass(), new CollectionsSingletonMapSerializer());
+        kryo.register(AtomicBoolean.class, new AtomicBooleanSerializer());
+        kryo.register(AtomicInteger.class, new AtomicIntegerSerializer());
+        kryo.register(AtomicLong.class, new AtomicLongSerializer());
+        kryo.register(AtomicReference.class, new AtomicReferenceSerializer());
     }
 
     // Build pool with SoftReferences enabled (optional)
@@ -69,5 +83,53 @@ public class DataProviderConfiguration {
     @Bean
     public KryoContext kryoContext() {
         return new KryoContext(kryoPool());
+    }
+
+    private static final class AtomicBooleanSerializer extends Serializer<AtomicBoolean> {
+        @Override
+        public void write(Kryo kryo, Output output, AtomicBoolean object) {
+            output.writeBoolean(object.get());
+        }
+
+        @Override
+        public AtomicBoolean read(Kryo kryo, Input input, Class<AtomicBoolean> type) {
+            return new AtomicBoolean(input.readBoolean());
+        }
+    }
+
+    private static final class AtomicIntegerSerializer extends Serializer<AtomicInteger> {
+        @Override
+        public void write(Kryo kryo, Output output, AtomicInteger object) {
+            output.writeInt(object.get());
+        }
+
+        @Override
+        public AtomicInteger read(Kryo kryo, Input input, Class<AtomicInteger> type) {
+            return new AtomicInteger(input.readInt());
+        }
+    }
+
+    private static final class AtomicLongSerializer extends Serializer<AtomicLong> {
+        @Override
+        public void write(Kryo kryo, Output output, AtomicLong object) {
+            output.writeLong(object.get());
+        }
+
+        @Override
+        public AtomicLong read(Kryo kryo, Input input, Class<AtomicLong> type) {
+            return new AtomicLong(input.readLong());
+        }
+    }
+
+    private static final class AtomicReferenceSerializer extends Serializer<AtomicReference> {
+        @Override
+        public void write(Kryo kryo, Output output, AtomicReference object) {
+            kryo.writeClassAndObject(output, object.get());
+        }
+
+        @Override
+        public AtomicReference read(Kryo kryo, Input input, Class<AtomicReference> type) {
+            return new AtomicReference<>(kryo.readClassAndObject(input));
+        }
     }
 }

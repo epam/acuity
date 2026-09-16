@@ -63,6 +63,7 @@ import com.acuity.visualisations.transform.parser.BigDecimalParser;
 import com.acuity.visualisations.transform.parser.DateParser;
 import com.acuity.visualisations.transform.rule.ParserRule;
 import com.acuity.visualisations.transform.standard.CDASHDoseFrequency;
+import com.acuity.visualisations.util.StringUtil;
 import org.apache.commons.lang.StringUtils;
 
 import java.math.BigDecimal;
@@ -104,7 +105,7 @@ public class SdtmEntityMapper {
 
     private Integer parseInt(String val) {
         try {
-            return val == null ? null : Integer.parseInt(val);
+            return StringUtil.isEmptyOrDot(val) ? null : Integer.parseInt(val);
         } catch (Exception e) {
             return null;
         }
