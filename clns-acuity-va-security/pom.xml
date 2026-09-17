@@ -35,7 +35,7 @@
         <java-version>17</java-version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <jersey.version>2.7</jersey.version>
-        <spring.boot.version>2.7.18</spring.boot.version>
+        <spring-cloud.version>2023.0.3</spring-cloud.version>
         <slf4j.version>1.7.6</slf4j.version>
         <logback.version>1.2.1</logback.version>
         <jtds.version>1.2.6</jtds.version>
@@ -46,6 +46,13 @@
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
             <dependency>
                 <groupId>org.postgresql</groupId>
                 <artifactId>postgresql</artifactId>

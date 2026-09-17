@@ -5,3 +5,5 @@ bower_components
 /target
 */target/**
 web/src/main/resources/git.properties
+web/src/main/webapp/node/
+web/var/log/
