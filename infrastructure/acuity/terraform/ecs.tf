@@ -53,9 +53,9 @@ locals {
     CONFIG_PROFILE   = "local-config"
   }
   app_services = {
-    "va-hub"      = { cpu = 1024, memory = 2048, sg = module.sg_va_hub.id, has_lb = true, efs = false, env = { OTHER_PROFILES = "NoScheduledJobs" } }
-    "admin"       = { cpu = 512, memory = 1024, sg = module.sg_admin.id, has_lb = true, efs = true, env = { STORAGE_PROFILE = "local-storage" } }
-    "va-security" = { cpu = 512, memory = 1024, sg = module.sg_va_security.id, has_lb = false, efs = false, env = { OTHER_PROFILES = "default,postgres-mode" } }
+    # Both remaining services sit behind the ALB, so there is no has_lb flag.
+    "va-hub" = { cpu = 1024, memory = 2048, sg = module.sg_va_hub.id, efs = false, env = { OTHER_PROFILES = "NoScheduledJobs" } }
+    "admin"  = { cpu = 512, memory = 1024, sg = module.sg_admin.id, efs = true, env = { STORAGE_PROFILE = "local-storage" } }
   }
 }
 
@@ -109,15 +109,22 @@ resource "aws_ecs_task_definition" "app" {
         containerPath = "/usr/root/local-file-storage"
       }] : []
 
-      # No VASECURITY_URL / VAHUB_URL - the image defaults are what Service Connect resolves.
+      # No VAHUB_URL - the image defaults are what Service Connect resolves.
       # POSTGRES_URL is the only URL override.
       environment = [
         for k, v in merge(local.app_common_env, {
           POSTGRES_USER = "acuity"
           POSTGRES_URL  = "jdbc:postgresql://${module.rds.db_instance_address}:5432/acuity_db"
-          # JDK 8 needs a float ("=60" is rejected); UseContainerSupport is
-          # default-on since 8u191 but kept explicit against a base-image change.
-          JAVA_OPTIONS = "-XX:+UseContainerSupport -XX:MaxRAMPercentage=60.0"
+          # MaxRAMPercentage needs a float ("=60" is rejected).
+          # UseContainerSupport is default-on but kept explicit against a base-image change.
+          JAVA_OPTIONS = join(" ", [
+            "-XX:+UseContainerSupport",
+            "-XX:MaxRAMPercentage=60.0",
+            "-Dspring.cloud.config.enabled=false",
+            "-Dspring.main.allow-bean-definition-overriding=true",
+            "-Dspring.main.allow-circular-references=true",
+            "--add-opens=java.base/java.util.concurrent.atomic=ALL-UNNAMED",
+          ])
         }, each.value.env) : { name = k, value = v }
       ]
 
@@ -180,7 +187,7 @@ resource "aws_ecs_service" "app" {
   desired_count   = 1
   launch_type     = "FARGATE"
 
-  health_check_grace_period_seconds = each.value.has_lb ? 300 : null
+  health_check_grace_period_seconds = 300
 
   network_configuration {
     subnets         = module.vpc.public_subnets
@@ -191,14 +198,11 @@ resource "aws_ecs_service" "app" {
   }
 
   # ECS registers the task IP into the ALB target group named after this service
-  # (target_type = "ip"). va-security has none.
-  dynamic "load_balancer" {
-    for_each = each.value.has_lb ? [1] : []
-    content {
-      target_group_arn = module.alb.target_groups[each.key].arn
-      container_name   = "acuity-${each.key}"
-      container_port   = local.app_port
-    }
+  # (target_type = "ip").
+  load_balancer {
+    target_group_arn = module.alb.target_groups[each.key].arn
+    container_name   = "acuity-${each.key}"
+    container_port   = local.app_port
   }
 
   service_connect_configuration {

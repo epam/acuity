@@ -33,7 +33,6 @@ module "rds" {
 
   create_db_option_group = false
   parameters = [
-    # va-security's bundled JDBC can't do scram.
     { name = "password_encryption", value = "md5", apply_method = "immediate" },
     # image JDBC URLs carry no `ssl=`.
     { name = "rds.force_ssl", value = "0", apply_method = "immediate" },
