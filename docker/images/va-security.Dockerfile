@@ -1,4 +1,4 @@
-FROM maven:3.9.9-eclipse-temurin-8 AS builder
+FROM maven:3.9.9-eclipse-temurin-21 AS builder
 
 WORKDIR /build
 COPY .git ./.git
@@ -14,7 +14,7 @@ RUN mvn -f clns-acuity-va-security/pom.xml -B -pl web -am -P '!checks' \
         && cp clns-acuity-va-security/web/target/*.war /build/app.war
 
 
-FROM eclipse-temurin:8-jre
+FROM eclipse-temurin:21-jre
 
 WORKDIR /usr/root
 COPY clns-acuity-va-security/web/docker-resources/application.yml /usr/root/local-configs/application.yml

@@ -1,6 +1,6 @@
 locals {
   aws_ecr_repo_prefix = "epm-lstr-acuity"
-  ecr_repos           = toset(["flyway", "admin", "va-hub", "va-hub-ui", "va-security"])
+  ecr_repos           = toset(["flyway", "admin", "va-hub", "va-hub-ui"])
 }
 
 module "ecr" {

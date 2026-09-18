@@ -1,5 +1,5 @@
 # ---- stage 1: generate the .d.ts files the Angular build imports ----
-FROM maven:3.9.9-eclipse-temurin-8 AS defs
+FROM maven:3.9.9-eclipse-temurin-21 AS defs
 
 RUN apt-get update && apt-get install -y --no-install-recommends git \
     && rm -rf /var/lib/apt/lists/*
@@ -18,18 +18,15 @@ RUN mvn -f clns-acuity-va-security/pom.xml -B -pl domain,common,auditlogger,auth
 
 
 # ---- stage 2: build the Angular bundle ----
-FROM node:6 AS webapp
-
-# node:6's npm 3.10 is broken; swap in npm 6.14 by hand
-RUN curl -sL https://registry.npmjs.org/npm/-/npm-6.14.18.tgz | tar -xz -C /tmp \
-    && rm -rf /usr/local/lib/node_modules/npm \
-    && mv /tmp/package /usr/local/lib/node_modules/npm
+# Angular 19 requires node ^18.19.1 || ^20.11.1 || ^22.x
+FROM node:22 AS webapp
 
 # repo path depth so webapp's ../../../../ copydefs paths resolve
 WORKDIR /build/clns-acuity-vahub/vahub/src/main/webapp
 
-COPY clns-acuity-vahub/vahub/src/main/webapp/package.json ./package.json
-RUN npm install --no-audit && test -x node_modules/.bin/ng
+COPY clns-acuity-vahub/vahub/src/main/webapp/package.json clns-acuity-vahub/vahub/src/main/webapp/package-lock.json ./
+# --legacy-peer-deps: codelyzer@5 (dead tslint plugin) still peer-pins @angular/compiler <10
+RUN npm ci --no-audit --legacy-peer-deps && test -x node_modules/.bin/ng
 
 COPY clns-acuity-vahub/vahub/src/main/webapp/ ./
 COPY --from=defs /build/clns-acuity-vahub/vahub-model/target/vahub-model.d.ts /build/clns-acuity-vahub/vahub-model/target/vahub-model.d.ts

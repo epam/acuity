@@ -10,14 +10,15 @@ RUN apk add --no-cache \
         openssl-dev \
         libxml2-dev \
         libxslt-dev \
-        icu-dev \
-        clang \
-        llvm
+        icu-dev
 
-RUN ln -sf "$(command -v clang)" /usr/bin/clang-21
-RUN mkdir -p /usr/lib/llvm21/bin && ln -sf "$(command -v llvm-lto)" /usr/lib/llvm21/bin/llvm-lto
-RUN git clone --depth 1 --branch VERSION_4_16_7 https://github.com/orafce/orafce.git /tmp/orafce
-RUN cd /tmp/orafce && make USE_PGXS=1 && make USE_PGXS=1 install
+# with_llvm=no skips the LLVM bitcode PGXS would otherwise emit for JIT inlining, so
+# no clang/llvm toolchain is needed. Avoids faking the clang-N / llvmN paths pg_config
+# reports, which drift every time the base image bumps LLVM.
+RUN git clone --depth 1 --branch VERSION_4_16_7 https://github.com/orafce/orafce.git /tmp/orafce \
+    && cd /tmp/orafce \
+    && make USE_PGXS=1 with_llvm=no \
+    && make USE_PGXS=1 with_llvm=no install
 
 
 FROM postgres:17-alpine

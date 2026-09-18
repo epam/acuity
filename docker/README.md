@@ -41,7 +41,7 @@ Built by the Makefile, tagged
 | `acuity-va-security` | `eclipse-temurin:8-jre` | Maven multi-stage build of `clns-acuity-va-security/web`. |
 | `acuity-admin` | `eclipse-temurin:8-jre` | Maven build; installs `va-security` auth module locally first. |
 | `acuity-va-hub` | `eclipse-temurin:8-jre` | Maven build; installs `va-security` modules locally first. |
-| `acuity-va-hub-ui` | `nginx:1.27-alpine` | 3 stages: generate `.d.ts` (Maven), build Angular bundle (node 6), serve static. |
+| `acuity-va-hub-ui` | `nginx:1.27-alpine` | 3 stages: generate `.d.ts` (Maven), build Angular bundle (node 22), serve static. |
 
 The Java images build against the monorepo, so build context is the repo root
 (`..`).
