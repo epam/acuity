@@ -16,7 +16,7 @@
 
 package com.acuity.visualisations.model.acuityfield;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoField;

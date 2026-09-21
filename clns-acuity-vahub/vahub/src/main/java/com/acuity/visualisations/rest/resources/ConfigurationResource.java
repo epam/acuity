@@ -19,7 +19,6 @@ package com.acuity.visualisations.rest.resources;
 import com.acuity.visualisations.rest.config.branding.BrandingProperties;
 import com.acuity.visualisations.rest.config.properties.IntegrationProperties;
 import com.acuity.visualisations.rest.model.response.ConfigurationResponse;
-import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.info.BuildProperties;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,7 +30,6 @@ import static org.springframework.http.MediaType.ALL_VALUE;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @RestController
-@Api(value = "/resources/configuration/", description = "rest endpoints for configuration settings")
 @RequestMapping(value = "/resources/configuration/", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
 public class ConfigurationResource {
 

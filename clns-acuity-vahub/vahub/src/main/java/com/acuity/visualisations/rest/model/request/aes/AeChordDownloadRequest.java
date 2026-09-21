@@ -19,7 +19,7 @@ package com.acuity.visualisations.rest.model.request.aes;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 import java.util.Map;
 
 @Data
@@ -27,4 +27,8 @@ import java.util.Map;
 public class AeChordDownloadRequest extends AesRequest {
     @NotNull
     private Map<String, String> additionalSettings;
+
+    public Map<String, String> getAdditionalSettings() {
+        return additionalSettings;
+    }
 }

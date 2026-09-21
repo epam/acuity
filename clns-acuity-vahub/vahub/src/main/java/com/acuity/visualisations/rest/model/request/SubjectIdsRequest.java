@@ -26,4 +26,8 @@ import java.util.Set;
 @EqualsAndHashCode(callSuper = true)
 public class SubjectIdsRequest extends DatasetsRequest {
     private Set<String> subjectIds;
+
+    public Set<String> getSubjectIds() {
+        return subjectIds;
+    }
 }

@@ -15,7 +15,7 @@
  */
 
 import {EventEmitter} from '@angular/core';
-import {GridApi, ColumnApi} from 'ag-grid/main';
+import {GridApi, ColumnApi} from 'ag-grid-community';
 import {List} from 'immutable';
 
 import {DetailsOnDemandEventTableService} from './DetailsOnDemandEventTableService';

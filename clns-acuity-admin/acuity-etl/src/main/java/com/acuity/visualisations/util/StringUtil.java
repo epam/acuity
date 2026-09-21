@@ -17,11 +17,17 @@
 package com.acuity.visualisations.util;
 
 public final class StringUtil {
+    public static final String DOT_MISSING_VALUE = ".";
+
     private StringUtil() {
     }
 
     public static boolean isEmpty(String str) {
         return str == null || str.trim().isEmpty();
+    }
+
+    public static boolean isEmptyOrDot(String str) {
+        return isEmpty(str) || DOT_MISSING_VALUE.equals(str.trim());
     }
 
 }

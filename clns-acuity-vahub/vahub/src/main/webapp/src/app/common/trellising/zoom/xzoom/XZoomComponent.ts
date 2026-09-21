@@ -33,7 +33,8 @@ import {TabId, ZOOM_STEP} from '../../store/ITrellising';
 @Component({
     selector: 'trellis-xzoom',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    templateUrl: 'XZoomComponent.html'
+    templateUrl: 'XZoomComponent.html',
+    standalone: false
 })
 export class XZoomComponent extends AbstractZoomComponent implements OnInit, OnChanges {
     @Input() zoom: IZoom;

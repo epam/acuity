@@ -26,12 +26,10 @@ import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Repository
-@Transactional
 public interface StudySetupSubjectGroupRepository {
 
     @Select("SELECT msgt_id, msgt_type FROM MAP_SUBJECT_GROUPING_TYPE")

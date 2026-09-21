@@ -22,7 +22,8 @@ import {AbstractDataTypeFilter} from '../AbstractDataTypeFilter';
 
 @Component({
     selector: 'alcohol-filter',
-    templateUrl: 'AlcoholFilterComponent.html'
+    templateUrl: 'AlcoholFilterComponent.html',
+    standalone: false
 })
 export class AlcoholFilterComponent extends AbstractDataTypeFilter implements OnInit, OnDestroy, AfterViewInit {
     @Output()

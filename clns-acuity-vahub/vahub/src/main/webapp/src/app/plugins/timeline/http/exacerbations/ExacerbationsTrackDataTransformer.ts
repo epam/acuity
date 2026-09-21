@@ -56,6 +56,7 @@ export class ExacerbationsTrackDataTransformer extends TrackDataTransformer {
 
         return {
             subjectId: result.subjectId,
+            subject: result.subject,
             data: trackData
         };
     }

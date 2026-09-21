@@ -63,7 +63,7 @@ public class VASecurityResourceClient {
      * Lists all the ROIs in the remote db
      *
      * @return List<AcuityObjectIdentity> all the rois
-     * @throws java.lang.IllegalStateException if basic auth username or password incorrect
+     * @throws IllegalStateException if basic auth username or password incorrect
      */
     public List<AcuityObjectIdentityWithInitialLockDown> loadRois() {
         if (target == null) {
@@ -109,7 +109,7 @@ public class VASecurityResourceClient {
      * Gets the DatasetInfo from the remote web service
      *
      * @return DatasetInfo dataset info
-     * @throws java.lang.IllegalStateException if basic auth username or password incorrect
+     * @throws IllegalStateException if basic auth username or password incorrect
      */
     public DatasetInfo getDatasetInfo(Dataset dataset) {
         if (target == null) {
@@ -132,7 +132,7 @@ public class VASecurityResourceClient {
      * Gets the ClinicalStudyInfo from the remote web service
      *
      * @return ClinicalStudyInfo clinicalStudy info
-     * @throws java.lang.IllegalStateException if basic auth username or password incorrect
+     * @throws IllegalStateException if basic auth username or password incorrect
      */
     public ClinicalStudyInfo getClinicalStudyInfo(ClinicalStudy clinicalStudy) {
         if (target == null) {
@@ -156,7 +156,7 @@ public class VASecurityResourceClient {
      * Gets the DrugProgrammeInfo from the remote web service
      *
      * @return DrugProgrammeInfo DrugProgramme info
-     * @throws java.lang.IllegalStateException if basic auth username or password incorrect
+     * @throws IllegalStateException if basic auth username or password incorrect
      */
     public DrugProgrammeInfo getDrugProgrammeInfo(DrugProgramme drugProgramme) {
         if (target == null) {

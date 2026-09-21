@@ -17,8 +17,7 @@
 package com.acuity.visualisations.rawdatamodel.suites;
 
 /*import com.acuity.visualisations.rawdatamodel.suites.interfaces.RangeChartTests;
-import org.junit.experimental.categories.Categories;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.runners.Suite;*/
 
 /*@RunWith(Categories.class)

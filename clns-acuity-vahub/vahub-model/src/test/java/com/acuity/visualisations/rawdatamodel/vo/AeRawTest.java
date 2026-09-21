@@ -20,7 +20,7 @@ import static com.acuity.visualisations.rawdatamodel.util.DateUtils.toDate;
 import static com.google.common.collect.Lists.newArrayList;
 import java.util.Date;
 import static org.assertj.core.api.Assertions.assertThat;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  *

@@ -39,7 +39,8 @@ import {List} from 'immutable';
     selector: 'spirometry-track',
     templateUrl: 'SpirometryTrackComponent.html',
     styleUrls: ['../TimelineTrackComponent.css'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class SpirometryTrackComponent extends AbstractTrackComponent implements OnInit, OnChanges, OnDestroy {
     @Input() track: ITrack;

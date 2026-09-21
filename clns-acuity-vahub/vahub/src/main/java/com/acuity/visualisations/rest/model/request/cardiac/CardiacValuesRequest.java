@@ -22,11 +22,15 @@ import com.acuity.visualisations.rawdatamodel.vo.wrappers.Cardiac;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
 public class CardiacValuesRequest extends CardiacRequest {
     @NotNull
     private ChartGroupByOptionsFiltered<Cardiac, CardiacGroupByOptions> settings;
+
+    public ChartGroupByOptionsFiltered<Cardiac, CardiacGroupByOptions> getSettings() {
+        return settings;
+    }
 }

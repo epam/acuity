@@ -19,26 +19,27 @@ package com.acuity.visualisations.rawdatamodel.service.dod;
 import com.acuity.visualisations.rawdatamodel.generators.SubjectGenerator;
 import com.acuity.visualisations.rawdatamodel.test.TestConfig;
 import com.acuity.visualisations.rawdatamodel.vo.Subject;
-import org.assertj.core.api.JUnitSoftAssertions;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.assertj.core.api.SoftAssertions;
+import org.assertj.core.api.junit.jupiter.InjectSoftAssertions;
+import org.assertj.core.api.junit.jupiter.SoftAssertionsExtension;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.List;
 import java.util.Map;
 
 import static com.acuity.visualisations.rawdatamodel.util.Column.DatasetType;
 
-@RunWith(SpringRunner.class)
+@ExtendWith({SpringExtension.class, SoftAssertionsExtension.class})
 @ContextConfiguration(classes = TestConfig.class)
 public class SsvCommonServiceTest {
 
     private SsvCommonService ssvCommonService = new SsvCommonService();
 
-    @Rule
-    public final JUnitSoftAssertions softly = new JUnitSoftAssertions();
+    @InjectSoftAssertions
+    private SoftAssertions softly;
 
     @Test
     public void shouldGetSsv() throws Exception {

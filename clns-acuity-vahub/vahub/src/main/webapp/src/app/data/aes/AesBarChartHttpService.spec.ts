@@ -15,8 +15,8 @@
  */
 
 import {async, inject, TestBed} from '@angular/core/testing';
-import {HttpClientTestingModule} from '@angular/common/http/testing';
-import {HttpClient} from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import {AesBarChartHttpService} from './AesBarChartHttpService';
 import {AesFiltersModel, PopulationFiltersModel} from '../../filters/module';
 import {MockFilterModel, MockHttpClient} from '../../common/MockClasses';
@@ -66,18 +66,20 @@ describe('GIVEN AesBarChartHttpService', () => {
     };
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [HttpClientTestingModule],
-            providers: [
-                {provide: HttpClient, useClass: MockHttpClient},
-                {provide: PopulationFiltersModel, useClass: MockFilterModel},
-                {provide: AesFiltersModel, useClass: MockFilterModel},
-                {
-                    provide: AesBarChartHttpService,
-                    useClass: AesBarChartHttpService,
-                    deps: [HttpClient, PopulationFiltersModel, AesFiltersModel]
-                },
-            ]
-        });
+    imports: [],
+    providers: [
+        { provide: HttpClient, useClass: MockHttpClient },
+        { provide: PopulationFiltersModel, useClass: MockFilterModel },
+        { provide: AesFiltersModel, useClass: MockFilterModel },
+        {
+            provide: AesBarChartHttpService,
+            useClass: AesBarChartHttpService,
+            deps: [HttpClient, PopulationFiltersModel, AesFiltersModel]
+        },
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+    ]
+});
     });
 
     describe('WHEN we get trellis options', () => {

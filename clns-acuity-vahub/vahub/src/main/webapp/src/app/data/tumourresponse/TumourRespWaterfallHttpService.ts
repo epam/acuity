@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {HttpClient} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {fromJS, List} from 'immutable';
@@ -29,6 +29,8 @@ import {handleYAxisOptions} from '../../common/CommonChartUtils';
 import Dataset = Request.Dataset;
 import TrellisOptions = Request.TrellisOptions;
 import ATLGroupByOptions = InMemory.ATLGroupByOptions;
+import DetailsOnDemandRequest = Request.DetailsOnDemandRequest;
+import SortAttrs = Request.SortAttrs;
 
 @Injectable()
 export class TumourRespWaterfallHttpService extends BaseChartsHttpService {
@@ -121,7 +123,7 @@ export class TumourRespWaterfallHttpService extends BaseChartsHttpService {
         };
 
         return this.http.post(path, JSON.stringify(postData))
-            .map((response: Response) => {
+            .map((response: any) => {
                 const data = <any>response;
                 return <List<IPlot>>fromJS(data.map((plotItem: any) => {
                     return {
@@ -157,7 +159,7 @@ export class TumourRespWaterfallHttpService extends BaseChartsHttpService {
         };
 
         return this.http.post(path, JSON.stringify(postData))
-            .map((response: Response) => {
+            .map((response: any) => {
                 const data = <any>response;
                 return <List<IPlot>>fromJS(data.map((plotItem: any) => {
                     return {
@@ -192,8 +194,23 @@ export class TumourRespWaterfallHttpService extends BaseChartsHttpService {
         return this.http.post(path, JSON.stringify(postData)).map(res => res as TrellisOptions<ATLGroupByOptions>[]);
     }
 
-    getDetailsOnDemand(): Observable<any> {
-        return Observable.of([]);
+    getDetailsOnDemand(currentDatasets: Dataset[],
+                       eventIds: string[],
+                       startRow: number,
+                       endRow: number,
+                       sortAttrs: SortAttrs[]): Observable<any[]> {
+
+        const requestBody: DetailsOnDemandRequest = {
+            eventIds: eventIds,
+            sortAttrs: sortAttrs,
+            datasets: currentDatasets,
+            start: startRow,
+            end: endRow
+        };
+
+        const path = getServerPath('tumour', 'details-on-demand');
+
+        return this.http.post(path, JSON.stringify(requestBody)).map(res => res as any[]);
     }
 
     getSubjectsInFilters(currentDatasets: Request.AcuityObjectIdentityWithPermission[]): Observable<string[]> {

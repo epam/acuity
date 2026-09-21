@@ -26,7 +26,7 @@ import {
     SimpleChanges
 } from '@angular/core';
 import {NavigationStart, Router} from '@angular/router';
-import {GridOptions} from 'ag-grid/main';
+import {GridOptions} from 'ag-grid-community';
 import {Subscription} from 'rxjs/Subscription';
 import {clone, isEmpty, isNull, isUndefined} from 'lodash';
 
@@ -46,7 +46,8 @@ import {DataService} from '../data/DataService';
         DetailsOnDemandHeightService,
         DetailsOnDemandSummaryService,
         DetailsOnDemandEventTableService
-    ]
+    ],
+    standalone: false
 })
 
 export class DetailsOnDemandComponent implements OnInit, OnChanges, OnDestroy {
@@ -93,29 +94,23 @@ export class DetailsOnDemandComponent implements OnInit, OnChanges, OnDestroy {
                 private router: Router,
                 private changeDetectorRef: ChangeDetectorRef) {
         const gridOptionsTemplate: GridOptions = {
+            enableCellTextSelection: true,
+            ensureDomOrder: true,
             defaultColDef: {
-                menuTabs: []
+                sortable: true,
+                resizable: true,
+                filter: true,
+                floatingFilter: true,
+                tooltipValueGetter: (params) => params.value
             },
             context: {},
-            getContextMenuItems: () => {
-                return [
-                    'copy',
-                    'copyWithHeaders',
-                    'separator',
-                    'toolPanel'
-                ];
-            },
-            enableServerSideSorting: true,
-            toolPanelSuppressRowGroups: true,
-            toolPanelSuppressValues: true,
-            toolPanelSuppressPivots: true,
-            toolPanelSuppressPivotMode: true
+            onFirstDataRendered: (params) => setTimeout(() => params.api.sizeColumnsToFit()),
         };
         this.eventGridOptions = clone(gridOptionsTemplate);
         this.subjectGridOptions = clone(gridOptionsTemplate);
-        (<any> this.subjectGridOptions).groupHeaders = true;
+        
         if (this.eventTableService.hasOnlyGroups()) {
-            (<any> this.eventGridOptions).groupHeaders = true;
+            
         }
     }
 
@@ -171,6 +166,15 @@ export class DetailsOnDemandComponent implements OnInit, OnChanges, OnDestroy {
         this.detailsOnDemandHeightService.onExpandCollapseButtonPress();
     }
 
+    exportCsv(): void {
+        const api = this.subjectsTableVisible
+            ? this.subjectGridOptions.api
+            : this.eventGridOptions.api;
+        if (api) {
+            api.exportDataAsCsv();
+        }
+    }
+
     openSaveModal(): void {
         if (!this.subjectsTableVisible && this.eventTableService.gridIsEmpty()) {
             this.saveModalTitle = 'Download all records?';
@@ -209,9 +213,18 @@ export class DetailsOnDemandComponent implements OnInit, OnChanges, OnDestroy {
         this.subjectsTableVisible = true;
     }
 
+    get isLabsEventTable(): boolean {
+        return this.eventTableService.isLabsTable();
+    }
+
     onEventTableInitialised(): void {
         this.eventTableService.setGridOptions(this.eventGridOptions);
         this.eventTableService.setColumnDefs(this.eventModel.get('expandedGroups'));
+        if (this.isLabsEventTable) {
+            // Labs DoD has more columns than fit in the container even with the Study group
+            // collapsed; let it scroll horizontally instead of squeezing columns to fit.
+            this.eventGridOptions.onFirstDataRendered = undefined;
+        }
         // It can happen that user leaves plot page before event dods request is completed.
         // If this happens, request is cancelled and nothing is saved to store.
         // So if user comes back to page and there is some selection but no data in dods, we want to make a request for this data

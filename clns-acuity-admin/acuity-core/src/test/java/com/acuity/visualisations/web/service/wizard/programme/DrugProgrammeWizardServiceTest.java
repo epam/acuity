@@ -21,12 +21,14 @@ import com.acuity.visualisations.mapping.entity.ProjectRule;
 import com.acuity.visualisations.mapping.entity.StudyRule;
 import com.acuity.visualisations.web.dao.cdbp.CDBPProjectDao;
 import lombok.SneakyThrows;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.runners.MockitoJUnitRunner;
+import org.mockito.junit.jupiter.MockitoExtension;
+import org.mockito.junit.jupiter.MockitoSettings;
+import org.mockito.quality.Strictness;
 
 import java.util.Comparator;
 import java.util.List;
@@ -40,17 +42,18 @@ import static java.util.Collections.emptyList;
 import static java.util.Collections.emptySet;
 import static java.util.Collections.emptySortedMap;
 import static java.util.Collections.singletonList;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyZeroInteractions;
+import static org.mockito.Mockito.verifyNoInteractions;
 import static org.mockito.Mockito.when;
 
 /**
  * @author adavliatov.
  * @since 28.11.2016.
  */
-@RunWith(MockitoJUnitRunner.class)
+@ExtendWith(MockitoExtension.class)
+@MockitoSettings(strictness = Strictness.LENIENT)
 public class DrugProgrammeWizardServiceTest {
 
     @InjectMocks
@@ -61,7 +64,7 @@ public class DrugProgrammeWizardServiceTest {
     @Mock
     private CDBPProjectDao cdbpProjectDao;
 
-    @Before
+    @BeforeEach
     public void before() {
         when(projectRuleDao.searchByDrugs(null)).thenReturn(emptyList());
         when(projectRuleDao.searchByDrugs(emptyList())).thenReturn(emptyList());
@@ -76,7 +79,7 @@ public class DrugProgrammeWizardServiceTest {
         assertEquals(wizardService.getSearchProjectResult(null, emptyList()), emptySortedMap());
         assertEquals(wizardService.getSearchProjectResult(emptyList(), emptyList()), emptySortedMap());
         verify(projectRuleDao, times(4)).searchByDrugs(emptySet());
-        verifyZeroInteractions(cdbpProjectDao);
+        verifyNoInteractions(cdbpProjectDao);
     }
 
     @Test
@@ -112,7 +115,7 @@ public class DrugProgrammeWizardServiceTest {
         when(projectRuleDao.searchByDrugs(asList("prj1", "prj2"))).thenReturn(asList(acuityPrj1, acuityPrj2));
         assertEquals(wizardService.getSearchProjectResult(acuityPrj, null), result);
 
-        verifyZeroInteractions(cdbpProjectDao);
+        verifyNoInteractions(cdbpProjectDao);
     }
 
     @Test
@@ -143,7 +146,7 @@ public class DrugProgrammeWizardServiceTest {
         when(projectRuleDao.searchByDrugs(asList("prj1", "prj2"))).thenReturn(emptyList());
         assertEquals(wizardService.getSearchProjectResult(null, cdbpPrj), result);
 
-        verifyZeroInteractions(cdbpProjectDao);
+        verifyNoInteractions(cdbpProjectDao);
     }
 
     @Test

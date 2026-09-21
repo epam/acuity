@@ -17,8 +17,8 @@
 import {TestBed} from '@angular/core/testing';
 import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
-import {HttpClientTestingModule} from '@angular/common/http/testing';
-import {HttpClient} from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import {Router} from '@angular/router';
 import {StudySelectionComponent} from './StudySelectionComponent';
 import {SessionEventService} from '../session/event/SessionEventService';
@@ -30,21 +30,20 @@ describe('GIVEN StudySelectionComponent', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            providers: [
-                { provide: StudyService, useClass: MockStudyService },
-                { provide: Router, useClass: MockRouter },
-                { provide: Router, useClass: MockRouter },
-                HttpClient,
-                { provide: SessionEventService, useClass: MockSessionEventService }
-            ],
-            declarations: [StudySelectionComponent],
-            imports: [
-                ProgressComponentModule,
-                HttpClientTestingModule,
-                CommonModule,
-                FormsModule
-            ]
-        });
+    declarations: [StudySelectionComponent],
+    imports: [ProgressComponentModule,
+        CommonModule,
+        FormsModule],
+    providers: [
+        { provide: StudyService, useClass: MockStudyService },
+        { provide: Router, useClass: MockRouter },
+        { provide: Router, useClass: MockRouter },
+        HttpClient,
+        { provide: SessionEventService, useClass: MockSessionEventService },
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting()
+    ]
+});
     });
 
     /*xdescribe('WHEN the component is initialised', () => {

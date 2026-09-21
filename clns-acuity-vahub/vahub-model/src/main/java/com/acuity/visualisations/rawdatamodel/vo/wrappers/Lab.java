@@ -35,7 +35,7 @@ import java.util.Comparator;
 import java.util.Date;
 
 @ToString(callSuper = true)
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = false)
 public final class Lab extends SubjectAwareWrapper<LabRaw>
         implements HasValueAndBaseline, HasReferenceRange, HasDaysSinceFirstDose, Serializable {
 

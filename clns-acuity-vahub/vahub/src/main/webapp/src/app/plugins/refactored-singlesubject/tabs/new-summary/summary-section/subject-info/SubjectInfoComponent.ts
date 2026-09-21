@@ -22,7 +22,8 @@ import {Map} from 'immutable';
     templateUrl: 'SubjectInfoComponent.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
     styleUrls: ['SubjectInfoComponent.css'],
-    selector: 'subject-info'
+    selector: 'subject-info',
+    standalone: false
 })
 export class SubjectInfoComponent implements OnInit {
     @Input() header: any;

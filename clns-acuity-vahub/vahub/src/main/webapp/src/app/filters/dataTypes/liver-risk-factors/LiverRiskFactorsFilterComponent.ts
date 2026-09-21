@@ -22,7 +22,8 @@ import {AbstractDataTypeFilter} from '../AbstractDataTypeFilter';
 
 @Component({
     selector: 'liver-risk-factors-filter',
-    templateUrl: 'LiverRiskFactorsFilterComponent.html'
+    templateUrl: 'LiverRiskFactorsFilterComponent.html',
+    standalone: false
 })
 export class LiverRiskFactorsFilterComponent extends AbstractDataTypeFilter implements OnInit, OnDestroy, AfterViewInit {
     @Output()

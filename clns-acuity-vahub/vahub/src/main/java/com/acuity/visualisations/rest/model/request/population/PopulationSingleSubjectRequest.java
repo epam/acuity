@@ -29,4 +29,11 @@ public class PopulationSingleSubjectRequest extends DatasetsRequest {
     private String subjectId;
     @NotNull
     private PopulationFilters populationFilters;
+
+    public String getSubjectId() {
+        return subjectId;
+    }
+    public PopulationFilters getPopulationFilters() {
+        return populationFilters;
+    }
 }

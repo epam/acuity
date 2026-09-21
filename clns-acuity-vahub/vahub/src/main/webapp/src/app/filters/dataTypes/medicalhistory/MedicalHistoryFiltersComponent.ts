@@ -22,7 +22,8 @@ import {AbstractDataTypeFilter} from '../AbstractDataTypeFilter';
 
 @Component({
     selector: 'medical-history-filter',
-    templateUrl: 'MedicalHistoryFiltersComponent.html'
+    templateUrl: 'MedicalHistoryFiltersComponent.html',
+    standalone: false
 })
 export class MedicalHistoryFilterComponent extends AbstractDataTypeFilter implements OnInit, OnDestroy, AfterViewInit {
     @Output()

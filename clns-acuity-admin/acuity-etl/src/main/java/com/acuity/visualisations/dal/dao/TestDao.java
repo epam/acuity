@@ -52,6 +52,7 @@ public class TestDao extends EntityDao<Test> {
         fieldsToInsert.add(fieldBuilder.setField("TST_UNQ_SHA1").build());
         fieldsToInsert.add(fieldBuilder.setField(getSecondaryHashColumnName()).build());
         fieldsToInsert.add(fieldBuilder.setField("TST_REF_SHA1").build());
+        fieldsToInsert.add(fieldBuilder.setField("TST_DOMAIN").build());
 
         String sql = QueryBuilderUtil.buildInsertQuery(tagetTable, fieldsToInsert);
         return sql;
@@ -84,7 +85,8 @@ public class TestDao extends EntityDao<Test> {
         ps.setObject(paramIndex++, entity.getPatientGuid());
         ps.setObject(paramIndex++, entity.getSha1ForUniqueFields());
         ps.setObject(paramIndex++, entity.getIntHashForSecondaryFields());
-        ps.setObject(paramIndex, entity.getFirstSha1ForReferencedFields());
+        ps.setObject(paramIndex++, entity.getFirstSha1ForReferencedFields());
+        ps.setObject(paramIndex, entity.getDomain());
 
     }
 

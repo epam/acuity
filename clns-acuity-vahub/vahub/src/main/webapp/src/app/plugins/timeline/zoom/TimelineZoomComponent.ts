@@ -21,7 +21,8 @@ import {IZoom} from '../store/ITimeline';
     selector: 'timeline-zoom',
     templateUrl: 'TimelineZoomComponent.html',
     styleUrls: ['./TimelineZoomComponent.css'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class TimelineZoomComponent {
     @Input() zoom: IZoom;

@@ -34,7 +34,8 @@ import {Observable} from 'rxjs/Observable';
 @Component({
     templateUrl: '../../../timeline/view/TimelineComponent.html',
     styleUrls: ['../../../timeline/view/TimelineComponent.css'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class SingleSubjectTimelineComponent extends AbstractTimelineComponent<SingleSubjectTimelineTrackDataService>
 implements OnInit, OnDestroy {

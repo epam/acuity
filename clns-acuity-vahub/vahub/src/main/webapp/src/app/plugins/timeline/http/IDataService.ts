@@ -27,6 +27,7 @@ export interface TrackRequest {
 
 export interface TrackData {
     subjectId: string;
+    subject?: string;
     data: ITrackDataPoint[];
     request?: TrackRequest;
 }

@@ -33,7 +33,8 @@ import {IChartSelection} from '../../../store/ITrellising';
     selector: 'marking-dialogue',
     templateUrl: 'MarkingComponent.html',
     styleUrls: ['./MarkingComponent.css'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class MarkingComponent implements OnChanges {
     @Input() dialogueBox: MarkingDialogue;
@@ -107,14 +108,12 @@ export class MarkingComponent implements OnChanges {
                     this.jumpToAesFromAeNumberLocation
                 )
                     .map(res => res).subscribe(res => {
-                    console.log('Got ' + +' from eventIds for ' + this.jumpToAesFromAeNumberLocation);
                     const listItemModel: any = itemModel;
 
                     listItemModel.appliedSelectedValues = res;
                     listItemModel.selectedValues = res;
                     listItemModel.numberOfSelectedFilters = res.length;
 
-                    console.log(this.aesFiltersModel.transformFiltersToServer());
                     this.aesFiltersModel.getFilters(true);
                     this.clearAllMarkingsAction();
 

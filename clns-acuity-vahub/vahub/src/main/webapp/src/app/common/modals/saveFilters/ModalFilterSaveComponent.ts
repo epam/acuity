@@ -28,7 +28,8 @@ import {Component, EventEmitter, OnInit, OnDestroy, Input, Output} from '@angula
  */
 @Component({
     selector: 'app-modal-filter-save',
-    templateUrl: 'ModalFilterSaveComponent.html'
+    templateUrl: 'ModalFilterSaveComponent.html',
+    standalone: false
 })
 export class ModalFilterSaveComponent implements OnInit, OnDestroy {
 

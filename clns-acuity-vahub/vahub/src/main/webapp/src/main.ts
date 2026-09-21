@@ -17,7 +17,6 @@
 ///<reference path="../node_modules/@types/node/index.d.ts" />
 
 // Ag-grid imports
-import 'ag-grid-angular/main';
 
 // Rxjs imports
 import 'rxjs/add/operator/map';
@@ -58,14 +57,13 @@ if (environment.production) {
 }
 
 const bootstrap = () => platformBrowserDynamic().bootstrapModule(AppModule)
-    .catch(err => console.log(err));
+    .catch(err => console.error(err));
 
 if (environment.hmr) {
     if (module[ 'hot' ]) {
         hmrBootstrap(module, <any>bootstrap);
     } else {
         console.error('HMR is not enabled for webpack-dev-server!');
-        console.log('Are you using the --hmr flag for ng serve?');
     }
 } else {
     bootstrap();

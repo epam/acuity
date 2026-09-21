@@ -34,6 +34,7 @@ public class EG extends TimestampedEntity {
 
     private String subject;
     private String part;
+    private String domain;
 
     @AcuityField(transform = AcuityFieldTransformation.MEASUREMENT_EVENT_12_00_00)
     private LocalDateTime date;

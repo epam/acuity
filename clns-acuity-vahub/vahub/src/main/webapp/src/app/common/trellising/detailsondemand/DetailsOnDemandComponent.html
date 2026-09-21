@@ -44,6 +44,10 @@
                     <span class="glyphicon glyphicon-save details-area__export__icon"></span>
                     <span>Export this table</span>
                 </a>
+                <a class="summary-button details-area__export--csv" (click)="exportCsv()">
+                    <span class="glyphicon glyphicon-download-alt details-area__export__icon"></span>
+                    <span>Export CSV</span>
+                </a>
                 <!--<a href="#" class="details-area__export&#45;&#45;reset"><span>Reset Selection</span></a>-->
             </div>
             <div class="details-area__select" [hidden]="tabId === 'POPULATION_BARCHART'">
@@ -60,8 +64,8 @@
                     The maximum number of records you can currently view in the Details on Demand table is 1000, please
                     select a smaller subset of data to list in the table
                 </div>
-                <div [hidden]="showEventsWarningMessage">
-                    <ag-grid-angular #eventGrid style="width: 100%; height: 350px;" class="ag-fresh"
+                <div [hidden]="showEventsWarningMessage" [ngClass]="{'labs-dod-table': isLabsEventTable}">
+                    <ag-grid-angular #eventGrid style="width: 100%; height: 350px;" class="ag-theme-alpine"
                                      [gridOptions]="eventGridOptions"
                                      (gridReady)="onEventTableInitialised()"
                                      (sortChanged)="fetchEventTableData()"
@@ -78,7 +82,7 @@
                     select a smaller subset of data to list in the table
                 </div>
                 <div [hidden]="showSubjectsWarningMessage">
-                    <ag-grid-angular #subjectGrid style="width: 100%; height: 350px;" class="ag-fresh"
+                    <ag-grid-angular #subjectGrid style="width: 100%; height: 350px;" class="ag-theme-alpine"
                                      [gridOptions]="subjectGridOptions"
                                      (gridReady)="onSubjectTableInitialised()"
                                      (sortChanged)="fetchSubjectTableData()"

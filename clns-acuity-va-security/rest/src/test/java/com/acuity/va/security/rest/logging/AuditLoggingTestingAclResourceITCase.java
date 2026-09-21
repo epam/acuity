@@ -30,11 +30,11 @@ import com.acuity.va.security.rest.util.UserPermission;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
 import com.github.springtestdbunit.annotation.DbUnitConfiguration;
 import com.google.common.collect.Lists;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Ignore;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,7 +42,7 @@ import org.springframework.security.acls.model.MutableAcl;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.annotation.Rollback;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import javax.ws.rs.core.UriBuilder;
 import javax.ws.rs.core.UriInfo;
@@ -56,7 +56,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-@RunWith(SpringJUnit4ClassRunner.class)
+@ExtendWith(SpringExtension.class)
 @TransactionalMyBatisDBUnitH2Test
 @DatabaseSetup({"/dbunit/security/dbunit-all-security.xml"})
 @DbUnitConfiguration(dataSetLoader = FlatXmlNullColumnSensingDataSetLoader.class)
@@ -79,7 +79,7 @@ public class AuditLoggingTestingAclResourceITCase {
     AcuitySidDetails admin = AcuitySidDetails.toUser("glen");
     TestingAuthenication testingAuthenication = new TestingAuthenication("glen", Lists.newArrayList("ACL_ADMINISTRATOR", "DEVELOPMENT_TEAM"));
 
-    @Before()
+    @BeforeEach()
     public void add() {
         SecurityContextHolder.getContext().setAuthentication(testingAuthenication);
 
@@ -89,7 +89,7 @@ public class AuditLoggingTestingAclResourceITCase {
         }
     }
 
-    @After()
+    @AfterEach()
     public void remove() {
         if (acl != null) {
             securityAclService.removeAce(newDrugProgramme, DEVELOPMENT_TEAM.getMask(), admin.toSid());
@@ -178,7 +178,7 @@ public class AuditLoggingTestingAclResourceITCase {
                 containsOnly(userPermission.getAcuitySidDetails().getSidAsString(), "false", 3L);
     }
 
-    @Ignore
+    @Disabled
     @Test
     public void shouldLog_RemovePermissionForAclWithNull_DrugProgramme() {
 

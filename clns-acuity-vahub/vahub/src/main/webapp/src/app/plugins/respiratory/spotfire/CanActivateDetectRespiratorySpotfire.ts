@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 
-import {ActivatedRoute, ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from '@angular/router';
+import { ActivatedRoute, ActivatedRouteSnapshot, Router, RouterStateSnapshot } from '@angular/router';
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {DatasetViews} from '../../../security/DatasetViews';
 @Injectable()
-export class CanActivateDetectRespiratorySpotfire implements CanActivate {
+export class CanActivateDetectRespiratorySpotfire  {
     constructor(private router: Router,
                 private datasetViews: DatasetViews,
                 private route: ActivatedRoute) {

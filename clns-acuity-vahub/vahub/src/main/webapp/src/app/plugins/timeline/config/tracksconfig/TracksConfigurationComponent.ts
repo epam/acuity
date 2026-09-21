@@ -28,6 +28,7 @@ import {TimelineObservables} from '../../store/observable/TimelineObservables';
     selector: 'tracks-config',
     templateUrl: 'TracksConfigurationComponent.html',
     styleUrls: ['../../../../filters/filters.css'],
+    standalone: false
 })
 export class TracksConfigurationComponent implements OnInit, OnDestroy {
     private updateSelectedTrackskListener: Subscription;

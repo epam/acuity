@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {ElementRef, EventEmitter, Input, NgZone, OnChanges, OnDestroy, Output, SimpleChange} from '@angular/core';
+import {Directive, ElementRef, EventEmitter, Input, NgZone, OnChanges, OnDestroy, Output, SimpleChange} from '@angular/core';
 import {fromJS, List} from 'immutable';
 import * as  _ from 'lodash';
 import {isEqual, unionWith} from 'lodash';
@@ -33,6 +33,7 @@ import {ShiftChart} from '../../../../../../vahub-charts/shiftchart/ShiftChart';
 import {BoxPlot} from '../../../../../../vahub-charts/boxplot/BoxPlot';
 import {ChartEvents, ChartMouseEvent, UserOptions} from '../../../../../../vahub-charts/types/interfaces';
 
+@Directive()
 export abstract class AbstractPlotComponent implements OnChanges, OnDestroy {
 
     @Input() plotData: any; // probably should be something more concrete... some superclass for all data classes from backend, maybe
@@ -331,8 +332,9 @@ export abstract class AbstractPlotComponent implements OnChanges, OnDestroy {
                         bars: selectedPoints
                     })];
                 }
+                const selHasData = that.hasSelection(selection);
                 if (!NEW_APPROACH_TAB_LIST.contains(that.tabId) ||
-                    that.hasSelection(selection)) {
+                    selHasData) {
                     that.trellisingMiddleware.updateSelection(List<IChartSelection>(selection));
                     if (!jEvent.target.mouseDownX || !jEvent.target.mouseDownY) {
                         that.displayMarkingDialogue.emit({

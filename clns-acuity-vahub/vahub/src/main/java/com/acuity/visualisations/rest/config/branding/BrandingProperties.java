@@ -17,6 +17,7 @@
 package com.acuity.visualisations.rest.config.branding;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
@@ -26,6 +27,7 @@ import java.util.List;
 import java.util.Map;
 
 @Data
+@EqualsAndHashCode(callSuper = false)
 @Component
 @ConfigurationProperties(prefix = "branding")
 public class BrandingProperties {

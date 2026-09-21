@@ -15,7 +15,7 @@
  */
 
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import {IPlot, ISelectionDetail, PlotType} from '../../common/trellising/store';
 import {getServerPath} from '../../common/utils/Utils';

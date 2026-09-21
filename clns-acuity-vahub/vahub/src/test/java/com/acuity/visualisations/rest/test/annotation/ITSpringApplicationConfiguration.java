@@ -18,7 +18,7 @@ package com.acuity.visualisations.rest.test.annotation;
 
 import com.acuity.visualisations.rest.test.config.ApplicationBootOnlyWebDisableSecurity;
 import com.acuity.visualisations.rest.test.config.DisableAutowireRequiredInitializer;
-import org.junit.Ignore;
+import org.junit.jupiter.api.Disabled;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -33,7 +33,7 @@ import java.lang.annotation.Target;
  * @author glen
  */
 // Not working
-@Ignore
+@Disabled
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK, properties = {

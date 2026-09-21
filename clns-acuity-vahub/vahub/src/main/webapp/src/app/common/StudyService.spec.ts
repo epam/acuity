@@ -16,19 +16,22 @@
 
 import {TestBed, inject} from '@angular/core/testing';
 import {StudyService} from './StudyService';
-import {HttpClientTestingModule} from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import * as _ from 'lodash';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe('StudyService class', () => {
     let service;
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [HttpClientTestingModule],
-            providers: [
-                StudyService
-            ]
-        });
+    imports: [],
+    providers: [
+        StudyService,
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting()
+    ]
+});
     });
 
     beforeEach(inject([StudyService], (_service: StudyService) => {

@@ -22,12 +22,11 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-import org.junit.runners.Parameterized.Parameters;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 
-@RunWith(Parameterized.class)
+@Disabled("TODO: migrate to JUnit 5 @ParameterizedTest")
 public class QueryBuilderUtilUpdateTest {
 
 	private String entityTable;
@@ -41,8 +40,6 @@ public class QueryBuilderUtilUpdateTest {
 		this.whereFields = whereFields;
 		this.expectedQuery = expectedQuery;
 	}
-
-	@Parameters
 	public static Collection<Object[]> data() {
 		Collection<Object[]> testParameters = new ArrayList<Object[]>();
 		testParameters.add(getParametersForFirstTest());

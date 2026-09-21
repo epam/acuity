@@ -20,11 +20,13 @@ import com.acuity.visualisations.rawdatamodel.axes.AxisOptions;
 import com.acuity.visualisations.rawdatamodel.trellis.grouping.ConmedGroupByOptions;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
 @Data
+@EqualsAndHashCode(callSuper = false)
 @AllArgsConstructor
 @NoArgsConstructor
 public class ConmedsBarChartXAxisResponse implements Serializable {

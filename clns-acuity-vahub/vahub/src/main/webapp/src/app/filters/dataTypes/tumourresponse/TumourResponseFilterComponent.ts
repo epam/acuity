@@ -22,7 +22,8 @@ import {AbstractDataTypeFilter} from '../AbstractDataTypeFilter';
 
 @Component({
     selector: 'tumourresponse-filter',
-    templateUrl: 'TumourResponseFilterComponent.html'
+    templateUrl: 'TumourResponseFilterComponent.html',
+    standalone: false
 })
 export class TumourResponseFilterComponent extends AbstractDataTypeFilter implements OnInit, OnDestroy, AfterViewInit  {
     @Output()

@@ -27,7 +27,8 @@ import {TumourResponseFiltersModel} from '../../../dataTypes/tumourresponse/Tumo
 @Component({
     selector: 'prior-therapy-settings',
     templateUrl: 'PriorTherapySettingsComponent.html',
-    styleUrls: ['../../../filters.css']
+    styleUrls: ['../../../filters.css'],
+    standalone: false
 })
 export class PriorTherapySettingsComponent implements OnInit {
     // as for now we have only one setting, we will use one boolean variable to check if it setting is opened

@@ -31,15 +31,15 @@ import com.acuity.visualisations.rawdatamodel.vo.compatibility.TrellisedScatterP
 import com.acuity.visualisations.rawdatamodel.vo.wrappers.Liver;
 import com.acuity.va.security.acl.domain.Datasets;
 import com.google.common.collect.ImmutableMap;
-import org.assertj.core.api.JUnitSoftAssertions;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.experimental.categories.Category;
-import org.junit.runner.RunWith;
+import org.assertj.core.api.SoftAssertions;
+import org.assertj.core.api.junit.jupiter.InjectSoftAssertions;
+import org.assertj.core.api.junit.jupiter.SoftAssertionsExtension;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -52,12 +52,12 @@ import static com.acuity.visualisations.config.util.TestConstants.DUMMY_ACUITY_D
 import static com.acuity.visualisations.rawdatamodel.trellis.grouping.LiverGroupByOptions.MEASUREMENT;
 import static com.acuity.visualisations.rawdatamodel.util.DateUtils.toDate;
 import static java.util.stream.Collectors.toSet;
-import static org.mockito.Matchers.any;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
-@RunWith(SpringRunner.class)
+@ExtendWith({SpringExtension.class, SoftAssertionsExtension.class})
 @ContextConfiguration(classes = TestConfig.class)
-@Category(LabTests.class)
+
 public class LiverServiceTest {
 
     @Autowired
@@ -71,8 +71,8 @@ public class LiverServiceTest {
     @MockBean
     private PopulationDatasetsDataProvider populationDatasetsDataProvider;
 
-    @Rule
-    public final JUnitSoftAssertions softly = new JUnitSoftAssertions();
+    @InjectSoftAssertions
+    private SoftAssertions softly;
 
     private final Subject subject1 = Subject.builder().clinicalStudyCode(String.valueOf(DUMMY_ACUITY_DATASET.getId()))
             .withdrawal("No").plannedArm("planed_arm").actualArm("actual_arm").country("China").region("Asia")

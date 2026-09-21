@@ -22,9 +22,6 @@ import com.acuity.visualisations.rawdatamodel.service.event.ExacerbationService;
 import com.acuity.visualisations.rest.model.request.SingleSubjectRequest;
 import com.acuity.visualisations.rest.model.request.respiratory.exacerbation.ExacerbationRequest;
 import com.acuity.visualisations.rest.model.response.DetailsOnDemandResponse;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;
@@ -34,14 +31,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import java.util.List;
 
 import static com.acuity.visualisations.rest.util.Constants.PRE_AUTHORISE_VISUALISATION;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @RestController
-@Api(description = "rest endpoints for exacerbation")
 @RequestMapping(value = "/resources/respiratory/exacerbation",
         consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
 @PreAuthorize(PRE_AUTHORISE_VISUALISATION)
@@ -51,12 +47,9 @@ public class ExacerbationResource {
 
     private final ExacerbationService exacerbationService;
 
-    @ApiOperation("Gets the available exacerbation filters for the currently selected lung function and population filters")
     @PostMapping("filters")
     @Cacheable
     public ExacerbationFilters getExacerbationFilters(
-            @ApiParam(value = "exacerbation and Population Filters e.g. {exacerbationFilters : {}, populationFilters: {}}",
-                    required = true)
             @RequestBody ExacerbationRequest requestBody) {
 
         return (ExacerbationFilters) exacerbationService.getAvailableFilters(requestBody.getDatasetsObject(),
@@ -64,23 +57,18 @@ public class ExacerbationResource {
                 requestBody.getPopulationFilters());
     }
 
-    @ApiOperation("Gets the subjects in available exacerbation filters for the currently selected exacerbation and population filters")
     @PostMapping("filtered-subjects")
     @Cacheable
     public List<String> getSubjectsForExacerbations(
-            @ApiParam(value = "ExacerbationsRequest:  exacerbation and Population Filters e.g. {exacerbationsFilters : {}, populationFilters: {}}",
-                    required = true)
             @RequestBody ExacerbationRequest requestBody) {
 
         return exacerbationService.getSubjects(requestBody.getDatasetsObject(), requestBody.getExacerbationFilters(),
                         requestBody.getPopulationFilters());
     }
 
-    @ApiOperation("Gets all exacerbation data for a single subject")
     @PostMapping("single-subject")
     @Cacheable
     public DetailsOnDemandResponse getExacerbationsSingleSubjectData(
-            @ApiParam(value = "Single Subject Request body: The subject ID to get the data for", required = true)
             @RequestBody @Valid SingleSubjectRequest<ExacerbationFilters> requestBody) {
 
         return new DetailsOnDemandResponse(exacerbationService.getDetailsOnDemandData(

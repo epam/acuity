@@ -21,9 +21,6 @@ import com.acuity.visualisations.rawdatamodel.vo.timeline.ecg.SubjectEcgDetail;
 import com.acuity.visualisations.rawdatamodel.vo.timeline.ecg.SubjectEcgSummary;
 import com.acuity.visualisations.rest.model.request.cardiac.EcgTimelineRequest;
 import com.acuity.visualisations.rest.util.Constants;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;
@@ -33,7 +30,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import java.util.List;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
@@ -42,7 +39,6 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
  * Created by ksnd199.
  */
 @RestController
-@Api(value = "/resources/timeline/ecg", description = "rest endpoints for for ecg timeline")
 @RequestMapping(value = "/resources/timeline/ecg",
         consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
 @PreAuthorize(Constants.PRE_AUTHORISE_VISUALISATION)
@@ -52,32 +48,18 @@ public class TimelineEcgResource {
     @Autowired
     private EcgTimelineService ecgTimelineService;
 
-    @ApiOperation(
-            value = "Gets the ecg summary information for the timeline for the currently selected population and ecg filters",
-            nickname = "getEcgSummary",
-            response = List.class,
-            httpMethod = "POST"
-    )
     @PostMapping("summaries")
     @Cacheable
     public List<SubjectEcgSummary> getEcgSummaries(
-            @ApiParam(value = "TimelineConmdsRequest:  Ecg and Population Filters e.g. {ecgFilters: {}, populationFilters: {}}", required = true)
             @RequestBody @Valid EcgTimelineRequest requestBody) {
         return ecgTimelineService.getSummaries(requestBody.getDatasetsObject(), requestBody.getCardiacFilters(),
                 requestBody.getPopulationFilters(), requestBody.getDayZero().getValue(),
                 requestBody.getDayZero().getStringarg());
     }
 
-    @ApiOperation(
-            value = "Gets the ecg by class information for the timeline for the currently selected population and ecg filters",
-            nickname = "getEcgDetail",
-            response = List.class,
-            httpMethod = "POST"
-    )
     @PostMapping("details")
     @Cacheable
     public List<SubjectEcgDetail> getEcgDetail(
-            @ApiParam(value = "TimelineEcgRequest:  Ecg and Population Filters e.g. {ecgFilters: {}, populationFilters: {}}", required = true)
             @RequestBody @Valid EcgTimelineRequest requestBody) {
         return ecgTimelineService.getDetails(requestBody.getDatasetsObject(), requestBody.getCardiacFilters(),
                 requestBody.getPopulationFilters(), requestBody.getDayZero().getValue(),

@@ -32,8 +32,6 @@ import com.acuity.visualisations.rest.model.request.exposure.ExposureLineChartSe
 import com.acuity.visualisations.rest.model.request.exposure.ExposureRequest;
 import com.acuity.visualisations.rest.model.request.DetailsOnDemandRequest;
 import com.acuity.visualisations.rest.util.Constants;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;
@@ -42,8 +40,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.http.HttpServletResponse;
-import javax.validation.Valid;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.validation.Valid;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
@@ -75,18 +73,9 @@ public class ExposureResource {
                 requestBody.getPopulationFilters(), getDefaultExposureLineChartSettings());
     }
 
-    @ApiOperation(
-            value = "Gets the available trellising and options",
-            nickname = "availableTrellising",
-            response = List.class,
-            httpMethod = "POST"
-    )
     @RequestMapping(value = "/trellising", method = POST)
     @Cacheable(condition = Constants.EMPTY_EVENT_AND_POPULATION_FILTER)
     public List<TrellisOptions<ExposureGroupByOptions>> getAvailableTrellising(
-            @ApiParam(value =
-                    "ExposureRequest:  Exposure and Population Filters e.g. {exposureFilters : {}, populationFilters: {}}",
-                    required = true)
             @RequestBody @Valid ExposureRequest requestBody) {
         return exposureService.getTrellisOptions(requestBody.getDatasetsObject(),
                 requestBody.getEventFilters(),
@@ -94,18 +83,9 @@ public class ExposureResource {
         );
     }
 
-    @ApiOperation(
-            value = "Gets the the concentration of drug analytes over time to plot",
-            nickname = "getLinePlot",
-            response = List.class,
-            httpMethod = "POST"
-    )
     @RequestMapping(value = "/concentration-over-time", method = POST)
     @Cacheable(condition = Constants.EMPTY_EVENT_AND_POPULATION_FILTER)
     public List<TrellisedLineFloatChart<Exposure, ExposureGroupByOptions, OutputLineChartData>> getExposureLines(
-            @ApiParam(value = "ExposureLineRequest: Request parameters for the line plots e.g. "
-                    + "{trellising : [{trellisedBy: 'SUBJECT', options: ['subject1, subject2']}], "
-                    + "exposureFilters: {}, populationFilters: {}}", required = true)
             @RequestBody ExposureLineChartRequest requestBody) {
         ChartGroupByOptions<Exposure, ExposureGroupByOptions> settings =
                 getExposureLineChartSettings(requestBody.getSettings().getSettings());
@@ -137,9 +117,6 @@ public class ExposureResource {
     @RequestMapping(value = "/colorby-options", method = POST)
     @Cacheable(condition = Constants.EMPTY_EVENT_AND_POPULATION_FILTER)
     public List<TrellisOptions<ExposureGroupByOptions>> getAvailableColorBy(
-            @ApiParam(value = "ExposureTrellisingRequest:  Exposure and Population Filters e.g. {exposureFilters : {}, "
-                    + "populationFilters: {}, countType: 'COUNT_OF_EVENTS'}",
-                    required = true)
             @RequestBody @Valid ExposureLineChartRequest requestBody) {
         ChartGroupByOptions<Exposure, ExposureGroupByOptions> settings =
                 getExposureLineChartSettings(requestBody.getSettings().getSettings());
@@ -173,8 +150,6 @@ public class ExposureResource {
 
     @RequestMapping(value = "/details-on-demand", method = POST)
     public List<Map<String, String>> getDetailsOnDemandData(
-            @ApiParam(value = "Details On Demand Request body: A list of event IDs to get the data for e.g. "
-                    + "['ev-1', 'ev-2']", required = true)
             @RequestBody @Valid DetailsOnDemandRequest requestBody) {
 
         return exposureService.getDetailsOnDemandData(
@@ -190,12 +165,6 @@ public class ExposureResource {
                 requestBody.getEventFilters(), requestBody.getPopulationFilters());
     }
 
-    @ApiOperation(
-            value = "Downloads data for the details on demand table for the selected IDs",
-            nickname = "downloadSelectedDetailsOnDemandData",
-            response = List.class,
-            httpMethod = "POST"
-    )
     @RequestMapping(value = "/download-selected-details-on-demand", method = POST)
     public void downloadSelectedDetailsOnDemandData(@RequestBody @Valid DetailsOnDemandRequest requestBody,
                                                     HttpServletResponse response) throws IOException {

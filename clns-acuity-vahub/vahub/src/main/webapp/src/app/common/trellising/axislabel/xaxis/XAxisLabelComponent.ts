@@ -33,11 +33,12 @@ import {XAxisLabelService} from './XAxisLabelService';
     changeDetection: ChangeDetectionStrategy.OnPush,
     animations: [
         trigger('openClose', [
-            state('collapsed, void', style({opacity: '0', bottom: '0px'})),
-            state('expanded', style({opacity: '1', bottom: '120px'})),
-            transition('collapsed <=> expanded', [animate(500, style({opacity: '1', bottom: '120px'}))])
+            state('collapsed, void', style({ opacity: '0', bottom: '0px' })),
+            state('expanded', style({ opacity: '1', bottom: '120px' })),
+            transition('collapsed <=> expanded', [animate(500, style({ opacity: '1', bottom: '120px' }))])
         ])
-    ]
+    ],
+    standalone: false
 })
 export class XAxisLabelComponent extends AxisLabelComponent implements OnInit, OnDestroy, OnChanges {
 

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {ElementRef, Input, NgZone, OnChanges, OnDestroy, SimpleChange} from '@angular/core';
+import {Directive, ElementRef, Input, NgZone, OnChanges, OnDestroy, SimpleChange} from '@angular/core';
 
 import {IChartPlotconfigService} from './IChartPlotconfigService';
 import {XAxisCoordinateService} from './axis/XAxisCoordinateService';
@@ -26,6 +26,7 @@ import * as _ from 'lodash';
 import {List} from 'immutable';
 import {chart} from '../../../../vahub-charts';
 
+@Directive()
 export abstract class AbstractChartComponent implements OnChanges, OnDestroy {
 
     // passed in to add additional configurations

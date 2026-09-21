@@ -40,7 +40,7 @@ export class LinePlotService {
         const allSeries = _.flatMap(series, x => x.series);
         const categories = allSeries.map(x => ({ category: x.category, rank: x.rank - 1 }))
             .reduce((acc, x) => {
-                if (!_.find(acc, x)) {
+                if (!_.find(acc, <any>x)) {
                     acc.push(x);
                 }
                 return acc;

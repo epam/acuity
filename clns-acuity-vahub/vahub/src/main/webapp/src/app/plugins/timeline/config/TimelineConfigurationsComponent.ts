@@ -18,7 +18,8 @@ import {Component} from '@angular/core';
 @Component({
     selector: 'timeline-configurations',
     templateUrl: 'TimelineConfigurationsComponent.html',
-    styleUrls: ['../../../filters/filters.css']
+    styleUrls: ['../../../filters/filters.css'],
+    standalone: false
 })
 export class TimelineConfigurationsComponent {
     openElement: string;

@@ -16,8 +16,8 @@
 
 package com.acuity.visualisations.transform.function;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.time.*;
 import java.util.Date;
@@ -31,49 +31,49 @@ public class DateAssemblerTest {
         LocalTime time = LocalTime.of(10, 30);
 
         Date res = dateAssembler.function(new Object[]{date,time});
-        Assert.assertNotNull(res);
+        Assertions.assertNotNull(res);
         LocalDateTime dt = LocalDateTime.ofInstant(res.toInstant(), ZoneId.systemDefault());
-        Assert.assertEquals(dt.getHour(), 10);
-        Assert.assertEquals(dt.getMinute(), 30);
-        Assert.assertEquals(dt.getYear(), 2010);
-        Assert.assertEquals(dt.getMonth(), Month.DECEMBER);
-        Assert.assertEquals(dt.getDayOfMonth(), 12);
+        Assertions.assertEquals(dt.getHour(), 10);
+        Assertions.assertEquals(dt.getMinute(), 30);
+        Assertions.assertEquals(dt.getYear(), 2010);
+        Assertions.assertEquals(dt.getMonth(), Month.DECEMBER);
+        Assertions.assertEquals(dt.getDayOfMonth(), 12);
 
         res = dateAssembler.function(new Object[]{time,date});
-        Assert.assertNotNull(res);
+        Assertions.assertNotNull(res);
 
         dt = LocalDateTime.ofInstant(res.toInstant(), ZoneId.systemDefault());
-        Assert.assertEquals(dt.getHour(), 10);
-        Assert.assertEquals(dt.getMinute(), 30);
-        Assert.assertEquals(dt.getYear(), 2010);
-        Assert.assertEquals(dt.getMonth(), Month.DECEMBER);
-        Assert.assertEquals(dt.getDayOfMonth(), 12);
+        Assertions.assertEquals(dt.getHour(), 10);
+        Assertions.assertEquals(dt.getMinute(), 30);
+        Assertions.assertEquals(dt.getYear(), 2010);
+        Assertions.assertEquals(dt.getMonth(), Month.DECEMBER);
+        Assertions.assertEquals(dt.getDayOfMonth(), 12);
 
         res = dateAssembler.function(new Object[]{date,null});
-        Assert.assertNotNull(res);
+        Assertions.assertNotNull(res);
 
         dt = LocalDateTime.ofInstant(res.toInstant(), ZoneId.systemDefault());
-        Assert.assertEquals(dt.getHour(), 0);
-        Assert.assertEquals(dt.getMinute(), 0);
-        Assert.assertEquals(dt.getYear(), 2010);
-        Assert.assertEquals(dt.getMonth(), Month.DECEMBER);
-        Assert.assertEquals(dt.getDayOfMonth(), 12);
+        Assertions.assertEquals(dt.getHour(), 0);
+        Assertions.assertEquals(dt.getMinute(), 0);
+        Assertions.assertEquals(dt.getYear(), 2010);
+        Assertions.assertEquals(dt.getMonth(), Month.DECEMBER);
+        Assertions.assertEquals(dt.getDayOfMonth(), 12);
 
         res = dateAssembler.function(new Object[]{null, date});
-        Assert.assertNotNull(res);
+        Assertions.assertNotNull(res);
 
         dt = LocalDateTime.ofInstant(res.toInstant(), ZoneId.systemDefault());
-        Assert.assertEquals(dt.getHour(), 0);
-        Assert.assertEquals(dt.getMinute(), 0);
-        Assert.assertEquals(dt.getYear(), 2010);
-        Assert.assertEquals(dt.getMonth(), Month.DECEMBER);
-        Assert.assertEquals(dt.getDayOfMonth(), 12);
+        Assertions.assertEquals(dt.getHour(), 0);
+        Assertions.assertEquals(dt.getMinute(), 0);
+        Assertions.assertEquals(dt.getYear(), 2010);
+        Assertions.assertEquals(dt.getMonth(), Month.DECEMBER);
+        Assertions.assertEquals(dt.getDayOfMonth(), 12);
 
         res = dateAssembler.function(new Object[]{null,time});
-        Assert.assertNull(res);
+        Assertions.assertNull(res);
 
         res = dateAssembler.function(new Object[]{time, null});
-        Assert.assertNull(res);
+        Assertions.assertNull(res);
     }
 
     @Test
@@ -82,22 +82,22 @@ public class DateAssemblerTest {
         LocalDateTime date = LocalDateTime.of(2010, Month.DECEMBER, 12, 10, 30);
 
         Date res = dateAssembler.function(new Object[]{date});
-        Assert.assertNotNull(res);
+        Assertions.assertNotNull(res);
         LocalDateTime dt = LocalDateTime.ofInstant(res.toInstant(), ZoneId.systemDefault());
-        Assert.assertEquals(dt.getHour(), 10);
-        Assert.assertEquals(dt.getMinute(), 30);
-        Assert.assertEquals(dt.getYear(), 2010);
-        Assert.assertEquals(dt.getMonth(), Month.DECEMBER);
-        Assert.assertEquals(dt.getDayOfMonth(), 12);
+        Assertions.assertEquals(dt.getHour(), 10);
+        Assertions.assertEquals(dt.getMinute(), 30);
+        Assertions.assertEquals(dt.getYear(), 2010);
+        Assertions.assertEquals(dt.getMonth(), Month.DECEMBER);
+        Assertions.assertEquals(dt.getDayOfMonth(), 12);
 
         res = dateAssembler.function(new Object[]{null,date});
-        Assert.assertNotNull(res);
+        Assertions.assertNotNull(res);
         dt = LocalDateTime.ofInstant(res.toInstant(), ZoneId.systemDefault());
-        Assert.assertEquals(dt.getHour(), 10);
-        Assert.assertEquals(dt.getMinute(), 30);
-        Assert.assertEquals(dt.getYear(), 2010);
-        Assert.assertEquals(dt.getMonth(), Month.DECEMBER);
-        Assert.assertEquals(dt.getDayOfMonth(), 12);
+        Assertions.assertEquals(dt.getHour(), 10);
+        Assertions.assertEquals(dt.getMinute(), 30);
+        Assertions.assertEquals(dt.getYear(), 2010);
+        Assertions.assertEquals(dt.getMonth(), Month.DECEMBER);
+        Assertions.assertEquals(dt.getDayOfMonth(), 12);
     }
 
     @Test
@@ -106,22 +106,22 @@ public class DateAssemblerTest {
         LocalDateTime date = LocalDateTime.of(1970, Month.JANUARY, 1, 10, 30);
 
         Date res = dateAssembler.function(new Object[]{date});
-        Assert.assertNotNull(res);
+        Assertions.assertNotNull(res);
         LocalDateTime dt = LocalDateTime.ofInstant(res.toInstant(), ZoneId.systemDefault());
-        Assert.assertEquals(dt.getHour(), 10);
-        Assert.assertEquals(dt.getMinute(), 30);
-        Assert.assertEquals(dt.getYear(), 1970);
-        Assert.assertEquals(dt.getMonth(), Month.JANUARY);
-        Assert.assertEquals(dt.getDayOfMonth(), 1);
+        Assertions.assertEquals(dt.getHour(), 10);
+        Assertions.assertEquals(dt.getMinute(), 30);
+        Assertions.assertEquals(dt.getYear(), 1970);
+        Assertions.assertEquals(dt.getMonth(), Month.JANUARY);
+        Assertions.assertEquals(dt.getDayOfMonth(), 1);
 
         res = dateAssembler.function(new Object[]{null,date});
-        Assert.assertNotNull(res);
+        Assertions.assertNotNull(res);
         dt = LocalDateTime.ofInstant(res.toInstant(), ZoneId.systemDefault());
-        Assert.assertEquals(dt.getHour(), 10);
-        Assert.assertEquals(dt.getMinute(), 30);
-        Assert.assertEquals(dt.getYear(), 1970);
-        Assert.assertEquals(dt.getMonth(), Month.JANUARY);
-        Assert.assertEquals(dt.getDayOfMonth(), 1);
+        Assertions.assertEquals(dt.getHour(), 10);
+        Assertions.assertEquals(dt.getMinute(), 30);
+        Assertions.assertEquals(dt.getYear(), 1970);
+        Assertions.assertEquals(dt.getMonth(), Month.JANUARY);
+        Assertions.assertEquals(dt.getDayOfMonth(), 1);
     }
 
     @Test
@@ -131,25 +131,25 @@ public class DateAssemblerTest {
         LocalTime time = LocalTime.of(10, 30);
 
         Date res = dateAssembler.function(new Object[]{date, time});
-        Assert.assertNotNull(res);
+        Assertions.assertNotNull(res);
         LocalDateTime dt = LocalDateTime.ofInstant(res.toInstant(), ZoneId.systemDefault());
-        Assert.assertEquals(dt.getHour(), 10);
-        Assert.assertEquals(dt.getMinute(), 30);
-        Assert.assertEquals(dt.getYear(), 1970);
-        Assert.assertEquals(dt.getMonth(), Month.JANUARY);
-        Assert.assertEquals(dt.getDayOfMonth(), 1);
+        Assertions.assertEquals(dt.getHour(), 10);
+        Assertions.assertEquals(dt.getMinute(), 30);
+        Assertions.assertEquals(dt.getYear(), 1970);
+        Assertions.assertEquals(dt.getMonth(), Month.JANUARY);
+        Assertions.assertEquals(dt.getDayOfMonth(), 1);
 
         res = dateAssembler.function(new Object[]{time,date});
-        Assert.assertNotNull(res);
+        Assertions.assertNotNull(res);
         dt = LocalDateTime.ofInstant(res.toInstant(), ZoneId.systemDefault());
-        Assert.assertEquals(dt.getHour(), 10);
-        Assert.assertEquals(dt.getMinute(), 30);
-        Assert.assertEquals(dt.getYear(), 1970);
-        Assert.assertEquals(dt.getMonth(), Month.JANUARY);
-        Assert.assertEquals(dt.getDayOfMonth(), 1);
+        Assertions.assertEquals(dt.getHour(), 10);
+        Assertions.assertEquals(dt.getMinute(), 30);
+        Assertions.assertEquals(dt.getYear(), 1970);
+        Assertions.assertEquals(dt.getMonth(), Month.JANUARY);
+        Assertions.assertEquals(dt.getDayOfMonth(), 1);
 
         res = dateAssembler.function(new Object[]{time});
-        Assert.assertNull(res);
+        Assertions.assertNull(res);
     }
 
     @Test
@@ -158,24 +158,24 @@ public class DateAssemblerTest {
         LocalDate date = LocalDate.of(2010, Month.DECEMBER, 12);
 
         Date res = dateAssembler.function(new Object[]{date, null});
-        Assert.assertNotNull(res);
+        Assertions.assertNotNull(res);
         LocalDateTime dt = LocalDateTime.ofInstant(res.toInstant(), ZoneId.systemDefault());
-        Assert.assertEquals(dt.getHour(), 0);
-        Assert.assertEquals(dt.getMinute(), 0);
-        Assert.assertEquals(dt.getYear(), 2010);
-        Assert.assertEquals(dt.getMonth(), Month.DECEMBER);
-        Assert.assertEquals(dt.getDayOfMonth(), 12);
+        Assertions.assertEquals(dt.getHour(), 0);
+        Assertions.assertEquals(dt.getMinute(), 0);
+        Assertions.assertEquals(dt.getYear(), 2010);
+        Assertions.assertEquals(dt.getMonth(), Month.DECEMBER);
+        Assertions.assertEquals(dt.getDayOfMonth(), 12);
 
         res = dateAssembler.function(new Object[]{null,date});
-        Assert.assertNotNull(res);
+        Assertions.assertNotNull(res);
         dt = LocalDateTime.ofInstant(res.toInstant(), ZoneId.systemDefault());
-        Assert.assertEquals(dt.getHour(), 0);
-        Assert.assertEquals(dt.getMinute(), 0);
-        Assert.assertEquals(dt.getYear(), 2010);
-        Assert.assertEquals(dt.getMonth(), Month.DECEMBER);
-        Assert.assertEquals(dt.getDayOfMonth(), 12);
+        Assertions.assertEquals(dt.getHour(), 0);
+        Assertions.assertEquals(dt.getMinute(), 0);
+        Assertions.assertEquals(dt.getYear(), 2010);
+        Assertions.assertEquals(dt.getMonth(), Month.DECEMBER);
+        Assertions.assertEquals(dt.getDayOfMonth(), 12);
 
         res = dateAssembler.function(new Object[]{null});
-        Assert.assertNull(res);
+        Assertions.assertNull(res);
     }
 }

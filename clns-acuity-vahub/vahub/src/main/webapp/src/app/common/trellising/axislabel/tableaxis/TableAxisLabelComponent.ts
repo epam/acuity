@@ -54,7 +54,8 @@ import {ITrellises} from '../../store';
                 }))
             ])
         ])
-    ]
+    ],
+    standalone: false
 })
 export class TableAxisLabelComponent extends AbstractColorBy implements OnInit, OnChanges {
 
@@ -66,6 +67,7 @@ export class TableAxisLabelComponent extends AbstractColorBy implements OnInit, 
     @Input() selectedDrug: string;
     @Input() customTooltip: string; // looks like useless, we use this in one place, so we can just define tooltip in class
     @Input() isAllColoringOptionAvailable: boolean;
+    @Input() tabId: any;
 
     constructor(public colorByService: ColorByService) {
         super(colorByService);

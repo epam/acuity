@@ -375,7 +375,7 @@ export class Trellising {
                                 const groupByOption = currentYAxisOption.get('groupByOption');
                                 preserveYAxis = preserveYAxis && groupByOption !== NO_AVAILABLE_PARAMETERS;
                                 return option.groupByOption.trellisOptions
-                                    ? groupByOption === option.groupByOption || option.groupByOption.trellisOptions.includes(groupByOption)
+                                    ? groupByOption === option.groupByOption || option.groupByOption.trellisOptions?.includes(groupByOption)
                                     : groupByOption === option.groupByOption;
 
                             } else {
@@ -961,16 +961,16 @@ export class Trellising {
                             this.tabId, xAxisOption, yAxisOption, series, trellising, box, selectedBars));
                     });
                 });
-                return forkJoin(selectionRequests);
-            }, (action, payload) => {
-                // checking for multiDetailsOnDemandRequired
-                if (action[action.length - 1]) {
-                    return this.trellisingActionCreator.makeUpdateMultiSelectionDetailAction(
-                        MarkingUtils.mergeMultiple(<IMultiSelectionDetail[]>payload));
-                } else {
-                    return this.trellisingActionCreator.makeUpdateSelectionDetailAction(
-                        MarkingUtils.merge(<ISelectionDetail[]>payload));
-                }
+                return forkJoin(selectionRequests).map((payload) => {
+                    // checking for multiDetailsOnDemandRequired
+                    if (multiDetailsOnDemandRequired) {
+                        return this.trellisingActionCreator.makeUpdateMultiSelectionDetailAction(
+                            MarkingUtils.mergeMultiple(<IMultiSelectionDetail[]>payload));
+                    } else {
+                        return this.trellisingActionCreator.makeUpdateSelectionDetailAction(
+                            MarkingUtils.merge(<ISelectionDetail[]>payload));
+                    }
+                });
             });
     }
 

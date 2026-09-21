@@ -28,7 +28,7 @@ import lombok.ToString;
 import java.util.Collection;
 
 @Data
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = false)
 @ToString(callSuper = true)
 public class RenalFilters extends Filters<Renal> {
 

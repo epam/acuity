@@ -45,33 +45,33 @@ public class CustomJobExecutionDao extends ACUITYDaoSupport implements ExtendedJ
     private static final String GET_ALL_JOB_EXECUTIONS_QUERY = "select project, study, batch_job_execution.* from "
             + "batch_job_execution,"
             + "(select job_execution_id as job_params_jeid, "
-            + "max(CASE WHEN key_name = '"
+            + "MAX(CASE WHEN parameter_name = '"
             + JobLauncherConsts.STUDY_KEY
-            + "' THEN string_val END) study, "
-            + "max(CASE WHEN key_name = '"
+            + "' THEN parameter_value END) study, "
+            + "MAX(CASE WHEN parameter_name = '"
             + JobLauncherConsts.PROJECT_KEY
-            + "' THEN string_val END) project from batch_job_execution_params group by job_execution_id) "
+            + "' THEN parameter_value END) project from batch_job_execution_params group by job_execution_id) "
             + "where batch_job_execution.job_execution_id=job_params_jeid";
 
     private static final String GET_ALL_JOB_ECEXUTION_IDS_QUERY = "select project, study, batch_job_execution.JOB_EXECUTION_ID from "
             + "batch_job_execution,"
             + "(select job_execution_id as job_params_jeid, "
-            + "max(CASE WHEN key_name = '"
+            + "MAX(CASE WHEN parameter_name = '"
             + JobLauncherConsts.STUDY_KEY
-            + "' THEN string_val END) study, "
-            + "max(CASE WHEN key_name = '"
+            + "' THEN parameter_value END) study, "
+            + "MAX(CASE WHEN parameter_name = '"
             + JobLauncherConsts.PROJECT_KEY
-            + "' THEN string_val END) project from batch_job_execution_params group by job_execution_id) "
+            + "' THEN parameter_value END) project from batch_job_execution_params group by job_execution_id) "
             + "where batch_job_execution.job_execution_id=job_params_jeid";
 
     private static final String GET_LATEST_JOB_EXECUTION_QUERY = "with job_params_decoded as " 
             + "  (select job_execution_id       as job_params_jeid, "
-            + "        max(CASE WHEN key_name = '"
+            + "        MAX(CASE WHEN parameter_name = '"
             + JobLauncherConsts.STUDY_KEY
-            + "' THEN string_val END)                  as study, "
-            + "        max(CASE WHEN key_name = '"
+            + "' THEN parameter_value END)                  as study, "
+            + "        MAX(CASE WHEN parameter_name = '"
             + JobLauncherConsts.PROJECT_KEY
-            + "' THEN string_val END)                  as project "
+            + "' THEN parameter_value END)                  as project "
             + "                            from batch_job_execution_params "
             + "                            group by job_execution_id) "
             + "select t1.project, "
@@ -117,11 +117,11 @@ public class CustomJobExecutionDao extends ACUITYDaoSupport implements ExtendedJ
             + "from batch_job_execution "
             + "INNER JOIN batch_job_instance bji"
             + "  ON batch_job_execution.job_instance_id = bji.job_instance_id, "
-            + "(select job_execution_id as job_params_jeid,max(CASE WHEN key_name = '"
+            + "(select job_execution_id as job_params_jeid,MAX(CASE WHEN parameter_name = '"
             + JobLauncherConsts.STUDY_KEY
-            + "' THEN string_val END) study, max(CASE WHEN key_name = '"
+            + "' THEN parameter_value END) study, MAX(CASE WHEN parameter_name = '"
             + JobLauncherConsts.PROJECT_KEY
-            + "' THEN string_val END) project "
+            + "' THEN parameter_value END) project "
             + "from batch_job_execution_params group by job_execution_id) as a "
             + "where batch_job_execution.job_execution_id=job_params_jeid "
             + "and bji.job_name = ? "
@@ -130,13 +130,13 @@ public class CustomJobExecutionDao extends ACUITYDaoSupport implements ExtendedJ
             + "left outer join "
             + "(select batch_job_execution.*, project, study, launchingTime "
             + "from batch_job_execution, "
-            + "(select job_execution_id as job_params_jeid,max(CASE WHEN key_name = '"
+            + "(select job_execution_id as job_params_jeid,MAX(CASE WHEN parameter_name = '"
             + JobLauncherConsts.STUDY_KEY
-            + "' THEN string_val END) study, max(CASE WHEN key_name = '"
+            + "' THEN parameter_value END) study, MAX(CASE WHEN parameter_name = '"
             + JobLauncherConsts.PROJECT_KEY
-            + "' THEN string_val END) project, max(CASE WHEN key_name = '"
+            + "' THEN parameter_value END) project, MAX(CASE WHEN parameter_name = '"
             + JobLauncherConsts.UNIQUE_KEY
-            + "' THEN string_val END) launchingTime "
+            + "' THEN parameter_value END) launchingTime "
             + "from batch_job_execution_params group by job_execution_id) as b "
             + "where batch_job_execution.job_execution_id=job_params_jeid) "
             + " t2 "
@@ -146,7 +146,7 @@ public class CustomJobExecutionDao extends ACUITYDaoSupport implements ExtendedJ
             "SELECT e.job_execution_id "
                     + "FROM batch_job_execution e "
                     + "RIGHT JOIN batch_job_execution_params p ON e.job_execution_id = p.job_execution_id "
-                    + "WHERE p.key_name='etl.study' AND p.string_val = ? "
+                    + "WHERE p.parameter_name='etl.study' AND p.parameter_value = ? "
                     + "ORDER BY e.job_execution_id";
 
     private static final String GET_FAILED_STUDIES =
@@ -163,7 +163,8 @@ public class CustomJobExecutionDao extends ACUITYDaoSupport implements ExtendedJ
                     + "         from batch_job_execution_params left join bath_job_data "
                     + "                            on batch_job_execution_params.job_execution_id = c_j_id "
                     + "                  inner join enabled_studies "
-                    + "                            on enabled_studies.msr_study_code = batch_job_execution_params.string_val "
+                    + "                            on enabled_studies.msr_study_code = batch_job_execution_params.parameter_value "
+                    + "         where batch_job_execution_params.parameter_name = 'etl.study' "
                     + "         order by msr_study_code, c_e_time desc nulls last "
                     + "     ) "
                     + "    select distinct std_name "
@@ -186,13 +187,14 @@ public class CustomJobExecutionDao extends ACUITYDaoSupport implements ExtendedJ
                     + "                  left join bath_job_data "
                     + "                            on batch_job_execution_params.job_execution_id = c_j_id "
                     + "                  inner join enabled_studies "
-                    + "                             on enabled_studies.msr_study_code = batch_job_execution_params.string_val "
+                    + "                             on enabled_studies.msr_study_code = batch_job_execution_params.parameter_value "
+                    + "         where batch_job_execution_params.parameter_name = 'etl.study' "
                     + "         order by msr_study_code, c_e_time desc nulls last "
                     + "     ) "
                     + "    select distinct std_name "
                     + "    from studies "
                     + "    where last_run_time is null "
-                    + "         or oracle.sysdate() > (last_run_time + interval '1' day)::date";
+                    + "         or NOW() > (last_run_time + interval '1' day)::date";
 
     private static final String GET_STUDIES_FILES = "select MSR_STUDY_CODE, MFR_NAME "
             + "from MAP_STUDY_RULE "
@@ -250,15 +252,18 @@ public class CustomJobExecutionDao extends ACUITYDaoSupport implements ExtendedJ
         Long id = rs.getLong("JOB_EXECUTION_ID");
         JobExecution jobExecution;
         jobExecution = new JobExecution(id);
-        jobExecution.setStartTime(rs.getTimestamp("START_TIME"));
-        jobExecution.setEndTime(rs.getTimestamp("END_TIME"));
+        java.sql.Timestamp startTs = rs.getTimestamp("START_TIME");
+        jobExecution.setStartTime(startTs != null ? startTs.toLocalDateTime() : null);
+        java.sql.Timestamp endTs = rs.getTimestamp("END_TIME");
+        jobExecution.setEndTime(endTs != null ? endTs.toLocalDateTime() : null);
         String status = rs.getString("STATUS");
         if (status != null) {
             jobExecution.setStatus(BatchStatus.valueOf(status));
         }
         jobExecution.setExitStatus(new ExitStatus(rs.getString("EXIT_CODE"), rs.getString("EXIT_MESSAGE")));
-        jobExecution.setCreateTime(rs.getTimestamp("CREATE_TIME"));
-        jobExecution.setLastUpdated(rs.getTimestamp("CREATE_TIME"));
+        java.sql.Timestamp createTs = rs.getTimestamp("CREATE_TIME");
+        jobExecution.setCreateTime(createTs != null ? createTs.toLocalDateTime() : null);
+        jobExecution.setLastUpdated(createTs != null ? createTs.toLocalDateTime() : null);
         jobExecution.setVersion(rs.getInt("VERSION"));
         return jobExecution;
     }

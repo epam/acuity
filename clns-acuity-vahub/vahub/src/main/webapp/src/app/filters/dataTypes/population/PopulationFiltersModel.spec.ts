@@ -15,7 +15,7 @@
  */
 
 import {inject, TestBed} from '@angular/core/testing';
-import {HttpClientTestingModule} from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import {Observable} from 'rxjs/Observable';
 
 import {PopulationFiltersModel} from './PopulationFiltersModel';
@@ -30,6 +30,7 @@ import {DatasetViews} from '../../../security/DatasetViews';
 import {StudyService} from '../../../common/StudyService';
 import * as  _ from 'lodash';
 import {Store} from '@ngrx/store';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 class MockFilterHttpService {
     getPopulationFiltersObservable(path: string, selectedPopulationFilters: any): Observable<any> {
@@ -49,18 +50,20 @@ describe('GIVEN a PopulationFiltersModel class', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [HttpClientTestingModule],
-            providers: [
-                StudyService,
-                {provide: DatasetViews, useClass: MockDatasetViews},
-                {provide: SessionEventService, useClass: MockSessionEventService},
-                {provide: Store},
-                SessionHttpService,
-                {provide: FilterHttpService, useClass: MockFilterHttpService},
-                {provide: FilterEventService, useClass: MockFilterEventService},
-                PopulationFiltersModel
-            ]
-        });
+    imports: [],
+    providers: [
+        StudyService,
+        { provide: DatasetViews, useClass: MockDatasetViews },
+        { provide: SessionEventService, useClass: MockSessionEventService },
+        { provide: Store },
+        SessionHttpService,
+        { provide: FilterHttpService, useClass: MockFilterHttpService },
+        { provide: FilterEventService, useClass: MockFilterEventService },
+        PopulationFiltersModel,
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting()
+    ]
+});
     });
 
     describe('WHEN constructing', () => {

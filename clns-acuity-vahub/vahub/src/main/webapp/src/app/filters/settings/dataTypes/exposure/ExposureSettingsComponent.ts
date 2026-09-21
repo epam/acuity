@@ -28,7 +28,8 @@ import {StudyService} from '../../../../common/StudyService';
 @Component({
     selector: 'exposure-settings',
     templateUrl: 'ExposureSettingsComponent.html',
-    styleUrls: ['../../../filters.css']
+    styleUrls: ['../../../filters.css'],
+    standalone: false
 })
 export class ExposureSettingsComponent implements OnInit {
     aggregationTypes: string[];

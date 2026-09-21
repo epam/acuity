@@ -24,7 +24,8 @@ import {TabId, ZOOM_STEP} from '../../store/ITrellising';
 @Component({
     selector: 'trellis-yzoom',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    templateUrl: 'YZoomComponent.html'
+    templateUrl: 'YZoomComponent.html',
+    standalone: false
 })
 export class YZoomComponent extends AbstractZoomComponent implements OnInit, OnChanges {
     @Input() tabId: TabId;

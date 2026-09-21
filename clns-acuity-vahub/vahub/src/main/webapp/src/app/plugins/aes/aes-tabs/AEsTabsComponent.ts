@@ -26,7 +26,8 @@ import {SessionEventService} from '../../../session/event/SessionEventService';
 
 @Component({
     selector: 'aes-tabs',
-    templateUrl: 'AEsTabsComponent.html'
+    templateUrl: 'AEsTabsComponent.html',
+    standalone: false
 })
 export class AEsTabsComponent extends AbstractPluginComponent {
     @Input() isDropdown: boolean;

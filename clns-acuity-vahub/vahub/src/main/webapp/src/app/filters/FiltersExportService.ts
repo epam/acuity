@@ -35,7 +35,6 @@ export class FiltersExportService {
     }
 
     exportFilters(event: MouseEvent): void {
-        console.log('onExportFilters');
         const file = new Blob([this.transformFiltersToText()], {type: 'text/plain'});
         (<any>event.currentTarget).href = window.URL.createObjectURL(file);
         (<any>event.currentTarget).download = 'Filters.txt';

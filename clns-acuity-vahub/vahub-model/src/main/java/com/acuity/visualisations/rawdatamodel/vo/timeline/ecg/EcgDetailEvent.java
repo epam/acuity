@@ -25,7 +25,7 @@ import lombok.ToString;
 import java.io.Serializable;
 
 @Data
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = false)
 @ToString(callSuper = true)
 public class EcgDetailEvent extends EcgEvent implements Serializable {
     private Double baselineValue;

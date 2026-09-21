@@ -31,5 +31,12 @@ public class VitalsRequest extends DatasetsRequest {
     private PopulationFilters populationFilters;
     @NotNull
     private VitalFilters vitalsFilters;
+
+    public PopulationFilters getPopulationFilters() {
+        return populationFilters;
+    }
+    public VitalFilters getVitalsFilters() {
+        return vitalsFilters;
+    }
 }
 

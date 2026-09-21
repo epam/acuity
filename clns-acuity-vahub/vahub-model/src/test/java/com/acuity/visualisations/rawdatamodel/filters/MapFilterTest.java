@@ -18,7 +18,7 @@ package com.acuity.visualisations.rawdatamodel.filters;
 
 import com.acuity.visualisations.rawdatamodel.util.AlphanumComparator;
 import static com.google.common.collect.Lists.newArrayList;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
 import java.util.Map;

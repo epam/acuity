@@ -49,7 +49,7 @@ public class ChartSelectionItem<T, G extends Enum<G> & GroupByOption<T>> impleme
     @JsonCreator
     public static <T, G extends Enum<G> & GroupByOption<T>> ChartSelectionItem<T, G> of(
             @JsonProperty("selectedTrellises") Map<G, Object> selectedTrellises,
-            @JsonProperty("selectedItems") Map<ChartGroupByOptions.ChartGroupBySetting, Object> selectedItems
+            @JsonProperty("selectedItems") Map<ChartGroupBySetting, Object> selectedItems
     ) {
         return new ChartSelectionItem<>(selectedTrellises, selectedItems);
     }

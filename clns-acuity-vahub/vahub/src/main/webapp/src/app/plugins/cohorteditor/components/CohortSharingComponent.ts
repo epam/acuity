@@ -23,7 +23,8 @@ import UserVO = Request.UserVO;
 @Component({
     selector: 'cohort-sharing',
     templateUrl: 'CohortSharingComponent.html',
-    styleUrls: ['CohortEditorComponent.css']
+    styleUrls: ['CohortEditorComponent.css'],
+    standalone: false
 })
 export class CohortSharingComponent implements OnInit {
 

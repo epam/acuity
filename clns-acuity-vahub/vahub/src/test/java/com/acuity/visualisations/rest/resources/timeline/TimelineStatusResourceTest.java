@@ -27,8 +27,8 @@ import com.acuity.visualisations.rest.model.request.statussummary.StatusSummaryT
 import com.acuity.va.security.acl.domain.Datasets;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -44,9 +44,9 @@ import java.util.List;
 
 import static com.acuity.visualisations.config.util.TestConstants.DUMMY_DETECT_DATASETS;
 import static com.google.common.collect.Lists.newArrayList;
-import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.anyString;
-import static org.mockito.Matchers.eq;
+import static org.mockito.ArgumentMatchers.nullable;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
@@ -65,7 +65,7 @@ public class TimelineStatusResourceTest {
     private MockMvc mvc;
     private static ObjectMapper mapper;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         MockitoAnnotations.initMocks(this);
         mvc = MockMvcBuilders.standaloneSetup(timelineStatusResource).build();
@@ -116,7 +116,7 @@ public class TimelineStatusResourceTest {
         statusSummaryTimelineRequest.setDatasets(DUMMY_DETECT_DATASETS.getDatasetsList());
 
         when(mockTimelineStatusService.getStatusSummaries(any(Datasets.class), any(PopulationFilters.class),
-                any(DayZeroType.class), anyString())).thenReturn(response);
+                any(DayZeroType.class), nullable(String.class))).thenReturn(response);
 
         MockHttpServletRequestBuilder post = MockMvcRequestBuilders.
                 post("/resources/timeline/status/summaries").
@@ -130,7 +130,7 @@ public class TimelineStatusResourceTest {
                 .andReturn();
 
         verify(mockTimelineStatusService, times(1)).getStatusSummaries(eq(DUMMY_DETECT_DATASETS),
-                any(PopulationFilters.class), eq(DayZeroType.DAYS_SINCE_FIRST_DOSE), anyString());
+                any(PopulationFilters.class), eq(DayZeroType.DAYS_SINCE_FIRST_DOSE), nullable(String.class));
         verifyNoMoreInteractions(mockTimelineStatusService);
     }
 }

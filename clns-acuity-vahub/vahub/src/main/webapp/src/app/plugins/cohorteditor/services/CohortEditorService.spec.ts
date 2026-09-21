@@ -15,8 +15,8 @@
  */
 
 import {inject, TestBed} from '@angular/core/testing';
-import {HttpClient} from '@angular/common/http';
-import {HttpClientTestingModule} from '@angular/common/http/testing';
+import { HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 
 import {CohortEditorService} from './CohortEditorService';
 import {SessionEventService} from '../../../session/module';
@@ -55,20 +55,22 @@ describe('GIVEN CohortEditorService', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [HttpClientTestingModule],
-            providers: [
-                CohortEditorService,
-                HttpClient,
-                {provide: PopulationFiltersModel, useClass: MockFilterModel},
-                {provide: FilterReloadService, useClass: MockFilterReloadService},
-                {provide: FilterHttpService, useClass: MockFilterHttpService},
-                {provide: DatasetViews, useClass: MockDatasetViews},
-                {provide: FilterEventService, useClass: MockFilterEventService},
-                {provide: SessionEventService, useClass: MockSessionEventService},
-                {provide: TrellisingDispatcher, useClass: MockTrellisingDispatcher},
-                {provide: TimelineDispatcher, useClass: MockTimelineDispatcher}
-            ]
-        });
+    imports: [],
+    providers: [
+        CohortEditorService,
+        HttpClient,
+        { provide: PopulationFiltersModel, useClass: MockFilterModel },
+        { provide: FilterReloadService, useClass: MockFilterReloadService },
+        { provide: FilterHttpService, useClass: MockFilterHttpService },
+        { provide: DatasetViews, useClass: MockDatasetViews },
+        { provide: FilterEventService, useClass: MockFilterEventService },
+        { provide: SessionEventService, useClass: MockSessionEventService },
+        { provide: TrellisingDispatcher, useClass: MockTrellisingDispatcher },
+        { provide: TimelineDispatcher, useClass: MockTimelineDispatcher },
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting()
+    ]
+});
     });
 
     beforeEach(inject([SessionEventService], (service: SessionEventService) => {

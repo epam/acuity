@@ -23,7 +23,8 @@ import {TrellisingDispatcher} from '../store/dispatcher/TrellisingDispatcher';
 
 @Component({
     selector: 'trellis-jump',
-    templateUrl: 'TrellisingJumpComponent.html'
+    templateUrl: 'TrellisingJumpComponent.html',
+    standalone: false
 })
 export class TrellisingJumpComponent implements OnChanges {
     @Input() tabId: TabId;

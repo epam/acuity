@@ -21,7 +21,8 @@ import {ConfigurationService} from '../configuration/module';
 @Component({
     selector: 'about',
     templateUrl: 'AboutComponent.html',
-    styleUrls: ['./AboutComponent.css']
+    styleUrls: ['./AboutComponent.css'],
+    standalone: false
 })
 export class AboutComponent implements OnDestroy {
     private routeFragmentSubscription: Subscription;

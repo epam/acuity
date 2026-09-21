@@ -42,7 +42,7 @@ export class PaginatedTrellisService extends AbstractPaginationService {
                     trellisOptions: _.uniq(newOptions)
                 };
             });
-            _.filter(trellisesJS, {'category': TrellisCategory.NON_MANDATORY_SERIES}).forEach((trellisSeries: any) => {
+            _.filter(trellisesJS, <any>{'category': TrellisCategory.NON_MANDATORY_SERIES}).forEach((trellisSeries: any) => {
                 newTrellisJS.push({
                     category: TrellisCategory.NON_MANDATORY_SERIES,
                     trellisedBy: trellisSeries.trellisedBy,
@@ -53,7 +53,7 @@ export class PaginatedTrellisService extends AbstractPaginationService {
             return fromJS(newTrellisJS);
         } else {
             const newTrellisJS = [];
-            _.filter(trellisesJS, {'category': TrellisCategory.NON_MANDATORY_SERIES}).forEach((trellisSeries: any) => {
+            _.filter(trellisesJS, <any>{'category': TrellisCategory.NON_MANDATORY_SERIES}).forEach((trellisSeries: any) => {
                 newTrellisJS.push({
                     category: TrellisCategory.NON_MANDATORY_SERIES,
                     trellisedBy: trellisSeries.trellisedBy,

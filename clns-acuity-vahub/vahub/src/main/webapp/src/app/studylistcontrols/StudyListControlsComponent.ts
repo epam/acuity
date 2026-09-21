@@ -37,10 +37,11 @@ import {debounceTime, distinctUntilChanged, map} from 'rxjs/operators';
     selector: 'study-selection-controls',
     templateUrl: 'StudyListControlsComponent.html',
     styleUrls: ['./StudyListControlsComponent.css'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class StudySelectionControlsComponent implements OnChanges, OnDestroy, AfterViewInit {
-    @ViewChild('query') query;
+    @ViewChild('query', { static: false }) query;
 
     @Input() searchString: string;
     @Input() numberOfSubjects: number;

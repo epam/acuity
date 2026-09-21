@@ -31,7 +31,7 @@ import java.util.Date;
 import java.util.OptionalInt;
 
 @ToString(callSuper = true)
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = false)
 public class DoseDisc extends SubjectAwareWrapper<DoseDiscRaw> implements Serializable {
 
     public DoseDisc(DoseDiscRaw event, Subject subject) {

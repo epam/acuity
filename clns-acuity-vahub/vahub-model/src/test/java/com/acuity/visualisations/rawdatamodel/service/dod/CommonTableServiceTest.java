@@ -21,9 +21,11 @@ import com.acuity.visualisations.rawdatamodel.vo.CardiacRaw;
 import com.acuity.visualisations.rawdatamodel.vo.LungFunctionRaw;
 import com.acuity.visualisations.rawdatamodel.vo.Subject;
 import com.acuity.visualisations.rawdatamodel.vo.wrappers.LungFunction;
-import org.assertj.core.api.JUnitSoftAssertions;
-import org.junit.Rule;
-import org.junit.Test;
+import org.assertj.core.api.SoftAssertions;
+import org.assertj.core.api.junit.jupiter.InjectSoftAssertions;
+import org.assertj.core.api.junit.jupiter.SoftAssertionsExtension;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -34,6 +36,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 /**
  * See also {@link DoDCommonServiceTest}
  */
+@ExtendWith(SoftAssertionsExtension.class)
 public class CommonTableServiceTest {
 
     private static final String SUBJECT_ID_FIELD = "subjectId";
@@ -46,8 +49,8 @@ public class CommonTableServiceTest {
         }
     };
 
-    @Rule
-    public final JUnitSoftAssertions softly = new JUnitSoftAssertions();
+    @InjectSoftAssertions
+    private SoftAssertions softly;
 
     @Test
     public void subjectIsSortedBySubjectId() {

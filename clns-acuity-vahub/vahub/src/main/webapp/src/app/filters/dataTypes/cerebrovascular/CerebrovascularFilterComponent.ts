@@ -22,7 +22,8 @@ import {AbstractDataTypeFilter} from '../AbstractDataTypeFilter';
 
 @Component({
     selector: 'cerebrovascularfilter',
-    templateUrl: 'CerebrovascularFilterComponent.html'
+    templateUrl: 'CerebrovascularFilterComponent.html',
+    standalone: false
 })
 export class CerebrovascularFilterComponent extends AbstractDataTypeFilter implements OnInit, OnDestroy, AfterViewInit {
     @Output()

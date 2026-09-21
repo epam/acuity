@@ -17,17 +17,20 @@
 <div>
     <input class="search-box" placeholder="Search..." type="text" (keyup)="onSearchChanged($event)"/>
     <strong class="events-counter">{{tabTableData.size}}</strong> Events
+    <button type="button" class="btn btn-default btn-xs export-csv-button" (click)="exportCsv()">
+        <span class="glyphicon glyphicon-download-alt"></span> Export CSV
+    </button>
     <label class="check-box" style="padding-left: 15px" *ngIf="isToolPanelAvailable">
         <input name="isToolPanelShown" type="checkbox" [(ngModel)]="isToolPanelShown"
                (change)="showToolPanelChange()"/> Show table tool panel
     </label>
 </div>
 <ag-grid-angular
-        class="ag-fresh"
+        class="ag-theme-alpine"
         [ngStyle]="{width: '96%', height: height}"
         [gridOptions]="gridOptions"
-        [rowData]="tabTableData"
-        [columnDefs]="columnDefs"
-        [domLayout]="autoHeight"
+        [rowData]="tabTableData?.toArray ? tabTableData.toArray() : tabTableData"
+        [columnDefs]="columnDefs?.toArray ? columnDefs.toArray() : columnDefs"
+        domLayout="autoHeight"
 >
 </ag-grid-angular>

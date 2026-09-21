@@ -14,8 +14,7 @@
  * limitations under the License.
  */
 
-import {Response} from '@angular/http';
-import {HttpClient} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {fromJS, List} from 'immutable';
@@ -70,7 +69,7 @@ export class TumourRespPriorTherapyHttpService extends BaseChartsHttpService {
         };
 
         return this.http.post(path, JSON.stringify(postData))
-            .map((response: Response) => {
+            .map((response: any) => {
                 const data = <any>response;
                 return <List<IPlot>>fromJS(data.map((plotItem: any) => {
                     return {
@@ -124,7 +123,7 @@ export class TumourRespPriorTherapyHttpService extends BaseChartsHttpService {
         };
 
         return this.http.post(path, JSON.stringify(postData))
-            .map((response: Response) => {
+            .map((response: any) => {
                 const data = <any>response;
                 return <List<IPlot>>fromJS(data.map((plotItem: any) => {
                     return {

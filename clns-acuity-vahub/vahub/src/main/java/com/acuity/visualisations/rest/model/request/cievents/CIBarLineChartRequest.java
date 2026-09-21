@@ -22,7 +22,7 @@ import com.acuity.visualisations.rawdatamodel.vo.wrappers.CIEvent;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
@@ -30,4 +30,8 @@ public class CIBarLineChartRequest extends CIEventRequest {
     @NotNull
     private ChartGroupByOptionsFiltered<CIEvent, CIEventGroupByOptions> settings;
 
+
+    public ChartGroupByOptionsFiltered<CIEvent, CIEventGroupByOptions> getSettings() {
+        return settings;
+    }
 }

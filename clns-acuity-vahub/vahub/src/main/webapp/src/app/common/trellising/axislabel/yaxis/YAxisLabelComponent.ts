@@ -29,11 +29,12 @@ import {DynamicAxis} from '../../store/ITrellising';
     styleUrls: ['YStyle.css'],
     animations: [
         trigger('openClose', [
-            state('collapsed, void', style({opacity: '0', left: '0%'})),
-            state('expanded', style({opacity: '1', left: '50%'})),
-            transition('collapsed <=> expanded', [animate(500, style({opacity: '1', left: '50%'}))])
+            state('collapsed, void', style({ opacity: '0', left: '0%' })),
+            state('expanded', style({ opacity: '1', left: '50%' })),
+            transition('collapsed <=> expanded', [animate(500, style({ opacity: '1', left: '50%' }))])
         ])
-    ]
+    ],
+    standalone: false
 })
 export class YAxisLabelComponent extends AxisLabelComponent implements OnInit, OnDestroy, OnChanges {
     @Input() options: any;

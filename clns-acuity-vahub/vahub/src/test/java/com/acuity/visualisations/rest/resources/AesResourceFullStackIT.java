@@ -37,13 +37,14 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jayway.restassured.RestAssured;
-import org.assertj.core.api.JUnitSoftAssertions;
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.assertj.core.api.SoftAssertions;
+import org.assertj.core.api.junit.jupiter.InjectSoftAssertions;
+import org.assertj.core.api.junit.jupiter.SoftAssertionsExtension;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
@@ -59,7 +60,7 @@ import static com.acuity.visualisations.rawdatamodel.trellis.grouping.ChartGroup
 import static com.acuity.visualisations.rawdatamodel.trellis.grouping.ChartGroupByOptions.ChartGroupBySetting.X_AXIS;
 import static com.jayway.restassured.RestAssured.given;
 
-@RunWith(SpringJUnit4ClassRunner.class)
+@ExtendWith({SpringExtension.class, SoftAssertionsExtension.class})
 @FullStackITSpringApplicationConfiguration
 public class AesResourceFullStackIT {
 
@@ -70,7 +71,7 @@ public class AesResourceFullStackIT {
 
     private static ObjectMapper mapper;
         
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
         RestAssured.port = port;
 
@@ -82,8 +83,8 @@ public class AesResourceFullStackIT {
         mapper.setTimeZone(TIME_ZONE);
     }
 
-    @Rule
-    public JUnitSoftAssertions softly = new JUnitSoftAssertions();
+    @InjectSoftAssertions
+    private SoftAssertions softly;
 
     @Test
     public void shouldGetTrellisingOptionAsActualValue() throws Exception {

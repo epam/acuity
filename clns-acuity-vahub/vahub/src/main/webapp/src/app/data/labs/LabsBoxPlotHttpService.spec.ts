@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
-import {HttpClient} from '@angular/common/http';
-import {HttpClientTestingModule} from '@angular/common/http/testing';
+import { HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import {async, inject, TestBed} from '@angular/core/testing';
 import {FilterEventService, FilterHttpService, LabsFiltersModel, PopulationFiltersModel} from '../../filters/module';
 
@@ -28,20 +28,22 @@ describe('GIVEN LabsBoxPlotHttpService', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [HttpClientTestingModule],
-            providers: [
-                {provide: HttpClient, useClass: MockHttpClient},
-                {provide: PopulationFiltersModel, useValue: new MockFilterModel()},
-                {provide: LabsFiltersModel, useValue: new MockFilterModel()},
-                FilterEventService,
-                FilterHttpService,
-                {
-                    provide: LabsBoxPlotHttpService,
-                    useClass: LabsBoxPlotHttpService,
-                    deps: [HttpClient, PopulationFiltersModel, LabsFiltersModel]
-                }
-            ]
-        });
+    imports: [],
+    providers: [
+        { provide: HttpClient, useClass: MockHttpClient },
+        { provide: PopulationFiltersModel, useValue: new MockFilterModel() },
+        { provide: LabsFiltersModel, useValue: new MockFilterModel() },
+        FilterEventService,
+        FilterHttpService,
+        {
+            provide: LabsBoxPlotHttpService,
+            useClass: LabsBoxPlotHttpService,
+            deps: [HttpClient, PopulationFiltersModel, LabsFiltersModel]
+        },
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting()
+    ]
+});
     });
 
     describe('WHEN we get trellis options', () => {

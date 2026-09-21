@@ -15,7 +15,7 @@
  */
 
 import {Injectable} from '@angular/core';
-import {ColDef} from 'ag-grid/main';
+import {ColDef} from 'ag-grid-community';
 import {List} from 'immutable';
 import {AbstractColumnModel} from '../AbstractColumnModel';
 
@@ -25,17 +25,17 @@ export class LungFunctionColumnModel extends AbstractColumnModel {
         {field: 'studyId'},
         {field: 'studyPart'},
         {field: 'subjectId'},
-        {field: 'measurementName', enableRowGroup: true},
-        {field: 'measurementTimePoint', enableRowGroup: true},
-        {field: 'daysOnStudy', enableValue: true},
-        {field: 'protocolScheduleTimepoint', enableRowGroup: true},
-        {field: 'visitNumber', enableRowGroup: true, filter: 'number'},
-        {field: 'plannedVisit', enableRowGroup: true},
-        {field: 'resultValue', enableValue: true},
-        {field: 'resultUnit', enableRowGroup: true},
-        {field: 'baselineValue', enableValue: true},
-        {field: 'changeFromBaseline', enableValue: true},
-        {field: 'percentChangeFromBaseline', enableValue: true},
-        {field: 'baselineFlag', enableRowGroup: true}
+        {field: 'measurementName'},
+        {field: 'measurementTimePoint'},
+        {field: 'daysOnStudy'},
+        {field: 'protocolScheduleTimepoint'},
+        {field: 'visitNumber', filter: 'number'},
+        {field: 'plannedVisit'},
+        {field: 'resultValue'},
+        {field: 'resultUnit'},
+        {field: 'baselineValue'},
+        {field: 'changeFromBaseline'},
+        {field: 'percentChangeFromBaseline'},
+        {field: 'baselineFlag'}
     ]);
 }

@@ -124,6 +124,7 @@
         <uniqueFields>
             <field name="patientGuid"/>
             <field name="date"/>
+            <field name="domain"/>
         </uniqueFields>
     </table>
 

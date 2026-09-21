@@ -17,8 +17,10 @@
 package com.acuity.visualisations.rest.config.branding;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Data
+@EqualsAndHashCode(callSuper = false)
 public class SuperUser {
     private String name;
     private String email;

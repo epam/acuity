@@ -24,7 +24,7 @@ import com.acuity.visualisations.rawdatamodel.vo.wrappers.Conmed;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
@@ -33,4 +33,11 @@ public class ConmedsCountsBarChartRequest extends ConmedsRequest {
     private ChartGroupByOptionsFiltered<Conmed, ConmedGroupByOptions> settings;
     @NotNull
     private CountType countType;
+
+    public ChartGroupByOptionsFiltered<Conmed, ConmedGroupByOptions> getSettings() {
+        return settings;
+    }
+    public CountType getCountType() {
+        return countType;
+    }
 }

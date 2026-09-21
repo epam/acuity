@@ -66,6 +66,7 @@ export class LabsTrackDataTransformer extends TrackDataTransformer {
 
         return {
             subjectId: result.subjectId,
+            subject: result.subject,
             data: trackData
         };
     }
@@ -95,6 +96,7 @@ export class LabsTrackDataTransformer extends TrackDataTransformer {
 
         return {
             subjectId: result.subjectId,
+            subject: result.subject,
             data: trackData
         };
     }
@@ -131,6 +133,7 @@ export class LabsTrackDataTransformer extends TrackDataTransformer {
 
         return {
             subjectId: result.subjectId,
+            subject: result.subject,
             data: trackData
         };
     }

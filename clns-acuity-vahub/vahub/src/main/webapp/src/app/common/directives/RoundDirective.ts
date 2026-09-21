@@ -17,7 +17,8 @@
 import {Directive, HostListener, Input} from '@angular/core';
 
 @Directive({
-    selector: '[roundInput]'
+    selector: '[roundInput]',
+    standalone: false
 })
 
 export class RoundDirective {

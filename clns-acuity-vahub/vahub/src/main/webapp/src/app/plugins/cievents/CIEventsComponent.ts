@@ -20,11 +20,12 @@ import {CollapseTabsDirective} from '../../common/directives/CollapseTabsDirecti
 import {PluginsService} from '../PluginsService';
 
 @Component({
-    templateUrl: '../aes/AEsComponent.html'
+    templateUrl: '../aes/AEsComponent.html',
+    standalone: false
 })
 
 export class CIEventsComponent extends AEsComponent implements AfterViewInit {
-    @ViewChild(CollapseTabsDirective) collapseTabsDirective;
+    @ViewChild(CollapseTabsDirective, { static: false }) collapseTabsDirective;
 
     constructor(public pluginsService: PluginsService) {
         super(pluginsService);

@@ -17,6 +17,7 @@
 package com.acuity.visualisations.sdtm.entity;
 
 import com.acuity.visualisations.batch.reader.tablereader.TableRow;
+import com.acuity.visualisations.util.StringUtil;
 
 
 public abstract class SdtmEntity {
@@ -71,7 +72,8 @@ public abstract class SdtmEntity {
         }
         if (value instanceof String) {
             try {
-                return Double.valueOf(((String) value).trim());
+                String trimmed = ((String) value).trim();
+                return StringUtil.isEmptyOrDot(trimmed) ? null : Double.valueOf(trimmed);
             } catch (Exception e) {
                 return null;
             }

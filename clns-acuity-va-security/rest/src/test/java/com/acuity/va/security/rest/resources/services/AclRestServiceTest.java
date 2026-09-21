@@ -22,15 +22,16 @@ import com.acuity.va.security.rest.security.Security;
 import com.acuity.va.security.acl.service.SecurityAclService;
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.Response;
-import org.junit.*;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.runners.MockitoJUnitRunner;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import javax.ws.rs.core.UriBuilder;
 import javax.ws.rs.core.UriInfo;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 import org.springframework.security.acls.model.AlreadyExistsException;
 
@@ -38,7 +39,7 @@ import org.springframework.security.acls.model.AlreadyExistsException;
  *
  * @author Glen
  */
-@RunWith(MockitoJUnitRunner.class)
+@ExtendWith(MockitoExtension.class)
 public class AclRestServiceTest {
 
     @InjectMocks
@@ -64,7 +65,7 @@ public class AclRestServiceTest {
         verifyNoMoreInteractions(securityAclService, securityAclService);
     }
 
-    @Test(expected = WebApplicationException.class)
+    @Test
     public void shouldFailToCreateAclWithInvalidDrugProgramme() {
 
         DrugProgramme drugProgramme = new DrugProgramme(10l);
@@ -74,16 +75,11 @@ public class AclRestServiceTest {
         UriInfo mockUriInfo = mock(UriInfo.class);
         when(mockUriInfo.getAbsolutePathBuilder()).thenReturn(UriBuilder.fromUri("http://localhost/"));
 
-        try {
-            aclRestService.createAcl(mockUriInfo, owner, drugProgramme);
-        } catch (WebApplicationException ex) {
-            verify(securityAclService, times(1)).createAcl(eq(drugProgramme), eq(owner));
-            verifyNoMoreInteractions(securityAclService, securityAclService);
-            
-            assertThat(ex.getResponse().getStatus()).isEqualTo(Response.Status.CONFLICT.getStatusCode());
+        WebApplicationException ex = assertThrows(WebApplicationException.class, () ->
+                aclRestService.createAcl(mockUriInfo, owner, drugProgramme));
 
-            throw ex;
-        }
-
+        verify(securityAclService, times(1)).createAcl(eq(drugProgramme), eq(owner));
+        verifyNoMoreInteractions(securityAclService, securityAclService);
+        assertThat(ex.getResponse().getStatus()).isEqualTo(Response.Status.CONFLICT.getStatusCode());
     }
 }

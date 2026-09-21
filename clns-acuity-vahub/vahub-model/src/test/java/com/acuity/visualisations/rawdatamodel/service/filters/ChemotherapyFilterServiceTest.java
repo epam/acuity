@@ -24,8 +24,8 @@ import com.acuity.visualisations.rawdatamodel.vo.FilterQuery;
 import com.acuity.visualisations.rawdatamodel.vo.FilterResult;
 import com.acuity.visualisations.rawdatamodel.vo.Subject;
 import com.acuity.visualisations.rawdatamodel.vo.wrappers.Chemotherapy;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -35,7 +35,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Matchers.any;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 public class ChemotherapyFilterServiceTest {
@@ -72,7 +72,7 @@ public class ChemotherapyFilterServiceTest {
     @InjectMocks
     private ChemotherapyFilterService filterService;
 
-    @Before
+    @BeforeEach
     public void setup() {
         MockitoAnnotations.initMocks(this);
     }

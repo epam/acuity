@@ -16,7 +16,10 @@
 
 import {Pipe, PipeTransform} from '@angular/core';
 
-@Pipe({name: 'removeParentheses'})
+@Pipe({
+    name: 'removeParentheses',
+    standalone: false
+})
 export class RemoveParenthesesPipe implements PipeTransform {
     transform(value: string): string {
         if (/^\([a-zA-Z]?\).*/.test(value)) {

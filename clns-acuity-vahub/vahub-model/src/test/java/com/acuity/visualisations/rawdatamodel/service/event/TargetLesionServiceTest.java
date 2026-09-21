@@ -28,15 +28,16 @@ import com.acuity.visualisations.rawdatamodel.vo.wrappers.AssessedTargetLesion;
 import com.acuity.visualisations.rawdatamodel.vo.wrappers.Assessment;
 import com.acuity.visualisations.rawdatamodel.vo.wrappers.TargetLesion;
 import com.acuity.va.security.acl.domain.Datasets;
-import org.assertj.core.api.JUnitSoftAssertions;
+import org.assertj.core.api.SoftAssertions;
+import org.assertj.core.api.junit.jupiter.InjectSoftAssertions;
+import org.assertj.core.api.junit.jupiter.SoftAssertionsExtension;
 import org.assertj.core.groups.Tuple;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.Collections;
 import java.util.Date;
@@ -47,10 +48,10 @@ import java.util.Map;
 import static com.acuity.visualisations.rawdatamodel.Constants.DATASETS;
 import static com.acuity.visualisations.rawdatamodel.util.DaysUtil.toDate;
 import static com.google.common.collect.Lists.newArrayList;
-import static org.mockito.Matchers.any;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
-@RunWith(SpringRunner.class)
+@ExtendWith({SpringExtension.class, SoftAssertionsExtension.class})
 @ContextConfiguration(classes = TestConfig.class)
 public class TargetLesionServiceTest {
 
@@ -63,8 +64,8 @@ public class TargetLesionServiceTest {
     @MockBean
     private AssessmentDatasetsDataProvider assessmentDatasetsDataProvider;
 
-    @Rule
-    public final JUnitSoftAssertions softly = new JUnitSoftAssertions();
+    @InjectSoftAssertions
+    private SoftAssertions softly;
 
 
     private static Subject subject;

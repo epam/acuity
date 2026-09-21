@@ -19,6 +19,7 @@ package com.acuity.visualisations.transform.parser;
 import com.acuity.visualisations.exception.InvalidDataFormatException;
 import com.acuity.visualisations.transform.rule.Mapper;
 import com.acuity.visualisations.transform.rule.ParserRule;
+import com.acuity.visualisations.util.StringUtil;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -34,8 +35,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
-
-import static com.acuity.visualisations.data.util.Util.isEmpty;
 
 public class DateParser extends AbstractParser<Temporal> {
 
@@ -372,11 +371,11 @@ public class DateParser extends AbstractParser<Temporal> {
 
     @Override
     protected Temporal convert(String input) throws InvalidDataFormatException {
-        if (isEmpty(input)) {
+        if (StringUtil.isEmptyOrDot(input)) {
             return null;
         }
         String inputTrimmed = input.trim();
-        if (isEmpty(inputTrimmed)) {
+        if (StringUtil.isEmptyOrDot(inputTrimmed)) {
             return null;
         }
 

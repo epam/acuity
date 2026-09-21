@@ -16,7 +16,7 @@
 
 package com.acuity.visualisations.rest.resources;
 
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletResponse;
 
 /**
  * @deprecated please don't inherit this class. use com.acuity.visualisations.rest.resources.util.DetailsOnDemandCsvDownloadingUtils instead

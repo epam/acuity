@@ -21,7 +21,7 @@ import {fromJS, List} from 'immutable';
 import {DynamicAxis, IPlot, ISelectionDetail, PlotType} from '../../common/trellising/store';
 import {CardiacFiltersModel, PopulationFiltersModel} from '../../filters/dataTypes/module';
 import {CardiacHttpService} from './CardiacHttpService';
-import {HttpClient} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import Dataset = Request.Dataset;
 import ChartGroupByOptionsFiltered = Request.ChartGroupByOptionsFiltered;
 import Cardiac = Request.Cardiac;

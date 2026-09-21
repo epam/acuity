@@ -20,9 +20,11 @@ import com.acuity.visualisations.rawdatamodel.vo.AeRaw;
 import com.acuity.visualisations.rawdatamodel.vo.AeSeverityRaw;
 import com.acuity.visualisations.rawdatamodel.vo.Subject;
 import com.acuity.visualisations.rawdatamodel.vo.wrappers.Ae;
-import org.assertj.core.api.JUnitSoftAssertions;
-import org.junit.Rule;
-import org.junit.Test;
+import org.assertj.core.api.SoftAssertions;
+import org.assertj.core.api.junit.jupiter.InjectSoftAssertions;
+import org.assertj.core.api.junit.jupiter.SoftAssertionsExtension;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -32,10 +34,11 @@ import static com.acuity.visualisations.rawdatamodel.util.DateUtils.toDate;
 import static com.google.common.collect.Lists.newArrayList;
 import static com.google.common.collect.Sets.newHashSet;
 
+@ExtendWith(SoftAssertionsExtension.class)
 public class AeChordContributorTest {
 
-    @Rule
-    public final JUnitSoftAssertions softly = new JUnitSoftAssertions();
+    @InjectSoftAssertions
+    private SoftAssertions softly;
 
     private static Subject SUBJECT1 = Subject.builder().subjectId("sid1")
             .subjectCode("E01")

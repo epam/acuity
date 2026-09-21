@@ -32,6 +32,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import org.springframework.batch.item.Chunk;
+
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -104,10 +106,10 @@ public class InputModelChunkWriterImpl extends HoldersAware implements InputMode
     @Autowired
     private IExecutionProfiler executionProfiler;
 
-    public void write(List<? extends OutputModelChunk> outputModelChunks) throws Exception {
+    public void write(Chunk<? extends OutputModelChunk> outputModelChunks) throws Exception {
         executionProfiler.startOperation(getJobExecutionId(), "InputModelChunkWriterImpl.write");
         try {
-            write1(outputModelChunks);
+            write1(outputModelChunks.getItems());
         } finally {
             executionProfiler.stopOperation(getJobExecutionId(), "InputModelChunkWriterImpl.write");
         }

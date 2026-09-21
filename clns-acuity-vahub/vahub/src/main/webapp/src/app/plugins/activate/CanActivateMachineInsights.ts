@@ -17,11 +17,11 @@
 import {Injectable} from '@angular/core';
 import {DatasetViews} from '../../security/DatasetViews';
 import {UserPermissions} from '../../security/UserPermissions';
-import {Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot} from '@angular/router';
+import { Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import {Observable} from 'rxjs/Observable';
 
 @Injectable()
-export class CanActivateMachineInsights implements CanActivate {
+export class CanActivateMachineInsights  {
     constructor(private router: Router,
                 private datasetViews: DatasetViews,
                 private userPermissions: UserPermissions) {

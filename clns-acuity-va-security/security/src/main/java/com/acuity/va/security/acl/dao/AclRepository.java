@@ -211,7 +211,7 @@ public class AclRepository {
                 // lockdown add entry 
                 // manually add set lockdown 
                 LogOperationEntity logOperationEntity = new LogOperationEntity("PERMISSIONS_SET_LOCKDOWN",
-                        com.acuity.va.security.acl.dao.AclRepository.class.getName(),
+                        AclRepository.class.getName(),
                         "SYNCING ACLS JOB", "NO SESSION");
                 logOperationEntity.addLogArg(new LogArgEntity("ACL_CLASSNAME", roi.getClass().getSimpleName()));
                 logOperationEntity.addLogArg(new LogArgEntity("ACL_ID", roi.getId()));

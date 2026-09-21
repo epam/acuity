@@ -22,7 +22,8 @@ import {AbstractDataTypeFilter} from '../AbstractDataTypeFilter';
 
 @Component({
     selector: 'conmedsfilter',
-    templateUrl: 'ConmedsFilterComponent.html'
+    templateUrl: 'ConmedsFilterComponent.html',
+    standalone: false
 })
 export class ConmedsFilterComponent extends AbstractDataTypeFilter implements OnInit, OnDestroy, AfterViewInit {
     @Output()

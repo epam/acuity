@@ -19,12 +19,13 @@ package com.acuity.visualisations.rawdatamodel.service.dod;
 import com.acuity.visualisations.rawdatamodel.test.TestConfig;
 import com.acuity.visualisations.rawdatamodel.vo.AeRaw;
 import com.acuity.visualisations.rawdatamodel.vo.wrappers.Ae;
-import org.assertj.core.api.JUnitSoftAssertions;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.assertj.core.api.SoftAssertions;
+import org.assertj.core.api.junit.jupiter.InjectSoftAssertions;
+import org.assertj.core.api.junit.jupiter.SoftAssertionsExtension;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.List;
 import java.util.Map;
@@ -33,7 +34,7 @@ import static com.acuity.visualisations.rawdatamodel.generators.AEGenerator.AE1;
 import static com.acuity.visualisations.rawdatamodel.util.Column.DatasetType;
 import static com.google.common.collect.Lists.newArrayList;
 
-@RunWith(SpringRunner.class)
+@ExtendWith({SpringExtension.class, SoftAssertionsExtension.class})
 @ContextConfiguration(classes = TestConfig.class)
 public class AmlCommonServiceTest {
     
@@ -56,8 +57,8 @@ public class AmlCommonServiceTest {
 
     private AmlCommonService amlCommonService = new AmlCommonService();
 
-    @Rule
-    public final JUnitSoftAssertions softly = new JUnitSoftAssertions();
+    @InjectSoftAssertions
+    private SoftAssertions softly;
 
     @Test
     public void shouldGetAcuityAMLData() throws Exception {

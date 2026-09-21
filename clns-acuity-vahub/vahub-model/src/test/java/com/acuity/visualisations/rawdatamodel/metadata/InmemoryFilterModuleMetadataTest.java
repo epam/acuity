@@ -73,22 +73,22 @@ import com.acuity.visualisations.rawdatamodel.service.event.TumourColumnRangeSer
 import com.acuity.visualisations.rawdatamodel.service.event.VitalService;
 import com.acuity.visualisations.rawdatamodel.suites.interfaces.LabTests;
 import com.acuity.va.security.acl.domain.Datasets;
-import org.assertj.core.api.JUnitSoftAssertions;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.experimental.categories.Category;
-import org.junit.runner.RunWith;
+import org.assertj.core.api.SoftAssertions;
+import org.assertj.core.api.junit.jupiter.InjectSoftAssertions;
+import org.assertj.core.api.junit.jupiter.SoftAssertionsExtension;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
-import org.mockito.Matchers;
+import org.mockito.ArgumentMatchers;
 import org.mockito.Mock;
-import org.mockito.runners.MockitoJUnitRunner;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import static net.javacrumbs.jsonunit.fluent.JsonFluentAssert.assertThatJson;
-import static org.mockito.Matchers.any;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
-@RunWith(MockitoJUnitRunner.class)
-@Category(LabTests.class)
+@ExtendWith({MockitoExtension.class, SoftAssertionsExtension.class})
+
 public class InmemoryFilterModuleMetadataTest {
 
     @InjectMocks
@@ -148,8 +148,8 @@ public class InmemoryFilterModuleMetadataTest {
     @Mock
     private BiomarkerService biomarkerService;
 
-    @Rule
-    public final JUnitSoftAssertions softly = new JUnitSoftAssertions();
+    @InjectSoftAssertions
+    private SoftAssertions softly;
 
     @Test
     public void testGetMetadataItemWhenAllFiltersWithNullValues() {
@@ -174,7 +174,7 @@ public class InmemoryFilterModuleMetadataTest {
         when(vitalService.getAvailableFilters(any(Datasets.class), any(VitalFilters.class), any(PopulationFilters.class))).thenReturn(new VitalFilters());
 
         when(tumourColumnRangeService.getAvailableTherapyFilters(any(Datasets.class), any(TherapyFilters.class), any(PopulationFilters.class),
-                Matchers.any()))
+                ArgumentMatchers.any()))
                 .thenReturn(new TherapyFilters());
 
         when(liverService.getAvailableFilters(any(Datasets.class), any(LiverFilters.class), any(PopulationFilters.class)))

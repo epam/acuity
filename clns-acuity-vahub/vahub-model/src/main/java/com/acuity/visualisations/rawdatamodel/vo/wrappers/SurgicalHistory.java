@@ -28,7 +28,7 @@ import lombok.ToString;
 import java.util.Date;
 
 @ToString(callSuper = true)
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = false)
 public final class SurgicalHistory extends SubjectAwareWrapper<SurgicalHistoryRaw> implements HasStartDate {
 
     public SurgicalHistory(SurgicalHistoryRaw event, Subject subject) {

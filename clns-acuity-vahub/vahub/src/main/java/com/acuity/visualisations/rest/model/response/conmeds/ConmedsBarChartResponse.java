@@ -22,12 +22,14 @@ import com.acuity.visualisations.rawdatamodel.vo.compatibility.TrellisedBarChart
 import com.acuity.visualisations.rawdatamodel.vo.wrappers.Conmed;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.util.List;
 
 @Data
+@EqualsAndHashCode(callSuper = false)
 @NoArgsConstructor
 @AllArgsConstructor
 public class ConmedsBarChartResponse implements Serializable {

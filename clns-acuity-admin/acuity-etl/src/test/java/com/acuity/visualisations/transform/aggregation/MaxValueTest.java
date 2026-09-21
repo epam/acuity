@@ -17,8 +17,8 @@
 package com.acuity.visualisations.transform.aggregation;
 
 import com.acuity.visualisations.transform.function.MaxValue;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 
@@ -30,7 +30,7 @@ public class MaxValueTest {
     public void integersTest () {
         Integer[] arg = new Integer[]{10, null, 20, 30, 1};
         Number res = (new MaxValue()).function(arg);
-        Assert.assertEquals(res, 30);
+        Assertions.assertEquals(res, 30);
     }
     @Test
     public void bigDecimalsTest () {
@@ -41,13 +41,13 @@ public class MaxValueTest {
                 null,
                 new BigDecimal(10.00)};
         Number res = (new MaxValue()).function(arg);
-        Assert.assertEquals(res, new BigDecimal(30));
+        Assertions.assertEquals(res, new BigDecimal(30));
    }
 
    @Test
     public void stringsTest () {
        String[] arg = new String[]{"10", "20", "", "30", null, "40.4", "1"};
         Number res = (new MaxValue()).function(arg);
-        Assert.assertEquals(res, 40);
+        Assertions.assertEquals(res, 40);
    }
 }

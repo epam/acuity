@@ -15,7 +15,7 @@
  */
 
 import {BrowserModule} from '@angular/platform-browser';
-import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule, HttpClientXsrfModule} from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import {NgModule} from '@angular/core';
 import {HashLocationStrategy, Location, LocationStrategy} from '@angular/common';
 import {FormsModule} from '@angular/forms';
@@ -23,7 +23,7 @@ import {RouterModule} from '@angular/router';
 import {StoreModule} from '@ngrx/store';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {CookieModule} from 'ngx-cookie';
+import {CookieService} from 'ngx-cookie-service';
 import {ExportUtils} from './common/utils/ExportUtils';
 import {environment} from '../environments/environment';
 import {EffectsModule} from '@ngrx/effects';
@@ -71,17 +71,19 @@ export const httpInterceptorProviders = [
     { provide: HTTP_INTERCEPTORS, useClass: ErrorHandlingInterceptor, multi: true }
 ];
 
-@NgModule({
-    imports: [
-        BrowserModule,
+@NgModule({ declarations: [AppComponent,
+        BaseComponent,
+        PluginsSideNavBarComponent,
+        StudySelectionSideNavBarComponent,
+        GovernanceStatementModalComponent,
+        ...routingComponents
+    ],
+    bootstrap: [AppComponent], imports: [BrowserModule,
         BrowserAnimationsModule,
-        HttpClientModule,
-        HttpClientXsrfModule,
         FormsModule,
-        RouterModule.forRoot(appRoutes, {useHash: true}),
+        RouterModule.forRoot(appRoutes, { useHash: true }),
         StoreModule.forRoot(reducers),
-        !environment.production ? StoreDevtoolsModule.instrument({ maxAge: 99 }) : [],
-        CookieModule.forRoot(),
+        !environment.production ? StoreDevtoolsModule.instrument({ maxAge: 99, connectInZone: true }) : [],
         ProgressComponentModule,
         ModalMessageComponentModule,
         NavigatorComponentModule,
@@ -91,22 +93,13 @@ export const httpInterceptorProviders = [
         DetailsTableComponentModule,
         CommonDirectivesModule,
         EffectsModule.forRoot([]),
-        ...routingImports
-    ],
-    declarations: [AppComponent,
-        BaseComponent,
-        PluginsSideNavBarComponent,
-        StudySelectionSideNavBarComponent,
-        PluginsSideNavBarComponent,
-        GovernanceStatementModalComponent,
-        ...routingComponents
-    ],
-    providers: [
+        ...routingImports], providers: [
+        CookieService,
         httpInterceptorProviders,
         HttpClient,
         Location,
         TimeoutService,
-        {provide: LocationStrategy, useClass: HashLocationStrategy},
+        { provide: LocationStrategy, useClass: HashLocationStrategy },
         SessionHttpService,
         SessionEventService,
         EnvService,
@@ -128,9 +121,8 @@ export const httpInterceptorProviders = [
         FiltersUtils,
         ExportUtils,
         PluginsService,
-        ConfigurationService
-    ],
-    bootstrap: [AppComponent],
-})
+        ConfigurationService,
+        provideHttpClient(withInterceptorsFromDi())
+    ] })
 export class AppModule {
 }

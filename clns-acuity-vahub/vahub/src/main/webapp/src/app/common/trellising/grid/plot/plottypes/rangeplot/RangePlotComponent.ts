@@ -46,7 +46,8 @@ import {ChartMouseEvent} from '../../../../../../../vahub-charts/types/interface
     selector: 'rangeplot',
     template: '<div></div>',
     providers: [RangePlotConfigService, RangePlotService],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class RangePlotComponent extends AbstractPlotComponent implements OnChanges, OnDestroy {
     @Input() plotData: List<RangeChartSeries<any, any>>;
@@ -97,7 +98,7 @@ export class RangePlotComponent extends AbstractPlotComponent implements OnChang
             }
             if (changes['selection'] && !is(changes['selection'].previousValue, changes['selection'].currentValue)) {
                 this.updateSelectionRendering();
-                this.chart.update();
+                this.chart?.update();
             }
         }
 
@@ -257,7 +258,7 @@ export class RangePlotComponent extends AbstractPlotComponent implements OnChang
             });
 
             this.currentSelection = selection;
-            this.chart.update();
+            this.chart?.update();
         }
     }
 

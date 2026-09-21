@@ -23,7 +23,7 @@ import com.acuity.visualisations.rawdatamodel.vo.wrappers.QtProlongation;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
@@ -32,4 +32,11 @@ public class QtProlongationBarChartRequest extends QtProlongationRequest {
     private CountType countType;
     @NotNull
     private ChartGroupByOptionsFiltered<QtProlongation, QtProlongationGroupByOptions> settings;
+
+    public CountType getCountType() {
+        return countType;
+    }
+    public ChartGroupByOptionsFiltered<QtProlongation, QtProlongationGroupByOptions> getSettings() {
+        return settings;
+    }
 }

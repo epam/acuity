@@ -21,7 +21,8 @@ import {TrackLegendConfig} from './ITrackLegend';
     selector: 'timeline-track-legend',
     templateUrl: 'TimelineTrackLegendComponent.html',
     styleUrls: ['./TimelineTrackLegendComponent.css'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class TimelineTrackLegendComponent {
     @Input() trackLegendConfig: TrackLegendConfig;

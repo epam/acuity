@@ -35,7 +35,8 @@ import {List} from 'immutable';
     selector: 'aes-track',
     templateUrl: 'AesTrackComponent.html',
     styleUrls: ['../TimelineTrackComponent.css'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class AesTrackComponent extends AbstractTrackComponent implements OnChanges {
     @Input() track: ITrack;

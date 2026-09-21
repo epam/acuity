@@ -26,7 +26,8 @@ export interface SpotfireAnalysis {
 @Component({
     selector: 'spotfire-component',
     templateUrl: 'SpotfireComponent.html',
-    styleUrls: ['SpotfireComponent.css']
+    styleUrls: ['SpotfireComponent.css'],
+    standalone: false
 })
 export class SpotfireComponent {
     @Input() moduletype: string;

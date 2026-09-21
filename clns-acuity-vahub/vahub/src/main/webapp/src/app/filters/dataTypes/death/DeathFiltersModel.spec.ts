@@ -15,7 +15,7 @@
  */
 
 import {inject, TestBed} from '@angular/core/testing';
-import {HttpClientTestingModule} from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 
 import {DeathFiltersModel} from './DeathFiltersModel';
 import {PopulationFiltersModel} from '../population/PopulationFiltersModel';
@@ -26,6 +26,7 @@ import {SessionHttpService} from '../../../session/module';
 import {MockDatasetViews, MockEnvService, MockFilterEventService} from '../../../common/MockClasses';
 import {EnvService} from '../../../env/module';
 import {DatasetViews} from '../../../security/DatasetViews';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 class MockFilterHttpService {
 }
@@ -35,23 +36,23 @@ describe('GIVEN a DeathFiltersModel class', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [HttpClientTestingModule],
-            providers: [
-                SessionHttpService,
-                {provide: DatasetViews, useClass: MockDatasetViews},
-                {provide: EnvService, useValue: new MockEnvService()},
-                {provide: FilterHttpService, useValue: new MockFilterHttpService()},
-                {provide: PopulationFiltersModel, deps: [FilterHttpService, FilterEventService]},
-                {provide: FilterEventService, useClass: MockFilterEventService},
-                {
-                    provide: DeathFiltersModel,
-                    useFactory: (p: PopulationFiltersModel, f: FilterHttpService,
-                                 e: FilterEventService, d: DatasetViews): DeathFiltersModel =>
-                        new DeathFiltersModel(p, f, e, d),
-                    deps: [PopulationFiltersModel, FilterHttpService, FilterEventService, DatasetViews]
-                }
-            ]
-        });
+    imports: [],
+    providers: [
+        SessionHttpService,
+        { provide: DatasetViews, useClass: MockDatasetViews },
+        { provide: EnvService, useValue: new MockEnvService() },
+        { provide: FilterHttpService, useValue: new MockFilterHttpService() },
+        { provide: PopulationFiltersModel, deps: [FilterHttpService, FilterEventService] },
+        { provide: FilterEventService, useClass: MockFilterEventService },
+        {
+            provide: DeathFiltersModel,
+            useFactory: (p: PopulationFiltersModel, f: FilterHttpService, e: FilterEventService, d: DatasetViews): DeathFiltersModel => new DeathFiltersModel(p, f, e, d),
+            deps: [PopulationFiltersModel, FilterHttpService, FilterEventService, DatasetViews]
+        },
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting()
+    ]
+});
     });
 
     beforeEach(inject([DeathFiltersModel], (_deathFiltersModel: DeathFiltersModel) => {

@@ -22,10 +22,10 @@ import com.acuity.va.security.acl.domain.UsernameFullNameAndLinkedAccount;
 import com.acuity.va.security.config.annotation.FlatXmlNullDataSetLoader;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
 import com.github.springtestdbunit.annotation.DbUnitConfiguration;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.List;
 
@@ -36,7 +36,7 @@ import static org.assertj.core.api.Assertions.tuple;
  *
  * @author Glen
  */
-@RunWith(SpringJUnit4ClassRunner.class)
+@ExtendWith(SpringExtension.class)
 @TransactionalMyBatisDBUnitH2Test
 @DatabaseSetup("/dbunit/security/dbunit-all-security.xml")
 @DbUnitConfiguration(dataSetLoader = FlatXmlNullDataSetLoader.class)

@@ -90,12 +90,13 @@ public class TumourWaterfallService extends AssessedTargetLesionService
         return groupedByTrellis.entrySet().stream().map(trellisSet -> {
             final Set<GroupByKey<AssessedTargetLesion, ATLGroupByOptions>> items = trellisSet.getValue();
 
+            @SuppressWarnings("unchecked")
+            Comparator<GroupByKey<AssessedTargetLesion, ATLGroupByOptions>> sortOrder =
+                    ((Comparator<GroupByKey<AssessedTargetLesion, ATLGroupByOptions>>)
+                            (a, b) -> ((Comparable) b.getValue(Y_AXIS)).compareTo(a.getValue(Y_AXIS)))
+                            .thenComparing(e -> Objects.toString(e.getValue(X_AXIS)));
             final List<String> xCategories = items.stream()
-                    .sorted(
-                            Comparator.<GroupByKey<AssessedTargetLesion, ATLGroupByOptions>, Comparable>comparing(e -> (Comparable) e.getValue(Y_AXIS))
-                                    .reversed()
-                                    .thenComparing(e -> Objects.toString(e.getValue(X_AXIS)))
-                    )
+                    .sorted(sortOrder)
                     .map(e -> Objects.toString(e.getValue(X_AXIS))).distinct().collect(Collectors.toList());
 
 
@@ -133,7 +134,7 @@ public class TumourWaterfallService extends AssessedTargetLesionService
         List<Integer> weeks = getAssessmentWeeks(datasets, filters, populationFilters, false);
 
         // AssessmentType.WEEK is not passed to assessmentTypes because weeks are already transformed into "Week N" option on the front-end
-        return new AssessmentAxisOptions<>(axisOptions, weeks, new AssessmentType[] {AssessmentAxisOptions.AssessmentType.BEST_CHANGE});
+        return new AssessmentAxisOptions<>(axisOptions, weeks, new AssessmentType[] {AssessmentType.BEST_CHANGE});
     }
 
 
@@ -144,7 +145,7 @@ public class TumourWaterfallService extends AssessedTargetLesionService
         FilterResult<AssessedTargetLesion> filtered = getFilteredData(datasets, assessedTargetLesionFilters, populationFilters);
         Map<GroupByOption.Param, Object> yAxisParams = settings.getSettings().getOptions().get(Y_AXIS).getParamMap();
         AssessmentType assessmentType = AssessmentAxisOptions.getAssessmentType(yAxisParams);
-        if (AssessmentAxisOptions.AssessmentType.WEEK.equals(assessmentType)) {
+        if (AssessmentType.WEEK.equals(assessmentType)) {
             return TrellisUtil.getTrellisOptions(filtered.getFilteredResult(), ATLGroupByOptions.ASSESSMENT_RESPONSE, ATLGroupByOptions.BEST_RESPONSE);
         }
         return TrellisUtil.getTrellisOptions(filtered.getFilteredResult(), ATLGroupByOptions.BEST_RESPONSE);

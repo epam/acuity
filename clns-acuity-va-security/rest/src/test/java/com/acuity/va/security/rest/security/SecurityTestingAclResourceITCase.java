@@ -27,19 +27,20 @@ import com.github.springtestdbunit.annotation.DbUnitConfiguration;
 import com.google.common.collect.Lists;
 import javax.ws.rs.core.UriBuilder;
 import javax.ws.rs.core.UriInfo;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.AccessDeniedException;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import org.springframework.security.core.context.SecurityContextHolder;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-@RunWith(SpringJUnit4ClassRunner.class)
+@ExtendWith(SpringExtension.class)
 @TransactionalMyBatisDBUnitH2Test
 @DatabaseSetup({"/dbunit/security/dbunit-all-security.xml"})
 @DbUnitConfiguration(dataSetLoader = FlatXmlNullDataSetLoader.class)
@@ -58,12 +59,14 @@ public class SecurityTestingAclResourceITCase {
         aclResource.getAllPermissionForAcl(DrugProgramme.class.getSimpleName(), 2L);
     }
 
-    @Test(expected = AccessDeniedException.class)
+    @Test
     public void shouldDenyWithout_VIEW_VISUALATIONS_permissionFor_getAllPermissionForAcl_DrugProgramme() {
+        assertThrows(AccessDeniedException.class, () -> {
 
         SecurityContextHolder.getContext().setAuthentication(new TestingAuthenication("bob the builder"));
 
         aclResource.getAllPermissionForAcl(DrugProgramme.class.getSimpleName(), 2L);
+        });
     }
 
     @Test
@@ -74,12 +77,14 @@ public class SecurityTestingAclResourceITCase {
         aclResource.getAllPermissionForAcl(ClinicalStudy.class.getSimpleName(), 4L);
     }
 
-    @Test(expected = AccessDeniedException.class)
+    @Test
     public void shouldDenyWithout_VIEW_VISUALATIONS_permissionFor_getAllPermissionForAcl_ClinicalStudy() {
+        assertThrows(AccessDeniedException.class, () -> {
 
         SecurityContextHolder.getContext().setAuthentication(new TestingAuthenication("bob the builder"));
 
         aclResource.getAllPermissionForAcl(ClinicalStudy.class.getSimpleName(), 2L);
+        });
     }
 
     @Test
@@ -90,12 +95,14 @@ public class SecurityTestingAclResourceITCase {
         aclResource.getAllPermissionForAcl(AcuityDataset.class.getSimpleName(), 10L);
     }
 
-    @Test(expected = AccessDeniedException.class)
+    @Test
     public void shouldDenyWithout_VIEW_VISUALATIONS_permissionFor_getAllPermissionForAcl_Dataset() {
+        assertThrows(AccessDeniedException.class, () -> {
 
         SecurityContextHolder.getContext().setAuthentication(new TestingAuthenication("bob the builder"));
 
         aclResource.getAllPermissionForAcl(AcuityDataset.class.getSimpleName(), 10L);
+        });
     }
 
     @Test
@@ -108,12 +115,14 @@ public class SecurityTestingAclResourceITCase {
         aclResource.createAcl(mockUriInfo, "Glen", new DrugProgramme(100L));
     }
 
-    @Test(expected = AccessDeniedException.class)
-    public void shouldDenyWithout_ACL_ADMINISTRATOR_roleFor_createAcl() throws Exception {
+    @Test
+    public void shouldDenyWithout_ACL_ADMINISTRATOR_roleFor_createAcl(){
+        assertThrows(AccessDeniedException.class, () -> {
 
         SecurityContextHolder.getContext().setAuthentication(new TestingAuthenication("User3", Lists.newArrayList("NO_ACL_ADMINISTRATOR")));
 
         aclResource.createAcl(null, "Glen", new DrugProgramme(100L));
+        });
     }
 
 }

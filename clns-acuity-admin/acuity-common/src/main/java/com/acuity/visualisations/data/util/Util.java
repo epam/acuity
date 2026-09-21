@@ -136,18 +136,18 @@ public final class Util {
         return new java.sql.Date(date.getTime());
     }
 
-    public static java.sql.Timestamp getSQLTimestamp(LocalDateTime date) {
+    public static Timestamp getSQLTimestamp(LocalDateTime date) {
         if (date == null) {
             return null;
         }
         return Timestamp.valueOf(date);
     }
 
-    public static java.sql.Timestamp getSQLTimestamp(Date date) {
+    public static Timestamp getSQLTimestamp(Date date) {
         if (date == null) {
             return null;
         }
-        return new java.sql.Timestamp(date.getTime());
+        return new Timestamp(date.getTime());
     }
 
     public static String getParserName(String type) {

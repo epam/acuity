@@ -20,7 +20,8 @@ import {MapRangeFilterItemModel} from './MapRangeFilterItemModel';
 @Component({
     selector: 'maprangefilter',
     templateUrl: 'MapRangeFilterComponent.html',
-    styleUrls: ['../../filters.css']
+    styleUrls: ['../../filters.css'],
+    standalone: false
 })
 
 export class MapRangeFilterComponent {

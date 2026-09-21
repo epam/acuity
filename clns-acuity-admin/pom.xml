@@ -26,7 +26,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.5.4.RELEASE</version>
+        <version>3.3.5</version>
     </parent>
     <description>Multi module build for adminui</description>
     <modules>
@@ -37,17 +37,14 @@
     </modules>
 
     <properties>
-        <spring.boot.version>1.5.4.RELEASE</spring.boot.version>
-        <spring.security.version>4.2.3.RELEASE</spring.security.version>
-        <spring.batch.version>3.0.7.RELEASE</spring.batch.version>
+        <spring.boot.version>3.3.5</spring.boot.version>
+        <spring.batch.version>5.0.3</spring.batch.version>
         <va-security.version>${project.version}</va-security.version>
 
-        <java-version>1.8</java-version>
-        <kotlin.version>1.1.2-2</kotlin.version>
+        <java-version>21</java-version>
 
         <parso.version>2.0.9</parso.version>
 
-        <slf4j.version>1.7.6</slf4j.version>
         <log4j.version>1.2.17</log4j.version>
         <oracle.jdbc.version>11.2.0.3</oracle.jdbc.version>
         <jtds.version>1.2.6</jtds.version>
@@ -91,6 +88,24 @@
 
     <dependencyManagement>
         <dependencies>
+            <!-- Force Jakarta EE 10 versions (Spring Boot 3.x) over older transitive pins -->
+            <dependency>
+                <groupId>jakarta.annotation</groupId>
+                <artifactId>jakarta.annotation-api</artifactId>
+                <version>2.1.1</version>
+            </dependency>
+            <dependency>
+                <groupId>jakarta.xml.bind</groupId>
+                <artifactId>jakarta.xml.bind-api</artifactId>
+                <version>4.0.2</version>
+            </dependency>
+            <dependency>
+                <groupId>jakarta.servlet</groupId>
+                <artifactId>jakarta.servlet-api</artifactId>
+                <version>6.0.0</version>
+                <scope>provided</scope>
+            </dependency>
+
             <!-- Spring Batch dependencies -->
             <dependency>
                 <groupId>org.springframework.batch</groupId>
@@ -131,22 +146,6 @@
             </dependency>
 
             <dependency>
-                <groupId>com.fasterxml.jackson.core</groupId>
-                <artifactId>jackson-core</artifactId>
-                <version>2.6.7</version>
-            </dependency>
-            <dependency>
-                <groupId>com.fasterxml.jackson.core</groupId>
-                <artifactId>jackson-databind</artifactId>
-                <version>2.6.7</version>
-            </dependency>
-            <dependency>
-                <groupId>com.fasterxml.jackson.jaxrs</groupId>
-                <artifactId>jackson-jaxrs-json-provider</artifactId>
-                <version>2.6.7</version>
-            </dependency>
-
-            <dependency>
                 <groupId>net.sf.opencsv</groupId>
                 <artifactId>opencsv</artifactId>
                 <version>2.3</version>
@@ -176,11 +175,6 @@
                 <version>8.0.36</version>
             </dependency>
 
-            <dependency>
-                <groupId>net.sf.ehcache</groupId>
-                <artifactId>ehcache</artifactId>
-                <version>2.10.4</version>
-            </dependency>
             <dependency>
                 <groupId>commons-fileupload</groupId>
                 <artifactId>commons-fileupload</artifactId>
@@ -227,11 +221,6 @@
             <!--                <version>12.2.0.1</version>-->
             <!--                <scope>provided</scope>-->
             <!--            </dependency>-->
-            <dependency>
-                <groupId>org.postgresql</groupId>
-                <artifactId>postgresql</artifactId>
-                <version>9.4.1212.jre7</version>
-            </dependency>
             <dependency>
                 <groupId>net.sourceforge.jtds</groupId>
                 <artifactId>jtds</artifactId>
@@ -307,10 +296,30 @@
                 <version>1.4</version>
                 <scope>test</scope>
             </dependency>
+            <!-- mockito-core version managed by Spring Boot BOM (Mockito 5.x) -->
             <dependency>
                 <groupId>org.mockito</groupId>
-                <artifactId>mockito-core</artifactId>
-                <version>1.9.5</version>
+                <artifactId>mockito-junit-jupiter</artifactId>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter-api</artifactId>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter-engine</artifactId>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.junit.platform</groupId>
+                <artifactId>junit-platform-launcher</artifactId>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.junit.vintage</groupId>
+                <artifactId>junit-vintage-engine</artifactId>
                 <scope>test</scope>
             </dependency>
             <dependency>
@@ -357,12 +366,6 @@
                 <version>1.0.6</version>
             </dependency>
 
-            <dependency>
-                <groupId>org.projectlombok</groupId>
-                <artifactId>lombok</artifactId>
-                <version>1.16.10</version>
-                <scope>provided</scope>
-            </dependency>
 
             <dependency>
                 <groupId>org.jetbrains.kotlin</groupId>
@@ -370,8 +373,49 @@
                 <version>${kotlin.version}</version>
             </dependency>
 
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>2023.0.3</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>5.10.3</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>5.10.3</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-launcher</artifactId>
+            <version>1.10.3</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.vintage</groupId>
+            <artifactId>junit-vintage-engine</artifactId>
+            <version>5.10.3</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-junit-jupiter</artifactId>
+            <version>5.11.0</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
 
     <build>
         <plugins>
@@ -409,7 +453,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.5.1</version>
+                <version>3.11.0</version>
                 <executions>
                     <!-- Replacing default-compile as it is treated specially by maven -->
                     <execution>
@@ -437,14 +481,13 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <source>${java-version}</source>
-                    <target>${java-version}</target>
+                    <release>${java-version}</release>
                 </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
-                <version>2.4</version>
+                <version>3.4.0</version>
                 <configuration>
                     <warSourceExcludes>**/jndi/*.*,**/stable/*.*</warSourceExcludes>
                 </configuration>

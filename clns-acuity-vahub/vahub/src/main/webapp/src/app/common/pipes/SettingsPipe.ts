@@ -17,7 +17,10 @@
 import {Pipe, PipeTransform} from '@angular/core';
 import {AggregationType} from '../trellising/store';
 
-@Pipe({name: 'toSettingsTitle'})
+@Pipe({
+    name: 'toSettingsTitle',
+    standalone: false
+})
 export class SettingsPipe implements PipeTransform {
     transform(value: string, noneIfEmpty = false, settingString?: string): string {
         switch (value) {

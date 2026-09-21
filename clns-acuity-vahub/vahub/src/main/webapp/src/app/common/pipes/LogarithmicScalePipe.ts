@@ -19,7 +19,10 @@ import {lowerFirst} from 'lodash';
 import {ScaleTypes} from '../trellising/store';
 import {knownAcronyms} from '../utils/Utils';
 
-@Pipe({name: 'logarithmic'})
+@Pipe({
+    name: 'logarithmic',
+    standalone: false
+})
 export class LogarithmicScalePipe implements PipeTransform {
 
     transform(value: string, scaleType: ScaleTypes, preserveTitle?: boolean): string {

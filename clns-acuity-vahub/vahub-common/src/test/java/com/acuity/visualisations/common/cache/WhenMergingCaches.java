@@ -16,7 +16,7 @@
 
 package com.acuity.visualisations.common.cache;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static com.google.common.collect.Lists.newArrayList;
 import static org.assertj.core.api.Assertions.assertThat;

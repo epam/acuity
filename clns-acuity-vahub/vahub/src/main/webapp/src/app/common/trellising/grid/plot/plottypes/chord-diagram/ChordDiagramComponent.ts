@@ -61,7 +61,8 @@ export interface ChordData {
     templateUrl: 'ChordDiagramComponent.html',
     styleUrls: ['ChordDiagramComponent.css'],
     providers: [ChordDiagramConfigService],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class ChordDiagramComponent extends AbstractPlotComponent implements OnChanges, OnDestroy {
 
@@ -220,7 +221,7 @@ export class ChordDiagramComponent extends AbstractPlotComponent implements OnCh
                 const isSelected = selectedColumns.findIndex(sel => sel.start === serie.name.start && sel.end === serie.name.end) !== -1;
                 serie.select(isSelected);
             });
-            this.chart.update();
+            this.chart?.update();
         }
     }
 
@@ -228,7 +229,7 @@ export class ChordDiagramComponent extends AbstractPlotComponent implements OnCh
         this.chart.series.forEach(serie => {
             serie.select(false);
         });
-        this.chart.update();
+        this.chart?.update();
     }
 
     protected handleClickEvent(event: ChartMouseEvent): boolean {

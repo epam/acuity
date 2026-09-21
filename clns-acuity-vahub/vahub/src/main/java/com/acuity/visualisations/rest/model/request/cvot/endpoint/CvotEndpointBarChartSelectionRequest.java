@@ -23,7 +23,7 @@ import com.acuity.visualisations.rawdatamodel.vo.wrappers.CvotEndpoint;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
@@ -31,4 +31,9 @@ public class CvotEndpointBarChartSelectionRequest extends CvotEndpointRequest {
     @NotNull
     private ChartSelection<CvotEndpoint, CvotEndpointGroupByOptions,
             ChartSelectionItem<CvotEndpoint, CvotEndpointGroupByOptions>> selection;
+
+    public ChartSelection<CvotEndpoint, CvotEndpointGroupByOptions,
+            ChartSelectionItem<CvotEndpoint, CvotEndpointGroupByOptions>> getSelection() {
+        return selection;
+    }
 }
