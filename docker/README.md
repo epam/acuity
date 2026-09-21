@@ -5,6 +5,9 @@ from this repo; nothing is pulled from a registry.
 
 Run every command from this `docker/` directory.
 
+## TL;DR
+Just want to start the stack locally? Run `make up_build`
+
 ## Services
 
 Compose project name: `acuity`. Startup order is enforced via healthchecks and
