@@ -106,7 +106,7 @@ public class LungFunctionMeasurementsOverTimeChartResourceTest {
         request.setDatasets(DUMMY_DETECT_DATASETS.getDatasetsList());
         request.setLungFunctionFilters(LungFunctionFilters.empty());
         request.setPopulationFilters(PopulationFilters.empty());
-        request.setYAxisOption(LungFunctionGroupByOptions.ACTUAL_VALUE);
+        request.setResultType(LungFunctionGroupByOptions.ACTUAL_VALUE);
 
         when(lungFunctionService.getTrellisOptions(any(Datasets.class),
                 any(LungFunctionFilters.class), any(PopulationFilters.class),

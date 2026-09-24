@@ -83,7 +83,7 @@ public class LungMeanRangeChartResource {
                 requestBody.getDatasetsObject(),
                 requestBody.getLungFunctionFilters(),
                 requestBody.getPopulationFilters(),
-                requestBody.getYAxisOption());
+                requestBody.getResultType());
     }
 
     @PostMapping("selection")
