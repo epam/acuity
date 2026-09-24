@@ -119,7 +119,7 @@ public class RenalCreatinineClearanceResourceTest {
         request.setDatasets(DUMMY_DETECT_DATASETS.getDatasetsList());
         request.setPopulationFilters(PopulationFilters.empty());
         request.setRenalFilters(RenalFilters.empty());
-        request.setYAxisOption(RenalGroupByOptions.ACTUAL_VALUE);
+        request.setyAxisOption(RenalGroupByOptions.ACTUAL_VALUE);
 
         when(mockRenalService.getTrellisOptions(any(Datasets.class), any(RenalFilters.class), any(PopulationFilters.class),
                 any(RenalGroupByOptions.class)))

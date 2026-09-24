@@ -114,7 +114,7 @@ public class VitalsMeanRangePlotResourceTest {
         request.setDatasets(DUMMY_DETECT_DATASETS.getDatasetsList());
         request.setVitalsFilters(VitalFilters.empty());
         request.setPopulationFilters(PopulationFilters.empty());
-        request.setYAxisOption(VitalGroupByOptions.PERCENTAGE_CHANGE_FROM_BASELINE);
+        request.setyAxisOption(VitalGroupByOptions.PERCENTAGE_CHANGE_FROM_BASELINE);
 
         when(mockVitalService.getMeanRangeTrellisOptions(any(Datasets.class),
                 any(VitalFilters.class), any(PopulationFilters.class),

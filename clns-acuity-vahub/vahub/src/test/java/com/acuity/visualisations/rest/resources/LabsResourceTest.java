@@ -193,7 +193,7 @@ public class LabsResourceTest {
         LabsTrellisRequest requestBody = new LabsTrellisRequest();
         requestBody.setLabsFilters(labsFilters);
         requestBody.setPopulationFilters(populationFilters);
-        requestBody.setYAxisOption(LabGroupByOptions.ACTUAL_VALUE);
+        requestBody.setyAxisOption(LabGroupByOptions.ACTUAL_VALUE);
         requestBody.setDatasets(DUMMY_DETECT_DATASETS.getDatasetsList());
         //requestBody.setSettings(ChartGroupByOptionsFiltered.<Lab, LabGroupByOptions>builder(null).build());
 

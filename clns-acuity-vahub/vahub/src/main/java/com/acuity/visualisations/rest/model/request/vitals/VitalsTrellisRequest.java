@@ -18,8 +18,11 @@ package com.acuity.visualisations.rest.model.request.vitals;
 
 import com.acuity.visualisations.rawdatamodel.trellis.grouping.VitalGroupByOptions;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AccessLevel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 
 import jakarta.validation.constraints.NotNull;
 
@@ -28,9 +31,15 @@ import jakarta.validation.constraints.NotNull;
 public class VitalsTrellisRequest extends VitalsRequest {
     @NotNull
     @JsonProperty("yAxisOption")
+    @Getter(AccessLevel.NONE)
+    @Setter(AccessLevel.NONE)
     private VitalGroupByOptions yAxisOption;
 
-    public VitalGroupByOptions getYAxisOption() {
+    public VitalGroupByOptions getyAxisOption() {
         return yAxisOption;
+    }
+
+    public void setyAxisOption(VitalGroupByOptions yAxisOption) {
+        this.yAxisOption = yAxisOption;
     }
 }

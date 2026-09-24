@@ -18,8 +18,11 @@ package com.acuity.visualisations.rest.model.request.labs;
 
 import com.acuity.visualisations.rawdatamodel.trellis.grouping.LabGroupByOptions;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AccessLevel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 
 import jakarta.validation.constraints.NotNull;
 
@@ -29,10 +32,16 @@ public class LabsTrellisRequest extends LabsRequest {
 
     @NotNull
     @JsonProperty("yAxisOption")
+    @Getter(AccessLevel.NONE)
+    @Setter(AccessLevel.NONE)
     private LabGroupByOptions yAxisOption;
 
 
-    public LabGroupByOptions getYAxisOption() {
+    public LabGroupByOptions getyAxisOption() {
         return yAxisOption;
+    }
+
+    public void setyAxisOption(LabGroupByOptions yAxisOption) {
+        this.yAxisOption = yAxisOption;
     }
 }

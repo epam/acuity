@@ -34,7 +34,7 @@
 <!--        <property name="lobHandler" ref="oracleLobHandler"/>-->
     </bean>
 
-    <bean id="jobLauncher" class="org.springframework.batch.core.launch.support.SimpleJobLauncher">
+    <bean id="jobLauncher" class="org.springframework.batch.core.launch.support.TaskExecutorJobLauncher">
         <property name="jobRepository" ref="jobRepository"/>
         <property name="taskExecutor">
             <bean class="org.springframework.core.task.SyncTaskExecutor"/>
@@ -42,11 +42,6 @@
     </bean>
 
     <bean id="jobRegistry" class="org.springframework.batch.core.configuration.support.MapJobRegistry"/>
-
-    <bean id="jobRegistryBeanPostProcessor"
-          class="org.springframework.batch.core.configuration.support.JobRegistryBeanPostProcessor">
-        <property name="jobRegistry" ref="jobRegistry"/>
-    </bean>
 
     <bean id="jobLauncherDetails" class="com.acuity.visualisations.task.JobLauncherDetails">
         <property name="jobLauncher" ref="jobLauncher"/>
@@ -96,9 +91,9 @@
         <property name="annotationClass" value="org.springframework.stereotype.Repository"/>
     </bean>
 
-    <aop:config>
+        <aop:config>
         <aop:pointcut id="retryPointcut"
-                      expression="execution(* org.springframework.batch.core.launch.support.SimpleJobLauncher.*(..))"/>
+                      expression="execution(* org.springframework.batch.core.launch.support.TaskExecutorJobLauncher.*(..))"/>
         <aop:advisor advice-ref="retryAdvice" pointcut-ref="retryPointcut"/>
     </aop:config>
 

@@ -91,14 +91,14 @@ public class LabsResource {
     @Cacheable(condition = Constants.EMPTY_EVENT_AND_POPULATION_FILTER)
     public List<TrellisOptions<LabGroupByOptions>> getAvailableTrellising(@RequestBody @Valid LabsTrellisRequest requestBody) {
         return labService.getTrellisOptions(
-                requestBody.getDatasetsObject(), requestBody.getEventFilters(), requestBody.getPopulationFilters(), requestBody.getYAxisOption());
+                requestBody.getDatasetsObject(), requestBody.getEventFilters(), requestBody.getPopulationFilters(), requestBody.getyAxisOption());
     }
 
     @RequestMapping(value = "/range-trellising", method = POST)
     @Cacheable(condition = Constants.EMPTY_EVENT_AND_POPULATION_FILTER)
     public List<TrellisOptions<LabGroupByOptions>> getAvailableRangeTrellising(@RequestBody @Valid LabsTrellisRequest requestBody) {
         return labService.getRangeTrellisOptions(
-                requestBody.getDatasetsObject(), requestBody.getEventFilters(), requestBody.getPopulationFilters(), requestBody.getYAxisOption());
+                requestBody.getDatasetsObject(), requestBody.getEventFilters(), requestBody.getPopulationFilters(), requestBody.getyAxisOption());
     }
 
     @RequestMapping(value = "/range-series-by-options", method = POST)

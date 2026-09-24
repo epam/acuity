@@ -333,7 +333,7 @@ public class LabsResourceFullStackIT {
         labsRequest.setLabsFilters(new LabFilters());
         labsRequest.setPopulationFilters(new PopulationFilters());
         labsRequest.setDatasets(DUMMY_ACUITY_DATASETS.getDatasetsList());
-        labsRequest.setYAxisOption(LabGroupByOptions.ACTUAL_VALUE);
+        labsRequest.setyAxisOption(LabGroupByOptions.ACTUAL_VALUE);
 
         String url = "/resources/labs/trellising";
         String jsonResponse = given()

@@ -337,8 +337,8 @@
             <artifactId>caffeine</artifactId>
         </dependency>
         <dependency>
-            <groupId>commons-fileupload</groupId>
-            <artifactId>commons-fileupload</artifactId>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-fileupload2-javax</artifactId>
         </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
@@ -346,8 +346,8 @@
             <version>3.4</version>
         </dependency>
         <dependency>
-            <groupId>commons-collections</groupId>
-            <artifactId>commons-collections</artifactId>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-collections4</artifactId>
         </dependency>
         <dependency>
             <groupId>com.google.guava</groupId>

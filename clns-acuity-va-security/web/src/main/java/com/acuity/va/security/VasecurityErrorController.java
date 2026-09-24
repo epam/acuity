@@ -16,14 +16,14 @@
 
 package com.acuity.va.security;
 
-import org.springframework.boot.autoconfigure.web.ErrorController;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class VasecurityErrorController implements ErrorController {
+public class VasecurityErrorController {
 
-    @Override
-    public String getErrorPath() {
-         return "/error";
+    @GetMapping("/error")
+    public String errorPage() {
+        return "errorPage.html";
     }
 }

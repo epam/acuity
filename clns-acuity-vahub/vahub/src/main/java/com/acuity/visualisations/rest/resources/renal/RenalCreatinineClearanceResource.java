@@ -57,7 +57,7 @@ public class RenalCreatinineClearanceResource {
                 requestBody.getDatasetsObject(),
                 requestBody.getRenalFilters(),
                 requestBody.getPopulationFilters(),
-                requestBody.getYAxisOption()));
+                requestBody.getyAxisOption()));
     }
 
     @PostMapping("boxplot")

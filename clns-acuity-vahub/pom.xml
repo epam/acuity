@@ -27,7 +27,9 @@
         <java-version>21</java-version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <!-- Spring versions -->
-        <spring.boot.version>3.3.5</spring.boot.version>
+        <spring.boot.version>3.5.16</spring.boot.version>
+        <spring.cloud.version>2025.0.3</spring.cloud.version>
+        <postgresql.version>42.7.13</postgresql.version>
 
         <acuity-flyway.version>LATEST</acuity-flyway.version>
         <va-security.version>${project.version}</va-security.version>
@@ -45,7 +47,7 @@
 
         <!-- Testing -->
         <assertj.version>3.25.3</assertj.version>
-        <dbunit.version>2.5.1</dbunit.version>
+        <dbunit.version>2.5.2</dbunit.version>
         <h2.version>1.4.190</h2.version>
         <swagger.version>2.5.0</swagger.version>
 
@@ -150,6 +152,11 @@
                 <type>pom</type>
                 <version>${spring.boot.version}</version>
                 <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.postgresql</groupId>
+                <artifactId>postgresql</artifactId>
+                <version>${postgresql.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.acuity.visualisations.va-security</groupId>

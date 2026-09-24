@@ -18,8 +18,11 @@ package com.acuity.visualisations.rest.model.request.cardiac;
 
 import com.acuity.visualisations.rawdatamodel.trellis.grouping.CardiacGroupByOptions;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AccessLevel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 
 import jakarta.validation.constraints.NotNull;
 
@@ -28,9 +31,15 @@ import jakarta.validation.constraints.NotNull;
 public class CardiacTrellisRequest extends CardiacRequest {
     @NotNull
     @JsonProperty("yAxisOption")
+    @Getter(AccessLevel.NONE)
+    @Setter(AccessLevel.NONE)
     private CardiacGroupByOptions yAxisOption;
 
-    public CardiacGroupByOptions getYAxisOption() {
+    public CardiacGroupByOptions getyAxisOption() {
         return yAxisOption;
+    }
+
+    public void setyAxisOption(CardiacGroupByOptions yAxisOption) {
+        this.yAxisOption = yAxisOption;
     }
 }
