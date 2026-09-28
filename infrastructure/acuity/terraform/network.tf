@@ -5,7 +5,7 @@ data "aws_availability_zones" "available" {
 locals {
   azs            = slice(data.aws_availability_zones.available.names, 0, 2)
   public_subnets = ["10.0.0.0/24", "10.0.1.0/24"]
-  app_port       = 8000 # va-hub-ui, va-hub, admin, va-security all listen here
+  app_port       = 8000 # va-hub-ui, va-hub and admin all listen here
 
   egress_all = {
     all_ipv4 = {
@@ -141,36 +141,6 @@ module "sg_admin" {
   egress_rules = local.egress_all
 }
 
-# va-security: never reached from the ALB - only va-hub and admin call it.
-module "sg_va_security" {
-  source  = "terraform-aws-modules/security-group/aws"
-  version = "~> 6.0"
-
-  name        = "acuity-poc-va-security"
-  description = "va-security task - inbound from va-hub and admin only"
-
-  vpc_id = module.vpc.vpc_id
-
-  ingress_rules = {
-    from_va_hub = {
-      description                  = "va-hub - va-security"
-      ip_protocol                  = "tcp"
-      from_port                    = local.app_port
-      to_port                      = local.app_port
-      referenced_security_group_id = module.sg_va_hub.id
-    }
-    from_admin = {
-      description                  = "admin - va-security"
-      ip_protocol                  = "tcp"
-      from_port                    = local.app_port
-      to_port                      = local.app_port
-      referenced_security_group_id = module.sg_admin.id
-    }
-  }
-
-  egress_rules = local.egress_all
-}
-
 # flyway: one-off migration task, no inbound; egress narrows to RDS-only once its task exists 
 module "sg_flyway" {
   source  = "terraform-aws-modules/security-group/aws"
@@ -202,13 +172,6 @@ module "sg_rds" {
       from_port                    = 5432
       to_port                      = 5432
       referenced_security_group_id = module.sg_va_hub.id
-    }
-    from_va_security = {
-      description                  = "va-security - RDS"
-      ip_protocol                  = "tcp"
-      from_port                    = 5432
-      to_port                      = 5432
-      referenced_security_group_id = module.sg_va_security.id
     }
     from_admin = {
       description                  = "admin - RDS"

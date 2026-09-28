@@ -1,4 +1,4 @@
-IMAGES := postgres flyway admin va-hub
+IMAGES := postgres flyway admin va-hub va-hub-ui
 
 # main = full stack, initdb = just postgres + migrations (see docker-compose.yml profiles)
 PROFILE ?= main
