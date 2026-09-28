@@ -42,16 +42,17 @@ import com.acuity.visualisations.rawdatamodel.vo.compatibility.linechart.Trellis
 import com.acuity.visualisations.rawdatamodel.vo.plots.SelectionDetail;
 import com.acuity.visualisations.rawdatamodel.vo.wrappers.AssessedTargetLesion;
 import com.acuity.va.security.acl.domain.Datasets;
-import org.assertj.core.api.JUnitSoftAssertions;
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.assertj.core.api.SoftAssertions;
+import org.assertj.core.api.junit.jupiter.InjectSoftAssertions;
+import org.assertj.core.api.junit.jupiter.SoftAssertionsExtension;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -70,10 +71,10 @@ import static com.acuity.visualisations.rawdatamodel.util.Constants.MISSING;
 import static com.google.common.collect.Lists.newArrayList;
 import static java.util.stream.Collectors.toSet;
 import static org.assertj.core.api.Assertions.tuple;
-import static org.mockito.Matchers.any;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
-@RunWith(SpringRunner.class)
+@ExtendWith({SpringExtension.class, SoftAssertionsExtension.class})
 @ContextConfiguration(classes = TestConfig.class)
 public class TumourLineChartServiceTest {
 
@@ -86,10 +87,10 @@ public class TumourLineChartServiceTest {
     @MockBean
     private AssessedTargetLesionDatasetsDataProvider tumourDatasetsDataProvider;
 
-    @Rule
-    public final JUnitSoftAssertions softly = new JUnitSoftAssertions();
+    @InjectSoftAssertions
+    private SoftAssertions softly;
 
-    @Before
+    @BeforeEach
     public void setup() {
         MockitoAnnotations.initMocks(this);
     }

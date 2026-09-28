@@ -24,11 +24,11 @@ import com.acuity.va.security.acl.domain.AcuitySidDetails;
 import com.acuity.va.security.auth.common.ISecurityResourceClient;
 import com.acuity.va.security.common.service.PeopleResourceClient;
 import com.google.common.collect.Lists;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.runners.MockitoJUnitRunner;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.io.IOException;
 import java.util.List;
@@ -38,10 +38,10 @@ import static com.acuity.visualisations.config.util.TestConstants.DUMMY_ACUITY_D
 import static com.google.common.collect.Lists.newArrayList;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.tuple;
-import static org.mockito.Matchers.eq;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.when;
 
-@RunWith(MockitoJUnitRunner.class)
+@ExtendWith(MockitoExtension.class)
 public class WhenRunningCohortUsersService {
 
     @Mock

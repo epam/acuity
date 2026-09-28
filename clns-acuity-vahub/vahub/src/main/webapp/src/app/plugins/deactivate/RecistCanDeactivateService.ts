@@ -15,7 +15,7 @@
  */
 
 import {Injectable} from '@angular/core';
-import {CanDeactivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router} from '@angular/router';
+import { ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
 import {Observable} from 'rxjs/Observable';
 import {RecistFiltersModel} from '../../filters/dataTypes/recist/RecistFiltersModel';
 import {PopulationFiltersModel} from '../../filters/module';
@@ -26,7 +26,7 @@ import {TimelineConfigService} from '../../common/trellising/store/services/Time
 import {TumourResponseComponent} from '../module';
 
 @Injectable()
-export class CanDeactivateRecist extends CanDeactivateBase implements CanDeactivate<TumourResponseComponent> {
+export class CanDeactivateRecist extends CanDeactivateBase  {
 
     constructor(renalFiltersModel: RecistFiltersModel,
                 protected filtersService: FiltersService,

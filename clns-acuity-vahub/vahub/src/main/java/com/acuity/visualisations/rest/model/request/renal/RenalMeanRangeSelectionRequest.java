@@ -23,11 +23,15 @@ import com.acuity.visualisations.rawdatamodel.vo.wrappers.Renal;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
 public class RenalMeanRangeSelectionRequest extends RenalRequest {
     @NotNull
     private ChartSelection<Renal, RenalGroupByOptions, ChartSelectionItem<Renal, RenalGroupByOptions>> selection;
+
+    public ChartSelection<Renal, RenalGroupByOptions, ChartSelectionItem<Renal, RenalGroupByOptions>> getSelection() {
+        return selection;
+    }
 }

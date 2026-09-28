@@ -20,7 +20,7 @@ import com.acuity.visualisations.common.study.metadata.MetadataItem;
 import static com.google.common.collect.Lists.newArrayList;
 import static org.assertj.core.api.Assertions.assertThat;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  *

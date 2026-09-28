@@ -22,7 +22,7 @@ import com.acuity.visualisations.rawdatamodel.vo.Subject;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
@@ -31,4 +31,11 @@ public class PopulationBarChartRequest extends PopulationRequest {
     private ChartGroupByOptionsFiltered<Subject, PopulationGroupByOptions> settings;
     @NotNull
     private com.acuity.visualisations.rawdatamodel.axes.CountType countType;
+
+    public ChartGroupByOptionsFiltered<Subject, PopulationGroupByOptions> getSettings() {
+        return settings;
+    }
+    public com.acuity.visualisations.rawdatamodel.axes.CountType getCountType() {
+        return countType;
+    }
 }

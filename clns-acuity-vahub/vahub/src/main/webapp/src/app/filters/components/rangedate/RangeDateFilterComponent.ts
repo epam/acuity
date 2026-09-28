@@ -25,7 +25,8 @@ import {BaseFilterItemModel} from '../BaseFilterItemModel';
 @Component({
     selector: 'rangedatefilter',
     templateUrl: 'RangeDateFilterComponent.html',
-    styleUrls: ['./RangeDateFilterComponent.css']
+    styleUrls: ['./RangeDateFilterComponent.css'],
+    standalone: false
 })
 export class RangeDateFilterComponent extends BaseRangeComponent implements AfterContentInit {
 

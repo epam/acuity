@@ -22,7 +22,8 @@ import ExtendedOptions = Request.ExtendedOptions;
 @Component({
     selector: 'home',
     templateUrl: 'HomeComponent.html',
-    styleUrls: ['./HomeComponent.css']
+    styleUrls: ['./HomeComponent.css'],
+    standalone: false
 })
 export class HomeComponent {
     loading: boolean;

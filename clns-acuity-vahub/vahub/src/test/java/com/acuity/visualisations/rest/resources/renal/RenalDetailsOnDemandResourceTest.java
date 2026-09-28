@@ -24,13 +24,13 @@ import com.acuity.visualisations.rest.model.request.renal.RenalRequest;
 import com.acuity.visualisations.rest.model.request.DetailsOnDemandRequest;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.ImmutableMap;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.Collections;
@@ -42,8 +42,9 @@ import static com.acuity.visualisations.config.util.TestConstants.DUMMY_ACUITY_D
 import static com.google.common.collect.Sets.newHashSet;
 import static org.hamcrest.Matchers.hasKey;
 import static org.hamcrest.Matchers.hasValue;
-import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.anyInt;
+import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.ArgumentMatchers.nullable;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.eq;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -54,8 +55,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 
-@RunWith(SpringRunner.class)
-@WebMvcTest(controllers = RenalDetailsOnDemandResource.class, secure = false)
+@ExtendWith(SpringExtension.class)
+@WebMvcTest(controllers = RenalDetailsOnDemandResource.class)
 public class RenalDetailsOnDemandResourceTest {
 
     private static final String RESOURCE_URL = "/resources/renal/details-on-demand";
@@ -83,8 +84,8 @@ public class RenalDetailsOnDemandResourceTest {
                 eq(DUMMY_ACUITY_DATASETS),
                 any(),
                 any(),
-                anyInt(),
-                anyInt())).thenReturn(detailsOnDemandData);
+                anyLong(),
+                anyLong())).thenReturn(detailsOnDemandData);
 
 
         this.mvc.perform(post(RESOURCE_URL + "/data")
@@ -99,8 +100,8 @@ public class RenalDetailsOnDemandResourceTest {
         verify(renalService, times(1))
                 .getDetailsOnDemandData(eq(DUMMY_ACUITY_DATASETS), any(),
                         any(),
-                        anyInt(),
-                        anyInt());
+                        anyLong(),
+                        anyLong());
         verifyNoMoreInteractions(renalService);
     }
 

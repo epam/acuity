@@ -382,7 +382,7 @@ public class AeChordDiagramService extends BaseEventService<AeRaw, Ae, AeGroupBy
 
         Collection<AeChordContributor> contributors = getAeChordContributors(datasets,
                 chordContributors);
-        return doDCommonService.getDoDColumns(Column.DatasetType.fromDatasets(datasets), contributors);
+        return doDCommonService.getDoDColumns(DatasetType.fromDatasets(datasets), contributors);
     }
 
     @Override

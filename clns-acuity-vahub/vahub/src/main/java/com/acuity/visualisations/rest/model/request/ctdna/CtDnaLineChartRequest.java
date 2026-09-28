@@ -26,4 +26,8 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 public class CtDnaLineChartRequest extends CtDnaRequest {
     private ChartGroupByOptionsFiltered<CtDna, CtDnaGroupByOptions> settings;
+
+    public ChartGroupByOptionsFiltered<CtDna, CtDnaGroupByOptions> getSettings() {
+        return settings;
+    }
 }

@@ -21,7 +21,7 @@ import {fromJS, List} from 'immutable';
 import {DynamicAxis, IPlot, PlotType} from '../../common/trellising/store';
 import {getServerPath} from '../../common/utils/Utils';
 import {CerebrovascularHttpService} from './CerebrovascularHttpService';
-import {HttpClient} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import Dataset = Request.Dataset;
 import TrellisedBarChart = Request.TrellisedBarChart;
 import CerebrovascularBarChartRequest = Request.CerebrovascularBarChartRequest;

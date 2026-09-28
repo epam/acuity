@@ -36,12 +36,13 @@ import org.glassfish.jersey.client.ClientConfig;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.server.ServerProperties;
 import org.glassfish.jersey.test.TestProperties;
-import org.junit.After;
-import org.junit.Before;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.mockito.Mockito;
-import org.springframework.util.SocketUtils;
 
 import javax.ws.rs.core.Application;
+import java.io.IOException;
+import java.net.ServerSocket;
 import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -101,10 +102,14 @@ public abstract class AbstractSpringContextJerseyTest extends SpringContextJerse
      */
     @Override
     protected int getPort() {
-        return SocketUtils.findAvailableTcpPort();
+        try (ServerSocket s = new ServerSocket(0)) {
+            return s.getLocalPort();
+        } catch (IOException e) {
+            throw new RuntimeException("Failed to find available port", e);
+        }
     }
 
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
         mockSecurityAclService = (SecurityAclService) getSpringApplicationContext().getBean("securityAclService");
@@ -137,7 +142,7 @@ public abstract class AbstractSpringContextJerseyTest extends SpringContextJerse
         assertThat(mockRefreshCachesTask).isNotNull();
     }
 
-    @After
+    @AfterEach
     public void after() {
         Mockito.reset(mockSecurity, mockUserService, mockUserRepository, mockCustomUserDetailsManager, mockSecurityAclService, 
             mockMyAnalyticsService,  mockAclRestService,

@@ -33,8 +33,8 @@ import com.acuity.va.security.acl.domain.Datasets;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.assertj.core.util.Lists;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -52,7 +52,7 @@ import static com.acuity.visualisations.rawdatamodel.trellis.grouping.ChartGroup
 import static com.acuity.visualisations.rawdatamodel.trellis.grouping.VitalGroupByOptions.ARM;
 import static com.acuity.visualisations.rawdatamodel.trellis.grouping.VitalGroupByOptions.MEASUREMENT;
 import static org.hamcrest.Matchers.*;
-import static org.mockito.Matchers.any;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -70,7 +70,7 @@ public class VitalsMeasurementsOverTimeChartResourceTest {
 
     private ObjectMapper mapper = new ObjectMapper();
 
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
         mvc = MockMvcBuilders.standaloneSetup(resource).build();
@@ -131,8 +131,8 @@ public class VitalsMeasurementsOverTimeChartResourceTest {
                 any(VitalFilters.class),
                 any(PopulationFilters.class)
         )).thenReturn(Arrays.asList(
-                new TrellisedBoxPlot<>(),
-                new TrellisedBoxPlot<>()
+                new TrellisedBoxPlot<Vital, VitalGroupByOptions>(),
+                new TrellisedBoxPlot<Vital, VitalGroupByOptions>()
         ));
 
         this.mvc.perform(post(RESOURCE_URL + "/values")

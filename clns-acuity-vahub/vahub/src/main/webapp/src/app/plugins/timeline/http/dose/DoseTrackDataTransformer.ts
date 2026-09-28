@@ -64,6 +64,7 @@ export class DoseTrackDataTransformer extends TrackDataTransformer {
 
         return {
             subjectId: result.subjectId,
+            subject: result.subject,
             data: trackData
         };
     }
@@ -131,6 +132,7 @@ export class DoseTrackDataTransformer extends TrackDataTransformer {
 
         return {
             subjectId: result.subjectId,
+            subject: result.subject,
             data: trackData
         };
     }

@@ -26,8 +26,8 @@ import com.acuity.va.security.acl.domain.DatasetsRequest;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -41,8 +41,8 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import static com.acuity.visualisations.config.util.TestConstants.DUMMY_DETECT_DATASET;
 import static com.acuity.visualisations.config.util.TestConstants.DUMMY_DETECT_DATASETS;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.eq;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -62,7 +62,7 @@ public class SubjectsResourceTest {
 
     private String SUBJECT_ID1 = DUMMY_DETECT_DATASET.getId() + "-7916598662";
 
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
         mvc = MockMvcBuilders.standaloneSetup(subjectsResource).build();

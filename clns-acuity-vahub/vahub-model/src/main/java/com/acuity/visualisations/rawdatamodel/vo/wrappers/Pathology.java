@@ -28,7 +28,7 @@ import lombok.ToString;
 import java.util.OptionalInt;
 
 @ToString(callSuper = true)
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = false)
 public final class Pathology extends SubjectAwareWrapper<PathologyRaw> {
 
     public Pathology(PathologyRaw event, Subject subject) {

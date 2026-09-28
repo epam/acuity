@@ -41,15 +41,16 @@ import com.acuity.visualisations.rawdatamodel.vo.exposure.Cycle;
 import com.acuity.visualisations.rawdatamodel.vo.exposure.ExposureTooltip;
 import com.acuity.visualisations.rawdatamodel.vo.wrappers.Exposure;
 import com.acuity.va.security.acl.domain.Datasets;
-import org.assertj.core.api.JUnitSoftAssertions;
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.assertj.core.api.SoftAssertions;
+import org.assertj.core.api.junit.jupiter.InjectSoftAssertions;
+import org.assertj.core.api.junit.jupiter.SoftAssertionsExtension;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -78,12 +79,11 @@ import static com.google.common.collect.Sets.newHashSet;
 import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.toSet;
 import static org.assertj.core.groups.Tuple.tuple;
-import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.anyObject;
-import static org.mockito.Matchers.eq;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.when;
 
-@RunWith(SpringRunner.class)
+@ExtendWith({SpringExtension.class, SoftAssertionsExtension.class})
 @ContextConfiguration(classes = TestConfig.class)
 public class ExposureServiceTest {
 
@@ -96,8 +96,8 @@ public class ExposureServiceTest {
     @MockBean
     private ExposureLineChartColoringService coloringService;
 
-    @Rule
-    public final JUnitSoftAssertions softly = new JUnitSoftAssertions();
+    @InjectSoftAssertions
+    private SoftAssertions softly;
 
     // Double.toString(1d) yields "1.0" while decimalFormat.format(1d) yields "1"
     private final static DecimalFormat decimalFormat = new DecimalFormat();
@@ -198,7 +198,7 @@ public class ExposureServiceTest {
             .timeFromAdministration(4.0).protocolScheduleDay(1).nominalHour(2.0)
             .cycle(new Cycle(CYCLE_1, ANALYTE_1, null, null, false)).build(), subject1);
 
-    @Before
+    @BeforeEach
     public void setUp() {
         List<Exposure> events = newArrayList(exposure1, exposure2, exposure3, exposure4, exposure5,
                 exposure6, exposure7, exposure8, exposure9, exposureNullVisit);
@@ -952,8 +952,8 @@ public class ExposureServiceTest {
                                                                     String colorGroup1, String colorGroup2,
                                                                     String colorValue1, String colorValue2) {
         //Given
-        when(coloringService.getColor(eq(colorGroup1), anyObject())).thenReturn(colorValue1);
-        when(coloringService.getColor(eq(colorGroup2), anyObject())).thenReturn(colorValue2);
+        when(coloringService.getColor(eq(colorGroup1), any())).thenReturn(colorValue1);
+        when(coloringService.getColor(eq(colorGroup2), any())).thenReturn(colorValue2);
 
         when(exposureDatasetsDataProvider.loadData(any(Datasets.class)))
                 .thenReturn(newArrayList(exposure1, exposure2,

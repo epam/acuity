@@ -36,7 +36,7 @@ import static com.acuity.visualisations.rawdatamodel.util.Constants.NO;
 import static com.acuity.visualisations.rawdatamodel.util.Constants.YES;
 
 @ToString(callSuper = true)
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = false)
 public final class Conmed extends SubjectAwareWrapper<ConmedRaw> implements HasStartEndDate {
 
     public Conmed(ConmedRaw event, Subject subject) {

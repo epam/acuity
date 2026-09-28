@@ -30,7 +30,8 @@ import {Component, EventEmitter, OnInit, OnDestroy, Input, Output} from '@angula
 @Component({
     selector: 'app-modal-message',
     templateUrl: 'ModalMessageComponent.html',
-    styleUrls: ['./ModalMessageComponent.css']
+    styleUrls: ['./ModalMessageComponent.css'],
+    standalone: false
 })
 export class ModalMessageComponent implements OnInit, OnDestroy {
 

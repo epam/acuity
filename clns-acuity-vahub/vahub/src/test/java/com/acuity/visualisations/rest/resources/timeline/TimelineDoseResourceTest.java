@@ -30,15 +30,15 @@ import com.acuity.visualisations.rest.model.request.dose.TimelineDosingRequest;
 import com.acuity.va.security.acl.domain.Datasets;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
@@ -50,8 +50,9 @@ import java.util.List;
 
 import static com.acuity.visualisations.config.util.TestConstants.DUMMY_DETECT_DATASETS;
 import static com.google.common.collect.Lists.newArrayList;
-import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.eq;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.ArgumentMatchers.nullable;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
@@ -59,8 +60,8 @@ import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@RunWith(SpringRunner.class)
-@WebMvcTest(controllers = TimelineDoseResource.class, secure = false)
+@ExtendWith(SpringExtension.class)
+@WebMvcTest(controllers = TimelineDoseResource.class)
 @SuppressWarnings("unchecked")
 public class TimelineDoseResourceTest {
     private ObjectMapper mapper;
@@ -73,7 +74,7 @@ public class TimelineDoseResourceTest {
 
     private MockMvc mvc;
 
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
         mvc = MockMvcBuilders.standaloneSetup(timelineDoseResource).build();
@@ -105,13 +106,13 @@ public class TimelineDoseResourceTest {
 
         TimelineDosingRequest timelineDosingRequest = new TimelineDosingRequest();
         timelineDosingRequest.setDayZero(new TAxes<>(DayZeroType.DAYS_SINCE_FIRST_DOSE));
-        timelineDosingRequest.setPopulationFilters(new com.acuity.visualisations.rawdatamodel.filters.PopulationFilters());
+        timelineDosingRequest.setPopulationFilters(new PopulationFilters());
         timelineDosingRequest.setDoseFilters(new DrugDoseFilters());
-        timelineDosingRequest.setMaxDoseType(com.acuity.visualisations.rawdatamodel.vo.timeline.dose.MaxDoseType.PER_STUDY);
+        timelineDosingRequest.setMaxDoseType(MaxDoseType.PER_STUDY);
         timelineDosingRequest.setDatasets(DUMMY_DETECT_DATASETS.getDatasetsList());
 
         when(mockTimelineDoseService.getDosingSummaries(any(Datasets.class), any(), any(),
-                any(), any(DrugDoseFilters.class), any(com.acuity.visualisations.rawdatamodel.filters.PopulationFilters.class))).thenReturn(response);
+                any(), any(DrugDoseFilters.class), any(PopulationFilters.class))).thenReturn(response);
 
         MockHttpServletRequestBuilder post = MockMvcRequestBuilders.
                 post("/resources/timeline/dosing/dose-summaries").
@@ -127,7 +128,7 @@ public class TimelineDoseResourceTest {
         verify(mockTimelineDoseService, times(1)).getDosingSummaries(
                 eq(DUMMY_DETECT_DATASETS),
                 eq(DayZeroType.DAYS_SINCE_FIRST_DOSE),
-                any(String.class),
+                nullable(String.class),
                 any(MaxDoseType.class),
                 any(DrugDoseFilters.class),
                 any(PopulationFilters.class)

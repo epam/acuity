@@ -70,7 +70,8 @@ export interface SelectionObject {
     selector: 'heat-map',
     templateUrl: 'HeatMapPlotComponent.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    providers: [HeatMapPlotConfigService]
+    providers: [HeatMapPlotConfigService],
+    standalone: false
 })
 export class HeatMapPlotComponent extends AbstractPlotComponent implements OnChanges, OnDestroy {
 
@@ -344,7 +345,7 @@ export class HeatMapPlotComponent extends AbstractPlotComponent implements OnCha
                     });
                 });
             });
-            this.chart.update();
+            this.chart?.update();
         }
     }
 

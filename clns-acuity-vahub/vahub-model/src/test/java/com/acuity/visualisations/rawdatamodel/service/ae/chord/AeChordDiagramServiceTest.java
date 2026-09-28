@@ -38,14 +38,16 @@ import com.acuity.visualisations.rawdatamodel.vo.plots.ChordContributor;
 import com.acuity.visualisations.rawdatamodel.vo.plots.ChordDiagramSelectionDetail;
 import com.acuity.visualisations.rawdatamodel.vo.wrappers.Ae;
 import com.acuity.va.security.acl.domain.Datasets;
-import org.assertj.core.api.JUnitSoftAssertions;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.assertj.core.api.SoftAssertions;
+import org.assertj.core.api.junit.jupiter.InjectSoftAssertions;
+import org.assertj.core.api.junit.jupiter.SoftAssertionsExtension;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -77,10 +79,10 @@ import static com.google.common.collect.Lists.newArrayList;
 import static com.google.common.collect.Sets.newHashSet;
 import static java.util.Collections.singletonList;
 import static org.assertj.core.groups.Tuple.tuple;
-import static org.mockito.Matchers.any;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
-@RunWith(SpringRunner.class)
+@ExtendWith({SpringExtension.class, SoftAssertionsExtension.class})
 @ContextConfiguration(classes = TestConfig.class)
 public class AeChordDiagramServiceTest {
 
@@ -105,8 +107,8 @@ public class AeChordDiagramServiceTest {
 
     @Autowired
     private AeChordDiagramService aeChordDiagramService;
-    @Rule
-    public final JUnitSoftAssertions softly = new JUnitSoftAssertions();
+    @InjectSoftAssertions
+    private SoftAssertions softly;
 
     @MockBean
     private PopulationDatasetsDataProvider populationDatasetsDataProvider;
@@ -654,7 +656,7 @@ public class AeChordDiagramServiceTest {
                 .subjectId(subject.getSubjectId()).build(), subject);
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void shouldThrowExceptionIfTimeFrameMoreThanThirty() {
         Map<String, String> additionalSettings = new HashMap<>();
         additionalSettings.put("timeFrame", "35");
@@ -663,7 +665,8 @@ public class AeChordDiagramServiceTest {
         when(aeIncidenceDatasetsDataProvider.loadData(any(Datasets.class))).thenReturn(events);
         when(populationDatasetsDataProvider.loadData(any(Datasets.class))).thenReturn(Arrays.asList(SUBJECT1_ARM1));
 
-        aeChordDiagramService.getAesOnChordDiagram(DATASETS, additionalSettings,
-                AeFilters.empty(), PopulationFilters.empty());
+        assertThrows(IllegalArgumentException.class, () ->
+                aeChordDiagramService.getAesOnChordDiagram(DATASETS, additionalSettings,
+                        AeFilters.empty(), PopulationFilters.empty()));
     }
 }

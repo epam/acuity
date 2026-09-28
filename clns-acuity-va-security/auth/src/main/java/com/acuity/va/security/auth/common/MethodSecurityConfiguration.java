@@ -18,46 +18,29 @@ package com.acuity.va.security.auth.common;
 
 import com.acuity.va.security.acl.permissions.AcuityPermissions;
 import com.acuity.va.security.auth.local.nosecurity.LocalNoSecurityAclPermissionEvaluator;
-import com.acuity.va.security.auth.remote.AcuityRemoteAclPermissionEvaluator;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Profile;
 import org.springframework.security.access.PermissionEvaluator;
 import org.springframework.security.acls.domain.DefaultPermissionFactory;
 import org.springframework.security.acls.domain.PermissionFactory;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 
 /**
- * Enables method security and sets up a custom permissionEvaluator (remote back to va security)
+ * Enables method security. All permission checks unconditionally permit access.
  */
 @Configuration
-@EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true, proxyTargetClass = true)
+@EnableMethodSecurity(prePostEnabled = true, securedEnabled = true)
 public class MethodSecurityConfiguration {
-        
-    @Autowired
-    private ISecurityResourceClient securityResourceClient;
-    
+
     @Bean
     public PermissionFactory permissionFactory() {
         return new DefaultPermissionFactory(AcuityPermissions.class);
     }
 
-    @Bean
-    @Profile("!local-no-security")
-    public PermissionEvaluator permissionEvaluator() {
-        AcuityRemoteAclPermissionEvaluator acuityRemoteAclPermissionEvaluator = new AcuityRemoteAclPermissionEvaluator();
-        acuityRemoteAclPermissionEvaluator.setPermissionFactory(permissionFactory());
-        acuityRemoteAclPermissionEvaluator.setSecurityResourceClient(securityResourceClient);
-        return acuityRemoteAclPermissionEvaluator;
-    }
-
     @Bean(name = "permissionEvaluator")
-    @Profile("local-no-security")
-    public PermissionEvaluator permissionEvaluatorLocal() {
-        AcuityRemoteAclPermissionEvaluator acuityRemoteAclPermissionEvaluator = new LocalNoSecurityAclPermissionEvaluator();
-        acuityRemoteAclPermissionEvaluator.setPermissionFactory(permissionFactory());
-        acuityRemoteAclPermissionEvaluator.setSecurityResourceClient(securityResourceClient);
-        return acuityRemoteAclPermissionEvaluator;
+    public PermissionEvaluator permissionEvaluator() {
+        LocalNoSecurityAclPermissionEvaluator evaluator = new LocalNoSecurityAclPermissionEvaluator();
+        evaluator.setPermissionFactory(permissionFactory());
+        return evaluator;
     }
 }

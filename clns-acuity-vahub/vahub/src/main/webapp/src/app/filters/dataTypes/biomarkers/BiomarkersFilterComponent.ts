@@ -23,7 +23,8 @@ import {BiomarkersFiltersModel} from './BiomarkersFiltersModel';
 @Component({
     selector: 'biomarkers-filter',
     template: `<filter-collection [filtersModel]="filtersModel" (clearAll)="onClearAll()"
-                                  (exportFilters)="onExportFilters($event)"></filter-collection>`
+                                  (exportFilters)="onExportFilters($event)"></filter-collection>`,
+    standalone: false
 })
 export class BiomarkersFilterComponent extends AbstractDataTypeFilter implements OnInit, OnDestroy, AfterViewInit {
     @Output()

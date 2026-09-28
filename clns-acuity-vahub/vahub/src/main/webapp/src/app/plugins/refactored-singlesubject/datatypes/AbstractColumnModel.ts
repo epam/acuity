@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {ColDef} from 'ag-grid';
+import {ColDef} from 'ag-grid-community';
 import {List} from 'immutable';
 import {capitalize, startCase} from 'lodash';
 

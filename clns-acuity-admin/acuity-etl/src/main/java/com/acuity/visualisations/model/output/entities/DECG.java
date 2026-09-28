@@ -38,6 +38,7 @@ public class DECG extends TimestampedEntity {
 	private String significant;
 	private String subject;
 	private String part;
+	private String domain;
 
 	private String protocolScheduleTimepoint;
 	private String method;

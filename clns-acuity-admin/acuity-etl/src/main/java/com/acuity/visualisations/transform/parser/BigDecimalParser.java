@@ -19,12 +19,11 @@ package com.acuity.visualisations.transform.parser;
 import com.acuity.visualisations.exception.InvalidDataFormatException;
 import com.acuity.visualisations.transform.rule.Mapper;
 import com.acuity.visualisations.transform.rule.ParserRule;
+import com.acuity.visualisations.util.StringUtil;
 
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.text.ParseException;
-
-import static com.acuity.visualisations.data.util.Util.isEmpty;
 
 public class BigDecimalParser extends AbstractParser<BigDecimal> {
 
@@ -46,7 +45,7 @@ public class BigDecimalParser extends AbstractParser<BigDecimal> {
 
     @Override
     protected BigDecimal convert(String input) throws InvalidDataFormatException {
-        if (isEmpty(input)) {
+        if (StringUtil.isEmptyOrDot(input)) {
             return null;
         }
 

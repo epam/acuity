@@ -37,7 +37,7 @@ import com.google.common.collect.Sets;
 import java.util.List;
 import java.util.Optional;
 import static org.assertj.core.api.Assertions.assertThat;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import static org.mockito.Mockito.*;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.GenericType;

@@ -17,7 +17,7 @@
 package com.acuity.va.security.rest.resources;
 
 import com.google.common.collect.Sets;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.Response;

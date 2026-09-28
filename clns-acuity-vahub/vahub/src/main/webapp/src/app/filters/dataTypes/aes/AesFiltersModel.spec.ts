@@ -15,8 +15,8 @@
  */
 
 import {inject, TestBed} from '@angular/core/testing';
-import {HttpClientTestingModule} from '@angular/common/http/testing';
-import {HttpClient} from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 import {AesFiltersModel} from './AesFiltersModel';
 import {PopulationFiltersModel} from '../population/PopulationFiltersModel';
@@ -35,24 +35,24 @@ describe('GIVEN a AesFiltersModel class', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [HttpClientTestingModule],
-            providers: [
-                {provide: HttpClient, useClass: MockHttpClient},
-                {
-                    provide: DatasetViews, useClass: MockDatasetViews
-                },
-                {provide: FilterHttpService, useValue: new MockFilterHttpService()},
-                {provide: PopulationFiltersModel, deps: [FilterHttpService, FilterEventService]},
-                {provide: FilterEventService, useClass: MockFilterEventService},
-                {
-                    provide: AesFiltersModel,
-                    useFactory: (p: PopulationFiltersModel, f: FilterHttpService,
-                                 e: FilterEventService, d: DatasetViews): AesFiltersModel =>
-                        new AesFiltersModel(p, f, e, d),
-                    deps: [PopulationFiltersModel, FilterHttpService, FilterEventService, DatasetViews]
-                }
-            ]
-        });
+    imports: [],
+    providers: [
+        { provide: HttpClient, useClass: MockHttpClient },
+        {
+            provide: DatasetViews, useClass: MockDatasetViews
+        },
+        { provide: FilterHttpService, useValue: new MockFilterHttpService() },
+        { provide: PopulationFiltersModel, deps: [FilterHttpService, FilterEventService] },
+        { provide: FilterEventService, useClass: MockFilterEventService },
+        {
+            provide: AesFiltersModel,
+            useFactory: (p: PopulationFiltersModel, f: FilterHttpService, e: FilterEventService, d: DatasetViews): AesFiltersModel => new AesFiltersModel(p, f, e, d),
+            deps: [PopulationFiltersModel, FilterHttpService, FilterEventService, DatasetViews]
+        },
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting()
+    ]
+});
     });
 
     beforeEach(inject([AesFiltersModel], (_aesFiltersModel: AesFiltersModel) => {

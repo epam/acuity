@@ -21,7 +21,7 @@ import com.acuity.va.security.acl.domain.AcuitySidDetails;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import com.jayway.jsonpath.JsonPath;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import javax.ws.rs.client.Entity;

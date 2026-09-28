@@ -15,7 +15,7 @@
  */
 
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import {fromJS, List} from 'immutable';
 import {IPlot, PlotType} from '../../common/trellising/store';
@@ -69,7 +69,7 @@ export class RenalBoxPlotHttpService extends RenalHttpService {
             }
         };
         return this.http.post(path, JSON.stringify(postData))
-            .map((response: Response) => {
+            .map((response: any) => {
                 return response;
             });
     }

@@ -35,15 +35,10 @@ export class EnvService {
     }
 
     constructor() {
-
-        console.log('EnvService');
-        console.log('host ', EnvService.getHostName());
         const host = EnvService.getHostName();
 
         this.env = {
             isLocalHost: (host.indexOf('localhost') !== -1)
         };
-
-        console.log('env is ', this.env);
     }
 }

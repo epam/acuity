@@ -16,7 +16,7 @@
 
 import {Injectable} from '@angular/core';
 import * as _ from 'lodash';
-import {GridOptions, ColDef} from 'ag-grid/main';
+import {GridOptions, ColDef} from 'ag-grid-community';
 import AesTable = InMemory.AesTable;
 
 export interface IAesTableService {
@@ -56,11 +56,9 @@ export class AesTableServiceCommunity implements IAesTableService {
 
     getGridOptions(): GridOptions {
         return {
-            api: null,
             defaultColDef: {
-                menuTabs: []
-            },
-            enableSorting: true
+                sortable: true
+            }
         };
     }
 

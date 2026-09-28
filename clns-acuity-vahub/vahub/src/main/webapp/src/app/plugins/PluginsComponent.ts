@@ -45,7 +45,8 @@ import {XAxisCoordinateService} from './timeline/chart/axis/XAxisCoordinateServi
 
 @Component({
     templateUrl: 'PluginsComponent.html',
-    styleUrls: ['./PluginsComponentStyles.css']
+    styleUrls: ['./PluginsComponentStyles.css'],
+    standalone: false
 })
 export class PluginsComponent implements  OnInit, OnDestroy {
 
@@ -222,7 +223,9 @@ export class PluginsComponent implements  OnInit, OnDestroy {
         });
         this.location = location.href;
         this.routerSubscription = this.router.events.subscribe((event: any) => {
-            this.location = event.url;
+            if (event.url !== undefined) {
+                this.location = event.url;
+            }
         });
     }
 

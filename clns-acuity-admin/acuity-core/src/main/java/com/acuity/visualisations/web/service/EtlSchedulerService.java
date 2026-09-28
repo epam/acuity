@@ -320,7 +320,11 @@ public class EtlSchedulerService {
 
     public boolean isStudyScheduled(String studyCode, String drugProgramme) throws SchedulerException {
         Map<String, Map<String, JobInfo>> jobInfos = getSchedulerInfo(ETL_GROUP_NAME);
-        List<? extends Trigger> triggersOfJob = scheduler.getTriggersOfJob(jobInfos.get(studyCode).get(drugProgramme).jobKey);
+        Map<String, JobInfo> studyJobs = jobInfos.get(studyCode);
+        if (studyJobs == null || !studyJobs.containsKey(drugProgramme)) {
+            return false;
+        }
+        List<? extends Trigger> triggersOfJob = scheduler.getTriggersOfJob(studyJobs.get(drugProgramme).jobKey);
         return triggersOfJob.stream()
                 .anyMatch(trigger -> trigger.getNextFireTime() != null);
     }

@@ -23,11 +23,15 @@ import com.acuity.visualisations.rawdatamodel.vo.TumourTherapy;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
 public class TumourColumnRangeSelectionRequest extends TumourTherapyRequest {
     @NotNull
     private ChartSelection<TumourTherapy, TumourTherapyGroupByOptions, ChartSelectionItem<TumourTherapy, TumourTherapyGroupByOptions>> selection;
+
+    public ChartSelection<TumourTherapy, TumourTherapyGroupByOptions, ChartSelectionItem<TumourTherapy, TumourTherapyGroupByOptions>> getSelection() {
+        return selection;
+    }
 }

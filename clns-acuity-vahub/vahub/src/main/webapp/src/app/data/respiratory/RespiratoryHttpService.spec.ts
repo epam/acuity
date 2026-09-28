@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
-import {HttpClient} from '@angular/common/http';
-import {HttpClientTestingModule} from '@angular/common/http/testing';
+import { HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import {async, inject, TestBed} from '@angular/core/testing';
 import {Observable} from 'rxjs/Observable';
 import {RespiratoryHttpService} from './RespiratoryHttpService';
@@ -44,22 +44,26 @@ describe('GIVEN RespiratoryHttpService', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [HttpClientTestingModule],
-            providers: [
-                {provide: HttpClient, useClass: MockHttpClient},
-                {provide: PopulationFiltersModel, useClass: MockFilterModel},
-                {provide: LungFunctionFiltersModel, useClass: MockFilterModel},
-                {provide: ExacerbationsFiltersModel, useClass: MockFilterModel},
-                {
-                    provide: RespiratoryBoxPlotHttpService, useClass: RespiratoryBoxPlotHttpService, deps: [
-                        HttpClient, PopulationFiltersModel, LungFunctionFiltersModel, ExacerbationsFiltersModel]
-                },
-                {
-                    provide: RespiratoryHttpService, useClass: RespiratoryHttpService, deps: [
-                        HttpClient, PopulationFiltersModel, LungFunctionFiltersModel, ExacerbationsFiltersModel]
-                }
+    imports: [],
+    providers: [
+        { provide: HttpClient, useClass: MockHttpClient },
+        { provide: PopulationFiltersModel, useClass: MockFilterModel },
+        { provide: LungFunctionFiltersModel, useClass: MockFilterModel },
+        { provide: ExacerbationsFiltersModel, useClass: MockFilterModel },
+        {
+            provide: RespiratoryBoxPlotHttpService, useClass: RespiratoryBoxPlotHttpService, deps: [
+                HttpClient, PopulationFiltersModel, LungFunctionFiltersModel, ExacerbationsFiltersModel
             ]
-        });
+        },
+        {
+            provide: RespiratoryHttpService, useClass: RespiratoryHttpService, deps: [
+                HttpClient, PopulationFiltersModel, LungFunctionFiltersModel, ExacerbationsFiltersModel
+            ]
+        },
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting()
+    ]
+});
     });
 
     describe('WHEN we get Box Plot data', () => {

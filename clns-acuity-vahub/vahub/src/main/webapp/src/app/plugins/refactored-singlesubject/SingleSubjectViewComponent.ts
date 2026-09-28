@@ -32,10 +32,11 @@ import {TrellisingDispatcher} from '../../common/trellising/store/dispatcher/Tre
  */
 @Component({
     templateUrl: 'SingleSubjectViewComponent.html',
-    styleUrls: ['SingleSubjectViewComponent.css']
+    styleUrls: ['SingleSubjectViewComponent.css'],
+    standalone: false
 })
 export class SingleSubjectViewComponent implements AfterViewInit, OnInit, OnDestroy {
-    @ViewChild(CollapseTabsDirective) collapseTabsDirective;
+    @ViewChild(CollapseTabsDirective, { static: false }) collapseTabsDirective;
 
     isLoading$: Observable<boolean>;
     dropdownOpen = false;

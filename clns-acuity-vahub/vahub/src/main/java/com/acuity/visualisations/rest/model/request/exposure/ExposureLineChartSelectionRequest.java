@@ -23,7 +23,7 @@ import com.acuity.visualisations.rawdatamodel.vo.wrappers.Exposure;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
@@ -31,4 +31,9 @@ public class ExposureLineChartSelectionRequest extends ExposureLineChartRequest 
     @NotNull
     private ChartSelection<Exposure, ExposureGroupByOptions,
             ChartSelectionItem<Exposure, ExposureGroupByOptions>> selection;
+
+    public ChartSelection<Exposure, ExposureGroupByOptions,
+            ChartSelectionItem<Exposure, ExposureGroupByOptions>> getSelection() {
+        return selection;
+    }
 }

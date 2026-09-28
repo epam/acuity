@@ -24,7 +24,7 @@ import {Observable} from 'rxjs/Observable';
 import {isEmpty} from 'lodash';
 import {fromJS, List} from 'immutable';
 import {ISelectionDetail} from '../../common/trellising/store';
-import {HttpClient} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import {XAxisOptions} from '../../common/trellising/store/actions/TrellisingActionCreator';
 import Dataset = Request.Dataset;
 import ChartGroupByOptionsFiltered = Request.ChartGroupByOptionsFiltered;

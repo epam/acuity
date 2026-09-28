@@ -20,7 +20,8 @@ import static com.acuity.visualisations.config.condition.Conditions.lessThan;
 import static com.acuity.visualisations.config.condition.Conditions.lessThanOrEqualTo;
 import static org.assertj.core.api.Assertions.assertThat;
 import org.assertj.core.util.Lists;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  *
@@ -39,14 +40,18 @@ public class WhenTestingLessThanConditions {
         assertThat(Lists.newArrayList(1, 2, 3)).are(lessThan(4));
     }
 
-    @Test(expected = AssertionError.class)
+    @Test
     public void shouldFailTestLessThanCondition1() {
+        assertThrows(AssertionError.class, () -> {
         assertThat(Lists.newArrayList(1, 2, 3)).are(lessThan(3));
+        });
     }
 
-    @Test(expected = AssertionError.class)
+    @Test
     public void shouldFailTestLessThanCondition2() {
+            assertThrows(AssertionError.class, () -> {
         assertThat(Lists.newArrayList(1, 2, 3)).are(lessThan(2));
+            });
     }
 
     // LessThan Double
@@ -60,14 +65,18 @@ public class WhenTestingLessThanConditions {
         assertThat(Lists.newArrayList(1.0, 2.0, 3.0)).are(lessThan(5.0));
     }
 
-    @Test(expected = AssertionError.class)
+    @Test
     public void shouldFailTestLessThanDoubleCondition1() {
+        assertThrows(AssertionError.class, () -> {
         assertThat(Lists.newArrayList(1.0, 2.0, 3.0)).are(lessThan(3.0));
+        });
     }
 
-    @Test(expected = AssertionError.class)
+    @Test
     public void shouldFailTestLessThanDoubleCondition2() {
+            assertThrows(AssertionError.class, () -> {
         assertThat(Lists.newArrayList(1.0, 2.0, 3.0)).are(lessThan(2.0));
+            });
     }
 
     // LessThanOrEqualTo Integer
@@ -81,14 +90,18 @@ public class WhenTestingLessThanConditions {
         assertThat(Lists.newArrayList(1, 2, 3)).are(lessThanOrEqualTo(4));
     }
 
-    @Test(expected = AssertionError.class)
+    @Test
     public void shouldFailTestLessThanOrEqualToCondition1() {
+        assertThrows(AssertionError.class, () -> {
         assertThat(Lists.newArrayList(1, 2, 3)).are(lessThanOrEqualTo(2));
+        });
     }
 
-    @Test(expected = AssertionError.class)
+    @Test
     public void shouldFailTestLessThanOrEqualToondition2() {
+            assertThrows(AssertionError.class, () -> {
         assertThat(Lists.newArrayList(1, 2, 3)).are(lessThanOrEqualTo(1));
+            });
     }
 
     // LessThanOrEqualTo Double
@@ -102,13 +115,17 @@ public class WhenTestingLessThanConditions {
         assertThat(Lists.newArrayList(1.0, 2.0, 3.0)).are(lessThanOrEqualTo(4.0));
     }
 
-    @Test(expected = AssertionError.class)
+    @Test
     public void shouldFailTestLessThanOrEqualToDoubleCondition1() {
+        assertThrows(AssertionError.class, () -> {
         assertThat(Lists.newArrayList(1.0, 2.0, 3.0)).are(lessThanOrEqualTo(2.0));
+        });
     }
 
-    @Test(expected = AssertionError.class)
+    @Test
     public void shouldFailTestLessThanOrEqualToDoubleCondition2() {
+            assertThrows(AssertionError.class, () -> {
         assertThat(Lists.newArrayList(1.0, 2.0, 3.0)).are(lessThanOrEqualTo(1.0));
+            });
     }
 }

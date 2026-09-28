@@ -18,7 +18,7 @@ package com.acuity.visualisations.rest.resources.util;
 
 import lombok.experimental.UtilityClass;
 
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletResponse;
 
 @SuppressWarnings("checkstyle:HideUtilityClassConstructor")
 @UtilityClass

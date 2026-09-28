@@ -20,8 +20,10 @@ import com.acuity.visualisations.rest.config.branding.BrandingProperties;
 import com.acuity.visualisations.rest.config.properties.IntegrationProperties;
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Data
+@EqualsAndHashCode(callSuper = false)
 @Builder
 public class ConfigurationResponse {
     private BrandingProperties branding;

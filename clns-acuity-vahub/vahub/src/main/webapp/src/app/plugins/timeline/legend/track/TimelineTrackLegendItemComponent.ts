@@ -22,7 +22,8 @@ import {drawStar} from '../../../../common/CommonChartUtils';
     selector: 'timeline-track-legend-item',
     templateUrl: 'TimelineTrackLegendItemComponent.html',
     styleUrls: ['./TimelineTrackLegendItemComponent.css'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class TimelineTrackLegendItemComponent {
     @Input() trackLegendItem: TrackLegendItem;

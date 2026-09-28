@@ -15,7 +15,7 @@
  */
 
 import {Injectable} from '@angular/core';
-import {ColDef} from 'ag-grid/main';
+import {ColDef} from 'ag-grid-community';
 import {List} from 'immutable';
 import {AbstractColumnModel} from '../AbstractColumnModel';
 
@@ -25,11 +25,11 @@ export class LiverDiagnosticInvestigationColumnModel extends AbstractColumnModel
         {field: 'studyId'},
         {field: 'studyPart'},
         {field: 'subjectId'},
-        {field: 'liverDiagInv', headerName: 'Liver diagnostic investigation', enableRowGroup: true},
-        {field: 'liverDiagInvSpec', headerName: 'Liver diagnostic investigation specification', enableRowGroup: true},
-        {field: 'liverDiagInvDate', headerName: 'Liver diagnostic investigation date', enableRowGroup: true},
-        {field: 'studyDayLiverDiagInv', headerName: 'Study day at liver diagnostic investigation', enableValue: true},
-        {field: 'liverDiagInvResult', headerName: 'Liver diagnostic investigation results', enableRowGroup: true},
-        {field: 'potentialHysLawCaseNum', headerName: 'Potential Hy\'s law case number', enableValue: true}
+        {field: 'liverDiagInv', headerName: 'Liver diagnostic investigation'},
+        {field: 'liverDiagInvSpec', headerName: 'Liver diagnostic investigation specification'},
+        {field: 'liverDiagInvDate', headerName: 'Liver diagnostic investigation date'},
+        {field: 'studyDayLiverDiagInv', headerName: 'Study day at liver diagnostic investigation'},
+        {field: 'liverDiagInvResult', headerName: 'Liver diagnostic investigation results'},
+        {field: 'potentialHysLawCaseNum', headerName: 'Potential Hy\'s law case number'}
     ]);
 }

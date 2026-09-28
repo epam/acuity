@@ -31,7 +31,6 @@ public class LiverRiskFilterService extends AbstractEventFilterService<LiverRisk
         Collection<LiverRisk> filteredLabEvents = filteredResult.getFilteredResult();
 
         return filteredLabEvents.parallelStream()
-                .distinct()
                 .collect(new FilterSummaryStatisticsCollector<>(LiverRiskFiltersSummaryStatistics.class))
                 .getFilters();
     }

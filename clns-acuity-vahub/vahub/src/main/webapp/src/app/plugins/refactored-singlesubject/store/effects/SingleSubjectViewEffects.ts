@@ -15,7 +15,7 @@
  */
 
 import {Injectable} from '@angular/core';
-import {Actions, Effect} from '@ngrx/effects';
+import {Actions, createEffect, ofType} from '@ngrx/effects';
 import {List, Map} from 'immutable';
 import {Store} from '@ngrx/store';
 import {Observable} from 'rxjs/Observable';
@@ -79,9 +79,8 @@ export class SingleSubjectViewEffects {
      * dispatches action {@link UpdateOpenedTabData} which updates table data for opened tab
      *
      */
-    @Effect()
-    getTabData: Observable<any> = this.actions$
-        .ofType(ActionTypes.UPDATE_SELECTED_SUBJECT, SharedActions.ActionTypes.NEW_EVENT_FILTERS_WERE_APPLIED)
+    getTabData = createEffect(() => this.actions$
+        .pipe(ofType(ActionTypes.UPDATE_SELECTED_SUBJECT, SharedActions.ActionTypes.NEW_EVENT_FILTERS_WERE_APPLIED))
         .withLatestFrom(
             this._store.select(getSelectedSubjectId),
             this._store.select(getTabId),
@@ -104,16 +103,15 @@ export class SingleSubjectViewEffects {
                         tabId: tabId
                     });
                 });
-        });
+        }));
 
     /**
      *
      * triggered after {@link UpdateAvailableSubjects} to check whether selected subject exist in updated
      * subjects {@link SharedState.availableSubjects} list.
      */
-    @Effect()
-    afterAvailableSubjectsUpdated: Observable<any> = this.actions$
-        .ofType(SharedActions.ActionTypes.UPDATE_AVAILABLE_SUBJECTS)
+    afterAvailableSubjectsUpdated = createEffect(() => this.actions$
+        .pipe(ofType(SharedActions.ActionTypes.UPDATE_AVAILABLE_SUBJECTS))
         .map((action: any) => action.payload)
         .withLatestFrom(this._store.select(getSelectedSubjectId))
         .filter(([subjects, selectedSubjectId]) => {
@@ -122,11 +120,10 @@ export class SingleSubjectViewEffects {
             }
             return !subjects.find(subjectId => subjectId === selectedSubjectId);
         })
-        .map(() => new ClearSubjectSelection());
+        .map(() => new ClearSubjectSelection()));
 
-    @Effect()
-    getSummaryTabMetadataData: Observable<any> = this.actions$
-        .ofType(SharedActions.ActionTypes.UPDATE_ACTIVE_TAB_ID)
+    getSummaryTabMetadataData = createEffect(() => this.actions$
+        .pipe(ofType(SharedActions.ActionTypes.UPDATE_ACTIVE_TAB_ID))
         .withLatestFrom(
             this._store.select(getTabId)
         )
@@ -138,11 +135,10 @@ export class SingleSubjectViewEffects {
                 .map((response) => {
                     return new UpdateSummaryTabMetadata(Map(response));
                 });
-        });
+        }));
 
-    @Effect()
-    getSummaryTabData: Observable<any> = this.actions$
-        .ofType(ActionTypes.UPDATE_SELECTED_SUBJECT, SharedActions.ActionTypes.UPDATE_ACTIVE_TAB_ID)
+    getSummaryTabData = createEffect(() => this.actions$
+        .pipe(ofType(ActionTypes.UPDATE_SELECTED_SUBJECT, SharedActions.ActionTypes.UPDATE_ACTIVE_TAB_ID))
         .withLatestFrom(
             this._store.select(getSelectedSubjectId),
             this._store.select(getTabId)
@@ -157,11 +153,10 @@ export class SingleSubjectViewEffects {
                     this._store.dispatch(new LoadSingleSubjectTableDataSuccess());
                     return new UpdateSummaryTabData(Map(response));
                 });
-        });
+        }));
 
-    @Effect()
-    getSummaryTablesHeaderData: Observable<any> = this.actions$
-        .ofType(ActionTypes.UPDATE_SELECTED_SUBJECT, SharedActions.ActionTypes.UPDATE_ACTIVE_TAB_ID)
+    getSummaryTablesHeaderData = createEffect(() => this.actions$
+        .pipe(ofType(ActionTypes.UPDATE_SELECTED_SUBJECT, SharedActions.ActionTypes.UPDATE_ACTIVE_TAB_ID))
         .withLatestFrom(
             this._store.select(getSelectedSubjectId),
             this._store.select(getTabId)
@@ -176,11 +171,10 @@ export class SingleSubjectViewEffects {
                     this._store.dispatch(new LoadSingleSubjectTableDataSuccess());
                     return new UpdateSummaryTablesHeaderData(response);
                 });
-        });
+        }));
 
-    @Effect()
-    getSummaryTablesData: Observable<any> = this.actions$
-        .ofType(ActionTypes.UPDATE_SELECTED_SUBJECT, SharedActions.ActionTypes.UPDATE_ACTIVE_TAB_ID)
+    getSummaryTablesData = createEffect(() => this.actions$
+        .pipe(ofType(ActionTypes.UPDATE_SELECTED_SUBJECT, SharedActions.ActionTypes.UPDATE_ACTIVE_TAB_ID))
         .withLatestFrom(
             this._store.select(getSelectedSubjectId),
             this._store.select(getTabId)
@@ -222,11 +216,10 @@ export class SingleSubjectViewEffects {
                     this._store.dispatch(new LoadSingleSubjectTableDataSuccess());
                     return new UpdateSummaryTablesData(response);
                 });
-        });
+        }));
 
-    @Effect()
-    downloadTables: Observable<any> = this.actions$
-        .ofType(ActionTypes.DOWNLOAD_TABLES)
+    downloadTables = createEffect(() => this.actions$
+        .pipe(ofType(ActionTypes.DOWNLOAD_TABLES))
         .withLatestFrom(
             this._store.select(getSelectedSubjectId),
             this._store.select(getTabId)
@@ -240,7 +233,7 @@ export class SingleSubjectViewEffects {
                     downloadDoc(`Subject_${selectedSubjectId}`, response);
                     return response;
                 });
-        });
+        }), { dispatch: false });
 
     constructor(private actions$: Actions,
                 private _store: Store<ApplicationState>,

@@ -26,17 +26,18 @@ import com.acuity.visualisations.rest.model.request.DetailsOnDemandRequest;
 import com.acuity.va.security.acl.domain.Datasets;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.ImmutableList;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
+import java.util.List;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
@@ -45,11 +46,11 @@ import java.util.Map;
 import static com.acuity.visualisations.config.util.TestConstants.DUMMY_DETECT_DATASETS;
 import static org.hamcrest.Matchers.hasKey;
 import static org.hamcrest.Matchers.hasValue;
-import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.anyInt;
-import static org.mockito.Matchers.anyList;
-import static org.mockito.Matchers.anySet;
-import static org.mockito.Matchers.eq;
+import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.ArgumentMatchers.nullable;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anySet;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
@@ -58,8 +59,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@RunWith(SpringRunner.class)
-@WebMvcTest(controllers = ConmedsDetailsOnDemandResource.class, secure = false)
+@ExtendWith(SpringExtension.class)
+@WebMvcTest(controllers = ConmedsDetailsOnDemandResource.class)
 public class ConmedsDetailsOnDemandResourceTest {
     private static final String BASE_URL = "/resources/conmeds/details-on-demand";
 
@@ -86,7 +87,7 @@ public class ConmedsDetailsOnDemandResourceTest {
 
         DetailsOnDemandResponse responseToReturn = new DetailsOnDemandResponse(Arrays.asList(dodMap));
 
-        when(conmedsService.getDetailsOnDemandData(any(Datasets.class), anySet(), anyList(), anyInt(), anyInt()))
+        when(conmedsService.getDetailsOnDemandData(any(Datasets.class), anySet(), nullable(List.class), anyLong(), anyLong()))
                 .thenReturn(responseToReturn.getDodData());
 
         MockHttpServletRequestBuilder post = MockMvcRequestBuilders.
@@ -104,7 +105,7 @@ public class ConmedsDetailsOnDemandResourceTest {
                 .andReturn();
 
         verify(conmedsService, times(1))
-                .getDetailsOnDemandData(eq(DUMMY_DETECT_DATASETS), anySet(), anyList(), anyInt(), anyInt());
+                .getDetailsOnDemandData(eq(DUMMY_DETECT_DATASETS), anySet(), nullable(List.class), anyLong(), anyLong());
         verifyNoMoreInteractions(conmedsService);
     }
 

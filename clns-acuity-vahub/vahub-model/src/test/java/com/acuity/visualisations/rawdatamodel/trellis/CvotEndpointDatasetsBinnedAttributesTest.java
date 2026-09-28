@@ -25,13 +25,16 @@ import com.acuity.visualisations.rawdatamodel.vo.CvotEndpointRaw;
 import com.acuity.visualisations.rawdatamodel.vo.GroupByOption;
 import com.acuity.visualisations.rawdatamodel.vo.Subject;
 import com.acuity.visualisations.rawdatamodel.vo.wrappers.CvotEndpoint;
-import org.assertj.core.api.JUnitSoftAssertions;
-import org.junit.Rule;
-import org.junit.Test;
+import org.assertj.core.api.SoftAssertions;
+import org.assertj.core.api.junit.jupiter.InjectSoftAssertions;
+import org.assertj.core.api.junit.jupiter.SoftAssertionsExtension;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 
 import java.util.Date;
 import java.util.HashMap;
 
+@ExtendWith(SoftAssertionsExtension.class)
 public class CvotEndpointDatasetsBinnedAttributesTest {
 
     public static final Subject SUBJECT1;
@@ -52,8 +55,8 @@ public class CvotEndpointDatasetsBinnedAttributesTest {
     public static final CvotEndpoint EVENT3 = new CvotEndpoint(CvotEndpointRaw.builder()
             .startDate(null).aeNumber(1).category1("cat1").subjectId("sid1").build(), SUBJECT1);
 
-    @Rule
-    public final JUnitSoftAssertions softly = new JUnitSoftAssertions();
+    @InjectSoftAssertions
+    private SoftAssertions softly;
 
     @Test
     public void shouldCalc1BinDaysSinceFirstDose() throws Exception {

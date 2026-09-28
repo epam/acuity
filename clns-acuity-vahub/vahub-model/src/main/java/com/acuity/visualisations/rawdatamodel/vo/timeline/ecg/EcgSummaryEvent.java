@@ -26,7 +26,7 @@ import lombok.ToString;
 import java.io.Serializable;
 
 @Getter
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = false)
 @ToString(callSuper = true)
 @NoArgsConstructor
 public class EcgSummaryEvent extends EcgEvent implements Serializable {

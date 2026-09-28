@@ -22,7 +22,8 @@ import {DropdownItem} from '../../../common/dropdown/DropdownItem';
 @Component({
     selector: 'timeline-page-size',
     templateUrl: 'TimelinePageSizeComponent.html',
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class TimelinePageSizeComponent implements OnChanges {
     @Output() updatePage: EventEmitter<ITimelinePage> = new EventEmitter<ITimelinePage>(false);

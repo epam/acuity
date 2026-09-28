@@ -32,7 +32,6 @@ public class MedicalHistoryFilterService extends AbstractEventFilterService<Medi
         Collection<MedicalHistory> filteredLabEvents = filteredResult.getFilteredResult();
 
         return filteredLabEvents.parallelStream()
-                .distinct()
                 .collect(new FilterSummaryStatisticsCollector<>(MedicalHistoryFiltersSummaryStatistics.class))
                 .getFilters();
     }

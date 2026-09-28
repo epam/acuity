@@ -36,8 +36,6 @@ import com.acuity.visualisations.rest.model.request.biomarkers.BiomarkersHeatMap
 import com.acuity.visualisations.rest.model.request.DetailsOnDemandRequest;
 import com.acuity.visualisations.rest.model.request.SubjectIdsRequest;
 import com.acuity.visualisations.rest.util.Constants;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;
@@ -46,8 +44,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.http.HttpServletResponse;
-import javax.validation.Valid;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.validation.Valid;
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.List;
@@ -86,30 +84,16 @@ public class BiomarkerResource {
         return ChartGroupByOptionsFiltered.builder(settings).build();
     }
 
-    @ApiOperation(
-            value = "Gets the available trellising and options",
-            nickname = "availableTrellising",
-            response = List.class,
-            httpMethod = "POST"
-    )
     @RequestMapping(value = "/trellising", method = POST)
     public Set<TrellisOptions<BiomarkerGroupByOptions>> getAvailableTrellising(
-            @ApiParam(value = "Population Filters e.g. {populationFilters: {}}", required = true)
             @RequestBody BiomarkerRequest requestBody) {
 
         return new HashSet<>();
     }
 
-    @ApiOperation(
-            value = "Gets the values for the biomarker heatmap",
-            nickname = "heatmap",
-            response = List.class,
-            httpMethod = "POST"
-    )
     @RequestMapping(value = "/heatmap", method = POST)
     @Cacheable(condition = Constants.EMPTY_EVENT_AND_POPULATION_FILTER)
     public List<TrellisedHeatMap<Biomarker, BiomarkerGroupByOptions>> getHeatMapValues(
-            @ApiParam(value = "BiomarkersHeatMapRequest: Request parameters for the heat maps", required = true)
             @RequestBody BiomarkersHeatMapRequest requestBody) {
 
         return biomarkerService.getBiomarkerHeatMap(
@@ -126,31 +110,17 @@ public class BiomarkerResource {
      * @param requestBody selected biomarker filters by client
      * @return available biomarker filters
      */
-    @ApiOperation(
-            value = "Gets the available biomarker filters for the currently selected biomarker filters",
-            nickname = "availablePopulationFilters",
-            response = BiomarkerFilters.class,
-            httpMethod = "POST"
-    )
     @RequestMapping(value = "/filters", method = POST)
     @Cacheable(condition = Constants.EMPTY_EVENT_AND_POPULATION_FILTER)
     public Filters<Biomarker> getAvailableFilters(
-            @ApiParam(value = "BiomarkerRequest: Biomarker and Population Filters e.g. {biomarkerFilters : {}, populationFilters: {}}", required = true)
             @RequestBody BiomarkerRequest requestBody) {
 
         return biomarkerService.getAvailableFilters(requestBody.getDatasetsObject(), requestBody.getEventFilters(),
                 requestBody.getPopulationFilters());
     }
 
-    @ApiOperation(
-            value = "Get selection details for chosen biomarkers range",
-            nickname = "getSelectionDetails",
-            response = SelectionDetail.class,
-            httpMethod = "POST"
-    )
     @RequestMapping(value = "/selection-details", method = POST)
     public SelectionDetail getSelectionDetails(
-            @ApiParam(value = "HeatMapSelectionRequest")
             @RequestBody BiomarkersHeatMapSelectionRequest requestBody
     ) {
         if (requestBody.getSelection().getSettings() == null) {
@@ -168,8 +138,6 @@ public class BiomarkerResource {
 
     @RequestMapping(value = "/details-on-demand", method = POST)
     public List<Map<String, String>> getDetailsOnDemandData(
-            @ApiParam(value = "Details On Demand Request body: A list of event IDs to get the data for e.g. "
-                    + "['ev-1', 'ev-2']", required = true)
             @RequestBody @Valid DetailsOnDemandRequest requestBody) {
 
         return biomarkerService.getDetailsOnDemandData(
@@ -177,24 +145,12 @@ public class BiomarkerResource {
                 requestBody.getStart(), (long) requestBody.getEnd() - requestBody.getStart());
     }
 
-    @ApiOperation(
-            value = "Gets details for the cBio",
-            nickname = "cBio",
-            response = CBioData.class,
-            httpMethod = "POST"
-    )
     @RequestMapping(value = "/cbio-details", method = POST)
     public CBioData getSelectedCBioData(@RequestBody @Valid BiomarkerCBioRequest requestBody) {
         return biomarkerService.getCBioData(requestBody.getDatasetsObject(), requestBody.getEventIds(),
                 requestBody.getBiomarkerFilters(), requestBody.getPopulationFilters());
     }
 
-    @ApiOperation(
-            value = "Downloads all of the data for the details on demand table",
-            nickname = "getAllDetailsOnDemandCsv",
-            response = List.class,
-            httpMethod = "POST"
-    )
     @RequestMapping(value = "/download-details-on-demand", method = POST)
     public void downloadAllDetailsOnDemandData(@RequestBody @Valid BiomarkerRequest requestBody,
                                                HttpServletResponse response) throws IOException {
@@ -203,12 +159,6 @@ public class BiomarkerResource {
                 requestBody.getEventFilters(), requestBody.getPopulationFilters());
     }
 
-    @ApiOperation(
-            value = "Downloads data for the details on demand table for the selected IDs",
-            nickname = "getAllDetailsOnDemandCsv",
-            response = List.class,
-            httpMethod = "POST"
-    )
     @RequestMapping(value = "/download-selected-details-on-demand", method = POST)
     public void downloadSelectedDetailsOnDemandData(@RequestBody @Valid DetailsOnDemandRequest requestBody,
                                                     HttpServletResponse response) throws IOException {
@@ -216,16 +166,9 @@ public class BiomarkerResource {
         biomarkerService.writeSelectedDetailsOnDemandCsv(requestBody.getDatasetsObject(), requestBody.getEventIds(), response.getWriter());
     }
 
-    @ApiOperation(
-            value = "Gets the subjects in available Biomarker filters for the currently selected Biomarker and population filters",
-            nickname = "getSubjects",
-            response = BiomarkerFilters.class,
-            httpMethod = "POST"
-    )
     @RequestMapping(value = "/filters-subjects", method = POST)
     @Cacheable(condition = Constants.EMPTY_EVENT_AND_POPULATION_FILTER)
     public List<String> getSubjects(
-            @ApiParam(value = "BiomarkerRequest: Biomarker and Population Filters e.g. {biomarkerFilters : {}, populationFilters: {}}", required = true)
             @RequestBody BiomarkerRequest requestBody) {
         return biomarkerService.getSubjects(requestBody.getDatasetsObject(),
                 requestBody.getEventFilters(), requestBody.getPopulationFilters());
@@ -233,7 +176,6 @@ public class BiomarkerResource {
 
     @RequestMapping(value = "/selection-by-subjectids", method = POST)
     public SelectionDetail getSelectionBySubjectIds(
-            @ApiParam(value = "SubjectIdsRequest: Current datasets and subjects ids", required = true)
             @RequestBody SubjectIdsRequest requestBody) {
         return biomarkerService.getSelectionBySubjectIds(requestBody.getDatasetsObject(), requestBody.getSubjectIds());
     }
@@ -241,7 +183,6 @@ public class BiomarkerResource {
     @RequestMapping(value = "/colorby-options", method = POST)
     @Cacheable(condition = Constants.EMPTY_EVENT_AND_POPULATION_FILTER)
     public List<TrellisOptions<BiomarkerGroupByOptions>> getAvailableHeatmapColorBy(
-            @ApiParam(value = "BiomarkerRequest:  Biomarkers and Population Filters e.g. {BiomarkerFilters : {}, populationFilters: {}}", required = true)
             @RequestBody BiomarkerRequest requestBody) {
 
         return biomarkerService.getHeatmapColorByOptions(

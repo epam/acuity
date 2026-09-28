@@ -20,7 +20,7 @@ import com.acuity.va.security.acl.domain.DatasetsRequest;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
@@ -28,4 +28,8 @@ public class CohortDistinctSubjectsRequest extends DatasetsRequest {
 
     @NotNull
     private Long savedFilterId;
+
+    public Long getSavedFilterId() {
+        return savedFilterId;
+    }
 }

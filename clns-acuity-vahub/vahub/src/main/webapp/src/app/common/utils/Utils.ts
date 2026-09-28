@@ -408,7 +408,11 @@ export function getPluginSummary(page, tab): any {
             options.settingsName = 'Prior Therapy Settings';
             break;
         case 'tumour-lesion':
-            options.showEventFilter = false;
+            options.eventWidgetName = 'RECIST Filters';
+            options.eventFiltersName = 'RECIST Filters';
+            options.showEventFilter = true;
+            options.pageName = PageName.RECIST;
+            options.filterId = FilterId.RECIST;
             break;
         case 'singlesubject':
             options.pageName = PageName.SINGLE_SUBJECT + ' -> ';

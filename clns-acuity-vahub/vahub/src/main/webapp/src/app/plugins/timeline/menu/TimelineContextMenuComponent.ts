@@ -22,7 +22,8 @@ import {ITimelineContextMenuItem} from './ITimelineContextMenuItem';
 @Component({
     selector: 'timline-context-menu-holder',
     templateUrl: 'TimelineContextMenuComponent.html',
-    styleUrls: ['./TimelineContextMenuComponent.css']
+    styleUrls: ['./TimelineContextMenuComponent.css'],
+    standalone: false
 })
 export class TimelineContextMenuComponent implements OnDestroy {
 

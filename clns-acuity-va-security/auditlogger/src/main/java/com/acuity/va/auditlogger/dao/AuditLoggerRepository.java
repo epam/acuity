@@ -63,18 +63,18 @@ public interface AuditLoggerRepository {
 
     @Select("SELECT count(*) "
         + "  FROM log_operation")
-    @Options(useCache = false, flushCache = true)
+    @Options(useCache = false, flushCache = Options.FlushCachePolicy.TRUE)
     int countAllLogOperations();
 
     @Select("SELECT count(*) "
         + "  FROM log_arg "
         + "  WHERE log_operation_id = #{logOperationId}")
-    @Options(useCache = false, flushCache = true)
+    @Options(useCache = false, flushCache = Options.FlushCachePolicy.TRUE)
     int countLogArgs(long logOperationId);
 
     @Select("SELECT count(*) "
         + "  FROM log_arg")
-    @Options(useCache = false, flushCache = true)
+    @Options(useCache = false, flushCache = Options.FlushCachePolicy.TRUE)
     int countAllLogArgs();
 
     @Select("SELECT * "
@@ -86,7 +86,7 @@ public interface AuditLoggerRepository {
         @Result(property = "name", column = "LOG_NAME"),
         @Result(property = "packageAndMethodName", column = "PACKAGE_AND_METHOD_NAME"),
         @Result(property = "sessionId", column = "SESSION_ID")})
-    @Options(useCache = false, flushCache = true)
+    @Options(useCache = false, flushCache = Options.FlushCachePolicy.TRUE)
     List<LogOperationEntity> getAllLogOperations();
 
     @Select("SELECT * "
@@ -99,7 +99,7 @@ public interface AuditLoggerRepository {
         @Result(property = "name", column = "LOG_NAME"),
         @Result(property = "packageAndMethodName", column = "PACKAGE_AND_METHOD_NAME"),
         @Result(property = "sessionId", column = "SESSION_ID")})
-    @Options(useCache = false, flushCache = true)
+    @Options(useCache = false, flushCache = Options.FlushCachePolicy.TRUE)
     LogOperationEntity getLogOperations(long logOperationId);
 
     @Select("SELECT * "
@@ -112,7 +112,7 @@ public interface AuditLoggerRepository {
         @Result(property = "longValue", column = "LOG_ARG_LONG_VALUE"),
         @Result(property = "floatValue", column = "LOG_ARG_FLOAT_VALUE")
     })
-    @Options(useCache = false, flushCache = true)
+    @Options(useCache = false, flushCache = Options.FlushCachePolicy.TRUE)
     List<LogArgEntity> getAllLogArgs();
 
     @Select("SELECT * "
@@ -126,9 +126,9 @@ public interface AuditLoggerRepository {
         @Result(property = "longValue", column = "LOG_ARG_LONG_VALUE"),
         @Result(property = "floatValue", column = "LOG_ARG_FLOAT_VALUE")
     })
-    @Options(useCache = false, flushCache = true)
+    @Options(useCache = false, flushCache = Options.FlushCachePolicy.TRUE)
     List<LogArgEntity> getLogArgs(long logOperationId);
         
-    //@Options(useCache = false, flushCache = true)
+    //@Options(useCache = false, flushCache = org.apache.ibatis.annotations.Options.FlushCachePolicy.TRUE)
     List<LogOperationEntity> getLockdowns();
 }

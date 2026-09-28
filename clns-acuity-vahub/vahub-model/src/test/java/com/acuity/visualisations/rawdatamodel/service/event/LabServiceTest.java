@@ -55,17 +55,17 @@ import com.acuity.va.security.acl.domain.Datasets;
 import com.acuity.va.security.acl.domain.AcuityDataset;
 
 import org.apache.commons.math3.util.Precision;
-import org.assertj.core.api.JUnitSoftAssertions;
+import org.assertj.core.api.SoftAssertions;
+import org.assertj.core.api.junit.jupiter.InjectSoftAssertions;
+import org.assertj.core.api.junit.jupiter.SoftAssertionsExtension;
 import org.assertj.core.groups.Tuple;
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.experimental.categories.Category;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -88,16 +88,16 @@ import static com.acuity.visualisations.rawdatamodel.trellis.grouping.LabGroupBy
 import static com.google.common.collect.Lists.newArrayList;
 import static java.util.Collections.singletonMap;
 import static java.util.stream.Collectors.toSet;
-import static org.mockito.Matchers.any;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
-@RunWith(SpringRunner.class)
+@ExtendWith({SpringExtension.class, SoftAssertionsExtension.class})
 @ContextConfiguration(classes = TestConfig.class)
-@Category(LabTests.class)
+
 public class LabServiceTest {
 
-    @Rule
-    public final JUnitSoftAssertions softly = new JUnitSoftAssertions();
+    @InjectSoftAssertions
+    private SoftAssertions softly;
 
     @Autowired
     private LabService labService;
@@ -175,7 +175,7 @@ public class LabServiceTest {
     private static StudyRules studyRules = new StudyRules();
 
 
-    @Before
+    @BeforeEach
     public void setUp() {
         Lab lab1 = new Lab(LabRaw.builder()
                 .labCode("ALBUMIN")
@@ -208,7 +208,7 @@ public class LabServiceTest {
      */
 
     @Test
-    @Category(BoxPlotTests.class)
+    
     public void shouldGetBoxPlotTrellisOptions() {
         List<TrellisOptions<LabGroupByOptions>> result = labService.getTrellisOptions(DATASETS, LabFilters.empty(), PopulationFilters.empty());
 
@@ -223,7 +223,7 @@ public class LabServiceTest {
      */
 
     @Test
-    @Category(BoxPlotTests.class)
+    
     public void shouldGetBoxPlotXAxisOptions() {
         AxisOptions<LabGroupByOptions> result = labService.getAvailableBoxPlotXAxis(DATASETS, LabFilters.empty(), PopulationFilters.empty());
 
@@ -233,7 +233,7 @@ public class LabServiceTest {
     }
 
     @Test
-    @Category(BoxPlotTests.class)
+    
     public void shouldGetBoxPlotXAxisOptionsWithJustVisitNumber() {
         studyRules.setLimitXAxisToVisit(true);
         AcuityDataset ds = new AcuityDataset(101L);
@@ -254,7 +254,7 @@ public class LabServiceTest {
     }
 
     @Test
-    @Category(RangeChartTests.class)
+    
     public void shouldGetRangeSeriesByOptions() {
         List<TrellisOptions<LabGroupByOptions>> result = labService.getRangeSeriesByOptions(DATASETS, LabFilters.empty(), PopulationFilters.empty());
 
@@ -269,7 +269,7 @@ public class LabServiceTest {
      */
 
     @Test
-    @Category(BoxPlotTests.class)
+    
     public void shouldGetBoxPlotData() {
         // Given
 
@@ -293,7 +293,7 @@ public class LabServiceTest {
     }
 
     @Test
-    @Category(ShiftPlotTests.class)
+    
     public void shouldGetShiftPlotData() {
         // Given
         final ChartGroupByOptions<Lab, LabGroupByOptions> settings = ChartGroupByOptions.<Lab, LabGroupByOptions>builder()
@@ -317,7 +317,7 @@ public class LabServiceTest {
     }
 
     @Test
-    @Category(RangeChartTests.class)
+    
     public void shouldGetRangePlotData() {
 
         final ChartGroupByOptions<Lab, LabGroupByOptions> settings = ChartGroupByOptions.<Lab, LabGroupByOptions>builder()
@@ -350,7 +350,7 @@ public class LabServiceTest {
     }
 
     @Test
-    @Category(RangeChartTests.class)
+    
     public void shouldGetRangePlotDataRefValueFilterByTrellis() {
 
         final ChartGroupByOptions<Lab, LabGroupByOptions> settings = ChartGroupByOptions.<Lab, LabGroupByOptions>builder()
@@ -388,7 +388,7 @@ public class LabServiceTest {
 
 
     @Test
-    @Category(BoxPlotTests.class)
+    
     public void shouldGetBoxPlotSelectionWhenTrellisedByMeasurement() {
         // Given
         setUpMockData();
@@ -432,7 +432,7 @@ public class LabServiceTest {
     }
 
     @Test
-    @Category(BoxPlotTests.class)
+    
     public void shouldGetBoxPlotSelectionWhenTrellisedByMeasurementAndArm() {
         // Given
         setUpMockData();
@@ -472,7 +472,7 @@ public class LabServiceTest {
     }
 
     @Test
-    @Category(BoxPlotTests.class)
+    
     public void shouldGetBoxPlotSelectionWhenSingleXMatch() {
         // Given
         setUpMockData();
@@ -507,7 +507,7 @@ public class LabServiceTest {
     }
 
     @Test
-    @Category(BoxPlotTests.class)
+    
     public void shouldGetRangePlotSelectionWhenSingleXMatch() {
         // Given
         setUpMockData();
@@ -542,7 +542,7 @@ public class LabServiceTest {
     }
 
     @Test
-    @Category(BoxPlotTests.class)
+    
     public void shouldGetBoxPlotSelectionWhenXAxisIsBinned() {
         // Given
         setUpMockData();
@@ -613,7 +613,7 @@ public class LabServiceTest {
     }
 
     @Test
-    @Category(ShiftPlotTests.class)
+    
     public void shouldGetShiftPlotSelectionWhenTrellisedByMeasurement() {
         // Given
         setUpMockData();

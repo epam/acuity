@@ -24,7 +24,7 @@ import java.io.Serializable;
 import java.util.List;
 
 @Data
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = false)
 @ToString(callSuper = true)
 public class SubjectLabsDetail extends SubjectLabs implements Serializable {
     private List<Labcodes> labcodes;

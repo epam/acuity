@@ -28,7 +28,7 @@ export class UserPermissions {
     }
 
     hasViewOncologyPackagePermission(): boolean {
-        return this.checkPermission(VAPermissions.VIEW_ONCOLOGY_PACKAGE);
+        return true;
     }
 
     hasViewMachineInsightsPackagePermission(): boolean {

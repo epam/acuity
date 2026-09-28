@@ -23,7 +23,8 @@ import {Trellising} from '../../store/Trellising';
     selector: 'trellising-control',
     templateUrl: 'ControlComponent.html',
     styleUrls: ['ControlComponent.css'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class ControlComponent implements OnChanges {
     static ALL = 'All';

@@ -26,20 +26,20 @@ import com.acuity.va.security.acl.annotation.TransactionalMyBatisDBUnitH2Test;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
 import com.github.springtestdbunit.annotation.DbUnitConfiguration;
 import com.google.common.collect.Lists;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.jdbc.datasource.init.ScriptUtils;
 import org.springframework.test.annotation.Rollback;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 /**
  * Class to generate and populate an external H2 database with the test data as in the unit tests
  *
  * @author Glen
  */
-@RunWith(SpringJUnit4ClassRunner.class)
+@ExtendWith(SpringExtension.class)
 @TransactionalMyBatisDBUnitH2Test
 @DbUnitConfiguration(dataSetLoader = FlatXmlNullDataSetLoader.class)
 public class LoadingStaticH2DBWithDBUnitData {

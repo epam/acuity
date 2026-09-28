@@ -37,15 +37,15 @@ import com.acuity.va.security.acl.domain.Datasets;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.assertj.core.util.Lists;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.Arrays;
@@ -60,8 +60,8 @@ import static org.hamcrest.Matchers.contains;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
-import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.eq;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
@@ -70,8 +70,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@RunWith(SpringRunner.class)
-@WebMvcTest(controllers = RenalCreatinineClearanceResource.class, secure = false)
+@ExtendWith(SpringExtension.class)
+@WebMvcTest(controllers = RenalCreatinineClearanceResource.class)
 public class RenalCreatinineClearanceResourceTest {
 
     private static final String RESOURCE_URL = "/resources/renal/creatinine-clearance-box-plot";
@@ -82,7 +82,7 @@ public class RenalCreatinineClearanceResourceTest {
     private MockMvc mvc;
     private static ObjectMapper mapper;
 
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
 
@@ -166,7 +166,7 @@ public class RenalCreatinineClearanceResourceTest {
 
         when(mockRenalService.getBoxPlot(any(Datasets.class), any(ChartGroupByOptionsFiltered.class),
                 any(RenalFilters.class), any(PopulationFilters.class)))
-                .thenReturn(Arrays.asList(new TrellisedBoxPlot<>(), new TrellisedBoxPlot<>()));
+                .thenReturn(Arrays.asList(new TrellisedBoxPlot<Renal, RenalGroupByOptions>(), new TrellisedBoxPlot<Renal, RenalGroupByOptions>()));
 
         this.mvc.perform(post(RESOURCE_URL + "/boxplot")
                 .content(mapper.writeValueAsString(requestBody))

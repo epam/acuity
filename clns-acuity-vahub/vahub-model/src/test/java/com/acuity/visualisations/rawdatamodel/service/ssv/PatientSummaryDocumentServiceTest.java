@@ -40,22 +40,23 @@ import com.acuity.visualisations.rawdatamodel.dataproviders.TargetLesionDatasets
 import com.acuity.visualisations.rawdatamodel.dataset.info.InfoService;
 import com.acuity.visualisations.rawdatamodel.test.TestConfig;
 import com.acuity.va.security.acl.domain.Datasets;
-import org.assertj.core.api.JUnitSoftAssertions;
+import org.assertj.core.api.SoftAssertions;
+import org.assertj.core.api.junit.jupiter.InjectSoftAssertions;
+import org.assertj.core.api.junit.jupiter.SoftAssertionsExtension;
 import org.docx4j.openpackaging.exceptions.Docx4JException;
 import org.docx4j.openpackaging.packages.WordprocessingMLPackage;
 import org.docx4j.openpackaging.parts.WordprocessingML.FooterPart;
-import org.junit.Assert;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.core.io.Resource;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import javax.xml.bind.JAXBException;
+import jakarta.xml.bind.JAXBException;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -69,10 +70,10 @@ import static com.acuity.visualisations.rawdatamodel.service.event.PatientOutcom
 import static com.acuity.visualisations.rawdatamodel.service.event.PatientOutcomeSummaryServiceTest.DOSE_DISCS;
 import static com.acuity.visualisations.rawdatamodel.service.event.PatientOutcomeSummaryServiceTest.SERIOUS_AES;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Matchers.any;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
-@RunWith(SpringRunner.class)
+@ExtendWith({SpringExtension.class, SoftAssertionsExtension.class})
 @ContextConfiguration(classes = TestConfig.class)
 public class PatientSummaryDocumentServiceTest {
 
@@ -130,8 +131,8 @@ public class PatientSummaryDocumentServiceTest {
     @Value(value = "classpath:template/patient_summary_style.docx")
     private Resource styleTemplateResource;
 
-    @Rule
-    public final JUnitSoftAssertions softly = new JUnitSoftAssertions();
+    @InjectSoftAssertions
+    private SoftAssertions softly;
 
     @Test
     public void testGetDocumentTemplate() throws IOException {
@@ -143,8 +144,8 @@ public class PatientSummaryDocumentServiceTest {
     @Test
     public void testGetStyleDocumentTemplate() throws IOException {
         final File file = styleTemplateResource.getFile();
-        Assert.assertEquals(file.exists(), true);
-        Assert.assertEquals(file.isFile(), true);
+        Assertions.assertEquals(file.exists(), true);
+        Assertions.assertEquals(file.isFile(), true);
     }
 
     @Test
@@ -165,10 +166,10 @@ public class PatientSummaryDocumentServiceTest {
     public void templateShouldHaveFooter() throws IOException, Docx4JException, JAXBException {
         WordprocessingMLPackage template = WordprocessingMLPackage.load(templateResource.getInputStream());
         FooterPart footer = (FooterPart) template.getParts().getParts().values().stream().filter(p -> p instanceof FooterPart).findFirst().get();
-        Assert.assertNotNull(footer);
-        Assert.assertTrue(footer instanceof FooterPart);
-        Assert.assertNotNull(footer.getContent());
-        Assert.assertTrue(footer.getContent().size() > 0);
+        Assertions.assertNotNull(footer);
+        Assertions.assertTrue(footer instanceof FooterPart);
+        Assertions.assertNotNull(footer.getContent());
+        Assertions.assertTrue(footer.getContent().size() > 0);
     }
 
     @Test
@@ -182,9 +183,9 @@ public class PatientSummaryDocumentServiceTest {
         final Optional<ByteArrayOutputStream> document = documentService.generateDocument(DATASETS, "sid1", true, "03:00");
         WordprocessingMLPackage doc = WordprocessingMLPackage.load(new ByteArrayInputStream(document.get().toByteArray()));
         FooterPart footer = (FooterPart) doc.getParts().getParts().values().stream().filter(p -> p instanceof FooterPart).findFirst().get();
-        Assert.assertNotNull(footer);
-        Assert.assertTrue(footer instanceof FooterPart);
-        Assert.assertNotNull(footer.getContent());
-        Assert.assertTrue(footer.getContent().size() > 0);
+        Assertions.assertNotNull(footer);
+        Assertions.assertTrue(footer instanceof FooterPart);
+        Assertions.assertNotNull(footer.getContent());
+        Assertions.assertTrue(footer.getContent().size() > 0);
     }
 }

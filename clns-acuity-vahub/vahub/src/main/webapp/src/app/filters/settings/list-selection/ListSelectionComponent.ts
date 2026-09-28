@@ -20,7 +20,8 @@ import {Map} from 'immutable';
 @Component({
     selector: 'list-selection',
     templateUrl: './ListSelectionComponent.html',
-    styleUrls: ['../../filters.css', '../dataTypes/PlotSettings.css']
+    styleUrls: ['../../filters.css', '../dataTypes/PlotSettings.css'],
+    standalone: false
 })
 export class ListSelectionComponent {
     @Input() inactive: boolean;

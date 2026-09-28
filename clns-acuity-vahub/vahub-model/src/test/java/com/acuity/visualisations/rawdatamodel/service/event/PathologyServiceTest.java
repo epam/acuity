@@ -24,15 +24,16 @@ import com.acuity.visualisations.rawdatamodel.vo.PathologyRaw;
 import com.acuity.visualisations.rawdatamodel.vo.Subject;
 import com.acuity.visualisations.rawdatamodel.vo.wrappers.Pathology;
 import com.acuity.va.security.acl.domain.Datasets;
-import org.assertj.core.api.JUnitSoftAssertions;
+import org.assertj.core.api.SoftAssertions;
+import org.assertj.core.api.junit.jupiter.InjectSoftAssertions;
+import org.assertj.core.api.junit.jupiter.SoftAssertionsExtension;
 import org.assertj.core.groups.Tuple;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.Collections;
 import java.util.List;
@@ -42,10 +43,10 @@ import static com.acuity.visualisations.rawdatamodel.Constants.DATASETS;
 import static com.acuity.visualisations.rawdatamodel.util.Constants.NOT_IMPLEMENTED;
 import static com.acuity.visualisations.rawdatamodel.util.DateUtils.toDateTime;
 import static com.google.common.collect.Lists.newArrayList;
-import static org.mockito.Matchers.any;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
-@RunWith(SpringRunner.class)
+@ExtendWith({SpringExtension.class, SoftAssertionsExtension.class})
 @ContextConfiguration(classes = TestConfig.class)
 public class PathologyServiceTest {
     @Autowired
@@ -55,8 +56,8 @@ public class PathologyServiceTest {
     @MockBean
     private PathologyDatasetsDataProvider pathologyDatasetsDataProvider;
 
-    @Rule
-    public final JUnitSoftAssertions softly = new JUnitSoftAssertions();
+    @InjectSoftAssertions
+    private SoftAssertions softly;
 
     private static Subject subject = Subject.builder().subjectId("sid1").subjectCode("sc1").build();
 

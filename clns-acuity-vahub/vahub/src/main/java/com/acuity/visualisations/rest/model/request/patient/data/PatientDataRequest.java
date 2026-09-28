@@ -31,4 +31,8 @@ public class PatientDataRequest extends EventFilterRequestPopulationAware<Patien
     public PatientDataFilters getEventFilters() {
         return patientDataFilters;
     }
+
+    public PatientDataFilters getPatientDataFilters() {
+        return patientDataFilters;
+    }
 }

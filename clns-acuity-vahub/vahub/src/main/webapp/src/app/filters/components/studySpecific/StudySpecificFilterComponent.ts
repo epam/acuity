@@ -22,7 +22,8 @@ import {BaseFilterItemModel} from '../BaseFilterItemModel';
 @Component({
     selector: 'studyspecificfilter',
     templateUrl: 'StudySpecificFilterComponent.html',
-    styleUrls: ['../../filters.css']
+    styleUrls: ['../../filters.css'],
+    standalone: false
 })
 export class StudySpecificFilterComponent {
 
@@ -31,7 +32,6 @@ export class StudySpecificFilterComponent {
     @Output() modelChanged = new EventEmitter();
 
     onChange(filterName: string, item: string, target: any): void {
-        console.log(target);
         this.ssfmodel.change(filterName, item, target.checked);
         this.modelChanged.emit({});
     }

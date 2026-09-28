@@ -32,4 +32,5 @@ public class DetailsOnDemandRequest extends DatasetsRequest {
     private List<SortAttrs> sortAttrs;
     private int start;
     private int end;
+
 }

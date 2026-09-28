@@ -16,11 +16,10 @@
 
 package com.acuity.va.security.auth.local.nosecurity;
 
-import com.acuity.va.security.acl.domain.Dataset;
 import com.acuity.va.security.acl.domain.AcuityObjectIdentityWithPermission;
 import com.acuity.va.security.acl.domain.AcuitySidDetails;
+import com.acuity.va.security.acl.domain.Dataset;
 import com.acuity.va.security.auth.common.ISecurityResourceClient;
-import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -29,7 +28,6 @@ import static com.google.common.collect.Lists.newArrayList;
 import static org.apache.commons.lang3.SystemUtils.USER_NAME;
 
 @Service
-@Profile("local-no-security")
 public class LocalNoSecuritySecurityResourceClient implements ISecurityResourceClient {
 
     @Override

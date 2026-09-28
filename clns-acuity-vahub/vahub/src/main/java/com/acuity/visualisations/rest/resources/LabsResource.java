@@ -42,8 +42,6 @@ import com.acuity.visualisations.rest.model.request.SingleSubjectRequest;
 import com.acuity.visualisations.rest.resources.util.DetailsOnDemandCsvDownloadingUtils;
 import com.acuity.va.security.acl.domain.DatasetsRequest;
 import com.acuity.visualisations.rest.util.Constants;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;
@@ -52,8 +50,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.http.HttpServletResponse;
-import javax.validation.Valid;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.validation.Valid;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
@@ -242,15 +240,8 @@ public class LabsResource {
                 requestBody.getDatasetsObject(), requestBody.getSubjectId(), requestBody.getEventFilters());
     }
 
-    @ApiOperation(
-            value = "Gets Labs Table data for Azure Machine Learning needs",
-            nickname = "getLabMLTableDataCsv",
-            response = List.class,
-            httpMethod = "POST"
-    )
     @RequestMapping(value = "/lab-ml-export", method = POST)
     public void getLabMLTableDataCsv(
-            @ApiParam(value = "Datasets to get the export data for Azure ML needs", required = true)
             @RequestBody @Valid DatasetsRequest requestBody, HttpServletResponse response) throws IOException {
         DetailsOnDemandCsvDownloadingUtils.setDownloadHeaders(response, "labs_table.csv");
         labService.writeAMLDataCsv(requestBody.getDatasetsObject(), response.getWriter(), Lab.class, LabRaw.class);

@@ -23,7 +23,8 @@ import {BaseFilterItemModel} from '../BaseFilterItemModel';
 @Component({
     selector: 'listfilter',
     templateUrl: 'ListFilterComponent.html',
-    styleUrls: ['../../filters.css']
+    styleUrls: ['../../filters.css'],
+    standalone: false
 })
 export class ListFilterComponent {
 

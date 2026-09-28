@@ -32,8 +32,8 @@ import com.acuity.visualisations.rest.model.request.respiratory.lungfunction.Lun
 import com.acuity.va.security.acl.domain.Datasets;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -50,9 +50,9 @@ import java.util.List;
 
 import static com.acuity.visualisations.config.util.TestConstants.DUMMY_DETECT_DATASETS;
 import static com.google.common.collect.Lists.newArrayList;
-import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.eq;
-import static org.mockito.Mockito.anyString;
+import static org.mockito.ArgumentMatchers.nullable;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
@@ -73,7 +73,7 @@ public class TimelineLungFunctionResourceTest {
     private MockMvc mvc;
     private static ObjectMapper mapper;
 
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
         mvc = MockMvcBuilders.standaloneSetup(timelineLungFunctionResource).build();
@@ -125,7 +125,7 @@ public class TimelineLungFunctionResourceTest {
                 any(LungFunctionFilters.class),
                 any(PopulationFilters.class),
                 any(DayZeroType.class),
-                anyString())).thenReturn(response);
+                nullable(String.class))).thenReturn(response);
 
         MockHttpServletRequestBuilder post = MockMvcRequestBuilders.
                 post("/resources/timeline/lung-function/summaries").
@@ -143,7 +143,7 @@ public class TimelineLungFunctionResourceTest {
                 any(LungFunctionFilters.class),
                 any(PopulationFilters.class),
                 eq(DayZeroType.DAYS_SINCE_FIRST_DOSE),
-                anyString());
+                nullable(String.class));
         verifyNoMoreInteractions(mockTimelineLungFunctionService);
     }
 
@@ -193,7 +193,7 @@ public class TimelineLungFunctionResourceTest {
                 any(LungFunctionFilters.class),
                 any(PopulationFilters.class),
                 any(DayZeroType.class),
-                anyString())).thenReturn(response);
+                nullable(String.class))).thenReturn(response);
 
         MockHttpServletRequestBuilder post = MockMvcRequestBuilders.
                 post("/resources/timeline/lung-function/details").
@@ -211,7 +211,7 @@ public class TimelineLungFunctionResourceTest {
                 any(LungFunctionFilters.class),
                 any(PopulationFilters.class),
                 any(DayZeroType.class),
-                anyString());
+                nullable(String.class));
         verifyNoMoreInteractions(mockTimelineLungFunctionService);
     }
 }

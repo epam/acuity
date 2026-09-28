@@ -24,7 +24,7 @@ import com.acuity.visualisations.rawdatamodel.vo.wrappers.Ae;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
@@ -34,4 +34,12 @@ public class AesBarChartSelectionRequest extends AesRequest {
     private ChartSelection<Ae, AeGroupByOptions,
             ChartSelectionItem<Ae, AeGroupByOptions>> selection;
 
+
+    public CountType getCountType() {
+        return countType;
+    }
+    public ChartSelection<Ae, AeGroupByOptions,
+            ChartSelectionItem<Ae, AeGroupByOptions>> getSelection() {
+        return selection;
+    }
 }

@@ -24,7 +24,8 @@ import {PkOverallResponseFiltersModel} from './PkOverallResponseFiltersModel';
     selector: 'pk-overall-response-filter',
     template: `
         <filter-collection [filtersModel]="filtersModel" (clearAll)="onClearAll()"
-                           (exportFilters)="onExportFilters($event)"></filter-collection>`
+                           (exportFilters)="onExportFilters($event)"></filter-collection>`,
+    standalone: false
 })
 export class PkOverallResponseFilterComponent extends AbstractDataTypeFilter implements OnInit, OnDestroy, AfterViewInit {
     @Output()

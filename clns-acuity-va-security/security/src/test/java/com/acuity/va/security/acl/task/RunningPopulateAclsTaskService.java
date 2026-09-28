@@ -20,13 +20,13 @@ import com.acuity.va.security.acl.annotation.TransactionalMyBatisDBUnitH2Test;
 import com.acuity.va.security.config.annotation.FlatXmlNullDataSetLoader;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
 import com.github.springtestdbunit.annotation.DbUnitConfiguration;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-@RunWith(SpringJUnit4ClassRunner.class)
+@ExtendWith(SpringExtension.class)
 @TransactionalMyBatisDBUnitH2Test
 @DatabaseSetup({"/dbunit/security/dbunit-all-security.xml"})
 @DbUnitConfiguration(dataSetLoader = FlatXmlNullDataSetLoader.class)

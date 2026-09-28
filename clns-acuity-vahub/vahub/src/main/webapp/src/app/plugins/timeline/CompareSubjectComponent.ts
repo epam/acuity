@@ -24,6 +24,7 @@ import {Subscription} from 'rxjs/Subscription';
 @Component({
     selector: 'compare-subject',
     templateUrl: 'CompareSubjectComponent.html',
+    standalone: false
 })
 export class CompareSubjectComponent implements OnInit, OnDestroy {
     timelineId = TimelineId;

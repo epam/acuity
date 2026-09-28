@@ -15,7 +15,7 @@
  */
 
 import {NgModule} from '@angular/core';
-import {AgGridModule} from 'ag-grid-angular/main';
+import {AgGridModule} from 'ag-grid-angular';
 import {CommonModule} from '@angular/common';
 import {DetailsOnDemandComponent} from './DetailsOnDemandComponent';
 import {DetailsOnDemandHeightService} from './services/DetailsOnDemandHeightService';
@@ -46,7 +46,7 @@ import {QTProlongationColumnModel} from './services/model/QTProlongationColumnMo
         CommonModule,
         FormsModule,
         ModalMessageComponentModule,
-        AgGridModule.withComponents([DetailsOnDemandComponent]),
+        AgGridModule,
         ProgressComponentModule,
         EffectsModule.forFeature([DetailsOnDemandEffects]),
         CommonPipesModule

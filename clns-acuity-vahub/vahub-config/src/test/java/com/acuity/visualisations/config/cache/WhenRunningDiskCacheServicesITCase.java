@@ -19,13 +19,13 @@ package com.acuity.visualisations.config.cache;
 import com.acuity.visualisations.cache.DiskCacheService;
 import com.acuity.visualisations.config.ApplicationEhCacheConfig;
 import com.acuity.visualisations.config.ApplicationEnableExecutorConfig;
-import org.junit.Ignore;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.cache.CacheManager;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -35,7 +35,7 @@ import java.util.List;
 import static com.acuity.visualisations.cache.DiskCacheService.CACHETYPE.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
-@RunWith(SpringJUnit4ClassRunner.class)
+@ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = {ApplicationEhCacheConfig.class, ApplicationEnableExecutorConfig.class})
 public class WhenRunningDiskCacheServicesITCase {
     @Autowired
@@ -56,7 +56,7 @@ public class WhenRunningDiskCacheServicesITCase {
     }
 
     @Test
-    @Ignore("Method listDiskCaches is deprecated. Test fails on Automation Pipeline (GitHub actions or Jenkins)")
+    @Disabled("Method listDiskCaches is deprecated. Test fails on Automation Pipeline (GitHub actions or Jenkins)")
     public void shouldListDiskFiles() throws IOException {
         List<Path> listAllDiskCaches = diskCacheService.listDiskCaches(ALL);
         listAllDiskCaches.forEach(System.out::println);

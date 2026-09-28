@@ -29,8 +29,6 @@ import com.acuity.visualisations.rest.model.request.vitals.VitalsMeanRangeValues
 import com.acuity.visualisations.rest.model.request.vitals.VitalsRequest;
 import com.acuity.visualisations.rest.model.request.vitals.VitalsTrellisRequest;
 import com.acuity.visualisations.rest.util.Constants;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;
@@ -40,14 +38,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import java.util.List;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @RestController
-@Api(value = "/resources/vitals/mean-range-plot",
-        description = "rest endpoints for vitals mean range plot data")
 @RequestMapping(value = "/resources/vitals/mean-range-plot",
         consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
 @PreAuthorize(Constants.PRE_AUTHORISE_VISUALISATION)
@@ -56,16 +52,14 @@ public class VitalsMeanRangePlotResource {
     @Autowired
     private VitalService vitalService;
 
-    @ApiOperation("Gets the available x-axis options")
     @PostMapping("x-axis")
     public AxisOptions<VitalGroupByOptions> getXAxis(@RequestBody @Valid VitalsRequest requestBody) {
         return vitalService.getAvailableRangePlotXAxis(requestBody.getDatasetsObject(),
                 requestBody.getVitalsFilters(), requestBody.getPopulationFilters());
     }
 
-    @ApiOperation("Gets trellis options for vitals mean range plot")
     @PostMapping("trellising")
-    @Cacheable
+    @Cacheable(condition = Constants.EMPTY_VITALS_AND_POPULATION_FILTER)
     public List<TrellisOptions<VitalGroupByOptions>> getAvailableTrellising(@RequestBody @Valid VitalsTrellisRequest requestBody) {
         return vitalService.getMeanRangeTrellisOptions(
                 requestBody.getDatasetsObject(),
@@ -74,10 +68,8 @@ public class VitalsMeanRangePlotResource {
                 requestBody.getYAxisOption());
     }
 
-    @ApiOperation("Gets the data for mean range plot in available vital filters for the currently "
-            + "selected exacerbation and population filters")
     @PostMapping("values")
-    @Cacheable
+    @Cacheable(condition = Constants.EMPTY_VITALS_AND_POPULATION_FILTER)
     public List<TrellisedRangePlot<Vital, VitalGroupByOptions>> getValues(
             @RequestBody @Valid VitalsMeanRangeValuesRequest requestBody) {
         return vitalService.getRangePlot(
@@ -88,7 +80,6 @@ public class VitalsMeanRangePlotResource {
                 StatType.MEDIAN);
     }
 
-    @ApiOperation("Gets selection detail for vitals mean range plot")
     @PostMapping("selection")
     public SelectionDetail getSelection(
             @RequestBody @Valid VitalsMeanRangeSelectionRequest requestBody) {

@@ -15,7 +15,7 @@
  */
 
 import {Injectable} from '@angular/core';
-import {ColDef} from 'ag-grid/main';
+import {ColDef} from 'ag-grid-community';
 import {List} from 'immutable';
 import {AbstractColumnModel} from '../AbstractColumnModel';
 
@@ -25,16 +25,16 @@ export class RenalColumnsModel extends AbstractColumnModel {
         {field: 'studyId'},
         {field: 'studyPart'},
         {field: 'subjectId'},
-        {field: 'measurementName', enableRowGroup: true},
-        {field: 'measurementTimePoint', enableRowGroup: true},
-        {field: 'daysOnStudy', enableRowGroup: true, enableValue: true, filter: 'number'},
-        {field: 'analysisVisit', enableRowGroup: true, enableValue: true, filter: 'number'},
-        {field: 'visitNumber', enableRowGroup: true, enableValue: true, filter: 'number'},
-        {field: 'resultValue', enableValue: true, filter: 'number'},
-        {field: 'resultUnit', enableRowGroup: true},
-        {field: 'timesLowerRef', enableRowGroup: true, filter: 'number'},
-        {field: 'timesUpperRef', enableRowGroup: true, enableValue: true, filter: 'number'},
-        {field: 'upperRefRangeValue', enableRowGroup: true, enableValue: true, filter: 'number'},
-        {field: 'ckdStage', enableRowGroup: true}
+        {field: 'measurementName'},
+        {field: 'measurementTimePoint'},
+        {field: 'daysOnStudy', filter: 'number'},
+        {field: 'analysisVisit', filter: 'number'},
+        {field: 'visitNumber', filter: 'number'},
+        {field: 'resultValue', filter: 'number'},
+        {field: 'resultUnit'},
+        {field: 'timesLowerRef', filter: 'number'},
+        {field: 'timesUpperRef', filter: 'number'},
+        {field: 'upperRefRangeValue', filter: 'number'},
+        {field: 'ckdStage'}
     ]);
 }

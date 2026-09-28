@@ -29,6 +29,8 @@ import com.acuity.visualisations.rawdatamodel.vo.compatibility.OutputBoxplotEntr
 import com.acuity.visualisations.rawdatamodel.vo.compatibility.TrellisedBoxPlot;
 import com.acuity.visualisations.rawdatamodel.vo.compatibility.TrellisedChart;
 import com.acuity.visualisations.rawdatamodel.vo.plots.BoxplotCalculationObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -48,6 +50,8 @@ import static java.util.stream.Collectors.toSet;
 @Service
 @SuppressWarnings("squid:CommentedOutCodeLine")
 public class BoxPlotUiModelService {
+
+    private static final Logger log = LoggerFactory.getLogger(BoxPlotUiModelService.class);
 
     public <T, G extends Enum<G> & GroupByOption<T>> List<TrellisedBoxPlot<T, G>> toTrellisedBoxPlot(
             Map<GroupByKey<T, G>, BoxplotCalculationObject> boxplot) {
@@ -93,7 +97,10 @@ public class BoxPlotUiModelService {
                         }
                         return e != null && !Attributes.DEFAULT_EMPTY_VALUE.equals(value == null ? null : value.toString());
                     })
-                    .collect(Collectors.toMap(e -> e.getKey().getValue(X_AXIS), e -> e.getValue()));
+                    .collect(Collectors.toMap(e -> e.getKey().getValue(X_AXIS), e -> e.getValue(), (a, b) -> {
+                        log.warn("Duplicate x-axis key in box plot toMap — discarding value: {}", b);
+                        return a;
+                    }));
 
                   List<OutputBoxplotEntry> stats = xCategories.stream()
                     .filter(getXCategoriesFilter(mapByXCategory))

@@ -16,7 +16,7 @@
 
 import {Injectable} from '@angular/core';
 
-import {CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router} from '@angular/router';
+import { ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
 import {SessionEventService} from './session/event/SessionEventService';
 import {Observable} from 'rxjs/Observable';
 
@@ -24,7 +24,7 @@ import {SessionHttpService} from './session/http/SessionHttpService';
 import {UrlParcerService} from './plugins/activate/UrlParcerService';
 
 @Injectable()
-export class CanActivateAppService implements CanActivate {
+export class CanActivateAppService  {
 
     constructor(protected sessionHttpService: SessionHttpService,
                 protected sessionEventService: SessionEventService,

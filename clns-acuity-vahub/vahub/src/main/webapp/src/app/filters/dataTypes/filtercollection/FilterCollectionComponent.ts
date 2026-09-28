@@ -15,7 +15,7 @@
  */
 
 import {Component, Input, Output, EventEmitter, Inject} from '@angular/core';
-import {DOCUMENT} from '@angular/platform-browser';
+import {DOCUMENT} from '@angular/common';
 import * as  _ from 'lodash';
 
 import {BaseFilterItemModel} from '../../components/BaseFilterItemModel';
@@ -25,7 +25,8 @@ import {PopulationFiltersModel} from '../population/PopulationFiltersModel';
 @Component({
     selector: 'filter-collection',
     templateUrl: 'FilterCollectionComponent.html',
-    styleUrls: ['../../filters.css']
+    styleUrls: ['../../filters.css'],
+    standalone: false
 })
 export class FilterCollectionComponent {
 
@@ -99,12 +100,10 @@ export class FilterCollectionComponent {
     }
 
     onClearAll(): void {
-        console.log(this.filtersModel.getName(), ' attempted to clear all');
         this.clearAll.emit();
     }
 
     onExportFilters(event: MouseEvent): void {
-        console.log(this.filtersModel.getName(), ' attempted to export');
         this.exportFilters.emit(event);
     }
 

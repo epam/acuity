@@ -44,6 +44,10 @@
                     <span class="glyphicon glyphicon-save details-area__export__icon"></span>
                     <span>Export this table</span>
                 </a>
+                <a class="summary-button details-area__export--csv" (click)="exportCsv()">
+                    <span class="glyphicon glyphicon-download-alt details-area__export__icon"></span>
+                    <span>Export CSV</span>
+                </a>
             </div>
             <div class="details-area__select" [hidden]="tabId === 'POPULATION_BARCHART'">
 
@@ -68,7 +72,7 @@
                     </div>
 
                     <div [hidden]="showEventsWarningMessage.get(table)">
-                        <ag-grid-angular #eventGrid style="width: 100%; height: 350px;" class="ag-fresh"
+                        <ag-grid-angular #eventGrid style="width: 100%; height: 350px;" class="ag-theme-alpine"
                                          [gridOptions]="eventsGridOptions.get(table)"
                                          (gridReady)="onEventTableInitialised()"
                                          (sortChanged)="fetchEventTableData()"
@@ -87,7 +91,7 @@
                     select a smaller subset of data to list in the table
                 </div>
                 <div [hidden]="showSubjectsWarningMessage">
-                    <ag-grid-angular #subjectGrid style="width: 100%; height: 350px;" class="ag-fresh"
+                    <ag-grid-angular #subjectGrid style="width: 100%; height: 350px;" class="ag-theme-alpine"
                                      [gridOptions]="subjectGridOptions"
                                      (gridReady)="onSubjectTableInitialised()"
                                      (sortChanged)="fetchSubjectTableData()"

@@ -64,7 +64,6 @@ export abstract class AbstractEventFiltersModel extends AbstractFiltersModel {
     }
 
     protected makeFilterRequest(manuallyApplied: boolean): void {
-        console.log('Sending ' + this.getName() + ' filters request');
 
         const filtersName = this.getName() + 'Filters';
 
@@ -75,7 +74,6 @@ export abstract class AbstractEventFiltersModel extends AbstractFiltersModel {
             filtersName
         )
             .subscribe(res => {
-                console.log('Got ' + this.getName() + ' filters request');
                 this.transformFiltersFromServer(res);
                 if (this.firstTimeLoaded) {
                     this.hideEmptyFilters(this.datasetViews.getEmptyFilters(this.getName()));

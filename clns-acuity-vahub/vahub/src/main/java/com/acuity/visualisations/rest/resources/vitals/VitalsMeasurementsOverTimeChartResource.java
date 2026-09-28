@@ -28,7 +28,6 @@ import com.acuity.visualisations.rest.model.request.vitals.VitalsSelectionReques
 import com.acuity.visualisations.rest.model.request.vitals.VitalsTrellisRequest;
 import com.acuity.visualisations.rest.model.request.vitals.VitalsValuesRequest;
 import com.acuity.visualisations.rest.util.Constants;
-import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;
@@ -38,14 +37,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import java.util.List;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @RestController
-@Api(value = "/resources/vitals/measurements-over-time-chart",
-        description = "rest endpoints for Vitals Measurements Over Time chart data")
 @RequestMapping(value = "/resources/vitals/measurements-over-time-chart",
         consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
 @PreAuthorize(Constants.PRE_AUTHORISE_VISUALISATION)
@@ -55,7 +52,7 @@ public class VitalsMeasurementsOverTimeChartResource {
     private VitalService vitalService;
 
     @PostMapping("x-axis")
-    @Cacheable
+    @Cacheable(condition = Constants.EMPTY_VITALS_AND_POPULATION_FILTER)
     public AxisOptions<VitalGroupByOptions> getXAxis(
             @RequestBody @Valid VitalsRequest requestBody) {
         return vitalService.getAvailableBoxPlotXAxis(requestBody.getDatasetsObject(),
@@ -64,7 +61,7 @@ public class VitalsMeasurementsOverTimeChartResource {
     }
 
     @PostMapping("values")
-    @Cacheable
+    @Cacheable(condition = Constants.EMPTY_VITALS_AND_POPULATION_FILTER)
     public List<TrellisedBoxPlot<Vital, VitalGroupByOptions>> getValues(
             @RequestBody @Valid VitalsValuesRequest requestBody) {
         return vitalService.getBoxPlot(
@@ -75,7 +72,7 @@ public class VitalsMeasurementsOverTimeChartResource {
     }
 
     @PostMapping("trellising")
-    @Cacheable
+    @Cacheable(condition = Constants.EMPTY_VITALS_AND_POPULATION_FILTER)
     public List<TrellisOptions<VitalGroupByOptions>> getTrellising(
             @RequestBody @Valid VitalsTrellisRequest requestBody) {
         return vitalService.getTrellisOptions(

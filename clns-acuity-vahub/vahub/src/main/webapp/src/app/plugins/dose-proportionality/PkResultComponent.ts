@@ -20,7 +20,8 @@ import {UserPermissions} from '../../security/module';
 import {ExposureComponent} from '../exposure';
 
 @Component({
-    templateUrl: '../exposure/ExposureComponent.html'
+    templateUrl: '../exposure/ExposureComponent.html',
+    standalone: false
 })
 // TODO remove ExposureComponent extending & UserPermissions after moving onco-permissions to the has*Data methods
 export class PkResultComponent extends ExposureComponent {

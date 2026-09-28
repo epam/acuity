@@ -23,7 +23,7 @@ import com.acuity.visualisations.rawdatamodel.vo.wrappers.Lab;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
@@ -35,4 +35,11 @@ public class LabStatsRequest extends LabsRequest {
     @NotNull
     private StatType statType;
 
+
+    public ChartGroupByOptionsFiltered<Lab, LabGroupByOptions> getSettings() {
+        return settings;
+    }
+    public StatType getStatType() {
+        return statType;
+    }
 }

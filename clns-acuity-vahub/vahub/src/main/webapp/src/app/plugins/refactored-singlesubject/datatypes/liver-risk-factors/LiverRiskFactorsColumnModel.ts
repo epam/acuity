@@ -15,7 +15,7 @@
  */
 
 import {Injectable} from '@angular/core';
-import {ColDef} from 'ag-grid/main';
+import {ColDef} from 'ag-grid-community';
 import {List} from 'immutable';
 import {AbstractColumnModel} from '../AbstractColumnModel';
 
@@ -25,15 +25,15 @@ export class LiverRiskFactorsColumnModel extends AbstractColumnModel {
         {field: 'studyId'},
         {field: 'studyPart'},
         {field: 'subjectId'},
-        {field: 'potentialHysLawCaseNum', enableValue: true, headerName: 'Potential Hy\'s law case number'},
-        {field: 'value', enableRowGroup: true, headerName: 'Liver risk factor'},
-        {field: 'occurrence', enableRowGroup: true, headerName: 'Liver risk factor occurrence'},
-        {field: 'referencePeriod', enableRowGroup: true, headerName: 'Liver risk factor reference period'},
-        {field: 'details', enableRowGroup: true, headerName: 'Liver risk factor details'},
-        {field: 'startDate', enableRowGroup: true, headerName: 'Start date'},
-        {field: 'stopDate', enableRowGroup: true, headerName: 'Stop date'},
-        {field: 'studyDayAtStart', enableValue: true, headerName: 'Study day at liver risk factor start'},
-        {field: 'studyDayAtStop', enableValue: true, headerName: 'Study day at liver risk factor stop'},
-        {field: 'comment', enableRowGroup: true, headerName: 'Liver risk factor comment'},
+        {field: 'potentialHysLawCaseNum', headerName: 'Potential Hy\'s law case number'},
+        {field: 'value', headerName: 'Liver risk factor'},
+        {field: 'occurrence', headerName: 'Liver risk factor occurrence'},
+        {field: 'referencePeriod', headerName: 'Liver risk factor reference period'},
+        {field: 'details', headerName: 'Liver risk factor details'},
+        {field: 'startDate', headerName: 'Start date'},
+        {field: 'stopDate', headerName: 'Stop date'},
+        {field: 'studyDayAtStart', headerName: 'Study day at liver risk factor start'},
+        {field: 'studyDayAtStop', headerName: 'Study day at liver risk factor stop'},
+        {field: 'comment', headerName: 'Liver risk factor comment'},
     ]);
 }

@@ -40,6 +40,8 @@ public class Test extends TimestampedEntity {
     private String subject;
     private String part;
 
+    private String domain;
+
     private Integer instanceId;
     private Integer subjectId;
 }

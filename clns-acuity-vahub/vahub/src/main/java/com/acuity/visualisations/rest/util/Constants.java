@@ -16,7 +16,7 @@
 
 package com.acuity.visualisations.rest.util;
 
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletResponse;
 
 /**
  * @author ksnd199
@@ -51,6 +51,14 @@ public final class Constants {
 
     public static final String EMPTY_POPULATION_FILTER
             = "#requestBody.getPopulationFilters().isEmpty()";
+
+    /**
+     * the #requestBody is supposed to be of the {@code VitalsRequest} type, which has getVitalsFilters()
+     * instead of getEventFilters()
+     */
+    //REQUEST ENDPOINT'S PARAMETER SHOULD BE NAMED AS "requestBody"!
+    public static final String EMPTY_VITALS_AND_POPULATION_FILTER
+            = "#requestBody.getVitalsFilters().isEmpty() && #requestBody.getPopulationFilters().isEmpty()";
 
     public static void setDownloadHeader(HttpServletResponse response) {
         response.addHeader("Content-disposition", "attachment;filename=details_on_demand.csv");

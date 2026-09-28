@@ -21,7 +21,8 @@ import {BaseFilterItemModel} from '../BaseFilterItemModel';
 @Component({
     selector: 'maplistfilter',
     templateUrl: 'MapListFilterComponent.html',
-    styleUrls: ['../../filters.css']
+    styleUrls: ['../../filters.css'],
+    standalone: false
 })
 
 export class MapListFilterComponent {

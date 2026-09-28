@@ -24,7 +24,8 @@ import {AbstractTabComponent, TAB_COMPONENT_TEMPLATE} from '../AbstractTabCompon
 @Component({
     template: TAB_COMPONENT_TEMPLATE,
     changeDetection: ChangeDetectionStrategy.OnPush,
-    styleUrls: ['../AbstractTabComponent.css']
+    styleUrls: ['../AbstractTabComponent.css'],
+    standalone: false
 })
 export class ExacerbationsTabComponent extends AbstractTabComponent implements OnInit {
 

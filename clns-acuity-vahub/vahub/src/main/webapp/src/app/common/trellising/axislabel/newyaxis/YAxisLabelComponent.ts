@@ -59,7 +59,8 @@ import {TrellisingObservables} from '../../store/observable/TrellisingObservable
                 }))
             ])
         ])
-    ]
+    ],
+    standalone: false
 })
 export class NewYAxisLabelComponent extends AxisLabelComponent implements OnInit, OnDestroy, OnChanges {
     tabID = TabId;

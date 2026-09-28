@@ -40,14 +40,15 @@ import com.acuity.visualisations.rawdatamodel.vo.compatibility.TrellisedOvertime
 import com.acuity.visualisations.rawdatamodel.vo.plots.SelectionDetail;
 import com.acuity.visualisations.rawdatamodel.vo.wrappers.CvotEndpoint;
 import com.acuity.va.security.acl.domain.Datasets;
-import org.assertj.core.api.JUnitSoftAssertions;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.assertj.core.api.SoftAssertions;
+import org.assertj.core.api.junit.jupiter.InjectSoftAssertions;
+import org.assertj.core.api.junit.jupiter.SoftAssertionsExtension;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -69,10 +70,10 @@ import static com.acuity.visualisations.rawdatamodel.trellis.grouping.CvotEndpoi
 import static com.acuity.visualisations.rawdatamodel.trellis.grouping.CvotEndpointGroupByOptions.START_DATE;
 import static com.google.common.collect.Lists.newArrayList;
 import static org.assertj.core.api.Assertions.tuple;
-import static org.mockito.Matchers.any;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
-@RunWith(SpringRunner.class)
+@ExtendWith({SpringExtension.class, SoftAssertionsExtension.class})
 @ContextConfiguration(classes = TestConfig.class)
 public class CvotEndpointServiceTest {
 
@@ -141,8 +142,8 @@ public class CvotEndpointServiceTest {
     private static final CvotEndpoint EVENT2_SUBJECT1R = new CvotEndpoint(RAW_EVENT2, SUBJECT1_WITH_RAND);
     private static final CvotEndpoint EVENT3_SUBJECT1R = new CvotEndpoint(RAW_EVENT3, SUBJECT1_WITH_RAND);
 
-    @Rule
-    public final JUnitSoftAssertions softly = new JUnitSoftAssertions();
+    @InjectSoftAssertions
+    private SoftAssertions softly;
     @Autowired
     private CvotEndpointService cvotEndpointService;
     @MockBean

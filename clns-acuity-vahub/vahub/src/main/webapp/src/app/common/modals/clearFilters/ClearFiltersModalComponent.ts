@@ -28,7 +28,8 @@ import {ModalAnswer} from '../../trellising/store/ITrellising';
 @Component({
     selector: 'clear-filter-modal',
     templateUrl: 'ClearFiltersModalComponent.html',
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class ClearFiltersModalComponent implements OnInit, OnDestroy {
 

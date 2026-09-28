@@ -152,7 +152,7 @@ export class StudySpecificFilterModel extends BaseFilterItemModel {
     }
 
     change(filterName: string, item: string, checked: boolean): void {
-        const filter = _.find(this.filters, {'name': filterName});
+        const filter = _.find(this.filters, <any>{'name': filterName});
         filter.change(item, checked);
     }
 

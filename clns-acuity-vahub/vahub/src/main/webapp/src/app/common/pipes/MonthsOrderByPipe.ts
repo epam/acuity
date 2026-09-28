@@ -35,7 +35,10 @@ const months: any = {
 const longDateRegexp = /^(\d{1,2})-(\w{3})-(\d{2})$/;
 const shortDateRegexp = /^(\w{3})-(\d{4})$/;
 
-@Pipe({name: 'monthsSort'})
+@Pipe({
+    name: 'monthsSort',
+    standalone: false
+})
 export class MonthsOrderByPipe implements PipeTransform {
     transform(array: Array<any>, groupName, sortProperty = 'label'): Array<any> {
         // sortProperty = args[1] ? args[1] : 'label';

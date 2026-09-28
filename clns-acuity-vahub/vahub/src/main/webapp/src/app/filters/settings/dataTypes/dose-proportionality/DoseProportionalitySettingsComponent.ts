@@ -24,7 +24,8 @@ import {TrellisingDispatcher} from '../../../../common/trellising/store/dispatch
 @Component({
     selector: 'dose-proportionality-settings',
     templateUrl: 'DoseProportionalitySettingsComponent.html',
-    styleUrls: ['../../../filters.css']
+    styleUrls: ['../../../filters.css'],
+    standalone: false
 })
 export class DoseProportionalitySettingsComponent implements OnInit {
 

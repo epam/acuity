@@ -30,7 +30,8 @@ import * as  _ from 'lodash';
 @Component({
     selector: 'dropdownselector',
     templateUrl: 'DropdownComponent.html',
-    styleUrls: ['./DropdownComponent.css']
+    styleUrls: ['./DropdownComponent.css'],
+    standalone: false
 })
 export class DropdownComponent implements OnChanges, OnInit {
     model: DropdownModel;

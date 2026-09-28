@@ -40,7 +40,7 @@ export class StackedBarChartUtilsService extends BaseChartUtilsService {
             }), e => JSON.stringify(e));
 
             if (title) {
-                const currentEntry = _.find(legends, {'title': title});
+                const currentEntry = _.find(legends, <any>{'title': title});
                 if (currentEntry) {
                     legends.forEach((legend: ILegend) => {
                         if (legend.title === title) {

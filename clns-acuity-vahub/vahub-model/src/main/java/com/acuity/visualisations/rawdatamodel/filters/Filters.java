@@ -23,9 +23,11 @@ import com.acuity.va.security.acl.domain.Datasets;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.google.common.collect.Multimap;
 import com.googlecode.cqengine.attribute.Attribute;
-import com.googlecode.cqengine.attribute.support.MultiValueFunction;
+import com.googlecode.cqengine.attribute.SimpleNullableAttribute;
+import com.googlecode.cqengine.attribute.support.FunctionalMultiValueNullableAttribute;
 import com.googlecode.cqengine.query.Query;
 import com.googlecode.cqengine.query.QueryFactory;
+import com.googlecode.cqengine.query.option.QueryOptions;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -45,7 +47,6 @@ import static com.googlecode.cqengine.query.QueryFactory.equal;
 import static com.googlecode.cqengine.query.QueryFactory.has;
 import static com.googlecode.cqengine.query.QueryFactory.in;
 import static com.googlecode.cqengine.query.QueryFactory.not;
-import static com.googlecode.cqengine.query.QueryFactory.nullableAttribute;
 import static java.util.stream.Collectors.toList;
 
 /**
@@ -87,10 +88,14 @@ public abstract class Filters<T> implements Cloneable, Serializable {
 
         Map<String, F> filterKeyMap = mapFilter.getMap();
         for (String key : filterKeyMap.keySet()) {
-            Attribute mapValueAttribute = nullableAttribute(option.getGroupByOption().name(), (T e) -> {
-                final Map<String, N> stringObjectMap = (Map<String, N>) Attributes.get(option, e);
-                return stringObjectMap == null ? null : stringObjectMap.get(key);
-            });
+            final String attrName = option.getGroupByOption().name();
+            Attribute mapValueAttribute = new SimpleNullableAttribute<Object, Object>(Object.class, Object.class, attrName) {
+                @Override
+                public Object getValue(Object e, QueryOptions queryOptions) {
+                    final Map<String, N> stringObjectMap = (Map<String, N>) Attributes.get(option, (T) e);
+                    return stringObjectMap == null ? null : stringObjectMap.get(key);
+                }
+            };
             if (query == null) {
                 query = getFilterQuery(mapValueAttribute, mapFilter.getMap().get(key));
             } else {
@@ -138,11 +143,13 @@ public abstract class Filters<T> implements Cloneable, Serializable {
 
         Map<String, F> filterKeyMap = mapFilter.getMap();
         for (String key : filterKeyMap.keySet()) {
-            final MultiValueFunction<T, N, Collection<N>> oaiMultiValueFunction = (T e) -> {
-                final Multimap<String, N> stringObjectMultimap = (Multimap<String, N>) Attributes.get(option, e);
-                return stringObjectMultimap.get(key);
-            };
-            Attribute listMapValueAttribute = nullableAttribute(elementClass, option.getAttribute().getName(), oaiMultiValueFunction);
+            @SuppressWarnings({"unchecked", "rawtypes"})
+            Attribute listMapValueAttribute = (Attribute) new FunctionalMultiValueNullableAttribute<Object, N, Collection<N>>(
+                    Object.class, elementClass, option.getAttribute().getName(), true,
+                    (Object e) -> {
+                        final Multimap<String, N> stringObjectMultimap = (Multimap<String, N>) Attributes.get(option, (T) e);
+                        return stringObjectMultimap.get(key);
+                    });
 
             if (query == null) {
                 query = getFilterQuery(listMapValueAttribute, mapFilter.getMap().get(key));

@@ -33,8 +33,8 @@ import com.acuity.va.security.acl.permissions.AcuityCumulativePermissionsAsRoles
 import com.acuity.va.security.config.annotation.FlatXmlNullDataSetLoader;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
 import com.github.springtestdbunit.annotation.DbUnitConfiguration;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.acls.domain.GrantedAuthoritySid;
 import org.springframework.security.acls.domain.PrincipalSid;
@@ -44,7 +44,7 @@ import org.springframework.security.acls.model.MutableAcl;
 import org.springframework.security.acls.model.NotFoundException;
 import org.springframework.security.acls.model.Permission;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.List;
 import java.util.Optional;
@@ -59,8 +59,9 @@ import static com.acuity.va.security.acl.permissions.AcuityPermissions.VIEW_BASE
 import static com.acuity.va.security.acl.permissions.AcuityPermissions.VIEW_VISUALISATIONS;
 import static java.lang.System.out;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-@RunWith(SpringJUnit4ClassRunner.class)
+@ExtendWith(SpringExtension.class)
 @TransactionalMyBatisDBUnitH2Test
 @DatabaseSetup({"/dbunit/security/dbunit-all-security.xml"})
 @DbUnitConfiguration(dataSetLoader = FlatXmlNullDataSetLoader.class)
@@ -696,16 +697,20 @@ public class WhenUsingSecurityAclService {
         assertThat(usersCount).isEqualTo(1);
     }
 
-    @Test(expected = NotFoundException.class)
+    @Test
     public void shouldGetNothingForNoneExistentDrugProgramme() {
+        assertThrows(NotFoundException.class, () -> {
 
         securityAclService.getGrantedUsersAmountForDrugProgramme(new DrugProgramme(1111L));
+        });
     }
 
-    @Test(expected = NotFoundException.class)
+    @Test
     public void shouldGetNothingForNoneExistentDrugProgrammeWithClinicalStudyId() {
+        assertThrows(NotFoundException.class, () -> {
 
         securityAclService.getGrantedUsersAmountForDrugProgramme(new DrugProgramme(3111L));
+        });
     }
 
     @Test
@@ -740,10 +745,12 @@ public class WhenUsingSecurityAclService {
         assertThat(usersCount).isEqualTo(1);
     }
 
-    @Test(expected = NotFoundException.class)
+    @Test
     public void shouldGetNothingForNoneExistentDataset() {
+        assertThrows(NotFoundException.class, () -> {
 
         securityAclService.getGrantedUsersAmountForDataset(new AcuityDataset(322L));
+        });
     }
 
     ///////////////////////////////////////
@@ -796,16 +803,20 @@ public class WhenUsingSecurityAclService {
         assertThat(allPermissionForAcl).extracting("granted").containsOnly(true, true);
     }
 
-    @Test(expected = NotFoundException.class)
+    @Test
     public void shouldThrowNotFoundExceptionFor_InvalidDrugProgramme() {
+        assertThrows(NotFoundException.class, () -> {
 
         securityAclService.getAllPermissionForAcl(new DrugProgramme(212121L));
+        });
     }
 
-    @Test(expected = NotFoundException.class)
+    @Test
     public void shouldNotFind_InvalidClinicalStudy() {
+        assertThrows(NotFoundException.class, () -> {
 
         securityAclService.find(new ClinicalStudy(121214L));
+        });
     }
 
     @Test
@@ -958,11 +969,13 @@ public class WhenUsingSecurityAclService {
         assertThat(roiFromStudyId.isPresent()).isFalse();
     }
     
-    @Test(expected = NotFoundException.class)
+    @Test
     public void shouldThrowExceptionCheckPermissionForStudyId() {
+        assertThrows(NotFoundException.class, () -> {
 
         AcuitySidDetails user = AcuitySidDetails.toUser("User1");
         
         securityAclService.getRoiFromStudyId(user, "invalid");
+        });
     }
 }

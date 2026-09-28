@@ -15,7 +15,7 @@
  */
 
 import {Component} from '@angular/core';
-import {CookieOptions, CookieService} from 'ngx-cookie';
+import {CookieService} from 'ngx-cookie-service';
 import {ConfigurationService} from '../../../configuration/ConfigurationService';
 
 /**
@@ -29,7 +29,8 @@ import {ConfigurationService} from '../../../configuration/ConfigurationService'
  */
 @Component({
     selector: 'governance-statement-modal',
-    templateUrl: 'GovernanceStatementModalComponent.html'
+    templateUrl: 'GovernanceStatementModalComponent.html',
+    standalone: false
 })
 export class GovernanceStatementModalComponent {
 
@@ -45,7 +46,6 @@ export class GovernanceStatementModalComponent {
      * @param configurationService
      */
     constructor(private _cookieService: CookieService, configurationService: ConfigurationService) {
-        console.log(this.getCookie('acceptedGovernance'));
         this.GovernanceMsg = `Please be aware that manual checks have been performed to identify and resolve inconsistencies
                     between the source data and what <strong>ACUITY</strong> displays.<br><br>
                     For the reporting data some checks are made against the TFLs, however we can not
@@ -78,7 +78,7 @@ export class GovernanceStatementModalComponent {
         return this._cookieService.get(key);
     }
 
-    private put(key: string, value: string, options?: CookieOptions): void {
-        this._cookieService.put(key, value);
+    private put(key: string, value: string): void {
+        this._cookieService.set(key, value);
     }
 }

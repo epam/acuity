@@ -23,7 +23,8 @@ import {BaseFilterItemModel} from '../BaseFilterItemModel';
 @Component({
     selector: 'checklistfilter',
     templateUrl: 'CheckListFilterComponent.html',
-    styleUrls: ['../../filters.css']
+    styleUrls: ['../../filters.css'],
+    standalone: false
 })
 export class CheckListFilterComponent {
 

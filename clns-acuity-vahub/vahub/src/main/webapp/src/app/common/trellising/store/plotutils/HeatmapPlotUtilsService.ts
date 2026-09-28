@@ -87,7 +87,6 @@ export class HeatmapPlotUtilsService extends BaseChartUtilsService {
     }
 
     protected getCategoricalXZoomRanges(range: any, plot: IPlot): { min: number, max: number } {
-        console.log(range, plot);
 
         return {
             min: 1,
@@ -96,7 +95,6 @@ export class HeatmapPlotUtilsService extends BaseChartUtilsService {
     }
 
     protected getCategoricalYZoomRanges(range: any, plot: IPlot): { min: number, max: number } {
-        console.log(range, plot);
 
         return {
             min: 1,

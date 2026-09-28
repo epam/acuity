@@ -33,7 +33,7 @@ import com.acuity.va.security.acl.service.SecurityAclService;
 import com.google.common.collect.Sets;
 import com.jayway.jsonpath.JsonPath;
 import org.assertj.core.util.Lists;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.acls.model.NotFoundException;
 

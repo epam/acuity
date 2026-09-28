@@ -21,7 +21,7 @@ import com.acuity.visualisations.cohorteditor.util.FiltersObjectMapper;
 import com.acuity.visualisations.rawdatamodel.filters.PopulationFilters;
 import com.acuity.va.security.acl.domain.Datasets;
 import com.acuity.va.security.acl.domain.AcuityDataset;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static java.lang.String.valueOf;
 import static org.assertj.core.api.Assertions.assertThat;

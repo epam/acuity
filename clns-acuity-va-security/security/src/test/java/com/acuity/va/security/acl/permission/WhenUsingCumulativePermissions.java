@@ -18,10 +18,10 @@ package com.acuity.va.security.acl.permission;
 
 import com.acuity.va.security.acl.annotation.TransactionalMyBatisDBUnitH2Test;
 import com.acuity.va.security.acl.permissions.AcuityCumulativePermissionsAsRoles;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.security.acls.model.Permission;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import static com.acuity.va.security.acl.permissions.AcuityCumulativePermissionsAsRoles.ADMINISTRATOR;
 import static com.acuity.va.security.acl.permissions.AcuityCumulativePermissionsAsRoles.AUTHORISED_USER;
@@ -34,8 +34,9 @@ import static com.acuity.va.security.acl.permissions.AcuityPermissions.EDIT_AUTH
 import static com.acuity.va.security.acl.permissions.AcuityPermissions.EDIT_AUTHORISERS;
 import static com.acuity.va.security.acl.permissions.AcuityPermissions.VIEW_ONCOLOGY_PACKAGE;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-@RunWith(SpringJUnit4ClassRunner.class)
+@ExtendWith(SpringExtension.class)
 @TransactionalMyBatisDBUnitH2Test
 public class WhenUsingCumulativePermissions extends AbstractPermissionEvaluator {
 
@@ -96,15 +97,19 @@ public class WhenUsingCumulativePermissions extends AbstractPermissionEvaluator 
         assertThat(individualPermissionForPermissionsAsRole.getMask()).isEqualTo(AUTHORISED_USER.getMask());
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void shouldThrowErrorIfPassInInvalidPermissionForEditingRolePermissions() {
+        assertThrows(IllegalArgumentException.class, () -> {
 
         getIndividualPermissionForPermissionsAsRole(DEVELOPMENT_TEAM);
+        });
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void shouldThrowErrorIfPassInWrongPermissionForEditingRolePermissions() {
+        assertThrows(IllegalArgumentException.class, () -> {
 
         getIndividualPermissionForPermissionsAsRole(EDIT_ADMINISTRATORS);
+        });
     }
 }

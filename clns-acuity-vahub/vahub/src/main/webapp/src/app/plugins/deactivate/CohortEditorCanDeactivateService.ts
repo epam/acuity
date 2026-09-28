@@ -15,13 +15,13 @@
  */
 
 import {Injectable} from '@angular/core';
-import {CanDeactivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router} from '@angular/router';
+import { ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
 import {Observable} from 'rxjs/Observable';
 
 import {CohortEditorComponent} from '../module';
 
 @Injectable()
-export class CanDeactivateCohortEditor implements CanDeactivate<CohortEditorComponent> {
+export class CanDeactivateCohortEditor  {
 
     constructor(private router: Router) {
     }

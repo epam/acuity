@@ -19,7 +19,7 @@ package com.acuity.visualisations.rest.model.request.alcohol;
 import com.acuity.visualisations.rawdatamodel.filters.AlcoholFilters;
 import com.acuity.visualisations.rawdatamodel.filters.PopulationFilters;
 import com.acuity.va.security.acl.domain.DatasetsRequest;
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -31,4 +31,11 @@ public class AlcoholRequest extends DatasetsRequest {
 
     @NotNull
     private AlcoholFilters alcoholFilters;
+
+    public PopulationFilters getPopulationFilters() {
+        return populationFilters;
+    }
+    public AlcoholFilters getAlcoholFilters() {
+        return alcoholFilters;
+    }
 }

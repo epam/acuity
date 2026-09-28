@@ -46,7 +46,8 @@ import {UpdateActiveTabId} from '../../../store/actions/SharedStateActions';
     selector: 'trellising-plot',
     templateUrl: 'PlotComponent.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    styleUrls: ['./PlotComponent.css']
+    styleUrls: ['./PlotComponent.css'],
+    standalone: false
 })
 export class PlotComponent implements AfterViewInit, OnDestroy {
     plotType = PlotType;

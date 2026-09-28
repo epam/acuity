@@ -19,12 +19,12 @@ package com.acuity.visualisations.rawdatamodel.service.timeline;
 import com.acuity.visualisations.rawdatamodel.vo.timeline.dose.DoseAndFrequency;
 import com.acuity.visualisations.rawdatamodel.vo.timeline.dose.Frequency;
 import com.google.common.collect.ImmutableMap;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Map;
 
 import static com.acuity.visualisations.rawdatamodel.service.timeline.data.PercentChangeCalculator.calculate;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class PercentChangeCalculatorTest {
     private static final Frequency ONCE_PER_DAY = new Frequency(null, 1);

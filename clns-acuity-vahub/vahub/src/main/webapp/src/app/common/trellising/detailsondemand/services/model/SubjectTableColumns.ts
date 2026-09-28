@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {ColGroupDef} from 'ag-grid/main';
+import {ColGroupDef} from 'ag-grid-community';
 
 export class SubjectTableColumns {
     public static getColumnGroupDefs(): ColGroupDef[] {

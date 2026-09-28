@@ -20,9 +20,10 @@ import {TrellisingObservables} from '../../../../common/trellising/store/observa
 import {ScaleTypes} from '../../../../common/trellising/store';
 
 @Component({
-  selector: 'pk-overall-response-settings',
-  templateUrl: './PkOverallResponseSettingsComponent.html',
-  styleUrls: ['../../../filters.css']
+    selector: 'pk-overall-response-settings',
+    templateUrl: './PkOverallResponseSettingsComponent.html',
+    styleUrls: ['../../../filters.css'],
+    standalone: false
 })
 export class PkOverallResponseSettingsComponent implements OnInit {
 

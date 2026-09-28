@@ -25,7 +25,7 @@ import lombok.Getter;
 import lombok.ToString;
 
 @ToString(callSuper = true)
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = false)
 public final class DiseaseExtent extends SubjectAwareWrapper<DiseaseExtentRaw> {
 
     public DiseaseExtent(DiseaseExtentRaw event, Subject subject) {

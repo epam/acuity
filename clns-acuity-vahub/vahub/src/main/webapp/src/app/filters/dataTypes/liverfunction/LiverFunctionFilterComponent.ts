@@ -22,7 +22,8 @@ import {AbstractDataTypeFilter} from '../AbstractDataTypeFilter';
 
 @Component({
     selector: 'liverfunctionfilter',
-    templateUrl: 'LiverFunctionFilterComponent.html'
+    templateUrl: 'LiverFunctionFilterComponent.html',
+    standalone: false
 })
 export class LiverFunctionFilterComponent extends AbstractDataTypeFilter implements OnInit, OnDestroy, AfterViewInit  {
     @Output()

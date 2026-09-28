@@ -24,7 +24,8 @@ import {List} from 'immutable';
     selector: 'exacerbation-track',
     templateUrl: 'ExacerbationsTrackComponent.html',
     styleUrls: ['../TimelineTrackComponent.css'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class ExacerbationsTrackComponent extends AbstractTrackComponent implements OnChanges {
     @Input() track: ITrack;

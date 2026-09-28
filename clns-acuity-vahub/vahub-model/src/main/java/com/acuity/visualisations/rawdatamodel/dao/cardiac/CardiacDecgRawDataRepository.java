@@ -46,9 +46,7 @@ public interface CardiacDecgRawDataRepository extends RawDataRepository<CardiacD
             + "decg_num_beats_avr_beat, "
             + "decg_beat_group_length_sec, "
             + "decg_comment, "
-            + "decg_measurment_value, "
-            + "1 AS calc_chgefrombaseline_if_null , "
-            + "1 AS calc_daysincefirstdose_if_null "
+            + "decg_measurment_value "
             + "FROM result_decg "
             + "JOIN result_test ON tst_id = decg_tst_id "
             + "JOIN result_patient ON pat_id = tst_pat_id "
@@ -74,9 +72,7 @@ public interface CardiacDecgRawDataRepository extends RawDataRepository<CardiacD
             @Result(property = "beatNumberWithinBeatGroup", column = "decg_beat_num_in_beat_group"),
             @Result(property = "numberOfBeatsInAverageBeat", column = "decg_num_beats_avr_beat"),
             @Result(property = "beatGroupLengthInSec", column = "decg_beat_group_length_sec"),
-            @Result(property = "comment", column = "decg_comment"),
-            @Result(property = "calcChangeFromBaselineIfNull", column = "calc_chgefrombaseline_if_null"),
-            @Result(property = "calcDaysSinceFirstDoseIfNull", column = "calc_daysincefirstdose_if_null")
+            @Result(property = "comment", column = "decg_comment")
     })
     @Options(fetchSize = 5000)
     List<CardiacDecgRaw> getRawData(@Param("datasetId") Long datasetId);

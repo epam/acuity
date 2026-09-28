@@ -26,8 +26,8 @@ import com.acuity.va.security.acl.domain.Datasets;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.ImmutableMap;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -39,6 +39,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.io.Writer;
+import java.util.List;
 import java.util.Arrays;
 import java.util.Map;
 
@@ -46,11 +47,11 @@ import static com.acuity.visualisations.config.util.TestConstants.DUMMY_ACUITY_D
 import static com.google.common.collect.Sets.newHashSet;
 import static org.hamcrest.Matchers.hasKey;
 import static org.hamcrest.Matchers.hasValue;
-import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.anyLong;
-import static org.mockito.Matchers.anySet;
-import static org.mockito.Matchers.eq;
-import static org.mockito.Mockito.anyList;
+import static org.mockito.ArgumentMatchers.nullable;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.ArgumentMatchers.anySet;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
@@ -72,7 +73,7 @@ public class VitalsDetailsOnDemandResourceTest {
     private MockMvc mvc;
     private static ObjectMapper mapper;
 
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
         mvc = MockMvcBuilders.standaloneSetup(vitalsResource).build();
@@ -97,7 +98,7 @@ public class VitalsDetailsOnDemandResourceTest {
         when(mockVitalService.getDetailsOnDemandData(
                 any(Datasets.class),
                 anySet(),
-                anyList(),
+                nullable(List.class),
                 anyLong(),
                 anyLong())).thenReturn(mockResponse.getDodData());
 
@@ -119,7 +120,7 @@ public class VitalsDetailsOnDemandResourceTest {
                 .getDetailsOnDemandData(
                        eq(DUMMY_ACUITY_DATASETS),
                         anySet(),
-                        anyList(),
+                        nullable(List.class),
                         anyLong(),
                         anyLong());
         verifyNoMoreInteractions(mockVitalService);

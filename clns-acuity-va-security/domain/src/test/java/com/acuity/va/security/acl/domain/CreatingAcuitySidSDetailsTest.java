@@ -16,7 +16,7 @@
 
 package com.acuity.va.security.acl.domain;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.springframework.security.acls.domain.GrantedAuthoritySid;
 import org.springframework.security.acls.domain.PrincipalSid;
 

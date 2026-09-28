@@ -22,7 +22,8 @@ import {BIOMARKERS_X_MAX, BIOMARKERS_Y_MAX, BiomarkerSettings} from '../../../..
 @Component({
     selector: 'biomarker-settings',
     templateUrl: './BiomarkerSettingsComponent.html',
-    styleUrls: ['../../../filters.css']
+    styleUrls: ['../../../filters.css'],
+    standalone: false
 })
 export class BiomarkerSettingsComponent {
     settingsOpenedModel: any = {};

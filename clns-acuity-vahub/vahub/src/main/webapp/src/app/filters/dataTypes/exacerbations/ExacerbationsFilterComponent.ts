@@ -22,7 +22,8 @@ import {AbstractDataTypeFilter} from '../AbstractDataTypeFilter';
 
 @Component({
     selector: 'exacerbationsfilter',
-    templateUrl: 'ExacerbationsFilterComponent.html'
+    templateUrl: 'ExacerbationsFilterComponent.html',
+    standalone: false
 })
 export class ExacerbationsFilterComponent extends AbstractDataTypeFilter implements OnInit, OnDestroy, AfterViewInit {
     @Output()

@@ -15,8 +15,7 @@
  */
 
 import {Injectable} from '@angular/core';
-import {Response} from '@angular/http';
-import {HttpClient} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import {SessionEventService} from '../../../session/event/SessionEventService';
 import * as utils from '../../../common/utils/Utils';
@@ -65,7 +64,7 @@ export class BaseSingleSubjectViewHttpService {
     ) {
     }
 
-    getTableData(subjectId: string, tabId: string): Observable<Response> {
+    getTableData(subjectId: string, tabId: string): Observable<any> {
         const path = utils.getSingleSubjectViewTabEndpoint(tabId);
 
         const postData: any = {
@@ -74,7 +73,7 @@ export class BaseSingleSubjectViewHttpService {
             eventFilters: this.getEventFiltersData(tabId)
         };
 
-        return this.http.post(path, JSON.stringify(postData)).map(res => res as Response);
+        return this.http.post(path, JSON.stringify(postData)).map(res => res as any);
     }
 
     getEventFiltersData(tabId: string): any {

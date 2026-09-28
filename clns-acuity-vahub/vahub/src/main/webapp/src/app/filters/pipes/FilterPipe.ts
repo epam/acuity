@@ -16,7 +16,10 @@
 
 import {Pipe, PipeTransform} from '@angular/core';
 
-@Pipe({ name: 'filter' })
+@Pipe({
+    name: 'filter',
+    standalone: false
+})
 export class FilterPipe  implements PipeTransform {
 
     transform(input: any, args: string[]): string[] {

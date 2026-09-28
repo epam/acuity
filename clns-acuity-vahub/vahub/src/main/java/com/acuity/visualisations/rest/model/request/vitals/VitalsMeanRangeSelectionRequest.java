@@ -23,7 +23,7 @@ import com.acuity.visualisations.rawdatamodel.vo.wrappers.Vital;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 
 
 @Data
@@ -33,5 +33,10 @@ public class VitalsMeanRangeSelectionRequest extends VitalsRequest {
     private ChartSelection<Vital, VitalGroupByOptions,
             ChartSelectionItem<Vital, VitalGroupByOptions>> selection;
 
+
+    public ChartSelection<Vital, VitalGroupByOptions,
+            ChartSelectionItem<Vital, VitalGroupByOptions>> getSelection() {
+        return selection;
+    }
 }
 

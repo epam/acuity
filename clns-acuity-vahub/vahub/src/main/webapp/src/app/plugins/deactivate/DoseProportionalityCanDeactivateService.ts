@@ -15,7 +15,7 @@
  */
 
 import {Injectable} from '@angular/core';
-import {ActivatedRouteSnapshot, CanDeactivate, Router, RouterStateSnapshot} from '@angular/router';
+import { ActivatedRouteSnapshot, Router, RouterStateSnapshot } from '@angular/router';
 import {Observable} from 'rxjs/Observable';
 import {FilterId} from '../../common/module';
 import {TimelineConfigService} from '../../common/trellising/store/services/TimelineConfigService';
@@ -27,7 +27,7 @@ import {CanDeactivateBase} from './CanDeactivateBase';
 
 @Injectable()
 export class CanDeactivateDoseProportionality extends CanDeactivateBase
-    implements CanDeactivate<DoseProportionalityPlotComponent> {
+     {
     constructor(doseProportionalityFiltersModel: DoseProportionalityFiltersModel,
                 protected filtersService: FiltersService,
                 protected populationFiltersModel: PopulationFiltersModel,

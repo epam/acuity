@@ -20,7 +20,8 @@ import {AbstractPluginComponent} from '../AbstractPluginComponent';
 import {DatasetViews} from '../../security/DatasetViews';
 
 @Component({
-    templateUrl: '../biomarkers/BiomarkersComponent.html'
+    templateUrl: '../biomarkers/BiomarkersComponent.html',
+    standalone: false
 })
 
 export class CtDNAComponent extends AbstractPluginComponent {

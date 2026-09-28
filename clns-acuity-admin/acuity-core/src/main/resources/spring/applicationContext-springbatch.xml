@@ -3,7 +3,7 @@
        xmlns:batch="http://www.springframework.org/schema/batch"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
 	http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
-	http://www.springframework.org/schema/batch 
+	http://www.springframework.org/schema/batch
 	http://www.springframework.org/schema/batch/spring-batch-3.0.xsd">
 
     <batch:job id="ACUITY_ETL_Job" xmlns="http://www.springframework.org/schema/batch"

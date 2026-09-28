@@ -21,7 +21,8 @@ import {isEmpty, last, head} from 'lodash';
     selector: 'trellis-pagination',
     templateUrl: 'TrellisingPaginationComponent.html',
     styleUrls: ['./TrellisingPaginationComponent.css'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class TrellisingPaginationComponent {
     private pageTabLimit = 5;

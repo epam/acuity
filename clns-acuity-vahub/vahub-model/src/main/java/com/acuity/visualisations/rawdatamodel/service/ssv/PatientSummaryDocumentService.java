@@ -53,9 +53,9 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.PostConstruct;
-import javax.xml.bind.JAXBElement;
-import javax.xml.bind.JAXBException;
+import jakarta.annotation.PostConstruct;
+import jakarta.xml.bind.JAXBElement;
+import jakarta.xml.bind.JAXBException;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -113,27 +113,40 @@ public class PatientSummaryDocumentService {
     private P smallHight;
     private P lineBreak;
 
-    @PostConstruct
-    void initCtx() throws JAXBException, IOException, Docx4JException {
-        WordprocessingMLPackage wordMLPackage = WordprocessingMLPackage.load(styleTemplateResource.getInputStream());
-        MainDocumentPart styleDocumentPart = wordMLPackage.getMainDocumentPart();
-        final List<Object> content = styleDocumentPart.getContent();
-        section = (P) content.get(0);
-        section.getPPr().setKeepNext(new BooleanDefaultTrue());
+    private boolean docxInitialized = false;
 
-        lineBreak = (P) content.get(8);
-        sampleTable = (Tbl) XmlUtils.unwrap(content.get(4));
-        normal = (P) content.get(10);
-        headerSampleTable = (Tbl) XmlUtils.unwrap(content.get(11));
-        P smallHightHeader = (P) content.get(12);
-        smallHeaderRPr = ((R) smallHightHeader.getContent().get(0)).getRPr();
-        smallHight = (P) content.get(13);
-        smallRPr = ((R) smallHight.getContent().get(0)).getRPr();
+    @PostConstruct
+    void initCtx() {
+        try {
+            WordprocessingMLPackage wordMLPackage = WordprocessingMLPackage.load(styleTemplateResource.getInputStream());
+            MainDocumentPart styleDocumentPart = wordMLPackage.getMainDocumentPart();
+            final List<Object> content = styleDocumentPart.getContent();
+            section = (P) content.get(0);
+            section.getPPr().setKeepNext(new BooleanDefaultTrue());
+
+            lineBreak = (P) content.get(8);
+            sampleTable = (Tbl) XmlUtils.unwrap(content.get(4));
+            normal = (P) content.get(10);
+            headerSampleTable = (Tbl) XmlUtils.unwrap(content.get(11));
+            P smallHightHeader = (P) content.get(12);
+            smallHeaderRPr = ((R) smallHightHeader.getContent().get(0)).getRPr();
+            smallHight = (P) content.get(13);
+            smallRPr = ((R) smallHight.getContent().get(0)).getRPr();
+            docxInitialized = true;
+        } catch (Exception e) {
+            // docx4j requires a JAXB 2.x implementation (javax.xml.bind) that is not bundled
+            // with Java 11+. Patient summary Word document export will be unavailable.
+            log.warn("PatientSummaryDocumentService failed to initialise (docx4j/JAXB unavailable on Java 11+): {}", e.getMessage());
+        }
     }
 
     @Cacheable
     public Optional<ByteArrayOutputStream> generateDocument(Datasets datasets, String subjectId, boolean hasTumourAccess, String timeZoneOffset)
             throws JAXBException, Docx4JException, IOException {
+        if (!docxInitialized) {
+            log.warn("generateDocument called but docx4j is unavailable (JAXB not initialised)");
+            return Optional.empty();
+        }
         WordprocessingMLPackage wordMLPackage = WordprocessingMLPackage.load(templateResource.getInputStream());
         MainDocumentPart documentPart = wordMLPackage.getMainDocumentPart();
         String timestamp = formatDateTime(System.currentTimeMillis(), timeZoneOffset, "MM/dd/yyyy h:mm:ss a");

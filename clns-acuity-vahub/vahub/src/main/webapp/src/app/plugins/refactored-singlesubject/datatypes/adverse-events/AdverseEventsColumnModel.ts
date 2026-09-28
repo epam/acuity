@@ -15,7 +15,7 @@
  */
 
 import {Injectable} from '@angular/core';
-import {ColDef} from 'ag-grid/main';
+import {ColDef} from 'ag-grid-community';
 import {List} from 'immutable';
 import {AbstractColumnModel} from '../AbstractColumnModel';
 
@@ -25,31 +25,31 @@ export class AdverseEventsColumnModel extends AbstractColumnModel {
         {field: 'studyId'},
         {field: 'studyPart'},
         {field: 'subjectId'},
-        {field: 'preferredTerm', enableRowGroup: true},
-        {field: 'highLevelTerm', enableRowGroup: true},
-        {field: 'systemOrganClass', enableRowGroup: true},
-        {field: 'specialInterestGroup', enableRowGroup: true},
-        {field: 'maxSeverity', enableRowGroup: true},
-        {field: 'startDate', enableRowGroup: true},
-        {field: 'endDate', enableRowGroup: true},
-        {field: 'daysOnStudyAtAEStart', enableRowGroup: true},
-        {field: 'daysOnStudyAtAEEnd', enableRowGroup: true},
+        {field: 'preferredTerm'},
+        {field: 'highLevelTerm'},
+        {field: 'systemOrganClass'},
+        {field: 'specialInterestGroup'},
+        {field: 'maxSeverity'},
+        {field: 'startDate'},
+        {field: 'endDate'},
+        {field: 'daysOnStudyAtAEStart'},
+        {field: 'daysOnStudyAtAEEnd'},
         {field: 'duration'},
-        {field: 'daysFromPreviousDoseToAEStart', enableRowGroup: true},
-        {field: 'serious', enableRowGroup: true},
-        {field: 'actionTaken', enableRowGroup: true},
-        {field: 'requiresOrProlongsHospitalisation', enableRowGroup: true},
-        {field: 'treatmentEmergent', enableRowGroup: true},
-        {field: 'causality', enableRowGroup: true},
+        {field: 'daysFromPreviousDoseToAEStart'},
+        {field: 'serious'},
+        {field: 'actionTaken'},
+        {field: 'requiresOrProlongsHospitalisation'},
+        {field: 'treatmentEmergent'},
+        {field: 'causality'},
         {field: 'description'},
         {field: 'comment'},
         {field: 'outcome'},
-        {field: 'requiredTreatment', enableRowGroup: true},
-        {field: 'causedSubjectWithdrawal', enableRowGroup: true},
-        {field: 'doseLimitingToxicity', enableRowGroup: true},
+        {field: 'requiredTreatment'},
+        {field: 'causedSubjectWithdrawal'},
+        {field: 'doseLimitingToxicity'},
         {field: 'timePointOfDoseLimitingToxicity'},
-        {field: 'immuneMediatedAE', enableRowGroup: true},
-        {field: 'infusionReactionAE', enableRowGroup: true},
-        {field: 'aeOfSpecialInterest', enableRowGroup: true, headerName: 'Ae of special interest'},
+        {field: 'immuneMediatedAE'},
+        {field: 'infusionReactionAE'},
+        {field: 'aeOfSpecialInterest', headerName: 'Ae of special interest'},
     ]);
 }

@@ -15,7 +15,7 @@
  */
 
 import {inject, TestBed} from '@angular/core/testing';
-import {HttpClientTestingModule} from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 
 import {DoseFiltersModel} from './DoseFiltersModel';
 import {PopulationFiltersModel} from '../population/PopulationFiltersModel';
@@ -26,6 +26,7 @@ import {SessionEventService, SessionHttpService} from '../../../session/module';
 import {MockDatasetViews, MockEnvService, MockFilterEventService} from '../../../common/MockClasses';
 import {EnvService} from '../../../env/module';
 import {DatasetViews} from '../../../security/DatasetViews';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 class MockFilterHttpService {
 }
@@ -33,24 +34,24 @@ class MockFilterHttpService {
 describe('GIVEN a DoseFiltersModel class', () => {
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [HttpClientTestingModule],
-            providers: [
-                SessionEventService,
-                SessionHttpService,
-                {provide: DatasetViews, useClass: MockDatasetViews},
-                {provide: EnvService, useValue: new MockEnvService()},
-                {provide: FilterHttpService, useValue: new MockFilterHttpService()},
-                {provide: PopulationFiltersModel, deps: [FilterHttpService, FilterEventService]},
-                {provide: FilterEventService, useClass: MockFilterEventService},
-                {
-                    provide: DoseFiltersModel,
-                    useFactory: (p: PopulationFiltersModel, f: FilterHttpService,
-                                 e: FilterEventService, d: DatasetViews): DoseFiltersModel =>
-                        new DoseFiltersModel(p, f, e, d),
-                    deps: [PopulationFiltersModel, FilterHttpService, FilterEventService]
-                }
-            ]
-        });
+    imports: [],
+    providers: [
+        SessionEventService,
+        SessionHttpService,
+        { provide: DatasetViews, useClass: MockDatasetViews },
+        { provide: EnvService, useValue: new MockEnvService() },
+        { provide: FilterHttpService, useValue: new MockFilterHttpService() },
+        { provide: PopulationFiltersModel, deps: [FilterHttpService, FilterEventService] },
+        { provide: FilterEventService, useClass: MockFilterEventService },
+        {
+            provide: DoseFiltersModel,
+            useFactory: (p: PopulationFiltersModel, f: FilterHttpService, e: FilterEventService, d: DatasetViews): DoseFiltersModel => new DoseFiltersModel(p, f, e, d),
+            deps: [PopulationFiltersModel, FilterHttpService, FilterEventService]
+        },
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting()
+    ]
+});
     });
 
     describe('WHEN constructing', () => {

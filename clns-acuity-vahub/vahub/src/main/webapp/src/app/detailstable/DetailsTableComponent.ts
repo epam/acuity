@@ -20,7 +20,8 @@ import {DetailsOnDemandHeightService} from '../common/trellising/detailsondemand
 @Component({
     selector: 'details-table',
     templateUrl: 'DetailsTableComponent.html',
-    styleUrls: ['../common/trellising/detailsondemand/DetailsOnDemandComponent.css', './DetailsTableComponent.css']
+    styleUrls: ['../common/trellising/detailsondemand/DetailsOnDemandComponent.css', './DetailsTableComponent.css'],
+    standalone: false
 })
 export class DetailsTableComponent implements OnInit {
     @Input() details: any;

@@ -26,7 +26,8 @@ import {TrellisingObservables} from '../store/observable/TrellisingObservables';
 @Component({
     selector: 'trellis-grid',
     templateUrl: 'GridComponent.html',
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class GridComponent implements OnChanges {
     @Input() limit: number;

@@ -50,7 +50,8 @@ import {ChartEvents, ChartMouseEvent, UserOptions} from '../../../../../../../va
         SimpleLinePlotConfigService, SimpleLinePlotService
     ],
     styleUrls: ['SimpleLinePlotComponent.css'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 
 export class SimpleLinePlotComponent extends AbstractPlotComponent implements OnChanges, OnDestroy {
@@ -106,7 +107,7 @@ export class SimpleLinePlotComponent extends AbstractPlotComponent implements On
         }
         if (changes['selection']) {
             this.updateSelectionRendering();
-            this.chart.update();
+            this.chart?.update();
         }
         if (changes['zoomX'] && this.zoomX) {
             this.updateZoomX();

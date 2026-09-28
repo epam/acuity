@@ -18,7 +18,8 @@ import {Directive, ElementRef} from '@angular/core';
 import {PluginsService} from '../../plugins/PluginsService';
 
 @Directive({
-    selector: '[collapseTabs]'
+    selector: '[collapseTabs]',
+    standalone: false
 })
 
 /**

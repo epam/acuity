@@ -17,7 +17,10 @@
 import {Pipe, PipeTransform} from '@angular/core';
 import * as  _ from 'lodash';
 
-@Pipe({name: 'alphabeticSort'})
+@Pipe({
+    name: 'alphabeticSort',
+    standalone: false
+})
 export class AlphabeticOrderByPipe implements PipeTransform {
     transform(array: Array<any>, groupName, sortProperty = 'label'): Array<any> {
         if (_.isEmpty(array)) {

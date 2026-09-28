@@ -26,13 +26,14 @@ import com.acuity.visualisations.rawdatamodel.vo.wrappers.CtDna;
 import com.acuity.visualisations.rawdatamodel.vo.wrappers.Lab;
 import com.google.common.collect.Comparators;
 import lombok.SneakyThrows;
-import org.assertj.core.api.JUnitSoftAssertions;
-import org.junit.Ignore;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.assertj.core.api.SoftAssertions;
+import org.assertj.core.api.junit.jupiter.InjectSoftAssertions;
+import org.assertj.core.api.junit.jupiter.SoftAssertionsExtension;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.util.StopWatch;
 
 import java.math.BigDecimal;
@@ -46,15 +47,15 @@ import java.util.stream.Collectors;
 import static com.acuity.visualisations.rawdatamodel.util.Column.DatasetType;
 import static org.assertj.core.api.Assertions.assertThat;
 
-@RunWith(SpringRunner.class)
+@ExtendWith({SpringExtension.class, SoftAssertionsExtension.class})
 @ContextConfiguration(classes = TestConfig.class)
 public class DoDCommonServiceTest {
 
     private static final String SORT_ATTRIBUTE = "resultValue";
     private DoDCommonService doDCommonService = new DoDCommonService();
 
-    @Rule
-    public final JUnitSoftAssertions softly = new JUnitSoftAssertions();
+    @InjectSoftAssertions
+    private SoftAssertions softly;
     // Can't use Double.parseDouble as it throws exception for specific Double locales (where "," is used as divider).
     private DecimalFormat decimalFormat = new DecimalFormat();
 
@@ -219,7 +220,7 @@ public class DoDCommonServiceTest {
     }
 
     @Test
-    @Ignore
+    @Disabled
     public void testPerformance() {
         final List<CIEvent> ciEvents = CIEventGenerator.generateRandomCIEventList(500000);
         StopWatch stopWatch = new StopWatch();

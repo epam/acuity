@@ -37,13 +37,13 @@ import com.acuity.visualisations.rest.model.request.respiratory.lungfunction.Lun
 import com.acuity.va.security.acl.domain.Datasets;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.assertj.core.util.Lists;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.Arrays;
@@ -57,15 +57,15 @@ import static org.hamcrest.Matchers.contains;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
-import static org.mockito.Matchers.any;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 
-@RunWith(SpringRunner.class)
-@WebMvcTest(controllers = LungMeanRangeChartResource.class, secure = false)
+@ExtendWith(SpringExtension.class)
+@WebMvcTest(controllers = LungMeanRangeChartResource.class)
 public class LungFunctionMeanRangeChartResourceTest {
 
     private static final String BASE_URL = "/resources/respiratory/lung-function/mean-range-chart";
@@ -128,8 +128,8 @@ public class LungFunctionMeanRangeChartResourceTest {
                 any(PopulationFilters.class),
                 any(StatType.class)
         )).thenReturn(Arrays.asList(
-                new TrellisedRangePlot<>(),
-                new TrellisedRangePlot<>()
+                new TrellisedRangePlot<LungFunction, LungFunctionGroupByOptions>(),
+                new TrellisedRangePlot<LungFunction, LungFunctionGroupByOptions>()
         ));
 
         this.mvc.perform(post(BASE_URL + "/values")

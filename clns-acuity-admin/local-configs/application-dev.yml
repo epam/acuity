@@ -4,11 +4,12 @@ management:
 
 # manages links rendering behind proxy (more info: https://docs.spring.io/spring-boot/docs/1.5.x/reference/html/howto-embedded-servlet-containers.html#howto-use-tomcat-behind-a-proxy-server )
 server:
-  use-forward-headers: true
+  forward-headers-strategy: native
 
 # path to the logs directory (more info: https://docs.spring.io/spring-boot/docs/1.5.4.RELEASE/reference/htmlsingle/#boot-features-custom-log-configuration )
 logging:
-  path: /var/log
+  file:
+    path: /var/log
 
 # database connection data. if needed, the ones you need may be overridden for particular app in its config.
 spring:

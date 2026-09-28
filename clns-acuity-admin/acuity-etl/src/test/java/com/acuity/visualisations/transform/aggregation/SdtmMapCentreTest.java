@@ -17,7 +17,7 @@
 package com.acuity.visualisations.transform.aggregation;
 
 import com.acuity.visualisations.batch.processor.SdtmParsers;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static org.fest.assertions.Assertions.assertThat;
 

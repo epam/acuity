@@ -18,7 +18,8 @@ import {Component} from '@angular/core';
 import {AbstractPluginComponent} from '../AbstractPluginComponent';
 
 @Component({
-    templateUrl: './machineInsightsComponent.html'
+    templateUrl: './machineInsightsComponent.html',
+    standalone: false
 })
 export class MachineInsightsComponent extends AbstractPluginComponent  {
 }

@@ -52,4 +52,5 @@ public class TimelineSubjectRequest extends DatasetsRequest {
 
     private List<TimelineTrack> visibleTracks;
     private TAxes<DayZeroType> dayZero;
+
 }

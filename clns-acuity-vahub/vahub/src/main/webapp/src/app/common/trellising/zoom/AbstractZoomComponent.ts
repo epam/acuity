@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {Input, Output, EventEmitter, ElementRef} from '@angular/core';
+import {Directive, Input, Output, EventEmitter, ElementRef} from '@angular/core';
 import {isFinite, isNull} from 'lodash';
 import * as noUiSlider from 'nouislider';
 import {IZoom, TrellisDesign} from '../index';
@@ -33,6 +33,7 @@ export interface SliderOptions {
     format?: any;
 }
 
+@Directive()
 export abstract class AbstractZoomComponent {
     options: SliderOptions;
 

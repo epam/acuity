@@ -16,7 +16,7 @@
 
 import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
 import {DatasetViews} from '../../../../../security/DatasetViews';
-import {ColDef} from 'ag-grid/main';
+import {ColDef} from 'ag-grid-community';
 import {List} from 'immutable';
 import {SentenceCasePipe} from '../../../../../common/pipes/SentenceCasePipe';
 import * as  _ from 'lodash';
@@ -25,7 +25,8 @@ import * as  _ from 'lodash';
     templateUrl: 'SubjectSummarySectionComponent.html',
     styleUrls: ['SubjectSummarySectionComponent.css'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    selector: 'summary-section'
+    selector: 'summary-section',
+    standalone: false
 })
 export class SubjectSummarySectionComponent implements OnInit {
     @Input() section: any;

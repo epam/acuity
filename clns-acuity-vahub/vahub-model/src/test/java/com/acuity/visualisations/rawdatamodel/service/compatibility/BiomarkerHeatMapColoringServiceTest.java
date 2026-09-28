@@ -19,7 +19,7 @@ package com.acuity.visualisations.rawdatamodel.service.compatibility;
 import com.acuity.visualisations.rawdatamodel.vo.biomarker.BiomarkerRaw;
 import com.acuity.visualisations.rawdatamodel.vo.Subject;
 import com.acuity.visualisations.rawdatamodel.vo.wrappers.Biomarker;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.List;
 

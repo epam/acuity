@@ -32,7 +32,8 @@ import {List} from 'immutable';
     selector: 'timeline-track',
     templateUrl: 'TimelineTrackComponent.html',
     styleUrls: ['./TimelineTrackComponent.css'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class TimelineTrackComponent {
     @Input() track: ITrack;

@@ -16,13 +16,13 @@
 
 <ul [ngClass]="{'nav': !isDropdown, 'nav-tabs': !isDropdown, 'no-padding-right': !isDropdown, 'dropdown-menu': isDropdown, 'dropdown-menu-right': isDropdown}">
     <li>
-        <a routerLink="summary-tab" routerLinkActive="active">{{tabRecords.SINGLE_SUBJECT_SUMMARY_TAB.name}}</a>
+        <a routerLink="summary-tab" routerLinkActive="active">{{($any(tabRecords)).SINGLE_SUBJECT_SUMMARY_TAB.name}}</a>
     </li>
     <li *ngIf="isOngoing()">
         <a routerLink="new-summary-tab" routerLinkActive="active">{{tabRecords.SINGLE_SUBJECT_NEW_SUMMARY_TAB.name}}</a>
     </li>
     <li>
-        <a routerLink="timeline-tab" routerLinkActive="active">{{tabRecords.SINGLE_SUBJECT_TIMELINE.name}}</a>
+        <a routerLink="timeline-tab" routerLinkActive="active">{{($any(tabRecords)).SINGLE_SUBJECT_TIMELINE.name}}</a>
     </li>
     <li *ngIf="datasetViews.hasDoseData() && isOngoing()">
         <a routerLink="dose-tab" routerLinkActive="active">{{tabRecords.SINGLE_SUBJECT_DOSE_TAB.name}}</a>

@@ -16,13 +16,14 @@
 
 package com.acuity.va.validators.periodtype.annotation;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.annotation.DirtiesContext.ClassMode;
@@ -33,7 +34,7 @@ import org.springframework.test.context.support.DirtiesContextTestExecutionListe
 /**
  * @author andrew
  */
-@RunWith(SpringJUnit4ClassRunner.class)
+@ExtendWith(SpringExtension.class)
 @ContextConfiguration(locations = {
         "classpath:/spring/spring-validators.xml"
 })
@@ -53,24 +54,24 @@ public class WhenAnnotatingWithValidPeriodTypesValidator {
         assertThat(result).isEqualTo("Hello foo");
     }
     
-    @Test(expected=IllegalArgumentException.class)
-    public void shouldPreventNonNamedMethod() throws Exception {
-        testSpringBean.sayHello("killers");
-    }
-    
-    @Test(expected=IndexOutOfBoundsException.class)
-    public void shouldThrowWobblerOnWrongIndex() throws Exception {
-        testSpringBean.sayHello2("fighters");
-    }
-    
-    @Test(expected=IllegalArgumentException.class)
-    public void shouldPreventAllWithNoArgs() throws Exception {
-        testSpringBean.sayHello3("foo");
+    @Test
+    public void shouldPreventNonNamedMethod() {
+        assertThrows(IllegalArgumentException.class, () -> testSpringBean.sayHello("killers"));
     }
 
-    @Test(expected=IndexOutOfBoundsException.class)
-    public void shouldThrowIllegalStateOnNegativeIndex() throws Exception {
-        testSpringBean.sayHello4("fighters");
+    @Test
+    public void shouldThrowWobblerOnWrongIndex() {
+        assertThrows(IndexOutOfBoundsException.class, () -> testSpringBean.sayHello2("fighters"));
+    }
+
+    @Test
+    public void shouldPreventAllWithNoArgs() {
+        assertThrows(IllegalArgumentException.class, () -> testSpringBean.sayHello3("foo"));
+    }
+
+    @Test
+    public void shouldThrowIllegalStateOnNegativeIndex() {
+        assertThrows(IndexOutOfBoundsException.class, () -> testSpringBean.sayHello4("fighters"));
     }
 
     @Test
@@ -79,9 +80,9 @@ public class WhenAnnotatingWithValidPeriodTypesValidator {
         assertThat(result).isEqualTo("Hello weekly1");
     }
     
-    @Test(expected=IllegalArgumentException.class)
-    public void shouldPreventNonNamedMethodPeriodType() throws Exception {
-        testSpringBean.sayHello5(PeriodType.weekly3);
+    @Test
+    public void shouldPreventNonNamedMethodPeriodType() {
+        assertThrows(IllegalArgumentException.class, () -> testSpringBean.sayHello5(PeriodType.weekly3));
     }
 
 }

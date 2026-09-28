@@ -32,7 +32,7 @@ import java.util.Date;
  * @author ksnd199
  */
 @Data
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = false)
 @ToString(callSuper = true)
 @AllArgsConstructor
 @NoArgsConstructor

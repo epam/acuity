@@ -49,17 +49,17 @@ import com.acuity.visualisations.rawdatamodel.vo.plots.SelectionDetail;
 import com.acuity.visualisations.rawdatamodel.vo.wrappers.AssessedTargetLesion;
 import com.acuity.visualisations.rawdatamodel.vo.wrappers.PkResult;
 import com.acuity.va.security.acl.domain.Datasets;
-import org.assertj.core.api.JUnitSoftAssertions;
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.experimental.categories.Category;
-import org.junit.runner.RunWith;
+import org.assertj.core.api.SoftAssertions;
+import org.assertj.core.api.junit.jupiter.InjectSoftAssertions;
+import org.assertj.core.api.junit.jupiter.SoftAssertionsExtension;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.text.DecimalFormat;
 import java.util.Arrays;
@@ -84,14 +84,14 @@ import static com.acuity.visualisations.rawdatamodel.vo.GroupByOption.Param.WEEK
 import static com.google.common.collect.Lists.newArrayList;
 import static java.util.stream.Collectors.toSet;
 import static org.assertj.core.groups.Tuple.tuple;
-import static org.mockito.Matchers.any;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
-@RunWith(SpringRunner.class)
+@ExtendWith({SpringExtension.class, SoftAssertionsExtension.class})
 @ContextConfiguration(classes = TestConfig.class)
 public class PkResultWithResponseServiceTest {
-    @Rule
-    public final JUnitSoftAssertions softly = new JUnitSoftAssertions();
+    @InjectSoftAssertions
+    private SoftAssertions softly;
 
     @Autowired
     @Qualifier("pkResultWithResponseService")
@@ -231,7 +231,7 @@ public class PkResultWithResponseServiceTest {
             .id("atl15").response("Partial Response").assessmentFrequency(6)
             .targetLesionRaw(TargetLesionRaw.builder().lesionDate(DateUtils.toDate("15.01.2000")).build()).build(), subject1);
 
-    @Before
+    @BeforeEach
     public void setUp() {
         when(pkResultWithResponseDatasetsDataProvider.loadData(any()))
                 .thenReturn(newArrayList(pkResult11, pkResult12, pkResult13, pkResult21, pkResult22,
@@ -241,7 +241,7 @@ public class PkResultWithResponseServiceTest {
     }
 
     @Test
-    @Category(BoxPlotTests.class)
+    
     public void shouldGetBoxPlotXAxisOptions() {
         AxisOptions<PkResultGroupByOptions> result
                 = pkResultWithResponseService.getAvailableBoxPlotXAxis(DATASETS,
@@ -252,7 +252,7 @@ public class PkResultWithResponseServiceTest {
     }
 
     @Test
-    @Category(BoxPlotTests.class)
+    
     public void testGetBoxPlotData() {
         when(pkResultWithResponseDatasetsDataProvider.loadData(any())).thenReturn(newArrayList(pkResult26, pkResult27));
 
@@ -276,7 +276,7 @@ public class PkResultWithResponseServiceTest {
     }
 
     @Test
-    @Category(BoxPlotTests.class)
+    
     public void testGetBoxPlotDataWeek6() {
 
         final ChartGroupByOptions<PkResult, PkResultGroupByOptions> settings = getPkResultSettings(VISIT_NUMBER,
@@ -313,7 +313,7 @@ public class PkResultWithResponseServiceTest {
     }
 
     @Test
-    @Category(BoxPlotTests.class)
+    
     public void testGetBoxPlotDataWithEmptyBestOverallResponses() {
         // Given
         final ChartGroupByOptions<PkResult, PkResultGroupByOptions> settings = getPkResultSettings(VISIT_NUMBER);
@@ -350,7 +350,7 @@ public class PkResultWithResponseServiceTest {
     }
 
     @Test
-    @Category(BoxPlotTests.class)
+    
     public void shouldGetBoxPlotSelectionWhenTrellisedByMeasurement() {
         final ChartGroupByOptions<PkResult, PkResultGroupByOptions> settings = getPkResultSettings(CYCLE_DAY);
 
@@ -410,7 +410,7 @@ public class PkResultWithResponseServiceTest {
     }
 
     @Test
-    @Category(BoxPlotTests.class)
+    
     public void testGetBoxPlotSelectionOnWeek6() {
         final ChartGroupByOptions<PkResult, PkResultGroupByOptions> settings = getPkResultSettings(VISIT_NUMBER,
                 AssessmentType.WEEK, 6);

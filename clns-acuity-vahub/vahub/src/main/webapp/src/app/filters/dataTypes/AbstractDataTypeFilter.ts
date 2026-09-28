@@ -14,13 +14,14 @@
  * limitations under the License.
  */
 
-import {OnInit, OnDestroy, AfterViewInit, Output, EventEmitter} from '@angular/core';
+import {Directive, OnInit, OnDestroy, AfterViewInit, Output, EventEmitter} from '@angular/core';
 import {Subscription} from 'rxjs/Subscription';
 
 import {AbstractFiltersModel} from './AbstractFiltersModel';
 import {FilterEventService} from '../event/FilterEventService';
 import {SessionEventService} from '../../session/module';
 
+@Directive()
 export abstract class AbstractDataTypeFilter implements OnInit, OnDestroy, AfterViewInit {
 
     @Output()
@@ -49,7 +50,6 @@ export abstract class AbstractDataTypeFilter implements OnInit, OnDestroy, After
     protected afterViewInit(): void {
         if (this.sessionEventService.currentSelectedDatasets) {
             this.filtersModel.getFilters(true);
-            console.log('Filter component ' + this.subKey + ' updating after view');
             this.filtersModel.firstTimeLoaded = true;
         }
     }

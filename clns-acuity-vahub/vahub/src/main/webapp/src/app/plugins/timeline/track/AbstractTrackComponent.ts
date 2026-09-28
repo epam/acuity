@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {EventEmitter, Input, OnChanges, Output, SimpleChange} from '@angular/core';
+import {Directive, EventEmitter, Input, OnChanges, Output, SimpleChange} from '@angular/core';
 import {Subject} from 'rxjs/Subject';
 import {Subscription} from 'rxjs/Subscription';
 
@@ -26,6 +26,7 @@ import {TimelineUtils} from '../chart/TimelineUtils';
 import {List} from 'immutable';
 import {includes, remove} from 'lodash';
 
+@Directive()
 export abstract class AbstractTrackComponent implements OnChanges {
     @Input() track: ITrack;
     @Input() subjectId: string;

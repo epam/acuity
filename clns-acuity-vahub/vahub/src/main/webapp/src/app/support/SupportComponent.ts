@@ -23,7 +23,8 @@ import SuperUser = Request.SuperUser;
 @Component({
     selector: 'support',
     templateUrl: 'SupportComponent.html',
-    styleUrls: ['./SupportComponent.css']
+    styleUrls: ['./SupportComponent.css'],
+    standalone: false
 })
 export class SupportComponent implements OnDestroy {
     support: any;

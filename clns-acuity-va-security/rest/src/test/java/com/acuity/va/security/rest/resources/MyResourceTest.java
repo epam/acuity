@@ -34,12 +34,12 @@ import static com.acuity.va.security.acl.permissions.AcuityCumulativePermissions
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import com.jayway.jsonpath.JsonPath;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import static java.lang.System.out;
-import net.sf.ehcache.Cache;
-import net.sf.ehcache.CacheManager;
+import org.springframework.cache.Cache;
+import org.springframework.cache.CacheManager;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 

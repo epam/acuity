@@ -15,7 +15,7 @@
  */
 
 import {Injectable} from '@angular/core';
-import {ColDef} from 'ag-grid/main';
+import {ColDef} from 'ag-grid-community';
 import {List} from 'immutable';
 import {AbstractColumnModel} from '../AbstractColumnModel';
 
@@ -25,23 +25,23 @@ export class VitalsColumnModel extends AbstractColumnModel {
         {field: 'studyId'},
         {field: 'studyPart'},
         {field: 'subjectId'},
-        {field: 'measurementName', enableRowGroup: true},
+        {field: 'measurementName'},
         {field: 'measurementTimePoint'},
-        {field: 'daysOnStudy', enableValue: true},
-        {field: 'analysisVisit', enableValue: true},
-        {field: 'visitNumber', enableValue: true},
-        {field: 'scheduleTimepoint', enableRowGroup: true},
-        {field: 'resultValue', enableValue: true},
-        {field: 'resultUnit', enableRowGroup: true},
-        {field: 'baselineValue', enableValue: true},
-        {field: 'changeFromBaseline', enableValue: true},
-        {field: 'percentChangeFromBaseline', enableValue: true},
-        {field: 'baselineFlag', enableRowGroup: true},
-        {field: 'lastDoseDate', enableRowGroup: true},
-        {field: 'lastDoseAmount', enableValue: true},
-        {field: 'anatomicalLocation', enableRowGroup: true},
-        {field: 'sideOfInterest', enableRowGroup: true},
-        {field: 'physicalPosition', enableRowGroup: true},
-        {field: 'clinicallySignificant', enableRowGroup: true}
+        {field: 'daysOnStudy'},
+        {field: 'analysisVisit'},
+        {field: 'visitNumber'},
+        {field: 'scheduleTimepoint'},
+        {field: 'resultValue'},
+        {field: 'resultUnit'},
+        {field: 'baselineValue'},
+        {field: 'changeFromBaseline'},
+        {field: 'percentChangeFromBaseline'},
+        {field: 'baselineFlag'},
+        {field: 'lastDoseDate'},
+        {field: 'lastDoseAmount'},
+        {field: 'anatomicalLocation'},
+        {field: 'sideOfInterest'},
+        {field: 'physicalPosition'},
+        {field: 'clinicallySignificant'}
     ]);
 }

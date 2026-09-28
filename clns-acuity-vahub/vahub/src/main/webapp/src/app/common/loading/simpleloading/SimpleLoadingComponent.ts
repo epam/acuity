@@ -24,7 +24,8 @@ import {Component, Input} from '@angular/core';
 @Component({
     selector: 'simple-loading',
     templateUrl: 'SimpleLoadingComponent.html',
-    styleUrls: ['SimpleLoadingComponent.css']
+    styleUrls: ['SimpleLoadingComponent.css'],
+    standalone: false
 })
 export class SimpleLoadingComponent {
     @Input() loading: boolean;

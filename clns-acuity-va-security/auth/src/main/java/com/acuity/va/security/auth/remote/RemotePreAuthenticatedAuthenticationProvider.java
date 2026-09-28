@@ -26,7 +26,6 @@ import org.springframework.security.authentication.AuthenticationServiceExceptio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.preauth.PreAuthenticatedAuthenticationToken;
-import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 
@@ -37,7 +36,6 @@ import java.io.IOException;
  *
  */
 
-@Service("remoteAuthenticationProvider")
 public class RemotePreAuthenticatedAuthenticationProvider implements AuthenticationProvider {
 
     private static final Logger LOG = LoggerFactory.getLogger(RemotePreAuthenticatedAuthenticationProvider.class);

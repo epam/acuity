@@ -20,7 +20,7 @@ import com.acuity.visualisations.common.config.Constants;
 import static com.acuity.visualisations.common.config.Constants.DETECT_PERSISTENT_CACHE;
 import com.acuity.va.security.acl.domain.Datasets;
 import static org.assertj.core.api.Assertions.assertThat;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  *

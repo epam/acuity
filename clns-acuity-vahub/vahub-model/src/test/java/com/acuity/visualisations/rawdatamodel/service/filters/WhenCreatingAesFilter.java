@@ -18,14 +18,17 @@ package com.acuity.visualisations.rawdatamodel.service.filters;
 
 import com.acuity.visualisations.rawdatamodel.filters.AeFilters;
 import com.acuity.visualisations.rawdatamodel.vo.AeDetailLevel;
-import org.assertj.core.api.JUnitSoftAssertions;
-import org.junit.Rule;
-import org.junit.Test;
+import org.assertj.core.api.SoftAssertions;
+import org.assertj.core.api.junit.jupiter.InjectSoftAssertions;
+import org.assertj.core.api.junit.jupiter.SoftAssertionsExtension;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 
+@ExtendWith(SoftAssertionsExtension.class)
 public class WhenCreatingAesFilter {
 
-    @Rule
-    public final JUnitSoftAssertions softly = new JUnitSoftAssertions();
+    @InjectSoftAssertions
+    private SoftAssertions softly;
 
     @Test
     public void shouldReturnAeDetailChecksOnConstruction() {

@@ -33,7 +33,6 @@ public class LabFilterService extends AbstractEventFilterService<Lab, Filters<La
         Collection<Lab> filteredLabEvents = filteredResult.getFilteredResult();
 
         return filteredLabEvents.stream()
-                .distinct()
                 .collect(new FilterSummaryStatisticsCollector<>(LabFilterSummaryStatistics.class))
                 .getFilters();
     }

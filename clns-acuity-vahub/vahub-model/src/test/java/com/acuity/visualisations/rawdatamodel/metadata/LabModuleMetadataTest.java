@@ -26,13 +26,12 @@ import com.acuity.visualisations.rawdatamodel.vo.LabRaw;
 import com.acuity.visualisations.rawdatamodel.vo.Subject;
 import com.acuity.visualisations.rawdatamodel.vo.wrappers.Lab;
 import com.acuity.va.security.acl.domain.Datasets;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.experimental.categories.Category;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.runners.MockitoJUnitRunner;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.HashMap;
 
@@ -41,12 +40,12 @@ import static com.acuity.visualisations.rawdatamodel.util.Constants.AVAILABLE_YA
 import static com.google.common.collect.Lists.newArrayList;
 import static net.javacrumbs.jsonunit.fluent.JsonFluentAssert.assertThatJson;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.anyCollection;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyCollection;
 import static org.mockito.Mockito.when;
 
-@RunWith(MockitoJUnitRunner.class)
-@Category(LabTests.class)
+@ExtendWith(MockitoExtension.class)
+
 public class LabModuleMetadataTest {
     @InjectMocks
     private LabModuleMetadata moduleMetadata;
@@ -55,7 +54,7 @@ public class LabModuleMetadataTest {
     @Mock
     private DoDCommonService doDCommonService;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         moduleMetadata.datasetsDataProvider = newArrayList(datasetsDataProvider);
     }

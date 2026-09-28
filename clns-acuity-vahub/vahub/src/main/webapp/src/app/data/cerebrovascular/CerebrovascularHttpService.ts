@@ -20,7 +20,7 @@ import {CerebrovascularFiltersModel, PopulationFiltersModel} from '../../filters
 import {downloadData, getServerPath} from '../../common/utils/Utils';
 import {BaseChartsHttpService} from '../BaseChartsHttpService';
 import {ISelectionDetail} from '../../common/trellising/store';
-import {HttpClient} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import Dataset = Request.Dataset;
 import ChartGroupByOptionsFiltered = Request.ChartGroupByOptionsFiltered;
 import SortAttrs = Request.SortAttrs;

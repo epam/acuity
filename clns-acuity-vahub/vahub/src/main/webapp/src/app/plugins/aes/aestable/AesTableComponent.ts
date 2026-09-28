@@ -16,7 +16,7 @@
 
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Subscription} from 'rxjs/Subscription';
-import {ColDef, GridOptions} from 'ag-grid/main';
+import {ColDef, GridOptions} from 'ag-grid-community';
 import * as _ from 'lodash';
 import {AesTableServiceCommunity,IAesTableService} from "./AesTableServiceCommunity";
 import {FilterEventService} from '../../../filters/module';
@@ -32,7 +32,8 @@ import AesTable = InMemory.AesTable;
 @Component({
     selector: 'aestable',
     templateUrl: 'AesTableComponent.html',
-    providers: [AesTableDropdownModel]
+    providers: [AesTableDropdownModel],
+    standalone: false
 })
 export class AesTableComponent implements OnInit, OnDestroy {
 

@@ -16,11 +16,13 @@
 
 package com.acuity.va.security.auth.local;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
+import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.session.ConcurrentSessionFilter;
 
 /**
@@ -28,15 +30,17 @@ import org.springframework.security.web.session.ConcurrentSessionFilter;
  */
 @Profile({"local-auth", "local-no-security"})
 @Configuration
-@Order(1)
-public class LocalAuthConfiguration extends WebSecurityConfigurerAdapter {
+public class LocalAuthConfiguration {
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
+    @Bean
+    @Order(Ordered.HIGHEST_PRECEDENCE)
+    public SecurityFilterChain localSecurityFilterChain(HttpSecurity http) throws Exception {
         http.addFilterBefore(new AddLocalUserToSessionFilter(), ConcurrentSessionFilter.class)
-                .authorizeRequests().antMatchers("/**").authenticated()
-                .and()
-                .sessionManagement().invalidSessionUrl("/").maximumSessions(4).expiredUrl("/");
-        http.csrf().disable();
+            .authorizeHttpRequests(auth -> auth.anyRequest().permitAll())
+            .csrf(csrf -> csrf.disable())
+            .sessionManagement(session -> session
+                .sessionConcurrency(concurrency -> concurrency
+                    .maximumSessions(10)));
+        return http.build();
     }
 }

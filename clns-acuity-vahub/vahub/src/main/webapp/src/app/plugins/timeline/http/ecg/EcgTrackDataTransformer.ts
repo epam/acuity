@@ -55,6 +55,7 @@ export class EcgTrackDataTransformer extends TrackDataTransformer {
 
         return {
             subjectId: result.subjectId,
+            subject: result.subject,
             data: trackData
         };
     }
@@ -95,6 +96,7 @@ export class EcgTrackDataTransformer extends TrackDataTransformer {
 
         return {
             subjectId: result.subjectId,
+            subject: result.subject,
             data: trackData
         };
     }

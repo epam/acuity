@@ -23,6 +23,7 @@ import * as noUiSlider from 'nouislider';
 @Component({
     selector: 'timeline-zoom-bar',
     template: '<div class="row" style="margin-left: 10px; margin-right: 0px"></div>',
+    standalone: false
 })
 export class TimelineZoomBarComponent implements OnChanges {
 

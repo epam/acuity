@@ -16,7 +16,7 @@
 
 import {Injectable} from '@angular/core';
 import {Map} from 'immutable';
-import {HttpClient} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import {BaseChartsHttpService} from '../BaseChartsHttpService';
 import {downloadData, getServerPath} from '../../common/utils/Utils';

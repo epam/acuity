@@ -33,7 +33,7 @@ import static com.acuity.visualisations.rawdatamodel.util.DodUtil.SUBJECT_ID;
 /**
  * Created by knml167 on 6/9/2017.
  */
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = false)
 @ToString(callSuper = true)
 public class SubjectAwareWrapper<T extends HasStringId & HasSubjectId> extends EventWrapper<T> implements HasSubject {
     @Getter

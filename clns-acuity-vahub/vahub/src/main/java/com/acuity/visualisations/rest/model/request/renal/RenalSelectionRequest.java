@@ -24,7 +24,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
@@ -32,4 +32,8 @@ import javax.validation.constraints.NotNull;
 public class RenalSelectionRequest extends RenalRequest {
     @NotNull
     private ChartSelection<Renal, RenalGroupByOptions, ChartSelectionItemRange<Renal, RenalGroupByOptions, Double>> selection;
+
+    public ChartSelection<Renal, RenalGroupByOptions, ChartSelectionItemRange<Renal, RenalGroupByOptions, Double>> getSelection() {
+        return selection;
+    }
 }

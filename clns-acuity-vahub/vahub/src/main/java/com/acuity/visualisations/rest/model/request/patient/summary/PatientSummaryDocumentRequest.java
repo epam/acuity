@@ -25,4 +25,8 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 public class PatientSummaryDocumentRequest extends SingleSubjectRequest<PopulationFilters> {
     private String timeZoneOffset;
+
+    public String getTimeZoneOffset() {
+        return timeZoneOffset;
+    }
 }

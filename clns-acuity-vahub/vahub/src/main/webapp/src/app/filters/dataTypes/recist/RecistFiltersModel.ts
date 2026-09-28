@@ -80,7 +80,6 @@ export class RecistFiltersModel extends AbstractEventFiltersModel {
             .filter(([colorBy, yAxis]) => yAxis && colorBy)
             .take(1)
             .subscribe(([colorBy, yAxis]) => {
-                console.log('Sending ' + this.getName() + ' filters request');
                 const filtersName = this.getName() + 'Filters';
                 const colorByValue = colorBy.get(0);
                 const settingsCopy = {
@@ -108,7 +107,6 @@ export class RecistFiltersModel extends AbstractEventFiltersModel {
                     settingsCopy
                 )
                     .subscribe(res => {
-                        console.log('Got ' + this.getName() + ' filters request');
                         this.transformFiltersFromServer(res);
                         if (this.firstTimeLoaded) {
                             this.hideEmptyFilters(this.datasetViews.getEmptyFilters(this.getName()));

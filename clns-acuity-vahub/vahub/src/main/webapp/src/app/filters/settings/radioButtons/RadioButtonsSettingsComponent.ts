@@ -19,7 +19,8 @@ import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges
 @Component({
     selector: 'radio-buttons-setting',
     templateUrl: 'RadioButtonsSettingsComponent.html',
-    styleUrls: ['../../filters.css', '../dataTypes/PlotSettings.css']
+    styleUrls: ['../../filters.css', '../dataTypes/PlotSettings.css'],
+    standalone: false
 })
 export class RadioButtonsSettingsComponent implements OnChanges, OnInit {
 

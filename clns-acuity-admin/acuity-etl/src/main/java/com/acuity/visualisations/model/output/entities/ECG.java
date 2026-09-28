@@ -50,26 +50,27 @@ public class ECG extends TimestampedEntity implements SmartEntity, SplitEntity<E
     public List<EG> split() {
         List<EG> out = new ArrayList<>();
         if (qrs != null) {
-            out.add(new EG(subject, part, date, "Summary (Mean) QRS Duration", new BigDecimal(qrs),
-                    null, evaluation, abnormality, significant));
+            out.add(newEg("Summary (Mean) QRS Duration", new BigDecimal(qrs)));
         }
         if (rr != null) {
-            out.add(new EG(subject, part, date, "Summary (Mean) RR Duration", new BigDecimal(rr),
-                    null, evaluation, abnormality, significant));
+            out.add(newEg("Summary (Mean) RR Duration", new BigDecimal(rr)));
         }
         if (pr != null) {
-            out.add(new EG(subject, part, date, "Summary (Mean) PR Duration", new BigDecimal(pr),
-                    null, evaluation, abnormality, significant));
+            out.add(newEg("Summary (Mean) PR Duration", new BigDecimal(pr)));
         }
         if (qt != null) {
-            out.add(new EG(subject, part, date, "Summary (Mean) QT Duration", new BigDecimal(qt),
-                    null, evaluation, abnormality, significant));
+            out.add(newEg("Summary (Mean) QT Duration", new BigDecimal(qt)));
         }
         if (qtcf != null) {
-            out.add(new EG(subject, part, date, "QTcF - Fridericia's Correction Formula", new BigDecimal(qtcf),
-                    null, evaluation, abnormality, significant));
+            out.add(newEg("QTcF - Fridericia's Correction Formula", new BigDecimal(qtcf)));
         }
         return out;
+    }
+
+    private EG newEg(String testName, BigDecimal testResult) {
+        EG eg = new EG(subject, part, date, testName, testResult, null, evaluation, abnormality, significant);
+        eg.setDomain("EG");
+        return eg;
     }
 
     public ECG() {

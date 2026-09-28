@@ -19,7 +19,8 @@ package com.acuity.visualisations.config.condition;
 import static com.acuity.visualisations.config.condition.Conditions.in;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.util.Lists.newArrayList;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  *
@@ -32,8 +33,10 @@ public class WhenTestingListContainsConditions {
         assertThat(newArrayList("1", "2", "3")).are(in(newArrayList("1", "2", "3", "4")));
     }
 
-    @Test(expected = AssertionError.class)
+    @Test
     public void shouldFailTestListContainsCondition1() {
+        assertThrows(AssertionError.class, () -> {
         assertThat(newArrayList("1", "2", "3")).are(in(newArrayList("1", "2", "4")));
+        });
     }
 }

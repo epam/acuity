@@ -19,7 +19,7 @@ package com.acuity.visualisations.rawdatamodel.vo.exposure;
 import com.acuity.visualisations.rawdatamodel.util.DateUtils;
 import com.acuity.visualisations.rawdatamodel.vo.ExposureRaw;
 import org.assertj.core.api.Assertions;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class CycleTest {
 

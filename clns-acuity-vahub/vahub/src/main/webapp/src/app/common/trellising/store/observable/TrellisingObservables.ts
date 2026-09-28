@@ -100,7 +100,8 @@ export class TrellisingObservables {
     jumpToAesFromAeNumberLocation: Observable<string>;
     plotSettingsRequired: Observable<boolean>;
     plotSettings: Observable<PlotSettings>;
-    customControlLabels: Observable<string[]>; // if some explanation to what the colorBy control is doing is needed, null if not needed
+    customControlLabels: Observable<string[]>;
+    drugForColorBy$: Observable<string>; // if some explanation to what the colorBy control is doing is needed, null if not needed
     subPlotTabId: Observable<TabId>;
 
     advancedAxisControlRequired$: Observable<boolean>;

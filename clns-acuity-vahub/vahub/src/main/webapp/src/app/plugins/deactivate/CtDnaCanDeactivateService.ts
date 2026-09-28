@@ -22,11 +22,11 @@ import {CtDnaFiltersModel, PopulationFiltersModel} from '../../filters/module';
 import {CanDeactivateBase} from './CanDeactivateBase';
 import {FiltersService} from '../../data/FiltersService';
 import {FilterId} from '../../common/module';
-import {ActivatedRouteSnapshot, CanDeactivate, Router, RouterStateSnapshot} from '@angular/router';
+import { ActivatedRouteSnapshot, Router, RouterStateSnapshot } from '@angular/router';
 import {TimelineConfigService} from '../../common/trellising/store/services/TimelineConfigService';
 
 @Injectable()
-export class CanDeactivateCtDna extends CanDeactivateBase implements CanDeactivate<CtDNAComponent> {
+export class CanDeactivateCtDna extends CanDeactivateBase  {
 
     constructor(ctDnaFiltersModel: CtDnaFiltersModel,
                 protected filtersService: FiltersService,

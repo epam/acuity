@@ -22,7 +22,7 @@ import com.acuity.visualisations.rawdatamodel.vo.wrappers.LungFunction;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 
 /**
  * Request for lung function values
@@ -32,5 +32,9 @@ import javax.validation.constraints.NotNull;
 public class LungFunctionValuesRequest extends LungFunctionRequest {
     @NotNull
     private ChartGroupByOptionsFiltered<LungFunction, LungFunctionGroupByOptions> settings;
+
+    public ChartGroupByOptionsFiltered<LungFunction, LungFunctionGroupByOptions> getSettings() {
+        return settings;
+    }
 }
 

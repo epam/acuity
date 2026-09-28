@@ -17,7 +17,6 @@
 package com.acuity.visualisations.rest.resources.cache;
 
 import com.acuity.visualisations.common.cache.RefreshCacheService;
-import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -38,12 +37,6 @@ public class RefreshCacheFromUIResource {
     @Autowired
     private RefreshCacheService cacheService;
 
-    @ApiOperation(
-            value = "Clear all caches",
-            nickname = "clearAllCache",
-            response = ResponseEntity.class,
-            httpMethod = "GET"
-    )
     @RequestMapping(value = "/clear/all", method = GET)
     public ResponseEntity clearAllCache() {
 

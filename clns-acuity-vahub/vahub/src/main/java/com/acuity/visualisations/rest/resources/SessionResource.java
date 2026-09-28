@@ -20,15 +20,14 @@ import com.acuity.visualisations.common.util.Security;
 import com.acuity.va.auditlogger.annotation.LogArg;
 import com.acuity.va.auditlogger.annotation.LogOperation;
 import com.acuity.va.security.acl.domain.AcuitySidDetails;
-import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.ws.rs.WebApplicationException;
-import javax.ws.rs.core.Response;
+import jakarta.ws.rs.WebApplicationException;
+import jakarta.ws.rs.core.Response;
 
 import static org.springframework.http.MediaType.ALL_VALUE;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
@@ -48,7 +47,6 @@ public class SessionResource {
 
     private final Security security;
 
-    @ApiOperation("Gets the current user information")
     @GetMapping("/whoami")
     @LogOperation(name = "DETECT_LOGON", value = {
             @LogArg(arg = -1, name = "PRID", expression = "getUserId()"),
@@ -65,7 +63,6 @@ public class SessionResource {
         }
     }
 
-    @ApiOperation("Pings the server to keep session alive")
     @GetMapping("/ping")
     public String ping() {
         return "ping";

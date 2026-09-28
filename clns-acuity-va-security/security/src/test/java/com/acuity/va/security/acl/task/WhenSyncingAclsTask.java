@@ -35,9 +35,9 @@ import com.acuity.va.security.config.annotation.FlatXmlNullDataSetLoader;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
 import com.github.springtestdbunit.annotation.DbUnitConfiguration;
 import com.google.common.collect.ImmutableList;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,7 +45,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.security.acls.model.MutableAcl;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.annotation.DirtiesContext.ClassMode;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.util.ReflectionTestUtils;
 
 import java.math.BigDecimal;
@@ -56,13 +56,13 @@ import static com.acuity.va.security.acl.domain.AcuityObjectIdentityImpl.Origin.
 import static com.acuity.va.security.acl.domain.AcuityObjectIdentityImpl.Origin.ACUITY;
 import static com.google.common.collect.Lists.newArrayList;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Matchers.anyString;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-@RunWith(SpringJUnit4ClassRunner.class)
+@ExtendWith(SpringExtension.class)
 @TransactionalLoggingMyBatisDBUnitH2Test
 @DatabaseSetup({"/dbunit/security/dbunit-all-security.xml"})
 @DbUnitConfiguration(dataSetLoader = FlatXmlNullDataSetLoader.class)
@@ -89,7 +89,7 @@ public class WhenSyncingAclsTask {
     private VASecurityResourceClient mockClient;
     private List<AcuityObjectIdentityWithInitialLockDown> initialRois;
 
-    @Before
+    @BeforeEach
     public void setup() {
         VASecurityResourceFactory mockVASecurityResourceFactory = mock(VASecurityResourceFactory.class);
         mockClient = mock(VASecurityResourceClient.class);

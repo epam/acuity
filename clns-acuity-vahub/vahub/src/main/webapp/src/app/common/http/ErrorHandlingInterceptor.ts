@@ -14,13 +14,7 @@
  * limitations under the License.
  */
 
-import {
-    HttpEvent,
-    HttpInterceptor,
-    HttpHandler,
-    HttpRequest,
-    HttpErrorResponse
-} from '@angular/common/http';
+import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpErrorResponse } from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import * as toastr from 'toastr/build/toastr.min.js';
 

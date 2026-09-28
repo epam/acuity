@@ -40,6 +40,7 @@ import java.io.IOException;
 import java.lang.ref.SoftReference;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
@@ -82,6 +83,14 @@ public class DataProvider implements CacheableDataProvider {
     private static void loadToFile(Kryo kryo, Supplier dataSupplier, final Path fileName) throws IOException {
         log.info("Getting events from origin");
         Object entities = dataSupplier.get();
+        // Normalize to a plain ArrayList so Kryo never has to deal with JDK-internal wrapper
+        // list/set/map types (Arrays.asList, Collections.unmodifiable*/synchronized*/singleton*).
+        // Those wrapper types require reflective access to private JDK fields (e.g.
+        // java.util.Arrays$ArrayList.a) which is blocked by the module system on Java 17+/21
+        // (see kryo-serializers issue https://github.com/magro/kryo-serializers/issues/131).
+        if (entities instanceof Collection) {
+            entities = new ArrayList<>((Collection<?>) entities);
+        }
         try (FileOutputStream fileOutputStream = getFileOutputStream(fileName); Output output = new Output(fileOutputStream)) {
             log.info("Creating kryo file {}", fileName);
             kryo.writeClassAndObject(output, entities);

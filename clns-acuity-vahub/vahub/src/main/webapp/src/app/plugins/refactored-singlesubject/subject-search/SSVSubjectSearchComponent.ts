@@ -30,7 +30,8 @@ import {
 
 @Component({
     selector: 'ssv-subject-search',
-    templateUrl: 'SSVSubjectSearchComponent.html'
+    templateUrl: 'SSVSubjectSearchComponent.html',
+    standalone: false
 })
 export class SSVSubjectSearchComponent {
     selectedSubjectId$: Observable<string>;

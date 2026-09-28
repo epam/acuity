@@ -29,8 +29,8 @@ import com.acuity.visualisations.rest.model.request.vitals.VitalsTimelineRequest
 import com.acuity.va.security.acl.domain.Datasets;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
@@ -47,9 +47,9 @@ import java.util.List;
 
 import static com.acuity.visualisations.config.util.TestConstants.DUMMY_DETECT_DATASETS;
 import static com.google.common.collect.Lists.newArrayList;
-import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.anyString;
-import static org.mockito.Matchers.eq;
+import static org.mockito.ArgumentMatchers.nullable;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
@@ -69,7 +69,7 @@ public class TimelineVitalsResourceTest {
     private MockMvc mvc;
     private static ObjectMapper mapper;
 
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
         mvc = MockMvcBuilders.standaloneSetup(vitalsResource).build();
@@ -102,7 +102,7 @@ public class TimelineVitalsResourceTest {
 
         when(mockVitalsService.getVitalsSummaries(any(Datasets.class),
                 any(VitalFilters.class), any(PopulationFilters.class),
-                any(DayZeroType.class), anyString()))
+                any(DayZeroType.class), nullable(String.class)))
                 .thenReturn(response);
 
         MockHttpServletRequestBuilder post = MockMvcRequestBuilders.
@@ -118,7 +118,7 @@ public class TimelineVitalsResourceTest {
 
         Mockito.verify(mockVitalsService, times(1)).getVitalsSummaries(eq(DUMMY_DETECT_DATASETS),
                 any(VitalFilters.class), any(PopulationFilters.class),
-                eq(DayZeroType.DAYS_SINCE_FIRST_DOSE), anyString());
+                eq(DayZeroType.DAYS_SINCE_FIRST_DOSE), nullable(String.class));
         verifyNoMoreInteractions(mockVitalsService);
     }
 
@@ -142,7 +142,7 @@ public class TimelineVitalsResourceTest {
 
         when(mockVitalsService.getVitalsDetails(any(Datasets.class),
                 any(VitalFilters.class), any(PopulationFilters.class),
-                any(DayZeroType.class), anyString()))
+                any(DayZeroType.class), nullable(String.class)))
                 .thenReturn(response);
 
         MockHttpServletRequestBuilder post = MockMvcRequestBuilders.
@@ -158,7 +158,7 @@ public class TimelineVitalsResourceTest {
 
         Mockito.verify(mockVitalsService, times(1)).getVitalsDetails(eq(DUMMY_DETECT_DATASETS),
                 any(VitalFilters.class), any(PopulationFilters.class),
-                eq(DayZeroType.DAYS_SINCE_FIRST_DOSE), anyString());
+                eq(DayZeroType.DAYS_SINCE_FIRST_DOSE), nullable(String.class));
         verifyNoMoreInteractions(mockVitalsService);
     }
 }

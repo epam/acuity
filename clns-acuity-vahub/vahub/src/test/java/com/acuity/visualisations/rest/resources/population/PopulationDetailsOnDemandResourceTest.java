@@ -25,8 +25,8 @@ import com.acuity.va.security.acl.domain.Datasets;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -46,10 +46,10 @@ import java.util.Map;
 import static com.acuity.visualisations.config.util.TestConstants.DUMMY_DETECT_DATASETS;
 import static com.google.common.collect.Sets.newHashSet;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.anyList;
-import static org.mockito.Matchers.anyLong;
-import static org.mockito.Matchers.anySet;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyList;
+import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.ArgumentMatchers.anySet;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
@@ -57,7 +57,6 @@ import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@SuppressWarnings("unchecked")
 public class PopulationDetailsOnDemandResourceTest {
     @Mock
     private PopulationService mockPopulationService;
@@ -67,7 +66,7 @@ public class PopulationDetailsOnDemandResourceTest {
     private MockMvc mvc;
     private static ObjectMapper mapper;
 
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
         mvc = MockMvcBuilders.standaloneSetup(populationResource).build();
@@ -86,11 +85,11 @@ public class PopulationDetailsOnDemandResourceTest {
         requestBody.setEnd(1000);
         requestBody.setDatasets(DUMMY_DETECT_DATASETS.getDatasetsList());
 
-        Map<String, Object> dod = new HashMap<>();
+        Map<String, String> dod = new HashMap<>();
         dod.put("subjectId", "Subj-1");
         dod.put("plannedArm", "planned_arm");
 
-        List<Map<String, Object>> mockResponse = Arrays.asList(dod);
+        List<Map<String, String>> mockResponse = Arrays.asList(dod);
 
         when(mockPopulationService.getDetailsOnDemandData(
                 any(Datasets.class),

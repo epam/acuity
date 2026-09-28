@@ -34,7 +34,8 @@ import {List} from 'immutable';
     selector: 'timeline-steppedlinechart',
     template: '<div class="row"></div>',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    providers: [SteppedLineChartPlotconfigService]
+    providers: [SteppedLineChartPlotconfigService],
+    standalone: false
 })
 export class SteppedLineChartComponent extends AbstractChartComponent implements OnChanges, OnDestroy {
     // passed in to add additional configurations

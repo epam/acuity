@@ -29,16 +29,17 @@ import com.acuity.visualisations.rawdatamodel.vo.Subject;
 import com.acuity.visualisations.rawdatamodel.vo.wrappers.Ae;
 import com.acuity.visualisations.rawdatamodel.vo.wrappers.DrugDose;
 import com.acuity.va.security.acl.domain.Datasets;
-import org.assertj.core.api.JUnitSoftAssertions;
+import org.assertj.core.api.SoftAssertions;
+import org.assertj.core.api.junit.jupiter.InjectSoftAssertions;
+import org.assertj.core.api.junit.jupiter.SoftAssertionsExtension;
 import org.assertj.core.groups.Tuple;
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.Collections;
 import java.util.LinkedHashMap;
@@ -49,10 +50,10 @@ import static com.acuity.visualisations.rawdatamodel.Constants.DATASETS;
 import static com.acuity.visualisations.rawdatamodel.util.Constants.NOT_IMPLEMENTED;
 import static com.acuity.visualisations.rawdatamodel.util.DateUtils.toDateTime;
 import static com.google.common.collect.Lists.newArrayList;
-import static org.mockito.Matchers.any;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
-@RunWith(SpringRunner.class)
+@ExtendWith({SpringExtension.class, SoftAssertionsExtension.class})
 @ContextConfiguration(classes = TestConfig.class)
 public class DoseLimitingServiceTest {
     @Autowired
@@ -66,8 +67,8 @@ public class DoseLimitingServiceTest {
     @MockBean
     private DrugDoseDatasetsDataProvider drugDoseDatasetsDataProvider;
 
-    @Rule
-    public final JUnitSoftAssertions softly = new JUnitSoftAssertions();
+    @InjectSoftAssertions
+    private SoftAssertions softly;
 
     private static Map<String, String> drugs = new LinkedHashMap<>();
     private static Subject subject = Subject.builder().subjectId("sid1").drugsDosed(drugs).build();
@@ -140,7 +141,7 @@ public class DoseLimitingServiceTest {
     private static final List<Ae> AES = newArrayList(ae1, ae2, ae3, ae4, ae5, ae6);
     private static final List<DrugDose> DDS = newArrayList(dd1, dd2, dd3, dd4, dd5);
 
-    @Before
+    @BeforeEach
     public void initMocks() {
         when(populationDatasetsDataProvider.loadData(any(Datasets.class))).thenReturn(Collections.singleton(subject));
         when(aeIncidenceDatasetsDataProvider.loadData(any(Datasets.class))).thenReturn(AES);

@@ -30,4 +30,8 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 public class TumourTldRequest extends TumourRequest {
     private ChartGroupByOptionsFiltered<AssessedTargetLesion, ATLGroupByOptions> settings;
+
+    public ChartGroupByOptionsFiltered<AssessedTargetLesion, ATLGroupByOptions> getSettings() {
+        return settings;
+    }
 }

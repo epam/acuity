@@ -31,7 +31,8 @@ import {ModalAnswer, IModalAnswer} from '../../trellising/store/ITrellising';
  */
 @Component({
     selector: 'app-choice-modal',
-    templateUrl: 'ChoiceModalComponent.html'
+    templateUrl: 'ChoiceModalComponent.html',
+    standalone: false
 })
 export class ChoiceModalComponent implements OnInit, OnDestroy {
 

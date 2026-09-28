@@ -16,10 +16,9 @@
 
 package com.acuity.va.security.auth.common;
 
+import jakarta.servlet.annotation.WebListener;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.context.request.RequestContextListener;
-
-import javax.servlet.annotation.WebListener;
 
 @Configuration
 @WebListener

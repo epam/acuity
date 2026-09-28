@@ -24,7 +24,7 @@ import com.acuity.visualisations.rawdatamodel.vo.wrappers.Exacerbation;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
@@ -34,4 +34,12 @@ public class ExacerbationOnSetLineChartSelectionRequest extends ExacerbationRequ
             ChartSelectionItem<Exacerbation, ExacerbationGroupByOptions>> selection;
     @NotNull
     private CountType countType;
+
+    public ChartSelection<Exacerbation, ExacerbationGroupByOptions,
+            ChartSelectionItem<Exacerbation, ExacerbationGroupByOptions>> getSelection() {
+        return selection;
+    }
+    public CountType getCountType() {
+        return countType;
+    }
 }

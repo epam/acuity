@@ -24,19 +24,20 @@ import com.acuity.va.security.rest.resources.MyAnalyticsResource;
 import com.acuity.va.security.acl.domain.DrugProgramme;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
 import com.github.springtestdbunit.annotation.DbUnitConfiguration;
-import org.junit.Ignore;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.context.SecurityContextHolder;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-@Ignore("Cant run with mocking")
-@RunWith(SpringJUnit4ClassRunner.class)
+@Disabled("Cant run with mocking")
+@ExtendWith(SpringExtension.class)
 @TransactionalMyBatisDBUnitH2Test
 @DatabaseSetup({"/dbunit/security/dbunit-all-security.xml"})
 @DbUnitConfiguration(dataSetLoader = FlatXmlNullDataSetLoader.class)
@@ -64,12 +65,14 @@ public class SecurityTestingMyAnalyticsResourceITCase {
         myAnalyticsResource.getDrugProgrammeInfo(DrugProgramme.class.getSimpleName(), 2L);
     }
 
-    @Test(expected = AccessDeniedException.class)
+    @Test
     public void shouldDenyWithout_VIEW_VISUALATIONS_permissionFor_getDrugProgrammeInfo() {
+        assertThrows(AccessDeniedException.class, () -> {
 
         SecurityContextHolder.getContext().setAuthentication(new TestingAuthenication("bob the builder"));
 
         myAnalyticsResource.getDrugProgrammeInfo(DrugProgramme.class.getSimpleName(), 2L);
+        });
     }
 
     @Test
@@ -80,12 +83,14 @@ public class SecurityTestingMyAnalyticsResourceITCase {
         myAnalyticsResource.getClinicalStudyInfo(ClinicalStudy.class.getSimpleName(), 4L);
     }
 
-    @Test(expected = AccessDeniedException.class)
+    @Test
     public void shouldDenyWithout_VIEW_VISUALATIONS_permissionFor_getClinicalStudyInfo() {
+        assertThrows(AccessDeniedException.class, () -> {
 
         SecurityContextHolder.getContext().setAuthentication(new TestingAuthenication("bob the builder"));
 
         myAnalyticsResource.getClinicalStudyInfo(ClinicalStudy.class.getSimpleName(), 4L);
+        });
     }
 
     @Test
@@ -96,12 +101,14 @@ public class SecurityTestingMyAnalyticsResourceITCase {
         myAnalyticsResource.getDatasetInfo(AcuityDataset.class.getSimpleName(), 10L);
     }
 
-    @Test(expected = AccessDeniedException.class)
+    @Test
     public void shouldDenyWithout_VIEW_VISUALATIONS_permissionFor_getDatasetInfo() {
+        assertThrows(AccessDeniedException.class, () -> {
 
         SecurityContextHolder.getContext().setAuthentication(new TestingAuthenication("bob the builder"));
 
         myAnalyticsResource.getDatasetInfo(AcuityDataset.class.getSimpleName(), 10L);
+        });
     }
     
     @Test

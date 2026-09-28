@@ -70,7 +70,6 @@ export class SessionEventService extends BaseEventService {
 
     setUserInfo(userInfo: UserInfo): void {
         this.userDetails = userInfo;
-        console.log('setUserInfo ', userInfo);
     }
 
     private setSelectedDataset(selectedDatasets: Dataset[]): void {

@@ -28,15 +28,13 @@ import org.glassfish.jersey.test.TestProperties;
 import org.glassfish.jersey.test.spi.TestContainer;
 import org.glassfish.jersey.test.spi.TestContainerException;
 import org.glassfish.jersey.test.spi.TestContainerFactory;
-import org.junit.After;
-import org.junit.Before;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.springframework.context.ApplicationContext;
 
 /**
- * Hylke Stapersma (codecentric nl)
- * <p/>
- * Copy of JerseyTest @see org.glassfish.jersey.test.JerseyTest where the spring ApplicationContext is exposed
- * hylke.stapersma@codecentric.nl
+ * Copy of JerseyTest @see org.glassfish.jersey.test.JerseyTest where the spring ApplicationContext is exposed.
+ * Adapted from the upstream codecentric/spring-test-jersey project.
  */
 public class SpringContextJerseyTest {
 
@@ -78,7 +76,7 @@ public class SpringContextJerseyTest {
      * An extending class must implement the {@link #configure()} method to
      * provide an application descriptor.
      *
-     * @throws org.glassfish.jersey.test.spi.TestContainerException
+     * @throws TestContainerException
      *          if the default test container factory
      *          cannot be obtained, or the application descriptor is not
      *          supported by the test container factory.
@@ -314,8 +312,8 @@ public class SpringContextJerseyTest {
 
     /**
      * Returns an instance of {@link TestContainerFactory} class. This instance can be set by a constructor ({@link
-     * #SpringContextJerseyTest(org.glassfish.jersey.test.spi.TestContainerFactory)}, as an application {@link org.glassfish.jersey.internal.inject.Providers Provider} or the
-     * {@link TestContainerFactory} class can be set as a {@value org.glassfish.jersey.test.TestProperties#CONTAINER_FACTORY}
+     * #SpringContextJerseyTest(TestContainerFactory)}, as an application {@link Providers Provider} or the
+     * {@link TestContainerFactory} class can be set as a {@value TestProperties#CONTAINER_FACTORY}
      * property.
      *
      * @return an instance of {@link TestContainerFactory} class.
@@ -430,7 +428,7 @@ public class SpringContextJerseyTest {
      *
      * @throws Exception if an exception is thrown during setting up the test environment.
      */
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
         if (isLogRecordingEnabled()) {
             loggedRuntimeRecords.clear();
@@ -446,7 +444,7 @@ public class SpringContextJerseyTest {
      *
      * @throws Exception if an exception is thrown during tearing down the test environment.
      */
-    @After
+    @AfterEach
     public void tearDown() throws Exception {
         if (isLogRecordingEnabled()) {
             loggedRuntimeRecords.clear();
@@ -468,7 +466,7 @@ public class SpringContextJerseyTest {
      * Creates an instance of {@link Client}.
      * <p/>
      * Checks whether TestContainer provides ClientConfig instance and
-     * if not, empty new {@link org.glassfish.jersey.client.ClientConfig} instance
+     * if not, empty new {@link ClientConfig} instance
      * will be used to create new client instance.
      * <p/>
      * This method is called exactly once when JerseyTest is created.

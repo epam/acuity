@@ -57,6 +57,7 @@ export class SpirometryTrackDataTransformer extends TrackDataTransformer {
 
         return {
             subjectId: result.subjectId,
+            subject: result.subject,
             data: trackData
         };
     }
@@ -86,6 +87,7 @@ export class SpirometryTrackDataTransformer extends TrackDataTransformer {
 
         return {
             subjectId: result.subjectId,
+            subject: result.subject,
             data: trackData
         };
     }

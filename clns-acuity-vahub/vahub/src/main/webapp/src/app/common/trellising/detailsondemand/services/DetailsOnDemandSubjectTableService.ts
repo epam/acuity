@@ -15,7 +15,7 @@
  */
 
 import {Injectable} from '@angular/core';
-import {ColDef, ColGroupDef} from 'ag-grid/main';
+import {ColDef, ColGroupDef} from 'ag-grid-community';
 import {each, forEach, isEmpty, includes, values, keys} from 'lodash';
 
 import {AbstractTableService} from './AbstractTableService';

@@ -24,19 +24,19 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.Iterables;
 import com.jayway.restassured.RestAssured;
-import org.junit.Before;
-import org.junit.Ignore;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import static com.acuity.visualisations.config.util.TestConstants.DUMMY_DETECT_DATASETS;
 import static com.jayway.restassured.RestAssured.given;
 import static org.assertj.core.api.Assertions.assertThat;
 
-@RunWith(SpringJUnit4ClassRunner.class)
+@ExtendWith(SpringExtension.class)
 @FullStackITSpringApplicationConfiguration
 public class StudyResourceAuditLoggingFullStackIT {
 
@@ -48,7 +48,7 @@ public class StudyResourceAuditLoggingFullStackIT {
     @Autowired
     private AuditLoggerRepository auditLoggerRepository;
 
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
         RestAssured.port = port;
 
@@ -57,7 +57,7 @@ public class StudyResourceAuditLoggingFullStackIT {
     }
 
     @Test
-    @Ignore
+    @Disabled
     public void shouldLogGetMetadataInfoRestCall() throws Exception {
 
         int beforeLogOps = auditLoggerRepository.countAllLogOperations();

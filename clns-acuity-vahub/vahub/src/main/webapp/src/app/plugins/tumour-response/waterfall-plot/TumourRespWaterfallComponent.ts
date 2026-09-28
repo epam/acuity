@@ -24,7 +24,8 @@ import {TrellisingObservables} from '../../../common/trellising/store/observable
         <trellising-component *ngIf="waterfallHasOneBarSelection()"
                               [tabId]="tabId.TL_DIAMETERS_PER_SUBJECT_PLOT" [isSubPlot]="true">
         </trellising-component>
-    `
+    `,
+    standalone: false
 })
 export class TumourRespWaterfallComponent extends TChartComponent {
 

@@ -293,6 +293,8 @@
             <field name="studyName"/>
             <field name="projectName"/>
         </uniqueFields>
+        <secondaryFields>
+        </secondaryFields>
         <referBy name="studyUnique">
             <field name="studyName"/>
             <field name="projectName"/>
@@ -348,6 +350,7 @@
             <field name="date"/>
             <field name="studyName"/>
             <field name="projectName"/>
+            <field name="domain"/>
         </uniqueFields>
         <secondaryFields>
             <field name="part"/>
@@ -410,6 +413,7 @@
             <field name="date"/>
             <field name="studyName"/>
             <field name="projectName"/>
+            <field name="domain"/>
         </referBy>
         <referBy name="srcUnique">
             <field name="sourceDeviceName"/>
@@ -449,6 +453,8 @@
             <field name="version"/>
             <field name="type"/>
         </uniqueFields>
+        <secondaryFields>
+        </secondaryFields>
         <referredBy name="srcUnique" equalToUniqueSet="true"/>
         <referBy name="studyUnique">
             <field name="studyName"/>
@@ -492,6 +498,7 @@
             <field name="date"/>
             <field name="studyName"/>
             <field name="projectName"/>
+            <field name="domain"/>
         </referBy>
     </entity>
 
@@ -522,6 +529,7 @@
             <field name="date"/>
             <field name="studyName"/>
             <field name="projectName"/>
+            <field name="domain"/>
         </referBy>
     </entity>
 
@@ -543,6 +551,7 @@
             <field name="date"/>
             <field name="studyName"/>
             <field name="projectName"/>
+            <field name="domain"/>
         </referBy>
     </entity>
 
@@ -570,6 +579,7 @@
             <field name="date"/>
             <field name="studyName"/>
             <field name="projectName"/>
+            <field name="domain"/>
         </referBy>
     </entity>
 
@@ -600,6 +610,7 @@
             <field name="date"/>
             <field name="studyName"/>
             <field name="projectName"/>
+            <field name="domain"/>
         </referBy>
     </entity>
 
@@ -610,6 +621,8 @@
             <field name="studyName"/>
             <field name="projectName"/>
         </uniqueFields>
+        <secondaryFields>
+        </secondaryFields>
         <referredBy name="medUnique" equalToUniqueSet="true"/>
         <referBy name="studyUnique">
             <field name="studyName"/>
@@ -741,6 +754,8 @@
             <field name="projectName"/>
             <field name="numActionTaken"/>
         </uniqueFields>
+        <secondaryFields>
+        </secondaryFields>
         <referBy name="doseUnique">
             <field name="drug"/>
             <field name="startDate"/>
@@ -764,6 +779,8 @@
             <field name="projectName"/>
             <field name="numCycleDelayed"/>
         </uniqueFields>
+        <secondaryFields>
+        </secondaryFields>
         <referBy name="doseUnique">
             <field name="drug"/>
             <field name="startDate"/>
@@ -1145,7 +1162,7 @@
     <entity name="FMGene" table="RESULT_FM_GENE">
         <uniqueFields>
             <field name="subject"/>
-            <field name="studyName"/>`
+            <field name="studyName"/>
             <field name="projectName"/>
             <field name="sampleId"/>
             <field name="disease"/>
@@ -1169,7 +1186,7 @@
     <entity name="MedicalHistory" table="RESULT_MEDICAL_HISTORY">
         <uniqueFields>
             <field name="subject"/>
-            <field name="studyName"/>`
+            <field name="studyName"/>
             <field name="projectName"/>
             <field name="category"/>
             <field name="term"/>
@@ -1182,6 +1199,8 @@
             <field name="startDate"/>
             <field name="endDate"/>
         </uniqueFields>
+        <secondaryFields>
+        </secondaryFields>
         <referBy name="patUnique">
             <field name="subject"/>
             <field name="studyName"/>
@@ -1192,7 +1211,7 @@
     <entity name="ConmedProcedure" table="RESULT_CONMED_PROCEDURE">
         <uniqueFields>
             <field name="subject"/>
-            <field name="studyName"/>`
+            <field name="studyName"/>
             <field name="projectName"/>
 
             <field name="value"/>
@@ -1224,7 +1243,7 @@
     <entity name="Pathology" table="RESULT_PATHOLOGY">
         <uniqueFields>
             <field name="subject"/>
-            <field name="studyName"/>`
+            <field name="studyName"/>
             <field name="projectName"/>
             <field name="date"/>
             <field name="histologyType"/>
@@ -1238,6 +1257,8 @@
             <field name="methodOfDetermination"/>
             <field name="otherMethods"/>
         </uniqueFields>
+        <secondaryFields>
+        </secondaryFields>
         <referBy name="patUnique">
             <field name="subject"/>
             <field name="studyName"/>
@@ -1248,7 +1269,7 @@
     <entity name="PregnancyTest" table="RESULT_PREGNANCY_TEST">
         <uniqueFields>
             <field name="subject"/>
-            <field name="studyName"/>`
+            <field name="studyName"/>
             <field name="projectName"/>
 
             <field name="pTSamplingDate"/>
@@ -1271,7 +1292,7 @@
     <entity name="AlcoholSubUse" table="RESULT_ALCOHOL_SUB_USE">
         <uniqueFields>
             <field name="subject"/>
-            <field name="studyName"/>`
+            <field name="studyName"/>
             <field name="projectName"/>
 
             <field name="category"/>
@@ -1297,7 +1318,7 @@
 
         <uniqueFields>
             <field name="subject"/>
-            <field name="studyName"/>`
+            <field name="studyName"/>
             <field name="projectName"/>
             <field name="category"/>
             <field name="type"/>
@@ -1345,7 +1366,7 @@
     <entity name="DiseaseExtent" table="RESULT_DISEASE_EXTENT">
         <uniqueFields>
             <field name="subject"/>
-            <field name="studyName"/>`
+            <field name="studyName"/>
             <field name="projectName"/>
 
             <field name="siteOfLocalMetastaticDisease"/>
@@ -1369,7 +1390,7 @@
     <entity name="LiverDI" table="RESULT_LIVER">
         <uniqueFields>
             <field name="subject"/>
-            <field name="studyName"/>`
+            <field name="studyName"/>
             <field name="projectName"/>
 
             <field name="value"/>
@@ -1392,7 +1413,7 @@
     <entity name="Consent" table="RESULT_CONSENT">
         <uniqueFields>
             <field name="subject"/>
-            <field name="studyName"/>`
+            <field name="studyName"/>
             <field name="projectName"/>
 
             <field name="consentDate"/>
@@ -1411,7 +1432,7 @@
     <entity name="LiverSS" table="RESULT_LIVERSS">
         <uniqueFields>
             <field name="subject"/>
-            <field name="studyName"/>`
+            <field name="studyName"/>
             <field name="projectName"/>
 
             <field name="value"/>
@@ -1441,7 +1462,7 @@
     <entity name="PerformanceStatus" table="RESULT_PERFORMANCE_STATUS">
         <uniqueFields>
             <field name="subject"/>
-            <field name="studyName"/>`
+            <field name="studyName"/>
             <field name="projectName"/>
 
             <field name="assessmentDate"/>
@@ -1464,7 +1485,7 @@
     <entity name="OverdoseReport" table="RESULT_OVERDOSE_REPORT">
         <uniqueFields>
             <field name="subject"/>
-            <field name="studyName"/>`
+            <field name="studyName"/>
             <field name="projectName"/>
 
             <field name="drug"/>
@@ -1493,7 +1514,7 @@
     <entity name="LiverRiskFactors" table="RESULT_LIVER_RISK_FACTORS">
         <uniqueFields>
             <field name="subject"/>
-            <field name="studyName"/>`
+            <field name="studyName"/>
             <field name="projectName"/>
 
             <field name="liverRiskFactor"/>
@@ -1519,7 +1540,7 @@
     <entity name="SurvivalStatus" table="RESULT_SURVIVAL_STATUS">
         <uniqueFields>
             <field name="subject"/>
-            <field name="studyName"/>`
+            <field name="studyName"/>
             <field name="projectName"/>
 
             <field name="dateOfContact"/>
@@ -1540,7 +1561,7 @@
     <entity name="CVOT" table="RESULT_CVOT">
         <uniqueFields>
             <field name="subject"/>
-            <field name="studyName"/>`
+            <field name="studyName"/>
             <field name="projectName"/>
 
             <field name="aeNumber"/>
@@ -1565,7 +1586,7 @@
     <entity name="CIEvent" table="RESULT_CI_EVENT">
         <uniqueFields>
             <field name="subject"/>
-            <field name="studyName"/>`
+            <field name="studyName"/>
             <field name="projectName"/>
 
             <field name="startDate"/>
@@ -1604,7 +1625,7 @@
     <entity name="Cerebrovascular" table="RESULT_CEREBROVASCULAR">
         <uniqueFields>
             <field name="subject"/>
-            <field name="studyName"/>`
+            <field name="studyName"/>
             <field name="projectName"/>
             
             <field name="eventType"/>
@@ -1682,6 +1703,8 @@
             <field name="visitNumber"/>
             <field name="sampleDate"/>
         </uniqueFields>
+        <secondaryFields>
+        </secondaryFields>
         <referBy name="patUnique">
             <field name="subject"/>
             <field name="studyName"/>

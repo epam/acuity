@@ -19,7 +19,8 @@ import {LabsYAxisValue} from '../../../store/ITimeline';
 
 @Component({
     selector: 'labs-config',
-    templateUrl: 'LabsConfigurationComponent.html'
+    templateUrl: 'LabsConfigurationComponent.html',
+    standalone: false
 })
 export class LabsConfigurationComponent implements OnChanges {
     @Input() labsYAxisValue: LabsYAxisValue;

@@ -26,7 +26,7 @@ import com.acuity.va.security.acl.domain.vasecurity.DatasetInfo;
 import com.acuity.va.security.acl.domain.vasecurity.DatasetSetup;
 import com.acuity.va.security.acl.service.VASecurityResourceClient;
 import com.google.common.collect.Sets;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import javax.ws.rs.core.Response;
 import java.util.Date;

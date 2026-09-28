@@ -24,15 +24,16 @@ import com.acuity.va.auditlogger.domain.LogOperationEntity;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jayway.restassured.RestAssured;
-import org.assertj.core.api.JUnitSoftAssertions;
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.assertj.core.api.SoftAssertions;
+import org.assertj.core.api.junit.jupiter.InjectSoftAssertions;
+import org.assertj.core.api.junit.jupiter.SoftAssertionsExtension;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.Comparator;
 import java.util.Date;
@@ -45,7 +46,7 @@ import static com.acuity.visualisations.config.util.TestConstants.MULTI_DUMMY_AC
 import static com.jayway.restassured.RestAssured.given;
 import static java.util.stream.Collectors.toList;
 
-@RunWith(SpringJUnit4ClassRunner.class)
+@ExtendWith({SpringExtension.class, SoftAssertionsExtension.class})
 @FullStackITSpringApplicationConfiguration
 public class LoggingResourceFullStackIT {
 
@@ -57,10 +58,10 @@ public class LoggingResourceFullStackIT {
     @Autowired
     private AuditLoggerRepository auditLoggerRepository;
 
-    @Rule
-    public JUnitSoftAssertions softly = new JUnitSoftAssertions();
+    @InjectSoftAssertions
+    private SoftAssertions softly;
 
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
         RestAssured.port = port;
 

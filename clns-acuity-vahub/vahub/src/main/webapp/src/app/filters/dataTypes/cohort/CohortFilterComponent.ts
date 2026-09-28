@@ -24,7 +24,8 @@ import {AbstractDataTypeFilter} from '../AbstractDataTypeFilter';
 @Component({
     selector: 'cohortfilter',
     templateUrl: 'CohortFilterComponent.html',
-    styleUrls: ['../../filters.css']
+    styleUrls: ['../../filters.css'],
+    standalone: false
 })
 export class CohortFilterComponent extends AbstractDataTypeFilter implements OnInit, OnDestroy, AfterViewInit {
 

@@ -24,7 +24,8 @@ import {DatasetViews} from '../../../security/DatasetViews';
 @Component({
     selector: 'unselectedchecklistfilter',
     templateUrl: 'UnselectedCheckListFilterComponent.html',
-    styleUrls: ['../../filters.css']
+    styleUrls: ['../../filters.css'],
+    standalone: false
 })
 export class UnselectedCheckListFilterComponent {
 

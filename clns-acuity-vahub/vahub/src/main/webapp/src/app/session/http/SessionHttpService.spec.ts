@@ -15,10 +15,10 @@
  */
 
 import {inject, TestBed} from '@angular/core/testing';
-import {HttpClientTestingModule} from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import {SessionHttpService} from './SessionHttpService';
 import {MockHttpClient} from '../../common/MockClasses';
-import {HttpClient} from '@angular/common/http';
+import { HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 
 
@@ -26,12 +26,14 @@ describe('SessionHttpService class', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [HttpClientTestingModule],
-            providers: [
-                {provide: HttpClient, useClass: MockHttpClient},
-                SessionHttpService
-            ]
-        });
+    imports: [],
+    providers: [
+        { provide: HttpClient, useClass: MockHttpClient },
+        SessionHttpService,
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting()
+    ]
+});
     });
 
     it('should get acls', inject([HttpClient, SessionHttpService], (httpClient, sessionHttpService) => {

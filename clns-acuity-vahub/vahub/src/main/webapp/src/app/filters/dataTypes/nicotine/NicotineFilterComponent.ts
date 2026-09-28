@@ -22,7 +22,8 @@ import {AbstractDataTypeFilter} from '../AbstractDataTypeFilter';
 
 @Component({
     selector: 'nicotine-filter',
-    templateUrl: 'NicotineFilterComponent.html'
+    templateUrl: 'NicotineFilterComponent.html',
+    standalone: false
 })
 export class NicotineFilterComponent extends AbstractDataTypeFilter implements OnInit, OnDestroy, AfterViewInit {
     @Output()

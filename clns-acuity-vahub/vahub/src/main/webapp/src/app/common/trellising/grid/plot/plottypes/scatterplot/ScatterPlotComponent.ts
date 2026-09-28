@@ -45,7 +45,8 @@ import {ChartMouseEvent, UserOptions} from '../../../../../../../vahub-charts/ty
     selector: 'scatterplot',
     template: `<div></div>`,
     providers: [ScatterPlotConfigService, ScatterPlotService],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class ScatterPlotComponent extends AbstractPlotComponent implements OnChanges, OnDestroy {
     @Input() plotData: Map<string, TrellisedScatterPlot<string, string>>;
@@ -81,7 +82,7 @@ export class ScatterPlotComponent extends AbstractPlotComponent implements OnCha
         if (this.chart) {
             if (changes['selection'] && !is(changes['selection'].previousValue, changes['selection'].currentValue)) {
                 this.updateSelectionRendering();
-                this.chart.update();
+                this.chart?.update();
             }
         }
         if (changes['plotData'] && this.plotData) {

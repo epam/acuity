@@ -26,7 +26,7 @@ import lombok.ToString;
 
 import java.io.Serializable;
 
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = false)
 @ToString(callSuper = true)
 public final class Biomarker extends SubjectAwareWrapper<BiomarkerRaw> implements Serializable {
 

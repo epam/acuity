@@ -26,7 +26,6 @@ import com.acuity.visualisations.rest.model.request.respiratory.exacerbation.Exa
 import com.acuity.visualisations.rest.model.request.respiratory.exacerbation.ExacerbationValuesRequest;
 import com.acuity.visualisations.rest.model.response.respiratory.exacerbation.ExacerbationColorByOptionsResponse;
 import com.acuity.visualisations.rest.model.response.respiratory.exacerbation.ExacerbationXAxisResponse;
-import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;
@@ -36,7 +35,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import java.util.List;
 
 import static com.acuity.visualisations.rest.util.Constants.PRE_AUTHORISE_VISUALISATION;
@@ -48,7 +47,6 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
  * @author khnp879
  */
 @RestController
-@Api(description = "rest endpoints for exacerbatios onsetline chart data")
 @RequestMapping(value = "/resources/respiratory/exacerbation/on-set-line-chart",
         consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
 @PreAuthorize(PRE_AUTHORISE_VISUALISATION)

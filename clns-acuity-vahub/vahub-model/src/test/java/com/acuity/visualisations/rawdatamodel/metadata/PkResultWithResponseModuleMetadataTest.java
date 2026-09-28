@@ -28,10 +28,12 @@ import com.acuity.visualisations.rawdatamodel.vo.PkResultRaw;
 import com.acuity.visualisations.rawdatamodel.vo.Subject;
 import com.acuity.visualisations.rawdatamodel.vo.wrappers.PkResult;
 import com.acuity.va.security.acl.domain.Datasets;
-import org.assertj.core.api.JUnitSoftAssertions;
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
+import org.assertj.core.api.SoftAssertions;
+import org.assertj.core.api.junit.jupiter.InjectSoftAssertions;
+import org.assertj.core.api.junit.jupiter.SoftAssertionsExtension;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -41,11 +43,12 @@ import java.util.HashMap;
 
 import static com.acuity.visualisations.config.util.TestConstants.DUMMY_ACUITY_DATASETS;
 import static com.google.common.collect.Lists.newArrayList;
-import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.anyCollectionOf;
-import static org.mockito.Matchers.eq;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyCollection;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.when;
 
+@ExtendWith(SoftAssertionsExtension.class)
 public class PkResultWithResponseModuleMetadataTest {
 
     @InjectMocks
@@ -63,10 +66,10 @@ public class PkResultWithResponseModuleMetadataTest {
             .treatment(5.5d).protocolScheduleStartDay("4").visit("visit 1")
             .actualDose(4.2d).build(), new Subject());
 
-    @Rule
-    public final JUnitSoftAssertions softly = new JUnitSoftAssertions();
+    @InjectSoftAssertions
+    private SoftAssertions softly;
 
-    @Before
+    @BeforeEach
     public void setup() {
         MockitoAnnotations.initMocks(this);
         pkResultWithResponseModuleMetadata.datasetsDataProvider
@@ -79,7 +82,7 @@ public class PkResultWithResponseModuleMetadataTest {
 
     @Test
     public void shouldGetAllDodColumns() {
-        when(doDCommonService.getDoDColumns(any(Column.DatasetType.class), anyCollectionOf(PkResult.class)))
+        when(doDCommonService.getDoDColumns(any(Column.DatasetType.class), anyCollection()))
                 .thenReturn(generateColumnList());
 
         MetadataItem metadataItem = pkResultWithResponseModuleMetadata.getMetadataItem(DUMMY_ACUITY_DATASETS);

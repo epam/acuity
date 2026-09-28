@@ -21,11 +21,15 @@ import com.acuity.visualisations.rawdatamodel.axes.TAxes;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
 public class LungFunctionTimelineRequest extends LungFunctionRequest {
     @NotNull
     private TAxes<DayZeroType> dayZero;
+
+    public TAxes<DayZeroType> getDayZero() {
+        return dayZero;
+    }
 }

@@ -20,7 +20,8 @@ import {UserPermissions} from '../../security/UserPermissions';
 import {ExposureComponent} from '../exposure';
 
 @Component({
-    templateUrl: '../exposure/ExposureComponent.html'
+    templateUrl: '../exposure/ExposureComponent.html',
+    standalone: false
 })
 
 export class PkResultWithResponseComponent extends ExposureComponent {

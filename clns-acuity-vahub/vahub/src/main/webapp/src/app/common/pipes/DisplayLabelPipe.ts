@@ -25,7 +25,10 @@ import {TabId} from '../trellising/index';
  * formats to: ALL
  */
 
-@Pipe({name: 'toDisplayLabel'})
+@Pipe({
+    name: 'toDisplayLabel',
+    standalone: false
+})
 export class DisplayLabelPipe implements PipeTransform {
     transform(value: string, tabId?: TabId): string {
         switch (value) {

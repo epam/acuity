@@ -17,6 +17,7 @@
 package com.acuity.visualisations.rest.config.properties;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
@@ -24,6 +25,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 @Data
+@EqualsAndHashCode(callSuper = false)
 @Component
 @ConfigurationProperties(prefix = "integration")
 public class IntegrationProperties {
@@ -33,6 +35,7 @@ public class IntegrationProperties {
     private Map<String, String> omicsServices = new LinkedHashMap<>();
     private Map<String, String> patientServices = new LinkedHashMap<>();
     private QnaMakerProperties qnaMaker = null;
+
 
     @Data
     public static class QnaMakerProperties {

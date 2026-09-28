@@ -19,7 +19,7 @@ package com.acuity.visualisations.common.filter;
 import com.acuity.visualisations.common.study.metadata.MetadataItem;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.io.Serializable;
 import java.util.HashMap;

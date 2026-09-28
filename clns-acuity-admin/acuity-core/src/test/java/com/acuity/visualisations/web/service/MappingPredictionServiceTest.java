@@ -18,9 +18,9 @@ package com.acuity.visualisations.web.service;
 
 import com.acuity.visualisations.web.dao.MappingDao;
 import com.acuity.visualisations.web.entity.MappedColumnInfo;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -40,7 +40,7 @@ public class MappingPredictionServiceTest {
     @Mock
     private MappingDao mappingDao;
 
-    @Before
+    @BeforeEach
     public void initMocks() {
         MockitoAnnotations.initMocks(this);
     }
@@ -133,7 +133,7 @@ public class MappingPredictionServiceTest {
 
         when(sourceService.getColumnNames(FILE_IN)).thenReturn(emptySourceColumns);
 
-        Assert.assertNull(mappingPredictionService.lookForSimilarFileRuleId(fileDescriptionId, PROJECT_ID_1, FILE_IN));
+        Assertions.assertNull(mappingPredictionService.lookForSimilarFileRuleId(fileDescriptionId, PROJECT_ID_1, FILE_IN));
 
         verify(sourceService).getColumnNames(FILE_IN);
         verifyNoMoreInteractions(sourceService);
@@ -150,7 +150,7 @@ public class MappingPredictionServiceTest {
         when(sourceService.getColumnNames(FILE_IN)).thenReturn(sourceColumns);
         when(mappingDao.getMappedColumnInfosByFileDescriptionId(fileDescriptionId)).thenReturn(emptyMappedColumns);
 
-        Assert.assertNull(mappingPredictionService.lookForSimilarFileRuleId(fileDescriptionId, PROJECT_ID_1, FILE_IN));
+        Assertions.assertNull(mappingPredictionService.lookForSimilarFileRuleId(fileDescriptionId, PROJECT_ID_1, FILE_IN));
 
         verify(sourceService).getColumnNames(FILE_IN);
         verify(mappingDao).getMappedColumnInfosByFileDescriptionId(fileDescriptionId);
@@ -168,7 +168,7 @@ public class MappingPredictionServiceTest {
         when(sourceService.getColumnNames(FILE_IN)).thenReturn(sourceColumns);
         when(mappingDao.getMappedColumnInfosByFileDescriptionId(fileDescriptionId)).thenReturn(MAPPED_COLUMNS);
 
-        Assert.assertNull(mappingPredictionService.lookForSimilarFileRuleId(fileDescriptionId, PROJECT_ID_1, FILE_IN));
+        Assertions.assertNull(mappingPredictionService.lookForSimilarFileRuleId(fileDescriptionId, PROJECT_ID_1, FILE_IN));
 
         verify(sourceService).getColumnNames(FILE_IN);
         verify(mappingDao).getMappedColumnInfosByFileDescriptionId(fileDescriptionId);
@@ -188,7 +188,7 @@ public class MappingPredictionServiceTest {
         when(mappingDao.getMappedColumnInfosByFileDescriptionId(fileDescriptionId)).thenReturn(MAPPED_COLUMNS);
 
         Long result = mappingPredictionService.lookForSimilarFileRuleId(fileDescriptionId, PROJECT_ID_1, FILE_IN);
-        Assert.assertTrue(result == FILE_RULE_ID_11 || result == FILE_RULE_ID_12);
+        Assertions.assertTrue(result == FILE_RULE_ID_11 || result == FILE_RULE_ID_12);
 
         verify(sourceService).getColumnNames(FILE_IN);
         verify(mappingDao).getMappedColumnInfosByFileDescriptionId(fileDescriptionId);
@@ -207,7 +207,7 @@ public class MappingPredictionServiceTest {
         when(mappingDao.getMappedColumnInfosByFileDescriptionId(fileDescriptionId)).thenReturn(MAPPED_COLUMNS);
 
         Long result = mappingPredictionService.lookForSimilarFileRuleId(fileDescriptionId, PROJECT_ID_0, FILE_IN);
-        Assert.assertTrue(result == FILE_RULE_ID_12 || result == FILE_RULE_ID_22);
+        Assertions.assertTrue(result == FILE_RULE_ID_12 || result == FILE_RULE_ID_22);
 
         verify(sourceService).getColumnNames(FILE_IN);
         verify(mappingDao).getMappedColumnInfosByFileDescriptionId(fileDescriptionId);
@@ -225,7 +225,7 @@ public class MappingPredictionServiceTest {
         when(sourceService.getColumnNames(FILE_IN)).thenReturn(sourceColumns);
         when(mappingDao.getMappedColumnInfosByFileDescriptionId(fileDescriptionId)).thenReturn(MAPPED_COLUMNS);
 
-        Assert.assertEquals(Long.valueOf(FILE_RULE_ID_11), mappingPredictionService.lookForSimilarFileRuleId(fileDescriptionId, PROJECT_ID_1, FILE_IN));
+        Assertions.assertEquals(Long.valueOf(FILE_RULE_ID_11), mappingPredictionService.lookForSimilarFileRuleId(fileDescriptionId, PROJECT_ID_1, FILE_IN));
 
         verify(sourceService).getColumnNames(FILE_IN);
         verify(mappingDao).getMappedColumnInfosByFileDescriptionId(fileDescriptionId);
@@ -244,7 +244,7 @@ public class MappingPredictionServiceTest {
         when(mappingDao.getMappedColumnInfosByFileDescriptionId(fileDescriptionId)).thenReturn(MAPPED_COLUMNS);
 
         Long result = mappingPredictionService.lookForSimilarFileRuleId(fileDescriptionId, PROJECT_ID_1, FILE_IN);
-        Assert.assertTrue(result == FILE_RULE_ID_13);
+        Assertions.assertTrue(result == FILE_RULE_ID_13);
 
         verify(sourceService).getColumnNames(FILE_IN);
         verify(mappingDao).getMappedColumnInfosByFileDescriptionId(fileDescriptionId);
@@ -262,7 +262,7 @@ public class MappingPredictionServiceTest {
         when(sourceService.getColumnNames(FILE_IN)).thenReturn(sourceColumns);
         when(mappingDao.getMappedColumnInfosByFileDescriptionId(fileDescriptionId)).thenReturn(MAPPED_COLUMNS);
 
-        Assert.assertEquals(Long.valueOf(FILE_RULE_ID_2), mappingPredictionService.lookForSimilarFileRuleId(fileDescriptionId, PROJECT_ID_1, FILE_IN));
+        Assertions.assertEquals(Long.valueOf(FILE_RULE_ID_2), mappingPredictionService.lookForSimilarFileRuleId(fileDescriptionId, PROJECT_ID_1, FILE_IN));
 
         verify(sourceService).getColumnNames(FILE_IN);
         verify(mappingDao).getMappedColumnInfosByFileDescriptionId(fileDescriptionId);
@@ -272,13 +272,13 @@ public class MappingPredictionServiceTest {
 
     @Test
     public void dropLastBackSlashTest(){
-        Assert.assertEquals("c:/path", MappingPredictionService.dropLastBackSlash("c:/path"));
-        Assert.assertEquals("c:/path", MappingPredictionService.dropLastBackSlash("c:/path/"));
-        Assert.assertEquals("c:/path", MappingPredictionService.dropLastBackSlash("c:/path//"));
+        Assertions.assertEquals("c:/path", MappingPredictionService.dropLastBackSlash("c:/path"));
+        Assertions.assertEquals("c:/path", MappingPredictionService.dropLastBackSlash("c:/path/"));
+        Assertions.assertEquals("c:/path", MappingPredictionService.dropLastBackSlash("c:/path//"));
 
-        Assert.assertEquals("c:\\path", MappingPredictionService.dropLastBackSlash("c:\\path"));
-        Assert.assertEquals("c:\\path", MappingPredictionService.dropLastBackSlash("c:\\path\\"));
-        Assert.assertEquals("c:\\path", MappingPredictionService.dropLastBackSlash("c:\\path\\\\"));
+        Assertions.assertEquals("c:\\path", MappingPredictionService.dropLastBackSlash("c:\\path"));
+        Assertions.assertEquals("c:\\path", MappingPredictionService.dropLastBackSlash("c:\\path\\"));
+        Assertions.assertEquals("c:\\path", MappingPredictionService.dropLastBackSlash("c:\\path\\\\"));
 
     }
 }

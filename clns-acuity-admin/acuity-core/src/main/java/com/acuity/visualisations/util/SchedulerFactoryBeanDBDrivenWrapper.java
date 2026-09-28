@@ -26,7 +26,6 @@ import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.FactoryBean;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Required;
 import org.springframework.context.SmartLifecycle;
 import org.springframework.core.io.Resource;
 import org.springframework.scheduling.quartz.SchedulerFactoryBean;
@@ -52,7 +51,6 @@ public class SchedulerFactoryBeanDBDrivenWrapper implements FactoryBean<Schedule
     @Autowired
     private JobExplorer jobExplorer;
 
-    @Required
     public void setQuartzConfigLocation(Resource quartzConfigLocation) {
         this.quartzConfigLocation = quartzConfigLocation;
     }

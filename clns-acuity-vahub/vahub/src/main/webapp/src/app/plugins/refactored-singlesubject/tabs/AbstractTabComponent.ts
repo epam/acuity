@@ -17,7 +17,7 @@
 import {Store} from '@ngrx/store';
 import {Observable} from 'rxjs/Observable';
 import {List} from 'immutable';
-import {OnInit} from '@angular/core';
+import {Directive, OnInit} from '@angular/core';
 
 import {
     getFilteredDetailsOnDemandColumnsForTab,
@@ -46,6 +46,7 @@ export const TAB_COMPONENT_TEMPLATE = `
             </single-subject-view-table>
         </div>`;
 
+@Directive()
 export abstract class AbstractTabComponent implements OnInit {
     tabData$: Observable<List<any>>;
     columnDefs$: Observable<List<any>>;

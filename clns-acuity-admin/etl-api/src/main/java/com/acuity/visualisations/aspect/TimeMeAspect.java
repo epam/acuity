@@ -31,7 +31,7 @@ import java.util.stream.Collectors;
 @Aspect
 @Component
 public class TimeMeAspect extends TimeMeLog {
-    @Around("within(@com.acuity.visualisations.aspect.TimeMe *) || execution(* com.acuity.visualisations.*.dao.*.*(..))")
+    @Around("(within(@com.acuity.visualisations.aspect.TimeMe *) || execution(* com.acuity.visualisations.*.dao.*.*(..))) && !within(org.springframework.jdbc.core.support.JdbcDaoSupport+)")
     public Object logTimeMethod(ProceedingJoinPoint joinPoint) throws Throwable {
         StopWatch stopWatch = new StopWatch();
         stopWatch.start();

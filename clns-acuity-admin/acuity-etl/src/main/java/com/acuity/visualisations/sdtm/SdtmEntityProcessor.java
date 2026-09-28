@@ -31,6 +31,7 @@ import com.acuity.visualisations.model.output.entities.LVEF;
 import com.acuity.visualisations.model.output.entities.Laboratory;
 import com.acuity.visualisations.model.output.entities.MedDosDisc;
 import com.acuity.visualisations.model.output.entities.MedDosingSchedule;
+import com.acuity.visualisations.model.output.entities.MedicalHistory;
 import com.acuity.visualisations.model.output.entities.Medicine;
 import com.acuity.visualisations.model.output.entities.Patient;
 import com.acuity.visualisations.model.output.entities.PrimaryTumourLocation;
@@ -131,6 +132,9 @@ public class SdtmEntityProcessor {
             case FA:
                 processFA(output, entityNames, file, sdtmMainData, sdtmSuppData);
                 break;
+            case MH:
+                processMH(output, entityNames, sdtmMainData, sdtmSuppData);
+                break;
             default:
                 return output;
         }
@@ -151,6 +155,20 @@ public class SdtmEntityProcessor {
                     PrimaryTumourLocation ptlEntity = sdtmEntityMapper.mapPrimaryTumourLocation(sdtmEntity, sdtmKey, sdtmRsData);
                     output.addEntity(ptlEntity);
                 }
+            }
+        }
+    }
+
+    private void processMH(OutputModelChunk output, List<String> entityNames, SdtmData<SdtmEntityMH> sdtmMainData,
+                           SdtmSuppData sdtmSuppData) throws InvalidDataFormatException {
+        if (!entityNames.contains("MedicalHistory")) {
+            return;
+        }
+        for (Map.Entry<SdtmKey, List<SdtmEntityMH>> sdtmEntry : sdtmMainData.getData().entrySet()) {
+            SdtmKey sdtmKey = sdtmEntry.getKey();
+            for (SdtmEntityMH sdtmEntity : sdtmEntry.getValue()) {
+                MedicalHistory mh = sdtmEntityMapper.mapMedicalHistory(sdtmEntity, sdtmKey);
+                output.addEntity(mh);
             }
         }
     }
@@ -364,7 +382,8 @@ public class SdtmEntityProcessor {
                 } else if (processRadiotherapy && "RADIOTHERAPY".equalsIgnoreCase(sdtmEntity.getCmscat())) {
                     Radiotherapy therapy = sdtmEntityMapper.mapRadioherapy(sdtmEntity, sdtmKey, sdtmSuppData);
                     output.addEntity(therapy);
-                } else if (processConcomitant && "GENERAL CONCOMITANT MEDICATION".equalsIgnoreCase(sdtmEntity.getCmcat())) {
+                } else if (processConcomitant && ("GENERAL CONCOMITANT MEDICATION".equalsIgnoreCase(sdtmEntity.getCmcat())
+                        || "CONCOMITANT MEDICATION".equalsIgnoreCase(sdtmEntity.getCmcat()))) {
                     Medicine medicine = sdtmEntityMapper.mapMedicine(sdtmEntity, sdtmKey, sdtmSuppData);
                     output.addEntity(medicine);
 

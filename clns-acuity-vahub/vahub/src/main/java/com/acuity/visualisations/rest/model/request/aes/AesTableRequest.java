@@ -24,4 +24,8 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 public class AesTableRequest extends AesRequest {
     private AeGroupByOptions aeLevel;
+
+    public AeGroupByOptions getAeLevel() {
+        return aeLevel;
+    }
 }

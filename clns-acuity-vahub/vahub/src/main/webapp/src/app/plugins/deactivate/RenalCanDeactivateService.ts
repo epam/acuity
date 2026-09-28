@@ -20,12 +20,12 @@ import {RenalFiltersModel, PopulationFiltersModel} from '../../filters/module';
 import {CanDeactivateBase} from './CanDeactivateBase';
 import {FiltersService} from '../../data/FiltersService';
 import {FilterId} from '../../common/module';
-import {CanDeactivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router} from '@angular/router';
+import { ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
 import {Observable} from 'rxjs/Observable';
 import {TimelineConfigService} from '../../common/trellising/store/services/TimelineConfigService';
 
 @Injectable()
-export class CanDeactivateRenal extends CanDeactivateBase implements CanDeactivate<RenalComponent> {
+export class CanDeactivateRenal extends CanDeactivateBase  {
 
     constructor(renalFiltersModel: RenalFiltersModel,
                 protected filtersService: FiltersService,

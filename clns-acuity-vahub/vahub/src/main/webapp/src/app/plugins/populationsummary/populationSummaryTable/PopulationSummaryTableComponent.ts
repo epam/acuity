@@ -31,7 +31,8 @@ import {GroupBySetting} from '../../../common/trellising/store/actions/Trellisin
 @Component({
     selector: 'population-table',
     templateUrl: 'PopulationSummaryTableComponent.html',
-    styleUrls: ['PopulationSummaryTableComponent.css']
+    styleUrls: ['PopulationSummaryTableComponent.css'],
+    standalone: false
 })
 export class PopulationSummaryTableComponent implements OnInit, OnDestroy {
 

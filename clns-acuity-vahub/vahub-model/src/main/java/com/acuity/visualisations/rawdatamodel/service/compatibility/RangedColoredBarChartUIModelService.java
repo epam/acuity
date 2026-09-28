@@ -105,11 +105,10 @@ public class RangedColoredBarChartUIModelService extends ColoredBarChartUIModelS
 
             List<BarChartOptionRange<? extends Comparable<?>>> categories = new ArrayList<>();
             for (Map.Entry<GroupByKey<T, G>, BarChartCalculationObject<T>> entry : barChart.entrySet()) {
-                BarChartOptionRange<? extends Comparable> pair =
-                        entry.getKey().getValue(X_AXIS).toString().equals(Attributes.DEFAULT_EMPTY_VALUE) ? null
-                                : (BarChartOptionRange) entry.getKey().getValue(X_AXIS);
-                BarChartOptionRange<? extends Comparable<?>> range = pair == null ? BarChartOptionRange.empty()
-                        : new BarChartOptionRange<>((Comparable) pair.getLeft(), (Comparable) pair.getRight());
+                Object xVal = entry.getKey().getValue(X_AXIS);
+                BarChartOptionRange<? extends Comparable<?>> range =
+                        xVal.toString().equals(Attributes.DEFAULT_EMPTY_VALUE) ? BarChartOptionRange.empty()
+                                : (BarChartOptionRange<? extends Comparable<?>>) xVal;
                 categories.add(range);
             }
             final List<String> collect = (List<String>) (categories.stream()

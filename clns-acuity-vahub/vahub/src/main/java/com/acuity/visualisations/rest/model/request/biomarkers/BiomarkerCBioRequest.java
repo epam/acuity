@@ -30,4 +30,14 @@ public class BiomarkerCBioRequest extends DatasetsRequest {
     private PopulationFilters populationFilters;
     private BiomarkerFilters biomarkerFilters;
     private Set<String> eventIds;
+
+    public PopulationFilters getPopulationFilters() {
+        return populationFilters;
+    }
+    public BiomarkerFilters getBiomarkerFilters() {
+        return biomarkerFilters;
+    }
+    public Set<String> getEventIds() {
+        return eventIds;
+    }
 }

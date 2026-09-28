@@ -281,7 +281,7 @@ export class TabStoreUtils {
                     trellisDesign: TrellisDesign.CONTINUOUS_OVER_TIME,
                     logarithmicScaleRequired: true,
                     availableScaleTypes: [ScaleTypes.LINEAR_SCALE, ScaleTypes.LOGARITHMIC_SCALE],
-                    trellisingRequired: true,
+                    trellisingRequired: false,
                     hasEventFilters: true,
                     advancedAxisControlRequired: true,
                     preserveTitle: true,
@@ -292,7 +292,7 @@ export class TabStoreUtils {
                     tabId: TabId.PK_RESULT_OVERALL_RESPONSE,
                     trellisDesign: TrellisDesign.CATEGORICAL_OVER_TIME,
                     multiDetailsOnDemandRequired: true,
-                    trellisingRequired: true,
+                    trellisingRequired: false,
                     logarithmicScaleRequired: true,
                     availableScaleTypes: [ScaleTypes.LINEAR_SCALE, ScaleTypes.LOGARITHMIC_SCALE],
                     plotSettingsRequired: true,
@@ -347,7 +347,7 @@ export class TabStoreUtils {
                     tabId: TabId.TUMOUR_RESPONSE_WATERFALL_PLOT,
                     trellisDesign: TrellisDesign.CATEGORICAL_COUNTS_AND_PERCENTAGES,
                     detailsOnDemandDisabled: false,
-                    eventDetailsOnDemandDisabled: true,
+                    eventDetailsOnDemandDisabled: false,
                     hasEventFilters: false,
                     colorByRequired: true,
                     filtersUpdateOnYAxisChangeRequired: true,
@@ -558,7 +558,7 @@ export class TabStoreUtils {
             case FilterId.CTDNA:
                 return [TabId.CTDNA_PLOT];
             case FilterId.RECIST:
-                return [TabId.TUMOUR_RESPONSE_WATERFALL_PLOT];
+                return [TabId.TUMOUR_RESPONSE_WATERFALL_PLOT, TabId.TL_DIAMETERS_PLOT, TabId.TL_DIAMETERS_PER_SUBJECT_PLOT];
             case FilterId.TUMOUR_RESPONSE:
                 return [TabId.TUMOUR_RESPONSE_PRIOR_THERAPY];
             case FilterId.SINGLE_SUBJECT:
@@ -618,6 +618,7 @@ export class TabStoreUtils {
             case TabId.CTDNA_PLOT:
                 return PageName.GENOMIC_PROFILE;
             case TabId.TL_DIAMETERS_PLOT:
+            case TabId.TUMOUR_RESPONSE_WATERFALL_PLOT:
                 return PageName.TL_DIAMETERS;
             case TabId.ANALYTE_CONCENTRATION:
                 return PageName.DOSING_EXPOSURE;

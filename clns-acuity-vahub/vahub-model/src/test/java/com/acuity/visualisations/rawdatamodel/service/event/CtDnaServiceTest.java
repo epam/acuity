@@ -40,15 +40,16 @@ import com.acuity.visualisations.rawdatamodel.vo.ctdna.SubjectGeneMutationVaf;
 import com.acuity.visualisations.rawdatamodel.vo.plots.SelectionDetail;
 import com.acuity.visualisations.rawdatamodel.vo.wrappers.CtDna;
 import com.acuity.va.security.acl.domain.Datasets;
-import org.assertj.core.api.JUnitSoftAssertions;
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.assertj.core.api.SoftAssertions;
+import org.assertj.core.api.junit.jupiter.InjectSoftAssertions;
+import org.assertj.core.api.junit.jupiter.SoftAssertionsExtension;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -78,12 +79,11 @@ import static com.google.common.collect.Lists.newArrayList;
 import static com.google.common.collect.Sets.newHashSet;
 import static java.util.stream.Collectors.toSet;
 import static org.assertj.core.groups.Tuple.tuple;
-import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.anyObject;
-import static org.mockito.Matchers.eq;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.when;
 
-@RunWith(SpringRunner.class)
+@ExtendWith({SpringExtension.class, SoftAssertionsExtension.class})
 @ContextConfiguration(classes = TestConfig.class)
 public class CtDnaServiceTest {
     private static final String GENE_1 = "g1";
@@ -94,8 +94,8 @@ public class CtDnaServiceTest {
     private static final String SAMPLE_DATE_2 = "2000-01-15";
     private static final String SAMPLE_DATE_3 = "2000-01-30";
     private static final String SAMPLE_DATE_4 = "2000-01-31";
-    @Rule
-    public final JUnitSoftAssertions softly = new JUnitSoftAssertions();
+    @InjectSoftAssertions
+    private SoftAssertions softly;
     @Autowired
     private CtDnaService ctDnaService;
     @MockBean
@@ -219,7 +219,7 @@ public class CtDnaServiceTest {
                                     .vafPercent(80.)
                                     .build();
 
-    @Before
+    @BeforeEach
     public void setUp() {
         when(ctDnaDatasetsDataProvider.loadData(any(Datasets.class))).thenReturn(newArrayList(ctDna11, ctDna12, ctDna13,
                 ctDna21, ctDna22, ctDna23, ctDna31, ctDna32, ctDnaVafCalculatedLessThenThreshold));
@@ -388,8 +388,8 @@ public class CtDnaServiceTest {
                                                              String colorGroup1, String colorGroup2) {
 
         //Given
-        when(coloringService.getColor(eq(colorGroup1),  anyObject())).thenReturn(COLORS_NO_GREEN[0]);
-        when(coloringService.getColor(eq(colorGroup2),  anyObject())).thenReturn(COLORS_NO_GREEN[1]);
+        when(coloringService.getColor(eq(colorGroup1),  any())).thenReturn(COLORS_NO_GREEN[0]);
+        when(coloringService.getColor(eq(colorGroup2),  any())).thenReturn(COLORS_NO_GREEN[1]);
 
         ChartGroupByOptions<CtDna, CtDnaGroupByOptions> settings = getLineChartSettings(colorByY);
 
@@ -457,8 +457,8 @@ public class CtDnaServiceTest {
 
         softly.assertThat(selectionDetails).extracting(s -> s.getEventIds().size(), s -> s.getSubjectIds().size(), SelectionDetail::getTotalEvents,
                 SelectionDetail::getTotalSubjects).containsExactly(3, 2, 9, 2);
-        softly.assertThat(selectionDetails).extracting(SelectionDetail::getEventIds)
-              .containsExactly(newHashSet("cId13", "cId32", "cId11"));
+        softly.assertThat(selectionDetails.getEventIds())
+              .containsExactlyInAnyOrder("cId13", "cId32", "cId11");
     }
 
     private ChartGroupByOptions<CtDna, CtDnaGroupByOptions> getDefaultLineChartSelectionSettings() {

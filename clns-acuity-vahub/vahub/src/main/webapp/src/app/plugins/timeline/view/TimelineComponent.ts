@@ -31,7 +31,8 @@ import {ApplicationState} from '../../../common/store/models/ApplicationState';
     selector: 'timeline',
     templateUrl: 'TimelineComponent.html',
     styleUrls: ['./TimelineComponent.css'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class TimelineComponent extends AbstractTimelineComponent<TrackDataService> implements OnInit, OnDestroy {
 

@@ -26,7 +26,7 @@
 DELETE FROM result_trg_med_dos_schedule
 WHERE EXISTS(
   SELECT 1 FROM result_patient
-  WHERE pat_id=mds_pat_id AND mds_start_date >= oracle.sysdate()
+  WHERE pat_id=mds_pat_id AND mds_start_date >= NOW()
   AND pat_std_id=?
 )
         ]]></entry>
@@ -189,7 +189,7 @@ where tmd.mds_id = sel.mds_id
     <entry key="FINISH_DOSE_SUBSEQUENT_PERIOD_TYPES"><![CDATA[
 update result_trg_med_dos_schedule tmd
 set mds_subsequent_period_type=(
-  CASE WHEN (oracle.trunc(mds_next_start_date) - oracle.trunc(sel.mds_end_date)) > INTERVAL '1 DAY'
+  CASE WHEN (DATE_TRUNC('day', mds_next_start_date) - DATE_TRUNC('day', sel.mds_end_date)) > INTERVAL '1 DAY'
   THEN 'INACTIVE_DOSING'
   ELSE COALESCE(mds_next_period_type, mds_subsequent_period_type) END
 )

@@ -21,13 +21,14 @@ import com.acuity.visualisations.rawdatamodel.test.TestConfig;
 import com.acuity.visualisations.rawdatamodel.vo.StudyInfo;
 import com.acuity.va.security.acl.domain.Datasets;
 import com.acuity.va.security.acl.domain.AcuityDataset;
-import org.assertj.core.api.JUnitSoftAssertions;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.assertj.core.api.SoftAssertions;
+import org.assertj.core.api.junit.jupiter.InjectSoftAssertions;
+import org.assertj.core.api.junit.jupiter.SoftAssertionsExtension;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.runners.MockitoJUnitRunner;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.test.context.ContextConfiguration;
 
 import java.text.SimpleDateFormat;
@@ -35,11 +36,11 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.Optional;
 
-import static org.mockito.Matchers.any;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-@RunWith(MockitoJUnitRunner.class)
+@ExtendWith({MockitoExtension.class, SoftAssertionsExtension.class})
 @ContextConfiguration(classes = TestConfig.class)
 public class StudyInfoServiceImplTest {
 
@@ -51,8 +52,8 @@ public class StudyInfoServiceImplTest {
     @InjectMocks
     private StudyInfoServiceImpl studyInfoService;
 
-    @Rule
-    public final JUnitSoftAssertions softly = new JUnitSoftAssertions();
+    @InjectSoftAssertions
+    private SoftAssertions softly;
 
     @Test
     public void shouldReturnStudyInfoWithLatestData() throws Exception {

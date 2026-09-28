@@ -19,8 +19,7 @@ package com.acuity.visualisations.transform.parser;
 import com.acuity.visualisations.exception.InvalidDataFormatException;
 import com.acuity.visualisations.transform.rule.Mapper;
 import com.acuity.visualisations.transform.rule.ParserRule;
-
-import static com.acuity.visualisations.data.util.Util.isEmpty;
+import com.acuity.visualisations.util.StringUtil;
 
 public class DoubleParser extends AbstractParser<Double> {
 
@@ -42,7 +41,7 @@ public class DoubleParser extends AbstractParser<Double> {
 
     @Override
     protected Double convert(String input) throws InvalidDataFormatException {
-        if (isEmpty(input)) {
+        if (StringUtil.isEmptyOrDot(input)) {
             return null;
         }
 

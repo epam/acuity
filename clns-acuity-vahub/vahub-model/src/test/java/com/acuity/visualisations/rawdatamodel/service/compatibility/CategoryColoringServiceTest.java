@@ -17,14 +17,15 @@
 package com.acuity.visualisations.rawdatamodel.service.compatibility;
 
 import com.acuity.visualisations.rawdatamodel.test.TestConfig;
-import org.assertj.core.api.JUnitSoftAssertions;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.assertj.core.api.SoftAssertions;
+import org.assertj.core.api.junit.jupiter.InjectSoftAssertions;
+import org.assertj.core.api.junit.jupiter.SoftAssertionsExtension;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.List;
 import java.util.stream.IntStream;
@@ -34,11 +35,11 @@ import static com.acuity.visualisations.rawdatamodel.util.Attributes.DEFAULT_EMP
 import static com.acuity.visualisations.rawdatamodel.util.Constants.ALL;
 import static java.util.stream.Collectors.toList;
 
-@RunWith(SpringRunner.class)
+@ExtendWith({SpringExtension.class, SoftAssertionsExtension.class})
 @SpringBootTest(classes = TestConfig.class)
 public class CategoryColoringServiceTest {
-    @Rule
-    public final JUnitSoftAssertions softly = new JUnitSoftAssertions();
+    @InjectSoftAssertions
+    private SoftAssertions softly;
     @Autowired
     @Qualifier("aeChordDiagramColoringService")
     CategoryColoringService categoryColoringService;

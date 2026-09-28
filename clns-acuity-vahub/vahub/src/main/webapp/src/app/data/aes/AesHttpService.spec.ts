@@ -15,8 +15,8 @@
  */
 
 import {async, inject, TestBed} from '@angular/core/testing';
-import {HttpClient} from '@angular/common/http';
-import {HttpClientTestingModule} from '@angular/common/http/testing';
+import { HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import {AesHttpService} from './AesHttpService';
 import {AesFiltersModel, PopulationFiltersModel} from '../../filters/module';
 import * as utils from '../../common/utils/Utils';
@@ -40,18 +40,20 @@ describe('GIVEN AesHttpService', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [HttpClientTestingModule],
-            providers: [
-                {provide: HttpClient, useClass: MockHttpClient},
-                {provide: PopulationFiltersModel, useClass: MockFilterModel},
-                {provide: AesFiltersModel, useClass: MockFilterModel},
-                {
-                    provide: AesHttpService,
-                    useClass: AesHttpService,
-                    deps: [HttpClient, PopulationFiltersModel, AesFiltersModel]
-                },
-            ]
-        });
+    imports: [],
+    providers: [
+        { provide: HttpClient, useClass: MockHttpClient },
+        { provide: PopulationFiltersModel, useClass: MockFilterModel },
+        { provide: AesFiltersModel, useClass: MockFilterModel },
+        {
+            provide: AesHttpService,
+            useClass: AesHttpService,
+            deps: [HttpClient, PopulationFiltersModel, AesFiltersModel]
+        },
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+    ]
+});
     });
 
     describe('WHEN we get details on demand data', () => {

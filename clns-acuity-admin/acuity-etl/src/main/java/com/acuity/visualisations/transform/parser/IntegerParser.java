@@ -19,11 +19,10 @@ package com.acuity.visualisations.transform.parser;
 import com.acuity.visualisations.exception.InvalidDataFormatException;
 import com.acuity.visualisations.transform.rule.Mapper;
 import com.acuity.visualisations.transform.rule.ParserRule;
+import com.acuity.visualisations.util.StringUtil;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-
-import static com.acuity.visualisations.data.util.Util.isEmpty;
 
 public class IntegerParser extends AbstractParser<Integer> {
 
@@ -45,7 +44,7 @@ public class IntegerParser extends AbstractParser<Integer> {
 
     @Override
     public Integer convert(String input) throws InvalidDataFormatException {
-        if (isEmpty(input) || "Infinity".equals(input)) {
+        if (StringUtil.isEmptyOrDot(input) || "Infinity".equals(input)) {
             return null;
         }
 

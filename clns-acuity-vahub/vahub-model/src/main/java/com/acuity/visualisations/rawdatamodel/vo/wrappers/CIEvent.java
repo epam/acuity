@@ -32,7 +32,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = false)
 @ToString(callSuper = true)
 public final class CIEvent extends SubjectAwareWrapper<CIEventRaw> implements HasStartDate, Serializable, HasAssociatedAe {
 

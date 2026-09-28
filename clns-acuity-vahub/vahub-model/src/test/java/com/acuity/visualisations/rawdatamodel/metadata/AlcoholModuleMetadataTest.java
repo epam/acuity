@@ -17,8 +17,8 @@
 package com.acuity.visualisations.rawdatamodel.metadata;
 
 import static net.javacrumbs.jsonunit.fluent.JsonFluentAssert.assertThatJson;
-import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.anyCollection;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyCollection;
 import static org.mockito.Mockito.when;
 
 import com.acuity.visualisations.common.study.metadata.MetadataItem;
@@ -33,14 +33,17 @@ import com.acuity.va.security.acl.domain.Datasets;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
-import org.assertj.core.api.JUnitSoftAssertions;
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
+import org.assertj.core.api.SoftAssertions;
+import org.assertj.core.api.junit.jupiter.InjectSoftAssertions;
+import org.assertj.core.api.junit.jupiter.SoftAssertionsExtension;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+@ExtendWith(SoftAssertionsExtension.class)
 public class AlcoholModuleMetadataTest {
     @InjectMocks
     private AlcoholModuleMetadata moduleMetadata;
@@ -49,10 +52,10 @@ public class AlcoholModuleMetadataTest {
     @Mock
     private DoDCommonService doDCommonService;
 
-    @Rule
-    public final JUnitSoftAssertions softly = new JUnitSoftAssertions();
+    @InjectSoftAssertions
+    private SoftAssertions softly;
 
-    @Before
+    @BeforeEach
     public void setup() {
         MockitoAnnotations.initMocks(this);
         moduleMetadata.datasetsDataProvider = Collections.singletonList(datasetsDataProvider);

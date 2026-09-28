@@ -18,7 +18,8 @@ import {Component} from '@angular/core';
 import {AbstractPluginComponent} from '../AbstractPluginComponent';
 
 @Component({
-    templateUrl: 'PopulationSummaryComponent.html'
+    templateUrl: 'PopulationSummaryComponent.html',
+    standalone: false
 })
 export class PopulationSummaryComponent extends AbstractPluginComponent {
 

@@ -19,6 +19,7 @@ package com.acuity.va.security.auth.common;
 import com.acuity.va.security.auth.remote.RemotePreAuthenticatedAuthenticationProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.annotation.Profile;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -28,8 +29,9 @@ import org.springframework.stereotype.Service;
 /**
  * Extends RemotePreAuthenticatedAuthenticationProvider to clear and add the security context after authenticating
 
-* @author Glen
- */
+ * @author Glen
+  */
+@Profile("!local-auth & !local-no-security")
 @Service("clearingAuthenticationProvider")
 public class ClearingSecurityContextRemotePreAuthenticatedAuthenticationProvider extends RemotePreAuthenticatedAuthenticationProvider {
 

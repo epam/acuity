@@ -157,6 +157,7 @@ public class StudyMappingsServicePartial implements IStudyMappingsServicePartial
     }
 
     @Override
+    @Transactional(readOnly = false, rollbackFor = Throwable.class)
     public void getExistingFileRules(StudyRule study, boolean loadMappings) {
         List<FileRule> fileRules = fileRuleDao.getFileRulesByStudy(study.getId());
 

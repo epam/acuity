@@ -23,7 +23,7 @@ import java.io.Serializable;
 import java.util.List;
 
 @Data
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = false)
 public class ColoredRangeChartSeries extends RangeChartSeries implements Serializable {
     private String color;
 

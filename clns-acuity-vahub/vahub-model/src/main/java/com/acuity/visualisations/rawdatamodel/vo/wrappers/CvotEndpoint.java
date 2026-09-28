@@ -33,7 +33,7 @@ import java.util.Date;
 /**
  * Created by knml167 on 6/9/2017.
  */
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = false)
 @ToString(callSuper = true)
 public class CvotEndpoint extends SubjectAwareWrapper<CvotEndpointRaw> implements HasStartDate, Serializable, HasAssociatedAe {
 

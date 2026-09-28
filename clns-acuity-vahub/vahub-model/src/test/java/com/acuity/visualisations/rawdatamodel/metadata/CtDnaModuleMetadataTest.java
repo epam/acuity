@@ -25,10 +25,12 @@ import com.acuity.visualisations.rawdatamodel.vo.CtDnaRaw;
 import com.acuity.visualisations.rawdatamodel.vo.Subject;
 import com.acuity.visualisations.rawdatamodel.vo.wrappers.CtDna;
 import com.google.gson.JsonElement;
-import org.assertj.core.api.JUnitSoftAssertions;
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
+import org.assertj.core.api.SoftAssertions;
+import org.assertj.core.api.junit.jupiter.InjectSoftAssertions;
+import org.assertj.core.api.junit.jupiter.SoftAssertionsExtension;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -44,10 +46,11 @@ import static com.acuity.visualisations.rawdatamodel.util.Constants.NO;
 import static com.acuity.visualisations.rawdatamodel.util.Constants.TRACKED_MUTATIONS_STRING;
 import static com.acuity.visualisations.rawdatamodel.util.Constants.YES;
 import static com.google.common.collect.Lists.newArrayList;
-import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.anyCollectionOf;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyCollection;
 import static org.mockito.Mockito.when;
 
+@ExtendWith(SoftAssertionsExtension.class)
 public class CtDnaModuleMetadataTest {
 
     @InjectMocks
@@ -59,10 +62,10 @@ public class CtDnaModuleMetadataTest {
     @Mock
     private CtDnaService ctDnaService;
 
-    @Rule
-    public final JUnitSoftAssertions softly = new JUnitSoftAssertions();
+    @InjectSoftAssertions
+    private SoftAssertions softly;
 
-    @Before
+    @BeforeEach
     public void setup() {
         MockitoAnnotations.initMocks(this);
         ctDnaModuleMetadata.datasetsDataProvider = newArrayList(ctDnaDatasetsDataProvider);
@@ -74,7 +77,7 @@ public class CtDnaModuleMetadataTest {
                 new CtDna(CtDnaRaw.builder().build(), new Subject()),
                 new CtDna(CtDnaRaw.builder().trackedMutation(NO).build(), new Subject()),
                 new CtDna(CtDnaRaw.builder().trackedMutation(YES).build(), new Subject())));
-        when(doDCommonService.getDoDColumns(any(DatasetType.class), anyCollectionOf(CtDna.class)))
+        when(doDCommonService.getDoDColumns(any(DatasetType.class), anyCollection()))
                 .thenReturn(new HashMap<>());
 
         MetadataItem metadataItem = ctDnaModuleMetadata.getMetadataItem(DUMMY_DETECT_DATASETS);
@@ -88,7 +91,7 @@ public class CtDnaModuleMetadataTest {
     @Test
     public void shouldGetMetadataNoData() {
         when(ctDnaDatasetsDataProvider.loadData(DUMMY_DETECT_DATASETS)).thenReturn(new ArrayList<>());
-        when(doDCommonService.getDoDColumns(any(DatasetType.class), anyCollectionOf(CtDna.class))).thenReturn(new HashMap<>());
+        when(doDCommonService.getDoDColumns(any(DatasetType.class), anyCollection())).thenReturn(new HashMap<>());
 
         MetadataItem metadataItem = ctDnaModuleMetadata.getMetadataItem(DUMMY_DETECT_DATASETS);
         softly.assertThat(metadataItem.getKey()).isEqualTo("ctdna");

@@ -18,8 +18,8 @@ package com.acuity.va.security.acl.domain;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jayway.jsonpath.JsonPath;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.security.acls.domain.PrincipalSid;
 
 import java.io.IOException;
@@ -35,7 +35,7 @@ public class DeserialisingAcuitySidSDetailsTest {
 
     private static ObjectMapper mapper;
 
-    @Before
+    @BeforeEach
     public void beforeClass() {
         mapper = new ObjectMapper();
     }

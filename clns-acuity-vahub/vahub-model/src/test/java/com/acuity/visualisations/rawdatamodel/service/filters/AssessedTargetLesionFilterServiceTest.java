@@ -27,10 +27,12 @@ import com.acuity.visualisations.rawdatamodel.vo.FilterResult;
 import com.acuity.visualisations.rawdatamodel.vo.Subject;
 import com.acuity.visualisations.rawdatamodel.vo.TargetLesionRaw;
 import com.acuity.visualisations.rawdatamodel.vo.wrappers.AssessedTargetLesion;
-import org.assertj.core.api.JUnitSoftAssertions;
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
+import org.assertj.core.api.SoftAssertions;
+import org.assertj.core.api.junit.jupiter.InjectSoftAssertions;
+import org.assertj.core.api.junit.jupiter.SoftAssertionsExtension;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -45,9 +47,10 @@ import static com.acuity.visualisations.rawdatamodel.util.Constants.NO;
 import static com.acuity.visualisations.rawdatamodel.util.Constants.YES;
 import static com.acuity.visualisations.rawdatamodel.util.DaysUtil.toDate;
 import static com.google.common.collect.Lists.newArrayList;
-import static org.mockito.Matchers.any;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
+@ExtendWith(SoftAssertionsExtension.class)
 public class AssessedTargetLesionFilterServiceTest {
 
     private static List<AssessedTargetLesion> atls;
@@ -97,10 +100,10 @@ public class AssessedTargetLesionFilterServiceTest {
     @InjectMocks
     private AssessedTargetLesionFilterService filterService;
 
-    @Rule
-    public JUnitSoftAssertions softly = new JUnitSoftAssertions();
+    @InjectSoftAssertions
+    private SoftAssertions softly;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         MockitoAnnotations.initMocks(this);
         setUpPopulationFilterResult();

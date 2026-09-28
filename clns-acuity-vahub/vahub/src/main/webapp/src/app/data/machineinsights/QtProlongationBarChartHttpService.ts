@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {HttpClient} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {fromJS, List} from 'immutable';
 import {Observable} from 'rxjs/Observable';

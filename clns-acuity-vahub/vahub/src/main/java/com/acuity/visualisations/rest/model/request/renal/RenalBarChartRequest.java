@@ -23,7 +23,7 @@ import com.acuity.visualisations.rawdatamodel.vo.wrappers.Renal;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
@@ -32,4 +32,11 @@ public class RenalBarChartRequest extends RenalRequest {
     private ChartGroupByOptionsFiltered<Renal, RenalGroupByOptions> settings;
     @NotNull
     private CountType countType;
+
+    public ChartGroupByOptionsFiltered<Renal, RenalGroupByOptions> getSettings() {
+        return settings;
+    }
+    public CountType getCountType() {
+        return countType;
+    }
 }

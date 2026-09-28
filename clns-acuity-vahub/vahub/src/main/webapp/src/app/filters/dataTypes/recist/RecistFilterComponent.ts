@@ -22,7 +22,8 @@ import { AbstractDataTypeFilter } from '../AbstractDataTypeFilter';
 
 @Component({
     selector: 'recistfilter',
-    templateUrl: 'RecistFilterComponent.html'
+    templateUrl: 'RecistFilterComponent.html',
+    standalone: false
 })
 export class RecistFilterComponent extends AbstractDataTypeFilter implements OnInit, OnDestroy, AfterViewInit {
     @Output()

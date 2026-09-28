@@ -32,7 +32,8 @@ import {ApplicationState} from '../common/store/models/ApplicationState';
     selector: 'study-selection',
     templateUrl: 'StudySelectionComponent.html',
     styleUrls: ['./StudySelectionComponent.css'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class StudySelectionComponent implements OnInit, OnDestroy {
     acls: Observable<any>;

@@ -86,7 +86,7 @@ public enum PkResultGroupByOptions implements GroupByOption<PkResult> {
             if (params == null || !params.getParamMap().containsKey(Param.CONTEXT)) {
                 return getAttribute();
             }
-            int weekNumber = (int) params.getParamMap().getOrDefault(GroupByOption.Param.WEEK_NUMBER, 0);
+            int weekNumber = (int) params.getParamMap().getOrDefault(Param.WEEK_NUMBER, 0);
             final Object o = params.get(Param.CONTEXT);
             Map<String, Map<Integer, String>> weekResponsePerSubject = (Map<String, Map<Integer, String>>) o;
             return EntityAttribute.attribute("WEEK_RESPONSE",

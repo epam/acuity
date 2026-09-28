@@ -27,7 +27,8 @@ import {PatientDataDetailTrackModel} from './PatientDataDetailTrackModel';
     selector: 'patientdata-track',
     templateUrl: 'PatientDataTrackComponent.html',
     styleUrls: ['../TimelineTrackComponent.css'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class PatientDataTrackComponent extends AbstractTrackComponent implements OnChanges {
     @Input() track: ITrack;

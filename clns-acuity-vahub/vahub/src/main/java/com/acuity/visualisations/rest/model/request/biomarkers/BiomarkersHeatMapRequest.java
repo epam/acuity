@@ -26,4 +26,8 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 public class BiomarkersHeatMapRequest extends BiomarkerRequest {
     private ChartGroupByOptionsFiltered<Biomarker, BiomarkerGroupByOptions> settings;
+
+    public ChartGroupByOptionsFiltered<Biomarker, BiomarkerGroupByOptions> getSettings() {
+        return settings;
+    }
 }

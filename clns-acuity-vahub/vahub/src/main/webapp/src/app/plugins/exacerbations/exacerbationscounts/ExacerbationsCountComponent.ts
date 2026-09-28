@@ -18,6 +18,7 @@ import {Component} from '@angular/core';
 import {TChartComponent} from '../../TChartComponent';
 
 @Component({
-    template: '<trellising-component [tabId]="tabId.EXACERBATIONS_GROUPED_COUNTS"></trellising-component>'
+    template: '<trellising-component [tabId]="tabId.EXACERBATIONS_GROUPED_COUNTS"></trellising-component>',
+    standalone: false
 })
 export class ExacerbationsCountComponent extends TChartComponent { }

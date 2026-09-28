@@ -22,7 +22,8 @@ import {PatientDataFiltersModel} from './PatientDataFiltersModel';
 
 @Component({
     selector: 'patientdatafilter',
-    templateUrl: 'PatientDataFiltersComponent.html'
+    templateUrl: 'PatientDataFiltersComponent.html',
+    standalone: false
 })
 export class PatientDataFiltersComponent extends AbstractDataTypeFilter implements OnInit, OnDestroy, AfterViewInit {
     @Output()

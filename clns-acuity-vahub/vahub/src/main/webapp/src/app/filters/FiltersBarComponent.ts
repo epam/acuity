@@ -32,7 +32,8 @@ import {SelectedFiltersModel} from './selectedFilters/SelectedFiltersModel';
 @Component({
     selector: 'filters-bar',
     templateUrl: 'FiltersBarComponent.html',
-    styleUrls: ['./filters.css']
+    styleUrls: ['./filters.css'],
+    standalone: false
 })
 export class FiltersBarComponent implements AfterViewInit, OnDestroy {
     options: FilterOptions;
@@ -94,9 +95,9 @@ export class FiltersBarComponent implements AfterViewInit, OnDestroy {
     }
 
     isCurrentTabMissing(): boolean {
-        return (this.currentTab === SidePanelTab.EVENTS && this.options.showEventFilter)
-            || (this.currentTab === SidePanelTab.SETTINGS && this.options.showSettings)
-            || (this.currentTab === SidePanelTab.TRACKS && this.options.showTimelineFilter);
+        return (this.currentTab === SidePanelTab.EVENTS && !this.options.showEventFilter)
+            || (this.currentTab === SidePanelTab.SETTINGS && !this.options.showSettings)
+            || (this.currentTab === SidePanelTab.TRACKS && !this.options.showTimelineFilter);
     }
 
     ngOnDestroy(): void {
@@ -162,7 +163,6 @@ export class FiltersBarComponent implements AfterViewInit, OnDestroy {
     }
 
     onClearAll(populationFilterClicked: boolean): void {
-        console.log('onClearAll');
         if (populationFilterClicked) {
             this.clearedFilterName = 'Population Filters';
         } else {

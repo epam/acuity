@@ -15,21 +15,24 @@
  */
 
 import {TestBed, inject} from '@angular/core/testing';
-import {HttpClientTestingModule} from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import {TimelineConfigurationService} from './TracksConfigurationService';
 import {
     SpirometryYAxisValue, EcgYAxisValue, VitalsYAxisValue,
     LabsYAxisValue, EcgWarnings
 } from '../../store/ITimeline';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe('GIVEN TimelineConfigurationService', () => {
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [HttpClientTestingModule],
-            providers: [
-                TimelineConfigurationService
-            ]
-        });
+    imports: [],
+    providers: [
+        TimelineConfigurationService,
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting()
+    ]
+});
     });
     // describe('WHEN the initial configuation is set', () => {
     //     it('THEN configuration property is updated',

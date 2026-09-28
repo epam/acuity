@@ -29,10 +29,12 @@ import com.acuity.visualisations.rawdatamodel.vo.PkResultRaw;
 import com.acuity.visualisations.rawdatamodel.vo.Subject;
 import com.acuity.visualisations.rawdatamodel.vo.wrappers.PkResult;
 import com.acuity.va.security.acl.domain.Datasets;
-import org.assertj.core.api.JUnitSoftAssertions;
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
+import org.assertj.core.api.SoftAssertions;
+import org.assertj.core.api.junit.jupiter.InjectSoftAssertions;
+import org.assertj.core.api.junit.jupiter.SoftAssertionsExtension;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -46,11 +48,12 @@ import static com.acuity.visualisations.rawdatamodel.util.Column.DatasetType;
 import static com.acuity.visualisations.rawdatamodel.util.Constants.AVAILABLE_YAXIS_OPTIONS;
 import static com.google.common.collect.Lists.newArrayList;
 import static net.javacrumbs.jsonunit.fluent.JsonFluentAssert.assertThatJson;
-import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.anyCollectionOf;
-import static org.mockito.Matchers.eq;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyCollection;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.when;
 
+@ExtendWith(SoftAssertionsExtension.class)
 public class PkResultModuleMetadataTest {
 
     @InjectMocks
@@ -62,10 +65,10 @@ public class PkResultModuleMetadataTest {
     @Mock
     private PkResultService pkResultService;
 
-    @Rule
-    public final JUnitSoftAssertions softly = new JUnitSoftAssertions();
+    @InjectSoftAssertions
+    private SoftAssertions softly;
 
-    @Before
+    @BeforeEach
     public void setup() {
         MockitoAnnotations.initMocks(this);
         pkResultModuleMetadata.datasetsDataProvider = newArrayList(pkResultDatasetsDataProvider);
@@ -77,7 +80,7 @@ public class PkResultModuleMetadataTest {
                 new PkResult(PkResultRaw.builder().visit("Cycle 1 Day 100").build(), new Subject()),
                 new PkResult(PkResultRaw.builder().visit("Cycle 2 Day 1").build(), new Subject()),
                 new PkResult(new PkResultRaw(), new Subject())));
-        when(doDCommonService.getDoDColumns(any(DatasetType.class), anyCollectionOf(PkResult.class))).thenReturn(new HashMap<>());
+        when(doDCommonService.getDoDColumns(any(DatasetType.class), anyCollection())).thenReturn(new HashMap<>());
         when(pkResultService.getAvailableBoxPlotXAxis(any(Datasets.class), eq(PkResultFilters.empty()), eq(PopulationFilters.empty())))
                 .thenReturn(new AxisOptions<>(Collections.singletonList(new AxisOption<>(PkResultGroupByOptions.DOSE)), true, null));
 
@@ -97,7 +100,7 @@ public class PkResultModuleMetadataTest {
                 new PkResult(PkResultRaw.builder().treatmentCycle("Cycle 0").build(), new Subject()),
                 new PkResult(new PkResultRaw(), new Subject()),
                 new PkResult(new PkResultRaw(), new Subject())));
-        when(doDCommonService.getDoDColumns(any(DatasetType.class), anyCollectionOf(PkResult.class))).thenReturn(new HashMap<>());
+        when(doDCommonService.getDoDColumns(any(DatasetType.class), anyCollection())).thenReturn(new HashMap<>());
 
         MetadataItem metadataItem = pkResultModuleMetadata.getMetadataItem(DUMMY_ACUITY_DATASETS);
         softly.assertThat(metadataItem.getKey()).isEqualTo("pkResult");
@@ -112,7 +115,7 @@ public class PkResultModuleMetadataTest {
                 new PkResult(PkResultRaw.builder().treatmentCycle("Cycle 0").build(), new Subject()),
                 new PkResult(PkResultRaw.builder().protocolScheduleStartDay("1").build(), new Subject()),
                 new PkResult(new PkResultRaw(), new Subject())));
-        when(doDCommonService.getDoDColumns(any(DatasetType.class), anyCollectionOf(PkResult.class))).thenReturn(new HashMap<>());
+        when(doDCommonService.getDoDColumns(any(DatasetType.class), anyCollection())).thenReturn(new HashMap<>());
         when(pkResultService.getAvailableBoxPlotXAxis(any(Datasets.class), eq(PkResultFilters.empty()), eq(PopulationFilters.empty())))
                 .thenReturn(new AxisOptions<>(Collections.singletonList(new AxisOption<>(PkResultGroupByOptions.DOSE)), true, null));
 
@@ -126,7 +129,7 @@ public class PkResultModuleMetadataTest {
     @Test
     public void shouldGetMetadataNoData() {
         when(pkResultDatasetsDataProvider.loadData(DUMMY_ACUITY_DATASETS)).thenReturn(new ArrayList<>());
-        when(doDCommonService.getDoDColumns(any(DatasetType.class), anyCollectionOf(PkResult.class))).thenReturn(new HashMap<>());
+        when(doDCommonService.getDoDColumns(any(DatasetType.class), anyCollection())).thenReturn(new HashMap<>());
 
         MetadataItem metadataItem = pkResultModuleMetadata.getMetadataItem(DUMMY_ACUITY_DATASETS);
         softly.assertThat(metadataItem.getKey()).isEqualTo("pkResult");

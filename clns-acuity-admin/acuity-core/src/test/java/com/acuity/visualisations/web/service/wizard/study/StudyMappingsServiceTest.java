@@ -19,12 +19,12 @@ package com.acuity.visualisations.web.service.wizard.study;
 import com.acuity.visualisations.data.CloudFileData;
 import com.acuity.visualisations.data.LocalFileData;
 import com.acuity.visualisations.data.provider.MatchingDataProvider;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertThat;
-import static org.mockito.Matchers.any;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -33,7 +33,7 @@ public class StudyMappingsServiceTest {
 
     private MatchingDataProvider dataProvider = mock(MatchingDataProvider.class);
 
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
         service.setProvider(dataProvider);
     }

@@ -278,11 +278,10 @@ export class Timeline<T extends TrackDataService> {
         return this.actions$
             .filter(action => action.type === RELOAD_DATA)
             .do(action => this._store.dispatch(this.timelineActionCreator.makeLoadingAction(true)))
-            .mergeMap(this.getPossibleSubjects.bind(this),
-                (action, payload: ISubject[]): Action => {
-                    this.updateTracksData(payload);
-                    return this.timelineActionCreator.makeLoadingAction(false);
-                });
+            .mergeMap(() => this.getPossibleSubjects().map((payload: any): Action => {
+                this.updateTracksData(payload);
+                return this.timelineActionCreator.makeLoadingAction(false);
+            }));
     }
 
     private updateYAxisValueAction(): Observable<Action> {

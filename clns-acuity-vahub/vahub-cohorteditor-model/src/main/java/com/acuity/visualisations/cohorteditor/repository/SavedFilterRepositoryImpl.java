@@ -35,7 +35,7 @@ public class SavedFilterRepositoryImpl implements SavedFilterRepositoryCustom {
      */
     @Override
     public SavedFilter loadTreeById(Long id) {
-        SavedFilter savedFilter = savedFilterRepository.findOne(id);
+        SavedFilter savedFilter = savedFilterRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("SavedFilter not found: " + id));
         savedFilter.getInstances().size();
         savedFilter.getPermissions().size();
 

@@ -33,17 +33,18 @@ import com.acuity.visualisations.rawdatamodel.vo.Subject;
 import com.acuity.va.security.acl.domain.Dataset;
 import com.acuity.va.security.acl.domain.Datasets;
 import com.acuity.va.security.acl.domain.AcuityDataset;
-import org.assertj.core.api.JUnitSoftAssertions;
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.assertj.core.api.SoftAssertions;
+import org.assertj.core.api.junit.jupiter.InjectSoftAssertions;
+import org.assertj.core.api.junit.jupiter.SoftAssertionsExtension;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.core.ResolvableType;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -54,10 +55,10 @@ import static com.acuity.visualisations.config.util.TestConstants.DUMMY_ACUITY_D
 import static com.acuity.visualisations.rawdatamodel.util.DateUtils.toDate;
 import static com.acuity.visualisations.rawdatamodel.util.DateUtils.toDateTime;
 import static com.google.common.collect.Lists.newArrayList;
-import static org.mockito.Matchers.any;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
-@RunWith(SpringRunner.class)
+@ExtendWith({SpringExtension.class, SoftAssertionsExtension.class})
 @ContextConfiguration(classes = {TestConfig.class, DataProviderConfiguration.class})
 public class PopulationDatasetsDataProviderTest extends DataProviderAwareTest {
 
@@ -82,13 +83,13 @@ public class PopulationDatasetsDataProviderTest extends DataProviderAwareTest {
     @Autowired
     private BeanLookupService beanLookupService;
 
-    @Before
+    @BeforeEach
     public void setup() {
         MockitoAnnotations.initMocks(this);
     }
 
-    @Rule
-    public final JUnitSoftAssertions softly = new JUnitSoftAssertions();
+    @InjectSoftAssertions
+    private SoftAssertions softly;
 
     @Test
     public void testLoadDataFromUploadedFile() {

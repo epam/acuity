@@ -18,16 +18,19 @@ package com.acuity.visualisations.rawdatamodel.trellis.extractor;
 
 import com.acuity.visualisations.rawdatamodel.trellis.grouping.VisitDescription;
 import com.acuity.visualisations.rawdatamodel.trellis.grouping.extractor.VisitDescriptionValueExtractor;
-import org.assertj.core.api.JUnitSoftAssertions;
-import org.junit.Rule;
-import org.junit.Test;
+import org.assertj.core.api.SoftAssertions;
+import org.assertj.core.api.junit.jupiter.InjectSoftAssertions;
+import org.assertj.core.api.junit.jupiter.SoftAssertionsExtension;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 
+@ExtendWith(SoftAssertionsExtension.class)
 public class VisitDescriptionValueExtractorTest {
 
     private VisitDescriptionValueExtractor extractor = new VisitDescriptionValueExtractor();
 
-    @Rule
-    public final JUnitSoftAssertions softly = new JUnitSoftAssertions();
+    @InjectSoftAssertions
+    private SoftAssertions softly;
 
     @Test
     public void shouldExtractIntegerValue() {

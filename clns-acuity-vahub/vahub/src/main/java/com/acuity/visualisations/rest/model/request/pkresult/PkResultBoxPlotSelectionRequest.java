@@ -23,7 +23,7 @@ import com.acuity.visualisations.rawdatamodel.vo.wrappers.PkResult;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
@@ -31,4 +31,9 @@ public class PkResultBoxPlotSelectionRequest extends PkResultRequest {
     @NotNull
     private ChartSelection<PkResult, PkResultGroupByOptions,
             ChartSelectionItemRange<PkResult, PkResultGroupByOptions, Double>> selection;
+
+    public ChartSelection<PkResult, PkResultGroupByOptions,
+            ChartSelectionItemRange<PkResult, PkResultGroupByOptions, Double>> getSelection() {
+        return selection;
+    }
 }

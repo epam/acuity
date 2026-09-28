@@ -32,7 +32,10 @@ import {DateUtilsService} from '../utils/DateUtilsService';
  * {{ undefined | utc }}
  * formats to: "--"
  */
-@Pipe({ name: 'utc' })
+@Pipe({
+    name: 'utc',
+    standalone: false
+})
 export class UtcPipe implements PipeTransform {
 
     constructor(private dateUtilsService: DateUtilsService) {

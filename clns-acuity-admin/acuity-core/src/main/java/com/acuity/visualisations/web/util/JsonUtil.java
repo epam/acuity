@@ -32,10 +32,17 @@ import org.springframework.batch.core.JobExecution;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.Date;
 
 import static com.acuity.visualisations.data.util.Util.subtractDates;
 
 public final class JsonUtil {
+
+    private static Date toDate(LocalDateTime ldt) {
+        return ldt == null ? null : Date.from(ldt.atZone(ZoneId.systemDefault()).toInstant());
+    }
 
     private static final String NONE = "-";
 
@@ -85,14 +92,14 @@ public final class JsonUtil {
             jsonObject.put(PREVIOUS_RUN, simpleDateFormat.format(Util.currentDate()));
             jsonObject.put(PREVIOUS_RUN_STATUS, NONE);
         } else {
-            jsonObject.put(PREVIOUS_RUN, simpleDateFormat.format(jobExecution.getEndTime()));
+            jsonObject.put(PREVIOUS_RUN, simpleDateFormat.format(toDate(jobExecution.getEndTime())));
         }
     }
 
     private static void setPreviousRunTimeToJson(JobExecution jobExecution, JSONObject jsonObject) throws JSONException {
         jsonObject.put(PREVIOUS_RUN_TIME,
                 (jobExecution == null || jobExecution.getEndTime() == null)
-                        ? NONE : subtractDates(jobExecution.getEndTime(), jobExecution.getStartTime()));
+                        ? NONE : subtractDates(toDate(jobExecution.getEndTime()), toDate(jobExecution.getStartTime())));
     }
 
     public static void setJobExecutionToJson(JSONObject jsonObject, JobExecution latestJobExecution) throws JSONException {
@@ -140,9 +147,9 @@ public final class JsonUtil {
             jsonObject.put(PREVIOUS_AML_RUN_STATUS, NONE);
             jsonObject.put(PREVIOUS_AML_RUN_TIME, NONE);
         } else {
-            jsonObject.put(PREVIOUS_AML_RUN, simpleDateFormat.format(jobExecution.getEndTime()));
+            jsonObject.put(PREVIOUS_AML_RUN, simpleDateFormat.format(toDate(jobExecution.getEndTime())));
             jsonObject.put(PREVIOUS_AML_RUN_STATUS, jobExecution.getStatus());
-            jsonObject.put(PREVIOUS_AML_RUN_TIME, subtractDates(jobExecution.getEndTime(), jobExecution.getStartTime()));
+            jsonObject.put(PREVIOUS_AML_RUN_TIME, subtractDates(toDate(jobExecution.getEndTime()), toDate(jobExecution.getStartTime())));
 
         }
     }
@@ -152,10 +159,10 @@ public final class JsonUtil {
         if (jobExecution == null || jobExecution.getEndTime() == null) {
             jsonObject.put(PREVIOUS_AML_RUN, simpleDateFormat.format(Util.currentDate()));
         } else {
-            jsonObject.put(PREVIOUS_AML_RUN, simpleDateFormat.format(jobExecution.getEndTime()));
+            jsonObject.put(PREVIOUS_AML_RUN, simpleDateFormat.format(toDate(jobExecution.getEndTime())));
             jsonObject.put(PREVIOUS_AML_RUN_TIME,
                     ExitStatus.COMPLETED.equals(jobExecution.getExitStatus())
-                            ? subtractDates(jobExecution.getEndTime(), jobExecution.getStartTime()) : NONE);
+                            ? subtractDates(toDate(jobExecution.getEndTime()), toDate(jobExecution.getStartTime())) : NONE);
         }
         jsonObject.put(PREVIOUS_AML_RUN_STATUS, executionState);
     }

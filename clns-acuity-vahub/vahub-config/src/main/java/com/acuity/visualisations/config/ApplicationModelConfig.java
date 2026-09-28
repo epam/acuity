@@ -16,6 +16,7 @@
 
 package com.acuity.visualisations.config;
 
+import org.mybatis.spring.mapper.MapperScannerConfigurer;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -55,6 +56,22 @@ import static org.springframework.context.annotation.FilterType.ASSIGNABLE_TYPE;
     "classpath:spring/detect/mybatis/mybatis-model.xml"
 })
 public class ApplicationModelConfig {
+
+    @Bean
+    public static MapperScannerConfigurer modelMapperScanner() {
+        MapperScannerConfigurer cfg = new MapperScannerConfigurer();
+        cfg.setBasePackage("com.acuity.visualisations.model");
+        cfg.setSqlSessionFactoryBeanName("sqlSessionFactoryModelAcuity");
+        return cfg;
+    }
+
+    @Bean
+    public static MapperScannerConfigurer rawDataModelMapperScanner() {
+        MapperScannerConfigurer cfg = new MapperScannerConfigurer();
+        cfg.setBasePackage("com.acuity.visualisations.rawdatamodel.dao,com.acuity.visualisations.rawdatamodel.dataset.info");
+        cfg.setSqlSessionFactoryBeanName("sqlSessionFactoryModelRawDataAcuity");
+        return cfg;
+    }
 
     @Bean
     @ConfigurationProperties(prefix = "spring.datasource")

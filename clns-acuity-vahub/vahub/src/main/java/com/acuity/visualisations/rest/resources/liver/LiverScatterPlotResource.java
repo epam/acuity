@@ -27,9 +27,6 @@ import com.acuity.visualisations.rest.model.request.liver.HysRequest;
 import com.acuity.visualisations.rest.model.request.liver.HysSelectionRequest;
 import com.acuity.visualisations.rest.model.request.liver.LiverRequest;
 import com.acuity.visualisations.rest.util.Constants;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;
@@ -44,7 +41,6 @@ import java.util.List;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @RestController
-@Api(value = "/resources/liver/", description = "rest endpoints for for liver")
 @RequestMapping(value = "/resources/liver/", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
 @PreAuthorize(Constants.PRE_AUTHORISE_VISUALISATION)
 @CacheConfig(keyGenerator = "datasetsKeyGenerator", cacheResolver = "refreshableCacheResolver")
@@ -52,16 +48,9 @@ public class LiverScatterPlotResource {
     @Autowired
     private LiverService liverService;
 
-    @ApiOperation(
-            value = "Gets the available trellising and options",
-            nickname = "availableTrellising",
-            response = List.class,
-            httpMethod = "POST"
-    )
     @PostMapping("trellising")
     @Cacheable
     public List<TrellisOptions<LiverGroupByOptions>> getAvailableTrellising(
-            @ApiParam(value = "Liver and Population Filters e.g. {liverFilters : {}, populationFilters: {}}", required = true)
             @RequestBody LiverRequest requestBody) {
 
         return liverService.getTrellisOptions(
@@ -70,16 +59,9 @@ public class LiverScatterPlotResource {
                 requestBody.getPopulationFilters());
     }
 
-    @ApiOperation(
-            value = "Gets the statistics for the Hy's Law plots",
-            nickname = "getHysLawData",
-            response = List.class,
-            httpMethod = "POST"
-    )
     @PostMapping("hysscatter")
     @Cacheable
     public List<TrellisedScatterPlot<Liver, LiverGroupByOptions>> getDataForScatterChart(
-            @ApiParam(value = "Trellising, Liver and Population Filters e.g. {liverFilters : {}, populationFilters: {}, trellising: []}", required = true)
             @RequestBody HysRequest requestBody) {
 
         return liverService.getPlotValues(
@@ -89,17 +71,9 @@ public class LiverScatterPlotResource {
                 requestBody.getPopulationFilters());
     }
 
-    @ApiOperation(
-            value = "Get selection details within Hy's Law plots",
-            nickname = "getSelectionDetailsWithinHysLawPlot",
-            response = SelectionDetail.class,
-            httpMethod = "POST"
-    )
     @PostMapping("hysscatter-selection")
     @Cacheable
     public SelectionDetail getSelectionDetailsWithinHysLawPlot(
-            @ApiParam(value = "Trellising, selection box, Liver and Population Filters e.g. {liverFilters : {}, populationFilters: {}, trellising: [], "
-                    + "xMin: 0, xMax: 10, yMin: 10.0, yMax: 12.0}", required = true)
             @RequestBody HysSelectionRequest requestBody) {
 
         return liverService.getPlotSelection(

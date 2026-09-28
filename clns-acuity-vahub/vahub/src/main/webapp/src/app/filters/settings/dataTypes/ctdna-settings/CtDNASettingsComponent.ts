@@ -20,9 +20,10 @@ import {TrellisingObservables} from '../../../../common/trellising/store/observa
 import {ScaleTypes} from '../../../../common/trellising/store';
 
 @Component({
-  selector: 'ctdna-settings',
-  templateUrl: './CtDNASettingsComponent.html',
-  styleUrls: ['../../../filters.css']
+    selector: 'ctdna-settings',
+    templateUrl: './CtDNASettingsComponent.html',
+    styleUrls: ['../../../filters.css'],
+    standalone: false
 })
 export class CtDNASettingsComponent implements OnInit {
 

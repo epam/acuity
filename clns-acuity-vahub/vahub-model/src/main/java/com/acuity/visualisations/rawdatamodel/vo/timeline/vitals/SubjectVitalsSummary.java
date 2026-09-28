@@ -26,7 +26,7 @@ import java.io.Serializable;
 import java.util.List;
 
 @Data
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = false)
 @ToString(callSuper = true)
 public class SubjectVitalsSummary extends SubjectSummary implements Serializable {
     private String sex;
