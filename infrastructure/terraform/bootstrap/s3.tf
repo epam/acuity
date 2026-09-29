@@ -20,6 +20,8 @@ module "transfer_bucket" {
 
   attach_deny_insecure_transport_policy = true
 
+  force_destroy = true
+
   server_side_encryption_configuration = {
     rule = {
       apply_server_side_encryption_by_default = {
