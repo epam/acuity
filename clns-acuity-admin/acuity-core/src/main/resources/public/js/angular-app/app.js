@@ -37,10 +37,6 @@ app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $lo
         controller: 'defaultController'
     });
 
-    $routeProvider.when('/groupings/:studyId', {
-        templateUrl: 'views/subjectGroupings/subjectGroupings.html',
-        controller: 'subjectGroupingsController',
-    });
 
     $routeProvider.otherwise({ redirectTo: '/' });
 

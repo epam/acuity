@@ -137,16 +137,9 @@
                     </span>
                 </a>
             </li>
+
             <li>
-                <a href="#step-8" target="_blank" class="step-link">
-                    <span class="sideBarIcon"></span>
-                    <span class="stepDesc">
-                        <small>Annotate subject groupings</small>
-                    </span>
-                </a>
-            </li>
-            <li>
-                <a href="#step-9" class="step-link">
+                <a href="#step-8" class="step-link">
                     <span class="sideBarIcon"></span>
                     <span class="stepDesc">
                         <small>Select custom project groupings</small>
@@ -154,7 +147,7 @@
                 </a>
             </li>
             <li>
-                <a href="#step-10" class="step-link">
+                <a href="#step-9" class="step-link">
                     <span class="sideBarIcon"></span>
                     <span class="stepDesc">
                         <small>Select subject groupings</small>
@@ -166,7 +159,7 @@
             %>
             <c:if test='${not empty cBioPortalUrl}'>
                 <li>
-                    <a href="#step-11" class="step-link">
+                    <a href="#step-10" class="step-link">
                         <span class="sideBarIcon"></span>
                         <span class="stepDesc">
                             <small>cBioPortal Genomic Profile</small>
@@ -175,7 +168,7 @@
                 </li>
             </c:if>
             <li>
-                <a href="#step-12" class="step-link">
+                <a href="#step-11" class="step-link">
                     <span class="sideBarIcon"></span>
                     <span class="stepDesc">
                         <small>Review the dataset setup</small>
@@ -224,33 +217,27 @@
                         <jsp:param name="stepIndex" value="study-step-7"/>
                     </jsp:include>
                 </div>
+
                 <div id="step-8" class="">
-                    <div class="text-center">
-                        <a class="btn btn-primary" id="refToWebappGroupings" href="#" role="button" target="_blank">
-                            Edit
-                        </a>
-                    </div>
-                </div>
-                <div id="step-9" class="">
                     <jsp:include page="/WEB-INF/jsp/study-setup/project-groupings.jsp">
+                        <jsp:param name="stepIndex" value="study-step-8"/>
+                    </jsp:include>
+                </div>
+                <div id="step-9" class="" style="min-height: 500px">
+                    <jsp:include page="/WEB-INF/jsp/study-setup/study-subject-groupings.jsp">
                         <jsp:param name="stepIndex" value="study-step-9"/>
                     </jsp:include>
                 </div>
-                <div id="step-10" class="" style="min-height: 500px">
-                    <jsp:include page="/WEB-INF/jsp/study-setup/study-subject-groupings.jsp">
-                        <jsp:param name="stepIndex" value="study-step-10"/>
-                    </jsp:include>
-                </div>
                 <c:if test='${not empty cBioPortalUrl}'>
-                    <div id="step-11" class="">
+                    <div id="step-10" class="">
                         <jsp:include page="/WEB-INF/jsp/study-setup/step-cBioPortal-genomic-profile.jsp">
-                            <jsp:param name="stepIndex" value="study-step-11"/>
+                            <jsp:param name="stepIndex" value="study-step-10"/>
                         </jsp:include>
                     </div>
                 </c:if>
-                <div id="step-12" class="">
+                <div id="step-11" class="">
                     <jsp:include page="/WEB-INF/jsp/study-setup/5-summary.jsp">
-                        <jsp:param name="stepIndex" value="study-step-12"/>
+                        <jsp:param name="stepIndex" value="study-step-11"/>
                     </jsp:include>
                 </div>
             </div>
