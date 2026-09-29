@@ -90,7 +90,7 @@ resource "aws_ecs_task_definition" "app" {
   container_definitions = jsonencode([
     {
       name  = "acuity-${each.key}"
-      image = "${module.ecr[each.key].repository_url}:${var.image_tag}"
+      image = "${data.aws_ecr_repository.app[each.key].repository_url}:${var.image_tag}"
 
       # Migrations run to completion before the app starts; a stuck migration
       # fails the task (and the deploy) at startTimeout rather than hanging.
@@ -143,7 +143,7 @@ resource "aws_ecs_task_definition" "app" {
     },
     {
       name  = "flyway"
-      image = "${module.ecr["flyway"].repository_url}:${var.image_tag}"
+      image = "${data.aws_ecr_repository.app["flyway"].repository_url}:${var.image_tag}"
 
       # Non-essential: exits 0 after migrating, then the app container starts.
       # essential = false is required - ECS rejects a SUCCESS dependency on an essential container.
@@ -248,7 +248,7 @@ resource "aws_ecs_task_definition" "va_hub_ui" {
   container_definitions = jsonencode([
     {
       name  = "acuity-va-hub-ui"
-      image = "${module.ecr["va-hub-ui"].repository_url}:${var.image_tag}"
+      image = "${data.aws_ecr_repository.app["va-hub-ui"].repository_url}:${var.image_tag}"
 
       # No `name` - va-hub-ui is not on Service Connect.
       portMappings = [

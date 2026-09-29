@@ -37,7 +37,7 @@ Each workspace's state lives at its own S3 key, via the backend's native
 Every name derives from `local.name_prefix` (`pocf_acuity-<workspace>`,
 underscore+hyphen — used where the resource type allows underscores) or
 `local.name_prefix_hyphen` (`pocf-acuity-<workspace>`, hyphen-only — used
-where it doesn't, e.g. ALB, target groups, RDS identifier, S3 bucket).
+where it doesn't, e.g. ALB, target groups, RDS identifier).
 SSM parameters and CloudWatch log groups use a slash path,
 `/pocf_acuity/<workspace>/...`.
 
@@ -56,13 +56,15 @@ ECS container names, Service Connect DNS aliases/`client_alias`, and the
 images' hardcoded `http://acuity-va-*:8000` URLs and stay `acuity-*`
 regardless of workspace.
 
-The ECR repo prefix (`local.aws_ecr_repo_prefix`, in `ecr.tf`) is also frozen,
-for an unrelated reason: it's owned by the image-build pipeline
-(`docker/Makefile`/`docker-compose.yml`), not this Terraform root, and is out
-of scope for this convention. Because it's frozen, it is **not** per-workspace
-either — running `apply` in a second workspace before the first workspace's
-ECR repos are decommissioned will collide with them. Don't stand up a second
-long-lived workspace until that's resolved.
+The ECR repos and the S3 transfer bucket are **not** provisioned here at all.
+Both are account-level, not per-environment — the ECR repo names are owned
+by the image-build pipeline (`docker/Makefile`/`docker-compose.yml`) and the
+transfer bucket is one shared staging area for every workspace — so they live
+in `infrastructure/terraform/bootstrap`, a separate root module applied once,
+outside any workspace. This root only reads them back by name (`ecr.tf`'s
+`data "aws_ecr_repository"`, `s3.tf`'s `data "aws_s3_bucket"`), so apply
+`bootstrap` first; a fresh workspace's `plan` fails with a clear "not found"
+error if it hasn't been.
 
 ## Tags
 
