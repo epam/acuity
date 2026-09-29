@@ -146,35 +146,39 @@
                     </span>
                 </a>
             </li>
-            <li>
-                <a href="#step-9" class="step-link">
-                    <span class="sideBarIcon"></span>
-                    <span class="stepDesc">
-                        <small>Select subject groupings</small>
-                    </span>
-                </a>
-            </li>
+
+
             <%
                 String cBioPortalUrl = (String) request.getAttribute("cBioPortalUrl");
             %>
             <c:if test='${not empty cBioPortalUrl}'>
                 <li>
-                    <a href="#step-10" class="step-link">
+                    <a href="#step-9" class="step-link">
                         <span class="sideBarIcon"></span>
                         <span class="stepDesc">
                             <small>cBioPortal Genomic Profile</small>
                         </span>
                     </a>
                 </li>
+                <li>
+                    <a href="#step-10" class="step-link">
+                        <span class="sideBarIcon"></span>
+                        <span class="stepDesc">
+                            <small>Review the dataset setup</small>
+                        </span>
+                    </a>
+                </li>
             </c:if>
-            <li>
-                <a href="#step-11" class="step-link">
-                    <span class="sideBarIcon"></span>
-                    <span class="stepDesc">
-                        <small>Review the dataset setup</small>
-                    </span>
-                </a>
-            </li>
+            <c:if test='${empty cBioPortalUrl}'>
+                <li>
+                    <a href="#step-9" class="step-link">
+                        <span class="sideBarIcon"></span>
+                        <span class="stepDesc">
+                            <small>Review the dataset setup</small>
+                        </span>
+                    </a>
+                </li>
+            </c:if>
         </ul>
     </div>
     <div id="rightPane" class="pane">
@@ -223,23 +227,26 @@
                         <jsp:param name="stepIndex" value="study-step-8"/>
                     </jsp:include>
                 </div>
-                <div id="step-9" class="" style="min-height: 500px">
-                    <jsp:include page="/WEB-INF/jsp/study-setup/study-subject-groupings.jsp">
-                        <jsp:param name="stepIndex" value="study-step-9"/>
-                    </jsp:include>
-                </div>
+
                 <c:if test='${not empty cBioPortalUrl}'>
-                    <div id="step-10" class="">
+                    <div id="step-9" class="">
                         <jsp:include page="/WEB-INF/jsp/study-setup/step-cBioPortal-genomic-profile.jsp">
+                            <jsp:param name="stepIndex" value="study-step-9"/>
+                        </jsp:include>
+                    </div>
+                    <div id="step-10" class="">
+                        <jsp:include page="/WEB-INF/jsp/study-setup/5-summary.jsp">
                             <jsp:param name="stepIndex" value="study-step-10"/>
                         </jsp:include>
                     </div>
                 </c:if>
-                <div id="step-11" class="">
-                    <jsp:include page="/WEB-INF/jsp/study-setup/5-summary.jsp">
-                        <jsp:param name="stepIndex" value="study-step-11"/>
-                    </jsp:include>
-                </div>
+                <c:if test='${empty cBioPortalUrl}'>
+                    <div id="step-9" class="">
+                        <jsp:include page="/WEB-INF/jsp/study-setup/5-summary.jsp">
+                            <jsp:param name="stepIndex" value="study-step-9"/>
+                        </jsp:include>
+                    </div>
+                </c:if>
             </div>
         </div>
     </div>
