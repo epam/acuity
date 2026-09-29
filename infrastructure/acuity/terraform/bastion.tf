@@ -17,7 +17,7 @@ data "aws_ami" "al2023_arm64" {
 }
 
 resource "aws_iam_role" "bastion" {
-  name = "acuity-poc-bastion"
+  name = "${local.name_prefix}-bastion"
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
     Statement = [{
@@ -34,7 +34,7 @@ resource "aws_iam_role_policy_attachment" "bastion_ssm_core" {
 }
 
 resource "aws_iam_instance_profile" "bastion" {
-  name = "acuity-poc-bastion"
+  name = "${local.name_prefix}-bastion"
   role = aws_iam_role.bastion.name
 }
 
@@ -65,12 +65,12 @@ resource "aws_instance" "bastion" {
   user_data_replace_on_change = true
   force_destroy               = true
 
-  tags       = { Name = "acuity-poc-bastion" }
+  tags       = { Name = "${local.name_prefix}-bastion" }
   depends_on = [module.efs]
 }
 
 resource "aws_iam_role" "bastion_access" {
-  name = "acuity-poc-bastion-access"
+  name = "${local.name_prefix}-bastion-access"
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
     Statement = [{
@@ -106,7 +106,7 @@ data "aws_iam_policy_document" "bastion_ssm_session" {
 }
 
 resource "aws_iam_role_policy" "bastion_ssm_session" {
-  name   = "acuity-poc-bastion-ssm-session"
+  name   = "${local.name_prefix}-bastion-ssm-session"
   role   = aws_iam_role.bastion_access.id
   policy = data.aws_iam_policy_document.bastion_ssm_session.json
 }

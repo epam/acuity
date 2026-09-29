@@ -19,7 +19,7 @@ module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
   version = "~> 6.0"
 
-  name = "acuity-poc"
+  name = "${local.name_prefix}-vpc"
   cidr = "10.0.0.0/16"
 
   azs                     = local.azs
@@ -40,7 +40,7 @@ module "sg_alb" {
   source  = "terraform-aws-modules/security-group/aws"
   version = "~> 6.0"
 
-  name        = "acuity-poc-alb"
+  name        = "${local.name_prefix}-sg-alb"
   description = "ALB - inbound from the corporate VPN only"
 
   vpc_id = module.vpc.vpc_id
@@ -70,7 +70,7 @@ module "sg_va_hub_ui" {
   source  = "terraform-aws-modules/security-group/aws"
   version = "~> 6.0"
 
-  name        = "acuity-poc-va-hub-ui"
+  name        = "${local.name_prefix}-sg-va-hub-ui"
   description = "va-hub-ui task - inbound from the ALB only"
 
   vpc_id = module.vpc.vpc_id
@@ -93,7 +93,7 @@ module "sg_va_hub" {
   source  = "terraform-aws-modules/security-group/aws"
   version = "~> 6.0"
 
-  name        = "acuity-poc-va-hub"
+  name        = "${local.name_prefix}-sg-va-hub"
   description = "va-hub task - inbound from the ALB and from admin via Service Connect"
 
   vpc_id = module.vpc.vpc_id
@@ -123,7 +123,7 @@ module "sg_admin" {
   source  = "terraform-aws-modules/security-group/aws"
   version = "~> 6.0"
 
-  name        = "acuity-poc-admin"
+  name        = "${local.name_prefix}-sg-admin"
   description = "admin task - inbound from the ALB only"
 
   vpc_id = module.vpc.vpc_id
@@ -146,7 +146,7 @@ module "sg_flyway" {
   source  = "terraform-aws-modules/security-group/aws"
   version = "~> 6.0"
 
-  name        = "acuity-poc-flyway"
+  name        = "${local.name_prefix}-sg-flyway"
   description = "flyway migration task - no inbound"
 
   vpc_id = module.vpc.vpc_id
@@ -160,7 +160,7 @@ module "sg_rds" {
   source  = "terraform-aws-modules/security-group/aws"
   version = "~> 6.0"
 
-  name        = "acuity-poc-rds"
+  name        = "${local.name_prefix}-sg-rds"
   description = "RDS PostgreSQL - inbound from app tasks, flyway and the bastion only"
 
   vpc_id = module.vpc.vpc_id
@@ -206,7 +206,7 @@ module "sg_efs" {
   source  = "terraform-aws-modules/security-group/aws"
   version = "~> 6.0"
 
-  name        = "acuity-poc-efs"
+  name        = "${local.name_prefix}-sg-efs"
   description = "EFS - inbound from admin and the bastion only"
 
   vpc_id = module.vpc.vpc_id
@@ -237,7 +237,7 @@ module "sg_bastion" {
   source  = "terraform-aws-modules/security-group/aws"
   version = "~> 6.0"
 
-  name        = "acuity-poc-bastion"
+  name        = "${local.name_prefix}-sg-bastion"
   description = "Bastion - no inbound; accessed only via SSM Session Manager"
 
   vpc_id = module.vpc.vpc_id

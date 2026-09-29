@@ -4,7 +4,7 @@ module "rds" {
   source  = "terraform-aws-modules/rds/aws"
   version = "~> 7.0"
 
-  identifier = "acuity-poc"
+  identifier = local.name_prefix_hyphen
 
   engine         = "postgres"
   engine_version = "17"

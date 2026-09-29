@@ -2,7 +2,7 @@ module "transfer_bucket" {
   source  = "terraform-aws-modules/s3-bucket/aws"
   version = "~> 5.0"
 
-  bucket = "acuity-poc-transfer-${data.aws_caller_identity.current.account_id}"
+  bucket = "${local.name_prefix_hyphen}-transfer-${data.aws_caller_identity.current.account_id}"
 
   block_public_acls       = true
   block_public_policy     = true
@@ -39,7 +39,7 @@ data "aws_iam_policy_document" "bastion_transfer_access" {
 }
 
 resource "aws_iam_role_policy" "bastion_transfer_access" {
-  name   = "acuity-poc-bastion-transfer-access"
+  name   = "${local.name_prefix}-bastion-transfer-access"
   role   = aws_iam_role.bastion.id
   policy = data.aws_iam_policy_document.bastion_transfer_access.json
 }

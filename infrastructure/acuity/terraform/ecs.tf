@@ -4,7 +4,7 @@ module "ecs_cluster" {
   source  = "terraform-aws-modules/ecs/aws//modules/cluster"
   version = "~> 6.0"
 
-  name = "acuity"
+  name = local.name_prefix
 
   setting = [
     { name = "containerInsights", value = "disabled" }, # NFR3
@@ -17,7 +17,7 @@ module "ecs_cluster" {
 }
 
 resource "aws_iam_role" "ecs_execution" {
-  name = "acuity-poc-ecs-execution"
+  name = "${local.name_prefix}-ecs-execution"
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
     Statement = [{
@@ -38,10 +38,10 @@ resource "aws_iam_role_policy_attachment" "ecs_execution_ssm_secrets" {
   policy_arn = aws_iam_policy.ssm_secrets_read.arn
 }
 
-# One HTTP namespace `acuity`; services register under their exact compose name
+# One HTTP namespace per workspace; services register under their exact compose name
 # so the images' baked http://acuity-va-*:8000 URLs resolve with no override.
 resource "aws_service_discovery_http_namespace" "acuity" {
-  name = "acuity"
+  name = local.name_prefix
 }
 
 # One map drives the task defs, services and log groups. `env` holds only the
@@ -62,7 +62,7 @@ locals {
 resource "aws_ecs_task_definition" "app" {
   for_each = local.app_services
 
-  family                   = "acuity-${each.key}"
+  family                   = "${local.name_prefix}-${each.key}"
   requires_compatibilities = ["FARGATE"]
   network_mode             = "awsvpc"
   cpu                      = each.value.cpu
@@ -181,7 +181,7 @@ resource "aws_ecs_task_definition" "app" {
 resource "aws_ecs_service" "app" {
   for_each = local.app_services
 
-  name            = "acuity-${each.key}"
+  name            = "${local.name_prefix}-${each.key}"
   cluster         = module.ecs_cluster.arn
   task_definition = aws_ecs_task_definition.app[each.key].arn
   desired_count   = 1
@@ -232,7 +232,7 @@ resource "aws_ecs_service" "app" {
 
 # va-hub-ui (nginx SPA) - standalone, NOT a Service Connect member.
 resource "aws_ecs_task_definition" "va_hub_ui" {
-  family                   = "acuity-va-hub-ui"
+  family                   = "${local.name_prefix}-va-hub-ui"
   requires_compatibilities = ["FARGATE"]
   network_mode             = "awsvpc"
   cpu                      = 256
@@ -275,7 +275,7 @@ resource "aws_ecs_task_definition" "va_hub_ui" {
 }
 
 resource "aws_ecs_service" "va_hub_ui" {
-  name            = "acuity-va-hub-ui"
+  name            = "${local.name_prefix}-va-hub-ui"
   cluster         = module.ecs_cluster.arn
   task_definition = aws_ecs_task_definition.va_hub_ui.arn
   desired_count   = 1

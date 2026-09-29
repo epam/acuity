@@ -12,7 +12,7 @@ module "alb" {
   source  = "terraform-aws-modules/alb/aws"
   version = "~> 10.0"
 
-  name     = "acuity-poc"
+  name     = "${local.name_prefix_hyphen}-alb"
   internal = false
 
   vpc_id  = module.vpc.vpc_id

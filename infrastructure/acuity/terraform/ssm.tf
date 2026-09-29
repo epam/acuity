@@ -16,7 +16,7 @@ ephemeral "random_password" "acuity_password" {
 }
 
 resource "aws_ssm_parameter" "dbadmin_password" {
-  name             = "/acuity/poc/db/DBADMIN_PASSWORD"
+  name             = "/pocf_acuity/${terraform.workspace}/db/DBADMIN_PASSWORD"
   description      = "RDS master password"
   type             = "SecureString"
   value_wo         = ephemeral.random_password.dbadmin_password.result
@@ -24,7 +24,7 @@ resource "aws_ssm_parameter" "dbadmin_password" {
 }
 
 resource "aws_ssm_parameter" "acuity_password" {
-  name             = "/acuity/poc/db/ACUITY_PASSWORD"
+  name             = "/pocf_acuity/${terraform.workspace}/db/ACUITY_PASSWORD"
   description      = "Acuity app-role password"
   type             = "SecureString"
   value_wo         = ephemeral.random_password.acuity_password.result
@@ -33,9 +33,9 @@ resource "aws_ssm_parameter" "acuity_password" {
 
 data "aws_iam_policy_document" "ssm_secrets_read" {
   statement {
-    sid       = "ReadAcuityPocParameters"
+    sid       = "ReadPocfAcuityParameters"
     actions   = ["ssm:GetParameters"]
-    resources = ["arn:aws:ssm:${data.aws_region.current.region}:${data.aws_caller_identity.current.account_id}:parameter/acuity/poc/*"]
+    resources = ["arn:aws:ssm:${data.aws_region.current.region}:${data.aws_caller_identity.current.account_id}:parameter/pocf_acuity/${terraform.workspace}/*"]
   }
 
   statement {
@@ -52,7 +52,7 @@ data "aws_iam_policy_document" "ssm_secrets_read" {
 }
 
 resource "aws_iam_policy" "ssm_secrets_read" {
-  name        = "acuity-poc-ssm-secrets-read"
-  description = "Read the Acuity PoC DB secrets from SSM Parameter Store and decrypt them with the aws/ssm key."
+  name        = "${local.name_prefix}-ssm-secrets-read"
+  description = "Read this workspace's Acuity DB secrets from SSM Parameter Store and decrypt them with the aws/ssm key."
   policy      = data.aws_iam_policy_document.ssm_secrets_read.json
 }

@@ -4,7 +4,7 @@ module "efs" {
   source  = "terraform-aws-modules/efs/aws"
   version = "~> 2.0"
 
-  name = "acuity-poc"
+  name = local.name_prefix
 
   # sg-efs already exists in network.tf
   create_security_group = false
