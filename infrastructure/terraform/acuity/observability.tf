@@ -1,4 +1,3 @@
-# CloudWatch log groups, 14-day retention 
 resource "aws_cloudwatch_log_group" "flyway" {
   name              = "/pocf_acuity/${terraform.workspace}/flyway"
   retention_in_days = 14

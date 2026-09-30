@@ -26,8 +26,7 @@ locals {
   name_prefix_hyphen = "pocf-acuity-${terraform.workspace}" # ALB, target groups, RDS id, S3 bucket
 }
 
-# Blocks plan/apply on the "default" workspace so every resource is always
-# named/tagged from a real workspace - see README.md.
+# Block the "default" workspace so resources are always named from a real one (see README).
 resource "terraform_data" "workspace_guard" {
   input = terraform.workspace
 
@@ -37,10 +36,7 @@ resource "terraform_data" "workspace_guard" {
       error_message = "Refusing to plan/apply in the \"${terraform.workspace}\" workspace. Select or create a named workspace first, e.g. `terraform workspace new test`."
     }
     precondition {
-      # Keeps every derived name inside AWS's tightest limit (the ALB name,
-      # "pocf-acuity-<ws>-alb", caps at 32 chars) and out of RDS/S3's
-      # lowercase-only charsets, so a bad workspace name fails fast here
-      # instead of deep inside an apply.
+      # Keeps derived names within limits (ALB "pocf-acuity-<ws>-alb" max 32 chars; RDS/S3 lowercase) so bad names fail at plan.
       condition     = can(regex("^[a-z][a-z0-9-]{0,15}$", terraform.workspace))
       error_message = "Workspace name \"${terraform.workspace}\" must be lowercase alnum/hyphen, start with a letter, and be at most 16 characters (AWS resource name limits)."
     }

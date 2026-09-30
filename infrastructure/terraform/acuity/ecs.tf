@@ -1,4 +1,4 @@
-# ECS cluster `acuity` + the shared task execution role 
+# ECS cluster and shared task execution role.
 
 module "ecs_cluster" {
   source  = "terraform-aws-modules/ecs/aws//modules/cluster"
@@ -10,8 +10,7 @@ module "ecs_cluster" {
     { name = "containerInsights", value = "disabled" }, # NFR3
   ]
 
-  # The module's default execute_command_configuration shows a "placeholder"
-  # log group in the plan - harmless, nothing in this PoC uses ECS Exec.
+  # Default execute_command_configuration adds a harmless placeholder log group; ECS Exec unused.
   create_cloudwatch_log_group = false
   create_task_exec_iam_role   = false
 }
@@ -38,14 +37,12 @@ resource "aws_iam_role_policy_attachment" "ecs_execution_ssm_secrets" {
   policy_arn = aws_iam_policy.ssm_secrets_read.arn
 }
 
-# One HTTP namespace per workspace; services register under their exact compose name
-# so the images' baked http://acuity-va-*:8000 URLs resolve with no override.
+# Service Connect namespace; exact compose names let baked http://acuity-va-*:8000 URLs resolve.
 resource "aws_service_discovery_http_namespace" "acuity" {
   name = local.name_prefix
 }
 
-# One map drives the task defs, services and log groups. `env` holds only the
-# profile var that differs per service; the identical ones are in app_common_env.
+# One map drives task defs, services and log groups; shared env is in app_common_env.
 locals {
   app_common_env = {
     ENV_TYPE_PROFILE = "dev"
@@ -53,7 +50,6 @@ locals {
     CONFIG_PROFILE   = "local-config"
   }
   app_services = {
-    # Both remaining services sit behind the ALB, so there is no has_lb flag.
     "va-hub" = { cpu = 1024, memory = 2048, sg = module.sg_va_hub.id, efs = false, env = { OTHER_PROFILES = "NoScheduledJobs" } }
     "admin"  = { cpu = 512, memory = 1024, sg = module.sg_admin.id, efs = true, env = { STORAGE_PROFILE = "local-storage" } }
   }
@@ -68,14 +64,13 @@ resource "aws_ecs_task_definition" "app" {
   cpu                      = each.value.cpu
   memory                   = each.value.memory
   execution_role_arn       = aws_iam_role.ecs_execution.arn
-  # No task role: these tasks only reach RDS and the Service Connect peers.
+  # No task role: tasks only reach RDS and Service Connect peers.
 
   runtime_platform {
     operating_system_family = "LINUX"
     cpu_architecture        = "X86_64"
   }
 
-  # Admin gets a durable EFS-backed volume; the others don't.
   dynamic "volume" {
     for_each = each.value.efs ? [1] : []
     content {
@@ -92,8 +87,7 @@ resource "aws_ecs_task_definition" "app" {
       name  = "acuity-${each.key}"
       image = "${data.aws_ecr_repository.app[each.key].repository_url}:${var.image_tag}"
 
-      # Migrations run to completion before the app starts; a stuck migration
-      # fails the task (and the deploy) at startTimeout rather than hanging.
+      # Wait for migrations; a stuck one fails the deploy at startTimeout.
       dependsOn = [
         { containerName = "flyway", condition = "SUCCESS" },
       ]
@@ -103,20 +97,17 @@ resource "aws_ecs_task_definition" "app" {
         { containerPort = 8000, name = "acuity-${each.key}", appProtocol = "http" },
       ]
 
-      # Admin only - the EFS volume at local-storage.path as shipped.
       mountPoints = each.value.efs ? [{
         sourceVolume  = "admin-storage"
         containerPath = "/usr/root/local-file-storage"
       }] : []
 
-      # No VAHUB_URL - the image defaults are what Service Connect resolves.
-      # POSTGRES_URL is the only URL override.
       environment = [
         for k, v in merge(local.app_common_env, {
           POSTGRES_USER = "acuity"
           POSTGRES_URL  = "jdbc:postgresql://${module.rds.db_instance_address}:5432/acuity_db"
           # MaxRAMPercentage needs a float ("=60" is rejected).
-          # UseContainerSupport is default-on but kept explicit against a base-image change.
+          # Explicit against base-image changes.
           JAVA_OPTIONS = join(" ", [
             "-XX:+UseContainerSupport",
             "-XX:MaxRAMPercentage=60.0",
@@ -145,16 +136,12 @@ resource "aws_ecs_task_definition" "app" {
       name  = "flyway"
       image = "${data.aws_ecr_repository.app["flyway"].repository_url}:${var.image_tag}"
 
-      # Non-essential: exits 0 after migrating, then the app container starts.
-      # essential = false is required - ECS rejects a SUCCESS dependency on an essential container.
+      # essential = false: ECS rejects a SUCCESS dependency on an essential container.
       essential = false
 
-      # Let an in-flight migration finish (or fail cleanly) if the deploy is aborted.
       stopTimeout = 120
 
-      # No command/entrypoint override - the image bakes CMD.
-      # LOCK_RETRY_COUNT=-1: the sidecars on the other DB services wait on the
-      # schema-history lock instead of erroring out while the first one migrates.
+      # -1: other services' sidecars wait on the schema-history lock instead of erroring.
       environment = [
         { name = "FLYWAY_URL", value = "jdbc:postgresql://${module.rds.db_instance_address}:5432/acuity_db" },
         { name = "FLYWAY_USER", value = "dbadmin" },
@@ -192,13 +179,10 @@ resource "aws_ecs_service" "app" {
   network_configuration {
     subnets         = module.vpc.public_subnets
     security_groups = [each.value.sg]
-    # Public subnets, no NAT. The task SG is the only guard.
-    # Upgrade path: private subnets + NAT / VPC endpoints.
+    # Public subnets, no NAT; task SG is the only guard. Upgrade: private subnets + NAT/endpoints.
     assign_public_ip = true
   }
 
-  # ECS registers the task IP into the ALB target group named after this service
-  # (target_type = "ip").
   load_balancer {
     target_group_arn = module.alb.target_groups[each.key].arn
     container_name   = "acuity-${each.key}"
@@ -219,18 +203,16 @@ resource "aws_ecs_service" "app" {
     }
   }
 
-  # A failed rollout (e.g. a bad migration in the flyway sidecar) rolls this
-  # service back to the last healthy revision; running tasks keep serving.
+  # Failed rollout (e.g. bad migration) rolls back to the last healthy revision.
   deployment_circuit_breaker {
     enable   = true
     rollback = true
   }
 
-  # `apply` blocks on the rollout, so a failed migration fails the apply.
   wait_for_steady_state = true
 }
 
-# va-hub-ui (nginx SPA) - standalone, NOT a Service Connect member.
+# va-hub-ui (nginx SPA): not on Service Connect.
 resource "aws_ecs_task_definition" "va_hub_ui" {
   family                   = "${local.name_prefix}-va-hub-ui"
   requires_compatibilities = ["FARGATE"]
@@ -238,7 +220,6 @@ resource "aws_ecs_task_definition" "va_hub_ui" {
   cpu                      = 256
   memory                   = 512
   execution_role_arn       = aws_iam_role.ecs_execution.arn
-  # No task role: the container only serves static files and (on Docker) proxies.
 
   runtime_platform {
     operating_system_family = "LINUX"
@@ -250,14 +231,11 @@ resource "aws_ecs_task_definition" "va_hub_ui" {
       name  = "acuity-va-hub-ui"
       image = "${data.aws_ecr_repository.app["va-hub-ui"].repository_url}:${var.image_tag}"
 
-      # No `name` - va-hub-ui is not on Service Connect.
       portMappings = [
         { containerPort = local.app_port },
       ]
 
-      # Dead on AWS (the ALB /resources/* rule intercepts before nginx), but the
-      # image's nginx.conf.template runs `envsubst` at boot and an empty
-      # ${VAHUB_API} yields an invalid proxy_pass - so pass the compose default.
+      # Unused on AWS (ALB rule intercepts), but nginx envsubst breaks on an empty value; use the compose default.
       environment = [
         { name = "VAHUB_API", value = "http://acuity-va-hub:8000" },
       ]

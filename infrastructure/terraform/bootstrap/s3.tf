@@ -1,6 +1,5 @@
 locals {
-  # Not per-workspace - one shared staging bucket for local<->bastion file
-  # transfer across every environment.
+  # Shared staging bucket for local<->bastion transfer; not per-workspace.
   transfer_bucket_name = "pocf-acuity-transfer-${data.aws_caller_identity.current.account_id}"
 }
 

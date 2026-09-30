@@ -5,12 +5,12 @@ data "aws_kms_alias" "ssm" {
   name = "alias/aws/ssm"
 }
 
-ephemeral "random_password" "dbadmin_password" {
+resource "random_password" "dbadmin_password" {
   length  = 32 # within RDS's 8-128 master-password limit, ample entropy
   special = false
 }
 
-ephemeral "random_password" "acuity_password" {
+resource "random_password" "acuity_password" {
   length  = 32
   special = false
 }
@@ -19,16 +19,16 @@ resource "aws_ssm_parameter" "dbadmin_password" {
   name             = "/pocf_acuity/${terraform.workspace}/db/DBADMIN_PASSWORD"
   description      = "RDS master password"
   type             = "SecureString"
-  value_wo         = ephemeral.random_password.dbadmin_password.result
-  value_wo_version = 1
+  value_wo         = random_password.dbadmin_password.result
+  value_wo_version = 2
 }
 
 resource "aws_ssm_parameter" "acuity_password" {
   name             = "/pocf_acuity/${terraform.workspace}/db/ACUITY_PASSWORD"
   description      = "Acuity app-role password"
   type             = "SecureString"
-  value_wo         = ephemeral.random_password.acuity_password.result
-  value_wo_version = 1
+  value_wo         = random_password.acuity_password.result
+  value_wo_version = 2
 }
 
 data "aws_iam_policy_document" "ssm_secrets_read" {

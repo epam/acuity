@@ -1,4 +1,3 @@
-# EFS so admin's uploads survive Fargate task restarts.
 
 module "efs" {
   source  = "terraform-aws-modules/efs/aws"
@@ -6,11 +5,9 @@ module "efs" {
 
   name = local.name_prefix
 
-  # sg-efs already exists in network.tf
   create_security_group = false
 
-  # Keyed by AZ (known at plan time), not by subnet ID (only known after the
-  # VPC creates it) - a for_each key must be knowable before apply.
+  # Keyed by AZ: for_each keys must be known at plan time (subnet IDs are not).
   mount_targets = {
     for idx, az in local.azs : az => {
       subnet_id       = module.vpc.public_subnets[idx]
@@ -18,6 +15,6 @@ module "efs" {
     }
   }
 
-  # PoC upload data is disposable demo content - no automatic backups or PITR.
+  # PoC data is disposable: no backups/PITR.
   create_backup_policy = false
 }

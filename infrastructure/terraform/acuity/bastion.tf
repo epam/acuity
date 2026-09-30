@@ -1,5 +1,4 @@
-# Bastion for reaching RDS and EFS. 
-# SSM Session Manager only - no SSH key. 
+# SSM-only bastion (no SSH key) for reaching RDS and EFS.
 
 data "aws_ami" "al2023_arm64" {
   most_recent = true
@@ -109,14 +108,4 @@ resource "aws_iam_role_policy" "bastion_ssm_session" {
   name   = "${local.name_prefix}-bastion-ssm-session"
   role   = aws_iam_role.bastion_access.id
   policy = data.aws_iam_policy_document.bastion_ssm_session.json
-}
-
-output "bastion_instance_id" {
-  description = "SSM target ID for `aws ssm start-session --target <id>`."
-  value       = aws_instance.bastion.id
-}
-
-output "bastion_access_role_arn" {
-  description = "Assume this role (from a VPN-connected client) before starting a session."
-  value       = aws_iam_role.bastion_access.arn
 }

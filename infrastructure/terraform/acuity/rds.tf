@@ -1,4 +1,3 @@
-# Single-AZ PostgreSQL 17
 
 module "rds" {
   source  = "terraform-aws-modules/rds/aws"
@@ -21,12 +20,12 @@ module "rds" {
   multi_az            = false # single-AZ: PoC cost ceiling.
   publicly_accessible = false
 
-  # PoC uses random_password (also written to SSM Parameter Store).
+  # random_password is stateful (ephemeral re-rolls per run, so RDS and SSM drifted). Bump *_wo_version here and in ssm.tf to rotate.
   manage_master_user_password = false
-  password_wo                 = ephemeral.random_password.dbadmin_password.result
-  password_wo_version         = 1
+  password_wo                 = random_password.dbadmin_password.result
+  password_wo_version         = 2
 
-  # DB sits in the public subnets, guarded only by publicly_accessible = false + sg_rds. 
+  # Public subnets; guarded only by publicly_accessible=false + sg_rds.
   create_db_subnet_group = true
   subnet_ids             = module.vpc.public_subnets
   vpc_security_group_ids = [module.sg_rds.id]
@@ -34,7 +33,7 @@ module "rds" {
   create_db_option_group = false
   parameters = [
     { name = "password_encryption", value = "md5", apply_method = "immediate" },
-    # image JDBC URLs carry no `ssl=`.
+    # SSL not enforced: image JDBC URLs carry no ssl=.
     { name = "rds.force_ssl", value = "0", apply_method = "immediate" },
   ]
 

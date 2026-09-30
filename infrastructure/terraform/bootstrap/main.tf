@@ -8,8 +8,7 @@ terraform {
     }
   }
 
-  # Single global state - this config is not per-workspace. It provisions
-  # account-level resources shared by every acuity/terraform workspace.
+  # Single global state: account-level resources shared by all acuity workspaces.
   backend "s3" {
     region       = "us-east-1"
     bucket       = "epm-lstr-terraform-state-us-east-1"

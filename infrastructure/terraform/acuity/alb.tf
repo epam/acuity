@@ -1,4 +1,4 @@
-# The one internet-facing edge. No ingress rule here: `sg_alb` already gates :80 / :9090 to `var.vpn_cidrs`.
+# Internet-facing ALB; ingress is gated by sg_alb (var.vpn_cidrs).
 
 locals {
   tg_health = {

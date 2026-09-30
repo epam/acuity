@@ -1,6 +1,4 @@
-# Repos are provisioned once in infrastructure/terraform/bootstrap, not
-# per-workspace - they're shared across every workspace and owned by the
-# image-build pipeline. This just reads them back by name.
+# Repos live in terraform/bootstrap (shared across workspaces); read by name here.
 locals {
   aws_ecr_repo_prefix = "epm-lstr-acuity"
   ecr_repos           = toset(["flyway", "admin", "va-hub", "va-hub-ui"])

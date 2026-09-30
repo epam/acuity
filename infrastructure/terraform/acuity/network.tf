@@ -28,14 +28,11 @@ module "vpc" {
 
   enable_nat_gateway = false
 
-  # Epam Org policy forbids any Terraform-managed change to the default Network ACL;
-  # a central governance system owns and enforces its rules and auto-reverts
-  # anything else. 
-  # The module manages and overwrites it by default, so opt out entirely and touch nothing.
+  # Org policy forbids Terraform changes to the default NACL (governance system auto-reverts); module opted out.
   manage_default_network_acl = false
 }
 
-# ALB is the only internet-facing resource, restricted to the corporate VPN
+# ALB: only internet-facing resource, VPN-restricted
 module "sg_alb" {
   source  = "terraform-aws-modules/security-group/aws"
   version = "~> 6.0"
@@ -65,7 +62,6 @@ module "sg_alb" {
   egress_rules = local.egress_all
 }
 
-# va-hub-ui: reached only by the ALB
 module "sg_va_hub_ui" {
   source  = "terraform-aws-modules/security-group/aws"
   version = "~> 6.0"
@@ -118,7 +114,6 @@ module "sg_va_hub" {
   egress_rules = local.egress_all
 }
 
-# admin: hit only by the ALB (:9090 listener)
 module "sg_admin" {
   source  = "terraform-aws-modules/security-group/aws"
   version = "~> 6.0"
@@ -141,7 +136,7 @@ module "sg_admin" {
   egress_rules = local.egress_all
 }
 
-# flyway: one-off migration task, no inbound; egress narrows to RDS-only once its task exists 
+# flyway: no inbound
 module "sg_flyway" {
   source  = "terraform-aws-modules/security-group/aws"
   version = "~> 6.0"
@@ -196,12 +191,10 @@ module "sg_rds" {
     }
   }
 
-  # RDS never initiates outbound connections (no log exports, no replicas, no S3 import/export extensions here).
-  # Revisit if any of those get added.
+  # RDS never initiates outbound traffic (no log exports/replicas/S3 extensions); revisit if added.
   egress_rules = {}
 }
 
-# efs: only admin mounts it
 module "sg_efs" {
   source  = "terraform-aws-modules/security-group/aws"
   version = "~> 6.0"
@@ -228,7 +221,6 @@ module "sg_efs" {
     }
   }
 
-  # EFS mount targets are receive-only (NFS server side); nothing to egress.
   egress_rules = {}
 }
 
