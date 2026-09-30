@@ -13,7 +13,7 @@ terraform {
   backend "s3" {
     region       = "us-east-1"
     bucket       = "epm-lstr-terraform-state-us-east-1"
-    key          = "pocf_acuity-bootstrap-terraform.tfstate"
+    key          = "pocf_acuity/bootstrap.tfstate"
     use_lockfile = true
   }
 }

@@ -13,10 +13,11 @@ terraform {
   }
 
   backend "s3" {
-    region       = "us-east-1"
-    bucket       = "epm-lstr-terraform-state-us-east-1"
-    key          = "pocf_acuity-terraform.tfstate" # per-workspace isolation via native workspace_key_prefix (default "env:/<workspace>/<key>")
-    use_lockfile = true
+    region               = "us-east-1"
+    bucket               = "epm-lstr-terraform-state-us-east-1"
+    key                  = "pocf_acuity/acuity.tfstate"
+    workspace_key_prefix = "pocf_acuity/acuity_env:"
+    use_lockfile         = true
   }
 }
 
