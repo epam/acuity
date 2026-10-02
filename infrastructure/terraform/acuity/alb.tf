@@ -1,4 +1,4 @@
-# The one internet-facing edge. No ingress rule here: `sg_alb` already gates :80 / :9090 to `var.vpn_cidrs`.
+# Internet-facing ALB; ingress is gated by sg_alb (var.vpn_cidrs).
 
 locals {
   tg_health = {
@@ -12,7 +12,7 @@ module "alb" {
   source  = "terraform-aws-modules/alb/aws"
   version = "~> 10.0"
 
-  name     = "acuity-poc"
+  name     = "${local.name_prefix_hyphen}-alb"
   internal = false
 
   vpc_id  = module.vpc.vpc_id
