@@ -28,7 +28,7 @@ import com.acuity.visualisations.batch.processor.DataCommonReport;
 import com.acuity.visualisations.batch.processor.ExceptionReport;
 import com.acuity.visualisations.util.JobLauncherConsts;
 import com.acuity.visualisations.util.LoggerDecorator;
-import org.springframework.batch.core.StepExecution;
+import org.springframework.batch.core.step.StepExecution;
 import org.springframework.batch.core.annotation.BeforeStep;
 import org.springframework.beans.factory.annotation.Autowired;
 

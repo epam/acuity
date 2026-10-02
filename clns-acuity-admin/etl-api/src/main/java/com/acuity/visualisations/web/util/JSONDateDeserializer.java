@@ -17,22 +17,26 @@
 package com.acuity.visualisations.web.util;
 
 
-import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.databind.DeserializationContext;
-import com.fasterxml.jackson.databind.JsonDeserializer;
+import tools.jackson.core.JacksonException;
+import tools.jackson.core.JsonParser;
+import tools.jackson.databind.DeserializationContext;
+import tools.jackson.databind.deser.std.StdDeserializer;
 
-import java.io.IOException;
 import java.util.Date;
 
-public class JSONDateDeserializer extends JsonDeserializer<Date> {
+public class JSONDateDeserializer extends StdDeserializer<Date> {
+
+    public JSONDateDeserializer() {
+        super(Date.class);
+    }
 
     @Override
-    public Date deserialize(JsonParser jsonParser, DeserializationContext context) throws IOException {
+    public Date deserialize(JsonParser jsonParser, DeserializationContext context) throws JacksonException {
         String date = jsonParser.getText();
         try {
             return Utils.parse(date);
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            throw context.weirdStringException(date, Date.class, "Expected date in dd-MMM-yyyy or dd-MMM-yy format");
         }
     }
 

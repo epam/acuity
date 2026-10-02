@@ -22,9 +22,9 @@ import org.assertj.core.api.junit.jupiter.SoftAssertionsExtension;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.mockito.junit.jupiter.MockitoExtension;
 
-@ExtendWith({SpringExtension.class, SoftAssertionsExtension.class})
+@ExtendWith({SoftAssertionsExtension.class, MockitoExtension.class})
 public class SambaDataProviderTest {
 
     @InjectMocks

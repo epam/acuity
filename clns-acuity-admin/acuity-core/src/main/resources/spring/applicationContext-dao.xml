@@ -34,8 +34,9 @@
 <!--        <property name="lobHandler" ref="oracleLobHandler"/>-->
     </bean>
 
-    <bean id="jobLauncher" class="org.springframework.batch.core.launch.support.TaskExecutorJobLauncher">
+    <bean id="jobOperator" class="org.springframework.batch.core.launch.support.TaskExecutorJobOperator">
         <property name="jobRepository" ref="jobRepository"/>
+        <property name="jobRegistry" ref="jobRegistry"/>
         <property name="taskExecutor">
             <bean class="org.springframework.core.task.SyncTaskExecutor"/>
         </property>
@@ -44,20 +45,9 @@
     <bean id="jobRegistry" class="org.springframework.batch.core.configuration.support.MapJobRegistry"/>
 
     <bean id="jobLauncherDetails" class="com.acuity.visualisations.task.JobLauncherDetails">
-        <property name="jobLauncher" ref="jobLauncher"/>
-        <property name="jobLocator" ref="jobRegistry"/>
-    </bean>
-
-    <bean id="jobExplorer" class="org.springframework.batch.core.explore.support.JobExplorerFactoryBean">
-        <property name="dataSource" ref="dataSource"/>
-        <property name="transactionManager" ref="transactionManager"/>
-    </bean>
-
-    <bean id="jobOperator" class="org.springframework.batch.core.launch.support.SimpleJobOperator">
-        <property name="jobExplorer" ref="jobExplorer"/>
+        <property name="jobOperator" ref="jobOperator"/>
         <property name="jobRepository" ref="jobRepository"/>
         <property name="jobRegistry" ref="jobRegistry"/>
-        <property name="jobLauncher" ref="jobLauncher"/>
     </bean>
 
     <bean id="retryAdvice" class="org.springframework.retry.interceptor.RetryOperationsInterceptor">
@@ -93,7 +83,7 @@
 
         <aop:config>
         <aop:pointcut id="retryPointcut"
-                      expression="execution(* org.springframework.batch.core.launch.support.TaskExecutorJobLauncher.*(..))"/>
+                      expression="execution(* org.springframework.batch.core.launch.support.TaskExecutorJobOperator.*(..))"/>
         <aop:advisor advice-ref="retryAdvice" pointcut-ref="retryPointcut"/>
     </aop:config>
 

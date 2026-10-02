@@ -29,10 +29,10 @@ import org.quartz.SchedulerException;
 import org.quartz.impl.matchers.GroupMatcher;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.batch.core.JobExecution;
-import org.springframework.batch.core.listener.JobExecutionListenerSupport;
+import org.springframework.batch.core.job.JobExecution;
+import org.springframework.batch.core.listener.JobExecutionListener;
 
-public abstract class CommonBatchJobExecutionListener extends JobExecutionListenerSupport implements ExecutionStateAware {
+public abstract class CommonBatchJobExecutionListener implements JobExecutionListener, ExecutionStateAware {
 
     private final Logger LOGGER = LoggerFactory.getLogger(getClass());
     private ObservableListener observable;

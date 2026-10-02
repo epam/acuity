@@ -45,7 +45,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
@@ -110,13 +110,13 @@ public class AeChordDiagramServiceTest {
     @InjectSoftAssertions
     private SoftAssertions softly;
 
-    @MockBean
+    @MockitoBean
     private PopulationDatasetsDataProvider populationDatasetsDataProvider;
-    @MockBean(name = "aeIncidenceDatasetsDataProvider")
+    @MockitoBean(name = "aeIncidenceDatasetsDataProvider")
     private AeIncidenceDatasetsDataProvider aeIncidenceDatasetsDataProvider;
-    @MockBean(name = "eventDataProvider")
+    @MockitoBean(name = "eventDataProvider")
     private AeIncidenceDatasetsDataProvider aeIncidenceDatasetsEventDataProvider;
-    @MockBean
+    @MockitoBean
     private AeSeverityChangeDatasetsDataProvider aeSeverityChangeDatasetsDataProvider;
 
     public static final List<Ae> EVENTS = newArrayList(EVENT1_SUBJECT1, EVENT1_2_SUBJECT1, EVENT1_3_SUBJECT1,

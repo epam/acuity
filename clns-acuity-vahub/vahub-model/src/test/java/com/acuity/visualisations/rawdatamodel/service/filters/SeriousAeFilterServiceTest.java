@@ -42,7 +42,7 @@ import org.assertj.core.api.junit.jupiter.SoftAssertionsExtension;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 @ExtendWith({SpringExtension.class, SoftAssertionsExtension.class})
@@ -77,9 +77,9 @@ public class SeriousAeFilterServiceTest {
 
     @Autowired
     private SeriousAeFilterService seriousAeFilterService;
-    @MockBean
+    @MockitoBean
     private PopulationDatasetsDataProvider populationDatasetsDataProvider;
-    @MockBean
+    @MockitoBean
     private SeriousAeDatasetsDataProvider seriousAeDatasetsDataProvider;
 
     @InjectSoftAssertions

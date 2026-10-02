@@ -30,7 +30,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.MockitoAnnotations;
-import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockServletContext;
 import org.springframework.test.context.ContextConfiguration;
@@ -67,7 +67,7 @@ public class LiverResourceTest {
 
     private MockMvc mvc;
 
-    @MockBean
+    @MockitoBean
     private LiverService liverService;
 
     @InjectMocks

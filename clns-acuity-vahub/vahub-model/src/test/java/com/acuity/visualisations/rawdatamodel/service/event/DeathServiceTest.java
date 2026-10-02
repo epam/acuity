@@ -32,7 +32,7 @@ import org.assertj.core.api.junit.jupiter.SoftAssertionsExtension;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
@@ -50,9 +50,9 @@ import static org.mockito.Mockito.when;
 public class DeathServiceTest {
     @Autowired
     private DeathService deathService;
-    @MockBean
+    @MockitoBean
     private PopulationDatasetsDataProvider populationDatasetsDataProvider;
-    @MockBean
+    @MockitoBean
     private DeathDatasetsDataProvider deathDatasetsDataProvider;
 
     private DoDCommonService doDCommonService = new DoDCommonService();

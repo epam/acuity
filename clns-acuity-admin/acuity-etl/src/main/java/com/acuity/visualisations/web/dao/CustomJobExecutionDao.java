@@ -21,7 +21,9 @@ import com.acuity.visualisations.util.JobLauncherConsts;
 import com.acuity.visualisations.web.entity.BatchJobExecutionKey;
 import org.springframework.batch.core.BatchStatus;
 import org.springframework.batch.core.ExitStatus;
-import org.springframework.batch.core.JobExecution;
+import org.springframework.batch.core.job.JobExecution;
+import org.springframework.batch.core.job.JobInstance;
+import org.springframework.batch.core.job.parameters.JobParameters;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -250,8 +252,9 @@ public class CustomJobExecutionDao extends ACUITYDaoSupport implements ExtendedJ
 
     private static JobExecution getJobExecutionFromResultSet(ResultSet rs) throws SQLException {
         Long id = rs.getLong("JOB_EXECUTION_ID");
-        JobExecution jobExecution;
-        jobExecution = new JobExecution(id);
+        long jobInstanceId = rs.getLong("JOB_INSTANCE_ID");
+        JobInstance jobInstance = new JobInstance(jobInstanceId, "unknown");
+        JobExecution jobExecution = new JobExecution(id, jobInstance, new JobParameters());
         java.sql.Timestamp startTs = rs.getTimestamp("START_TIME");
         jobExecution.setStartTime(startTs != null ? startTs.toLocalDateTime() : null);
         java.sql.Timestamp endTs = rs.getTimestamp("END_TIME");

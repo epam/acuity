@@ -27,7 +27,7 @@ import org.json.JSONObject;
 import org.quartz.Trigger;
 import org.springframework.batch.core.BatchStatus;
 import org.springframework.batch.core.ExitStatus;
-import org.springframework.batch.core.JobExecution;
+import org.springframework.batch.core.job.JobExecution;
 
 import java.io.IOException;
 import java.io.StringWriter;

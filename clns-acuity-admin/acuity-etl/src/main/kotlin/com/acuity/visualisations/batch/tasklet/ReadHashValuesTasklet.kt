@@ -21,10 +21,10 @@ import com.acuity.visualisations.dal.EntityManager
 import com.acuity.visualisations.model.output.entities.*
 import com.acuity.visualisations.service.IExecutionProfiler
 import com.acuity.visualisations.util.ReflectionUtil
-import org.springframework.batch.core.StepContribution
 import org.springframework.batch.core.scope.context.ChunkContext
+import org.springframework.batch.core.step.StepContribution
 import org.springframework.batch.core.step.tasklet.Tasklet
-import org.springframework.batch.repeat.RepeatStatus
+import org.springframework.batch.infrastructure.repeat.RepeatStatus
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Scope
 import org.springframework.stereotype.Component

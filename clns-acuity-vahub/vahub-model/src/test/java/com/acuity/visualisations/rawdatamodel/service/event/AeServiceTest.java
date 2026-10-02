@@ -56,7 +56,7 @@ import org.assertj.core.groups.Tuple;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
@@ -291,13 +291,13 @@ public class AeServiceTest {
     private SoftAssertions softly;
     @Autowired
     private AeService aeService;
-    @MockBean
+    @MockitoBean
     private PopulationDatasetsDataProvider populationDatasetsDataProvider;
-    @MockBean(name = "aeIncidenceDatasetsDataProvider")
+    @MockitoBean(name = "aeIncidenceDatasetsDataProvider")
     private AeIncidenceDatasetsDataProvider aeIncidenceDatasetsDataProvider;
-    @MockBean(name = "eventDataProvider")
+    @MockitoBean(name = "eventDataProvider")
     private AeIncidenceDatasetsDataProvider aeIncidenceDatasetsEventDataProvider;
-    @MockBean(name = "aeSeverityChangeDatasetsDataProvider")
+    @MockitoBean(name = "aeSeverityChangeDatasetsDataProvider")
     private AeSeverityChangeDatasetsDataProvider aeSeverityChangeDatasetsDataProvider;
 
     private DoDCommonService doDCommonService = new DoDCommonService();

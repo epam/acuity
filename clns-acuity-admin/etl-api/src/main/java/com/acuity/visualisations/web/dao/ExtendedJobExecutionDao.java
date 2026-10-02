@@ -17,7 +17,7 @@
 package com.acuity.visualisations.web.dao;
 
 import com.acuity.visualisations.web.entity.BatchJobExecutionKey;
-import org.springframework.batch.core.JobExecution;
+import org.springframework.batch.core.job.JobExecution;
 
 import java.util.List;
 import java.util.Map;

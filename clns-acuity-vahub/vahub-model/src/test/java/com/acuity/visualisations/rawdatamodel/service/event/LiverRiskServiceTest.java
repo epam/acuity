@@ -33,7 +33,7 @@ import org.assertj.core.groups.Tuple;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
@@ -53,9 +53,9 @@ public class LiverRiskServiceTest {
 
     @Autowired
     private LiverRiskService liverRiskService;
-    @MockBean
+    @MockitoBean
     private PopulationDatasetsDataProvider populationDatasetsDataProvider;
-    @MockBean
+    @MockitoBean
     private LiverRiskDatasetDataProvider liverRiskDatasetDataProvider;
 
     private DoDCommonService doDCommonService = new DoDCommonService();

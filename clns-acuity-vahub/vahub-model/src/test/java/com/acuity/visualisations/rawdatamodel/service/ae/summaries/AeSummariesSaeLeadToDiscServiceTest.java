@@ -33,7 +33,7 @@ import org.assertj.core.api.junit.jupiter.SoftAssertionsExtension;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
@@ -127,11 +127,11 @@ public class AeSummariesSaeLeadToDiscServiceTest {
     @Autowired
     private AeSummariesSaeLeadToDiscService aeSummariesSaeLeadToDiscService;
 
-    @MockBean(name = "aeIncidenceDatasetsDataProvider")
+    @MockitoBean(name = "aeIncidenceDatasetsDataProvider")
     private AeIncidenceDatasetsDataProvider aeIncidenceDatasetsDataProvider;
-    @MockBean
+    @MockitoBean
     private AeSeverityChangeDatasetsDataProvider aeSeverityChangeDatasetsDataProvider;
-    @MockBean
+    @MockitoBean
     private PopulationDatasetsDataProvider populationDatasetsDataProvider;
 
     @InjectSoftAssertions

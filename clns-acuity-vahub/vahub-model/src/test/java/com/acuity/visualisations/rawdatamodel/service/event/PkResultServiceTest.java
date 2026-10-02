@@ -52,7 +52,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
@@ -94,11 +94,11 @@ public class PkResultServiceTest {
 
     @Autowired
     private PkResultService pkResultService;
-    @MockBean
+    @MockitoBean
     private PopulationDatasetsDataProvider populationDatasetsDataProvider;
-    @MockBean(name = "pkResultDatasetsDataProvider")
+    @MockitoBean(name = "pkResultDatasetsDataProvider")
     private PkResultDatasetsDataProvider pkResultDatasetsDataProvider;
-    @MockBean(name = "pkResultWithResponseDatasetsDataProvider")
+    @MockitoBean(name = "pkResultWithResponseDatasetsDataProvider")
     private PkResultWithResponseDatasetsDataProvider pkResultWithResponseDatasetsDataProvider;
 
     // Double.toString(1d) yields "1.0" while decimalFormat.format(1d) yields "1"

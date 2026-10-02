@@ -25,8 +25,6 @@ import com.acuity.visualisations.web.service.uploadreports.UploadReportService;
 import com.acuity.visualisations.web.service.uploadreports.vo.UploadReportSummary;
 import com.acuity.visualisations.web.util.JSONDateDeserializer;
 import com.acuity.visualisations.web.util.JSONDateSerializer;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -35,6 +33,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import tools.jackson.databind.annotation.JsonDeserialize;
+import tools.jackson.databind.annotation.JsonSerialize;
 
 import java.util.Date;
 import java.util.List;

@@ -32,7 +32,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import org.springframework.batch.item.Chunk;
+import org.springframework.batch.infrastructure.item.Chunk;
 
 import java.util.ArrayList;
 import java.util.Comparator;

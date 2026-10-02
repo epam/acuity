@@ -43,7 +43,7 @@ import org.assertj.core.api.junit.jupiter.SoftAssertionsExtension;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
@@ -66,13 +66,13 @@ public class DrugDoseTimelineServiceTest {
     @Autowired
     private DrugDoseTimelineService drugDoseTimelineService;
 
-    @MockBean
+    @MockitoBean
     private DrugDoseDatasetsDataProvider drugDoseDatasetsDataProvider;
 
-    @MockBean
+    @MockitoBean
     private DoseDiscDatasetsDataProvider doseDiscDatasetsDataProvider;
 
-    @MockBean
+    @MockitoBean
     private PopulationDatasetsDataProvider populationDatasetsDataProvider;
 
     private static final Subject SUBJECT_1_ACUITY = Subject.builder().subjectId("sid2").clinicalStudyCode("STUDYID001").studyPart("A")

@@ -16,6 +16,9 @@
 
 package com.acuity.visualisations.rawdatamodel.vo;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
+
 /**
  * Created by knml167 on 11/7/2016.
  */
@@ -31,7 +34,21 @@ public enum AeDetailLevel {
     }
 
     @Override
+    @JsonValue
     public String toString() {
         return display;
+    }
+
+    @JsonCreator
+    public static AeDetailLevel fromString(String value) {
+        if (value == null) {
+            return null;
+        }
+        for (AeDetailLevel detailLevel : values()) {
+            if (detailLevel.name().equals(value) || detailLevel.display.equals(value)) {
+                return detailLevel;
+            }
+        }
+        throw new IllegalArgumentException("Unknown AE detail level: " + value);
     }
 }

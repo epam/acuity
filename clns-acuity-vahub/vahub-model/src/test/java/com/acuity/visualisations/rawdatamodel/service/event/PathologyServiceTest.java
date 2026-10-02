@@ -31,7 +31,7 @@ import org.assertj.core.groups.Tuple;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
@@ -51,9 +51,9 @@ import static org.mockito.Mockito.when;
 public class PathologyServiceTest {
     @Autowired
     private PathologyService pathologyService;
-    @MockBean
+    @MockitoBean
     private PopulationDatasetsDataProvider populationDatasetsDataProvider;
-    @MockBean
+    @MockitoBean
     private PathologyDatasetsDataProvider pathologyDatasetsDataProvider;
 
     @InjectSoftAssertions

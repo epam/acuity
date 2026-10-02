@@ -43,7 +43,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.Date;
@@ -64,11 +64,11 @@ public class AeFilterServiceTest {
 
     @Autowired
     private AeFilterService aeFilterService;
-    @MockBean
+    @MockitoBean
     private PopulationDatasetsDataProvider populationDatasetsDataProvider;
-    //@MockBean(name = "aeIncidenceDatasetsDataProvider")
+    //@MockitoBean(name = "aeIncidenceDatasetsDataProvider")
     //private AeIncidenceDatasetsDataProvider aeIncidenceDatasetsDataProvider;
-    @MockBean(name = "eventDataProvider")
+    @MockitoBean(name = "eventDataProvider")
     private AeIncidenceDatasetsDataProvider aeIncidenceDatasetsDataProvider;
 
     @InjectSoftAssertions

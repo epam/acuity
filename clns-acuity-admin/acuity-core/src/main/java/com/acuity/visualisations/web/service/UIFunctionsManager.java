@@ -19,7 +19,7 @@ package com.acuity.visualisations.web.service;
 import com.acuity.visualisations.dal.dao.IStudyDaoExternal;
 import com.acuity.visualisations.web.dao.ExtendedJobExecutionDao;
 import com.acuity.visualisations.web.entity.BatchJobExecutionKey;
-import org.springframework.batch.core.JobExecution;
+import org.springframework.batch.core.job.JobExecution;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

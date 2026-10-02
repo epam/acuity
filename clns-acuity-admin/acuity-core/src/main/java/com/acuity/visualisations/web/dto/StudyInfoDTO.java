@@ -18,8 +18,10 @@ package com.acuity.visualisations.web.dto;
 
 import com.acuity.visualisations.mapping.entity.FileRule;
 import com.acuity.visualisations.mapping.entity.StudyRule;
+import com.acuity.visualisations.web.util.JSONDateSerializer;
 import lombok.Getter;
 import lombok.Setter;
+import tools.jackson.databind.annotation.JsonSerialize;
 
 import java.util.ArrayList;
 import java.util.List;

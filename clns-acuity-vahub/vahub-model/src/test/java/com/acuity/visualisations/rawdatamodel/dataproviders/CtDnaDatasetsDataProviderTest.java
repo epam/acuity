@@ -33,7 +33,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.core.ResolvableType;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
@@ -105,17 +105,17 @@ public class CtDnaDatasetsDataProviderTest extends DataProviderAwareTest {
     private CtDnaDatasetsDataProvider ctDnaDatasetsDataProvider;
     @Autowired
     private BeanLookupService beanLookupService;
-    @MockBean
+    @MockitoBean
     private CtDnaRepository ctDnaRepository;
-    @MockBean
+    @MockitoBean
     private DrugDoseRepository drugDoseRepository;
-    @MockBean
+    @MockitoBean
     private DeathRepository deathRepository;
-    @MockBean
+    @MockitoBean
     private DoseDiscRepository doseDiscRepository;
-    @MockBean
+    @MockitoBean
     private StudyInfoRepository studyInfoRepository;
-    @MockBean
+    @MockitoBean
     private PopulationDatasetsDataProvider populationDatasetsDataProvider;
 
     @Test

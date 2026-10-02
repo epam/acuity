@@ -22,7 +22,7 @@ import com.acuity.visualisations.web.util.JsonUtil;
 import org.json.JSONObject;
 import org.quartz.Scheduler;
 import org.quartz.Trigger;
-import org.springframework.batch.core.JobExecution;
+import org.springframework.batch.core.job.JobExecution;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Scope;

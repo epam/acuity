@@ -19,8 +19,8 @@ package com.acuity.visualisations.util;
 import com.acuity.visualisations.service.JobService;
 import org.quartz.Scheduler;
 import org.springframework.batch.core.configuration.JobRegistry;
-import org.springframework.batch.core.explore.JobExplorer;
-import org.springframework.batch.core.launch.JobLauncher;
+import org.springframework.batch.core.launch.JobOperator;
+import org.springframework.batch.core.repository.JobRepository;
 import org.springframework.beans.factory.BeanNameAware;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.FactoryBean;
@@ -46,10 +46,10 @@ public class SchedulerFactoryBeanDBDrivenWrapper implements FactoryBean<Schedule
     private JobRegistry jobRegistry;
 
     @Autowired
-    private JobLauncher jobLauncher;
+    private JobOperator jobOperator;
 
     @Autowired
-    private JobExplorer jobExplorer;
+    private JobRepository jobRepository;
 
     public void setQuartzConfigLocation(Resource quartzConfigLocation) {
         this.quartzConfigLocation = quartzConfigLocation;
@@ -63,9 +63,9 @@ public class SchedulerFactoryBeanDBDrivenWrapper implements FactoryBean<Schedule
 
     public void initScheduler() {
         Map<String, Object> schedulerContextAsMap = new HashMap<String, Object>();
-        schedulerContextAsMap.put("jobLocator", jobRegistry);
-        schedulerContextAsMap.put("jobLauncher", jobLauncher);
-        schedulerContextAsMap.put("jobExplorer", jobExplorer);
+        schedulerContextAsMap.put("jobRegistry", jobRegistry);
+        schedulerContextAsMap.put("jobOperator", jobOperator);
+        schedulerContextAsMap.put("jobRepository", jobRepository);
         schedulerFactoryBean.setSchedulerContextAsMap(schedulerContextAsMap);
         schedulerFactoryBean.setStartupDelay(startupDelay);
         schedulerFactoryBean.setAutoStartup(true);

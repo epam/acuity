@@ -96,7 +96,7 @@
         <batch:validator ref="validator"/>
     </batch:job>
 
-    <bean id="validator" class="org.springframework.batch.core.job.DefaultJobParametersValidator">
+    <bean id="validator" class="org.springframework.batch.core.job.parameters.DefaultJobParametersValidator">
         <property name="requiredKeys">
             <set>
                 <value>etl.project</value>

@@ -21,20 +21,18 @@ import org.springframework.util.StringUtils;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 import java.util.regex.Pattern;
 
 public final class Utils {
 
-
-    public static final SimpleDateFormat DD_MMM_YY_FORMAT = new SimpleDateFormat("dd-MMM-yy");
-    public static final SimpleDateFormat DD_MMM_YYYY_FORMAT = new SimpleDateFormat("dd-MMM-yyyy");
     public static final Pattern DATE_PATTERN = Pattern.compile("[0-9]{1,2}-[a-zA-Z]{3}-[0-9]{2,4}");
 
     private Utils() {
     }
 
     public static String getDateString(Date date) {
-        return DD_MMM_YYYY_FORMAT.format(date);
+        return newDateFormat("dd-MMM-yyyy").format(date);
     }
 
 
@@ -42,10 +40,18 @@ public final class Utils {
         if (!StringUtils.hasText(date)) {
             return null;
         }
-        if (DATE_PATTERN.matcher(date.trim()).matches()) {
-            return DD_MMM_YY_FORMAT.parse(date);
+        String trimmedDate = date.trim();
+        if (DATE_PATTERN.matcher(trimmedDate).matches()) {
+            int yearLength = trimmedDate.substring(trimmedDate.lastIndexOf('-') + 1).length();
+            return newDateFormat(yearLength == 4 ? "dd-MMM-yyyy" : "dd-MMM-yy").parse(trimmedDate);
         }
         throw new ParseException("Unparseable date: [" + date + "]", 0);
+    }
+
+    private static SimpleDateFormat newDateFormat(String pattern) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat(pattern, Locale.ENGLISH);
+        dateFormat.setLenient(false);
+        return dateFormat;
     }
 
 }

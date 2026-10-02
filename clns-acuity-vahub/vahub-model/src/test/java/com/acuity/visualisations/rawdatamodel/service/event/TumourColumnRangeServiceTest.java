@@ -56,7 +56,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
@@ -98,15 +98,15 @@ public class TumourColumnRangeServiceTest {
 
     @Autowired
     private TumourColumnRangeService tumourService;
-    @MockBean
+    @MockitoBean
     private PopulationDatasetsDataProvider populationDatasetsDataProvider;
-    @MockBean
+    @MockitoBean
     private ChemotherapyDatasetsDataProvider chemotherapyDatasetsDataProvider;
-    @MockBean
+    @MockitoBean
     private RadiotherapyDatasetsDataProvider radiotherapyDatasetsDataProvider;
-    @MockBean
+    @MockitoBean
     private DrugDoseDatasetsDataProvider drugDoseDatasetsDataProvider;
-    @MockBean
+    @MockitoBean
     private SubjectExtDatasetsDataProvider subjectExtDatasetsDataProvider;
 
     @InjectSoftAssertions

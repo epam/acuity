@@ -37,7 +37,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
@@ -58,13 +58,13 @@ import static org.mockito.Mockito.when;
 public class DoseLimitingServiceTest {
     @Autowired
     private DoseLimitingService doseLimitingService;
-    @MockBean(name = "aeIncidenceDatasetsDataProvider")
+    @MockitoBean(name = "aeIncidenceDatasetsDataProvider")
     private AeIncidenceDatasetsDataProvider aeIncidenceDatasetsDataProvider;
-    @MockBean(name = "aeSeverityChangeDatasetsDataProvider")
+    @MockitoBean(name = "aeSeverityChangeDatasetsDataProvider")
     private AeSeverityChangeDatasetsDataProvider aeSeverityChangeDatasetsDataProvider;
-    @MockBean
+    @MockitoBean
     private PopulationDatasetsDataProvider populationDatasetsDataProvider;
-    @MockBean
+    @MockitoBean
     private DrugDoseDatasetsDataProvider drugDoseDatasetsDataProvider;
 
     @InjectSoftAssertions
