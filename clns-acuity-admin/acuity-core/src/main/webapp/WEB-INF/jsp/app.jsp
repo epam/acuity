@@ -45,7 +45,6 @@
     <script type="text/javascript" src="js/angular-app/controllers/fileViewController.js"></script>
     <script type="text/javascript" src="js/angular-app/controllers/defaultController.js"></script>
     <script type="text/javascript" src="js/angular-app/controllers/reportController.js"></script>
-    <script type="text/javascript" src="js/angular-app/controllers/subjectGroupingsController.js"></script>
     <script type="text/javascript" src="js/angular-app/controllers/uploadSummaryController.js"></script>
 </head>
 <body>
