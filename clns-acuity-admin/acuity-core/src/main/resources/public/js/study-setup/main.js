@@ -298,15 +298,6 @@ var StudyWizard = function () {
                 $("#" + scope.editStudyStep.blockingId).removeClass("open");
                 $(".enabled").attr('disabled', 'disabled');
             }
-            var validate = scope.editStudyStep.validateStudy();
-            if (!validate.status) {
-                $("#" + scope.editStudyStep.blockingId).addClass("open");
-                $(".enabled").removeAttr('disabled', 'disabled');
-                if ($.trim(validate.message).length > 0) {
-                    wizardCommonModule.showWarningDialog(validate.message);
-                }
-                return false;
-            }
             return scope.editStudyStep.onNextStep(toStep);
         } else if (fromStep == scope.STUDY_EDIT_STEP_INX &&
             toStep == scope.STUDY_SEARCH_STEP_INX) {
