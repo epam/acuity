@@ -6,7 +6,7 @@ data "aws_ami" "al2023_arm64" {
 
   filter {
     name   = "name"
-    values = ["al2023-ami-*-arm64"]
+    values = ["al2023-ami-2023*-arm64"]
   }
 
   filter {
@@ -56,7 +56,9 @@ resource "aws_instance" "bastion" {
   set -euxo pipefail
   dnf install -y amazon-efs-utils
   mkdir -p /usr/root/local-file-storage
-  mountpoint -q /usr/root/local-file-storage || mount -t efs -o tls ${module.efs.id}:/ /usr/root/local-file-storage
+  # EFS DNS lags mount-target creation; retry up to ~5 min, then fail if still unmounted.
+  for i in {1..30}; do mountpoint -q /usr/root/local-file-storage || mount -t efs -o tls ${module.efs.id}:/ /usr/root/local-file-storage || sleep 10; done
+  mountpoint -q /usr/root/local-file-storage
   grep -q ${module.efs.id} /etc/fstab || echo "${module.efs.id}:/ /usr/root/local-file-storage efs _netdev,tls 0 0" >> /etc/fstab
   chmod 777 /usr/root/local-file-storage
   EOF
