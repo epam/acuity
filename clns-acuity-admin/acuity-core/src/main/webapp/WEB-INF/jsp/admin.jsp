@@ -77,6 +77,9 @@
         <li class="active"><a href="#">Summary</a></li>
         <li><a href="/app#/audit">History</a></li>
         <li><a href="/app#/upload-summary">Upload summary</a></li>
+        <sec:authorize access="@permissionHelper.canAccessSchedulerPage()">
+             <li><a href="/scheduler">Scheduler</a></li>
+        </sec:authorize>
     </ul>
 
 
