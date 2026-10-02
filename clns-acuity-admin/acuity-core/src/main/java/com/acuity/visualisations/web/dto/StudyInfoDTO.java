@@ -18,13 +18,10 @@ package com.acuity.visualisations.web.dto;
 
 import com.acuity.visualisations.mapping.entity.FileRule;
 import com.acuity.visualisations.mapping.entity.StudyRule;
-import com.acuity.visualisations.web.util.JSONDateSerializer;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class StudyInfoDTO {
@@ -42,23 +39,13 @@ public class StudyInfoDTO {
     private String clinicalStudyId;
     @Getter
     @Setter
-    private String phase;
-
+    private String studyComment;
     @Getter
     @Setter
     private Boolean canEditStudy;
     @Getter
     @Setter
     private Boolean canDeleteStudy;
-
-    @Getter
-    @Setter
-    @JsonSerialize(using = JSONDateSerializer.class)
-    private Date firstSubjectInPlanned;
-    @Getter
-    @Setter
-    @JsonSerialize(using = JSONDateSerializer.class)
-    private Date databaseLockPlanned;
 
     @Getter
     @Setter
@@ -78,9 +65,7 @@ public class StudyInfoDTO {
         studyName = rule.getStudyName();
         clinicalStudyId = rule.getClinicalStudyId();
         clinicalStudyName = rule.getClinicalStudyName();
-        phase = rule.getPhase();
-        firstSubjectInPlanned = rule.getFirstSubjectInPlanned();
-        databaseLockPlanned = rule.getDatabaseLockPlanned();
+        studyComment = rule.getStudyComment();
 
         blinding = rule.isBlinding();
         randomisation = rule.isRandomisation();
