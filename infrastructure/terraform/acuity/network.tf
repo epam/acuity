@@ -44,14 +44,21 @@ module "sg_alb" {
 
   ingress_rules = merge(
     { for cidr in var.vpn_cidrs : "http-${replace(cidr, "/[./]/", "-")}" => {
-      description = "va-hub-ui / va-hub HTTP from VPN"
+      description = "HTTP from VPN (redirected to HTTPS)"
       ip_protocol = "tcp"
       from_port   = 80
       to_port     = 80
       cidr_ipv4   = cidr
     } },
+    { for cidr in var.vpn_cidrs : "https-${replace(cidr, "/[./]/", "-")}" => {
+      description = "va-hub-ui / va-hub HTTPS from VPN"
+      ip_protocol = "tcp"
+      from_port   = 443
+      to_port     = 443
+      cidr_ipv4   = cidr
+    } },
     { for cidr in var.vpn_cidrs : "admin-${replace(cidr, "/[./]/", "-")}" => {
-      description = "admin HTTP from VPN"
+      description = "admin HTTPS from VPN"
       ip_protocol = "tcp"
       from_port   = 9090
       to_port     = 9090

@@ -8,6 +8,11 @@ output "transfer_bucket_name" {
   value       = data.aws_s3_bucket.transfer.id
 }
 
+output "application_fqdn" {
+  description = "Workspace hostname pointing at the ALB."
+  value       = aws_route53_record.alb.fqdn
+}
+
 output "alb_address" {
   description = "DNS name of the created ALB"
   value       = module.alb.dns_name

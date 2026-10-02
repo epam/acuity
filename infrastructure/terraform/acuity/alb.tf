@@ -37,7 +37,14 @@ module "alb" {
     "http-80" = {
       port     = 80
       protocol = "HTTP"
-      forward  = { target_group_key = "va-hub-ui" }
+      redirect = { port = "443", protocol = "HTTPS", status_code = "HTTP_301" }
+    }
+    "https-443" = {
+      port            = 443
+      protocol        = "HTTPS"
+      certificate_arn = data.aws_acm_certificate.wildcard.arn
+      ssl_policy      = "ELBSecurityPolicy-TLS13-1-2-2021-06" # module default is TLS 1.3-only; keep 1.2 for older clients/proxies
+      forward         = { target_group_key = "va-hub-ui" }
       rules = {
         "resources" = {
           priority   = 1
@@ -47,9 +54,11 @@ module "alb" {
       }
     }
     "admin-9090" = {
-      port     = 9090
-      protocol = "HTTP"
-      forward  = { target_group_key = "admin" }
+      port            = 9090
+      protocol        = "HTTPS"
+      certificate_arn = data.aws_acm_certificate.wildcard.arn
+      ssl_policy      = "ELBSecurityPolicy-TLS13-1-2-2021-06" # keep in sync with https-443
+      forward         = { target_group_key = "admin" }
     }
   }
 }
