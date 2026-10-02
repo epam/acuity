@@ -1,0 +1,21 @@
+name: terraform fmt
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - infrastructure/terraform/**
+      - .github/workflows/terraform-fmt.yml
+
+permissions:
+  contents: read
+
+jobs:
+  fmt:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: hashicorp/setup-terraform@v4
+        with:
+          terraform_version: 1.16.4
+      - run: terraform fmt -check -recursive -diff infrastructure/terraform
