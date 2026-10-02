@@ -4,6 +4,12 @@ data "aws_route53_zone" "public" {
   private_zone = false
 }
 
+# Wildcard cert is issued in terraform/bootstrap; read by domain here.
+data "aws_acm_certificate" "wildcard" {
+  domain   = "*.${data.aws_route53_zone.public.name}"
+  statuses = ["ISSUED"]
+}
+
 # <workspace>.<zone> -> ALB
 resource "aws_route53_record" "alb" {
   zone_id = data.aws_route53_zone.public.zone_id
