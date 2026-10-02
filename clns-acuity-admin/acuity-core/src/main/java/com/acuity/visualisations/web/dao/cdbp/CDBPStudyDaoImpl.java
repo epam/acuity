@@ -44,16 +44,10 @@ public class CDBPStudyDaoImpl extends CDBPDaoSupport implements CDBPStudyDao {
         std.setClinicalStudyId(rs.getString("ACTIVITY_CODE"));
         std.setClinicalStudyName(rs.getString("STUDY"));
         std.setDrugProgramme(rs.getString("ACTIVE_SUBSTANCE"));
-        std.setPhase(rs.getString("STUDY_PHASE"));
-        std.setType(rs.getString("STUDY_TYPE"));
-        std.setDeliveryModel(rs.getString("DELIVERY_MODEL"));
-        std.setFirstSubjectInPlanned(rs.getDate("FSI_PLN"));
-        std.setDatabaseLockPlanned(rs.getDate("DBL_PLN"));
         std.setBlinding(true);
         std.setRegulatory(true);
         std.setRandomisation(true);
         std.setStatus(Status.notInAcuity);
-        std.setPhaseType(StudyRule.PhaseType.EARLY);
         return std;
     };
 
