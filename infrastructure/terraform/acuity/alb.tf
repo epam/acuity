@@ -34,6 +34,11 @@ module "alb" {
   }
 
   listeners = {
+    "http-80" = {
+      port     = 80
+      protocol = "HTTP"
+      redirect = { port = "443", protocol = "HTTPS", status_code = "HTTP_301" }
+    }
     "https-443" = {
       port            = 443
       protocol        = "HTTPS"

@@ -43,6 +43,13 @@ module "sg_alb" {
   vpc_id = module.vpc.vpc_id
 
   ingress_rules = merge(
+    { for cidr in var.vpn_cidrs : "http-${replace(cidr, "/[./]/", "-")}" => {
+      description = "HTTP from VPN (redirected to HTTPS)"
+      ip_protocol = "tcp"
+      from_port   = 80
+      to_port     = 80
+      cidr_ipv4   = cidr
+    } },
     { for cidr in var.vpn_cidrs : "https-${replace(cidr, "/[./]/", "-")}" => {
       description = "va-hub-ui / va-hub HTTPS from VPN"
       ip_protocol = "tcp"
