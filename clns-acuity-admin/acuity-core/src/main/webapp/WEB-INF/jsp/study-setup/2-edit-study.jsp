@@ -70,57 +70,7 @@
                 <td><a href="#" class="help"
                        title='<%= HelpController.getHelpText("2-edit-study", "clinicalStudyName") %>'>?</a></td>
             </tr>
-            <tr style="display: none;">
-                <td class="tdf">Study phase</td>
-                <td><input type="text" class="enabled"
-                           id="studyPhase"
-                           name="studyPhase" disabled/></td>
-                <td><a href="#" class="help"
-                       title='<%= HelpController.getHelpText("2-edit-study", "studyPhase") %>'>?</a></td>
-            </tr>
-            <tr>
-                <td class="tdf">Study phase</td>
-                <td>
-                    <select class="enabled" required id="studyPhaseType" name="studyPhaseType" disabled>
-                        <option value="EARLY">Early (Phases I or II)</option>
-                        <option value="LATE">Late (Phase III)</option>
-                    </select>
-                </td>
-                <td><a href="#" class="help"
-                       title='<%= HelpController.getHelpText("2-edit-study", "studyPhase") %>'>?</a></td>
-            </tr>
-            <tr>
-                <td class="tdf">Dataset study type</td>
-                <td><input type="text" class="enabled" required
-                           id="studyType"
-                           name="studyType" disabled/></td>
-                <td><a href="#" class="help"
-                       title='<%= HelpController.getHelpText("2-edit-study", "studyType") %>'>?</a></td>
-            </tr>
-            <tr>
-                <td class="tdf">Dataset study delivery model</td>
-                <td><input type="text" class="enabled" required
-                           id="studyDeliveryModel"
-                           name="studyDeliveryModel" disabled/></td>
-                <td><a href="#" class="help"
-                       title='<%= HelpController.getHelpText("2-edit-study", "studyDeliveryModel") %>'>?</a></td>
-            </tr>
-            <tr>
-                <td class="tdf">Planned date for first subject in</td>
-                <td><input type="text" class="enabled" required
-                           id="studyFsiPln"
-                           name="studyFsiPln" disabled value='04/04/2013'/></td>
-                <td><a href="#" class="help"
-                       title='<%= HelpController.getHelpText("2-edit-study", "subjectPlannedDate") %>'>?</a></td>
-            </tr>
-            <tr>
-                <td class="tdf">Planned date of database lock</td>
-                <td><input type="text" class="enabled" required
-                           id="studyDblPln"
-                           name="studyDblPln" disabled value='04/04/2013'/></td>
-                <td><a href="#" class="help" title='<%= HelpController.getHelpText("2-edit-study", "dbPlannedDate") %>'>?</a>
-                </td>
-            </tr>
+
             <tr>
                 <td class="tdf">Primary Source Folder</td>
                 <td><input type="text" class="enabled"
@@ -192,6 +142,15 @@
                 <td><input class="enabled" type="checkbox" id="xAxisLimitedToVisit" value="true" checked
                            name="v" disabled></td>
             </tr>
+             <tr>
+                <td class="tdf">Study Comment</td>
+                <td><textarea type="text" class="enabled"
+                           id="studyComment" name="studyComment" maxlength="2000"
+                            placeholder="Enter text (maximum 2000 characters)"
+                           disabled rows="5" cols="50"></textarea></td>
+                <td><a href="#" class="help"
+                     title='<%= HelpController.getHelpText("2-edit-study", "studyComment") %>'>?</a></td>
+             </tr>
         </table>
 
         <c:if test='${amlEnabledGlobally}'>
