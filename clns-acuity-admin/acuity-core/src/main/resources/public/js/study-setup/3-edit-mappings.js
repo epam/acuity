@@ -19,7 +19,6 @@ var MappingStudyStep = function (studyWizard) {
     var studyDetailsTableDeleteMappingRuleBtnId = "studyDetailsTableDeleteMappingRuleBtn";
     var csvDelimeter = ',';
     var csvHeader = ['Data field', 'Source column', 'Decoding', 'Default value', 'Aggregation function'];
-debugger;
     this.mappingHierarchy = null;
     this.aggregationFunctions = null;
     this.defaultTypes = null;

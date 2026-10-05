@@ -177,7 +177,6 @@ var EditStudyStep = function (studyWizard) {
         scope.study.studyComment = $("#studyComment").val();
         scope.study.clinicalStudyId = $("#clinicalStudyId").val();
         scope.study.clinicalStudyName = $("#clinicalStudyName").val();
-        scope.study.phaseType = $("#studyPhaseType option:selected").val();
         scope.study.phase = $("#studyPhaseType option:selected").text();
         scope.study.blinding = $("#studyBlinding").val() === "true";
         scope.study.randomisation = $("#studyRandomisation").val() === "true";
