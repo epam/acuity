@@ -74,17 +74,7 @@ public class StudyRuleDao extends BasicDynamicEntityDao<StudyRule> implements IS
         study.setBlinding(rs.getBoolean("MSR_BLINDED"));
         study.setProjectId(rs.getLong("MSR_PRJ_ID"));
         study.setDrugProgramme(rs.getString("MPR_DRUG"));
-        study.setPhase(rs.getString("MSR_PHASE"));
-        try {
-            study.setPhaseType(StudyRule.PhaseType.valueOf(rs.getString("MSR_PHASE_TYPE")));
-        } catch (Exception e) {
-            //let it be default anyway
-            study.setPhaseType(StudyRule.PhaseType.EARLY);
-        }
-        study.setDeliveryModel(rs.getString("MSR_DELIVERY_MODEL"));
-        study.setType(rs.getString("MSR_TYPE"));
-        study.setFirstSubjectInPlanned(rs.getDate("MSR_FSI_PLN"));
-        study.setDatabaseLockPlanned(rs.getDate("MSR_DBL_PLN"));
+        study.setStudyComment(rs.getString("MSR_STUDY_COMMENT"));
         study.setEnabled(true);
         study.setStatus(Status.valueOf(rs.getString("MSR_STATUS")));
         study.setStudyCompleted(rs.getInt("MSR_COMPLETED") == 1);
@@ -123,17 +113,12 @@ public class StudyRuleDao extends BasicDynamicEntityDao<StudyRule> implements IS
         ps.setBoolean(paramIndex++, entity.isRegulatory());
         ps.setBoolean(paramIndex++, entity.isRandomisation());
         ps.setLong(paramIndex++, entity.getProjectId());
-        ps.setString(paramIndex++, entity.getPhase());
-        ps.setString(paramIndex++, entity.getPhaseType().name());
-        ps.setString(paramIndex++, entity.getType());
-        ps.setString(paramIndex++, entity.getDeliveryModel());
+        ps.setString(paramIndex++, entity.getStudyComment());
         ps.setBoolean(paramIndex++, entity.isScheduled());
         ps.setBoolean(paramIndex++, entity.isxAxisLimitedToVisit());
         ps.setBoolean(paramIndex++, entity.isAutoAssignedCountry());
         ps.setString(paramIndex++, entity.getPrimarySource());
         ps.setString(paramIndex++, entity.getCronExpression());
-        ps.setDate(paramIndex++, Util.getSQLDate(entity.getFirstSubjectInPlanned()));
-        ps.setDate(paramIndex++, Util.getSQLDate(entity.getDatabaseLockPlanned()));
         ps.setString(paramIndex++, entity.getStatus().toString());
         ps.setObject(paramIndex++, entity.isStudyCompleted() ? 1 : 0);
         ps.setObject(paramIndex++, entity.isStudyValid() ? 1 : 0);
@@ -162,17 +147,12 @@ public class StudyRuleDao extends BasicDynamicEntityDao<StudyRule> implements IS
         fieldsToInsert.add(fieldBuilder.setField("MSR_REGULATORY").build());
         fieldsToInsert.add(fieldBuilder.setField("MSR_RANDOMISED").build());
         fieldsToInsert.add(fieldBuilder.setField("MSR_PRJ_ID").build());
-        fieldsToInsert.add(fieldBuilder.setField("MSR_PHASE").build());
-        fieldsToInsert.add(fieldBuilder.setField("MSR_PHASE_TYPE").build());
-        fieldsToInsert.add(fieldBuilder.setField("MSR_TYPE").build());
-        fieldsToInsert.add(fieldBuilder.setField("MSR_DELIVERY_MODEL").build());
+        fieldsToInsert.add(fieldBuilder.setField("MSR_STUDY_COMMENT").build());
         fieldsToInsert.add(fieldBuilder.setField("MSR_SCHEDULED").build());
         fieldsToInsert.add(fieldBuilder.setField("MSR_LIMIT_X_AXIS_TO_VISIT").build());
         fieldsToInsert.add(fieldBuilder.setField("MSR_AUTO_ASSIGNED_COUNTRY").build());
         fieldsToInsert.add(fieldBuilder.setField("MSR_PRIMARY_SOURCE").build());
         fieldsToInsert.add(fieldBuilder.setField("MSR_CRON_EXPRESSION").build());
-        fieldsToInsert.add(fieldBuilder.setField("MSR_FSI_PLN").build());
-        fieldsToInsert.add(fieldBuilder.setField("MSR_DBL_PLN").build());
         fieldsToInsert.add(fieldBuilder.setField("MSR_STATUS").build());
         fieldsToInsert.add(fieldBuilder.setField("MSR_COMPLETED").build());
         fieldsToInsert.add(fieldBuilder.setField("MSR_VALID").build());
@@ -249,17 +229,12 @@ public class StudyRuleDao extends BasicDynamicEntityDao<StudyRule> implements IS
         ps.setBoolean(paramIndex++, entity.isBlinding());
         ps.setBoolean(paramIndex++, entity.isRandomisation());
         ps.setBoolean(paramIndex++, entity.isRegulatory());
-        ps.setString(paramIndex++, entity.getPhase());
-        ps.setString(paramIndex++, entity.getPhaseType().name());
-        ps.setString(paramIndex++, entity.getType());
-        ps.setString(paramIndex++, entity.getDeliveryModel());
+        ps.setString(paramIndex++, entity.getStudyComment());
         ps.setBoolean(paramIndex++, entity.isScheduled());
         ps.setBoolean(paramIndex++, entity.isxAxisLimitedToVisit());
         ps.setBoolean(paramIndex++, entity.isAutoAssignedCountry());
         ps.setString(paramIndex++, entity.getCronExpression());
         ps.setString(paramIndex++, entity.getPrimarySource());
-        ps.setDate(paramIndex++, Util.getSQLDate(entity.getFirstSubjectInPlanned()));
-        ps.setDate(paramIndex++, Util.getSQLDate(entity.getDatabaseLockPlanned()));
         ps.setString(paramIndex++, entity.getStatus().toString());
         ps.setObject(paramIndex++, entity.isStudyCompleted() ? 1 : 0);
         ps.setObject(paramIndex++, entity.isStudyValid() ? 1 : 0);
@@ -285,17 +260,12 @@ public class StudyRuleDao extends BasicDynamicEntityDao<StudyRule> implements IS
         fieldsToInsert.add(fieldBuilder.setField("MSR_BLINDED").build());
         fieldsToInsert.add(fieldBuilder.setField("MSR_RANDOMISED").build());
         fieldsToInsert.add(fieldBuilder.setField("MSR_REGULATORY").build());
-        fieldsToInsert.add(fieldBuilder.setField("MSR_PHASE").build());
-        fieldsToInsert.add(fieldBuilder.setField("MSR_PHASE_TYPE").build());
-        fieldsToInsert.add(fieldBuilder.setField("MSR_TYPE").build());
-        fieldsToInsert.add(fieldBuilder.setField("MSR_DELIVERY_MODEL").build());
+        fieldsToInsert.add(fieldBuilder.setField("MSR_STUDY_COMMENT").build());
         fieldsToInsert.add(fieldBuilder.setField("MSR_SCHEDULED").build());
         fieldsToInsert.add(fieldBuilder.setField("MSR_LIMIT_X_AXIS_TO_VISIT").build());
         fieldsToInsert.add(fieldBuilder.setField("MSR_AUTO_ASSIGNED_COUNTRY").build());
         fieldsToInsert.add(fieldBuilder.setField("MSR_CRON_EXPRESSION").build());
         fieldsToInsert.add(fieldBuilder.setField("MSR_PRIMARY_SOURCE").build());
-        fieldsToInsert.add(fieldBuilder.setField("MSR_FSI_PLN").build());
-        fieldsToInsert.add(fieldBuilder.setField("MSR_DBL_PLN").build());
         fieldsToInsert.add(fieldBuilder.setField("MSR_STATUS").build());
         fieldsToInsert.add(fieldBuilder.setField("MSR_COMPLETED").build());
         fieldsToInsert.add(fieldBuilder.setField("MSR_VALID").build());

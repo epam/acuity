@@ -11,7 +11,6 @@ module "ecr" {
   repository_name                 = "${local.aws_ecr_repo_prefix}/${each.key}"
   repository_image_tag_mutability = "IMMUTABLE"
 
-  # No image expiry - prune by hand, or set repository_lifecycle_policy
-  # if ECR storage cost ever matters (5 repos of rare releases: negligible).
+  # No lifecycle policy: 5 repos of rare releases, storage negligible.
   create_lifecycle_policy = false
 }

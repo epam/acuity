@@ -120,7 +120,6 @@ public class ClinicalStudyController extends AbstractController {
     private static final String EDIT_STUDY_WORKFLOW = "editStudyWorkflow";
     private static final String STUDY_RULES_SEARCH = "studyRulesSearch";
     private static final String FILE_SECTIONS = "fileSections";
-    private static final String PHASE_TYPES = "phaseTypes";
     private static final String AGGREGATION_FUNCTIONS = "aggregationFunctions";
     //if you will need to add more values in this list, it would be better to update MAP_FIELD_DESCRIPTION table instead,
     //add new column and store in this column value like 'Gene CtDna' for example to match filed with tooltip
@@ -256,7 +255,6 @@ public class ClinicalStudyController extends AbstractController {
             modelAndView.addObject("acuity.vahub.url", JsonUtil.toJson(webappUrl));
             modelAndView.addObject(FILE_SECTIONS, JsonUtil.toJson(ControllerUtils.getFileSections(session)));
             modelAndView.addObject(AGGREGATION_FUNCTIONS, JsonUtil.toJson(studyMappingsServicePartial.getAggregationFunctions()));
-            modelAndView.addObject(PHASE_TYPES, JsonUtil.toJson(StudyRule.getAllStudyPhaseTypesList()));
             modelAndView.addObject(CBIO_PORTAL_URL, StringUtils.isEmpty(cbioportalUrl) ? null : JsonUtil.toJson(cbioportalUrl));
             modelAndView.addObject(AML_ENABLED_GLOBALLY, amlEnabledGlobally);
             Integer totalStudiesCount = ControllerUtils.getTotalStudiesCount(session);
@@ -409,10 +407,7 @@ public class ClinicalStudyController extends AbstractController {
             study.setStudyName(updatedStudy.getStudyName());
             study.setClinicalStudyName(updatedStudy.getClinicalStudyName());
             study.setClinicalStudyId(updatedStudy.getClinicalStudyId());
-            study.setPhaseType(updatedStudy.getPhaseType());
-            study.setPhase(updatedStudy.getPhase());
-            study.setType(updatedStudy.getType());
-            study.setDeliveryModel(updatedStudy.getDeliveryModel());
+            study.setStudyComment(updatedStudy.getStudyComment());
             study.setPrimarySource(updatedStudy.getPrimarySource());
             study.setBlinding(updatedStudy.isBlinding());
             study.setRandomisation(updatedStudy.isRandomisation());
@@ -421,8 +416,6 @@ public class ClinicalStudyController extends AbstractController {
             study.setxAxisLimitedToVisit(updatedStudy.isxAxisLimitedToVisit());
             study.setAutoAssignedCountry(updatedStudy.isAutoAssignedCountry());
             study.setCronExpression(updatedStudy.getCronExpression());
-            study.setFirstSubjectInPlanned(updatedStudy.getFirstSubjectInPlanned());
-            study.setDatabaseLockPlanned(updatedStudy.getDatabaseLockPlanned());
             study.setAmlEnabled(updatedStudy.isAmlEnabled());
             Long id = clinicalStudyService.saveStudy(study);
             if (study.getId() == null) {

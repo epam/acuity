@@ -16,12 +16,8 @@
 
 package com.acuity.visualisations.mapping.entity;
 
-import com.acuity.visualisations.web.util.JSONDateDeserializer;
-import com.acuity.visualisations.web.util.JSONDateSerializer;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -42,32 +38,6 @@ public class StudyRule extends MappingEntity implements Comparable<StudyRule> {
         incomplete, readyToMap, mapped, notInAcuity
     }
 
-    public enum PhaseType {
-        EARLY {
-            public String getLabel() {
-                return "Early (Phases I and II)";
-            }
-
-            public String getFolderName() {
-                return "Phases_I_and_II";
-            }
-        },
-        LATE {
-            public String getLabel() {
-                return "Late (Phase III)";
-            }
-
-            public String getFolderName() {
-                return "Phase_III";
-            }
-
-        };
-
-        public abstract String getLabel();
-
-        public abstract String getFolderName();
-    }
-
     private Long projectId;
     private String drugProgramme;
 
@@ -79,22 +49,11 @@ public class StudyRule extends MappingEntity implements Comparable<StudyRule> {
     private String name;
     private String clinicalStudyName;
     private String clinicalStudyId;
-    private String phase;
-    private PhaseType phaseType;
+    private String studyComment;
 
     private boolean blinding;
     private boolean randomisation;
     private boolean regulatory;
-
-    private String type;
-    private String deliveryModel;
-
-    @Getter(AccessLevel.NONE)
-    @Setter(AccessLevel.NONE)
-    private Date firstSubjectInPlanned;
-    @Getter(AccessLevel.NONE)
-    @Setter(AccessLevel.NONE)
-    private Date databaseLockedPlanned;
 
     private Status status;
     private boolean enabled;
@@ -169,26 +128,6 @@ public class StudyRule extends MappingEntity implements Comparable<StudyRule> {
         this.xAxisLimitedToVisit = xAxisLimitedToVisit;
     }
 
-    @JsonSerialize(using = JSONDateSerializer.class)
-    public Date getFirstSubjectInPlanned() {
-        return firstSubjectInPlanned;
-    }
-
-    @JsonDeserialize(using = JSONDateDeserializer.class)
-    public void setFirstSubjectInPlanned(Date firstSubjectInPlanned) {
-        this.firstSubjectInPlanned = firstSubjectInPlanned;
-    }
-
-    @JsonSerialize(using = JSONDateSerializer.class)
-    public Date getDatabaseLockPlanned() {
-        return databaseLockedPlanned;
-    }
-
-    @JsonDeserialize(using = JSONDateDeserializer.class)
-    public void setDatabaseLockPlanned(Date databaseLockPlanned) {
-        this.databaseLockedPlanned = databaseLockPlanned;
-    }
-
     public FileRule getFileRule(Long fileRuleId) {
         for (FileRule rule : fileRules) {
             if (rule.getId().equals(fileRuleId)) {
@@ -217,14 +156,4 @@ public class StudyRule extends MappingEntity implements Comparable<StudyRule> {
         return code.compareTo(other.getStudyCode());
     }
 
-    public static List<String> getAllStudyPhaseTypesList() {
-        List<String> res = new ArrayList<>();
-        for (PhaseType phaseType : PhaseType.values()) {
-            res.add(phaseType.name());
-        }
-        return res;
-    }
-
 }
-
-
