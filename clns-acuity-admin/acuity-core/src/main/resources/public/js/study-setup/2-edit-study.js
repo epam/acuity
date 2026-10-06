@@ -66,8 +66,6 @@ var EditStudyStep = function (studyWizard) {
                 async: true
             });
         }
-        addDataPicker("studyFsiPln");
-        addDataPicker("studyDblPln");
         $("#studyPrimarySource").blur(function () {
             scope.checkPrimarySourceValid();
         });
@@ -109,8 +107,6 @@ var EditStudyStep = function (studyWizard) {
                 clinicalStudyName: "<< Required field",
                 studyType: "<< Required field",
                 studyDeliveryModel: "<< Required field",
-                studyFsiPln: "<< Required field",
-                studyDblPln: "<< Required field",
                 studyDrugId: "<< Required field",
                 studyCode: "<< Required field"
             }
@@ -130,17 +126,15 @@ var EditStudyStep = function (studyWizard) {
         $("#studyDrugIdSelect").val("");
         $("#studyDrugId").val("");
         $("#studyCode").val("");
+        $("#studyComment").val("");
         $("#studyName").val("");
         $("#clinicalStudyName").val("");
         $("#clinicalStudyId").val("");
-        $("#studyPhase").val("");
         $("#studyPhaseType option").removeAttr('selected');
         $("#studyPhaseType option:first").attr('selected', 'selected');
         $("#studyType").val("");
         $("#studyDeliveryModel").val("");
         $("#studyPrimarySource").val("");
-        $("#studyFsiPln").val("");
-        $("#studyDblPln").val("");
         $(".enabled").each(function () {
             if ($(this).is(":disabled")) {
                 $(this).removeAttr("disabled");
@@ -179,10 +173,10 @@ var EditStudyStep = function (studyWizard) {
         }
         var searchText = $('#' + this.searchInputId).val();
         scope.study.studyName = $("#studyName").val();
-        scope.study.studyCode = $("#studyCode").val();
+        scope.study.studyName = $("#studyName").val();
+        scope.study.studyComment = $("#studyComment").val();
         scope.study.clinicalStudyId = $("#clinicalStudyId").val();
         scope.study.clinicalStudyName = $("#clinicalStudyName").val();
-        scope.study.phaseType = $("#studyPhaseType option:selected").val();
         scope.study.phase = $("#studyPhaseType option:selected").text();
         scope.study.blinding = $("#studyBlinding").val() === "true";
         scope.study.randomisation = $("#studyRandomisation").val() === "true";
@@ -193,11 +187,7 @@ var EditStudyStep = function (studyWizard) {
         scope.study.scheduled = $("#studyScheduled").prop("checked");
         scope.study.autoAssignedCountry = $("#autoAssignedCountry").prop("checked");
         scope.study.xAxisLimitedToVisit = $("#xAxisLimitedToVisit").prop("checked");
-        scope.study.type = $("#studyType").val();
-        scope.study.deliveryModel = $("#studyDeliveryModel").val();
         scope.study.primarySource = $("#studyPrimarySource").val();
-        scope.study.firstSubjectInPlanned = $("#studyFsiPln").val();
-        scope.study.databaseLockPlanned = $("#studyDblPln").val();
         scope.study.amlEnabled = $("#amlEnabled").prop("checked");
     };
 
@@ -346,6 +336,10 @@ EditStudyStep.prototype = {
                 isEditable = true;
                 return false;
             }
+            if (id == "studyComment" && $.trim($(this).val()) != $.trim(scope.study.studyComment)) {
+                isEditable = true;
+                return false;
+            }
             if (id == "clinicalStudyName" && $.trim($(this).val()) != $.trim(scope.study.clinicalStudyName)) {
                 isEditable = true;
                 return false;
@@ -354,31 +348,12 @@ EditStudyStep.prototype = {
                 isEditable = true;
                 return false;
             }
-            if (id == "studyPhase" && $.trim($(this).val()) != $.trim(scope.study.phase)) {
-                isEditable = true;
-                return false;
-            }
-            if (id == "studyType" && $.trim($(this).val()) != $.trim(scope.study.type)) {
-                isEditable = true;
-                return false;
-            }
-            if (id == "studyDeliveryModel" && $.trim($(this).val()) != $.trim(scope.study.deliveryModel)) {
-                isEditable = true;
-                return false;
-            }
 
             if (id == "studyPrimarySource" && $.trim($(this).val()) != $.trim(scope.study.primarySource)) {
                 isEditable = true;
                 return false;
             }
-            if (id == "studyFsiPln" && $.trim($(this).val()) != $.trim(scope.study.firstSubjectInPlanned)) {
-                isEditable = true;
-                return false;
-            }
-            if (id == "studyDblPln" && $.trim($(this).val()) != $.trim(scope.study.databaseLockPlanned)) {
-                isEditable = true;
-                return false;
-            }
+
             if (id == "studyBlinding" && $.trim($(this).val()) != scope.study.blinding) {
                 isEditable = true;
                 return false;
@@ -459,8 +434,6 @@ EditStudyStep.prototype = {
         $("#clinicalStudyId").attr("title", scope.study.clinicalStudyId);
         $("#clinicalStudyName").val(scope.study.clinicalStudyName);
         $("#clinicalStudyName").attr("title", scope.study.clinicalStudyName);
-        $("#studyPhase").val(scope.study.phase);
-        $("#studyPhase").attr("title", scope.study.phase);
         $("#studyPhaseType option").filter(function () {
             return $(this).attr('value') == scope.study.phaseType;
         }).prop("selected", true);
@@ -476,61 +449,10 @@ EditStudyStep.prototype = {
         $("#autoAssignedCountry").prop("checked", !!scope.study.autoAssignedCountry);
         $("#xAxisLimitedToVisit").prop("checked", !!scope.study.xAxisLimitedToVisit);
         $("#amlEnabled").prop("checked", !!scope.study.amlEnabled);
-
-        $("#studyType").val(scope.study.type);
-        $("#studyType").attr("title", scope.study.type);
-
-        $("#studyDeliveryModel").val(scope.study.deliveryModel);
-        $("#studyDeliveryModel").attr("title", scope.study.deliveryModel);
         $("#studyPrimarySource").val(scope.study.primarySource);
         $("#studyPrimarySource").attr("title", scope.study.primarySource);
-        $("#studyFsiPln").val(scope.study.firstSubjectInPlanned);
-        $("#studyDblPln").val(scope.study.databaseLockPlanned);
         $('#' + this.searchInputId).val(searchText);
         scope.checkPrimarySourceValid();
-    },
-
-    validateStudy: function () {
-        var editForm = $("#form-edit-study");
-
-        $(".enabled").each(function () {
-            if ($(this).is(":disabled")) {
-                $(this).removeAttr("disabled");
-            }
-        });
-        var isValid = editForm.valid();
-        $(".enabled").each(function () {
-            $(this).attr('disabled', 'disabled');
-        });
-        var firstSubjectInPlannedString = $("#studyFsiPln").val();
-        var databaseLockPlannedString = $("#studyDblPln").val();
-        var regex = /^([0-9]{1,2}-[a-zA-Z]{3}-[0-9]{2,4})$/;
-        var isValidSubjectInPlanned = regex.test(firstSubjectInPlannedString);
-        var isValidDatabaseLockPlanned = regex.test(databaseLockPlannedString);
-
-        if (!isValidSubjectInPlanned) {
-            return {status: false, message: 'Planned date for first subject is invalid'};
-        }
-        if (!isValidDatabaseLockPlanned) {
-            return {status: false, message: 'Planned date of database lock is invalid'};
-        }
-
-        var firstSubjectInPlanned = new Date(firstSubjectInPlannedString);
-        var databaseLockPlanned = new Date(databaseLockPlannedString);
-        var nowStr = $.datepicker.formatDate("dd-M-yy", new Date());
-        var nowDate = $.datepicker.parseDate("dd-M-yy", nowStr);
-
-        if (nowDate > databaseLockPlanned) {
-            return {status: false, message: 'Planned date of database lock cannot be in the past'};
-        }
-        if (firstSubjectInPlanned > databaseLockPlanned) {
-            return {
-                status: false,
-                message: 'Planned date for first subject in cannot be after planned date of database lock'
-            };
-        }
-
-        return {status: isValid, message: ''};
     },
 
     fillCompletedProjectList: function (result) {

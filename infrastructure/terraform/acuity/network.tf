@@ -19,7 +19,7 @@ module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
   version = "~> 6.0"
 
-  name = "acuity-poc"
+  name = "${local.name_prefix}-vpc"
   cidr = "10.0.0.0/16"
 
   azs                     = local.azs
@@ -28,33 +28,37 @@ module "vpc" {
 
   enable_nat_gateway = false
 
-  # Epam Org policy forbids any Terraform-managed change to the default Network ACL;
-  # a central governance system owns and enforces its rules and auto-reverts
-  # anything else. 
-  # The module manages and overwrites it by default, so opt out entirely and touch nothing.
+  # Org policy forbids Terraform changes to the default NACL (governance system auto-reverts); module opted out.
   manage_default_network_acl = false
 }
 
-# ALB is the only internet-facing resource, restricted to the corporate VPN
+# ALB: only internet-facing resource, VPN-restricted
 module "sg_alb" {
   source  = "terraform-aws-modules/security-group/aws"
   version = "~> 6.0"
 
-  name        = "acuity-poc-alb"
+  name        = "${local.name_prefix}-sg-alb"
   description = "ALB - inbound from the corporate VPN only"
 
   vpc_id = module.vpc.vpc_id
 
   ingress_rules = merge(
     { for cidr in var.vpn_cidrs : "http-${replace(cidr, "/[./]/", "-")}" => {
-      description = "va-hub-ui / va-hub HTTP from VPN"
+      description = "HTTP from VPN (redirected to HTTPS)"
       ip_protocol = "tcp"
       from_port   = 80
       to_port     = 80
       cidr_ipv4   = cidr
     } },
+    { for cidr in var.vpn_cidrs : "https-${replace(cidr, "/[./]/", "-")}" => {
+      description = "va-hub-ui / va-hub HTTPS from VPN"
+      ip_protocol = "tcp"
+      from_port   = 443
+      to_port     = 443
+      cidr_ipv4   = cidr
+    } },
     { for cidr in var.vpn_cidrs : "admin-${replace(cidr, "/[./]/", "-")}" => {
-      description = "admin HTTP from VPN"
+      description = "admin HTTPS from VPN"
       ip_protocol = "tcp"
       from_port   = 9090
       to_port     = 9090
@@ -65,12 +69,11 @@ module "sg_alb" {
   egress_rules = local.egress_all
 }
 
-# va-hub-ui: reached only by the ALB
 module "sg_va_hub_ui" {
   source  = "terraform-aws-modules/security-group/aws"
   version = "~> 6.0"
 
-  name        = "acuity-poc-va-hub-ui"
+  name        = "${local.name_prefix}-sg-va-hub-ui"
   description = "va-hub-ui task - inbound from the ALB only"
 
   vpc_id = module.vpc.vpc_id
@@ -93,7 +96,7 @@ module "sg_va_hub" {
   source  = "terraform-aws-modules/security-group/aws"
   version = "~> 6.0"
 
-  name        = "acuity-poc-va-hub"
+  name        = "${local.name_prefix}-sg-va-hub"
   description = "va-hub task - inbound from the ALB and from admin via Service Connect"
 
   vpc_id = module.vpc.vpc_id
@@ -118,12 +121,11 @@ module "sg_va_hub" {
   egress_rules = local.egress_all
 }
 
-# admin: hit only by the ALB (:9090 listener)
 module "sg_admin" {
   source  = "terraform-aws-modules/security-group/aws"
   version = "~> 6.0"
 
-  name        = "acuity-poc-admin"
+  name        = "${local.name_prefix}-sg-admin"
   description = "admin task - inbound from the ALB only"
 
   vpc_id = module.vpc.vpc_id
@@ -141,12 +143,12 @@ module "sg_admin" {
   egress_rules = local.egress_all
 }
 
-# flyway: one-off migration task, no inbound; egress narrows to RDS-only once its task exists 
+# flyway: no inbound
 module "sg_flyway" {
   source  = "terraform-aws-modules/security-group/aws"
   version = "~> 6.0"
 
-  name        = "acuity-poc-flyway"
+  name        = "${local.name_prefix}-sg-flyway"
   description = "flyway migration task - no inbound"
 
   vpc_id = module.vpc.vpc_id
@@ -160,7 +162,7 @@ module "sg_rds" {
   source  = "terraform-aws-modules/security-group/aws"
   version = "~> 6.0"
 
-  name        = "acuity-poc-rds"
+  name        = "${local.name_prefix}-sg-rds"
   description = "RDS PostgreSQL - inbound from app tasks, flyway and the bastion only"
 
   vpc_id = module.vpc.vpc_id
@@ -196,17 +198,15 @@ module "sg_rds" {
     }
   }
 
-  # RDS never initiates outbound connections (no log exports, no replicas, no S3 import/export extensions here).
-  # Revisit if any of those get added.
+  # RDS never initiates outbound traffic (no log exports/replicas/S3 extensions); revisit if added.
   egress_rules = {}
 }
 
-# efs: only admin mounts it
 module "sg_efs" {
   source  = "terraform-aws-modules/security-group/aws"
   version = "~> 6.0"
 
-  name        = "acuity-poc-efs"
+  name        = "${local.name_prefix}-sg-efs"
   description = "EFS - inbound from admin and the bastion only"
 
   vpc_id = module.vpc.vpc_id
@@ -228,7 +228,6 @@ module "sg_efs" {
     }
   }
 
-  # EFS mount targets are receive-only (NFS server side); nothing to egress.
   egress_rules = {}
 }
 
@@ -237,7 +236,7 @@ module "sg_bastion" {
   source  = "terraform-aws-modules/security-group/aws"
   version = "~> 6.0"
 
-  name        = "acuity-poc-bastion"
+  name        = "${local.name_prefix}-sg-bastion"
   description = "Bastion - no inbound; accessed only via SSM Session Manager"
 
   vpc_id = module.vpc.vpc_id

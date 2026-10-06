@@ -308,6 +308,12 @@
             </helpText>
         </help>
         <help>
+            <pageElement>studyComment</pageElement>
+            <helpText>The clinical study comment. This field is for user reference only and does not affect the data
+                processing in ACUITY.
+            </helpText>
+        </help>
+        <help>
             <pageElement>studyType</pageElement>
             <helpText>The type of study, such as dose-finding. This field is for user reference only and does not affect
                 the data processing in ACUITY.
