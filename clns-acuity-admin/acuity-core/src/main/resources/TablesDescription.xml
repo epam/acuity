@@ -8,6 +8,7 @@
             <field name="studyGuid"/>
             <field name="subject"/>
             <field name="part"/>
+            <field name="groupingName"/>
         </uniqueFields>
     </table>
     <table name="RESULT_PATIENT">

@@ -75,9 +75,8 @@ import static com.acuity.visualisations.rawdatamodel.trellis.grouping.ChartGroup
 import static com.acuity.visualisations.rawdatamodel.trellis.grouping.ChartGroupByOptions.ChartGroupBySetting.SERIES_BY;
 import static com.acuity.visualisations.rawdatamodel.trellis.grouping.ChartGroupByOptions.ChartGroupBySetting.START;
 import static com.acuity.visualisations.rawdatamodel.trellis.grouping.ChartGroupByOptions.ChartGroupBySetting.Y_AXIS;
-import static com.acuity.visualisations.rawdatamodel.trellis.grouping.PopulationGroupByOptions.DOSE_COHORT;
 import static com.acuity.visualisations.rawdatamodel.trellis.grouping.PopulationGroupByOptions.MAX_DOSE_PER_ADMIN_OF_DRUG;
-import static com.acuity.visualisations.rawdatamodel.trellis.grouping.PopulationGroupByOptions.OTHER_COHORT;
+import static com.acuity.visualisations.rawdatamodel.trellis.grouping.PopulationGroupByOptions.SUBJECT_GROUPING;
 import static com.acuity.visualisations.rawdatamodel.trellis.grouping.TumourTherapyGroupByOptions.ALL_PRIOR_THERAPIES;
 import static com.acuity.visualisations.rawdatamodel.trellis.grouping.TumourTherapyGroupByOptions.MOST_RECENT_THERAPY;
 import static com.acuity.visualisations.rawdatamodel.util.Constants.ALL;
@@ -390,11 +389,12 @@ public class TumourColumnRangeServiceTest {
     }
 
     @Test
-    public void testGetTumourTherapyOnColumnRangeColorByDoseCohort() {
+    public void testGetTumourTherapyOnColumnRangeColorBySubjectGrouping() {
 
-        Subject subject1c = subject1.toBuilder().doseCohort("cohort 1").build();
-        Subject subject2c = subject2.toBuilder().doseCohort("cohort 2").build();
-        Subject subject3c = subject3.toBuilder().doseCohort("cohort 1").build();
+        String groupingName = "Treatment cohort";
+        Subject subject1c = subject1.toBuilder().subjectGroupings(Map.of(groupingName, "cohort 1")).build();
+        Subject subject2c = subject2.toBuilder().subjectGroupings(Map.of(groupingName, "cohort 2")).build();
+        Subject subject3c = subject3.toBuilder().subjectGroupings(Map.of(groupingName, "cohort 1")).build();
 
         List<Subject> population = Arrays.asList(subject1c, subject2c, subject3c);
         List<SubjectExt> subjectsExt = newArrayList(new SubjectExt(SubjectExtRaw.builder().build(), subject1c),
@@ -408,7 +408,8 @@ public class TumourColumnRangeServiceTest {
         when(drugDoseDatasetsDataProvider.loadDosesForTumourColumnRangeService(any(Datasets.class))).thenReturn(new ArrayList<>());
 
         ChartGroupByOptions<Subject, PopulationGroupByOptions> tocSettings = ChartGroupByOptions.<Subject, PopulationGroupByOptions>builder()
-                .withOption(COLOR_BY, DOSE_COHORT.getGroupByOptionAndParams())
+                .withOption(COLOR_BY, SUBJECT_GROUPING.getGroupByOptionAndParams(GroupByOption.Params.builder()
+                        .with(GroupByOption.Param.SUBJECT_GROUPING_NAME, groupingName).build()))
                 .build();
         ChartGroupByOptions<TumourTherapy, TumourTherapyGroupByOptions> therapiesSettings = buildTherapiesPlotSettings(MOST_RECENT_THERAPY);
 
@@ -501,53 +502,19 @@ public class TumourColumnRangeServiceTest {
         drugsNotDosed.put("Drug 2", "No");
         drugsNotDosed.put("Drug 3", "No");
 
-        Subject subject1c = subject1.toBuilder().doseCohort("cohort 1").otherCohort("Default group").drugsDosed(drugsDosed1).build();
-        Subject subject2c = subject2.toBuilder().doseCohort("cohort 2").otherCohort("other cohort 2").drugsDosed(drugsDosed2).build();
-        Subject subject3c = subject3.toBuilder().doseCohort("cohort 1").otherCohort("Default group").drugsDosed(drugsNotDosed).build();
+        Subject subject1c = subject1.toBuilder().drugsDosed(drugsDosed1).build();
+        Subject subject2c = subject2.toBuilder().drugsDosed(drugsDosed2).build();
+        Subject subject3c = subject3.toBuilder().drugsDosed(drugsNotDosed).build();
 
         List<Subject> population = Arrays.asList(subject1c, subject2c, subject3c);
         when(populationDatasetsDataProvider.loadData(any(Datasets.class))).thenReturn(population);
 
         List<TrellisOptions<PopulationGroupByOptions>> availableTOCColorBy = tumourService.getTOCColorBy(DATASETS, PopulationFilters.empty());
         softly.assertThat(availableTOCColorBy).extracting(TrellisOptions::getTrellisedBy, TrellisOptions::getTrellisOptions)
-                .containsExactlyInAnyOrder(tuple(DOSE_COHORT, newArrayList("cohort 1", "cohort 2")),
-                        tuple(OTHER_COHORT, newArrayList("Default group", "other cohort 2")),
-                        tuple(MAX_DOSE_PER_ADMIN_OF_DRUG, new ArrayList()),
+                .containsExactlyInAnyOrder(tuple(MAX_DOSE_PER_ADMIN_OF_DRUG, new ArrayList()),
                         tuple(MAX_DOSE_PER_ADMIN_OF_DRUG, new ArrayList()));
         softly.assertThat(availableTOCColorBy.stream().filter(c -> c.getTrellisedBy().equals(MAX_DOSE_PER_ADMIN_OF_DRUG)).collect(Collectors.toList()))
                 .extracting(o -> ((TumourColumnRangeService.TrellisOptionsWithDrug) o).getDrug()).containsExactlyInAnyOrder("Drug 2", "Drug 3");
-    }
-
-    @Test
-    public void testGetTOCColorByDefaultGroupOnly() {
-        Subject subject1c = subject1.toBuilder().doseCohort("Default group").otherCohort("Default group").build();
-        Subject subject2c = subject2.toBuilder().doseCohort("Default group").otherCohort("Default group").build();
-        Subject subject3c = subject3.toBuilder().doseCohort("Default group").otherCohort("Default group").build();
-
-        List<Subject> population = Arrays.asList(subject1c, subject2c, subject3c);
-        when(populationDatasetsDataProvider.loadData(any(Datasets.class))).thenReturn(population);
-
-        List<TrellisOptions<PopulationGroupByOptions>> availableTOCColorBy = tumourService.getTOCColorBy(DATASETS, PopulationFilters.empty());
-        softly.assertThat(availableTOCColorBy).isEmpty();
-    }
-
-    @Test
-    public void testGetTOCColorByDefaultGroupFiltered() {
-        Subject subject1c = subject1.toBuilder().doseCohort("Default group").otherCohort("Default group").build();
-        Subject subject2c = subject2.toBuilder().doseCohort("Default group").otherCohort("Default group").build();
-        Subject subject3c = subject3.toBuilder().doseCohort("Group 1").otherCohort("Other group 1").build();
-
-        List<Subject> population = Arrays.asList(subject1c, subject2c, subject3c);
-        when(populationDatasetsDataProvider.loadData(any(Datasets.class))).thenReturn(population);
-
-        PopulationFilters populationFilters = PopulationFilters.empty();
-        populationFilters.getSubjectId().completeWithValue("subject1");
-
-        List<TrellisOptions<PopulationGroupByOptions>> availableTOCColorBy = tumourService.getTOCColorBy(DATASETS, populationFilters);
-
-        softly.assertThat(availableTOCColorBy).extracting(TrellisOptions::getTrellisedBy, TrellisOptions::getTrellisOptions)
-                .containsExactlyInAnyOrder(tuple(DOSE_COHORT, newArrayList("Default group")),
-                        tuple(OTHER_COHORT, newArrayList("Default group")));
     }
 
     @Test

@@ -27,7 +27,6 @@ import com.acuity.visualisations.rawdatamodel.vo.DoseDiscRaw;
 import com.acuity.visualisations.rawdatamodel.vo.DrugDiscontinued;
 import com.acuity.visualisations.rawdatamodel.vo.DrugDoseRaw;
 import com.acuity.visualisations.rawdatamodel.vo.DrugDosed;
-import com.acuity.visualisations.rawdatamodel.vo.GroupType;
 import com.acuity.visualisations.rawdatamodel.vo.StudyInfo;
 import com.acuity.visualisations.rawdatamodel.vo.Subject;
 import com.acuity.visualisations.rawdatamodel.vo.Subject.SubjectMedicalHistories;
@@ -56,16 +55,17 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.OptionalInt;
 import java.util.Set;
+import java.util.TreeMap;
 import java.util.function.BinaryOperator;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static com.acuity.visualisations.rawdatamodel.util.Constants.NO;
 import static com.acuity.visualisations.rawdatamodel.util.Constants.YES;
 import static com.acuity.visualisations.rawdatamodel.util.DaysUtil.daysBetween;
 import static com.acuity.visualisations.rawdatamodel.util.DaysUtil.monthsBetween;
 import static com.acuity.visualisations.rawdatamodel.util.DaysUtil.truncLocalTime;
-import static com.acuity.visualisations.rawdatamodel.util.GroupsUtil.getGroupCharacter;
 import static java.util.Comparator.comparing;
 import static org.apache.commons.lang3.ObjectUtils.firstNonNull;
 
@@ -75,7 +75,6 @@ public class PopulationDatasetsDataProvider extends DatasetsDataProvider<Subject
     private static final String WEIGHT_TEST = "weight";
     private static final String HEIGHT_TEST = "height";
     private static final String DEFAULT_GROUP = "Default group";
-    private static final String COHORT = "Cohort";
     private static final int MONTHS_IN_YEAR = 12;
 
     @Autowired
@@ -113,7 +112,7 @@ public class PopulationDatasetsDataProvider extends DatasetsDataProvider<Subject
     @Override
     protected Collection<Subject> wrap(Datasets datasets, Collection<Subject> events) {
         List<Subject> eventsToMerge = events.stream()
-                .map(s -> s.toBuilder().build())
+                .map(subject -> subject.toBuilder().build())
                 .collect(Collectors.toList());
         return mergeDatasets(datasets, eventsToMerge);
     }
@@ -396,42 +395,21 @@ public class PopulationDatasetsDataProvider extends DatasetsDataProvider<Subject
     }
 
     private void setGroupingsData(Subject.SubjectBuilder subjectBuilder, List<Subject.SubjectGroup> subjectGroups) {
-        Optional<Subject.SubjectGroup> doseGroup = findGroup(subjectGroups, GroupType.DOSE);
-        Optional<Subject.SubjectGroup> otherGroup = findGroup(subjectGroups, GroupType.NONE);
+        Map<String, String> subjectGroupings = Optional.ofNullable(subjectGroups)
+                .orElse(Collections.emptyList())
+                .stream()
+                .filter(group -> group.getGroupingName() != null && !group.getGroupingName().isBlank())
+                .collect(Collectors.toMap(Subject.SubjectGroup::getGroupingName, this::groupToName,
+                        (directValue, ruleValue) -> directValue, TreeMap::new));
+        subjectBuilder.subjectGroupings(subjectGroupings);
 
-        if (!otherGroup.isPresent()) {
-            String doseCohortName = doseGroup.map(this::groupToName).orElse(DEFAULT_GROUP);
-            String doseGroupingName = doseGroup.map(Subject.SubjectGroup::getGroupingName).orElse(COHORT);
-            subjectBuilder.doseCohort(doseCohortName).doseGrouping(doseGroupingName);
-            if (!DEFAULT_GROUP.equals(doseCohortName) || !COHORT.equals(doseGroupingName)) {
-                subjectBuilder.otherCohort(DEFAULT_GROUP).otherGrouping(COHORT);
-            }
-        } else if (!doseGroup.isPresent()) {
-            String otherCohortName = otherGroup.map(this::groupToName).orElse(DEFAULT_GROUP);
-            String otherGroupingName = otherGroup.map(Subject.SubjectGroup::getGroupingName).orElse(COHORT);
-            subjectBuilder.otherCohort(otherCohortName).otherGrouping(otherGroupingName);
-            if (!DEFAULT_GROUP.equals(otherCohortName) || !COHORT.equals(otherGroupingName)) {
-                subjectBuilder.doseCohort(DEFAULT_GROUP).doseGrouping(COHORT);
-            }
-        } else {
-            subjectBuilder.otherCohort(groupToName(otherGroup.get()))
-                    .doseCohort(groupToName(doseGroup.get()))
-                    .otherGrouping(otherGroup.get().getGroupingName())
-                    .doseGrouping(doseGroup.get().getGroupingName());
-        }
-    }
-
-    private Optional<Subject.SubjectGroup> findGroup(List<Subject.SubjectGroup> groups, GroupType groupType) {
-        return Optional.ofNullable(groups)
-                .flatMap(gs -> gs.stream()
-                        .filter(e -> e.getGroupType().equals(groupType))
-                        .findFirst());
     }
 
     private String groupToName(Subject.SubjectGroup g) {
-        String name = firstNonNull(g.getGroupPreferredName(), g.getGroupName(), g.getGroupDefaultName(), DEFAULT_GROUP);
-        Integer groupIndex = g.getGroupIndex();
-        return groupIndex == null ? name : String.format("(%s)%s", getGroupCharacter(groupIndex), name);
+        return Stream.of(g.getGroupName(), g.getGroupDefaultName())
+                .filter(name -> name != null && !name.isBlank())
+                .findFirst()
+                .orElse(DEFAULT_GROUP);
     }
 
     private List<DrugDosed> buildDrugDosed(Subject subject, List<DrugDoseRaw> drugDoseRaws, Set<String> studyDrugs) {

@@ -80,11 +80,8 @@ import java.util.stream.Stream;
 import static com.acuity.visualisations.rawdatamodel.trellis.grouping.ChartGroupByOptions.ChartGroupBySetting.COLOR_BY;
 import static com.acuity.visualisations.rawdatamodel.trellis.grouping.ChartGroupByOptions.ChartGroupBySetting.SERIES_BY;
 import static com.acuity.visualisations.rawdatamodel.trellis.grouping.ChemotherapyGroupByOptions.PREFERRED_MED;
-import static com.acuity.visualisations.rawdatamodel.trellis.grouping.PopulationGroupByOptions.DOSE_COHORT;
 import static com.acuity.visualisations.rawdatamodel.trellis.grouping.PopulationGroupByOptions.MAX_DOSE_PER_ADMIN_OF_DRUG;
-import static com.acuity.visualisations.rawdatamodel.trellis.grouping.PopulationGroupByOptions.OTHER_COHORT;
 import static com.acuity.visualisations.rawdatamodel.util.Constants.ALL;
-import static com.acuity.visualisations.rawdatamodel.util.Constants.DEFAULT_GROUP;
 import static com.acuity.visualisations.rawdatamodel.util.Constants.SUMMARY;
 import static com.acuity.visualisations.rawdatamodel.util.Constants.YES;
 import static com.acuity.visualisations.rawdatamodel.util.DaysUtil.weeksBetween;
@@ -324,10 +321,6 @@ public class TumourColumnRangeService implements ColorInitializer {
 
         FilterResult<Subject> filtered = populationService.getFilteredData(datasets, populationFilters);
 
-        List<TrellisOptions<PopulationGroupByOptions>> tocColorBy = getTrellisOptions(filtered.getFilteredResult(), DOSE_COHORT, OTHER_COHORT);
-
-        Map<PopulationGroupByOptions, List> tocColorByNotFiltered = getTrellisOptions(filtered.getAllEvents(), DOSE_COHORT, OTHER_COHORT)
-                .stream().collect(toMap(TrellisOptions::getTrellisedBy, TrellisOptions::getTrellisOptions));
         final Set<String> drugs = filtered.getFilteredResult().stream()
                 .map(Subject::getDrugsDosed)
                 .flatMap(subjectDrugsDosed -> subjectDrugsDosed.entrySet().stream())
@@ -344,15 +337,7 @@ public class TumourColumnRangeService implements ColorInitializer {
                     .flatMap(o -> o.getTrellisOptions().stream()).collect(toList()));
         }).collect(toList());
 
-        // Coloring option DOSE_COHORT, OTHER_COHORT must be filtered out, if the whole dataset contains nothing but
-        // "Default group" value (it means that cohorts are not set up)
-        final List<TrellisOptions<PopulationGroupByOptions>> result = tocColorBy.stream()
-                .filter(options -> {
-                    List optionsNotFiltered = tocColorByNotFiltered.get(options.getTrellisedBy());
-                    optionsNotFiltered.forEach(o -> coloringService.getColor(o, options.getTrellisedBy()));
-                    return !(optionsNotFiltered.size() == 1 && optionsNotFiltered.contains(DEFAULT_GROUP));
-                })
-                .collect(toList());
+        final List<TrellisOptions<PopulationGroupByOptions>> result = new java.util.ArrayList<>();
         result.addAll(trellisOptionsWithDrugs);
         return result;
     }

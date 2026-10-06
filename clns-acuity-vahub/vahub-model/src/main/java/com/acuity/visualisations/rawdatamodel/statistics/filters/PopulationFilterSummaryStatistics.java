@@ -54,8 +54,7 @@ public class PopulationFilterSummaryStatistics implements FilterSummaryStatistic
         populationFilters.getWithdrawalCompletionDate().completeWithValue(subject.getDateOfWithdrawal());
         populationFilters.getRandomised().completeWithValue(subject.getRandomised());
         populationFilters.getRandomisationDate().completeWithValue(subject.getDateOfRandomisation());
-        populationFilters.getDoseCohort().completeWithValue(subject.getDoseCohort());
-        populationFilters.getOtherCohort().completeWithValue(subject.getOtherCohort());
+        populationFilters.getSubjectGroupings().completeWithValue(subject.getSubjectGroupings());
         populationFilters.getAttendedVisits().completeWithValues(subject.getAttendedVisitNumbers());
         populationFilters.getDrugsDosed().completeWithValue(subject.getDrugsDosed());
         populationFilters.getDrugsDiscontinued().completeWithValue(subject.getDrugsDiscontinued());
@@ -104,8 +103,7 @@ public class PopulationFilterSummaryStatistics implements FilterSummaryStatistic
         populationFilters.getWithdrawalCompletionDate().complete(otherSubject.populationFilters.getWithdrawalCompletionDate());
         populationFilters.getRandomised().complete(otherSubject.populationFilters.getRandomised());
         populationFilters.getRandomisationDate().complete(otherSubject.populationFilters.getRandomisationDate());
-        populationFilters.getDoseCohort().complete(otherSubject.populationFilters.getDoseCohort());
-        populationFilters.getOtherCohort().complete(otherSubject.populationFilters.getOtherCohort());
+        populationFilters.getSubjectGroupings().complete(otherSubject.populationFilters.getSubjectGroupings());
         populationFilters.getAttendedVisits().complete(otherSubject.populationFilters.getAttendedVisits());
         populationFilters.getBiomarkerGroups().complete(otherSubject.populationFilters.getBiomarkerGroups());
         populationFilters.getDrugsDosed().complete(otherSubject.populationFilters.getDrugsDosed());

@@ -30,6 +30,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.temporal.ChronoUnit;
+import java.util.AbstractMap;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
@@ -43,34 +44,27 @@ public abstract class AeSummariesService extends BaseEventService<AeRaw, Ae, AeG
     public abstract List<AeSummariesTable> getAesSummariesTable(Datasets datasets);
 
     protected Set<AeSummariesGroupingData> getAeSummariesGroupings(Collection<Subject> subjects) {
-        Map<AeSummariesGroupingData, Map<AeSummariesCohortCount, List<Subject>>> datasetDoseCohortSubjectsMap = subjects.stream()
-                .filter(s -> s.getDoseCohort() != null && s.getDoseGrouping() != null).collect(
-                        Collectors.groupingBy(s1 -> new AeSummariesGroupingData(s1.getClinicalStudyCode(), s1.getStudyPart()),
-                                Collectors.groupingBy(subj ->
-                                        new AeSummariesCohortCount(
-                                                subj.getDoseCohort(), subj.getDoseGrouping(),
-                                                AeSummariesTable.GroupingType.DOSE,
-                                                subj.getStudyPart() == null ? "(Empty)" : subj.getStudyPart()))));
-
         Map<AeSummariesGroupingData, Map<AeSummariesCohortCount, List<Subject>>> result = subjects.stream()
-                .filter(s -> s.getOtherGrouping() != null && s.getOtherCohort() != null).collect(
-                        Collectors.groupingBy(s1 -> new AeSummariesGroupingData(
-                                        s1.getClinicalStudyCode(), s1.getStudyPart()),
-                                Collectors.groupingBy(subj ->
-                                        new AeSummariesCohortCount(
-                                                subj.getOtherCohort(), subj.getOtherGrouping(), AeSummariesTable.GroupingType.NONE,
-                                                subj.getStudyPart() == null ? "(Empty)" : subj.getStudyPart()))));
+                .flatMap(subject -> subject.getSubjectGroupings().entrySet().stream()
+                        .filter(grouping -> grouping.getKey() != null && grouping.getValue() != null)
+                        .map(grouping -> new AbstractMap.SimpleEntry<>(subject, grouping)))
+                .collect(Collectors.groupingBy(e -> new AeSummariesGroupingData(e.getKey().getClinicalStudyCode(), e.getKey().getStudyPart()),
+                        Collectors.groupingBy(e -> new AeSummariesCohortCount(e.getValue().getValue(), e.getValue().getKey(),
+                                        AeSummariesTable.GroupingType.DYNAMIC,
+                                        e.getKey().getStudyPart() == null ? "(Empty)" : e.getKey().getStudyPart()),
+                                Collectors.mapping(Map.Entry::getKey, Collectors.toList()))));
 
+        subjects.stream()
+                .collect(Collectors.groupingBy(subject -> new AeSummariesGroupingData(
+                        subject.getClinicalStudyCode(), subject.getStudyPart())))
+                .forEach((groupingData, studySubjects) -> result.computeIfAbsent(groupingData, key -> {
+                    String studyPart = key.getStudyPart() == null ? "(Empty)" : key.getStudyPart();
+                    Map<AeSummariesCohortCount, List<Subject>> total = new HashMap<>();
+                    total.put(new AeSummariesCohortCount("TOTAL", "", AeSummariesTable.GroupingType.TOTAL,
+                            studyPart, studySubjects.size()), studySubjects);
+                    return total;
+                }));
 
-        for (Map.Entry<AeSummariesGroupingData, Map<AeSummariesCohortCount, List<Subject>>> e : result.entrySet()) {
-            e.getValue().putAll(datasetDoseCohortSubjectsMap.getOrDefault(e.getKey(), new HashMap<>()));
-            datasetDoseCohortSubjectsMap.remove(e.getKey());
-        }
-
-        for (Map.Entry<AeSummariesGroupingData, Map<AeSummariesCohortCount, List<Subject>>> e : datasetDoseCohortSubjectsMap.entrySet()) {
-            result.putIfAbsent(e.getKey(), new HashMap<>());
-            result.get(e.getKey()).putAll(e.getValue());
-        }
         for (Map.Entry<AeSummariesGroupingData, Map<AeSummariesCohortCount, List<Subject>>> e : result.entrySet()) {
             for (Map.Entry<AeSummariesCohortCount, List<Subject>> e1 : e.getValue().entrySet()) {
                 e1.getKey().setCount(e1.getValue().size());

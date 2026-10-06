@@ -43,10 +43,8 @@ import static com.acuity.visualisations.rawdatamodel.util.Constants.YES;
 @EqualsAndHashCode(of = "subjectId")
 @AllArgsConstructor
 @NoArgsConstructor
-@AcuityEntity(version = 20)
+@AcuityEntity(version = 21)
 public final class Subject implements HasStringId, HasSubject, Serializable {
-
-    public static final String COHORT_OTHER_FIELD_NAME = "cohortOther";
 
     public enum Attributes implements GroupByOption<Subject> {
 
@@ -80,10 +78,7 @@ public final class Subject implements HasStringId, HasSubject, Serializable {
         DATE_OF_DEATH(EntityAttribute.attribute("dateOfDeath", Subject::getDateOfDeath)),
         PLANNED_ARM(EntityAttribute.attribute("plannedArm", Subject::getPlannedArm)),
         ACTUAL_ARM(EntityAttribute.attribute("actualArm", Subject::getActualArm)),
-        DOSE_COHORT(EntityAttribute.attribute("doseCohort", Subject::getDoseCohort)),
-        OTHER_COHORT(EntityAttribute.attribute("otherCohort", Subject::getOtherCohort)),
-        DOSE_GROUPING(EntityAttribute.attribute("doseGrouping", Subject::getDoseGrouping)),
-        OTHER_GROUPING(EntityAttribute.attribute("otherGrouping", Subject::getOtherGrouping)),
+        SUBJECT_GROUPINGS(EntityAttribute.attribute("subjectGroupings", Subject::getSubjectGroupings)),
         SEX(EntityAttribute.attribute("sex", Subject::getSex)),
         RACE(EntityAttribute.attribute("race", Subject::getRace)),
         ETHNIC_GROUP(EntityAttribute.attribute("ethnicGroup", Subject::getEthnicGroup)),
@@ -136,9 +131,6 @@ public final class Subject implements HasStringId, HasSubject, Serializable {
     public static class SubjectGroup implements Serializable {
         private String subjectId;
         private String groupingName;
-        private GroupType groupType;
-        private Integer groupIndex;
-        private String groupPreferredName;
         private String groupName;
         private String groupDefaultName;
     }
@@ -249,13 +241,8 @@ public final class Subject implements HasStringId, HasSubject, Serializable {
     // Arms, cohorts & groups
     private String plannedArm;
     private String actualArm;
-    @Column(columnName = "doseCohort", order = 12, displayName = "Cohort(Dose)")
-    private String doseCohort;
-    @Column(columnName = "otherCohort", order = 13, displayName = "Cohort(Other)")
-    @Column(columnName = "otherCohort", order = 19, displayName = "Cohort-Other", type = Column.Type.STUDY_INFO)
-    private String otherCohort;
-    private String doseGrouping;
-    private String otherGrouping;
+    @Builder.Default
+    private Map<String, String> subjectGroupings = new HashMap<>();
     // Demography
     @Column(order = 1, displayName = "Sex", type = Column.Type.SSV)
     @Column(order = 2, displayName = "Sex", type = Column.Type.DEMOGRAPHY)
@@ -383,6 +370,10 @@ public final class Subject implements HasStringId, HasSubject, Serializable {
 
     public Map<String, Set<String>> getBiomarkerGroups() {
         return getUnmodifiableMap(biomarkerGroups);
+    }
+
+    public Map<String, String> getSubjectGroupings() {
+        return subjectGroupings == null ? Collections.emptyMap() : Collections.unmodifiableMap(subjectGroupings);
     }
 
     public Map<String, String> getDrugsDiscontinued() {

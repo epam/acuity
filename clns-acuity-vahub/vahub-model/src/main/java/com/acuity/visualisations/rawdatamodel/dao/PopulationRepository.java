@@ -18,7 +18,6 @@ package com.acuity.visualisations.rawdatamodel.dao;
 
 import com.acuity.visualisations.common.lookup.AcuityRepository;
 import com.acuity.visualisations.rawdatamodel.dao.api.RawDataRepository;
-import com.acuity.visualisations.rawdatamodel.vo.GroupType;
 import com.acuity.visualisations.rawdatamodel.vo.Subject;
 import com.acuity.visualisations.rawdatamodel.vo.Subject.SubjectVisit;
 import org.apache.ibatis.annotations.Options;
@@ -108,48 +107,37 @@ public interface PopulationRepository extends RawDataRepository<Subject> {
     List<SubjectVisit> getAttendedVisits(@Param("datasetId") long datasetId);
 
     @Select(" SELECT * FROM ( "
-            + " SELECT COALESCE(pgr_grouping_name, 'Cohort')        AS gr_grouping_name, "
+            + " SELECT pgr_grouping_name                            AS gr_grouping_name, "
             + "         pat_id                                    AS gr_pat_id, "
-            + "         msgt_type                                 AS gr_type, "
-            + "         msga_index                                AS gr_index, "
-            + "         msga_group_prefered_name                  AS gr_preferred_name, "
             + "         pgr_group_name                            AS gr_name, "
             + "         NULL                                      AS gr_default_name, "
             + "         msr_id                                    AS msr_id, "
-            + "         msg_grouping_selected                     AS msg_grouping_selected "
+            + "         0                                         AS gr_source_priority "
             + "  FROM result_patient "
             + "  JOIN result_study ON pat_std_id = std_id "
             + "  JOIN map_study_rule ON std_name = msr_study_code "
-            + "  LEFT JOIN result_patient_group ON pgr_pat_subject = pat_subject AND pgr_std_id = pat_std_id "
-            + "  LEFT JOIN map_subject_grouping ON msg_study_id = msr_id AND msg_grouping_name = pgr_grouping_name "
-            + "  LEFT JOIN map_subject_grouping_type ON msg_msgt_id = msgt_id "
-            + "  LEFT JOIN map_subject_group_annotation ON msga_grouping_id = msg_id AND msga_group_name = pgr_group_name"
-            + "  UNION "
-            + "  SELECT COALESCE(msgr_name, 'Cohort') AS gr_grouping_name, "
+            + "  JOIN result_patient_group ON pgr_pat_subject = pat_subject AND pgr_std_id = pat_std_id "
+            + "    AND (pgr_pat_part = pat_part OR (pgr_pat_part IS NULL AND pat_part IS NULL)) "
+            + "  WHERE pgr_grouping_name IS NOT NULL AND TRIM(pgr_grouping_name) <> '' "
+            + "  UNION ALL "
+            + "  SELECT msgr_name                                  AS gr_grouping_name, "
             + "         pat_id                                    AS gr_pat_id, "
-            + "         msgt_type                                 AS gr_type, "
-            + "         msga_index                                AS gr_index, "
-            + "         msga_group_prefered_name                  AS gr_preferred_name, "
             + "         msgv_name                                 AS gr_name, "
             + "         msgr_default_value                        AS gr_default_name, "
             + "         msr_id                                    AS msr_id, "
-            + "         msg_grouping_selected                     AS msg_grouping_selected "
+            + "         1                                         AS gr_source_priority "
             + "  FROM result_patient "
             + "  JOIN result_study ON pat_std_id = std_id "
             + "  JOIN map_study_rule ON std_name = msr_study_code "
             + "  JOIN map_subject_group_rule ON msr_id = msgr_study_id "
             + "  LEFT JOIN map_subject_group_value_rule ON msgv_group_id = msgr_id AND msgv_subject_id = pat_subject "
-            + "  LEFT JOIN map_subject_grouping ON msg_study_id = msr_id AND msg_grouping_name = msgr_name "
-            + "  LEFT JOIN map_subject_grouping_type ON msg_msgt_id = msgt_id "
-            + "  LEFT JOIN map_subject_group_annotation ON msga_grouping_id = msg_id AND msga_group_name = msgv_name "
+            + "  WHERE msgr_enabled = 1 AND msgr_name IS NOT NULL AND TRIM(msgr_name) <> '' "
             + ") groups "
-            + "WHERE groups.msg_grouping_selected = 'true' AND groups.gr_type IN ('NONE', 'DOSE') AND groups.msr_id = #{datasetId}")
+            + "WHERE groups.msr_id = #{datasetId} "
+            + "ORDER BY gr_pat_id, gr_grouping_name, gr_source_priority")
     @Results(value = {
             @Result(property = "subjectId", column = "gr_pat_id"),
             @Result(property = "groupingName", column = "gr_grouping_name"),
-            @Result(property = "groupType", column = "gr_type", javaType = GroupType.class),
-            @Result(property = "groupIndex", column = "gr_index"),
-            @Result(property = "groupPreferredName", column = "gr_preferred_name"),
             @Result(property = "groupName", column = "gr_name"),
             @Result(property = "groupDefaultName", column = "gr_default_name")
     })
