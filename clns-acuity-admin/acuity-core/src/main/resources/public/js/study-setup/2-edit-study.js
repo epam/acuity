@@ -453,6 +453,8 @@ EditStudyStep.prototype = {
         $("#studyCode").attr("title", scope.study.studyCode);
         $("#studyName").val(scope.study.studyName);
         $("#studyName").attr("title", scope.study.studyName);
+        $("#studyComment").attr("title", scope.study.studyComment);
+        $("#studyComment").val(scope.study.studyComment);
         $("#clinicalStudyId").val(scope.study.clinicalStudyId);
         $("#clinicalStudyId").attr("title", scope.study.clinicalStudyId);
         $("#clinicalStudyName").val(scope.study.clinicalStudyName);
