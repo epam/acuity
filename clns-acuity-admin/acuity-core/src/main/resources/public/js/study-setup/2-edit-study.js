@@ -173,7 +173,7 @@ var EditStudyStep = function (studyWizard) {
         }
         var searchText = $('#' + this.searchInputId).val();
         scope.study.studyName = $("#studyName").val();
-        scope.study.studyName = $("#studyName").val();
+        scope.study.studyCode = $("#studyCode").val();
         scope.study.studyComment = $("#studyComment").val();
         scope.study.clinicalStudyId = $("#clinicalStudyId").val();
         scope.study.clinicalStudyName = $("#clinicalStudyName").val();
