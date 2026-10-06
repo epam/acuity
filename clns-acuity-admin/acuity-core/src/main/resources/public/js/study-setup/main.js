@@ -15,9 +15,7 @@ var StudyWizard = function () {
         "that can be applied to ACUITY visualisations. Alternative Subject Groupings are used to group sets of subjects " +
         "(by their unique subject identifiers) that may be of particular interest in this dataset. " +
         "You may enter the groups manually, or upload a file containing this information.";
-    var STUDY_GROUPING_ANNOTATE_STEP_SUB_HEADER = "Here, subject groupings that have been uploaded can be assigned " +
-        "to a specific type of cohort (e.g. dose cohort) and can be annotated with additional information, " +
-        "such as the details of dosing regimen.";
+
     var STUDY_SUMMARY_STEP_SUB_HEADER = 'Here you can review the information provided about the dataset. ' +
         'Edits can be made to this information by clicking "Back" to the desired setup page, ' +
         'or using the "view/edit" links provided below. It is important to ensure all information is accurate. ' +
@@ -62,7 +60,6 @@ var StudyWizard = function () {
     this.STUDY_ALT_LAB_CODES_INX = stepsOrderIndex++;
     this.STUDY_EXCLUSION_VALUES_INX = stepsOrderIndex++;
     this.STUDY_GROUPING_STEP_INX = stepsOrderIndex++;
-    this.STUDY_ANNOTATE_SUBJECT_GROUPINGS_STEP_INX = stepsOrderIndex++;
     this.PROJECT_GROUPINGS_STEP_INX = stepsOrderIndex++;
     this.STUDY_GROUPINGS_STEP_INX = stepsOrderIndex++;
     if (cBioPortalUrl) {
@@ -240,11 +237,7 @@ var StudyWizard = function () {
             wizardCommonModule.setHeader(scope.workflow.selectedStudy.studyCode + " Alternative Subject Groupings");
             wizardCommonModule.setStepSubHeading(STUDY_GROUPING_STEP_SUB_HEADER);
             scope.groupingsStudyStep.startStep();
-        } else if (currentStep == scope.STUDY_ANNOTATE_SUBJECT_GROUPINGS_STEP_INX) {
-            wizardCommonModule.showCommonStepButtons();
-            wizardCommonModule.setHeader(scope.workflow.selectedStudy.studyCode + " Annotate Subject Groupings");
-            wizardCommonModule.setStepSubHeading(STUDY_GROUPING_ANNOTATE_STEP_SUB_HEADER);
-            scope.groupingsStudyStep.startStep();
+
         } else if (currentStep == scope.PROJECT_GROUPINGS_STEP_INX) {
             wizardCommonModule.showCommonStepButtons();
             wizardCommonModule.setHeader(scope.workflow.selectedStudy.studyCode + " " + PROJECT_GROUPINGS_STEP_HEADER);
@@ -277,7 +270,6 @@ var StudyWizard = function () {
             currentStep != scope.STUDY_GROUPING_STEP_INX &&
             currentStep != scope.STUDY_ALT_LAB_CODES_INX &&
             currentStep != scope.STUDY_BASELINE_DRUGS_STEP_INX &&
-            currentStep != scope.STUDY_ANNOTATE_SUBJECT_GROUPINGS_STEP_INX &&
             currentStep != scope.STUDY_EXCLUSION_VALUES_INX &&
             currentStep != scope.PROJECT_GROUPINGS_STEP_INX &&
             currentStep != scope.STUDY_GROUPINGS_STEP_INX &&
@@ -460,9 +452,7 @@ StudyWizard.prototype = {
         if (this.workflow) {
             scope.editStudyStep.setCurrentStudy(this.workflow, searchText);
             this.mappingStudyStep.completeMappings = this.workflow.completeMappings;
-            if (study.id) {
-                $('#refToWebappGroupings').attr('href', '/app#/groupings/' + study.id);
-            }
+
         }
 
         var studySearchstepIndexText = isNew || !study.id ? "Select the dataset to configure for ACUITY" : 'Dataset ' + study.studyName + " configuration selected";
@@ -481,7 +471,6 @@ StudyWizard.prototype = {
             this.wizard.smartWizard('stepState', this.STUDY_BASELINE_DRUGS_STEP_INX, 'initial');
             this.wizard.smartWizard('stepState', this.STUDY_ALT_LAB_CODES_INX, 'initial');
             this.wizard.smartWizard('stepState', this.STUDY_EXCLUSION_VALUES_INX, 'initial');
-            this.wizard.smartWizard('stepState', this.STUDY_ANNOTATE_SUBJECT_GROUPINGS_STEP_INX, 'initial');
             this.wizard.smartWizard('stepState', this.STUDY_SUMMARY_STEP_INX, 'initial');
             this.wizard.smartWizard('stepState', this.PROJECT_GROUPINGS_STEP_INX, 'initial');
             this.wizard.smartWizard('stepState', this.STUDY_GROUPINGS_STEP_INX, 'initial');
@@ -498,7 +487,6 @@ StudyWizard.prototype = {
         this.wizard.smartWizard('stepState', this.STUDY_GROUPING_STEP_INX, 'enable');
         this.wizard.smartWizard('stepState', this.STUDY_BASELINE_DRUGS_STEP_INX, 'enable');
         this.wizard.smartWizard('stepState', this.STUDY_ALT_LAB_CODES_INX, 'enable');
-        this.wizard.smartWizard('stepState', this.STUDY_ANNOTATE_SUBJECT_GROUPINGS_STEP_INX, 'enable');
         this.wizard.smartWizard('stepState', this.STUDY_EXCLUSION_VALUES_INX, 'enable');
         this.wizard.smartWizard('stepState', this.PROJECT_GROUPINGS_STEP_INX, 'enable');
         this.wizard.smartWizard('stepState', this.STUDY_GROUPINGS_STEP_INX, 'enable');
