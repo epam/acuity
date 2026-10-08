@@ -154,6 +154,7 @@ import com.acuity.visualisations.model.output.entities.Visit;
 import com.acuity.visualisations.model.output.entities.Vital;
 import com.acuity.visualisations.model.output.entities.VitalThin;
 import com.acuity.visualisations.model.output.entities.WithdrawalCompletion;
+import com.acuity.visualisations.model.output.entities.WidePatientGroupings;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
@@ -395,6 +396,7 @@ public class EntityManager {
         entityDaoMap.put(MedDosingSchedule.class, medDosingScheduleDao);
         entityDaoMap.put(SeriousAdverseEvent.class, seriousAdverseEventDao);
         entityDaoMap.put(PatientGroup.class, patientGroupDao);
+        entityDaoMap.put(WidePatientGroupings.class, patientGroupDao);
         entityDaoMap.put(RecistAssessment.class, recistAssessmentDao);
         entityDaoMap.put(PrimaryTumourLocation.class, tumourLocationDao);
         entityDaoMap.put(Death.class, deathDao);
@@ -445,6 +447,9 @@ public class EntityManager {
     @SuppressWarnings({"rawtypes", "unchecked"})
     private IEntityDao<? extends OutputEntity> getConcreteDao(Class<?> entityClass) {
         IEntityDao<? extends OutputEntity> dao = entityDaoMap.get(entityClass);
+        if (dao == null) {
+            throw new IllegalStateException("No entity DAO configured for " + entityClass.getName());
+        }
         if (dao instanceof NotCumulativeEntityDao) {
             return dao;
         } else {
