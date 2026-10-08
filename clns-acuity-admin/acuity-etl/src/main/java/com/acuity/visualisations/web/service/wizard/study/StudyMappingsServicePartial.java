@@ -42,7 +42,6 @@ import com.acuity.visualisations.web.service.IStudyMappingsServicePartial;
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
@@ -517,7 +516,7 @@ public class StudyMappingsServicePartial implements IStudyMappingsServicePartial
     }
 
     @Override
-    @Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW, rollbackFor = Throwable.class)
+    @Transactional(readOnly = false, rollbackFor = Throwable.class)
     public FieldRule saveDynamicFieldRule(MappingRule mappingRule, String name) {
         return dynamicFieldRuleDao.insertDynamicField(mappingRule.getId(), name);
     }
@@ -528,7 +527,7 @@ public class StudyMappingsServicePartial implements IStudyMappingsServicePartial
     }
 
     @Override
-    @Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW, rollbackFor = Throwable.class)
+    @Transactional(readOnly = false, rollbackFor = Throwable.class)
     public void deleteDynamicFieldRuleByMappingRule(MappingRule mappingRule) {
         dynamicFieldRuleDao.deleteDynamicField(mappingRule.getId());
     }
