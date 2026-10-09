@@ -17,6 +17,7 @@
 package com.acuity.visualisations.rawdatamodel.filters;
 
 import com.acuity.visualisations.rawdatamodel.util.AlphanumComparator;
+import com.acuity.visualisations.rawdatamodel.util.AlphanumDefaultGroupLastComparator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AccessLevel;
@@ -29,6 +30,7 @@ import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.Validate;
 
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -45,7 +47,14 @@ public class SetFilter<T extends Comparable<T>> implements Filter<T>, HideableFi
 
     @JsonProperty("values")
     public List<T> getSortedValues() {
-        return values.stream().sorted(new AlphanumComparator<>()).collect(Collectors.toList());
+        return values.stream().sorted(defaultGroupLastComparator()).collect(Collectors.toList());
+    }
+
+    @SuppressWarnings("unchecked")
+    private Comparator<T> defaultGroupLastComparator() {
+        return values.stream().allMatch(v -> v == null || v instanceof String)
+                ? (Comparator<T>) AlphanumDefaultGroupLastComparator.getInstance()
+                : new AlphanumComparator<>();
     }
 
     @JsonProperty("values")

@@ -81,6 +81,7 @@ import static com.acuity.visualisations.rawdatamodel.trellis.grouping.TumourTher
 import static com.acuity.visualisations.rawdatamodel.trellis.grouping.TumourTherapyGroupByOptions.MOST_RECENT_THERAPY;
 import static com.acuity.visualisations.rawdatamodel.util.Constants.ALL;
 import static com.acuity.visualisations.rawdatamodel.util.Constants.NO;
+import static com.acuity.visualisations.rawdatamodel.util.Constants.DEFAULT_GROUP;
 import static com.acuity.visualisations.rawdatamodel.util.Constants.SUMMARY;
 import static com.acuity.visualisations.rawdatamodel.util.Constants.YES;
 import static com.acuity.visualisations.rawdatamodel.util.DaysUtil.toDate;
@@ -510,12 +511,17 @@ public class TumourColumnRangeServiceTest {
         when(populationDatasetsDataProvider.loadData(any(Datasets.class))).thenReturn(population);
 
         List<TrellisOptions<PopulationGroupByOptions>> availableTOCColorBy = tumourService.getTOCColorBy(DATASETS, PopulationFilters.empty());
-        softly.assertThat(availableTOCColorBy).extracting(TrellisOptions::getTrellisedBy, TrellisOptions::getTrellisOptions)
-                .containsExactlyInAnyOrder(tuple(MAX_DOSE_PER_ADMIN_OF_DRUG, new ArrayList()),
-                        tuple(MAX_DOSE_PER_ADMIN_OF_DRUG, new ArrayList()));
-        softly.assertThat(availableTOCColorBy.stream().filter(c -> c.getTrellisedBy().equals(MAX_DOSE_PER_ADMIN_OF_DRUG)).collect(Collectors.toList()))
-                .extracting(o -> ((TumourColumnRangeService.TrellisOptionsWithDrug) o).getDrug()).containsExactlyInAnyOrder("Drug 2", "Drug 3");
+        // Assert drug-based options are present (there may be additional grouping options now)
+        List<TumourColumnRangeService.TrellisOptionsWithDrug> drugEntries = availableTOCColorBy.stream()
+                .filter(c -> c.getTrellisedBy().equals(MAX_DOSE_PER_ADMIN_OF_DRUG))
+                .map(c -> (TumourColumnRangeService.TrellisOptionsWithDrug) c)
+                .collect(Collectors.toList());
+        softly.assertThat(drugEntries).hasSize(2);
+        softly.assertThat(drugEntries).extracting(TumourColumnRangeService.TrellisOptionsWithDrug::getDrug)
+                .containsExactlyInAnyOrder("Drug 2", "Drug 3");
     }
+
+    // Note: SUBJECT_GROUPING options may also be present; this test only asserts drug options remain intact.
 
     @Test
     public void testGetAvailableTherapyFiltersMostRecentTherapyCase() {

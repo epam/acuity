@@ -57,13 +57,13 @@ public abstract class AeSummariesService extends BaseEventService<AeRaw, Ae, AeG
         subjects.stream()
                 .collect(Collectors.groupingBy(subject -> new AeSummariesGroupingData(
                         subject.getClinicalStudyCode(), subject.getStudyPart())))
-                .forEach((groupingData, studySubjects) -> result.computeIfAbsent(groupingData, key -> {
-                    String studyPart = key.getStudyPart() == null ? "(Empty)" : key.getStudyPart();
-                    Map<AeSummariesCohortCount, List<Subject>> total = new HashMap<>();
-                    total.put(new AeSummariesCohortCount("TOTAL", "", AeSummariesTable.GroupingType.TOTAL,
-                            studyPart, studySubjects.size()), studySubjects);
-                    return total;
-                }));
+                .forEach((groupingData, studySubjects) -> {
+                    String studyPart = groupingData.studyPart == null ? "(Empty)" : groupingData.studyPart;
+                    Map<AeSummariesCohortCount, List<Subject>> map = result.computeIfAbsent(groupingData, key -> new HashMap<>());
+                    // add TOTAL cohort unconditionally (do not overwrite any dynamic entries)
+                    map.putIfAbsent(new AeSummariesCohortCount("TOTAL", "", AeSummariesTable.GroupingType.TOTAL,
+                            studyPart), studySubjects);
+                });
 
         for (Map.Entry<AeSummariesGroupingData, Map<AeSummariesCohortCount, List<Subject>>> e : result.entrySet()) {
             for (Map.Entry<AeSummariesCohortCount, List<Subject>> e1 : e.getValue().entrySet()) {

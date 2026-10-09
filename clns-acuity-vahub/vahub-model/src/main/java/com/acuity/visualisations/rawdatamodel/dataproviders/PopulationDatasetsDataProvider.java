@@ -400,7 +400,15 @@ public class PopulationDatasetsDataProvider extends DatasetsDataProvider<Subject
                 .stream()
                 .filter(group -> group.getGroupingName() != null && !group.getGroupingName().isBlank())
                 .collect(Collectors.toMap(Subject.SubjectGroup::getGroupingName, this::groupToName,
-                        (directValue, ruleValue) -> directValue, TreeMap::new));
+                        // explicit precedence: prefer non-default value; if both non-default, keep first (already ranked in SQL)
+                        (existing, incoming) -> {
+                            boolean existingDefault = DEFAULT_GROUP.equals(existing);
+                            boolean incomingDefault = DEFAULT_GROUP.equals(incoming);
+                            if (existingDefault && !incomingDefault) {
+                                return incoming;
+                            }
+                            return existing;
+                        }, TreeMap::new));
         subjectBuilder.subjectGroupings(subjectGroupings);
 
     }
