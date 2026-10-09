@@ -18,6 +18,7 @@ package com.acuity.visualisations.batch.processor;
 
 import com.acuity.visualisations.aspect.TimeMe;
 import com.acuity.visualisations.batch.holders.JobExecutionInfoAware;
+import com.acuity.visualisations.batch.reader.SkippedFilesAndHoldersAware;
 import com.acuity.visualisations.dal.EntityManager;
 import com.acuity.visualisations.report.dao.IDataFieldReportDao;
 import com.acuity.visualisations.report.dao.IDataSummaryReportDao;
@@ -146,7 +147,7 @@ public class DataCommonReport extends JobExecutionInfoAware {
             }
 
             if (!failedExitStatus
-                    && execution.getExitStatus().getExitCode().equals("COMPLETED_WITH_SKIPS")) {
+                    && execution.getExitStatus().getExitCode().equals(SkippedFilesAndHoldersAware.COMPLETED_WITH_SKIPS)) {
                 completedWithSkipsExitStatus = true;
             }
 

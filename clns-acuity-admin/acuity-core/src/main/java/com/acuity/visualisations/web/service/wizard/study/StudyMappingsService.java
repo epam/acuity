@@ -126,6 +126,7 @@ public class StudyMappingsService {
 		return mappingRule;
 	}
 
+	@Transactional(readOnly = false, rollbackFor = Throwable.class)
 	public void upateMapRule(MapRuleDTO dto, MappingRule mappingRule) {
 		mappingRule.setFmtName(dto.getDecodingInfo());
 		mappingRule.setValue(dto.getDefaultValue());

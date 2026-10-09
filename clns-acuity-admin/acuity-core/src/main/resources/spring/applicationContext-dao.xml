@@ -29,7 +29,8 @@
 <!--    </bean>-->
 
     <bean id="jobRepository" class="org.springframework.batch.core.repository.support.JobRepositoryFactoryBean"
-          p:dataSource-ref="dataSource" p:transactionManager-ref="transactionManager">
+          p:dataSource-ref="dataSource" p:transactionManager-ref="transactionManager"
+          p:isolationLevelForCreate="ISOLATION_READ_COMMITTED">
 <!--        <property name="lobHandler" ref="oracleLobHandler"/>-->
     </bean>
 
