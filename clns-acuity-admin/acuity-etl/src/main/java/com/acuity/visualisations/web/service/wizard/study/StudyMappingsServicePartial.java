@@ -516,6 +516,7 @@ public class StudyMappingsServicePartial implements IStudyMappingsServicePartial
     }
 
     @Override
+    @Transactional(readOnly = false, rollbackFor = Throwable.class)
     public FieldRule saveDynamicFieldRule(MappingRule mappingRule, String name) {
         return dynamicFieldRuleDao.insertDynamicField(mappingRule.getId(), name);
     }
@@ -526,6 +527,7 @@ public class StudyMappingsServicePartial implements IStudyMappingsServicePartial
     }
 
     @Override
+    @Transactional(readOnly = false, rollbackFor = Throwable.class)
     public void deleteDynamicFieldRuleByMappingRule(MappingRule mappingRule) {
         dynamicFieldRuleDao.deleteDynamicField(mappingRule.getId());
     }

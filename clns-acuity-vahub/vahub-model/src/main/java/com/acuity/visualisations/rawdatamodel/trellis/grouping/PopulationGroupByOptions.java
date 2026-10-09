@@ -123,8 +123,16 @@ public enum PopulationGroupByOptions implements GroupByOption<Subject> {
                     : getBinnedAttribute("ON_STUDY", params, o -> axisStart, Subject::getStudyLeaveDate);
         }
     },
-    DOSE_COHORT(Subject.Attributes.DOSE_COHORT),
-    OTHER_COHORT(Subject.Attributes.OTHER_COHORT),
+    SUBJECT_GROUPING(Subject.Attributes.SUBJECT_GROUPINGS) {
+        @Override
+        public EntityAttribute<Subject> getAttribute(Params params) {
+            String groupingName = params == null ? null : params.getStr(Param.SUBJECT_GROUPING_NAME);
+            if (groupingName == null || groupingName.isBlank()) {
+                throw new IllegalStateException("Cannot use SUBJECT_GROUPING without a subject grouping name");
+            }
+            return EntityAttribute.attribute("SUBJECT_GROUPING", s -> s.getSubjectGroupings().get(groupingName));
+        }
+    },
     MAX_DOSE_PER_ADMIN_OF_DRUG(Subject.Attributes.MAX_DOSE_MAP) {
         @Override
         public EntityAttribute<Subject> getAttribute() {
@@ -204,5 +212,3 @@ public enum PopulationGroupByOptions implements GroupByOption<Subject> {
     }
 
 }
-
-

@@ -73,6 +73,19 @@ public class StudySetupSubjectGroupService {
             if (subjectGrouping == null) {
                 subjectGrouping = new SubjectGrouping(groupingName);
             }
+            // Order groups alphabetically, but force "Default group" to the end
+            groups.sort((g1, g2) -> {
+                String n1 = g1.getGroupPreferedName() != null ? g1.getGroupPreferedName() : g1.getGroupName();
+                String n2 = g2.getGroupPreferedName() != null ? g2.getGroupPreferedName() : g2.getGroupName();
+                boolean d1 = "Default group".equals(n1);
+                boolean d2 = "Default group".equals(n2);
+                if (d1 && !d2) return 1;
+                if (!d1 && d2) return -1;
+                if (n1 == null && n2 == null) return 0;
+                if (n1 == null) return 1;
+                if (n2 == null) return -1;
+                return n1.compareToIgnoreCase(n2);
+            });
             subjectGrouping.setGroups(groups);
 
             if (subjectGrouping.getType() == null) {

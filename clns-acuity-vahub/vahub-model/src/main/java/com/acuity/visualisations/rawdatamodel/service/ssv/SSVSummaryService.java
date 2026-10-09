@@ -32,12 +32,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-import static com.acuity.visualisations.rawdatamodel.vo.Subject.COHORT_OTHER_FIELD_NAME;
-
 @Service
 public class SSVSummaryService {
 
-    private static final String DEFAULT_GROUP = "Default group";
     @Autowired
     private PopulationService populationService;
 
@@ -58,13 +55,6 @@ public class SSVSummaryService {
     private Map<String, String> getExistingPopulationColumns(Datasets datasets, FilterResult<Subject> filteredData, Column.Type columnType) {
         Map<String, String> availableColumns = doDCommonService
                 .getDoDColumns(Column.DatasetType.fromDatasets(datasets), filteredData.getFilteredResult(), columnType);
-        // We need to exclude Default group value only for cohort other column and only for SSV table (DOD should remain the same)
-        if (Column.Type.STUDY_INFO.equals(columnType)
-                && filteredData.getFilteredEvents()
-                .stream()
-                .allMatch(subject -> DEFAULT_GROUP.equals(subject.getOtherCohort()))) {
-            availableColumns.remove(COHORT_OTHER_FIELD_NAME);
-        }
         return availableColumns;
     }
 

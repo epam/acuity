@@ -359,20 +359,18 @@ public class PopulationRawDataFilterServiceTest {
     }
 
     @Test
-    public void testGetEmptyWithDoseCohort() {
+    public void testKeepDefaultValuedDynamicSubjectGroupings() {
         // Given
         PopulationFilters filters = new PopulationFilters();
 
-        SetFilter<String> doseCohortFilter = new SetFilter<>();
-        doseCohortFilter.setSortedValues(newArrayList("Default group", "Default group"));
-        filters.setDoseCohort(doseCohortFilter);
-
-        SetFilter<String> otherCohortFilter = new SetFilter<>();
-        otherCohortFilter.setSortedValues(newArrayList("Default group", "Default group"));
-        filters.setOtherCohort(otherCohortFilter);
+        MapFilter<String, SetFilter<String>> subjectGroupingsFilter = new MapFilter<>(SetFilter.class);
+        Map<String, SetFilter<String>> map = new HashMap<>();
+        map.put("admin_defined_grouping", new SetFilter<>(newArrayList("Default group")));
+        subjectGroupingsFilter.setMap(map);
+        filters.setSubjectGroupings(subjectGroupingsFilter);
 
         // Then
-        assertThat(filters.getEmptyFilterNames()).contains("doseCohort", "otherCohort");
+        assertThat(filters.getEmptyFilterNames()).doesNotContain("subjectGroupings");
     }
 
     @Test

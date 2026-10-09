@@ -80,11 +80,9 @@ import java.util.stream.Stream;
 import static com.acuity.visualisations.rawdatamodel.trellis.grouping.ChartGroupByOptions.ChartGroupBySetting.COLOR_BY;
 import static com.acuity.visualisations.rawdatamodel.trellis.grouping.ChartGroupByOptions.ChartGroupBySetting.SERIES_BY;
 import static com.acuity.visualisations.rawdatamodel.trellis.grouping.ChemotherapyGroupByOptions.PREFERRED_MED;
-import static com.acuity.visualisations.rawdatamodel.trellis.grouping.PopulationGroupByOptions.DOSE_COHORT;
 import static com.acuity.visualisations.rawdatamodel.trellis.grouping.PopulationGroupByOptions.MAX_DOSE_PER_ADMIN_OF_DRUG;
-import static com.acuity.visualisations.rawdatamodel.trellis.grouping.PopulationGroupByOptions.OTHER_COHORT;
+import static com.acuity.visualisations.rawdatamodel.trellis.grouping.PopulationGroupByOptions.SUBJECT_GROUPING;
 import static com.acuity.visualisations.rawdatamodel.util.Constants.ALL;
-import static com.acuity.visualisations.rawdatamodel.util.Constants.DEFAULT_GROUP;
 import static com.acuity.visualisations.rawdatamodel.util.Constants.SUMMARY;
 import static com.acuity.visualisations.rawdatamodel.util.Constants.YES;
 import static com.acuity.visualisations.rawdatamodel.util.DaysUtil.weeksBetween;
@@ -97,8 +95,10 @@ import static com.acuity.visualisations.rawdatamodel.util.TumourTherapyUtil.merg
 import static com.acuity.visualisations.rawdatamodel.util.TumourTherapyUtil.straightforwardMerge;
 import static com.acuity.visualisations.rawdatamodel.util.TumourTherapyUtil.withEmptyStartDatesPopulatedBySubject;
 import static com.acuity.visualisations.rawdatamodel.vo.GroupByOption.Param.DRUG_NAME;
+import static com.acuity.visualisations.rawdatamodel.vo.GroupByOption.Param.SUBJECT_GROUPING_NAME;
 import static com.acuity.visualisations.rawdatamodel.vo.wrappers.Radiotherapy.RADIOTHERAPY_LABEL;
 import static java.util.stream.Collectors.groupingBy;
+import static java.util.stream.Collectors.mapping;
 import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.toMap;
 import static java.util.stream.Collectors.toSet;
@@ -324,10 +324,6 @@ public class TumourColumnRangeService implements ColorInitializer {
 
         FilterResult<Subject> filtered = populationService.getFilteredData(datasets, populationFilters);
 
-        List<TrellisOptions<PopulationGroupByOptions>> tocColorBy = getTrellisOptions(filtered.getFilteredResult(), DOSE_COHORT, OTHER_COHORT);
-
-        Map<PopulationGroupByOptions, List> tocColorByNotFiltered = getTrellisOptions(filtered.getAllEvents(), DOSE_COHORT, OTHER_COHORT)
-                .stream().collect(toMap(TrellisOptions::getTrellisedBy, TrellisOptions::getTrellisOptions));
         final Set<String> drugs = filtered.getFilteredResult().stream()
                 .map(Subject::getDrugsDosed)
                 .flatMap(subjectDrugsDosed -> subjectDrugsDosed.entrySet().stream())
@@ -344,16 +340,33 @@ public class TumourColumnRangeService implements ColorInitializer {
                     .flatMap(o -> o.getTrellisOptions().stream()).collect(toList()));
         }).collect(toList());
 
-        // Coloring option DOSE_COHORT, OTHER_COHORT must be filtered out, if the whole dataset contains nothing but
-        // "Default group" value (it means that cohorts are not set up)
-        final List<TrellisOptions<PopulationGroupByOptions>> result = tocColorBy.stream()
-                .filter(options -> {
-                    List optionsNotFiltered = tocColorByNotFiltered.get(options.getTrellisedBy());
-                    optionsNotFiltered.forEach(o -> coloringService.getColor(o, options.getTrellisedBy()));
-                    return !(optionsNotFiltered.size() == 1 && optionsNotFiltered.contains(DEFAULT_GROUP));
+        // Dynamic subject grouping color-by options
+        final Set<String> groupingNames = filtered.getFilteredResult().stream()
+                .flatMap(s -> s.getSubjectGroupings().keySet().stream())
+                .collect(toSet());
+
+        // Build unfiltered values map per grouping name to apply "Default group"-only suppression
+        Map<String, Set<String>> unfilteredValuesByGroupingName = filtered.getAllEvents().stream()
+                .flatMap(s -> s.getSubjectGroupings().entrySet().stream())
+                .collect(groupingBy(Map.Entry::getKey, mapping(Map.Entry::getValue, toSet())));
+
+        List<TrellisOptionsWithGroupingName> trellisOptionsWithGroupings = groupingNames.stream()
+                .filter(name -> {
+                    Set<String> unfilteredValues = unfilteredValuesByGroupingName.getOrDefault(name, Collections.emptySet());
+                    return !(unfilteredValues.size() == 1 && unfilteredValues.contains(Constants.DEFAULT_GROUP));
                 })
-                .collect(toList());
+                .map(name -> {
+                    List<TrellisOptions<PopulationGroupByOptions>> optionsPerGrouping = getTrellisOptions(filtered.getFilteredResult(),
+                            SUBJECT_GROUPING.<Subject, PopulationGroupByOptions>getGroupByOptionAndParams(
+                                    GroupByOption.Params.builder().with(SUBJECT_GROUPING_NAME, name).build()));
+                    return new TrellisOptionsWithGroupingName(name, SUBJECT_GROUPING, optionsPerGrouping
+                            .stream()
+                            .flatMap(o -> o.getTrellisOptions().stream()).collect(toList()));
+                }).collect(toList());
+
+        final List<TrellisOptions<PopulationGroupByOptions>> result = new java.util.ArrayList<>();
         result.addAll(trellisOptionsWithDrugs);
+        result.addAll(trellisOptionsWithGroupings);
         return result;
     }
 
@@ -466,6 +479,18 @@ public class TumourColumnRangeService implements ColorInitializer {
         public TrellisOptionsWithDrug(String drug, PopulationGroupByOptions trellisedBy, List<?> trellisOptions) {
             super(trellisedBy, trellisOptions);
             this.drug = drug;
+        }
+    }
+
+    @EqualsAndHashCode(callSuper = false)
+    public static class TrellisOptionsWithGroupingName extends TrellisOptions<PopulationGroupByOptions> {
+        @Getter
+        @Setter
+        private String groupingName;
+
+        public TrellisOptionsWithGroupingName(String groupingName, PopulationGroupByOptions trellisedBy, List<?> trellisOptions) {
+            super(trellisedBy, trellisOptions);
+            this.groupingName = groupingName;
         }
     }
 

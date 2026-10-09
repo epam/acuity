@@ -51,7 +51,7 @@ import static java.util.stream.Collectors.toSet;
 @SuppressWarnings("squid:CommentedOutCodeLine")
 public class BoxPlotUiModelService {
 
-    private static final Logger log = LoggerFactory.getLogger(BoxPlotUiModelService.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(BoxPlotUiModelService.class);
 
     public <T, G extends Enum<G> & GroupByOption<T>> List<TrellisedBoxPlot<T, G>> toTrellisedBoxPlot(
             Map<GroupByKey<T, G>, BoxplotCalculationObject> boxplot) {
@@ -98,7 +98,7 @@ public class BoxPlotUiModelService {
                         return e != null && !Attributes.DEFAULT_EMPTY_VALUE.equals(value == null ? null : value.toString());
                     })
                     .collect(Collectors.toMap(e -> e.getKey().getValue(X_AXIS), e -> e.getValue(), (a, b) -> {
-                        log.warn("Duplicate x-axis key in box plot toMap — discarding value: {}", b);
+                        LOGGER.warn("Duplicate x-axis key in box plot toMap — discarding value: {}", b);
                         return a;
                     }));
 

@@ -23,6 +23,7 @@ import com.acuity.visualisations.mapping.entity.AggregationFunction;
 import com.acuity.visualisations.mapping.entity.ColumnRule;
 import com.acuity.visualisations.mapping.entity.FieldRule;
 import com.acuity.visualisations.mapping.entity.FileDescription;
+import com.acuity.visualisations.mapping.entity.FileSection;
 import com.acuity.visualisations.mapping.entity.FileRule;
 import com.acuity.visualisations.mapping.entity.FileStandard;
 import com.acuity.visualisations.mapping.entity.FileType;
@@ -30,6 +31,7 @@ import com.acuity.visualisations.mapping.entity.MappingRule;
 import com.acuity.visualisations.mapping.entity.StudyRule;
 import com.acuity.visualisations.web.dto.FileRuleDTO;
 import com.acuity.visualisations.web.dto.MapRuleDTO;
+import com.acuity.visualisations.web.dto.MapRulesDTO;
 import com.acuity.visualisations.web.dto.MappingStatusDTO;
 import com.acuity.visualisations.web.service.AdminService;
 import com.acuity.visualisations.web.service.IStudyMappingsServicePartial;
@@ -45,12 +47,13 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-@Transactional(readOnly = true)
 @Service
 public class StudyMappingsService {
 
@@ -123,6 +126,7 @@ public class StudyMappingsService {
 		return mappingRule;
 	}
 
+	@Transactional(readOnly = false, rollbackFor = Throwable.class)
 	public void upateMapRule(MapRuleDTO dto, MappingRule mappingRule) {
 		mappingRule.setFmtName(dto.getDecodingInfo());
 		mappingRule.setValue(dto.getDefaultValue());
@@ -153,6 +157,77 @@ public class StudyMappingsService {
 	public void deleteMapRule(MappingRule mappingRule) {
 		studyMappingsServicePartial.deleteMappingRule(mappingRule);
 	}
+
+    @Transactional(readOnly = false, rollbackFor = Throwable.class)
+    public List<MappingStatusDTO> saveMappingRules(StudyRule study, MapRulesDTO mapRules, List<FileSection> fileSections) {
+        study.setMappingModifiedDate(new Date());
+
+        FileRule fileRule = study.getFileRule(mapRules.getFileRuleId());
+        fileRule.setStudyRule(study);
+        fileRule.setAcuityEnabled(mapRules.isStudyAcuityEnabled());
+
+        studyMappingsServicePartial.saveFileRule(fileRule);
+
+        List<MappingRule> mappingRules = fileRule.getMappingRules();
+
+        expandDuplicates(mapRules, mappingRules);
+
+        Map<Long, MapRuleDTO> mapRuleDTOToIdMap = new HashMap<>();
+
+        for (MapRuleDTO dto : mapRules.getMapRules()) {
+            mapRuleDTOToIdMap.put(dto.getId(), dto);
+        }
+
+        Iterator<MappingRule> mappingRuleIterator = mappingRules.iterator();
+
+        while (mappingRuleIterator.hasNext()) {
+            MappingRule rule = mappingRuleIterator.next();
+            if (mapRuleDTOToIdMap.containsKey(rule.getId())) {
+                upateMapRule(mapRuleDTOToIdMap.get(rule.getId()), rule);
+                mapRuleDTOToIdMap.remove(rule.getId());
+            } else {
+                mappingRuleIterator.remove();
+                deleteMapRule(rule);
+            }
+        }
+
+        Map<MappingRule, String> newRulesToFieldNames = new HashMap<>();
+
+        for (MapRuleDTO dto : mapRuleDTOToIdMap.values()) {
+            MappingRule mapRule = createMapRule(dto, fileRule);
+            mappingRules.add(mapRule);
+            newRulesToFieldNames.put(mapRule, dto.getDataField());
+        }
+
+        studyMappingsServicePartial.saveMappingRules(fileRule);
+
+        for (Map.Entry<MappingRule, String> entry : newRulesToFieldNames.entrySet()) {
+            entry.getKey().getFieldRules().add(studyMappingsServicePartial.saveDynamicFieldRule(entry.getKey(), entry.getValue()));
+        }
+
+        List<MappingStatusDTO> result = validateMappings(study);
+        studyMappingsServicePartial.validateStudyCompleted(study, fileSections);
+        studyMappingsServicePartial.checkValidStatus(study);
+        validateStudyEnabled(study);
+        return result;
+    }
+
+    private void expandDuplicates(MapRulesDTO dto, List<MappingRule> model) {
+        model
+                .stream()
+                .filter(rule -> dto.findMapRuleById(rule.getId()) == null)
+                .forEach(rule -> {
+                    MapRuleDTO src = dto.findMapRuleByDataField(rule.getFieldRules().get(0).getDescription().getText());
+                    if (src != null) {
+                        MapRuleDTO dup = new MapRuleDTO(rule);
+                        dup.setSourceData(src.getSourceData());
+                        dup.setDecodingInfo(src.getDecodingInfo());
+                        dup.setDefaultValue(src.getDefaultValue());
+                        dup.setAgrFunctions(src.getAgrFunctions());
+                        dto.getMapRules().add(dup);
+                    }
+                });
+    }
 
 	@Transactional(rollbackFor = Throwable.class)
 	public List<MappingStatusDTO> validateMappings(StudyRule study) {
