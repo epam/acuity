@@ -98,9 +98,7 @@ import java.io.Writer;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.Date;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -671,23 +669,6 @@ public class ClinicalStudyController extends AbstractController {
         return result;
     }
 
-    private void expandDuplicates(MapRulesDTO dto, List<MappingRule> model) {
-        model
-                .stream()
-                .filter(rule -> dto.findMapRuleById(rule.getId()) == null)
-                .forEach(rule -> {
-                    MapRuleDTO src = dto.findMapRuleByDataField(rule.getFieldRules().get(0).getDescription().getText());
-                    if (src != null) {
-                        MapRuleDTO dup = new MapRuleDTO(rule);
-                        dup.setSourceData(src.getSourceData());
-                        dup.setDecodingInfo(src.getDecodingInfo());
-                        dup.setDefaultValue(src.getDefaultValue());
-                        dup.setAgrFunctions(src.getAgrFunctions());
-                        dto.getMapRules().add(dup);
-                    }
-                });
-    }
-
     @RequestMapping(method = RequestMethod.POST, value = "/study-setup-save-mapping-rules")
     @ResponseBody
     public List<MappingStatusDTO> saveMappingRules(final HttpServletRequest request, @RequestBody MapRulesDTO mapRules) throws ClinicalStudyException {
@@ -699,60 +680,14 @@ public class ClinicalStudyController extends AbstractController {
             if (study == null) {
                 throw new IllegalStateException("No study selected in current session tab");
             }
-            study.setMappingModifiedDate(new Date());
             selectClinicalStudy(study, workflow);
             // there were separate permissions for some studies, but since security is removed, it doesn't make sense anymore
 /*            if (!permissionHelper.isCurrentUserDrugProgrammeAdmin(study.getProjectId())) {
                 throw new AccessDeniedException(ACCESS_DENIED_MESSAGE + study.getStudyCode());
             }*/
             FileRule fileRule = study.getFileRule(mapRules.getFileRuleId());
-            fileRule.setStudyRule(study);
-            fileRule.setAcuityEnabled(mapRules.isStudyAcuityEnabled());
-
-            studyMappingsServicePartial.saveFileRule(fileRule);
-
-            List<MappingRule> mappingRules = fileRule.getMappingRules();
-
-            expandDuplicates(mapRules, mappingRules);
-
-            Map<Long, MapRuleDTO> mapRuleDTOToIdMap = new HashMap<>();
-
-            for (MapRuleDTO dto : mapRules.getMapRules()) {
-                mapRuleDTOToIdMap.put(dto.getId(), dto);
-            }
-
-            Iterator<MappingRule> mappingRuleIterator = mappingRules.iterator();
-
-            while (mappingRuleIterator.hasNext()) {
-                MappingRule rule = mappingRuleIterator.next();
-                if (mapRuleDTOToIdMap.containsKey(rule.getId())) {
-                    studyMappingsService.upateMapRule(mapRuleDTOToIdMap.get(rule.getId()), rule);
-                    mapRuleDTOToIdMap.remove(rule.getId());
-                } else {
-                    mappingRuleIterator.remove();
-                    studyMappingsService.deleteMapRule(rule);
-                }
-            }
-
-            Map<MappingRule, String> newRulesToFieldNames = new HashMap<>();
-
-            for (MapRuleDTO dto : mapRuleDTOToIdMap.values()) {
-                MappingRule mapRule = studyMappingsService.createMapRule(dto, fileRule);
-                mappingRules.add(mapRule);
-                newRulesToFieldNames.put(mapRule, dto.getDataField());
-            }
-
-            studyMappingsServicePartial.saveMappingRules(fileRule);
-
-            for (Map.Entry<MappingRule, String> entry : newRulesToFieldNames.entrySet()) {
-                entry.getKey().getFieldRules().add(studyMappingsServicePartial.saveDynamicFieldRule(entry.getKey(), entry.getValue()));
-            }
-
-            List<MappingStatusDTO> result = studyMappingsService.validateMappings(study);
+            List<MappingStatusDTO> result = studyMappingsService.saveMappingRules(study, mapRules, ControllerUtils.getFileSections(request.getSession()));
             workflow.setCompleteMappings(result);
-            studyMappingsServicePartial.validateStudyCompleted(study, ControllerUtils.getFileSections(request.getSession()));
-            studyMappingsServicePartial.checkValidStatus(study);
-            studyMappingsService.validateStudyEnabled(study);
             auditService.logAction(AuditAction.MODIFY, AuditEntity.STUDY, study.getId(), study.getStudyCode(),
                     "Updated column rules for " + study.getStudyCode() + ", " + fileRule.getDescriptions().get(0).getDisplayName());
             return result;
