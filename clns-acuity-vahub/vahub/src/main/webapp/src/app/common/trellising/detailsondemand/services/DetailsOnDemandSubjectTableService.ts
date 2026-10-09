@@ -16,13 +16,19 @@
 
 import {Injectable} from '@angular/core';
 import {ColDef, ColGroupDef} from 'ag-grid-community';
-import {each, forEach, isEmpty, includes, values, keys} from 'lodash';
+import {each, endsWith, forEach, isEmpty, includes, values, keys} from 'lodash';
 
 import {AbstractTableService} from './AbstractTableService';
 import {DataService} from '../../data/DataService';
 import {DatasetViews} from '../../../../security/DatasetViews';
 import {SubjectTableColumns} from './model/SubjectTableColumns';
 import {DetailsOnDemandHeightService} from './DetailsOnDemandHeightService';
+
+const SUBJECT_GROUPINGS_COLUMN_SUFFIX = '--subjectGroupings';
+
+function isSubjectGrouping(key: string): boolean {
+    return endsWith(key, SUBJECT_GROUPINGS_COLUMN_SUFFIX);
+}
 
 @Injectable()
 export class DetailsOnDemandSubjectTableService extends AbstractTableService {
@@ -102,6 +108,22 @@ export class DetailsOnDemandSubjectTableService extends AbstractTableService {
         if (columnGroup.headerName === 'Dose details') {
             columnGroup.children = this.getChildColumns(availableColumns, this.isDrug);
         }
+        if (columnGroup.headerName === SubjectTableColumns.ARMS_COHORTS_AND_GROUPS) {
+            columnGroup.children = [...columnGroup.children, ...this.getSubjectGroupingColumns(availableColumns)];
+        }
+    }
+
+    private getSubjectGroupingColumns(availableColumns: any): ColDef[] {
+        return Object.keys(availableColumns)
+            .filter(isSubjectGrouping)
+            .map(key => {
+                return {
+                    headerName: key.slice(0, -SUBJECT_GROUPINGS_COLUMN_SUFFIX.length),
+                    field: key,
+                    columnGroupShow: 'open',
+                    suppressSorting: true
+                };
+            });
     }
 
     private addColumnGroupToTable(availableColumnGroupDefs: ColGroupDef[], columnGroup: ColGroupDef, availableColumnDefs: ColDef[]): void {
@@ -150,7 +172,7 @@ export class DetailsOnDemandSubjectTableService extends AbstractTableService {
     private isDrug(key: string): boolean {
         const COLUMNS_DRUG_PREFIX = 'drug';
 
-        return key.indexOf(COLUMNS_DRUG_PREFIX) > -1;
+        return key.indexOf(COLUMNS_DRUG_PREFIX) > -1 && !isSubjectGrouping(key);
     }
 
     private isStudySpecificFilter(key: string): boolean {

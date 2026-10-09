@@ -17,6 +17,8 @@
 import {ColGroupDef} from 'ag-grid-community';
 
 export class SubjectTableColumns {
+    public static readonly ARMS_COHORTS_AND_GROUPS = 'Arms, cohorts and groups';
+
     public static getColumnGroupDefs(): ColGroupDef[] {
         return [
             {
@@ -42,12 +44,11 @@ export class SubjectTableColumns {
                 ]
             },
             {
-                headerName: 'Arms, cohorts and groups',
+                headerName: SubjectTableColumns.ARMS_COHORTS_AND_GROUPS,
                 children: [
                     {headerName: 'Planned arm', field: 'plannedArm', columnGroupShow: 'open'},
-                    {headerName: 'Actual arm', field: 'actualArm', columnGroupShow: 'open'},
-                    {headerName: 'Cohort (other)', field: 'otherCohort', columnGroupShow: 'open'},
-                    {headerName: 'Cohort (dose)', field: 'doseCohort', columnGroupShow: 'open'}
+                    {headerName: 'Actual arm', field: 'actualArm', columnGroupShow: 'open'}
+                    // User defined subject groupings will get dynamically added
                 ]
             },
             {
