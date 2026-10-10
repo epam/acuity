@@ -1,0 +1,31 @@
+name: terraform validate
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - infrastructure/terraform/**
+      - .github/workflows/terraform-validate.yml
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        root: [acuity, bootstrap]
+    defaults:
+      run:
+        working-directory: infrastructure/terraform/${{ matrix.root }}
+    steps:
+      - uses: actions/checkout@v7
+      - uses: hashicorp/setup-terraform@v4
+        with:
+          terraform_version: 1.16.4
+      # No backend/credentials needed. Not -lockfile=readonly: the committed lock files only hash macOS
+      # builds, so init must record the linux_amd64 hash or validate rejects the installed providers.
+      - run: terraform init -backend=false -input=false
+      - run: terraform validate
