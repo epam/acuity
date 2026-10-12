@@ -158,7 +158,7 @@ public class StudyMappingsService {
 		studyMappingsServicePartial.deleteMappingRule(mappingRule);
 	}
 
-    @Transactional(readOnly = false, rollbackFor = Throwable.class)
+    @Transactional(rollbackFor = Throwable.class)
     public List<MappingStatusDTO> saveMappingRules(StudyRule study, MapRulesDTO mapRules, List<FileSection> fileSections) {
         study.setMappingModifiedDate(new Date());
 
