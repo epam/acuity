@@ -44,6 +44,7 @@ export class PopulationFiltersModel extends AbstractFiltersModel {
 
     static SUBJECT_IDS_KEY = 'subjectId';
     static SAFETY_POPULATION_IDS_KEY = 'safetyPopulation';
+    static SUBJECT_GROUPINGS_KEY = 'subjectGroupings';
     static COHORT_EDITOR_KEY = 'cohortEditorSubjects';
     static NO_INTERSECT_OF_SUBJECTS = 'No subjects';
 
@@ -70,8 +71,7 @@ export class PopulationFiltersModel extends AbstractFiltersModel {
         this.itemsModels.push(new ListFilterItemModel('withdrawalCompletionReason', 'Reason for Withdrawal/Completion'));
         this.itemsModels.push(new CheckListFilterItemModel('plannedTreatmentArm', 'Planned treatment arm'));
         this.itemsModels.push(new CheckListFilterItemModel('actualTreatmentArm', 'Actual treatment arm'));
-        this.itemsModels.push(new ListFilterItemModel('doseCohort', 'Cohort (Dose)'));
-        this.itemsModels.push(new ListFilterItemModel('otherCohort', 'Cohort (Other)'));
+        this.itemsModels.push(new MapListFilterItemModel(PopulationFiltersModel.SUBJECT_GROUPINGS_KEY, 'Subject groupings'));
 
         this.itemsModels.push(new StudySpecificFilterModel('studySpecificFilters', 'Study specific filters'));
 
@@ -149,6 +149,14 @@ export class PopulationFiltersModel extends AbstractFiltersModel {
 
     isVisible(): boolean {
         return true;
+    }
+
+    /**
+     * Subject groupings are user defined, so the study metadata (calculated once on study load)
+     * must not hide them even if there were no groupings at that moment.
+     */
+    hideEmptyFilters(emptyFilters: string[]): void {
+        super.hideEmptyFilters(_.without(emptyFilters, PopulationFiltersModel.SUBJECT_GROUPINGS_KEY));
     }
 
     addCohortFilter(subjectIds: string[], cohortName: string): void {

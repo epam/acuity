@@ -241,6 +241,7 @@ public final class Subject implements HasStringId, HasSubject, Serializable {
     // Arms, cohorts & groups
     private String plannedArm;
     private String actualArm;
+    @Column(columnName = "subjectGroupings", order = 12, displayName = "")
     @Builder.Default
     private Map<String, String> subjectGroupings = new HashMap<>();
     // Demography
