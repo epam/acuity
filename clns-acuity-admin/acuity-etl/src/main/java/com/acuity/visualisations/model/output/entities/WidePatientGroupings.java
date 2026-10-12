@@ -43,6 +43,8 @@ public class WidePatientGroupings extends TimestampedEntity implements FieldDele
             if (entry.getValue() != null) {
                 group.setGroupName(entry.getValue().toString());
             }
+            group.setProjectName(getProjectName());
+            group.setStudyName(getStudyName());
             return group;
         }).collect(Collectors.toList());
     }

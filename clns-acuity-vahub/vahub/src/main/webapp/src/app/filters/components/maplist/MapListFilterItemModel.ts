@@ -31,7 +31,8 @@ export class MapListFilterItemModel extends BaseMapFilterItemModel {
         drugsDiscontinued: `<%= drugName %> Discontinuation`,
         drugsDiscontinuationReason: `<%= drugName %> Main Reason for Discontinuation`,
         drugsDiscontinuationDate: `Date of Discontinuation of <%= drugName %>`,
-        biomarkerGroups: `<%= drugName %> Biomarkers`
+        biomarkerGroups: `<%= drugName %> Biomarkers`,
+        subjectGroupings: `<%= drugName %>`
     };
 
     constructor(key: string, displayName: string) {

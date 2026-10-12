@@ -35,7 +35,7 @@ import java.util.stream.Collectors;
 
 public interface CommonBaselineDataProvider {
 
-    Logger log = LoggerFactory.getLogger(CommonBaselineDataProvider.class);
+    Logger LOGGER = LoggerFactory.getLogger(CommonBaselineDataProvider.class);
 
     default Map<String, Date> defineBaselineDatePerSubject(Map<String, List<TargetLesionRaw>> tlBySubject, Collection<Subject> subjects) {
         // Collectors.toMap() rejects null values — subjects without a baseline date would cause NPE.
@@ -53,7 +53,7 @@ public interface CommonBaselineDataProvider {
                             .collect(Collectors.toList());
                     Date value = getBaselineDate(lesionDates, subjectFirstDoseDate.get(v.getKey())).orElse(null);
                     if (value == null) {
-                        log.warn("Subject {} has no baseline date — excluded from baseline calculation", v.getKey());
+                        LOGGER.warn("Subject {} has no baseline date — excluded from baseline calculation", v.getKey());
                     }
                     m.put(v.getKey(), value);
                 }, HashMap::putAll);

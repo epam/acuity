@@ -116,8 +116,7 @@ public class AeSummariesSaeLeadToDiscServiceTest {
 
         SUBJECT1_WITH_DEFAULT_GROUPINGS_AND_GROUPS = Subject.builder().subjectId("sid1").subjectCode("E01").clinicalStudyCode("D0001C00001")
                 .studyPart("A")
-                .otherCohort("Default group")
-                .otherGrouping("Cohort")
+                .subjectGroupings(Map.of("Cohort", "Default group"))
                 .firstTreatmentDate(toDate("01.08.2015"))
                 .drugsDosed(DRUG_DOSED1)
                 .build();
@@ -152,7 +151,8 @@ public class AeSummariesSaeLeadToDiscServiceTest {
         softly.assertThat(tables).extracting(AeSummariesTable::getRows)
                 .containsExactly(
                         asList(AeSummariesTable.AeSummariesRow.builder().rowDescription("").soc("Any AE").pt("Any AE").drug("")
-                                .cells(asList(new AeSummariesTable.AeSummariesCell("Default group", "Cohort", 0, 0, AeSummariesTable.GroupingType.NONE, "A")))
+                                .cells(asList(new AeSummariesTable.AeSummariesCell("Default group", "Cohort", 0, 0,
+                                        AeSummariesTable.GroupingType.DYNAMIC, "A")))
                                 .build()));
     }
 
@@ -168,7 +168,8 @@ public class AeSummariesSaeLeadToDiscServiceTest {
         List<AeSummariesTable> tables = aeSummariesSaeLeadToDiscService.getAesSummariesTable(DUMMY_ACUITY_DATASETS);
 
         softly.assertThat(tables.get(0).getRows()).contains(AeSummariesTable.AeSummariesRow.builder().rowDescription("").soc("soc_1").pt("pt_1").drug("drug1")
-                .cells(asList(new AeSummariesTable.AeSummariesCell("Default group", "Cohort", 1, 100, AeSummariesTable.GroupingType.NONE, "A")))
+                .cells(asList(new AeSummariesTable.AeSummariesCell("Default group", "Cohort", 1, 100,
+                        AeSummariesTable.GroupingType.DYNAMIC, "A")))
                 .build());
     }
 

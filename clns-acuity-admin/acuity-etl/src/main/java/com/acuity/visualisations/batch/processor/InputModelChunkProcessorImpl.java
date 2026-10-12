@@ -206,13 +206,11 @@ public class InputModelChunkProcessorImpl extends HoldersAware implements InputM
                 if (outputEntities != null) {
                     for (OutputEntity entity : outputEntities) {
                         String entityStudyName = entity.getStudyName();
-                        if ((entityStudyName == null || !entityStudyName.equals(getStudyName()))) {
+                        IColumnRule studyCol = configurationUtil.getStudyColumn(sourceName, entityName);
+                        if (shouldReportStudyMismatch(entityStudyName, studyCol)) {
                             String message = String.format("Study code (%s) of the record in doesn't match target study.", entityStudyName);
-                            IColumnRule studyCol = configurationUtil.getStudyColumn(sourceName, entityName);
-                            if (studyCol != null) {
-                                dataCommonReport.getFileReport(sourceName).addValueError(studyCol.getName(),
-                                        entityStudyName, true, message);
-                            }
+                            dataCommonReport.getFileReport(sourceName).addValueError(studyCol.getName(),
+                                    entityStudyName, true, message);
                         }
                         entity.setProjectName(getProjectName());
                         entity.setStudyName(getStudyName());
@@ -243,6 +241,16 @@ public class InputModelChunkProcessorImpl extends HoldersAware implements InputM
         }
         executionProfiler.stopOperation(getJobExecutionId(), "InputModelChunkProcessorImpl.process-int2");
         return outputModelChunk;
+    }
+
+    private boolean shouldReportStudyMismatch(String entityStudyName, IColumnRule studyCol) {
+        if (studyCol == null) {
+            return false;
+        }
+        if (entityStudyName == null) {
+            return !isEmpty(studyCol.getName()) && isEmpty(studyCol.getDefault());
+        }
+        return !entityStudyName.equals(getStudyName());
     }
 
     /**

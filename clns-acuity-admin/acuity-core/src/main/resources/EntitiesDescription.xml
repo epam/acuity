@@ -24,9 +24,9 @@
             <field name="subject"/>
             <field name="studyName"/>
             <field name="projectName"/>
+            <field name="part"/>
         </uniqueFields>
         <secondaryFields>
-            <field name="part"/>
             <field name="groupName"/>
         </secondaryFields>
         <referredBy name="patGroupUnique" equalToUniqueSet="true"/>

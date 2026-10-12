@@ -27,10 +27,8 @@ import lombok.ToString;
 
 import java.util.Collection;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import static com.acuity.visualisations.rawdatamodel.vo.Subject.Attributes.ACTUAL_ARM;
 import static com.acuity.visualisations.rawdatamodel.vo.Subject.Attributes.AGE;
@@ -44,7 +42,6 @@ import static com.acuity.visualisations.rawdatamodel.vo.Subject.Attributes.DEATH
 import static com.acuity.visualisations.rawdatamodel.vo.Subject.Attributes.DISC_DATES_MAP;
 import static com.acuity.visualisations.rawdatamodel.vo.Subject.Attributes.DISC_MAP;
 import static com.acuity.visualisations.rawdatamodel.vo.Subject.Attributes.DISC_REASONS_MAP;
-import static com.acuity.visualisations.rawdatamodel.vo.Subject.Attributes.DOSE_COHORT;
 import static com.acuity.visualisations.rawdatamodel.vo.Subject.Attributes.DRUG_MAP;
 import static com.acuity.visualisations.rawdatamodel.vo.Subject.Attributes.DURATION_ON_STUDY;
 import static com.acuity.visualisations.rawdatamodel.vo.Subject.Attributes.DUR_EXCL_MAP;
@@ -55,7 +52,6 @@ import static com.acuity.visualisations.rawdatamodel.vo.Subject.Attributes.LAST_
 import static com.acuity.visualisations.rawdatamodel.vo.Subject.Attributes.MAX_DOSE_MAP;
 import static com.acuity.visualisations.rawdatamodel.vo.Subject.Attributes.MAX_FREQUENCY_MAP;
 import static com.acuity.visualisations.rawdatamodel.vo.Subject.Attributes.MEDICAL_HISTORY;
-import static com.acuity.visualisations.rawdatamodel.vo.Subject.Attributes.OTHER_COHORT;
 import static com.acuity.visualisations.rawdatamodel.vo.Subject.Attributes.PHASE;
 import static com.acuity.visualisations.rawdatamodel.vo.Subject.Attributes.PLANNED_ARM;
 import static com.acuity.visualisations.rawdatamodel.vo.Subject.Attributes.RACE;
@@ -70,6 +66,7 @@ import static com.acuity.visualisations.rawdatamodel.vo.Subject.Attributes.STUDY
 import static com.acuity.visualisations.rawdatamodel.vo.Subject.Attributes.STUDY_PART;
 import static com.acuity.visualisations.rawdatamodel.vo.Subject.Attributes.STUDY_SPECIFIC_FILTERS;
 import static com.acuity.visualisations.rawdatamodel.vo.Subject.Attributes.SUBJECT;
+import static com.acuity.visualisations.rawdatamodel.vo.Subject.Attributes.SUBJECT_GROUPINGS;
 import static com.acuity.visualisations.rawdatamodel.vo.Subject.Attributes.WITHDRAWAL;
 import static com.google.common.collect.Lists.newArrayList;
 
@@ -121,8 +118,6 @@ public class PopulationFilters extends Filters<Subject> {
     private DateRangeFilter withdrawalCompletionDate = new DateRangeFilter();
     private SetFilter<String> randomised = new SetFilter<>();
     private DateRangeFilter randomisationDate = new DateRangeFilter();
-    private SetFilter<String> doseCohort = new SetFilter<>();
-    private SetFilter<String> otherCohort = new SetFilter<>();
     private DateRangeFilter deathDate = new DateRangeFilter();
     private MultiValueSetFilter<String> attendedVisits = new MultiValueSetFilter<>();
     private RangeFilter<Integer> durationOnStudy = new RangeFilter<>();
@@ -131,6 +126,7 @@ public class PopulationFilters extends Filters<Subject> {
     private RangeFilter<Integer> actualExposureInDays = new RangeFilter<>();
 
     private MapFilter<String, SetFilter<String>> biomarkerGroups = new MapFilter<>(SetFilter.class);
+    private MapFilter<String, SetFilter<String>> subjectGroupings = new MapFilter<>(SetFilter.class);
     private MapFilter<String, SetFilter<String>> drugsDosed = new MapFilter<>(SetFilter.class);
     private MapFilter<String, SetFilter<String>> drugsDiscontinued = new MapFilter<>(SetFilter.class);
     private MapFilter<String, SetFilter<String>> drugsMaxDoses = new MapFilter<>(SetFilter.class);
@@ -168,8 +164,6 @@ public class PopulationFilters extends Filters<Subject> {
                 add(getFilterQuery(DATE_OF_WITHDRAWAL, withdrawalCompletionDate)).
                 add(getFilterQuery(RANDOMISED, randomised)).
                 add(getFilterQuery(DATE_OF_RANDOMISATION, randomisationDate)).
-                add(getFilterQuery(DOSE_COHORT, doseCohort)).
-                add(getFilterQuery(OTHER_COHORT, otherCohort)).
                 add(getFilterQuery(DATE_OF_DEATH, deathDate)).
                 add(getFilterQuery(DURATION_ON_STUDY, durationOnStudy)).
                 add(getFilterQuery(SPEC_ETHNIC_GROUP, specifiedEthnicGroup)).
@@ -181,6 +175,7 @@ public class PopulationFilters extends Filters<Subject> {
                 add(getFilterQuery(CENTER_NUMBER, centreNumbers)).
                 add(getFilterQuery(ATTENDED_VISIT_NUMBERS, attendedVisits)).
                 add(getFilterQueryForMapFilter(DRUG_MAP, drugsDosed)).
+                add(getFilterQueryForMapFilter(SUBJECT_GROUPINGS, subjectGroupings)).
                 add(getFilterQueryForMapFilter(DISC_MAP, drugsDiscontinued)).
                 add(getFilterQueryForMapFilter(MAX_DOSE_MAP, drugsMaxDoses)).
                 add(getFilterQueryForMapFilter(MAX_FREQUENCY_MAP, drugsMaxFrequencies)).
@@ -207,16 +202,6 @@ public class PopulationFilters extends Filters<Subject> {
             emptyFieldNames.add("drugsDiscontinued");
         }
 
-        Map<String, Set<String>> cohortFilterMap = new HashMap<>();
-        cohortFilterMap.put("doseCohort", this.doseCohort.getValues());
-        cohortFilterMap.put("otherCohort", this.otherCohort.getValues());
-
-        cohortFilterMap.forEach((filterKey, filterValues) -> {
-            if (filterValues != null && filterValues.size() == 1 && filterValues.contains("Default group") && !emptyFieldNames.contains(filterKey)) {
-                emptyFieldNames.add(filterKey);
-            }
-        });
-
         return emptyFieldNames;
     }
 
@@ -234,4 +219,5 @@ public class PopulationFilters extends Filters<Subject> {
     private boolean allContainNo(Map<String, SetFilter<String>> map) {
         return map.values().stream().allMatch(v -> v.getValues().size() == 1 && (v.getValues().contains("No") || v.getValues().contains("N")));
     }
+
 }

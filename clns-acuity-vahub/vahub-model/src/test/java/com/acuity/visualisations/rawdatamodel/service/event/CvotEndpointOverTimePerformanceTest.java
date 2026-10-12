@@ -140,8 +140,6 @@ public class CvotEndpointOverTimePerformanceTest {
                     .dateOfDeath(new Date(random.nextInt()))
                     .plannedArm(UUID.randomUUID().toString())
                     .actualArm(UUID.randomUUID().toString())
-                    .doseCohort(UUID.randomUUID().toString())
-                    .otherCohort(UUID.randomUUID().toString())
                     .sex(UUID.randomUUID().toString())
                     .race(UUID.randomUUID().toString())
                     .ethnicGroup(UUID.randomUUID().toString())

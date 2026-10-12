@@ -65,13 +65,14 @@ public class PatientGroup extends TimestampedEntity {
 
     @Override
     public String uniqueFieldsToString() {
-        return new ToStringBuilder(this, Util.getToStringStyle()).append("subject", subject).append("part", part).toString();
+        return new ToStringBuilder(this, Util.getToStringStyle()).append("subject", subject).append("part", part)
+                .append("groupingName", groupingName).toString();
     }
 
     @Override
     public String allFieldsToString() {
         return new ToStringBuilder(this, Util.getToStringStyle()).append("subject", subject).append("part", part)
-                .append("groupName", groupName).toString();
+                .append("groupName", groupName).append("groupingName", groupingName).toString();
     }
 
     public String getGroupingName() {

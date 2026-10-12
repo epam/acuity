@@ -27,7 +27,6 @@ import com.acuity.visualisations.rawdatamodel.dataproviders.config.DataProviderC
 import com.acuity.visualisations.rawdatamodel.test.TestConfig;
 import com.acuity.visualisations.rawdatamodel.vo.DoseDiscRaw;
 import com.acuity.visualisations.rawdatamodel.vo.DrugDoseRaw;
-import com.acuity.visualisations.rawdatamodel.vo.GroupType;
 import com.acuity.visualisations.rawdatamodel.vo.StudyInfo;
 import com.acuity.visualisations.rawdatamodel.vo.Subject;
 import com.acuity.va.security.acl.domain.Dataset;
@@ -134,10 +133,10 @@ public class PopulationDatasetsDataProviderTest extends DataProviderAwareTest {
         Subject.SubjectVitalsInfo vitalsInfo5 = Subject.SubjectVitalsInfo.builder().subjectId("subj2").testName("height").testValue(159.).build();
         Subject.SubjectVitalsInfo vitalsInfo6 = Subject.SubjectVitalsInfo.builder().subjectId("subj2").testDate(date2).testName("height").testValue(160.).build();
         List<Subject.SubjectVitalsInfo> vitalsInfos = newArrayList(vitalsInfo1, vitalsInfo2, vitalsInfo3, vitalsInfo4, vitalsInfo5, vitalsInfo6);
-        Subject.SubjectGroup group1 = Subject.SubjectGroup.builder().subjectId("subj1").groupPreferredName("name1").groupingName("grouping_name1")
-                .groupName("name").groupIndex(26).groupType(GroupType.DOSE).build();
-        Subject.SubjectGroup group2 = Subject.SubjectGroup.builder().subjectId("subj2").groupPreferredName("name2").groupingName("grouping_name2")
-                .groupName("name").groupIndex(29).groupType(GroupType.NONE).build();
+        Subject.SubjectGroup group1 = Subject.SubjectGroup.builder().subjectId("subj1").groupingName("grouping_name1")
+                .groupName("name1").build();
+        Subject.SubjectGroup group2 = Subject.SubjectGroup.builder().subjectId("subj2").groupingName("grouping_name2")
+                .groupName("name2").build();
         List<Subject.SubjectGroup> groups = newArrayList(group1, group2);
 
         StudyInfo studyInfo = StudyInfo.builder().lastUpdatedDate(toDateTime("2015-04-10T00:00:00")).build();
@@ -189,10 +188,7 @@ public class PopulationDatasetsDataProviderTest extends DataProviderAwareTest {
         softly.assertThat(result.get(0).getSpecifiedEthnicGroup()).isEqualTo("specified_eth_group1");
         softly.assertThat(result.get(0).getWeight()).isEqualTo(56.);
         softly.assertThat(result.get(0).getHeight()).isEqualTo(176.);
-        softly.assertThat(result.get(0).getDoseGrouping()).isEqualTo("grouping_name1");
-        softly.assertThat(result.get(0).getOtherGrouping()).isEqualTo("Cohort");
-        softly.assertThat(result.get(0).getDoseCohort()).isEqualTo("(Z)name1");
-        softly.assertThat(result.get(0).getOtherCohort()).isEqualTo("Default group");
+        softly.assertThat(result.get(0).getSubjectGroupings()).containsEntry("grouping_name1", "name1");
 
         softly.assertThat(result.get(1).getSubjectId()).isEqualTo(subject2.getSubjectId());
         softly.assertThat(result.get(1).getDrugsDosed().get("drug1")).isEqualTo("Yes");
@@ -205,10 +201,7 @@ public class PopulationDatasetsDataProviderTest extends DataProviderAwareTest {
         softly.assertThat(result.get(1).getSpecifiedEthnicGroup()).isEqualTo("specified_eth_group2");
         softly.assertThat(result.get(1).getWeight()).isEqualTo(47.);
         softly.assertThat(result.get(1).getHeight()).isEqualTo(160.);
-        softly.assertThat(result.get(1).getDoseGrouping()).isEqualTo("Cohort");
-        softly.assertThat(result.get(1).getOtherGrouping()).isEqualTo("grouping_name2");
-        softly.assertThat(result.get(1).getDoseCohort()).isEqualTo("Default group");
-        softly.assertThat(result.get(1).getOtherCohort()).isEqualTo("(AC)name2");
+        softly.assertThat(result.get(1).getSubjectGroupings()).containsEntry("grouping_name2", "name2");
     }
 
     @Test
@@ -322,46 +315,36 @@ public class PopulationDatasetsDataProviderTest extends DataProviderAwareTest {
         Subject subject3 = getSubjectBuilder().subjectId("subj3").datasetId("d1").build();
         Subject subject4 = getSubjectBuilder().subjectId("subj4").datasetId("d1").build();
 
-        Subject.SubjectGroup doseGroup1 = Subject.SubjectGroup.builder().subjectId("subj1").groupType(GroupType.DOSE).groupingName("grouping_name1")
-                .groupIndex(3).groupPreferredName("preferred_name").groupDefaultName("default_name").groupName("group_name").build();
-        Subject.SubjectGroup otherGroup1 = Subject.SubjectGroup.builder().subjectId("subj1").groupType(GroupType.NONE)
-                .groupingName("grouping_name2").groupIndex(3).groupName("group_name").build();
-        Subject.SubjectGroup doseGroup2 = Subject.SubjectGroup.builder().subjectId("subj2").groupingName("grouping_name2")
-                .groupType(GroupType.DOSE).build();
-        Subject.SubjectGroup otherGroup2 = Subject.SubjectGroup.builder().subjectId("subj3").groupType(GroupType.NONE).groupIndex(30).build();
+        Subject.SubjectGroup doseGroup1 = Subject.SubjectGroup.builder().subjectId("subj1").groupingName("grouping_name1")
+                .groupDefaultName("default_name").groupName("group_name").build();
+        Subject.SubjectGroup otherGroup1 = Subject.SubjectGroup.builder().subjectId("subj1")
+                .groupingName("grouping_name2").groupName("group_name").build();
+        Subject.SubjectGroup doseGroup2 = Subject.SubjectGroup.builder().subjectId("subj2").groupingName("grouping_name2").build();
+        Subject.SubjectGroup otherGroup2 = Subject.SubjectGroup.builder().subjectId("subj3").build();
+        Subject.SubjectGroup dynamicGroup = Subject.SubjectGroup.builder().subjectId("subj4").groupingName("admin_defined_grouping")
+                .groupName("Admin group").build();
 
         when(beanLookupService.get(any(Dataset.class), any(Class.class))).thenReturn(populationRepository);
         when(beanLookupService.get(any(Dataset.class), any(ResolvableType.class))).thenReturn(populationRepository);
         when(populationRepository.getRawData(DUMMY_ACUITY_DATASET_42.getId())).thenReturn(newArrayList(subject1, subject2, subject3, subject4));
-        when(populationRepository.getSubjectGroup(DUMMY_ACUITY_DATASET_42.getId())).thenReturn(newArrayList(doseGroup1, doseGroup2, otherGroup1, otherGroup2));
+        when(populationRepository.getSubjectGroup(DUMMY_ACUITY_DATASET_42.getId())).thenReturn(newArrayList(doseGroup1, doseGroup2, otherGroup1, otherGroup2,
+                dynamicGroup));
         when(studyInfoRepository.getRawData(DUMMY_ACUITY_DATASET_42.getId())).thenReturn(Collections.emptyList());
 
         List<Subject> result = new ArrayList<>(populationDatasetsDataProvider.loadData(new Datasets(DUMMY_ACUITY_DATASET_42)));
 
         softly.assertThat(result).hasSize(4);
         softly.assertThat(result.get(0).getSubjectId()).isEqualTo(subject1.getSubjectId());
-        softly.assertThat(result.get(0).getDoseCohort()).isEqualTo("(C)preferred_name");
-        softly.assertThat(result.get(0).getOtherCohort()).isEqualTo("(C)group_name");
-        softly.assertThat(result.get(0).getDoseGrouping()).isEqualTo("grouping_name1");
-        softly.assertThat(result.get(0).getOtherGrouping()).isEqualTo("grouping_name2");
+        softly.assertThat(result.get(0).getSubjectGroupings()).containsEntry("grouping_name1", "group_name")
+                .containsEntry("grouping_name2", "group_name");
 
         softly.assertThat(result.get(1).getSubjectId()).isEqualTo(subject2.getSubjectId());
-        softly.assertThat(result.get(1).getDoseCohort()).isEqualTo("Default group");
-        softly.assertThat(result.get(1).getOtherCohort()).isEqualTo("Default group");
-        softly.assertThat(result.get(1).getDoseGrouping()).isEqualTo("grouping_name2");
-        softly.assertThat(result.get(1).getOtherGrouping()).isEqualTo("Cohort");
+        softly.assertThat(result.get(1).getSubjectGroupings()).containsEntry("grouping_name2", "Default group");
 
         softly.assertThat(result.get(2).getSubjectId()).isEqualTo(subject3.getSubjectId());
-        softly.assertThat(result.get(2).getDoseCohort()).isEqualTo("Default group");
-        softly.assertThat(result.get(2).getOtherCohort()).isEqualTo("(AD)Default group");
-        softly.assertThat(result.get(2).getDoseGrouping()).isEqualTo("Cohort");
-        softly.assertThat(result.get(2).getOtherGrouping()).isEqualTo("Cohort");
 
         softly.assertThat(result.get(3).getSubjectId()).isEqualTo(subject4.getSubjectId());
-        softly.assertThat(result.get(3).getDoseCohort()).isEqualTo("Default group");
-        softly.assertThat(result.get(3).getOtherCohort()).isEqualTo(null);
-        softly.assertThat(result.get(3).getDoseGrouping()).isEqualTo("Cohort");
-        softly.assertThat(result.get(3).getOtherGrouping()).isEqualTo(null);
+        softly.assertThat(result.get(3).getSubjectGroupings()).containsEntry("admin_defined_grouping", "Admin group");
     }
 
     @Test

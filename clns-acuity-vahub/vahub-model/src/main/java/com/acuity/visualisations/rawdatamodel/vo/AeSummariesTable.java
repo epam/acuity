@@ -76,6 +76,6 @@ public class AeSummariesTable {
     }
 
     public enum GroupingType {
-        DOSE, NONE
+        DYNAMIC, TOTAL
     }
 }

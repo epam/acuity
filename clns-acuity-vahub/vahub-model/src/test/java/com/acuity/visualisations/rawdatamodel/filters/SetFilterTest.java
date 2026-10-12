@@ -96,4 +96,18 @@ public class SetFilterTest {
         setFilter.setSortedValues(Arrays.asList("60 mg", "100 mg", "10 mg"));
         assertThat(setFilter.getSortedValues()).containsExactly("10 mg", "60 mg", "100 mg");
     }
+
+    @Test
+    public void testDefaultGroupSortedLast() {
+        SetFilter<String> setFilter = new SetFilter<>();
+
+        setFilter.setSortedValues(Arrays.asList("Default group", "Alpha group", "Beta group"));
+        assertThat(setFilter.getSortedValues()).containsExactly("Alpha group", "Beta group", "Default group");
+
+        setFilter.setSortedValues(Arrays.asList("Zeta group", "Default group"));
+        assertThat(setFilter.getSortedValues()).containsExactly("Zeta group", "Default group");
+
+        setFilter.setSortedValues(Arrays.asList("default group", "Alpha group"));
+        assertThat(setFilter.getSortedValues()).containsExactly("Alpha group", "default group");
+    }
 }
