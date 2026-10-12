@@ -1,0 +1,33 @@
+name: tag
+
+on:
+  push:
+    branches: [main]
+
+permissions: {}
+
+# serialize and queue: quick merges run in order, none are dropped or race for the same tag
+concurrency:
+  group: tag-main
+  cancel-in-progress: false
+  queue: max
+
+jobs:
+  tag:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: write
+    steps:
+      # skip if this commit already has a vX.Y.Z tag, so re-runs don't add a second one
+      - id: guard
+        run: |
+          tags=$(git ls-remote --tags "$GITHUB_SERVER_URL/$GITHUB_REPOSITORY" 'refs/tags/v*')
+          if grep -qE "^${GITHUB_SHA}[[:space:]]+refs/tags/v[0-9]+\.[0-9]+\.[0-9]+(\^\{\})?$" <<< "$tags"; then
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+          fi
+      - if: steps.guard.outputs.skip != 'true'
+        uses: mathieudutour/github-tag-action@v7
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          force_bump: patch
