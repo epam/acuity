@@ -11,3 +11,6 @@ crash.*.log
 .terraform.tfstate.lock.info
 .terraformrc
 terraform.rc
+/**/.classpath
+/**/.factorypath
+/**/.project
