@@ -42,14 +42,6 @@
                     <td id="csId"></td>
                 </tr>
                 <tr>
-                    <td class="tdf">Dataset end date:</td>
-                    <td id="endDate"></td>
-                </tr>
-                <tr>
-                    <td class="tdf">Phase:</td>
-                    <td id="phase"></td>
-                </tr>
-                <tr>
                     <td class="tdf">Blinded:</td>
                     <td id="blinding"></td>
                 </tr>

@@ -107,13 +107,6 @@ var SearchStudyStep = function (studyWizard) {
                         align: "center"
                     },
                     {
-                        label: 'Phase <a href="#colPhase" class="help">?</a>',
-                        name: 'phase',
-                        index: 'phase',
-                        width: 150,
-                        align: "center"
-                    },
-                    {
                         label: 'Dataset setup status <a href="#colStudySetupStatus" class="help">?</a>',
                         name: 'status',
                         index: 'status',
@@ -199,7 +192,6 @@ var SearchStudyStep = function (studyWizard) {
     var addHelpText = function () {
         $('a[href=#colStudyID]').attr('title', $('#colStudyID').val());
         $('a[href=#colStudyName]').attr('title', $('#colStudyName').val());
-        $('a[href=#colPhase]').attr('title', $('#colPhase').val());
         $('a[href=#colStudySetupStatus]').attr('title', $('#colStudySetupStatus').val());
         $(".help").tipTip();
     };

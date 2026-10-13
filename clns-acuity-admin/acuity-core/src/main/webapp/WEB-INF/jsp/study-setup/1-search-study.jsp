@@ -20,7 +20,6 @@
 
 <input id="colStudyID" type="hidden" value='<%= HelpController.getHelpText("1-search-study", "colStudyID") %>'/>
 <input id="colStudyName" type="hidden" value='<%= HelpController.getHelpText("1-search-study", "colStudyName") %>'/>
-<input id="colPhase" type="hidden" value='<%= HelpController.getHelpText("1-search-study", "colPhase") %>'/>
 <input id="colStudySetupStatus" type="hidden"
        value='<%= HelpController.getHelpText("1-search-study", "colStudySetupStatus") %>'/>
 
