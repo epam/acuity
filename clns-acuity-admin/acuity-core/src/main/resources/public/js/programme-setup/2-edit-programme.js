@@ -133,8 +133,8 @@ var EditProgrammeStep = function (programmeWizard) {
             scope.project.drugId = $("#drugProgrammeId").val();
             scope.project.id = null;
             scope.project.acuityEnabled = $("#programmeEnabled").val() === "Yes" ? true : false;
-            scope.project.totalStudyCount = $("#studyNumberStudies").val();
-            scope.project.numberOfAcuityEnabledStudies = $("#studyNumberEnabledStudies").val();
+            scope.project.totalStudyCount = parseInt($("#studyNumberStudies").val(), 10) || 0;
+            scope.project.numberOfAcuityEnabledStudies = parseInt($("#studyNumberEnabledStudies").val(), 10) || 0;
         }
 
         //scope.project.admin = $("#chiefProgramme").val();

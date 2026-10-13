@@ -251,10 +251,6 @@
             <helpText>The name of the clinical study</helpText>
         </help>
         <help>
-            <pageElement>colPhase</pageElement>
-            <helpText>The clinical study phase</helpText>
-        </help>
-        <help>
             <pageElement>colStudySetupStatus</pageElement>
             <helpText>The setup status of the study in ACUITY.
 

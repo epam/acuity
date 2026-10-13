@@ -12,8 +12,6 @@ var Admin = function () {
     var studySumNameId = "study-name";
     var studySumCSId = "clinical-study-id";
     var studySumCSName = "clinical-study-name";
-    var studySumCommenceDateId = "study-com-date";
-    var studySumEndDateId = "study-end-date";
     var studySumPhaseId = "study-phase";
     var studySumBlindingId = "study-blinded";
     var studySumRandId = "study-rand-status";
@@ -199,8 +197,6 @@ var Admin = function () {
         $('#' + studySumNameId).text(selectedStudy.studyName);
         $('#' + studySumCSName).text(selectedStudy.clinicalStudyName);
         $('#' + studySumCSId).text(selectedStudy.clinicalStudyId);
-        $('#' + studySumCommenceDateId).text(selectedStudy.firstSubjectInPlanned);
-        $('#' + studySumEndDateId).text(selectedStudy.databaseLockPlanned);
         $('#' + studySumPhaseId).text(selectedStudy.phase);
 
         $('#' + studySumBlindingId).text(selectedStudy.blinding ? 'Blinded' : 'Not blinded');
