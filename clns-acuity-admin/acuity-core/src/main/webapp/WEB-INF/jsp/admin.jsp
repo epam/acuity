@@ -185,12 +185,6 @@
                         <p>Study name: <b id="clinical-study-name"></b></p>
                         <p>Study id: <b id="clinical-study-id"></b></p>
 
-                        <p>Dataset study commence date: <b id="study-com-date"></b></p>
-
-                        <p>Dataset study end date: <b id="study-end-date"></b></p>
-
-                        <p>Dataset study phase: <b id="study-phase"></b></p>
-
                         <p>Blinding status: <b id="study-blinded"></b></p>
 
                         <p>Randomisation status: <b id="study-rand-status"></b></p>
