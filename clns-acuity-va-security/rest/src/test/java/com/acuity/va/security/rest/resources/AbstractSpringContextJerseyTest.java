@@ -29,10 +29,9 @@ import com.acuity.va.security.rest.test.SpringContextJerseyTest;
 import com.acuity.va.security.acl.dao.AcuityObjectService;
 import com.acuity.va.security.acl.dao.UserRepository;
 import com.acuity.va.security.acl.task.RefreshCachesTask;
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.SerializationFeature;
 import com.google.common.collect.Sets;
 import org.glassfish.jersey.client.ClientConfig;
+import org.glassfish.jersey.jackson.JacksonFeature;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.server.ServerProperties;
 import org.glassfish.jersey.test.TestProperties;
@@ -40,7 +39,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.mockito.Mockito;
 
-import javax.ws.rs.core.Application;
+import jakarta.ws.rs.core.Application;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.util.Set;
@@ -80,7 +79,7 @@ public abstract class AbstractSpringContextJerseyTest extends SpringContextJerse
     @Override
     protected Application configure() {
         Set<Class<?>> resources = Sets.union(getResourcesToLoad(),
-            Sets.newHashSet(SerializationFeature.class, DeserializationFeature.class));
+            Sets.newHashSet(JacksonFeature.class));
 
         ResourceConfig resourceConfig = new ResourceConfig(resources);
         enable(TestProperties.LOG_TRAFFIC);
@@ -93,8 +92,7 @@ public abstract class AbstractSpringContextJerseyTest extends SpringContextJerse
 
     @Override
     protected void configureClient(ClientConfig config) {
-        // config.register(SerializationFeature.class);
-        // config.register(DeserializationFeature.class);
+        config.register(JacksonFeature.class);
     }
 
     /**

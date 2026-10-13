@@ -5,25 +5,26 @@ import java.security.AccessController;
 import java.util.*;
 import java.util.logging.*;
 
-import javax.ws.rs.RuntimeType;
-import javax.ws.rs.client.Client;
-import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.client.WebTarget;
-import javax.ws.rs.core.Application;
-import javax.ws.rs.core.UriBuilder;
+import jakarta.ws.rs.RuntimeType;
+import jakarta.ws.rs.client.Client;
+import jakarta.ws.rs.client.ClientBuilder;
+import jakarta.ws.rs.client.WebTarget;
+import jakarta.ws.rs.core.Application;
+import jakarta.ws.rs.core.UriBuilder;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
-import org.glassfish.hk2.api.ServiceLocator;
 import org.glassfish.jersey.client.ClientConfig;
-import org.glassfish.jersey.filter.LoggingFilter;
+import org.glassfish.jersey.internal.inject.InjectionManager;
 import org.glassfish.jersey.internal.ServiceFinderBinder;
 import org.glassfish.jersey.internal.inject.Providers;
 import org.glassfish.jersey.internal.util.PropertiesHelper;
 import org.glassfish.jersey.internal.util.ReflectionHelper;
+import org.glassfish.jersey.logging.LoggingFeature;
 import org.glassfish.jersey.server.ApplicationHandler;
 import org.glassfish.jersey.server.ResourceConfig;
+import org.glassfish.jersey.test.DeploymentContext;
 import org.glassfish.jersey.test.TestProperties;
 import org.glassfish.jersey.test.spi.TestContainer;
 import org.glassfish.jersey.test.spi.TestContainerException;
@@ -326,7 +327,7 @@ public class SpringContextJerseyTest {
                 final String tcfClassName = getProperty(TestProperties.CONTAINER_FACTORY);
                 if ((tcfClassName == null)) {
                     Set<TestContainerFactory> testContainerFactories =
-                            Providers.getProviders(application.getServiceLocator(), TestContainerFactory.class);
+                            Providers.getProviders(application.getInjectionManager(), TestContainerFactory.class);
 
                     if (testContainerFactories.size() >= 1) {
                         // if default factory is present, use it.
@@ -459,7 +460,7 @@ public class SpringContextJerseyTest {
             throw new IllegalArgumentException("The application cannot be null");
         }
 
-        return tcf.create(getBaseUri(), application);
+        return tcf.create(getBaseUri(), DeploymentContext.builder(application.getConfiguration()).build());
     }
 
     /**
@@ -484,7 +485,10 @@ public class SpringContextJerseyTest {
 
         //check if logging is required
         if (isEnabled(TestProperties.LOG_TRAFFIC)) {
-            cc.register(new LoggingFilter(LOGGER, isEnabled(TestProperties.DUMP_ENTITY)));
+            LoggingFeature.Verbosity verbosity = isEnabled(TestProperties.DUMP_ENTITY)
+                    ? LoggingFeature.Verbosity.PAYLOAD_ANY
+                    : LoggingFeature.Verbosity.HEADERS_ONLY;
+            cc.register(new LoggingFeature(LOGGER, Level.INFO, verbosity, 8192));
         }
 
         configureClient(cc);
@@ -664,8 +668,7 @@ public class SpringContextJerseyTest {
     }
 
     protected ApplicationContext getSpringApplicationContext() {
-        ServiceLocator serviceLocator = getApplication().getServiceLocator();
-        return serviceLocator.getService(ApplicationContext.class);
+        InjectionManager injectionManager = getApplication().getInjectionManager();
+        return injectionManager.getInstance(ApplicationContext.class);
     }
 }
-

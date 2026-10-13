@@ -26,7 +26,7 @@ import com.acuity.va.security.acl.domain.DrugProgramme;
 
 import java.util.Set;
 
-import javax.ws.rs.core.Response;
+import jakarta.ws.rs.core.Response;
 
 import com.acuity.va.security.acl.domain.AcuitySidDetails;
 import com.acuity.va.security.acl.domain.AcuitySidDetailsWithPermissionMask;
@@ -39,8 +39,8 @@ import java.util.Optional;
 import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.Test;
 import static org.mockito.Mockito.*;
-import javax.ws.rs.client.Entity;
-import javax.ws.rs.core.GenericType;
+import jakarta.ws.rs.client.Entity;
+import jakarta.ws.rs.core.GenericType;
 
 /**
  * @author Glen

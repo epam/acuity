@@ -24,8 +24,8 @@ import com.acuity.va.security.acl.service.UserService;
 import com.acuity.va.security.rest.security.Security;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.ws.rs.WebApplicationException;
-import javax.ws.rs.core.Response;
+import jakarta.ws.rs.WebApplicationException;
+import jakarta.ws.rs.core.Response;
 
 /**
  * Base resource with all helper methods and autowire common spring beans.

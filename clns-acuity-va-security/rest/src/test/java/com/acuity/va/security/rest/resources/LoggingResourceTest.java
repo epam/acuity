@@ -19,8 +19,8 @@ package com.acuity.va.security.rest.resources;
 import com.google.common.collect.Sets;
 import org.junit.jupiter.api.Test;
 
-import javax.ws.rs.client.Entity;
-import javax.ws.rs.core.Response;
+import jakarta.ws.rs.client.Entity;
+import jakarta.ws.rs.core.Response;
 import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;

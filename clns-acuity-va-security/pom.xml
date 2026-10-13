@@ -34,11 +34,9 @@
     <properties>
         <java-version>21</java-version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <jersey.version>2.7</jersey.version>
         <postgresql.version>42.7.13</postgresql.version>
         <spring-cloud.version>2025.1.3</spring-cloud.version>
         <slf4j.version>1.7.6</slf4j.version>
-        <logback.version>1.2.1</logback.version>
         <jtds.version>1.2.6</jtds.version>
         <spring.profile>default</spring.profile>
         <maven.javadoc.skip>true</maven.javadoc.skip>
@@ -198,7 +196,7 @@
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.7.1.201405082137</version>
+                <version>0.8.13</version>
                 <executions>
                     <!--
                         Prepares the property pointing to the JaCoCo runtime agent which
@@ -278,7 +276,7 @@
             <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <groupId>org.apache.maven.plugins</groupId>
-                <version>2.18.1</version>
+                <version>3.5.6</version>
                 <configuration>
                     <!-- Sets the VM argument line used when unit tests are run. -->
                     <includes>
@@ -298,7 +296,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-failsafe-plugin</artifactId>
-                <version>2.18.1</version>
+                <version>3.5.6</version>
                 <configuration>
                     <skip>true</skip>
                 </configuration>

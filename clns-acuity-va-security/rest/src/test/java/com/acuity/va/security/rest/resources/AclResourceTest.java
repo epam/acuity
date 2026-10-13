@@ -25,8 +25,8 @@ import com.acuity.va.security.acl.domain.AcuitySidDetails;
 import java.util.List;
 import java.util.Set;
 
-import javax.ws.rs.client.Entity;
-import javax.ws.rs.core.Response;
+import jakarta.ws.rs.client.Entity;
+import jakarta.ws.rs.core.Response;
 
 import com.acuity.va.security.rest.util.UserPermission;
 import com.acuity.va.security.acl.service.SecurityAclService;
@@ -41,7 +41,7 @@ import static com.acuity.va.security.acl.permissions.AcuityPermissions.*;
 import com.acuity.va.security.rest.util.ViewUserPermission;
 import static org.mockito.Mockito.*;
 
-import javax.ws.rs.WebApplicationException;
+import jakarta.ws.rs.WebApplicationException;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import org.quartz.SchedulerException;
