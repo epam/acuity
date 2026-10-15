@@ -1,4 +1,4 @@
-name: deploy dev
+name: Deploy Dev
 
 # Run from a v* tag ("Use workflow from"); the tag is the image tag and the image_tag var.
 on:
