@@ -1,11 +1,11 @@
-name: deploy dev
+name: Deploy Dev
 
 # Run from a v* tag ("Use workflow from"); the tag is the image tag and the image_tag var.
 on:
   workflow_dispatch:
     inputs:
       workspace:
-        description: Terraform workspace of infrastructure/terraform/acuity (must already exist)
+        description: Dev Environment 
         type: choice
         options: [dev-1]
 
