@@ -77,7 +77,7 @@ public class CardiacMeasurementsOverTimeChartResource {
                 requestBody.getDatasetsObject(),
                 requestBody.getCardiacFilters(),
                 requestBody.getPopulationFilters(),
-                requestBody.getYAxisOption());
+                requestBody.getyAxisOption());
     }
 
     @PostMapping("selection")

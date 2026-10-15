@@ -46,7 +46,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
@@ -142,9 +142,9 @@ public class QtProlongationServiceTest {
     private SoftAssertions softly;
     @Autowired
     private QtProlongationService qtProlongationService;
-    @MockBean
+    @MockitoBean
     private PopulationDatasetsDataProvider populationDatasetsDataProvider;
-    @MockBean
+    @MockitoBean
     private QtProlongationDatasetsDataProvider qtProlongationDatasetsDataProvider;
     @Autowired
     private DoDCommonService dodCommonService;

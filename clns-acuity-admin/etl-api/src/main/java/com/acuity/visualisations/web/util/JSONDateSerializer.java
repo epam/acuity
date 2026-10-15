@@ -17,17 +17,21 @@
 package com.acuity.visualisations.web.util;
 
 
-import com.fasterxml.jackson.core.JsonGenerator;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonSerializer;
-import com.fasterxml.jackson.databind.SerializerProvider;
+import tools.jackson.core.JacksonException;
+import tools.jackson.core.JsonGenerator;
+import tools.jackson.databind.SerializationContext;
+import tools.jackson.databind.ser.std.StdSerializer;
 
-import java.io.IOException;
 import java.util.Date;
 
-public class JSONDateSerializer extends JsonSerializer<Date> {
+public class JSONDateSerializer extends StdSerializer<Date> {
+
+    public JSONDateSerializer() {
+        super(Date.class);
+    }
+
     @Override
-    public void serialize(Date date, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException, JsonProcessingException {
+    public void serialize(Date date, JsonGenerator jsonGenerator, SerializationContext serializationContext) throws JacksonException {
         String dateString = Utils.getDateString(date);
         jsonGenerator.writeString(dateString);
     }

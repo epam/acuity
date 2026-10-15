@@ -4,18 +4,18 @@ import com.acuity.va.security.acl.domain.AcuityObjectIdentity;
 import com.acuity.va.security.acl.domain.AcuityObjectIdentityWithPermission;
 import com.acuity.va.security.acl.domain.AcuitySidDetails;
 import java.util.List;
-import javax.annotation.PostConstruct;
-import javax.ws.rs.client.Client;
+import jakarta.annotation.PostConstruct;
+import jakarta.ws.rs.client.Client;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.client.WebTarget;
-import javax.ws.rs.core.GenericType;
-import javax.ws.rs.core.Response;
+import jakarta.ws.rs.client.ClientBuilder;
+import jakarta.ws.rs.client.WebTarget;
+import jakarta.ws.rs.core.GenericType;
+import jakarta.ws.rs.core.Response;
 
-import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
+import static jakarta.ws.rs.core.MediaType.APPLICATION_JSON;
 import org.glassfish.jersey.client.authentication.HttpAuthenticationFeature;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cache.annotation.Cacheable;

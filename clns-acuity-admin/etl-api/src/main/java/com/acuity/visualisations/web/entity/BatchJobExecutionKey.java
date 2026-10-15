@@ -20,7 +20,7 @@ import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.quartz.JobDetail;
 import org.quartz.JobExecutionContext;
-import org.springframework.batch.core.JobExecution;
+import org.springframework.batch.core.job.JobExecution;
 
 import com.acuity.visualisations.util.JobLauncherConsts;
 

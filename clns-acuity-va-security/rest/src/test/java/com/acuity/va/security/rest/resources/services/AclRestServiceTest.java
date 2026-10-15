@@ -20,16 +20,16 @@ import com.acuity.va.security.acl.domain.DrugProgramme;
 import com.acuity.va.security.acl.domain.DrugProgramme;
 import com.acuity.va.security.rest.security.Security;
 import com.acuity.va.security.acl.service.SecurityAclService;
-import javax.ws.rs.WebApplicationException;
-import javax.ws.rs.core.Response;
+import jakarta.ws.rs.WebApplicationException;
+import jakarta.ws.rs.core.Response;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import javax.ws.rs.core.UriBuilder;
-import javax.ws.rs.core.UriInfo;
+import jakarta.ws.rs.core.UriBuilder;
+import jakarta.ws.rs.core.UriInfo;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
@@ -73,7 +73,6 @@ public class AclRestServiceTest {
         doThrow(new AlreadyExistsException("not found")).when(securityAclService).createAcl(any(DrugProgramme.class), eq(owner));
 
         UriInfo mockUriInfo = mock(UriInfo.class);
-        when(mockUriInfo.getAbsolutePathBuilder()).thenReturn(UriBuilder.fromUri("http://localhost/"));
 
         WebApplicationException ex = assertThrows(WebApplicationException.class, () ->
                 aclRestService.createAcl(mockUriInfo, owner, drugProgramme));

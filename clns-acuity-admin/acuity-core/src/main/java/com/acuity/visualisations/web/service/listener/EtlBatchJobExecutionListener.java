@@ -19,7 +19,7 @@ package com.acuity.visualisations.web.service.listener;
 import com.acuity.visualisations.web.entity.JobExecutionEvent.ExecutionState;
 import com.acuity.visualisations.web.service.SchedulerStatusStorage;
 import org.quartz.Scheduler;
-import org.springframework.batch.core.JobExecution;
+import org.springframework.batch.core.job.JobExecution;
 
 public class EtlBatchJobExecutionListener extends CommonBatchJobExecutionListener {
 

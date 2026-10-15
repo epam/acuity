@@ -14,13 +14,19 @@
  * limitations under the License.
  */
 
-package com.acuity.va.security.auth.common;
+package com.acuity.visualisations.web.util;
 
-import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
-@Configuration
-public class ContentNegotiationConfig implements WebMvcConfigurer {
-    // favorPathExtension removed in Spring MVC 6 — path extension content negotiation
-    // is disabled by default in Spring Boot 3.x, so no override needed.
+import java.util.Date;
+
+public class JSONDateDeserializerTest {
+
+    @Test
+    public void parsesAcuityUiDateFormatWithFourDigitYear() throws Exception {
+        Date date = Utils.parse("01-Oct-2026");
+
+        Assertions.assertEquals("01-Oct-2026", Utils.getDateString(date));
+    }
 }

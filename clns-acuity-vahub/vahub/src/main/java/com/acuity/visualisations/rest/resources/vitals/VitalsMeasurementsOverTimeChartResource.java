@@ -79,7 +79,7 @@ public class VitalsMeasurementsOverTimeChartResource {
                 requestBody.getDatasetsObject(),
                 requestBody.getVitalsFilters(),
                 requestBody.getPopulationFilters(),
-                requestBody.getYAxisOption());
+                requestBody.getyAxisOption());
     }
 
     @PostMapping("selection")

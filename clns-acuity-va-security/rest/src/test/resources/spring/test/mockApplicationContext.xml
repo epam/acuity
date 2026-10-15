@@ -23,19 +23,55 @@
 		http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.0.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
 
-    <bean class="com.acuity.va.security.rest.test.MockFactory" id="mockFactory" />
-
     <!-- Create mock of some service -->
-    <bean factory-bean="mockFactory" factory-method="createSecurityAclService" id="securityAclService" />
-    <bean factory-bean="mockFactory" factory-method="createUserService" id="userService" />
-    <bean factory-bean="mockFactory" factory-method="createUserRespository" id="userRepository" />
-    <bean factory-bean="mockFactory" factory-method="createSecurity" id="security" />
-    <bean factory-bean="mockFactory" factory-method="createCustomUserDetailsManager" id="customUserDetailsManager" />
-    <bean factory-bean="mockFactory" factory-method="createMyAnalyticsService" id="myAnalyticsService" />
-    <bean factory-bean="mockFactory" factory-method="createAclRestService" id="aclRestService" />
-    <bean factory-bean="mockFactory" factory-method="createAclRepository" id="aclRepository" />
-    <bean factory-bean="mockFactory" factory-method="createAcuityObjectService" id="acuityObjectService" />
-    <bean factory-bean="mockFactory" factory-method="createVASecurityResourceFactory" id="vASecurityResourceFactory" />
-    <bean factory-bean="mockFactory" factory-method="createRefreshCachesTask" id="refreshCachesTask" />
-    <bean factory-bean="mockFactory" factory-method="createPeopleResourceClient" id="peopleResourceClient" />
+    <bean id="securityAclService" class="com.acuity.va.security.rest.test.MockitoMockFactoryBean">
+        <constructor-arg value="com.acuity.va.security.acl.service.SecurityAclService" />
+    </bean>
+    <bean id="userService" class="com.acuity.va.security.rest.test.MockitoMockFactoryBean">
+        <constructor-arg value="com.acuity.va.security.acl.service.UserService" />
+    </bean>
+    <bean id="userRepository" class="com.acuity.va.security.rest.test.MockitoMockFactoryBean">
+        <constructor-arg value="com.acuity.va.security.acl.dao.UserRepository" />
+    </bean>
+    <bean id="security" class="com.acuity.va.security.rest.test.MockitoMockFactoryBean">
+        <constructor-arg value="com.acuity.va.security.rest.security.Security" />
+    </bean>
+    <bean id="customUserDetailsManager" class="com.acuity.va.security.rest.test.MockitoMockFactoryBean">
+        <constructor-arg value="com.acuity.va.security.acl.service.CustomUserDetailsManager" />
+    </bean>
+    <bean id="myAnalyticsService" class="com.acuity.va.security.rest.test.MockitoMockFactoryBean">
+        <constructor-arg value="com.acuity.va.security.rest.resources.services.MyAnalyticsService" />
+    </bean>
+    <bean id="aclRestService" class="com.acuity.va.security.rest.test.MockitoMockFactoryBean">
+        <constructor-arg value="com.acuity.va.security.rest.resources.services.AclRestService" />
+    </bean>
+    <bean id="aclRepository" class="com.acuity.va.security.rest.test.MockitoMockFactoryBean">
+        <constructor-arg value="com.acuity.va.security.acl.dao.AclRepository" />
+    </bean>
+    <bean id="acuityObjectService" class="com.acuity.va.security.rest.test.MockitoMockFactoryBean">
+        <constructor-arg value="com.acuity.va.security.acl.dao.AcuityObjectService" />
+    </bean>
+    <bean id="vASecurityResourceFactory" class="com.acuity.va.security.rest.test.MockitoMockFactoryBean">
+        <constructor-arg value="com.acuity.va.security.acl.service.VASecurityResourceFactory" />
+    </bean>
+    <bean id="refreshCachesTask" class="com.acuity.va.security.rest.test.MockitoMockFactoryBean">
+        <constructor-arg value="com.acuity.va.security.acl.task.RefreshCachesTask" />
+    </bean>
+    <bean id="peopleResourceClient" class="com.acuity.va.security.rest.test.MockitoMockFactoryBean">
+        <constructor-arg value="com.acuity.va.security.common.service.PeopleResourceClient" />
+    </bean>
+
+    <bean id="permissionViewPackagesManager" class="com.acuity.va.security.rest.test.MockitoMockFactoryBean">
+        <constructor-arg value="com.acuity.va.security.acl.permissions.AcuityPermissionViewPackagesManager" />
+    </bean>
+    <bean id="lockdownService" class="com.acuity.va.security.rest.test.MockitoMockFactoryBean">
+        <constructor-arg value="com.acuity.va.auditlogger.service.LockdownService" />
+    </bean>
+    <bean id="syncAclsTask" class="com.acuity.va.security.rest.test.MockitoMockFactoryBean">
+        <constructor-arg value="com.acuity.va.security.acl.task.SyncAclsTask" />
+    </bean>
+
+    <context:component-scan base-package="com.acuity.va.security.rest.resources">
+        <context:exclude-filter type="regex" expression="com\.acuity\.va\.security\.rest\.resources\.services\..*" />
+    </context:component-scan>
 </beans>

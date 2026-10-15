@@ -18,8 +18,11 @@ package com.acuity.visualisations.rest.model.request.renal;
 
 import com.acuity.visualisations.rawdatamodel.trellis.grouping.RenalGroupByOptions;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AccessLevel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 
 import jakarta.validation.constraints.NotNull;
 
@@ -28,9 +31,15 @@ import jakarta.validation.constraints.NotNull;
 public class RenalTrellisRequest extends RenalRequest {
     @NotNull
     @JsonProperty("yAxisOption")
+    @Getter(AccessLevel.NONE)
+    @Setter(AccessLevel.NONE)
     private RenalGroupByOptions yAxisOption;
 
-    public RenalGroupByOptions getYAxisOption() {
+    public RenalGroupByOptions getyAxisOption() {
         return yAxisOption;
+    }
+
+    public void setyAxisOption(RenalGroupByOptions yAxisOption) {
+        this.yAxisOption = yAxisOption;
     }
 }

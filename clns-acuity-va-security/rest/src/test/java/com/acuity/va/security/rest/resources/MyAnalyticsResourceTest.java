@@ -28,7 +28,7 @@ import com.acuity.va.security.acl.service.VASecurityResourceClient;
 import com.google.common.collect.Sets;
 import org.junit.jupiter.api.Test;
 
-import javax.ws.rs.core.Response;
+import jakarta.ws.rs.core.Response;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;

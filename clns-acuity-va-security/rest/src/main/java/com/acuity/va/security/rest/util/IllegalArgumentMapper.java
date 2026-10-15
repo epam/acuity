@@ -16,9 +16,9 @@
 
 package com.acuity.va.security.rest.util;
 
-import javax.ws.rs.core.Response;
-import javax.ws.rs.ext.ExceptionMapper;
-import javax.ws.rs.ext.Provider;
+import jakarta.ws.rs.core.Response;
+import jakarta.ws.rs.ext.ExceptionMapper;
+import jakarta.ws.rs.ext.Provider;
 
 /**
  * PeriodType annotation throws a IllegalArgumentException, so this is used by jersey to map this

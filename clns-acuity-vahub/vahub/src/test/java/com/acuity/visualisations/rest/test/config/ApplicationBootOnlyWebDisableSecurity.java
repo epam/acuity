@@ -34,8 +34,8 @@ import static org.springframework.context.annotation.FilterType.ASSIGNABLE_TYPE;
             value = {ApplicationWeb.class})
 )
 @EnableAutoConfiguration(exclude = {
-    org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration.class,
-    org.springframework.boot.actuate.autoconfigure.security.servlet.ManagementWebSecurityAutoConfiguration.class})
+    org.springframework.boot.security.autoconfigure.SecurityAutoConfiguration.class,
+    org.springframework.boot.security.autoconfigure.actuate.web.servlet.ManagementWebSecurityAutoConfiguration.class})
 public class ApplicationBootOnlyWebDisableSecurity extends SpringBootServletInitializer {
 
     @Override

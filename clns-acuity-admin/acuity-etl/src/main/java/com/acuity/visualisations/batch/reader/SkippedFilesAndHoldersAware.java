@@ -23,7 +23,7 @@ import com.acuity.visualisations.batch.processor.ExceptionReport;
 import com.acuity.visualisations.util.SerializationUtil;
 import org.json.JSONException;
 import org.springframework.batch.core.ExitStatus;
-import org.springframework.batch.core.StepExecution;
+import org.springframework.batch.core.step.StepExecution;
 import org.springframework.batch.core.annotation.AfterStep;
 
 import java.util.ArrayList;

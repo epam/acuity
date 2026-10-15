@@ -127,9 +127,18 @@ public class SdtmEntityMapper {
             // fall through to ISO-8601 parser attempts below
         }
         // Fallbacks for common ISO-8601 forms produced by SDTM (with timezone offsets / Z suffix)
-        try { return java.time.OffsetDateTime.parse(val).toLocalDateTime(); } catch (Exception ignored) {}
-        try { return java.time.ZonedDateTime.parse(val).toLocalDateTime(); } catch (Exception ignored) {}
-        try { return LocalDateTime.parse(val); } catch (Exception ignored) {}
+        try {
+            return java.time.OffsetDateTime.parse(val).toLocalDateTime();
+        } catch (Exception ignored) {
+        }
+        try {
+            return java.time.ZonedDateTime.parse(val).toLocalDateTime();
+        } catch (Exception ignored) {
+        }
+        try {
+            return LocalDateTime.parse(val);
+        } catch (Exception ignored) {
+        }
         return null;
     }
 

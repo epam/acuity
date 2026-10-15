@@ -3,3 +3,7 @@
 /.idea
 acuity-core/src/main/resources/git.properties
 /local-file-storage
+*/.classpath
+*/.factorypath
+*/.project
+*/.settings

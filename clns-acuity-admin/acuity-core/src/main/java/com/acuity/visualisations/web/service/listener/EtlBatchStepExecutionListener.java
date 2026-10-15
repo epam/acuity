@@ -20,8 +20,8 @@ import com.acuity.visualisations.aspect.LogMeAround;
 import com.acuity.visualisations.web.entity.BatchJobExecutionKey;
 import com.acuity.visualisations.web.entity.JobExecutionEvent;
 import org.springframework.batch.core.ExitStatus;
-import org.springframework.batch.core.JobExecution;
-import org.springframework.batch.core.StepExecution;
+import org.springframework.batch.core.job.JobExecution;
+import org.springframework.batch.core.step.StepExecution;
 
 public class EtlBatchStepExecutionListener extends CommonBatchStepExecutionListener {
 

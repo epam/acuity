@@ -19,8 +19,8 @@ package com.acuity.va.security.rest.resources;
 import java.util.List;
 import java.util.Set;
 
-import javax.ws.rs.core.GenericType;
-import javax.ws.rs.core.Response;
+import jakarta.ws.rs.core.GenericType;
+import jakarta.ws.rs.core.Response;
 
 import com.acuity.va.security.acl.domain.AcuityDataset;
 import com.acuity.va.security.acl.domain.AcuityObjectIdentityImpl;

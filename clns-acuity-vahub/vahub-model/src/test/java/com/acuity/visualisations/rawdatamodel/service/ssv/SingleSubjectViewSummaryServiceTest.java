@@ -51,7 +51,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
@@ -89,51 +89,51 @@ public class SingleSubjectViewSummaryServiceTest {
     @Autowired
     private SingleSubjectViewSummaryService ssvSummaryService;
 
-    @MockBean
+    @MockitoBean
     private PopulationDatasetsDataProvider populationDatasetsDataProvider;
-    @MockBean
+    @MockitoBean
     private DeathDatasetsDataProvider deathDatasetsDataProvider;
-    @MockBean
+    @MockitoBean
     private DoseDiscDatasetsDataProvider doseDiscDatasetsDataProvider;
-    @MockBean
+    @MockitoBean
     private DrugDoseDatasetsDataProvider drugDoseDatasetsDataProvider;
-    @MockBean
+    @MockitoBean
     private SeriousAeDatasetsDataProvider seriousAeDatasetsDataProvider;
-    @MockBean
+    @MockitoBean
     private MedicalHistoryDatasetsDataProvider medicalHistoryDatasetsDataProvider;
-    @MockBean
+    @MockitoBean
     private SurgicalHistoryDatasetsDataProvider surgicalHistoryDatasetsDataProvider;
-    @MockBean
+    @MockitoBean
     private ConmedDatasetsDataProvider conmedDatasetsDataProvider;
-    @MockBean
+    @MockitoBean
     private PathologyDatasetsDataProvider pathologyDatasetsDataProvider;
-    @MockBean
+    @MockitoBean
     private DiseaseExtentDatasetsDataProvider disextDatasetsDataProvider;
-    @MockBean
+    @MockitoBean
     private LabDatasetsDataProvider labDatasetsDataProvider;
-    @MockBean
+    @MockitoBean
     private RadiotherapyDatasetsDataProvider radiotherapyDatasetsDataProvider;
-    @MockBean
+    @MockitoBean
     private ChemotherapyDatasetsDataProvider chemotherapyDatasetsDataProvider;
-    @MockBean
+    @MockitoBean
     private AssessedNonTargetLesionDatasetsDataProvider assessedNonTargetLesionDatasetsDataProvider;
-    @MockBean
+    @MockitoBean
     private AssessedTargetLesionDatasetsDataProvider assessedTargetLesionDatasetsDataProvider;
-    @MockBean
+    @MockitoBean
     private TargetLesionDatasetsDataProvider targetLesionDatasetsDataProvider;
-    @MockBean
+    @MockitoBean
     private NonTargetLesionDatasetsDataProvider nonTargetLesionDatasetsDataProvider;
-    @MockBean
+    @MockitoBean
     private AssessmentDatasetsDataProvider assessmentDatasetsDataProvider;
-    @MockBean(name = "aeIncidenceDatasetsDataProvider")
+    @MockitoBean(name = "aeIncidenceDatasetsDataProvider")
     private AeIncidenceDatasetsDataProvider aeIncidenceDatasetsDataProvider;
-    @MockBean
+    @MockitoBean
     private SecondTimeOfProgressionDatasetsDataProvider secondTimeOfProgressionDatasetsDataProvider;
-    @MockBean
+    @MockitoBean
     private SurvivalStatusDatasesDataProvider survivalStatusDatasesDataProvider;
-    @MockBean
+    @MockitoBean
     private InfoService mockInfoService;
-    @MockBean
+    @MockitoBean
     private AeSeverityChangeDatasetsDataProvider aeSeverityChangeDatasetsDataProvider;
 
     @InjectSoftAssertions

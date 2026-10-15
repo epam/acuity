@@ -21,6 +21,7 @@ import com.acuity.visualisations.rawdatamodel.axes.TAxes;
 import com.acuity.visualisations.rawdatamodel.filters.*;
 import com.acuity.visualisations.rawdatamodel.service.timeline.TimelineService;
 import com.acuity.visualisations.rawdatamodel.service.timeline.data.TimelineTrack;
+import com.acuity.visualisations.rawdatamodel.vo.AeDetailLevel;
 import com.acuity.visualisations.rest.model.request.timeline.TimelineSubjectRequest;
 import com.acuity.va.security.acl.domain.Datasets;
 import com.acuity.va.security.acl.domain.DatasetsRequest;
@@ -40,6 +41,7 @@ import java.util.ArrayList;
 
 import static com.acuity.visualisations.config.util.TestConstants.DUMMY_DETECT_DATASETS;
 import static com.google.common.collect.Lists.newArrayList;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasSize;
 import static org.mockito.ArgumentMatchers.nullable;
 import static org.mockito.ArgumentMatchers.any;
@@ -144,5 +146,23 @@ public class TimelineResourceTest {
                 .andExpect(status().isOk())
                 .andDo(print())
                 .andExpect(jsonPath("$", hasSize(3)));
+    }
+
+    @Test
+    public void shouldDeserializeAeDetailLevelFromEnumNameWithRuntimeJacksonMapper() throws Exception {
+        tools.jackson.databind.ObjectMapper runtimeMapper = new tools.jackson.databind.ObjectMapper();
+
+        AeFilters filters = runtimeMapper.readValue("{\"aeDetailLevel\":\"PER_SEVERITY_CHANGE\"}", AeFilters.class);
+
+        assertThat(filters.getAeDetailLevel()).isEqualTo(AeDetailLevel.PER_SEVERITY_CHANGE);
+    }
+
+    @Test
+    public void shouldDeserializeAeDetailLevelFromDisplayNameWithRuntimeJacksonMapper() throws Exception {
+        tools.jackson.databind.ObjectMapper runtimeMapper = new tools.jackson.databind.ObjectMapper();
+
+        AeFilters filters = runtimeMapper.readValue("{\"aeDetailLevel\":\"Per AE Severity Change\"}", AeFilters.class);
+
+        assertThat(filters.getAeDetailLevel()).isEqualTo(AeDetailLevel.PER_SEVERITY_CHANGE);
     }
 }

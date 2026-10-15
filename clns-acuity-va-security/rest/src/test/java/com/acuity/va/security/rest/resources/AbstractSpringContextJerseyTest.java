@@ -29,18 +29,19 @@ import com.acuity.va.security.rest.test.SpringContextJerseyTest;
 import com.acuity.va.security.acl.dao.AcuityObjectService;
 import com.acuity.va.security.acl.dao.UserRepository;
 import com.acuity.va.security.acl.task.RefreshCachesTask;
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.SerializationFeature;
 import com.google.common.collect.Sets;
 import org.glassfish.jersey.client.ClientConfig;
+import org.glassfish.jersey.jackson.JacksonFeature;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.server.ServerProperties;
 import org.glassfish.jersey.test.TestProperties;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.mockito.Mockito;
+import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import javax.ws.rs.core.Application;
+import jakarta.ws.rs.core.Application;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.util.Set;
@@ -53,6 +54,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 public abstract class AbstractSpringContextJerseyTest extends SpringContextJerseyTest {
 
     public static final String MOCK_SPRING_APPLICATIONCONTEXT = "classpath:/spring/test/mockApplicationContext.xml";
+    /**
+     * jersey-spring property holding a ready-made ApplicationContext (SpringComponentProvider.PARAM_SPRING_CONTEXT)
+     */
+    private static final String SPRING_CONTEXT_PROPERTY = "contextConfig";
 
     /**
      * Mock spring services used in SecurityResource
@@ -80,21 +85,21 @@ public abstract class AbstractSpringContextJerseyTest extends SpringContextJerse
     @Override
     protected Application configure() {
         Set<Class<?>> resources = Sets.union(getResourcesToLoad(),
-            Sets.newHashSet(SerializationFeature.class, DeserializationFeature.class));
+            Sets.newHashSet(JacksonFeature.class));
 
         ResourceConfig resourceConfig = new ResourceConfig(resources);
         enable(TestProperties.LOG_TRAFFIC);
         enable(TestProperties.DUMP_ENTITY);
-        // Set which application context to use
-        resourceConfig.property("contextConfigLocation", MOCK_SPRING_APPLICATIONCONTEXT);
+        // Share one mock application context between the test's ApplicationHandler and the one
+        // the test container builds from the same configuration, so stubs reach the served resources
+        resourceConfig.property(SPRING_CONTEXT_PROPERTY, new ClassPathXmlApplicationContext(MOCK_SPRING_APPLICATIONCONTEXT));
         resourceConfig.property(ServerProperties.PROVIDER_PACKAGES, "com.acuity.acuity.rest.util");
         return resourceConfig;
     }
 
     @Override
     protected void configureClient(ClientConfig config) {
-        // config.register(SerializationFeature.class);
-        // config.register(DeserializationFeature.class);
+        config.register(JacksonFeature.class);
     }
 
     /**
@@ -149,5 +154,6 @@ public abstract class AbstractSpringContextJerseyTest extends SpringContextJerse
                 mockAcuityObjectService,  mockVASecurityResourceFactory,
                       
             mockRefreshCachesTask);
+        ((ConfigurableApplicationContext) getSpringApplicationContext()).close();
     }
 }

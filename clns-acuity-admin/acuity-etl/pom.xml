@@ -113,8 +113,8 @@
 			<artifactId>spring-web</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>commons-fileupload</groupId>
-			<artifactId>commons-fileupload</artifactId>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-fileupload2-javax</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>commons-lang</groupId>
@@ -196,7 +196,6 @@
 		<dependency>
 			<groupId>org.assertj</groupId>
 			<artifactId>assertj-core</artifactId>
-			<version>1.6.0</version>
 			<scope>test</scope>
 		</dependency>
 

@@ -65,7 +65,7 @@ public class VitalsMeanRangePlotResource {
                 requestBody.getDatasetsObject(),
                 requestBody.getVitalsFilters(),
                 requestBody.getPopulationFilters(),
-                requestBody.getYAxisOption());
+                requestBody.getyAxisOption());
     }
 
     @PostMapping("values")

@@ -31,10 +31,9 @@ import jakarta.validation.constraints.NotNull;
 public class LungFunctionTrellisRequest extends LungFunctionRequest {
     @NotNull
     @JsonProperty("resultType")
-    private LungFunctionGroupByOptions yAxisOption;
+    private LungFunctionGroupByOptions resultType;
 
-    public LungFunctionGroupByOptions getYAxisOption() {
-        return yAxisOption;
+    public LungFunctionGroupByOptions getResultType() {
+        return resultType;
     }
 }
-

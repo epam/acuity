@@ -20,10 +20,10 @@ import com.acuity.visualisations.aspect.LogMeAround;
 import lombok.AccessLevel;
 import lombok.Getter;
 import org.springframework.batch.core.ExitStatus;
-import org.springframework.batch.core.StepExecution;
-import org.springframework.batch.core.listener.StepExecutionListenerSupport;
+import org.springframework.batch.core.step.StepExecution;
+import org.springframework.batch.core.listener.StepExecutionListener;
 
-public class CommonBatchStepExecutionListener extends StepExecutionListenerSupport {
+public class CommonBatchStepExecutionListener implements StepExecutionListener {
 
     @Getter(AccessLevel.PROTECTED)
     private ObservableListener observable;

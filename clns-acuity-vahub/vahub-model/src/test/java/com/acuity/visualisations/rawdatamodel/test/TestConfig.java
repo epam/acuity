@@ -19,7 +19,7 @@ package com.acuity.visualisations.rawdatamodel.test;
 import com.acuity.visualisations.common.lookup.BeanLookupService;
 import com.acuity.visualisations.common.study.metadata.ModuleMetadata;
 import com.acuity.visualisations.rawdatamodel.dataproviders.common.DataProviderCacheResolver;
-import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.FilterType;
 import org.springframework.stereotype.Repository;
@@ -44,9 +44,9 @@ import org.springframework.test.context.ContextConfiguration;
 @ActiveProfiles(profiles = {"it"})
 public class TestConfig {
 
-    @MockBean
+    @MockitoBean
     protected BeanLookupService lkup;
 
-    @MockBean
+    @MockitoBean
     protected DataProviderCacheResolver dataProviderCacheResolver;
 }

@@ -53,7 +53,7 @@ import org.assertj.core.groups.Tuple;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.Arrays;
@@ -82,13 +82,13 @@ public class LungFunctionServiceTest {
     @Autowired
     private LungFunctionService lungFunctionService;
 
-    @MockBean
+    @MockitoBean
     private LungFunctionDatasetsDataProvider lungFunctionDatasetsDataProvider;
 
-    @MockBean
+    @MockitoBean
     private PopulationDatasetsDataProvider populationDatasetsDataProvider;
 
-    @MockBean
+    @MockitoBean
     private InfoService mockInfoService;
 
     private DoDCommonService doDCommonService = new DoDCommonService();

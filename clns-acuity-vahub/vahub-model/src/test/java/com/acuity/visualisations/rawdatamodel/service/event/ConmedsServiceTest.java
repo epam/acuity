@@ -43,7 +43,7 @@ import org.assertj.core.api.junit.jupiter.SoftAssertionsExtension;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.Arrays;
@@ -70,9 +70,9 @@ import static org.mockito.Mockito.when;
 public class ConmedsServiceTest {
     @Autowired
     private ConmedsService conmedService;
-    @MockBean
+    @MockitoBean
     private PopulationDatasetsDataProvider populationDatasetsDataProvider;
-    @MockBean
+    @MockitoBean
     private ConmedDatasetsDataProvider conmedDatasetsDataProvider;
 
     private DoDCommonService doDCommonService = new DoDCommonService();

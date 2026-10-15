@@ -22,13 +22,13 @@ import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.batch.core.JobExecution;
-import org.springframework.batch.core.JobParameters;
-import org.springframework.batch.core.JobParametersBuilder;
-import org.springframework.batch.core.configuration.JobLocator;
-import org.springframework.batch.core.explore.JobExplorer;
-import org.springframework.batch.core.launch.JobLauncher;
-import org.springframework.batch.core.repository.JobExecutionAlreadyRunningException;
+import org.springframework.batch.core.job.JobExecution;
+import org.springframework.batch.core.job.parameters.JobParameters;
+import org.springframework.batch.core.job.parameters.JobParametersBuilder;
+import org.springframework.batch.core.configuration.JobRegistry;
+import org.springframework.batch.core.launch.JobExecutionAlreadyRunningException;
+import org.springframework.batch.core.launch.JobOperator;
+import org.springframework.batch.core.repository.JobRepository;
 import org.springframework.dao.CannotSerializeTransactionException;
 import org.springframework.scheduling.quartz.QuartzJobBean;
 
@@ -43,11 +43,11 @@ public class JobLauncherDetails extends QuartzJobBean {
 
     private static Logger log = LoggerFactory.getLogger(JobLauncherDetails.class);
 
-    private JobLocator jobLocator;
+    private JobRegistry jobRegistry;
 
-    private JobLauncher jobLauncher;
+    private JobOperator jobOperator;
 
-    private JobExplorer jobExplorer;
+    private JobRepository jobRepository;
 
     protected void executeInternal(JobExecutionContext context) throws JobExecutionException {
         Map<String, Object> jobDataMap = context.getMergedJobDataMap();
@@ -59,7 +59,7 @@ public class JobLauncherDetails extends QuartzJobBean {
             JobParameters displayJobParameters = getDisplayJobParameters(jobParameters);
             log.info("Quartz trigger firing with Spring Batch jobName={} and jobParamterers={}", jobName, displayJobParameters);
 
-            jobLauncher.run(jobLocator.getJob(jobName), jobParameters);
+            jobOperator.start(jobRegistry.getJob(jobName), jobParameters);
         } catch (CannotSerializeTransactionException e) {
             throw new JobExecutionException("Job for project: " + jobParameters.getString(JobLauncherConsts.PROJECT_KEY) + ", study:"
                     + jobParameters.getString(JobLauncherConsts.STUDY_KEY) + " wasn't launched. Job repository is currently overloaded.");
@@ -78,7 +78,7 @@ public class JobLauncherDetails extends QuartzJobBean {
     }
 
     private void validateConcurrentRun(String jobName, JobParameters jobParameters) throws JobExecutionAlreadyRunningException {
-        Set<JobExecution> jobs = jobExplorer.findRunningJobExecutions(jobName);
+        Set<JobExecution> jobs = jobRepository.findRunningJobExecutions(jobName);
         for (JobExecution job : jobs) {
             if (job.isRunning() && jobParametersEquals(jobParameters, job.getJobParameters())) {
                 throw new JobExecutionAlreadyRunningException("A job for this job is already running: " + job);
@@ -119,16 +119,16 @@ public class JobLauncherDetails extends QuartzJobBean {
         return builder.toJobParameters();
     }
 
-    public void setJobLocator(JobLocator jobLocator) {
-        this.jobLocator = jobLocator;
+    public void setJobRegistry(JobRegistry jobRegistry) {
+        this.jobRegistry = jobRegistry;
     }
 
-    public void setJobLauncher(JobLauncher jobLauncher) {
-        this.jobLauncher = jobLauncher;
+    public void setJobOperator(JobOperator jobOperator) {
+        this.jobOperator = jobOperator;
     }
 
-    public void setJobExplorer(JobExplorer jobExplorer) {
-        this.jobExplorer = jobExplorer;
+    public void setJobRepository(JobRepository jobRepository) {
+        this.jobRepository = jobRepository;
     }
 
 }

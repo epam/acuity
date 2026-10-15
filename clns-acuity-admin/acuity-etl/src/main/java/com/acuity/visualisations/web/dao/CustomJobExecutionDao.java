@@ -21,7 +21,10 @@ import com.acuity.visualisations.util.JobLauncherConsts;
 import com.acuity.visualisations.web.entity.BatchJobExecutionKey;
 import org.springframework.batch.core.BatchStatus;
 import org.springframework.batch.core.ExitStatus;
-import org.springframework.batch.core.JobExecution;
+import org.springframework.batch.core.job.JobExecution;
+import org.springframework.batch.core.job.JobInstance;
+import org.springframework.batch.core.job.parameters.JobParameters;
+import org.springframework.batch.core.job.parameters.JobParametersBuilder;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -29,11 +32,15 @@ import org.springframework.stereotype.Repository;
 import java.math.BigDecimal;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * This class contains functionality for accessing batch job execution data in
@@ -42,8 +49,11 @@ import java.util.Map;
 @Repository
 public class CustomJobExecutionDao extends ACUITYDaoSupport implements ExtendedJobExecutionDao {
 
-    private static final String GET_ALL_JOB_EXECUTIONS_QUERY = "select project, study, batch_job_execution.* from "
-            + "batch_job_execution,"
+    static final String UNKNOWN_JOB_NAME = "unknown";
+
+    private static final String GET_ALL_JOB_EXECUTIONS_QUERY = "select project, study, bji.job_name, batch_job_execution.* from "
+            + "batch_job_execution "
+            + "inner join batch_job_instance bji on batch_job_execution.job_instance_id = bji.job_instance_id,"
             + "(select job_execution_id as job_params_jeid, "
             + "MAX(CASE WHEN parameter_name = '"
             + JobLauncherConsts.STUDY_KEY
@@ -71,11 +81,16 @@ public class CustomJobExecutionDao extends ACUITYDaoSupport implements ExtendedJ
             + "' THEN parameter_value END)                  as study, "
             + "        MAX(CASE WHEN parameter_name = '"
             + JobLauncherConsts.PROJECT_KEY
-            + "' THEN parameter_value END)                  as project "
+            + "' THEN parameter_value END)                  as project, "
+            + "        MAX(CASE WHEN parameter_name = '"
+            + JobLauncherConsts.UNIQUE_KEY
+            + "' THEN parameter_value END)                  as launchingTime "
             + "                            from batch_job_execution_params "
             + "                            group by job_execution_id) "
             + "select t1.project, "
             + "       t1.study, "
+            + "       t2.launchingTime, "
+            + "       t2.job_name, "
             + "       t2.job_execution_id, "
             + "       t2.version, "
             + "       t2.job_instance_id, "
@@ -92,8 +107,10 @@ public class CustomJobExecutionDao extends ACUITYDaoSupport implements ExtendedJ
             + "               inner join job_params_decoded on batch_job_execution.job_execution_id = job_params_jeid "
             + "          and bji.job_name = ? "
             + "      group by project, study) as t1 "
-            + "         left outer join (select batch_job_execution.*, project, study "
+            + "         left outer join (select batch_job_execution.*, bji2.job_name, project, study, launchingTime "
             + "                          from batch_job_execution "
+            + "                                   inner join batch_job_instance bji2 "
+            + "                                   on batch_job_execution.job_instance_id = bji2.job_instance_id "
             + "                                   inner join job_params_decoded "
             + "                                   on batch_job_execution.job_execution_id = job_params_jeid) as t2 "
             + "         on t1.project = t2.project and t1.study = t2.study and t1.start_time = t2.start_time";
@@ -102,6 +119,7 @@ public class CustomJobExecutionDao extends ACUITYDaoSupport implements ExtendedJ
             + "t1.project, "
             + "t1.study, "
             + "t2.launchingTime, "
+            + "t2.JOB_NAME, "
             + "t2.JOB_EXECUTION_ID, "
             + "t2.VERSION, "
             + "t2.JOB_INSTANCE_ID, "
@@ -128,8 +146,10 @@ public class CustomJobExecutionDao extends ACUITYDaoSupport implements ExtendedJ
             + "group by project, study) "
             + "t1 "
             + "left outer join "
-            + "(select batch_job_execution.*, project, study, launchingTime "
-            + "from batch_job_execution, "
+            + "(select batch_job_execution.*, bji2.job_name, project, study, launchingTime "
+            + "from batch_job_execution "
+            + "INNER JOIN batch_job_instance bji2"
+            + "  ON batch_job_execution.job_instance_id = bji2.job_instance_id, "
             + "(select job_execution_id as job_params_jeid,MAX(CASE WHEN parameter_name = '"
             + JobLauncherConsts.STUDY_KEY
             + "' THEN parameter_value END) study, MAX(CASE WHEN parameter_name = '"
@@ -248,10 +268,13 @@ public class CustomJobExecutionDao extends ACUITYDaoSupport implements ExtendedJ
 
     private static final RowMapper<JobExecution> ROW_MAPPER = (rs, rowNum) -> getJobExecutionFromResultSet(rs);
 
-    private static JobExecution getJobExecutionFromResultSet(ResultSet rs) throws SQLException {
+    static JobExecution getJobExecutionFromResultSet(ResultSet rs) throws SQLException {
+        Set<String> columns = getColumnLabels(rs);
         Long id = rs.getLong("JOB_EXECUTION_ID");
-        JobExecution jobExecution;
-        jobExecution = new JobExecution(id);
+        long jobInstanceId = rs.getLong("JOB_INSTANCE_ID");
+        String jobName = getOptionalString(rs, columns, "JOB_NAME");
+        JobInstance jobInstance = new JobInstance(jobInstanceId, jobName != null ? jobName : UNKNOWN_JOB_NAME);
+        JobExecution jobExecution = new JobExecution(id, jobInstance, getJobParametersFromResultSet(rs, columns));
         java.sql.Timestamp startTs = rs.getTimestamp("START_TIME");
         jobExecution.setStartTime(startTs != null ? startTs.toLocalDateTime() : null);
         java.sql.Timestamp endTs = rs.getTimestamp("END_TIME");
@@ -263,9 +286,37 @@ public class CustomJobExecutionDao extends ACUITYDaoSupport implements ExtendedJ
         jobExecution.setExitStatus(new ExitStatus(rs.getString("EXIT_CODE"), rs.getString("EXIT_MESSAGE")));
         java.sql.Timestamp createTs = rs.getTimestamp("CREATE_TIME");
         jobExecution.setCreateTime(createTs != null ? createTs.toLocalDateTime() : null);
-        jobExecution.setLastUpdated(createTs != null ? createTs.toLocalDateTime() : null);
+        java.sql.Timestamp lastUpdatedTs = rs.getTimestamp("LAST_UPDATED");
+        jobExecution.setLastUpdated(lastUpdatedTs != null ? lastUpdatedTs.toLocalDateTime() : null);
         jobExecution.setVersion(rs.getInt("VERSION"));
         return jobExecution;
+    }
+
+    private static JobParameters getJobParametersFromResultSet(ResultSet rs, Set<String> columns) throws SQLException {
+        JobParametersBuilder builder = new JobParametersBuilder();
+        addStringParameter(builder, JobLauncherConsts.PROJECT_KEY, getOptionalString(rs, columns, "PROJECT"));
+        addStringParameter(builder, JobLauncherConsts.STUDY_KEY, getOptionalString(rs, columns, "STUDY"));
+        addStringParameter(builder, JobLauncherConsts.UNIQUE_KEY, getOptionalString(rs, columns, "LAUNCHINGTIME"));
+        return builder.toJobParameters();
+    }
+
+    private static void addStringParameter(JobParametersBuilder builder, String key, String value) {
+        if (value != null) {
+            builder.addString(key, value);
+        }
+    }
+
+    private static String getOptionalString(ResultSet rs, Set<String> columns, String column) throws SQLException {
+        return columns.contains(column) ? rs.getString(column) : null;
+    }
+
+    private static Set<String> getColumnLabels(ResultSet rs) throws SQLException {
+        ResultSetMetaData metaData = rs.getMetaData();
+        Set<String> columns = new HashSet<>();
+        for (int i = 1; i <= metaData.getColumnCount(); i++) {
+            columns.add(metaData.getColumnLabel(i).toUpperCase(Locale.ROOT));
+        }
+        return columns;
     }
 
     private static BatchJobExecutionKey getBatchJobExecutionKeyFromResultSet(ResultSet rs) throws SQLException {
