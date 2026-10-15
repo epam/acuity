@@ -36,7 +36,6 @@ import com.acuity.visualisations.rawdatamodel.trellis.grouping.ChordGroupByOptio
 import com.acuity.visualisations.rawdatamodel.util.AlphanumEmptyLastComparator;
 import com.acuity.visualisations.rawdatamodel.util.Attributes;
 import com.acuity.visualisations.rawdatamodel.util.ColorbyCategoriesUtil;
-import com.acuity.visualisations.rawdatamodel.util.Column;
 import com.acuity.visualisations.rawdatamodel.util.Column.DatasetType;
 import com.acuity.visualisations.rawdatamodel.util.TrellisUtil;
 import com.acuity.visualisations.rawdatamodel.vo.AeRaw;

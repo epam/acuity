@@ -70,6 +70,8 @@ public class ECG extends TimestampedEntity implements SmartEntity, SplitEntity<E
     private EG newEg(String testName, BigDecimal testResult) {
         EG eg = new EG(subject, part, date, testName, testResult, null, evaluation, abnormality, significant);
         eg.setDomain("EG");
+        eg.setProjectName(getProjectName());
+        eg.setStudyName(getStudyName());
         return eg;
     }
 

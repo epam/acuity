@@ -49,6 +49,7 @@ public interface GroupByOption<T> extends Serializable {
     enum Param implements Serializable {
         TIMESTAMP_TYPE,
         DRUG_NAME,
+        SUBJECT_GROUPING_NAME,
         BIN_SIZE,
         BIN_INCL_DURATION,
         ASSESSMENT_TYPE,

@@ -258,111 +258,89 @@ public class AeSummariesServiceTest {
 
         SUBJECT1_WITH_DEFAULT_GROUPINGS_AND_GROUPS = Subject.builder().subjectId("sid1").subjectCode("E01").clinicalStudyCode("D0001C00001")
                 .studyPart("A")
-                .otherCohort("Default group")
-                .otherGrouping("Cohort")
+                .subjectGroupings(Collections.singletonMap("Cohort", "Default group"))
                 .firstTreatmentDate(toDate("01.08.2015"))
                 .drugsDosed(DRUG_DOSED1)
                 .build();
 
         SUBJECT2_WITH_DEFAULT_GROUPINGS_AND_GROUPS = Subject.builder().subjectId("sid2").subjectCode("E02").clinicalStudyCode("D0001C00001")
                 .studyPart("B")
-                .otherCohort("Default group")
-                .otherGrouping("Cohort")
+                .subjectGroupings(Collections.singletonMap("Cohort", "Default group"))
                 .firstTreatmentDate(toDate("01.09.2015 04:00:00"))
                 .drugsDosed(DRUG_DOSED1)
                 .build();
 
         SUBJECT3_WITH_DEFAULT_GROUPINGS_AND_GROUPS = Subject.builder().subjectId("sid3").subjectCode("E03").clinicalStudyCode("D0001C00002")
                 .studyPart("A")
-                .otherCohort("Default group")
-                .otherGrouping("Cohort")
+                .subjectGroupings(Collections.singletonMap("Cohort", "Default group"))
                 .firstTreatmentDate(toDate("01.07.2015"))
                 .drugsDosed(DRUG_DOSED1)
                 .build();
         SUBJECT4_WITH_DEFAULT_GROUPINGS_AND_GROUPS = Subject.builder().subjectId("sid4").subjectCode("E04").clinicalStudyCode("D0001C00002")
                 .studyPart("A")
-                .otherCohort("Default group")
-                .otherGrouping("Cohort")
+                .subjectGroupings(Collections.singletonMap("Cohort", "Default group"))
                 .firstTreatmentDate(toDate("01.07.2015"))
                 .drugsDosed(DRUG_DOSED2)
                 .build();
         SUBJECT5_WITH_DEFAULT_GROUPINGS_AND_GROUPS = Subject.builder().subjectId("sid5").subjectCode("E05").clinicalStudyCode("D0001C00002")
                 .studyPart("A")
-                .otherCohort("Default group")
-                .otherGrouping("Cohort")
+                .subjectGroupings(Collections.singletonMap("Cohort", "Default group"))
                 .firstTreatmentDate(toDate("01.07.2015"))
                 .drugsDosed(DRUG_DOSED2)
                 .build();
         SUBJECT6_WITH_DEFAULT_GROUPINGS_AND_GROUPS = Subject.builder().subjectId("sid6").subjectCode("E06").clinicalStudyCode("D0001C00002")
                 .studyPart("A")
-                .otherCohort("Default group")
-                .otherGrouping("Cohort")
+                .subjectGroupings(Collections.singletonMap("Cohort", "Default group"))
                 .firstTreatmentDate(toDate("01.07.2015"))
                 .drugsDosed(DRUG_DOSED2)
                 .build();
 
         SUBJECT1_WITH_DOSE_GROUPINGS_AND_DOSE_GROUPS_ONLY = Subject.builder().subjectId("sid1").subjectCode("E01").clinicalStudyCode("D0001C00001")
                 .studyPart("A")
-                .doseCohort("Dose cohort")
-                .doseGrouping("Dose grouping")
+                .subjectGroupings(Collections.singletonMap("Dose grouping", "Dose cohort"))
                 .firstTreatmentDate(toDate("01.07.2015"))
                 .drugsDosed(DRUG_DOSED2)
                 .build();
         SUBJECT2_WITH_DOSE_GROUPINGS_AND_DOSE_GROUPS_ONLY = Subject.builder().subjectId("sid2").subjectCode("E02").clinicalStudyCode("D0001C00001")
                 .studyPart("A")
-                .doseCohort("Dose cohort")
-                .doseGrouping("Dose grouping")
+                .subjectGroupings(Collections.singletonMap("Dose grouping", "Dose cohort"))
                 .firstTreatmentDate(toDate("01.07.2015"))
                 .drugsDosed(DRUG_DOSED2)
                 .build();
         SUBJECT3_WITH_DOSE_GROUPINGS_AND_DOSE_GROUPS_ONLY = Subject.builder().subjectId("sid3").subjectCode("E03").clinicalStudyCode("D0001C00001")
                 .studyPart("D")
-                .doseCohort("Dose cohort")
-                .doseGrouping("Dose grouping")
+                .subjectGroupings(Collections.singletonMap("Dose grouping", "Dose cohort"))
                 .firstTreatmentDate(toDate("01.07.2015"))
                 .drugsDosed(DRUG_DOSED2)
                 .build();
         SUBJECT4_WITH_DOSE_GROUPINGS_AND_DOSE_GROUPS_ONLY = Subject.builder().subjectId("sid4").subjectCode("E04").clinicalStudyCode("D0001C00003")
                 .studyPart("C")
-                .doseCohort("Dose cohort")
-                .doseGrouping("Dose grouping")
+                .subjectGroupings(Collections.singletonMap("Dose grouping", "Dose cohort"))
                 .firstTreatmentDate(toDate("01.07.2015"))
                 .drugsDosed(DRUG_DOSED2)
                 .build();
 
         SUBJECT1_WITH_GROUPINGS_AND_GROUPS = Subject.builder().subjectId("sid1").subjectCode("E01").clinicalStudyCode("D0001C00001")
                 .studyPart("A")
-                .doseCohort("Dose cohort")
-                .doseGrouping("Dose grouping")
-                .otherGrouping("Other grouping")
-                .otherCohort("Other cohort")
+                .subjectGroupings(Map.of("Dose grouping", "Dose cohort", "Other grouping", "Other cohort"))
                 .firstTreatmentDate(toDate("01.07.2015"))
                 .drugsDosed(DRUG_DOSED2)
                 .build();
         SUBJECT2_WITH_GROUPINGS_AND_GROUPS = Subject.builder().subjectId("sid2").subjectCode("E02").clinicalStudyCode("D0001C00001")
                 .studyPart("A")
-                .doseCohort("Dose cohort")
-                .doseGrouping("Dose grouping")
-                .otherGrouping("Other grouping")
-                .otherCohort("Other cohort")
+                .subjectGroupings(Map.of("Dose grouping", "Dose cohort", "Other grouping", "Other cohort"))
                 .firstTreatmentDate(toDate("01.07.2015"))
                 .drugsDosed(DRUG_DOSED2)
                 .build();
         SUBJECT3_WITH_GROUPINGS_AND_GROUPS = Subject.builder().subjectId("sid3").subjectCode("E03").clinicalStudyCode("D0001C00001")
                 .studyPart("C")
-                .doseCohort("Dose cohort")
-                .doseGrouping("Dose grouping")
-                .otherGrouping("Other grouping")
-                .otherCohort("Other cohort")
+                .subjectGroupings(Map.of("Dose grouping", "Dose cohort", "Other grouping", "Other cohort"))
                 .firstTreatmentDate(toDate("01.07.2015"))
                 .drugsDosed(DRUG_DOSED2)
                 .build();
         SUBJECT4_WITH_GROUPINGS_AND_GROUPS = Subject.builder().subjectId("sid4").subjectCode("E04").clinicalStudyCode("D0001C00004")
                 .studyPart("A")
-                .doseCohort("Dose cohort")
-                .doseGrouping("Dose grouping")
-                .otherGrouping("Other grouping")
-                .otherCohort("Other cohort")
+                .subjectGroupings(Map.of("Dose grouping", "Dose cohort", "Other grouping", "Other cohort"))
                 .firstTreatmentDate(toDate("01.07.2015"))
                 .drugsDosed(DRUG_DOSED2)
                 .build();
@@ -386,7 +364,7 @@ public class AeSummariesServiceTest {
 //Groupings tests
 
     @Test
-    public void shouldReturnAesSummariesMostCommonTableWithTotalGroupWhenBothOfGroupings() {
+    public void shouldReturnAesSummariesMostCommonTableWithTotalGroupForMultipleSubjectGroupings() {
         List<Ae> aes = asList(new Ae(RAW_EVENT5, SUBJECT1_WITH_GROUPINGS_AND_GROUPS),
                 new Ae(RAW_EVENT6, SUBJECT2_WITH_GROUPINGS_AND_GROUPS),
                 new Ae(RAW_EVENT3, SUBJECT3_WITH_GROUPINGS_AND_GROUPS),
@@ -401,13 +379,13 @@ public class AeSummariesServiceTest {
         softly.assertThat(table).extracting(AeSummariesTable::getDatasetName).containsExactly("D0001C00001", "D0001C00001", "D0001C00004", "");
         softly.assertThat(table).extracting(AeSummariesTable::getCountDosedSubject).containsExactly(2L, 1L, 1L, 0L);
         softly.assertThat(table).extracting(AeSummariesTable::getCohortCounts).containsExactly(
-                newHashSet(new AeSummariesTable.AeSummariesCohortCount("Dose cohort", "Dose grouping", GroupingType.DOSE, "A", 2),
-                        new AeSummariesTable.AeSummariesCohortCount("Other cohort", "Other grouping", GroupingType.NONE, "A", 2)),
-                newHashSet(new AeSummariesTable.AeSummariesCohortCount("Dose cohort", "Dose grouping", GroupingType.DOSE, "C", 1),
-                        new AeSummariesTable.AeSummariesCohortCount("Other cohort", "Other grouping", GroupingType.NONE, "C", 1)),
-                newHashSet(new AeSummariesTable.AeSummariesCohortCount("Dose cohort", "Dose grouping", GroupingType.DOSE, "A", 1),
-                        new AeSummariesTable.AeSummariesCohortCount("Other cohort", "Other grouping", GroupingType.NONE, "A", 1)),
-                newHashSet(new AeSummariesTable.AeSummariesCohortCount("TOTAL", "", GroupingType.NONE, "", 4)));
+                newHashSet(new AeSummariesTable.AeSummariesCohortCount("Dose cohort", "Dose grouping", GroupingType.DYNAMIC, "A", 2),
+                        new AeSummariesTable.AeSummariesCohortCount("Other cohort", "Other grouping", GroupingType.DYNAMIC, "A", 2)),
+                newHashSet(new AeSummariesTable.AeSummariesCohortCount("Dose cohort", "Dose grouping", GroupingType.DYNAMIC, "C", 1),
+                        new AeSummariesTable.AeSummariesCohortCount("Other cohort", "Other grouping", GroupingType.DYNAMIC, "C", 1)),
+                newHashSet(new AeSummariesTable.AeSummariesCohortCount("Dose cohort", "Dose grouping", GroupingType.DYNAMIC, "A", 1),
+                        new AeSummariesTable.AeSummariesCohortCount("Other cohort", "Other grouping", GroupingType.DYNAMIC, "A", 1)),
+                newHashSet(new AeSummariesTable.AeSummariesCohortCount("TOTAL", "", GroupingType.TOTAL, "", 4)));
     }
 
     @Test
@@ -431,7 +409,7 @@ public class AeSummariesServiceTest {
 
 
     @Test
-    public void shouldReturnAesSummariesAnyCategoryTableWhenBothOfGroupings() {
+    public void shouldReturnAesSummariesAnyCategoryTableForMultipleSubjectGroupings() {
         List<Ae> aes = asList(new Ae(RAW_EVENT5, SUBJECT1_WITH_GROUPINGS_AND_GROUPS),
                 new Ae(RAW_EVENT6, SUBJECT2_WITH_GROUPINGS_AND_GROUPS),
                 new Ae(RAW_EVENT3, SUBJECT3_WITH_GROUPINGS_AND_GROUPS),
@@ -446,16 +424,16 @@ public class AeSummariesServiceTest {
         softly.assertThat(table).extracting(AeSummariesTable::getDatasetName).containsExactly("D0001C00001", "D0001C00001", "D0001C00004");
         softly.assertThat(table).extracting(AeSummariesTable::getCountDosedSubject).containsExactly(2L, 1L, 1L);
         softly.assertThat(table).extracting(AeSummariesTable::getCohortCounts).containsExactly(
-                newHashSet(new AeSummariesTable.AeSummariesCohortCount("Dose cohort", "Dose grouping", GroupingType.DOSE, "A", 2),
-                        new AeSummariesTable.AeSummariesCohortCount("Other cohort", "Other grouping", GroupingType.NONE, "A", 2)),
-                newHashSet(new AeSummariesTable.AeSummariesCohortCount("Dose cohort", "Dose grouping", GroupingType.DOSE, "C", 1),
-                        new AeSummariesTable.AeSummariesCohortCount("Other cohort", "Other grouping", GroupingType.NONE, "C", 1)),
-                newHashSet(new AeSummariesTable.AeSummariesCohortCount("Dose cohort", "Dose grouping", GroupingType.DOSE, "A", 1),
-                        new AeSummariesTable.AeSummariesCohortCount("Other cohort", "Other grouping", GroupingType.NONE, "A", 1)));
+                newHashSet(new AeSummariesTable.AeSummariesCohortCount("Dose cohort", "Dose grouping", GroupingType.DYNAMIC, "A", 2),
+                        new AeSummariesTable.AeSummariesCohortCount("Other cohort", "Other grouping", GroupingType.DYNAMIC, "A", 2)),
+                newHashSet(new AeSummariesTable.AeSummariesCohortCount("Dose cohort", "Dose grouping", GroupingType.DYNAMIC, "C", 1),
+                        new AeSummariesTable.AeSummariesCohortCount("Other cohort", "Other grouping", GroupingType.DYNAMIC, "C", 1)),
+                newHashSet(new AeSummariesTable.AeSummariesCohortCount("Dose cohort", "Dose grouping", GroupingType.DYNAMIC, "A", 1),
+                        new AeSummariesTable.AeSummariesCohortCount("Other cohort", "Other grouping", GroupingType.DYNAMIC, "A", 1)));
     }
 
     @Test
-    public void shouldReturnAesSummariesAnyCategoryTableWhenDoseGroupingOnly() {
+    public void shouldReturnAesSummariesAnyCategoryTableForSingleSubjectGrouping() {
         List<Ae> aes = asList(new Ae(RAW_EVENT5, SUBJECT1_WITH_DOSE_GROUPINGS_AND_DOSE_GROUPS_ONLY),
                 new Ae(RAW_EVENT6, SUBJECT2_WITH_DOSE_GROUPINGS_AND_DOSE_GROUPS_ONLY),
                 new Ae(RAW_EVENT3, SUBJECT3_WITH_DOSE_GROUPINGS_AND_DOSE_GROUPS_ONLY),
@@ -470,13 +448,13 @@ public class AeSummariesServiceTest {
         softly.assertThat(table).extracting(AeSummariesTable::getDatasetName).containsExactly("D0001C00001", "D0001C00001", "D0001C00003");
         softly.assertThat(table).extracting(AeSummariesTable::getCountDosedSubject).containsExactly(2L, 1L, 1L);
         softly.assertThat(table).extracting(AeSummariesTable::getCohortCounts).containsExactly(
-                Collections.singleton(new AeSummariesTable.AeSummariesCohortCount("Dose cohort", "Dose grouping", GroupingType.DOSE, "A", 2)),
-                Collections.singleton(new AeSummariesTable.AeSummariesCohortCount("Dose cohort", "Dose grouping", GroupingType.DOSE, "D", 1)),
-                Collections.singleton(new AeSummariesTable.AeSummariesCohortCount("Dose cohort", "Dose grouping", GroupingType.DOSE, "C", 1)));
+                Collections.singleton(new AeSummariesTable.AeSummariesCohortCount("Dose cohort", "Dose grouping", GroupingType.DYNAMIC, "A", 2)),
+                Collections.singleton(new AeSummariesTable.AeSummariesCohortCount("Dose cohort", "Dose grouping", GroupingType.DYNAMIC, "D", 1)),
+                Collections.singleton(new AeSummariesTable.AeSummariesCohortCount("Dose cohort", "Dose grouping", GroupingType.DYNAMIC, "C", 1)));
     }
 
     @Test
-    public void shouldReturnAesSummariesAnyCategoryTableWhenNoGrouping() {
+    public void shouldReturnAesSummariesAnyCategoryTableForDefaultSubjectGrouping() {
         List<Ae> aes = asList(new Ae(RAW_EVENT1, SUBJECT1_WITH_DEFAULT_GROUPINGS_AND_GROUPS),
                 new Ae(RAW_EVENT2, SUBJECT2_WITH_DEFAULT_GROUPINGS_AND_GROUPS),
                 new Ae(RAW_EVENT3, SUBJECT3_WITH_DEFAULT_GROUPINGS_AND_GROUPS),
@@ -493,9 +471,25 @@ public class AeSummariesServiceTest {
         softly.assertThat(table).extracting(AeSummariesTable::getDatasetName).containsExactly("D0001C00001", "D0001C00001", "D0001C00002");
         softly.assertThat(table).extracting(AeSummariesTable::getCountDosedSubject).containsExactly(1L, 1L, 4L);
         softly.assertThat(table).extracting(AeSummariesTable::getCohortCounts).containsExactly(
-                Collections.singleton(new AeSummariesTable.AeSummariesCohortCount("Default group", "Cohort", GroupingType.NONE, "A", 1)),
-                Collections.singleton(new AeSummariesTable.AeSummariesCohortCount("Default group", "Cohort", GroupingType.NONE, "B", 1)),
-                Collections.singleton(new AeSummariesTable.AeSummariesCohortCount("Default group", "Cohort", GroupingType.NONE, "A", 4)));
+                Collections.singleton(new AeSummariesTable.AeSummariesCohortCount("Default group", "Cohort", GroupingType.DYNAMIC, "A", 1)),
+                Collections.singleton(new AeSummariesTable.AeSummariesCohortCount("Default group", "Cohort", GroupingType.DYNAMIC, "B", 1)),
+                Collections.singleton(new AeSummariesTable.AeSummariesCohortCount("Default group", "Cohort", GroupingType.DYNAMIC, "A", 4)));
+    }
+
+    @Test
+    public void shouldReturnTotalTableWhenStudyHasNoSubjectGroupings() {
+        Subject subject = SUBJECT1_WITH_DEFAULT_GROUPINGS_AND_GROUPS.toBuilder()
+                .subjectGroupings(Collections.emptyMap())
+                .build();
+        List<Ae> aes = Collections.singletonList(new Ae(RAW_EVENT1, subject));
+
+        mockProviders(aes, Collections.singletonList(subject));
+
+        List<AeSummariesTable> tables = aeSummariesAnyService.getAesSummariesTable(DUMMY_ACUITY_DATASETS);
+
+        softly.assertThat(tables).hasSize(1);
+        softly.assertThat(tables.get(0).getCohortCounts()).containsExactly(
+                new AeSummariesTable.AeSummariesCohortCount("TOTAL", "", GroupingType.TOTAL, "A", 1));
     }
 
     //Row tests
@@ -514,7 +508,7 @@ public class AeSummariesServiceTest {
 
         List<AeSummariesTable> table = aeSummariesAnyService.getAesSummariesTable(DUMMY_ACUITY_DATASETS);
 
-        softly.assertThat(table.get(2).getRows().get(0)).isEqualTo(createAnyAeRow(4, 100.0, GroupingType.NONE, "A"));
+        softly.assertThat(table.get(2).getRows().get(0)).isEqualTo(createAnyAeRow(4, 100.0, GroupingType.DYNAMIC, "A"));
     }
 
     @Test
@@ -534,7 +528,7 @@ public class AeSummariesServiceTest {
         List<AeSummariesTable> table = aeSummariesAnyService.getAesSummariesTable(DUMMY_ACUITY_DATASETS);
 
         softly.assertThat(table.get(2).getRows()).containsAll(createCausallyRelatedRowsFor2Drugs(asList(4, 3, 1),
-                asList(100d, 75d, 25d), GroupingType.NONE, asList("A", "A", "A")));
+                asList(100d, 75d, 25d), GroupingType.DYNAMIC, asList("A", "A", "A")));
     }
 
     @Test
@@ -555,7 +549,7 @@ public class AeSummariesServiceTest {
 
         softly.assertThat(table.get(2).getRows()).containsAll(
                 createCTCGrade3OrHigherRowsFor2Drugs(asList(4, 4, 3, 1), asList(100d, 100d, 75d, 25d),
-                        GroupingType.NONE, asList("A", "A", "A", "A")));
+                        GroupingType.DYNAMIC, asList("A", "A", "A", "A")));
     }
 
     @Test
@@ -575,7 +569,7 @@ public class AeSummariesServiceTest {
         List<AeSummariesTable> table = aeSummariesAnyService.getAesSummariesTable(DUMMY_ACUITY_DATASETS);
 
         softly.assertThat(table.get(2).getRows()).containsAll(
-                createDeathOutcomeRowsFor2Drugs(asList(3, 3, 2, 1), asList(75d, 75d, 50d, 25d), GroupingType.NONE,
+                createDeathOutcomeRowsFor2Drugs(asList(3, 3, 2, 1), asList(75d, 75d, 50d, 25d), GroupingType.DYNAMIC,
                         asList("A", "A", "A", "A")));
     }
 
@@ -597,7 +591,7 @@ public class AeSummariesServiceTest {
 
         softly.assertThat(table.get(2).getRows()).containsAll(
                 createLeadingToDiscontinuationRowsFor2Drugs(
-                        asList(3, 3, 2, 2, 1, 1), asList(75d, 75d, 50d, 50d, 25d, 25d), GroupingType.NONE,
+                        asList(3, 3, 2, 2, 1, 1), asList(75d, 75d, 50d, 50d, 25d, 25d), GroupingType.DYNAMIC,
                         asList("A", "A", "A", "A", "A", "A")));
     }
 
@@ -621,7 +615,7 @@ public class AeSummariesServiceTest {
         softly.assertThat(table.get(2).getRows()).containsAll(
                 createSAERowsFor2Drugs(
                         asList(4, 4, 3, 3, 3, 2, 2, 1, 1, 1), asList(100d, 100d, 75d, 75d, 75d, 50d, 50d, 25d, 25d, 25d),
-                        GroupingType.NONE, asList("A", "A", "A", "A", "A", "A", "A", "A", "A", "A")));
+                        GroupingType.DYNAMIC, asList("A", "A", "A", "A", "A", "A", "A", "A", "A", "A")));
     }
 
     private AeSummariesRow createAnyAeRow(int value, double percentage, GroupingType groupingType, String studyPart) {

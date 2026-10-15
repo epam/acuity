@@ -23,7 +23,6 @@ import com.acuity.visualisations.rawdatamodel.service.BaseEventService;
 import com.acuity.visualisations.rawdatamodel.service.ssv.OncologyPermission;
 import com.acuity.visualisations.rawdatamodel.service.ssv.SsvSummaryTableService;
 import com.acuity.visualisations.rawdatamodel.trellis.grouping.NonTargetLesionGroupByOptions;
-import com.acuity.visualisations.rawdatamodel.util.Column;
 import com.acuity.visualisations.rawdatamodel.vo.FilterResult;
 import com.acuity.visualisations.rawdatamodel.vo.NonTargetLesionRaw;
 import com.acuity.visualisations.rawdatamodel.vo.wrappers.NonTargetLesion;

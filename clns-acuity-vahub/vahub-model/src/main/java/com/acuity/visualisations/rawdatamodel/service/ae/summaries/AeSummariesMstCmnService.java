@@ -98,7 +98,7 @@ public class AeSummariesMstCmnService extends AeSummariesService {
                 .datasetName("")
                 .cohortCounts(Collections.singleton(
                         new AeSummariesCohortCount("TOTAL", "",
-                                AeSummariesTable.GroupingType.NONE, "", subjectCount)))
+                                AeSummariesTable.GroupingType.TOTAL, "", subjectCount)))
                 .rows(rows).build();
         table.setRows(rows);
         pts
@@ -110,7 +110,7 @@ public class AeSummariesMstCmnService extends AeSummariesService {
                             .builder()
                             .rowDescription(pt)
                             .cells(Collections.singletonList(new AeSummariesCell("TOTAL", "", (int) affected,
-                                    (double) affected / subjectCount * 100, AeSummariesTable.GroupingType.NONE, "")))
+                                    (double) affected / subjectCount * 100, AeSummariesTable.GroupingType.TOTAL, "")))
                             .build();
                 }).forEach(rows::add);
         return table;

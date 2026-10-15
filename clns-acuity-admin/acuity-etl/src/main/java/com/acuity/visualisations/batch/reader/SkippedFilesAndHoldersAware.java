@@ -19,6 +19,7 @@ package com.acuity.visualisations.batch.reader;
 import com.acuity.visualisations.batch.holders.HoldersAware;
 import com.acuity.visualisations.batch.holders.configuration.ConfigurationUtil;
 import com.acuity.visualisations.batch.processor.DataCommonReport;
+import com.acuity.visualisations.batch.processor.ExceptionReport;
 import com.acuity.visualisations.util.SerializationUtil;
 import org.json.JSONException;
 import org.springframework.batch.core.ExitStatus;
@@ -36,7 +37,9 @@ public abstract class SkippedFilesAndHoldersAware extends HoldersAware {
     public static final String COMPLETED_WITH_SKIPS = "COMPLETED WITH SKIPS";
 
     private DataCommonReport report;
-    
+
+    private ExceptionReport exceptionReport;
+
     private ConfigurationUtil<?> configurationUtil;
     
     private List<String> skippedFiles = new ArrayList<String>();
@@ -45,6 +48,7 @@ public abstract class SkippedFilesAndHoldersAware extends HoldersAware {
     protected void initHolders() {
         this.configurationUtil = getConfigurationUtil();
         this.report = getDataCommonReport();
+        this.exceptionReport = getExceptionReport();
     }
     
     protected void addSkippedItem(String fileName) {
@@ -69,6 +73,13 @@ public abstract class SkippedFilesAndHoldersAware extends HoldersAware {
                 for (String entityName : entitiesForFile) {
                     report.getFileReport(fileName).addAcuityEntity(entityName);
                 }
+
+                // Surface the skip in the Exception report so it's visible in the
+                // upload details UI, since a skipped file otherwise leaves no
+                // user-visible trace (Table report only gets a zero-count row,
+                // and the exit description below is never read back by any DAO).
+                exceptionReport.addException(stepExecution.getStepName(),
+                        new UnparsedFileSkippedException(fileName));
             }
             try {
                 String exitDescription = SerializationUtil.serializeMap(messageContent);
@@ -76,6 +87,17 @@ public abstract class SkippedFilesAndHoldersAware extends HoldersAware {
             } catch (JSONException e) {
                 return new ExitStatus(COMPLETED_WITH_SKIPS);
             }
+        }
+    }
+
+    /**
+     * Thrown (but never propagated) purely so that a skipped, unparsable source
+     * file is reported through {@link ExceptionReport} with a clear message,
+     * making it visible in the upload details "Exception report" tab.
+     */
+    private static final class UnparsedFileSkippedException extends RuntimeException {
+        UnparsedFileSkippedException(String fileName) {
+            super(String.format("File \"%s\" could not be parsed and was skipped.", fileName));
         }
     }
 }

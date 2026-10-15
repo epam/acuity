@@ -493,7 +493,7 @@ public class PopulationServiceTest {
         Subject subject = SUBJECTS.get(0);
         Map<String, String> dod = doDData.stream().filter(d -> Objects.equals(d.get("eventId"), subject.getSubjectId())).findAny().get();
 
-        softly.assertThat(dod.size()).isEqualTo(27);
+        softly.assertThat(dod.size()).isEqualTo(25);
         softly.assertThat(subject.getSubjectId()).isEqualTo(dod.get("eventId"));
         softly.assertThat(subject.getRace()).isEqualTo(dod.get("race"));
         softly.assertThat(subject.getDurationOnStudy().toString()).isEqualTo(dod.get("durationOnStudy"));
@@ -501,7 +501,6 @@ public class PopulationServiceTest {
         softly.assertThat(subject.getSex()).isEqualTo(dod.get("sex"));
         softly.assertThat(subject.getCenterNumber()).isEqualTo(dod.get("centerNumber"));
         softly.assertThat(subject.getCountry()).isEqualTo(dod.get("country"));
-        softly.assertThat(subject.getDoseCohort()).isEqualTo(dod.get("doseCohort"));
         softly.assertThat(DaysUtil.toString(subject.getDateOfWithdrawal())).isEqualTo(dateSubstring(dod.get("dateOfWithdrawal").toString()));
         softly.assertThat(subject.getWithdrawal()).isEqualTo(dod.get("withdrawal"));
         softly.assertThat(DaysUtil.toString(subject.getDateOfRandomisation())).isEqualTo(dateSubstring(dod.get("dateOfRandomisation").toString()));
@@ -509,7 +508,6 @@ public class PopulationServiceTest {
         softly.assertThat(subject.getClinicalStudyCode()).isEqualTo(dod.get("studyId"));
         softly.assertThat(subject.getReasonForWithdrawal()).isEqualTo(dod.get("reasonForWithdrawal"));
         softly.assertThat(subject.getAge().toString()).isEqualTo(dod.get("age"));
-        softly.assertThat(subject.getOtherCohort()).isEqualTo(dod.get("otherCohort"));
         softly.assertThat(subject.getEthnicGroup()).isEqualTo(dod.get("ethnicGroup"));
         softly.assertThat(subject.getRandomised()).isEqualTo(dod.get("randomised"));
         Map<String, String> drugDosed = subject.getDrugsDosed();

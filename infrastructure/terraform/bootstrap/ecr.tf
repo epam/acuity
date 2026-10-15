@@ -9,7 +9,7 @@ module "ecr" {
   for_each = local.ecr_repos
 
   repository_name                 = "${local.aws_ecr_repo_prefix}/${each.key}"
-  repository_image_tag_mutability = "IMMUTABLE"
+  repository_image_tag_mutability = "MUTABLE"
 
   # No lifecycle policy: 5 repos of rare releases, storage negligible.
   create_lifecycle_policy = false

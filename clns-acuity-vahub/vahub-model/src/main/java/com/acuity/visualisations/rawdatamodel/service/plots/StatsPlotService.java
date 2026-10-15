@@ -76,7 +76,7 @@ import static java.util.stream.Collectors.toSet;
 public class StatsPlotService<T extends HasStringId & HasSubject, G extends Enum<G> & GroupByOption<T>>
         implements SimpleSelectionSupportService<T, G> {
 
-    private static final Logger log = LoggerFactory.getLogger(StatsPlotService.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(StatsPlotService.class);
 
     @TimeMe
     @ValidateChartOptions(
@@ -106,7 +106,7 @@ public class StatsPlotService<T extends HasStringId & HasSubject, G extends Enum
             // use the wrapper as a Map key.
             final List<Map.Entry<T, GroupByKey<T, G>>> uniquePairs = events.stream()
                     .collect(toMap(HasStringId::getId, Function.identity(), (a, b) -> {
-                        log.warn("Duplicate event ID in deduplication toMap — discarding: {}", b.getId());
+                        LOGGER.warn("Duplicate event ID in deduplication toMap — discarding: {}", b.getId());
                         return a;
                     }))
                     .values().stream()
