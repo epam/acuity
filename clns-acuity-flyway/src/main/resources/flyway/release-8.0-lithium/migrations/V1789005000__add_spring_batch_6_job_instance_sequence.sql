@@ -14,6 +14,8 @@ DECLARE
     existing_count bigint;
     target_value bigint;
     legacy_value bigint;
+    current_value bigint;
+    current_called boolean;
 BEGIN
     SELECT COUNT(*), COALESCE(MAX(job_instance_id), 0)
     INTO existing_count, target_value
@@ -24,7 +26,15 @@ BEGIN
         target_value := GREATEST(target_value, legacy_value);
     END IF;
 
-    IF existing_count > 0 THEN
+    SELECT last_value, is_called
+    INTO current_value, current_called
+    FROM batch_job_instance_seq;
+
+    IF current_called THEN
+        target_value := GREATEST(target_value, current_value);
+    END IF;
+
+    IF target_value > 0 THEN
         PERFORM setval('batch_job_instance_seq', target_value, true);
     ELSE
         PERFORM setval('batch_job_instance_seq', 1, false);
