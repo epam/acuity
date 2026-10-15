@@ -9,3 +9,7 @@ output "public_zone" {
 output "transfer_bucket_name" {
   value = module.transfer_bucket.s3_bucket_id
 }
+
+output "github_role_arn" {
+  value = aws_iam_role.github.arn
+}
