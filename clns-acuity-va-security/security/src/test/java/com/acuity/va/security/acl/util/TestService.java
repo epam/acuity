@@ -21,7 +21,7 @@
  */
 package com.acuity.va.security.acl.util;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import org.springframework.stereotype.Component;
 
 /**

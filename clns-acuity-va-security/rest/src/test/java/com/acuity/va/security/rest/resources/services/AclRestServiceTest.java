@@ -73,7 +73,6 @@ public class AclRestServiceTest {
         doThrow(new AlreadyExistsException("not found")).when(securityAclService).createAcl(any(DrugProgramme.class), eq(owner));
 
         UriInfo mockUriInfo = mock(UriInfo.class);
-        when(mockUriInfo.getAbsolutePathBuilder()).thenReturn(UriBuilder.fromUri("http://localhost/"));
 
         WebApplicationException ex = assertThrows(WebApplicationException.class, () ->
                 aclRestService.createAcl(mockUriInfo, owner, drugProgramme));

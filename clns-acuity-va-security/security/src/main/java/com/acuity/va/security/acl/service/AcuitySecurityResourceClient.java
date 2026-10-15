@@ -4,7 +4,7 @@ import com.acuity.va.security.acl.domain.AcuityObjectIdentity;
 import com.acuity.va.security.acl.domain.AcuityObjectIdentityWithPermission;
 import com.acuity.va.security.acl.domain.AcuitySidDetails;
 import java.util.List;
-import javax.annotation.PostConstruct;
+import jakarta.annotation.PostConstruct;
 import jakarta.ws.rs.client.Client;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

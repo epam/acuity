@@ -38,6 +38,8 @@ import org.glassfish.jersey.test.TestProperties;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.mockito.Mockito;
+import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import jakarta.ws.rs.core.Application;
 import java.io.IOException;
@@ -52,6 +54,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 public abstract class AbstractSpringContextJerseyTest extends SpringContextJerseyTest {
 
     public static final String MOCK_SPRING_APPLICATIONCONTEXT = "classpath:/spring/test/mockApplicationContext.xml";
+    /**
+     * jersey-spring property holding a ready-made ApplicationContext (SpringComponentProvider.PARAM_SPRING_CONTEXT)
+     */
+    private static final String SPRING_CONTEXT_PROPERTY = "contextConfig";
 
     /**
      * Mock spring services used in SecurityResource
@@ -84,8 +90,9 @@ public abstract class AbstractSpringContextJerseyTest extends SpringContextJerse
         ResourceConfig resourceConfig = new ResourceConfig(resources);
         enable(TestProperties.LOG_TRAFFIC);
         enable(TestProperties.DUMP_ENTITY);
-        // Set which application context to use
-        resourceConfig.property("contextConfigLocation", MOCK_SPRING_APPLICATIONCONTEXT);
+        // Share one mock application context between the test's ApplicationHandler and the one
+        // the test container builds from the same configuration, so stubs reach the served resources
+        resourceConfig.property(SPRING_CONTEXT_PROPERTY, new ClassPathXmlApplicationContext(MOCK_SPRING_APPLICATIONCONTEXT));
         resourceConfig.property(ServerProperties.PROVIDER_PACKAGES, "com.acuity.acuity.rest.util");
         return resourceConfig;
     }
@@ -147,5 +154,6 @@ public abstract class AbstractSpringContextJerseyTest extends SpringContextJerse
                 mockAcuityObjectService,  mockVASecurityResourceFactory,
                       
             mockRefreshCachesTask);
+        ((ConfigurableApplicationContext) getSpringApplicationContext()).close();
     }
 }
