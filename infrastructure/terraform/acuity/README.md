@@ -77,3 +77,25 @@ Stream    = "POCF_ACUITY"
 Env       = terraform.workspace
 Terraform = true
 ```
+
+## Deploying from CI
+
+`.github/workflows/deploy-dev.yml` ("deploy dev") builds the four images, tags them with
+the git tag, and runs `terraform apply -var image_tag=<tag>` on a dev workspace. Run it from
+the Actions tab with "Use workflow from" set to a `vX.Y.Z` tag on `main` (branches and other
+tags are refused). Tags cut before the workflow landed on `main` don't contain it; deploy
+those from a laptop.
+
+- **Workspace:** must already exist (create it from a laptop) and be listed in the
+  workflow's `workspace` dropdown. CI never creates one.
+- **Rollback:** run the workflow from an earlier tag. This applies that tag's *whole*
+  config, not just its images, and RDS has no deletion protection. Check the
+  `infrastructure/terraform/acuity` diff between the two tags first.
+- **Stale lock:** if an apply dies and leaves the state locked, run
+  `terraform force-unlock <id>` from a laptop on that workspace.
+- **GitHub `dev` environment:** deployment policy "Selected branches and tags" with tag
+  pattern `v[0-9]*`. No required reviewers and no custom protection rules (the preflight
+  and build jobs use `deployment: false`, which custom rules reject).
+- **Provider lock file:** CI runs `init -lockfile=readonly`. After any provider change,
+  regenerate the hashes with
+  `terraform providers lock -platform=linux_amd64 -platform=darwin_arm64`.
