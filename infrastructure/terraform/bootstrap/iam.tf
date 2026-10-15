@@ -7,7 +7,6 @@ resource "aws_iam_openid_connect_provider" "github" {
   }
 }
 
-# Single broad CI role (plan/apply, ECR push, ECS deploy). Governance exception is bound to its ARN — keep the name.
 resource "aws_iam_role" "github" {
   name = "pocf_acuity-github"
 
