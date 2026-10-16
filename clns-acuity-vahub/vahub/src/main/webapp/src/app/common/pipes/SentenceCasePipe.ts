@@ -82,6 +82,9 @@ export class SentenceCasePipe implements PipeTransform {
 
     private knownDynamicValues: string[] = ['MAX_DOSE_PER_ADMIN_OF_DRUG'];
 
+    // Dynamic subject grouping colorBy options come as SUBJECT_GROUPING_<grouping name>, only the name is displayed
+    private subjectGroupingPrefix = 'SUBJECT_GROUPING_';
+
 
     transform(value: string, tabId?: TabId): string {
         if (!value || typeof (value) !== 'string') {
@@ -91,6 +94,10 @@ export class SentenceCasePipe implements PipeTransform {
         // TODO figure out how to get rid of this IF
         if (tabId === TabId.DOSE_PROPORTIONALITY_BOX_PLOT || tabId === TabId.PK_RESULT_OVERALL_RESPONSE) {
             return value;
+        }
+
+        if (value.startsWith(this.subjectGroupingPrefix) && value.length > this.subjectGroupingPrefix.length) {
+            return value.substring(this.subjectGroupingPrefix.length);
         }
 
         if (!isUndefined(this.knownExceptions.get(value))) {

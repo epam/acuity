@@ -28,6 +28,9 @@ import {TumourResponseFiltersModel} from '../../filters/dataTypes/tumourresponse
 import Dataset = Request.Dataset;
 import ChartGroupByOptionsFiltered = Request.ChartGroupByOptionsFiltered;
 
+const SUBJECT_GROUPING = 'SUBJECT_GROUPING';
+const SUBJECT_GROUPING_PREFIX = `${SUBJECT_GROUPING}_`;
+
 @Injectable()
 export class TumourRespPriorTherapyHttpService extends BaseChartsHttpService {
     constructor(private http: HttpClient,
@@ -92,6 +95,10 @@ export class TumourRespPriorTherapyHttpService extends BaseChartsHttpService {
             const i = groupByOption.lastIndexOf('_');
             colorBy.groupByOption = groupByOption.substr(0, i);
             colorBy.params = { 'DRUG_NAME': groupByOption.substr(i + 1) };
+        } else if (colorBy && colorBy.groupByOption.startsWith(SUBJECT_GROUPING_PREFIX)) {
+            // dividing colorBy for option and dynamic subject grouping name
+            colorBy.params = { 'SUBJECT_GROUPING_NAME': colorBy.groupByOption.substr(SUBJECT_GROUPING_PREFIX.length) };
+            colorBy.groupByOption = SUBJECT_GROUPING;
         }
 
         const tocSettings = {
@@ -148,6 +155,8 @@ export class TumourRespPriorTherapyHttpService extends BaseChartsHttpService {
                 return response.map(option => {
                     if (option.drug) {
                         option.trellisedBy = `MAX_DOSE_PER_ADMIN_OF_DRUG_${option.drug}`;
+                    } else if (option.groupingName && option.trellisedBy === SUBJECT_GROUPING) {
+                        option.trellisedBy = `${SUBJECT_GROUPING_PREFIX}${option.groupingName}`;
                     }
                     return option;
                 });
