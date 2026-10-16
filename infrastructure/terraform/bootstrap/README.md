@@ -42,7 +42,8 @@ that trusts it.
 
 `pocf_acuity-github`, the one role GitHub Actions assumes for
 `terraform plan`/`apply`, ECR pushes and ECS deploys. Its ARN is the
-`github_role_arn` output; use it as `role-to-assume` in workflows (jobs need
+`github_role_arn` output, stored in the repository variable `AWS_ROLE_ARN`;
+workflows pass `${{ vars.AWS_ROLE_ARN }}` as `role-to-assume` (jobs need
 `permissions: id-token: write`).
 
 - **Trust:** any workflow run in `epam/acuity`: every branch, PR, tag and
