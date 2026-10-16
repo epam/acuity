@@ -1,11 +1,12 @@
 name: Deploy Dev
 
 # Run from a v* tag ("Use workflow from"); the tag is the image tag and the image_tag var.
+# The role CI assumes comes from the repository variable AWS_ROLE_ARN (see infrastructure/terraform/acuity/README.md).
 on:
   workflow_dispatch:
     inputs:
       workspace:
-        description: Dev Environment 
+        description: Dev Environment
         type: choice
         options: [dev-1]
 
@@ -16,9 +17,6 @@ concurrency:
   group: deploy-${{ inputs.workspace }}
   cancel-in-progress: false
   queue: max
-
-env:
-  AWS_ROLE_ARN: arn:aws:iam::897021975362:role/pocf_acuity-github
 
 jobs:
   preflight:
@@ -38,7 +36,12 @@ jobs:
           persist-credentials: false
       - env:
           WORKSPACE: ${{ inputs.workspace }}
+          AWS_ROLE_ARN: ${{ vars.AWS_ROLE_ARN }}
         run: |
+          if [[ -z "$AWS_ROLE_ARN" ]]; then
+            echo "::error::repository variable AWS_ROLE_ARN is not set"
+            exit 1
+          fi
           if [[ "$GITHUB_REF_TYPE" != tag || ! "$GITHUB_REF_NAME" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
             echo "::error::run from a vX.Y.Z release tag (ref=$GITHUB_REF_NAME, ref_type=$GITHUB_REF_TYPE)"
             exit 1
@@ -53,7 +56,7 @@ jobs:
           fi
       - uses: aws-actions/configure-aws-credentials@v6
         with:
-          role-to-assume: ${{ env.AWS_ROLE_ARN }}
+          role-to-assume: ${{ vars.AWS_ROLE_ARN }}
           aws-region: us-east-1
           mask-aws-account-id: true
       - run: aws sts get-caller-identity > /dev/null
@@ -79,7 +82,7 @@ jobs:
           persist-credentials: false
       - uses: aws-actions/configure-aws-credentials@v6
         with:
-          role-to-assume: ${{ env.AWS_ROLE_ARN }}
+          role-to-assume: ${{ vars.AWS_ROLE_ARN }}
           aws-region: us-east-1
           mask-aws-account-id: true
       - id: ecr
@@ -115,7 +118,7 @@ jobs:
           terraform_wrapper: false
       - uses: aws-actions/configure-aws-credentials@v6
         with:
-          role-to-assume: ${{ env.AWS_ROLE_ARN }}
+          role-to-assume: ${{ vars.AWS_ROLE_ARN }}
           aws-region: us-east-1
           mask-aws-account-id: true
       - run: terraform init -input=false -lockfile=readonly

@@ -96,6 +96,8 @@ those from a laptop.
 - **GitHub `dev` environment:** deployment policy "Selected branches and tags" with tag
   pattern `v[0-9]*`. No required reviewers and no custom protection rules (the preflight
   and build jobs use `deployment: false`, which custom rules reject).
+- **Role ARN:** repository variable `AWS_ROLE_ARN` holds the ARN of the role CI assumes.
+  Set it with `gh variable set AWS_ROLE_ARN --body "$(terraform -chdir=infrastructure/terraform/bootstrap output -raw github_role_arn)"`.
 - **Provider lock file:** CI runs `init -lockfile=readonly`. After any provider change,
   regenerate the hashes with
   `terraform providers lock -platform=linux_amd64 -platform=darwin_arm64`.
