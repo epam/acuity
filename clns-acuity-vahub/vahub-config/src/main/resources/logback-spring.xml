@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright 2021 The University of Manchester
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<configuration>
+
+    <springProperty scope="context" name="LOG_LEVEL" source="logback.level" defaultValue="INFO"/>
+    <springProperty scope="context" name="LOG_PATH" source="logging.file.path" defaultValue="/var/log"/>
+
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%-33.-33(%d{dd/MM HH:mm:ss} [%X{username}] [%thread]) %-5level %-29.29(%logger{25}:%L) - %msg %n</pattern>
+        </encoder>
+    </appender>
+
+    <springProfile name="!dev">
+        <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <file>${LOG_PATH}/vahub/vahub.log</file>
+
+            <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+                <fileNamePattern>${LOG_PATH}/vahub/vahub.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+                <maxHistory>30</maxHistory>
+                <maxFileSize>100MB</maxFileSize>
+                <totalSizeCap>4GB</totalSizeCap>
+            </rollingPolicy>
+
+            <encoder>
+                <pattern>%-33.-33(%d{dd/MM HH:mm:ss} [%X{username}] [%thread]) %-5level %-29.29(%logger{25}:%L) - %msg %n</pattern>
+            </encoder>
+        </appender>
+    </springProfile>
+
+    <logger name="com.acuity.visualisations.spotfireproxy" level="DEBUG"/>
+    <logger name="com.acuity.visualisations.common.cache" level="INFO"/>
+    <logger name="org.springframework.aop.interceptor" level="INFO"/>
+    <logger name="org.springframework.security" level="WARN"/>
+    <logger name="net.sf.ehcache" level="INFO"/>
+    <logger name="java.sql" level="WARN"/>
+    <logger name="org.flywaydb" level="INFO"/>
+    <logger name="org.mybatis.spring.mapper.ClassPathMapperScanner" level="ERROR"/>
+    <logger name="org.springframework.beans.factory.support.DefaultListableBeanFactory" level="ERROR"/>
+    <logger name="org.springframework.context.support" level="ERROR"/>
+
+    <springProfile name="dev">
+        <logger name="com.acuity" level="DEBUG"/>
+        <root level="DEBUG">
+            <appender-ref ref="CONSOLE"/>
+        </root>
+    </springProfile>
+
+    <springProfile name="!dev">
+        <logger name="com.acuity" level="${LOG_LEVEL}"/>
+        <root level="${LOG_LEVEL}">
+            <appender-ref ref="CONSOLE"/>
+            <appender-ref ref="FILE"/>
+        </root>
+    </springProfile>
+
+</configuration>
