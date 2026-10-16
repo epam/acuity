@@ -6,9 +6,10 @@ management:
 server:
   forward-headers-strategy: native
 
-# path to the logs directory (more info: https://docs.spring.io/spring-boot/docs/1.5.4.RELEASE/reference/htmlsingle/#boot-features-custom-log-configuration )
+# path to the logs directory (read by logback-spring.xml as LOG_PATH)
 logging:
-  path: /var/log
+  file:
+    path: /var/log
 
 # database connection data. if needed, the ones you need may be overridden for particular app in its config.
 spring:
