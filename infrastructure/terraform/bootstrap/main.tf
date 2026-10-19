@@ -22,9 +22,11 @@ provider "aws" {
 
   default_tags {
     tags = {
-      Project   = "EPM-LSTR"
-      Stream    = "POCF_ACUITY"
-      Terraform = true
+      project     = "EPM-LSTR"
+      application = "POCF_ACUITY"
+      environment = terraform.workspace
+      owner       = "https://github.com/epam/acuity"
+      terraform   = true
     }
   }
 }
