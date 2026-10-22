@@ -10,7 +10,6 @@ var SearchProgrammeStep = function (programmeWizard) {
 
     var searchBtnId = 'search-btn-step-1';
     var listAllLinkId = 'link-all-projects';
-    var addProgrammeBlockId = "add-new-programme-block";
     var addNewProgrammeId = "smartBtnNextAddProgramme";
     var scope = this;
     var selectedDrugProgramme = null;
@@ -20,7 +19,6 @@ var SearchProgrammeStep = function (programmeWizard) {
     var init = function () {
         searchFilterModule.updateSearchInput(scope.searchInputId, scope.searchInputEmptyText, searchBtnId);
         createSearchResultTable();
-        $("#" + addProgrammeBlockId).hide();
 
         var studiesGrid = $("#" + scope.searchResultId);
         studiesGrid.setGridWidth($("#rightPane").width() - 50, true);
@@ -48,6 +46,8 @@ var SearchProgrammeStep = function (programmeWizard) {
         });
 
         $('#' + addNewProgrammeId).on("click", function () {
+            // the button is always visible, so the "add new" mode must be set explicitly
+            programmeWizard.addedProgrammeMode = true;
             programmeWizard.loadProjectWizard(programmeWizard.workflow, programmeWizard.PROJECT_EDIT_STEP_INX, true);
             // programmeWizard.goToStep(programmeWizard.PROJECT_EDIT_STEP_INX);
         });
@@ -84,11 +84,9 @@ var SearchProgrammeStep = function (programmeWizard) {
 
     var onSearchCompleted = function (result, updateTableResult) {
         if (result.length == 0) {
-            $("#" + addProgrammeBlockId).show();
             $("#" + scope.searchResultId).jqGrid('clearGridData');
             programmeWizard.addedProgrammeMode = true;
         } else {
-            $("#" + addProgrammeBlockId).hide();
             programmeWizard.addedProgrammeMode = false;
             fillSearchResultTable(result);
             if (updateTableResult) {

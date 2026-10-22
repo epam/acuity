@@ -19,11 +19,15 @@
 <%@taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <table border="0" id="summaryStudyTable" class="summaryTable">
     <tr>
-        <td style="width:50%;" valign="top">
+        <td colspan="2" valign="top">
             <div style="margin-bottom:5px;text-align: center;">
                 <label class="sum-header">Dataset Summary</label> <a href="#" class="help"
                                                                      title='<%= HelpController.getHelpText("5-study-setup-summary", "studySummary") %>'>?</a>
             </div>
+        </td>
+    </tr>
+    <tr>
+        <td style="width:35%;" valign="top">
             <table border="0" class="summaryInnerTable">
                 <tr>
                     <td class="tdf">Dataset name:</td>
@@ -55,15 +59,15 @@
                 </tr>
             </table>
         </td>
-        <td style="width:50%;" valign="top">
-            <div style="margin-bottom:5px;text-align: center;">
-                <label class="sum-header">Resulting dataset status </label>
-            </div>
-            <div>
-                <label id="disclaimerWarn"></label>
-            </div>
+        <td style="width:65%;" valign="top">
+            <table border="0" class="summaryInnerTable" style="width:100%;">
+                <tr>
+                    <td class="tdf" valign="top" style="white-space:nowrap;width:1%;">Study comment:</td>
+                    <td id="summaryStudyComment" style="word-break:break-word;"></td>
+                </tr>
+            </table>
         </td>
-
+    </tr>
 
     <tr>
         <td colspan="2" style="vertical-align:top;">

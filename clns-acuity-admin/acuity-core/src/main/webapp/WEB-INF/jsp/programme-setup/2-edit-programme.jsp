@@ -17,9 +17,6 @@
 
 <script type="text/javascript" src="js/programme-setup/2-edit-programme.js?1437123853"></script>
 <div class="searchWrapper">
-    <%@ include file="/WEB-INF/jsp/search-filter.jsp" %>
-    <br/><br/><br/>
-
     <div class="headerStudy">
         <table border="0">
             <tr>
