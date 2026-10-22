@@ -3,10 +3,9 @@ var StudyWizard = function () {
     var STUDY_SEARCH_STEP_SUB_HEADER = 'Here you should search for the clinical you wish to ' +
         'enable with ACUITY using either a drug or study/dataset identifier, click to choose from the list ' +
         'and click "Next" to continue with setup.';
-    var STUDY_EDIT_STEP_SUB_HEADER = 'Using the padlock icon to allow editing, ' +
-        'please complete the requested dataset details. The dates entered for dataset planned start ' +
-        'and database lock may be putative. Most importantly, the blinding, randomisation ' +
-        'and regulatory status of the dataset must either be entered correctly, or left at their default values.';
+    var STUDY_EDIT_STEP_SUB_HEADER = 'Select the padlock icon to enable editing, ' +
+        'then complete the requested dataset details. Ensure that the blinding, randomisation, ' +
+        'and regulatory status are entered correctly or left at their default values.';
     var STUDY_MAPPING_STEP_SUB_HEADER = 'Here you should map source clinical data into ' +
         'the ACUITY system -  only mapped data will be available in ACUITY visualisations. ' +
         'The data checklist on the right shows what data has been successfully mapped: ' +
@@ -68,6 +67,7 @@ var StudyWizard = function () {
     this.workflow = null;
     this.innerSplit = null;
     this.addedStudyMode = false;
+    this.editMode = false;
     this.studyLeftSplitter = null;
     this.wizardId = "clinical-wizard";
     this.wizard = undefined;
@@ -147,6 +147,10 @@ var StudyWizard = function () {
 
         // load existing study workflow
         if (editStudyWorkflow != null) {
+            // editing an existing dataset: the search/select step is not available
+            // (editStudyWorkflow is reset by the search step, so the mode is remembered separately)
+            scope.editMode = true;
+            $('a[href="#step-1"]').closest('li').hide();
             $('#' + scope.searchStudyStep.searchInputId).val(editStudyWorkflow.selectedStudy.studyCode);
             scope.loadStudyWizard(editStudyWorkflow, scope.STUDY_SUMMARY_STEP_INX, true);
         }
@@ -207,6 +211,10 @@ var StudyWizard = function () {
             wizardCommonModule.showCommonStepButtons();
             scope.editStudyStep.startStep();
             wizardCommonModule.setStepSubHeading(STUDY_EDIT_STEP_SUB_HEADER);
+            if (scope.editMode) {
+                // no way back to the search step when editing an existing dataset
+                $('#smartBtnPrevious').hide();
+            }
         } else if (currentStep == scope.STUDY_MAPPING_STEP_INX) {
             wizardCommonModule.showCommonStepButtons();
             wizardCommonModule.setHeader(scope.workflow.selectedStudy.studyCode + " Data Mappings");

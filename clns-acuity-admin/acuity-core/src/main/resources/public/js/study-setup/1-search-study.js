@@ -2,7 +2,6 @@ var SearchStudyStep = function (studyWizard) {
 
     var searchBtnId = 'search-btn-study-step-1';
     var listAllLinkId = 'study-link-all-projects';
-    var addStudyBlockId = 'add-new-study-block';
     var smartBtnNextAddStudyId = 'smartBtnNextAddStudy';
 
     var currentTablePage = 0;
@@ -20,7 +19,6 @@ var SearchStudyStep = function (studyWizard) {
 
         createSearchResultTable();
 
-        $("#" + addStudyBlockId).hide();
         $("#" + scope.searchResultId).setGridWidth($("#leftInnerPane").width() - 50, true);
         $(window).bind('resize', function () {
             $("#" + scope.searchResultId).setGridWidth($("#leftInnerPane").width() - 50, true);
@@ -199,12 +197,10 @@ var SearchStudyStep = function (studyWizard) {
     var onCompleteSearch = function (result, updateTableResult) {
         var grid = $("#" + scope.searchResultId);
         if (result.length == 0) {
-            $("#" + addStudyBlockId).show();
             studyWizard.addedStudyMode = true;
             grid.jqGrid('clearGridData');
         } else {
             grid.jqGrid('clearGridData').jqGrid('setGridParam', {data: result}).trigger('reloadGrid');
-            $("#" + addStudyBlockId).hide();
             studyWizard.addedStudyMode = false;
             if (updateTableResult) {
                 grid.setGridParam({page: scope.currentTablePage});

@@ -133,7 +133,7 @@
                            name="studyScheduled" disabled></td>
             </tr>
             <tr>
-                <td class="tdf">Automatically assign country based on AZ standard E-codes</td>
+                <td class="tdf">Automatically assign country based on standard E-codes</td>
                 <td><input class="enabled" type="checkbox" id="autoAssignedCountry" value="true" checked
                            name="autoAssignedCountry" disabled></td>
             </tr>

@@ -1,8 +1,6 @@
 var EditProgrammeStep = function (programmeWizard) {
     this.project = null;
     this.programmeWizard = programmeWizard;
-    var searchInputId = 'input-step-2';
-    var searchBtnId = 'search-btn-step-2';
     var blockingId = 'edit-block-inputs';
     this.canNextFlag = false;
     this.canBackFlag = false;
@@ -12,17 +10,6 @@ var EditProgrammeStep = function (programmeWizard) {
      private methods  */
 
     var init = function () {
-        searchFilterModule.updateSearchInput(searchInputId,
-            programmeWizard.searchProgrammeStep.searchInputEmptyText,
-            searchBtnId);
-        $('#' + searchBtnId).on("click", function () {
-            var searchText = $('#' + searchInputId).val();
-            $('#' + programmeWizard.searchProgrammeStep.searchInputId).val(searchText);
-
-            programmeWizard.goToStep(programmeWizard.PROJECT_SEARCH_STEP_INX);
-            programmeWizard.searchProgrammeStep.searchProjects(false, true);
-        });
-
         $('#' + blockingId).on("click", function () {
 
             if ($(this).hasClass("open")) {
@@ -331,7 +318,6 @@ EditProgrammeStep.prototype = {
         //$("#chiefProgramme").val(this.project.admin);
         $("#aeSeverityType").val(this.project.aeSeverityType || 'CTC_GRADES');
         $("#createDashboard").prop("checked", !!this.project.createDashboard);
-        $('#' + this.searchInputId).val(searchText);
     },
 
     validateProject: function () {

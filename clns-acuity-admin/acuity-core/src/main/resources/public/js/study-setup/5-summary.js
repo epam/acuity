@@ -102,7 +102,7 @@ SummaryStudyStep.prototype = {
             $("#blinding").text(result.selectedStudy.blinding ? 'Blinded' : 'Not blinded');
             $("#randomisation").text(result.selectedStudy.randomisation ? 'Randomised' : 'Not randomised');
             $("#regularity").text(result.selectedStudy.regulatory ? 'Regulated' : 'Not regulated');
-            $("#disclaimerWarn").html(wizardCommonModule.htmlScriptEscape(result.disclaimerWarning));
+            $("#summaryStudyComment").text(result.selectedStudy.studyComment);
             if (result.selectedStudy.studyValid) {
                 $("#confirm").attr('checked', 'checked');
             } else {

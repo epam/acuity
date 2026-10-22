@@ -16,10 +16,7 @@ var ProgrammeWizard = function () {
     this.PROJECT_SEARCH_STEP_INX_SUB_HEADER = "Here you should search for " +
         "the drug programme you wish to enable with ACUITY using a drug identifier.";
     this.PROJECT_EDIT_STEP_HEADER = " Programme Parameters";
-    this.PROJECT_EDIT_STEP_SUB_HEADER = "Using the padlock icon to allow editing," +
-        " please provide contact names for the Medical Science Director" +
-        " who will be the primary administrator for this drug project " +
-        "and the name of the data owner (who controls data access requests).";
+    this.PROJECT_EDIT_STEP_SUB_HEADER = "Select the padlock icon to enable editing of the parameters.";
     this.PROJECT_GROUPINGS_STEP_HEADER = " Custom Groups";
     this.PROJECT_GROUPINGS_STEP_SUB_HEADER = "Here you can enter and edit 'Custom Groupings' " +
         "that can be applied to ACUITY visualisations. Custom Groupings are used to group sets of adverse events " +
@@ -38,6 +35,7 @@ var ProgrammeWizard = function () {
     this.project = null;
     this.workflow = null;
     this.addedProgrammeMode = false;
+    this.editMode = false;
     this.programmeSplitter = null;
 
     /**
@@ -106,6 +104,10 @@ var ProgrammeWizard = function () {
         onAdminHeaderLinkClick();
 
         if (editProgrammeWorkflow != null) {
+            // editing an existing programme: the search/select step is not available
+            // (editProgrammeWorkflow is reset by the search step, so the mode is remembered separately)
+            scope.editMode = true;
+            $('a[href="#step-1"]').closest('li').hide();
             $('#' + scope.searchProgrammeStep.searchInputId).val(editProgrammeWorkflow.selectedProject.drugId);
             scope.searchProgrammeStep.selectedDrugProgramme = editProgrammeWorkflow.selectedProject.drugId;
             scope.loadProjectWizard(editProgrammeWorkflow, scope.SUMMARY_STEP_INX);
@@ -187,6 +189,10 @@ var ProgrammeWizard = function () {
             wizardCommonModule.setHeader(scope.searchProgrammeStep.selectedDrugProgramme + scope.PROJECT_EDIT_STEP_HEADER);
             wizardCommonModule.setStepSubHeading(scope.PROJECT_EDIT_STEP_SUB_HEADER);
             scope.editProgrammeStep.startStep();
+            if (scope.editMode) {
+                // no way back to the search step when editing an existing programme
+                $('#smartBtnPrevious').hide();
+            }
         } else if (currentStep === scope.GROUP_STEP_INX) {
             wizardCommonModule.showCommonStepButtons();
             wizardCommonModule.setHeader(scope.project.drugProgrammeName + scope.PROJECT_GROUPINGS_STEP_HEADER);
