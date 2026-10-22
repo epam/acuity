@@ -133,7 +133,7 @@ public class DrugProgrammeController extends AbstractController {
             }
             return modelAndView;
         } catch (Exception e) {
-            throw new DrugProgrammeException("Exception caught when get drug programme ", e);
+            throw new DrugProgrammeException("Exception caught when get drug program ", e);
         }
     }
 
@@ -149,7 +149,7 @@ public class DrugProgrammeController extends AbstractController {
             }
             return newArrayList(projects.values());
         } catch (Exception e) {
-            throw new DrugProgrammeException("Exception caught when searching for drug programme " + query, e);
+            throw new DrugProgrammeException("Exception caught when searching for drug program " + query, e);
         }
     }
 
@@ -172,7 +172,7 @@ public class DrugProgrammeController extends AbstractController {
             String queryId = drugProgrammeService.runSearchQuery(query, acuityResults, cdbpResults);
             ControllerUtils.setQueryId(session, queryId);
         } catch (Exception e) {
-            throw new DrugProgrammeException("Exception caught when searching for drug programme " + query, e);
+            throw new DrugProgrammeException("Exception caught when searching for drug program " + query, e);
         }
     }
 
@@ -195,7 +195,7 @@ public class DrugProgrammeController extends AbstractController {
             ControllerUtils.setProgrammesSearchResult(request.getSession(), projects);
             return newArrayList(projects.values());
         } catch (Exception e) {
-            throw new DrugProgrammeException("Exception caught when searching for drug programme", e);
+            throw new DrugProgrammeException("Exception caught when searching for drug program", e);
         }
     }
 
@@ -244,7 +244,7 @@ public class DrugProgrammeController extends AbstractController {
             }
 
         } catch (Exception e) {
-            throw new DrugProgrammeException("Exception caught when editing a drug programme parameters", e);
+            throw new DrugProgrammeException("Exception caught when editing a drug program parameters", e);
         }
     }
 
@@ -278,7 +278,7 @@ public class DrugProgrammeController extends AbstractController {
             drugProgrammeService.saveProject(selectedProject);
             return workflow;
         } catch (Exception e) {
-            throw new DrugProgrammeException("Exception caught when selecting a drug programme", e);
+            throw new DrugProgrammeException("Exception caught when selecting a drug program", e);
         }
 
     }
@@ -313,7 +313,7 @@ public class DrugProgrammeController extends AbstractController {
 
             writeGroupToResponse(response, new GroupRuleDTO(group, Consts.EMPTY_STRING));
         } catch (Exception e) {
-            throw new DrugProgrammeException("Exception caught when saving a custom group in a drug programme", e);
+            throw new DrugProgrammeException("Exception caught when saving a custom group in a drug program", e);
         }
     }
 
@@ -343,7 +343,7 @@ public class DrugProgrammeController extends AbstractController {
             workflow.editGrouping(group);
             writeGroupToResponse(response, new GroupRuleDTO(group, Consts.EMPTY_STRING));
         } catch (Exception e) {
-            throw new DrugProgrammeException("Exception caught when editing a custom group in a drug programme", e);
+            throw new DrugProgrammeException("Exception caught when editing a custom group in a drug program", e);
         } finally {
             if (writer != null) {
                 try {
@@ -396,7 +396,7 @@ public class DrugProgrammeController extends AbstractController {
             workflow.deleteGroup(groupId.toString() + groupType);
             return grp;
         } catch (Exception e) {
-            throw new DrugProgrammeException("Exception caught when deleting a custom group in a drug programme", e);
+            throw new DrugProgrammeException("Exception caught when deleting a custom group in a drug program", e);
         }
     }
 
@@ -411,7 +411,7 @@ public class DrugProgrammeController extends AbstractController {
             ControllerUtils.setProgrammesEditGroup(request.getSession(), grp);
             return grp;
         } catch (Exception e) {
-            throw new DrugProgrammeException("Exception caught when getting a custom group in a drug programme", e);
+            throw new DrugProgrammeException("Exception caught when getting a custom group in a drug program", e);
         }
     }
 
@@ -429,7 +429,7 @@ public class DrugProgrammeController extends AbstractController {
             }
             return group;
         } catch (Exception e) {
-            throw new DrugProgrammeException("Exception caught when refreshing a custom group in a drug programme", e);
+            throw new DrugProgrammeException("Exception caught when refreshing a custom group in a drug program", e);
         }
     }
 
@@ -460,7 +460,7 @@ public class DrugProgrammeController extends AbstractController {
             auditService.logAction(AuditAction.MODIFY, AuditEntity.PROJECT, workflow.getSelectedProject().getId(), workflow.getSelectedProject().getDrugId(),
                     "Saved custom grouping values for " + workflow.getSelectedProject().getDrugId());
         } catch (Exception e) {
-            throw new DrugProgrammeException("Exception caught when saving a custom group values in a drug programme", e);
+            throw new DrugProgrammeException("Exception caught when saving a custom group values in a drug program", e);
         }
     }
 
@@ -492,7 +492,7 @@ public class DrugProgrammeController extends AbstractController {
             auditService.logAction(AuditAction.MODIFY, AuditEntity.PROJECT, workflow.getSelectedProject().getId(), workflow.getSelectedProject().getDrugId(),
                     "Saved custom grouping values for " + workflow.getSelectedProject().getDrugId());
         } catch (Exception e) {
-            throw new DrugProgrammeException("Exception caught when saving a custom group values in a drug programme", e);
+            throw new DrugProgrammeException("Exception caught when saving a custom group values in a drug program", e);
         }
     }
 
@@ -509,7 +509,7 @@ public class DrugProgrammeController extends AbstractController {
             GroupRuleBase grp = workflow.getGroup(groupId.toString() + groupType);
             return grp.getValues();
         } catch (Exception e) {
-            throw new DrugProgrammeException("Exception caught when getting a custom group values in a drug programme", e);
+            throw new DrugProgrammeException("Exception caught when getting a custom group values in a drug program", e);
         }
     }
 
@@ -551,7 +551,7 @@ public class DrugProgrammeController extends AbstractController {
             ControllerUtils.increaseTotalProgrammesCount(session);
             return workflow;
         } catch (Exception e) {
-            throw new DrugProgrammeException("Exception caught when add programme : ", e);
+            throw new DrugProgrammeException("Exception caught when add program : ", e);
         }
     }
 
@@ -569,7 +569,7 @@ public class DrugProgrammeController extends AbstractController {
             }
 
             if (project == null) {
-                throw new DrugProgrammeException("Can't find programme by drug");
+                throw new DrugProgrammeException("Can't find program by drug");
             }
             selectProject(project, workflow);
             if (project.getId() == null) {
@@ -579,7 +579,7 @@ public class DrugProgrammeController extends AbstractController {
             }
             return workflow;
         } catch (Exception e) {
-            throw new DrugProgrammeException("Exception caught when getting exist programme : ", e);
+            throw new DrugProgrammeException("Exception caught when getting exist program : ", e);
         }
     }
 
@@ -616,7 +616,7 @@ public class DrugProgrammeController extends AbstractController {
                 auditService.logAction(AuditAction.MODIFY, AuditEntity.PROJECT, selectedProject.getId(), name, "Project " + name + " completed");
             }
         } catch (Exception e) {
-            throw new DrugProgrammeException("Exception when sending programme creation email", e);
+            throw new DrugProgrammeException("Exception when sending program creation email", e);
         }
     }
 
