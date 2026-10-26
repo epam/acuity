@@ -139,20 +139,18 @@ var StudyWizard = function () {
             }
         });
 
-        $('#smartBtnAdminPage').on("click", function () {
-            window.location = "admin";
-        });
-
         onAdminHeaderLinkClick();
 
-        // load existing study workflow
+        // the search/select step is not available neither for editing nor for creating a dataset
+        $('a[href="#step-1"]').closest('li').hide();
+
         if (editStudyWorkflow != null) {
-            // editing an existing dataset: the search/select step is not available
-            // (editStudyWorkflow is reset by the search step, so the mode is remembered separately)
-            scope.editMode = true;
-            $('a[href="#step-1"]').closest('li').hide();
+            // load existing study workflow
             $('#' + scope.searchStudyStep.searchInputId).val(editStudyWorkflow.selectedStudy.studyCode);
             scope.loadStudyWizard(editStudyWorkflow, scope.STUDY_SUMMARY_STEP_INX, true);
+        } else {
+            // create a new dataset: behave as if "Add new" was pressed on the search step
+            scope.searchStudyStep.addNewStudy();
         }
 
         //fix for IE
@@ -175,7 +173,7 @@ var StudyWizard = function () {
     };
 
     var onAdminHeaderLinkClick = function () {
-        $('#adminMainPage').on("click", function () {
+        $('#adminMainPage, #smartBtnAdminPage').on("click", function () {
             var currentStep = scope.wizard.smartWizard('currentStep');
             if (currentStep === scope.STUDY_EDIT_STEP_INX) {
                 if (scope.editStudyStep.onBackStep(null, true)) {
@@ -211,10 +209,9 @@ var StudyWizard = function () {
             wizardCommonModule.showCommonStepButtons();
             scope.editStudyStep.startStep();
             wizardCommonModule.setStepSubHeading(STUDY_EDIT_STEP_SUB_HEADER);
-            if (scope.editMode) {
-                // no way back to the search step when editing an existing dataset
-                $('#smartBtnPrevious').hide();
-            }
+            // no way back to the search step, only exit to the admin page
+            $('#smartBtnPrevious').hide();
+            $('#smartBtnAdminPage').show();
         } else if (currentStep == scope.STUDY_MAPPING_STEP_INX) {
             wizardCommonModule.showCommonStepButtons();
             wizardCommonModule.setHeader(scope.workflow.selectedStudy.studyCode + " Data Mappings");

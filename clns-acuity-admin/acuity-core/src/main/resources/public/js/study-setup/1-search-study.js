@@ -42,19 +42,21 @@ var SearchStudyStep = function (studyWizard) {
     };
 
     var addActionOnAddNewStudyBtn = function () {
-        $('#' + smartBtnNextAddStudyId).on("click", function () {
-            ajaxModule.sendAjaxRequestWithoutParam("study-setup-get-projects", {showDialog: true}, function (result) {
-                if (result.length == 0) {
-                    wizardCommonModule.showWarningDialog("There are no completed drug programmes!");
-                } else {
-                    scope.studyWizard.workflow = null;
-                    scope.studyWizard.addedStudyMode = true;
-                    scope.studyWizard.editStudyStep.study = null;
+        $('#' + smartBtnNextAddStudyId).on("click", scope.addNewStudy);
+    };
 
-                    scope.studyWizard.editStudyStep.fillCompletedProjectList(result);
-                    scope.studyWizard.loadStudyWizard(scope.studyWizard.workflow, scope.studyWizard.STUDY_EDIT_STEP_INX, false);
-                }
-            });
+    this.addNewStudy = function () {
+        ajaxModule.sendAjaxRequestWithoutParam("study-setup-get-projects", {showDialog: true}, function (result) {
+            if (result.length == 0) {
+                wizardCommonModule.showWarningDialog("There are no completed drug programmes!");
+            } else {
+                scope.studyWizard.workflow = null;
+                scope.studyWizard.addedStudyMode = true;
+                scope.studyWizard.editStudyStep.study = null;
+
+                scope.studyWizard.editStudyStep.fillCompletedProjectList(result);
+                scope.studyWizard.loadStudyWizard(scope.studyWizard.workflow, scope.studyWizard.STUDY_EDIT_STEP_INX, false);
+            }
         });
     };
 

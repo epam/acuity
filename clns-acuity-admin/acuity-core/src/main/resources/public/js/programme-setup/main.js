@@ -97,11 +97,10 @@ var ProgrammeWizard = function () {
             }
         });
 
-        $('#smartBtnAdminPage').on("click", function () {
-            window.location = "admin";
-        });
-
         onAdminHeaderLinkClick();
+
+        // the search/select step is not available neither for editing nor for creating a programme
+        $('a[href="#step-1"]').closest('li').hide();
 
         if (editProgrammeWorkflow != null) {
             // editing an existing programme: the search/select step is not available
@@ -111,6 +110,9 @@ var ProgrammeWizard = function () {
             $('#' + scope.searchProgrammeStep.searchInputId).val(editProgrammeWorkflow.selectedProject.drugId);
             scope.searchProgrammeStep.selectedDrugProgramme = editProgrammeWorkflow.selectedProject.drugId;
             scope.loadProjectWizard(editProgrammeWorkflow, scope.SUMMARY_STEP_INX);
+        } else {
+            // create a new programme: behave as if "Add new" was pressed on the search step
+            scope.searchProgrammeStep.addNewProgramme();
         }
         //     fix for IE
         if ($.browser.msie) {
@@ -129,7 +131,7 @@ var ProgrammeWizard = function () {
     };
 
     var onAdminHeaderLinkClick = function () {
-        $('#adminMainPage').on("click", function () {
+        $('#adminMainPage, #smartBtnAdminPage').on("click", function () {
             var currentStep = $('#' + scope.wizardId).smartWizard('currentStep');
             if (currentStep === scope.PROJECT_EDIT_STEP_INX) {
                 if (scope.editProgrammeStep.onBackStep(null, true)) {
@@ -189,10 +191,9 @@ var ProgrammeWizard = function () {
             wizardCommonModule.setHeader(scope.searchProgrammeStep.selectedDrugProgramme + scope.PROJECT_EDIT_STEP_HEADER);
             wizardCommonModule.setStepSubHeading(scope.PROJECT_EDIT_STEP_SUB_HEADER);
             scope.editProgrammeStep.startStep();
-            if (scope.editMode) {
-                // no way back to the search step when editing an existing programme
-                $('#smartBtnPrevious').hide();
-            }
+            // no way back to the search step, only exit to the admin page
+            $('#smartBtnPrevious').hide();
+            $('#smartBtnAdminPage').show();
         } else if (currentStep === scope.GROUP_STEP_INX) {
             wizardCommonModule.showCommonStepButtons();
             wizardCommonModule.setHeader(scope.project.drugProgrammeName + scope.PROJECT_GROUPINGS_STEP_HEADER);
