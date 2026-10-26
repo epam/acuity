@@ -45,14 +45,15 @@ var SearchProgrammeStep = function (programmeWizard) {
             scope.searchProjects(false, true);
         });
 
-        $('#' + addNewProgrammeId).on("click", function () {
-            // the button is always visible, so the "add new" mode must be set explicitly
-            programmeWizard.addedProgrammeMode = true;
-            programmeWizard.loadProjectWizard(programmeWizard.workflow, programmeWizard.PROJECT_EDIT_STEP_INX, true);
-            // programmeWizard.goToStep(programmeWizard.PROJECT_EDIT_STEP_INX);
-        });
+        $('#' + addNewProgrammeId).on("click", scope.addNewProgramme);
 
         addHelpText();
+    };
+
+    this.addNewProgramme = function () {
+        // the "add new" mode must be set explicitly
+        programmeWizard.addedProgrammeMode = true;
+        programmeWizard.loadProjectWizard(programmeWizard.workflow, programmeWizard.PROJECT_EDIT_STEP_INX, true);
     };
 
     var goToSummary = function (drugProgramme) {

@@ -192,6 +192,8 @@
                         <p>Regulatory status: <b id="study-reg-status"></b></p>
 
                         <p>Files locations: <b id="study-locations"></b></p>
+
+                        <p>Study comment: <b id="study-comment"></b></p>
                     </div>
                 </div>
 

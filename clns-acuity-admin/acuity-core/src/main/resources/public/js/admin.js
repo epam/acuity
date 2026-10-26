@@ -16,6 +16,7 @@ var Admin = function () {
     var studySumBlindingId = "study-blinded";
     var studySumRandId = "study-rand-status";
     var studySumRegulatoryId = "study-reg-status";
+    var studySumCommentId = "study-comment";
 
     var removeStudyBtnId = "removeStudyBtn";
     var editStudyBtnId = "editStudyBtn";
@@ -202,6 +203,7 @@ var Admin = function () {
         $('#' + studySumBlindingId).text(selectedStudy.blinding ? 'Blinded' : 'Not blinded');
         $('#' + studySumRandId).text(selectedStudy.randomisation ? 'Randomised' : 'Not randomised');
         $('#' + studySumRegulatoryId).text(selectedStudy.regulatory ? 'Regulated' : 'Not regulated');
+        $('#' + studySumCommentId).text(selectedStudy.studyComment);
         updateStudyLocations(selectedStudy);
 
         scope.canEditStudy = selectedStudy.canEditStudy;
