@@ -35,6 +35,7 @@ var ProgrammeWizard = function () {
     this.project = null;
     this.workflow = null;
     this.addedProgrammeMode = false;
+    this.editMode = false;
     this.programmeSplitter = null;
 
     /**
@@ -102,6 +103,10 @@ var ProgrammeWizard = function () {
         $('a[href="#step-1"]').closest('li').hide();
 
         if (editProgrammeWorkflow != null) {
+            // editing an existing programme: the search/select step is not available
+            // (editProgrammeWorkflow is reset by the search step, so the mode is remembered separately)
+            scope.editMode = true;
+            $('a[href="#step-1"]').closest('li').hide();
             $('#' + scope.searchProgrammeStep.searchInputId).val(editProgrammeWorkflow.selectedProject.drugId);
             scope.searchProgrammeStep.selectedDrugProgramme = editProgrammeWorkflow.selectedProject.drugId;
             scope.loadProjectWizard(editProgrammeWorkflow, scope.SUMMARY_STEP_INX);

@@ -67,6 +67,7 @@ var StudyWizard = function () {
     this.workflow = null;
     this.innerSplit = null;
     this.addedStudyMode = false;
+    this.editMode = false;
     this.studyLeftSplitter = null;
     this.wizardId = "clinical-wizard";
     this.wizard = undefined;
