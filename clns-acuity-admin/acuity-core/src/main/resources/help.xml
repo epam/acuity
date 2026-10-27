@@ -68,12 +68,6 @@
             <helpText>Whether the drug program itself has previously been set up within  the ACUITY  system.</helpText>
         </help>
         <help>
-            <pageElement>studyNumberStudies</pageElement>
-            <helpText>The total number of studies within the drug program that are known to  the ACUITY  system
-                either via link to the IMPACT data system, or have been enabled for further configuration.
-            </helpText>
-        </help>
-        <help>
             <pageElement>studyNumberEnabledStudies</pageElement>
             <helpText>The number of studies that have been enabled for further
                 configuration (e.g. data mapping) in ACUITY

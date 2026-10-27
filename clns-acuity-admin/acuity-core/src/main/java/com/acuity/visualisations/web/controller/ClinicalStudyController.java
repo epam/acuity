@@ -344,7 +344,7 @@ public class ClinicalStudyController extends AbstractController {
             redirectAttributes.addFlashAttribute("drugId", drugProgramme);
             return "redirect:/programme-setup";
         } catch (Exception e) {
-            throw new ClinicalStudyException("Exception caught when redirect to programme setup: ", e);
+            throw new ClinicalStudyException("Exception caught when redirect to program setup: ", e);
         }
     }
 

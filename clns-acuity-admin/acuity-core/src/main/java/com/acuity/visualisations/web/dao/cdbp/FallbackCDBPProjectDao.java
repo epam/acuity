@@ -33,11 +33,6 @@ public class FallbackCDBPProjectDao implements CDBPProjectDao {
     }
 
     @Override
-    public Integer getTotalStudyCountByDrugId(String drugId) {
-        return 0;
-    }
-
-    @Override
     public List<String> getCDBPDrugIds() {
         return new ArrayList<>();
     }
