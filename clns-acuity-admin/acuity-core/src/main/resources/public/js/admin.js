@@ -231,11 +231,11 @@ var Admin = function () {
             return false;
         }
 
-        var message = "Are you sure you want to remove the Drug Programme </br>" +
+        var message = "Are you sure you want to remove the Drug Program </br>" +
             scope.selectedProjectData.selectedProjectDrugId + "?</br>" +
-            "-Removing a drug programme will cause deletion of all associated study data mappings and visualisation modules ";
+            "-Removing a drug program will cause deletion of all associated study data mappings and visualisation modules ";
 
-        wizardCommonModule.showYesNoDialog("ACUITY-Drug Programme removal", message, function () {
+        wizardCommonModule.showYesNoDialog("ACUITY-Drug Program removal", message, function () {
             ajaxModule.sendAjaxRequestSimpleParams("admin/remove-project", {
                 'projectId': scope.selectedProjectData.selectedProjectId
             }, {

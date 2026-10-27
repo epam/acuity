@@ -12,7 +12,7 @@ var SearchStudyStep = function (studyWizard) {
     this.selectedStudyCode = '';
     this.searchResultId = 'studySearchResultTable';
     this.searchInputId = 'input-study-step-1';
-    this.searchInputEmptyText = 'Search for drug programme or dataset';
+    this.searchInputEmptyText = 'Search for drug program or dataset';
 
     var init = function () {
         searchFilterModule.updateSearchInput(scope.searchInputId, scope.searchInputEmptyText, searchBtnId);
@@ -48,7 +48,7 @@ var SearchStudyStep = function (studyWizard) {
     this.addNewStudy = function () {
         ajaxModule.sendAjaxRequestWithoutParam("study-setup-get-projects", {showDialog: true}, function (result) {
             if (result.length == 0) {
-                wizardCommonModule.showWarningDialog("There are no completed drug programmes!");
+                wizardCommonModule.showWarningDialog("There are no completed drug programs!");
             } else {
                 scope.studyWizard.workflow = null;
                 scope.studyWizard.addedStudyMode = true;
@@ -304,12 +304,12 @@ SearchStudyStep.prototype = {
         var enabledStudyStatus = searchTable.jqGrid('getCell', selectStudyCode, "status");
         if (enabledStudyStatus == 'notInAcuity' || $.trim(enabledStudyStatus).length == 0) {
             var drugProgramme = searchTable.jqGrid('getCell', selectStudyCode, "drugProgramme");
-            var link = "<a id='link-" + wizardCommonModule.htmlEscape(drugProgramme) + "' style='color: #000; cursor: pointer;font-weight: bold;font-style: italic;'>Drug programme setup for " + drugProgramme + "</a>";
+            var link = "<a id='link-" + wizardCommonModule.htmlEscape(drugProgramme) + "' style='color: #000; cursor: pointer;font-weight: bold;font-style: italic;'>Drug program setup for " + drugProgramme + "</a>";
             $(document).on('click', '#link-' + wizardCommonModule.htmlEscape(drugProgramme) + '', function () {
                 scope.goToProgrammeWizard(wizardCommonModule.htmlEscape(drugProgramme));
             });
-            scope.showNotInACUITYStudyDlg("Cannot continue: The selected clinical study has not been enabled during drug programme setup." +
-                "Please visit the " + link + " where the programme can be completed");
+            scope.showNotInACUITYStudyDlg("Cannot continue: The selected clinical study has not been enabled during drug program setup." +
+                "Please visit the " + link + " where the program can be completed");
             return false;
         }
         ajaxModule.sendAjaxRequestSimpleParams("study-setup-select-study", {studyCode: selectedStudyCode}, {showDialog: true}, function (result) {

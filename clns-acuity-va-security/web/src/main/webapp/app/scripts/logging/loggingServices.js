@@ -97,7 +97,7 @@ angular.module('acuityApp.loggingServices', [])
                 return (toParams.studyId) ? toParams.studyId : null;
             };
             /**
-             * is a Drug Programme, if toParams has either drugProgrammeId
+             * is a Drug Program, if toParams has either drugProgrammeId
              */
             var getDrugProgrammeId = function (toParams) {
                 return (toParams.drugProgrammeId) ? toParams.drugProgrammeId : null;

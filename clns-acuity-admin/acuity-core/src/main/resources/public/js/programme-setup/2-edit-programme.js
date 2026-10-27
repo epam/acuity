@@ -15,7 +15,7 @@ var EditProgrammeStep = function (programmeWizard) {
             if ($(this).hasClass("open")) {
                 if ($.trim($('#drugProgrammeName').val()).length == 0 ||
                     $.trim($('#drugProgrammeName').val()) != $.trim(scope.project.drugProgrammeName)) {
-                    wizardCommonModule.showYesNoDialog('Attention!', 'You are about to change the Drug Programme Name. This change will be visible in VaHub, VA Security and the Admin UI.',
+                    wizardCommonModule.showYesNoDialog('Attention!', 'You are about to change the Drug Program Name. This change will be visible in VaHub, VA Security and the Admin UI.',
                         function () {
                             $('#' + blockingId).removeClass("open");
                             $(".enabled").attr('disabled', 'disabled');
@@ -133,7 +133,7 @@ var EditProgrammeStep = function (programmeWizard) {
     this.confirmDrugProgrammeNameChange = function (toStep) {
         if ($.trim($('#drugProgrammeName').val()).length == 0 ||
             $.trim($('#drugProgrammeName').val()) != $.trim(scope.project.drugProgrammeName)) {
-            wizardCommonModule.showYesNoDialog('Attention!', 'You are about to change the Drug Programme Name. This change will be visible in VaHub, VA Security and the Admin UI.',
+            wizardCommonModule.showYesNoDialog('Attention!', 'You are about to change the Drug Program Name. This change will be visible in VaHub, VA Security and the Admin UI.',
                 function () {
                     scope.closePadLock();
                     scope.updateProject(toStep);
@@ -158,8 +158,8 @@ EditProgrammeStep.prototype = {
 
     startStep: function () {
         if (this.programmeWizard.addedProgrammeMode) {
-            wizardCommonModule.setHeader("New Programme Parameters");
-            this.clearEnabledAllData("New Programme Parameters");
+            wizardCommonModule.setHeader("New Program Parameters");
+            this.clearEnabledAllData("New Program Parameters");
             $('.hiddenOnAddProgramme').hide();
             $("#drugProgrammeId").val($('#' + this.programmeWizard.searchProgrammeStep.searchInputId).val());
             $('#smartBtnNext').removeClass("disabled");
@@ -207,8 +207,8 @@ EditProgrammeStep.prototype = {
                 };
 
                 if (programmeAlreadyExist) {
-                    var message = "A drug programme " + scope.project.drugId + " already exists, do you wish " +
-                        "to continue to edit the setup of that drug programme?";
+                    var message = "A drug program " + scope.project.drugId + " already exists, do you wish " +
+                        "to continue to edit the setup of that drug program?";
                     wizardCommonModule.showYesNoDialog("ACUITY", message, function () {
                         ajaxModule.sendAjaxRequestSimpleParams("programme-setup/programme-setup-revert-programme",
                             {'drugId': scope.project.drugId}, {showDialog: true}, function (result) {
@@ -271,7 +271,7 @@ EditProgrammeStep.prototype = {
             }
         });
         if (isEditable) {
-            wizardCommonModule.showYesNoDialog("Are You Sure?", "Discard programme parameters changes?", function () {
+            wizardCommonModule.showYesNoDialog("Are You Sure?", "Discard program parameters changes?", function () {
                 scope.canBackFlag = true;
                 var searchText = $('#' + scope.programmeWizard.searchProgrammeStep.searchInputId).val();
                 scope.setCurrentProject(scope.programmeWizard.workflow.selectedProject, searchText);
@@ -287,7 +287,7 @@ EditProgrammeStep.prototype = {
             });
             return false;
         } else if (scope.programmeWizard.addedProgrammeMode) {
-            wizardCommonModule.showYesNoDialog("Are You Sure?", "Drug programme will not be added", function () {
+            wizardCommonModule.showYesNoDialog("Are You Sure?", "Drug program will not be added", function () {
                 scope.canBackFlag = true;
                 scope.closePadLock();
                 if (typeof toStep === 'number') {

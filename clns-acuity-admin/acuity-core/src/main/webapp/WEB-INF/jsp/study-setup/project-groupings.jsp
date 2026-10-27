@@ -34,7 +34,7 @@
 </div>
 
 <p id="pt-grp-msg" style="margin-top:20px; display:none;">
-Note: Adverse event and lab groupings can be created in the drug programme level setup pages for <span></span>, click <a id="programmeSetupLink" class="hereLink" target="_blank">here</a> to navigate to those pages.
+Note: Adverse event and lab groupings can be created in the drug program level setup pages for <span></span>, click <a id="programmeSetupLink" class="hereLink" target="_blank">here</a> to navigate to those pages.
 <form id="edit-programme-form" method="post" action="instance-edit-programme-setup">
     <input type="text" id="projectId" name="projectId" value="" style="display:none"/>
     <input  id="submitEditProgrammeActionId" type="submit" name="submitEditProgrammeActionId" style="display:none"/>

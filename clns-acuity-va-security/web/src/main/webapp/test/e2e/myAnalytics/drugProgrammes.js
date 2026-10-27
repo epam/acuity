@@ -18,7 +18,7 @@ var portal = require('../portal.js');
 
 //Goes through the ACUITY portal from the Analitycs: Drug Program till all links.
 //open homepage
-describe('Drug programmes page tests', function () {
+describe('Drug programs page tests', function () {
     beforeEach(function () {
         portal.setTestName('DrugProgrammes');
     });
@@ -27,46 +27,46 @@ describe('Drug programmes page tests', function () {
         portal.logResult();
     });
 
-//Click 'Drug programmes' button and make sure that you moved to the Drug programmes
-    describe('WHEN my analytics page is loaded and Drug programmes button clicked', function () {
-        it('THEN user is redirected to Drug programmes page', function () {
+//Click 'Drug programs' button and make sure that you moved to the Drug programs
+    describe('WHEN my analytics page is loaded and Drug programs button clicked', function () {
+        it('THEN user is redirected to Drug programs page', function () {
             portal.getMainPage();
             element(by.partialLinkText('Analytics')).click();
             portal.pause();
             expect(portal.getCurrentUrl()).toContain('/myAnalytics');
-            element(by.partialLinkText('Drug programmes')).click();
+            element(by.partialLinkText('Drug programs')).click();
             portal.pause();
             portal.pause();
             expect(portal.getCurrentUrl()).toContain('/drug-programmes');
         })
     });
 
-//Make sure that number of Drug programmes is displayed
-    describe('WHEN Drug programmes page is loaded', function () {
+//Make sure that number of Drug programs is displayed
+    describe('WHEN Drug programs page is loaded', function () {
         var number;
 
         beforeEach(function () {
             element(by.partialLinkText('Analytics')).click();
             portal.pause();
-            element(by.partialLinkText('Drug programmes')).click();
+            element(by.partialLinkText('Drug programs')).click();
             portal.pause();
         });
 
-        it('THEN number of Drug programmes should be displayed and be greater than 0', function () {
+        it('THEN number of Drug programs should be displayed and be greater than 0', function () {
             element(by.id('programmesCounter')).getText().then(function (txt) {
                 number = parseInt(txt);
                 expect(number).toBeGreaterThan(0);
             });
         });
 
-        it('THEN number of Drug programmes should be equal to number of displayed icons', function () {
+        it('THEN number of Drug programs should be equal to number of displayed icons', function () {
             //Compares previously retrieved number to number of drugs in repeater
             element.all(by.repeater('drugProgramme in PARENT_MODEL.allAcls.drugProgrammes')).then(function (Drugs) {
                 expect(Drugs.length).toEqual(number);
             });
         });
 
-        it('THEN number of Drug programmes should be equal to number of lines in list view', function () {
+        it('THEN number of Drug programs should be equal to number of lines in list view', function () {
             //Compares previously retrieved number to number of Drugs in repeater
 //            element(by.xpath("//*[contains(@class,'glyphicon-list')]")).click();
 //            portal.pause();
@@ -78,18 +78,18 @@ describe('Drug programmes page tests', function () {
     });
 
     //Make sure that "boxes view"  switch works between list and grid
-    //excluded from test run since icon view is disabled for Programmes projection
+    //excluded from test run since icon view is disabled for Programs projection
     xdescribe('WHEN "list view" switch button is pressed', function () {
 
         beforeEach(function () {
             element(by.partialLinkText('Analytics')).click();
             portal.pause();
-            element(by.partialLinkText('Drug programmes')).click();
+            element(by.partialLinkText('Drug programs')).click();
             portal.pause();
         });
 
 
-        xit('THEN view is changed from list to boxes and Drug programmes names are displayed', function () {
+        xit('THEN view is changed from list to boxes and Drug programs names are displayed', function () {
             element(by.xpath("//*[contains(@class,'glyphicon-th-large')]")).click();
             portal.pause();
             var dProgram = element(by.repeater('drugProgramme in PARENT_MODEL.allAcls.drugProgrammes').row(0)).getText();
@@ -109,7 +109,7 @@ describe('Drug programmes page tests', function () {
         beforeEach(function () {
             element(by.partialLinkText('Analytics')).click();
             portal.pause();
-            element(by.partialLinkText('Drug programmes')).click();
+            element(by.partialLinkText('Drug programs')).click();
             portal.pause();
 //            element(by.xpath("//*[contains(@class,'glyphicon-list')]")).click();
 //            portal.pause();
@@ -171,13 +171,13 @@ describe('Drug programmes page tests', function () {
 
 
 //Make sure that Search works correctly
-    describe('WHEN Drug programmes is entered to Search field', function () {
+    describe('WHEN Drug programs is entered to Search field', function () {
 
         beforeEach(function () {
             portal.getMainPage();
             element(by.partialLinkText('Analytics')).click();
             portal.pause();
-            element(by.partialLinkText('Drug programmes')).click();
+            element(by.partialLinkText('Drug programs')).click();
             portal.pause();
             portal.pause();
             //Commented - list view is now the default.
@@ -186,7 +186,7 @@ describe('Drug programmes page tests', function () {
         });
 
 
-        it('THEN the list of Drug programmes is reduced', function () {
+        it('THEN the list of Drug programs is reduced', function () {
             var expectedDrugProg = 'STDY4321';
             element(by.model('PARENT_MODEL.searchTerm.name')).sendKeys(expectedDrugProg);
             expect(element.all(by.repeater('drugProgramme in PARENT_MODEL.allAcls.drugProgrammes | filterOr:PARENT_MODEL.searchTerm')).count()).toBe(1);
@@ -202,17 +202,17 @@ describe('Drug programmes page tests', function () {
         })
     });
 
-    describe('WHEN I expand Drug Programme panel', function(){
-        //Opening Programmes projection
+    describe('WHEN I expand Drug Program panel', function(){
+        //Opening Programs projection
         beforeEach(function () {
             element(by.partialLinkText('Analytics')).click();
             portal.pause();
-            element(by.partialLinkText('Drug programmes')).click();
+            element(by.partialLinkText('Drug programs')).click();
             portal.pause();
             portal.pause();
         });
 
-        it('Setup button leads to drug programme setup',function(){
+        it('Setup button leads to drug program setup',function(){
             element.all(by.repeater('drugProgramme in PARENT_MODEL.allAcls.drugProgrammes')).then(function(allElements){
                 //This will be used to verify, that there is no duplicates.
                 var previousHtmls = [];
@@ -248,7 +248,7 @@ describe('Drug programmes page tests', function () {
                     portal.pause();
                 }
             });
-            //10% of programmes got randomly checked
+            //10% of programs got randomly checked
         });
     });
 

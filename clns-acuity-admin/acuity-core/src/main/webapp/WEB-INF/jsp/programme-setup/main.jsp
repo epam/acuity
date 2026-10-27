@@ -68,7 +68,7 @@
             <li>
                 <h2>
                     <span>
-                        Drug Programme Setup
+                        Drug Program Setup
                     </span>
                 </h2>
             </li>
@@ -76,7 +76,7 @@
                 <a href="#step-1" class="step-link">
                     <span class="sideBarIcon"></span>
                     <span class="stepDesc">
-                        <small id="text-step-1">Select the drug programme to enable with ACUITY</small>
+                        <small id="text-step-1">Select the drug program to enable with ACUITY</small>
                     </span>
                 </a>
             </li>
@@ -84,7 +84,7 @@
                 <a href="#step-2" class="step-link">
                     <span class="sideBarIcon"></span>
                     <span class="stepDesc">
-                        <small>Review and edit the key drug programme parameters</small>
+                        <small>Review and edit the key drug program parameters</small>
                         <small id="text-step-2"></small>
                     </span>
                 </a>

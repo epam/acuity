@@ -105,7 +105,7 @@ describe('Dataset modules page tests', function () {
             });
         });
 
-        it('THEN if icons are sorted by drug programme, number of sections in icon view is equal to 0', function () {
+        it('THEN if icons are sorted by drug program, number of sections in icon view is equal to 0', function () {
             ptor.findElement(protractor.By.id('gridDrugInput')).click();
             ptor.findElements(by.repeater('drug in PARENT_MODEL.allAcls.datasets')).then(function (drugs) {
                 expect(drugs.length).toEqual(0);
@@ -129,25 +129,25 @@ describe('Dataset modules page tests', function () {
         });
     });
 
-    describe('WHEN Unknown user observes drug programmes', function () {
+    describe('WHEN Unknown user observes drug programs', function () {
 
         beforeEach(function () {
             if(ptor.getCurrentUrl().toString().indexOf('drug-programmes')<0){
-                element(by.partialLinkText('Drug programmes')).click();
+                element(by.partialLinkText('Drug programs')).click();
                 paws();
             }
         });
 
         var number;
 
-        it('THEN displayed number of Drug programmes should be  0', function () {
+        it('THEN displayed number of Drug programs should be  0', function () {
             ptor.findElement(protractor.By.id('programmesCounter')).getText().then(function (txt) {
                 number = parseInt(txt);
                 expect(number).toEqual(0);
             });
         });
 
-        it('THEN number of Drug programmes in list view is 0', function () {
+        it('THEN number of Drug programs in list view is 0', function () {
             ptor.findElements(by.repeater('drugProgramme in PARENT_MODEL.allAcls.drugProgrammes')).then(function (Drugs) {
                 expect(Drugs.length).toEqual(0);
             });

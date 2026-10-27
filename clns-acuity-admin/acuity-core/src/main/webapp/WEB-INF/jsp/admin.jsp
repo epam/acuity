@@ -64,11 +64,11 @@
     <div class="col-md-4 pull-right">
         <div class="input-group">
             <span class="input-group-addon"><span class="glyphicon glyphicon-search"></span> </span>
-            <input id="adminSearch" type="text" class="form-control" placeholder="Search for drug programme...">
+            <input id="adminSearch" type="text" class="form-control" placeholder="Search for drug program...">
 
             <span class="input-group-addon" data-toggle="popover" data-placement="bottom" data-container="body"
                   data-trigger="hover focus" title="Search"
-                  data-content="Search by programme name, study name, study code, study primary location, visualisation name">
+                  data-content="Search by program name, study name, study code, study primary location, visualisation name">
                     <span class="glyphicon glyphicon-question-sign"></span> </span>
         </div>
     </div>
@@ -87,7 +87,7 @@
 
         <div class="panel panel-primary">
             <div class="panel-heading">
-                <h3 class="panel-title"> Drug Programmes
+                <h3 class="panel-title"> Drug Programs
                     <a href="#" class="tooltipRef pull-right" data-toggle="tooltip" data-placement="bottom"
                        title='<%= HelpController.getHelpText("admin", "drugProgrammes") %>'>
                         <span class="glyphicon glyphicon-question-sign"></span>
