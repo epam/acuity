@@ -21,17 +21,17 @@
         <pageName>1-search-programme</pageName>
         <help>
             <pageElement>colRadio</pageElement>
-            <helpText>After finding or listing a set of drug programmes, use the radio buttons below to
-                select the drug programme that you wish to configure using the radio-button selector.
+            <helpText>After finding or listing a set of drug programs, use the radio buttons below to
+                select the drug program that you wish to configure using the radio-button selector.
             </helpText>
         </help>
         <help>
             <pageElement>colDrugID</pageElement>
-            <helpText>The drug programme identifier</helpText>
+            <helpText>The drug program identifier</helpText>
         </help>
         <help>
             <pageElement>colNStudies</pageElement>
-            <helpText>The total number of studies within the drug programme that are know to  the ACUITY  system either
+            <helpText>The total number of studies within the drug program that are know to  the ACUITY  system either
                 via a link to the IMPACT data system, or that have been manually added through  the ACUITY  system.
             </helpText>
         </help>
@@ -43,11 +43,11 @@
         </help>
         <help>
             <pageElement>colAcuityEnabled</pageElement>
-            <helpText>Whether the drug programme itself has been previously set up within  the ACUITY  system.</helpText>
+            <helpText>Whether the drug program itself has been previously set up within  the ACUITY  system.</helpText>
         </help>
         <help>
             <pageElement>colAction</pageElement>
-            <helpText>Provides a link to the summary of the set up for and drug programmes that have been ACUITY-enabled.
+            <helpText>Provides a link to the summary of the set up for and drug programs that have been ACUITY-enabled.
             </helpText>
         </help>
     </page>
@@ -55,17 +55,17 @@
         <pageName>2-edit-programme</pageName>
         <help>
             <pageElement>drugProgrammeID</pageElement>
-            <helpText>The drug programme identifier</helpText>
+            <helpText>The drug program identifier</helpText>
         </help>
         <help>
             <pageElement>drugProgrammeName</pageElement>
             <helpText>This is the name that will be visible in ACUITY and VA Security. Spotfire files will be named
-                using the Drug Programme ID.
+                using the Drug Program ID.
             </helpText>
         </help>
         <help>
             <pageElement>programmeEnabled</pageElement>
-            <helpText>Whether the drug programme itself has previously been set up within  the ACUITY  system.</helpText>
+            <helpText>Whether the drug program itself has previously been set up within  the ACUITY  system.</helpText>
         </help>
         <help>
             <pageElement>studyNumberEnabledStudies</pageElement>
@@ -77,20 +77,20 @@
             <pageElement>chiefProgramme</pageElement>
             <helpText>The name of the individual who will have the primary responsibility for administering ACUITY
                 for this drug project. Current guidance indicates this should be the Medical Science Director. This
-                field is used to help  the ACUITY  team manage ACUITY  for drug programmes.
+                field is used to help  the ACUITY  team manage ACUITY  for drug programs.
             </helpText>
         </help>
         <help>
             <pageElement>ownerProgramme</pageElement>
             <helpText>The name of the individual who will have the responsibility of authorising access for other
-                users to  the ACUITY  visualisations for this drug programme. Current guidance indicates that this should
+                users to  the ACUITY  visualisations for this drug program. Current guidance indicates that this should
                 be the Medical Science Director. This field is used by  the ACUITY  team to set up processes for
                 authorisation to see study data.
             </helpText>
         </help>
         <help>
             <pageElement>createDashboard</pageElement>
-            <helpText>A programme-level view displaying high-level study counts,
+            <helpText>A program-level view displaying high-level study counts,
                 which are important to ascertain current progress for a particular drug.
             </helpText>
         </help>
@@ -102,7 +102,7 @@
             <helpText>Select the type of grouping that you wish to create. The options are adverse event groupings,
                 where different preferred terms can be grouped, or lab measurement groupings whereby different types of
                 lab measurement can be grouped. The idea is that this allows a customisable way to group together sets of
-                patient data that are of particular interest to your drug programme.
+                patient data that are of particular interest to your drug program.
             </helpText>
         </help>
         <help>
@@ -213,22 +213,22 @@
         <pageName>admin</pageName>
         <help>
             <pageElement>drugProgrammes</pageElement>
-            <helpText>Here we list the drug programmes that have been configured to use ACUITY. You may add a new drug
-                programme, edit an existing drug programme, or remove an existing drug programme configuration using
-                the buttons below. Selecting a drug programme from a list will allow you to view the clinical study
-                data sets and ACUITY  visualisation modules that have been configured for the programme.
+            <helpText>Here we list the drug programs that have been configured to use ACUITY. You may add a new drug
+                program, edit an existing drug program, or remove an existing drug program configuration using
+                the buttons below. Selecting a drug program from a list will allow you to view the clinical study
+                data sets and ACUITY  visualisation modules that have been configured for the program.
             </helpText>
         </help>
         <help>
             <pageElement>clinicalStudyDataSets</pageElement>
             <helpText>Here we list the clinical study data sets that have been configured to use ACUITY  for the drug
-                programme selected, above. You may add a new study configuration, edit an existing study configuration,
+                program selected, above. You may add a new study configuration, edit an existing study configuration,
                 or remove an existing study configuration using the buttons below.
             </helpText>
         </help>
         <help>
             <pageElement>visualisationModules</pageElement>
-            <helpText>Here we list the visualisation modules that have been configured for the drug programme selected.
+            <helpText>Here we list the visualisation modules that have been configured for the drug program selected.
                 You may add a new visualisation module, edit an existing visualisation module, or remove an existing
                 visualisation module using the buttons below.
             </helpText>
@@ -249,10 +249,10 @@
             <helpText>The setup status of the study in ACUITY.
 
                 "Not added to ACUITY" indicates that the study is not ready to be configured in ACUITY  as the parent drug
-                programme has not been set up to allow this study to be configured. To remedy this you can reconfigure
-                the drug programme.
+                program has not been set up to allow this study to be configured. To remedy this you can reconfigure
+                the drug program.
 
-                "Ready to map" indicates that the drug programme has been set up to allow this study to be configured,
+                "Ready to map" indicates that the drug program has been set up to allow this study to be configured,
                 but no study configuration has yet been recorded.
 
                 "Mapping in progress" indicates that the study configuration is underway, but incomplete.
@@ -266,7 +266,7 @@
         <pageName>2-edit-study</pageName>
         <help>
             <pageElement>drugID</pageElement>
-            <helpText>The drug programme identifier. This field is important for the organisation of date in ACUITY
+            <helpText>The drug program identifier. This field is important for the organisation of date in ACUITY
             </helpText>
         </help>
         <help>
@@ -550,8 +550,8 @@
         <pageName>1-project-and-study</pageName>
         <help>
             <pageElement>projectTable</pageElement>
-            <helpText>Select the drug programme for which you wish to create a set of ACUITY  visualisations. Note that
-                only drug programmes that have been configured for ACUITY  are displayed.
+            <helpText>Select the drug program for which you wish to create a set of ACUITY  visualisations. Note that
+                only drug programs that have been configured for ACUITY  are displayed.
             </helpText>
         </help>
         <help>
@@ -567,14 +567,14 @@
             <pageElement>aeGroupings</pageElement>
             <helpText>Select the adverse event groupings you wish to include in your ACUITY  visualisations. Selecting a
                 grouping is not essential for ACUITY  set up. In order to set up a new adverse event grouping you should
-                visit the drug programme setup.
+                visit the drug program setup.
             </helpText>
         </help>
         <help>
             <pageElement>labGroupings</pageElement>
             <helpText>Select the lab measurement groupings you wish to include in your ACUITY  visualisations. Selecting a
                 grouping is not essential for ACUITY  set up. In order to set up a new adverse event grouping you should
-                visit the drug programme setup.
+                visit the drug program setup.
             </helpText>
         </help>
     </page>
@@ -603,7 +603,7 @@
             <pageElement>studyName</pageElement>
             <helpText>Select the alternative subject groupings you wish to include in your ACUITY  visualisations.
                 Selecting a grouping is not essential for ACUITY  set up. In order to set up a new adverse event
-                grouping you should visit the drug programme setup.
+                grouping you should visit the drug program setup.
             </helpText>
         </help>
         <help>

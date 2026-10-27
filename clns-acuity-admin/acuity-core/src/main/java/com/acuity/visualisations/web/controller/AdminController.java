@@ -191,7 +191,7 @@ public class AdminController extends AbstractController {
             res.setCanEditProject(true);
             return res;
         } catch (Exception e) {
-            throw new AdminException("Exception caught when retrieving programme information: ", e);
+            throw new AdminException("Exception caught when retrieving program information: ", e);
         }
     }
 
