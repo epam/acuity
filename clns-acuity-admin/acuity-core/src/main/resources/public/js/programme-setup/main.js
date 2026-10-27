@@ -12,19 +12,19 @@ var ProgrammeWizard = function () {
     /**
      wizard steps headers
      **/
-    this.PROJECT_SEARCH_STEP_INX_HEADER = "Select the drug programme to enable with ACUITY";
+    this.PROJECT_SEARCH_STEP_INX_HEADER = "Select the drug program to enable with ACUITY";
     this.PROJECT_SEARCH_STEP_INX_SUB_HEADER = "Here you should search for " +
-        "the drug programme you wish to enable with ACUITY using a drug identifier.";
-    this.PROJECT_EDIT_STEP_HEADER = " Programme Parameters";
+        "the drug program you wish to enable with ACUITY using a drug identifier.";
+    this.PROJECT_EDIT_STEP_HEADER = " Program Parameters";
     this.PROJECT_EDIT_STEP_SUB_HEADER = "Select the padlock icon to enable editing of the parameters.";
     this.PROJECT_GROUPINGS_STEP_HEADER = " Custom Groups";
     this.PROJECT_GROUPINGS_STEP_SUB_HEADER = "Here you can enter and edit 'Custom Groupings' " +
         "that can be applied to ACUITY visualisations. Custom Groupings are used to group sets of adverse events " +
         "(by their preferred term) or types of lab measurement (by a standard name) " +
-        "that may be of particular interest in this drug programme. You may enter the groups manually, " +
+        "that may be of particular interest in this drug program. You may enter the groups manually, " +
         "or upload a file containing this information. ";
-    this.SUMMARY_STEP_HEADER = " programme - ACUITY summary";
-    this.SUMMARY_STEP_SUB_HEADER = 'Here you can review the information provided about the drug programme. ' +
+    this.SUMMARY_STEP_HEADER = " program - ACUITY summary";
+    this.SUMMARY_STEP_SUB_HEADER = 'Here you can review the information provided about the drug program. ' +
         'Edits can be made to this information by clicking "Back" to the desired setup page,' +
         'or using the "view/edit" links provided below. When you are done, click "Finish".';
 
@@ -99,11 +99,11 @@ var ProgrammeWizard = function () {
 
         onAdminHeaderLinkClick();
 
-        // the search/select step is not available neither for editing nor for creating a programme
+        // the search/select step is not available neither for editing nor for creating a program
         $('a[href="#step-1"]').closest('li').hide();
 
         if (editProgrammeWorkflow != null) {
-            // editing an existing programme: the search/select step is not available
+            // editing an existing program: the search/select step is not available
             // (editProgrammeWorkflow is reset by the search step, so the mode is remembered separately)
             scope.editMode = true;
             $('a[href="#step-1"]').closest('li').hide();
@@ -111,7 +111,7 @@ var ProgrammeWizard = function () {
             scope.searchProgrammeStep.selectedDrugProgramme = editProgrammeWorkflow.selectedProject.drugId;
             scope.loadProjectWizard(editProgrammeWorkflow, scope.SUMMARY_STEP_INX);
         } else {
-            // create a new programme: behave as if "Add new" was pressed on the search step
+            // create a new program: behave as if "Add new" was pressed on the search step
             scope.searchProgrammeStep.addNewProgramme();
         }
         //     fix for IE

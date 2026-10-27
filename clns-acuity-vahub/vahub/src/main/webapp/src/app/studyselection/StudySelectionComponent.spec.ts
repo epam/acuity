@@ -77,7 +77,7 @@ describe('GIVEN StudySelectionComponent', () => {
         });
 
         describe('WHEN the page has loaded', () => {
-            /!*                it('THEN the drug programmes are displayed correctly',
+            /!*                it('THEN the drug programs are displayed correctly',
              async(() => {
              TestBed.compileComponents().then(() => {
              const fixture = TestBed.createComponent(StudySelectionComponent);

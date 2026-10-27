@@ -34,7 +34,7 @@
         <a href="javascript:void(0)" id="link-all-projects" class="searchLink"></a>
         <div id="add-new-programme-block">
             <button id="smartBtnNextAddProgramme" class="buttonNext" type="button">Add New</button>
-            <label class="label-add-next">Cannot find your programme in the list?</label>
+            <label class="label-add-next">Cannot find your program in the list?</label>
         </div>
     </div>
 </div>

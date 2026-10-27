@@ -23,7 +23,7 @@
             
             <h4>{{vis | cleanDatasetAndAppendType}} Info</h4>
 
-            <div> Drug Programme: {{MODEL.aclInfo.drugProgramme}}</div>
+            <div> Drug Program: {{MODEL.aclInfo.drugProgramme}}</div>
             <div> Clinical Study: {{MODEL.aclInfo.clinicalStudyName}}</div>
             <div> Date added: {{MODEL.aclInfo.addedDate| date }}</div>
             <div> Added by: {{MODEL.aclInfo.addedBy}}</div>
@@ -40,7 +40,7 @@
                         <input rct-allowed="EDIT_AUTHORISED_USERS" rct-oi="vis" rct-hide="false" type="checkbox"
                                ng-model="vis.inherited"
                                ng-change="setInheritPermission().then(loadDataset())">
-                        Inherited permission from Drug Programme &nbsp;&nbsp;
+                        Inherited permission from Drug Program &nbsp;&nbsp;
                     </div>
 
                     <div ng-show="vis.lockdown">                         
@@ -69,7 +69,7 @@
                 </a>
 
                 <h4> Users
-                    <small>(including Drug Programme users)</small>
+                    <small>(including Drug Program users)</small>
                     <button style="font-size: 9px; padding: 0"
                             class="btn btn-link btn-xs btn-xs-text" role="link"
                             ng-disabled="!MODEL.aclInfo.usersAmount"

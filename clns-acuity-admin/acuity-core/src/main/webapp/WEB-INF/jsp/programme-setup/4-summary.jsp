@@ -19,15 +19,15 @@
     <tr>
         <td>
             <div style="margin-bottom:5px;text-align: center;">
-                <label class="sum-header">Programme Summary</label>
+                <label class="sum-header">Program Summary</label>
             </div>
             <table border="0" class="summaryInnerTable">
                 <tr>
-                    <td class="tdf">Drug Programme ID :</td>
+                    <td class="tdf">Drug Program ID :</td>
                     <td id="sumProgrammeDrugId"></td>
                 </tr>
                 <tr>
-                    <td class="tdf">Drug Programme Name :</td>
+                    <td class="tdf">Drug Program Name :</td>
                     <td id="sumProgrammeDrugName"></td>
                 </tr>
                 <tr>

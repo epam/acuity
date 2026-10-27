@@ -29,21 +29,21 @@ describe('Tests for check searching', function () {
         portal.getMainPage();
         element(by.partialLinkText('Analytics')).click();
         portal.pause();
-        element(by.partialLinkText('Drug programmes')).click();
+        element(by.partialLinkText('Drug programs')).click();
         portal.pause();
     });
 
-//Page is loaded and we click drug programmes button
+//Page is loaded and we click drug programs button
 //We expect browser to stay on the same page
-    describe('WHEN my analytics page is loaded and drug programmes button clicked', function () {
-        it('THEN user is redirected to drug programmes page', function () {
+    describe('WHEN my analytics page is loaded and drug programs button clicked', function () {
+        it('THEN user is redirected to drug programs page', function () {
             expect(portal.getCurrentUrl()).toContain('/drug-programmes');
         })
     });
 
-    // Input 1234 in Search my analytics field and verify that list of drug programmes contains only STDY4321
+    // Input 1234 in Search my analytics field and verify that list of drug programs contains only STDY4321
     describe('WHEN D1234 entered to Search field', function () {
-        it('THEN the list of drug programmes contains only 1 STDY4321', function () {
+        it('THEN the list of drug programs contains only 1 STDY4321', function () {
             var expectedDrugProg = 'D1234';
             element(by.id('searchInput')).sendKeys(expectedDrugProg);
             portal.pause();
@@ -59,25 +59,25 @@ describe('Tests for check searching', function () {
 
     });
 
-// Input STDY1 in Search my analytics field and verify that list of drug programmes contains 2 row
+// Input STDY1 in Search my analytics field and verify that list of drug programs contains 2 row
     describe('WHEN STDY is entered to Search field', function () {
-        it('THEN the list of drug programmes contains multiple rows', function () {
+        it('THEN the list of drug programs contains multiple rows', function () {
             var expectedDrugProg = 'STDY';
             element(by.id('searchInput')).sendKeys(expectedDrugProg);
             expect(element.all(by.repeater('drugProgramme in PARENT_MODEL.allAcls.drugProgrammes | filterOr:PARENT_MODEL.searchTerm')).count()).toBeGreaterThan(1);
         });
     });
 
-    // Input '1234 or 2014' in Search my analytics field and verify that list of drug programmes contains 2 row
+    // Input '1234 or 2014' in Search my analytics field and verify that list of drug programs contains 2 row
     describe('WHEN "D1234 or 2014" is entered to Search field', function () {
-        it('THEN the list of drug programmes contains only 2 row', function () {
+        it('THEN the list of drug programs contains only 2 row', function () {
             var expectedDrugProg = 'D1234 or 2014';
             element(by.id('searchInput')).sendKeys(expectedDrugProg);
             expect(element.all(by.repeater('drugProgramme in PARENT_MODEL.allAcls.drugProgrammes | filterOr:PARENT_MODEL.searchTerm')).count()).toEqual(2);
         });
     });
 
-// Input Dummy in Search my analytics field and verify that list of drug programmes contains only STDY4321
+// Input Dummy in Search my analytics field and verify that list of drug programs contains only STDY4321
     describe('WHEN Dummy is entered to Search field', function () {
         beforeEach(function () {
             element(by.partialLinkText('Clinical study datasets')).click();
@@ -93,7 +93,7 @@ describe('Tests for check searching', function () {
     });
 
 
-// Input test in Search my analytics field and verify that list of drug programmes contains 'Greater Than 0 row'
+// Input test in Search my analytics field and verify that list of drug programs contains 'Greater Than 0 row'
     describe('WHEN test is entered to Search field', function () {
         beforeEach(function () {
             element(by.partialLinkText('Clinical study datasets')).click();
@@ -106,7 +106,7 @@ describe('Tests for check searching', function () {
         });
     });
 
-// Input 'ab or test' in Search my analytics field and verify that list of drug programmes contains 'Greater Than 0 row'
+// Input 'ab or test' in Search my analytics field and verify that list of drug programs contains 'Greater Than 0 row'
     xdescribe('WHEN ab or test is entered to Search field', function () {
         beforeEach(function () {
             element(by.partialLinkText('Dataset modules')).click();
@@ -135,7 +135,7 @@ describe('Tests for check searching', function () {
         })
     });
 
-// Input Dummy in Search my analytics field and verify that list of drug programmes contains only STDY4321
+// Input Dummy in Search my analytics field and verify that list of drug programs contains only STDY4321
     describe('WHEN Dummy is entered to Search field', function () {
         beforeEach(function () {
             element(by.partialLinkText('Dataset modules')).click();
@@ -150,7 +150,7 @@ describe('Tests for check searching', function () {
     });
 
 
-// Input safety in Search my analytics field and verify that list of drug programmes contains 4 row
+// Input safety in Search my analytics field and verify that list of drug programs contains 4 row
     describe('WHEN safety is entered to Search field', function () {
         beforeEach(function () {
             element(by.partialLinkText('Dataset modules')).click();
@@ -164,7 +164,7 @@ describe('Tests for check searching', function () {
         });
     });
 
-// Input 'safety or 1234' in Search my analytics field and verify that list of drug programmes contains 'Greater Than 4 row'
+// Input 'safety or 1234' in Search my analytics field and verify that list of drug programs contains 'Greater Than 4 row'
     xdescribe('WHEN ab or test is entered to Search field', function () {
         beforeEach(function () {
             element(by.partialLinkText('Dataset modules')).click();

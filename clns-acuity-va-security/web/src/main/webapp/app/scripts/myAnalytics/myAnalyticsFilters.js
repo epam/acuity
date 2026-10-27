@@ -21,7 +21,7 @@
 angular.module('acuityApp.myAnalyticsFilters', [])
 
 /**
- * Reduces an array of Datasets objects to a set of drug programmes
+ * Reduces an array of Datasets objects to a set of drug programs
  *
  * @argument {AcuityObjectIdentity} any array to search by  (name attribute)
  * @argument {String} searchByValue  value of the search term, comma seperated by , (meaning or)
@@ -100,7 +100,7 @@ angular.module('acuityApp.myAnalyticsFilters', [])
         };
     })
 /**
- * Reduces an array of Datasets objects to a set of drug programmes
+ * Reduces an array of Datasets objects to a set of drug programs
  *
  * @argument {Dataset} arrayDatasets array of Datasets AcuityObjectIdentities
  */

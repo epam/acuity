@@ -50,9 +50,9 @@ describe('GIVEN analyticsFilter', function () {
             permissionMask: 3, isOpen: false, drugProgramme: "STDY5321"}
     ];
 
-    describe('WHEN filtering by drug programme', function () {
+    describe('WHEN filtering by drug program', function () {
 
-        it('THEN it should return a set of all the drug programmes', inject(function (filterByDrugProgrammeFilter) {
+        it('THEN it should return a set of all the drug programs', inject(function (filterByDrugProgrammeFilter) {
             expect(filterByDrugProgrammeFilter(testDatasetsData)).toEqual(['STDY4321', 'STDY5321']);
         }));
 
@@ -142,13 +142,13 @@ describe('GIVEN analyticsFilter', function () {
             expect(filterOrFilter(testDatasetsData, searchByValue).length).toBe(4);
         }));
 
-        it('THEN it should filter on just clinical study drug programme: STDY4321', inject(function (filterOrFilter, AcuityAclObjectEnum) {
+        it('THEN it should filter on just clinical study drug program: STDY4321', inject(function (filterOrFilter, AcuityAclObjectEnum) {
             var searchByValue = {name: 'STDY4321'};
 
             expect(filterOrFilter(testStudyData, searchByValue).length).toBe(3);
         }));
 
-        it('THEN it should filter on just clinical study drug programme: STDY4321', inject(function (filterOrFilter, AcuityAclObjectEnum) {
+        it('THEN it should filter on just clinical study drug program: STDY4321', inject(function (filterOrFilter, AcuityAclObjectEnum) {
             var searchByValue = {name: 'STDY'};
 
             expect(filterOrFilter(testStudyData, searchByValue).length).toBe(5);

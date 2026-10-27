@@ -80,7 +80,7 @@ export class AvailableStudiesComponent implements OnInit, OnDestroy {
         this.datasetsInfoModal = {
             title: `Datasets loaded in ACUITY currently`,
             body: `This page shows all datasets that are currently loaded in ACUITY,
-        organised into Drug Programme and Study groups. One study may be represented by more than one dataset, such
+        organised into Drug Program and Study groups. One study may be represented by more than one dataset, such
         as 1 ongoing raw dataset plus one Blind Data Review reporting dataset.`,
             buttonText: 'Ok',
             isVisible: true

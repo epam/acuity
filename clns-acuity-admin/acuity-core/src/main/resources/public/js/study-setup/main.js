@@ -39,7 +39,7 @@ var StudyWizard = function () {
     var PROJECT_GROUPINGS_STEP_HEADER = " Custom Groupings";
     var PROJECT_GROUPINGS_STEP_SUB_HEADER = "Here you can select the custom adverse event " +
         "and lab groupings that will be used in the visualisations to help you analyse your data. " +
-        "Only groupings that were previously created in the drug programme setup are available " +
+        "Only groupings that were previously created in the drug program setup are available " +
         "but you can revisit this setup to create new groupings. ";
 
     var CBIOPORTAL_GENOMIC_PROFILE_STEP_HEADER = "cBioPortal Genomic Profile";

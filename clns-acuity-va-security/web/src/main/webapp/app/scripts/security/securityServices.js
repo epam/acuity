@@ -29,7 +29,7 @@ angular.module('acuityApp.securityServices', [])
          *
          * username = Username from the security context with the server
          * acls = list of acls for the user
-         * list of drug programmes, studies and datasets
+         * list of drug programs, studies and datasets
          */
         .factory('SecurityModel', ['$http', '$log', 'httpNotification', 'AcuityAclObjectEnum',
             function ($http, log, httpNotification, AcuityAclObjectEnum) {
@@ -132,9 +132,9 @@ angular.module('acuityApp.securityServices', [])
                         return promise;
                     },
                     /**
-                     * Lists all the acls of type drug programme and sorts alphabetically
+                     * Lists all the acls of type drug program and sorts alphabetically
                      *
-                     * @returns Drug Programmes user has access to
+                     * @returns Drug Programs user has access to
                      */
                     listDrugProgrammes: function () {
                         return filterAndSortAcls(AcuityAclObjectEnum.DrugProgramme.superClassName);
@@ -206,17 +206,17 @@ angular.module('acuityApp.securityServices', [])
                         return promise;
                     },
                     /**
-                     * Gets the drug programme info
+                     * Gets the drug program info
                      *
-                     * @returns Drug Programmes user has access to
+                     * @returns Drug Programs user has access to
                      */
                     getDrugProgramme: function (acuityAclObjectEnum, drugProgrammeId) {
                         var promise = $http.get('/resources/myanalytics/DrugProgramme/' + acuityAclObjectEnum.name + '/' + drugProgrammeId)
                                 .success(function (data) {
-                                    log.info("Get drug programme info " + drugProgrammeId + ": " + data);
+                                    log.info("Get drug program info " + drugProgrammeId + ": " + data);
                                     return data;
                                 }).error(function (data, status) {
-                            httpNotification.error("Error getting Drug Programme information", status, "Drug Programme " + drugProgrammeId);
+                            httpNotification.error("Error getting Drug Program information", status, "Drug Program " + drugProgrammeId);
                         });
                         return promise;
                     },
@@ -415,12 +415,12 @@ angular.module('acuityApp.securityServices', [])
                         return promise;
                     },
                     /**
-                     * Gets all the users permission for the drug programme, study, vis
+                     * Gets all the users permission for the drug program, study, vis
                      *
                      * [{"user":{"userId":"User1","fullName":"FN","authorities":[],"enabled":true},"permissionMask":256, granted: true},
                      * {"user":{"userId":"User2","fullName":"FN2","authorities":[],"enabled":true},"permissionMask":512, granted: false}]
                      *
-                     * @returns list all the drug programme, study, vis permissions
+                     * @returns list all the drug program, study, vis permissions
                      */
                     getAllPermissions: function (acuityAclObjectEnum, acuityAclObjectId) {
                         var promise = $http.get('/resources/acl/' + acuityAclObjectEnum.name + '/' + acuityAclObjectId + '/ace')
@@ -433,13 +433,13 @@ angular.module('acuityApp.securityServices', [])
                         return promise;
                     },
                     /**
-                     * Gets all the users permission (with scheduled) for the drug programme, study, vis
+                     * Gets all the users permission (with scheduled) for the drug program, study, vis
                      *
                      * [{"user":{"userId":"User1","fullName":"FN","authorities":[],"enabled":true},"permissionMask":256, granted: true, 
                      *    job:{start:1446598839104, end:1446670839104, permission :{mask:30752, pattern:".................LISP.....V....."}},
                      * {"user":{"userId":"User2","fullName":"FN2","authorities":[],"enabled":true},"permissionMask":512, granted: false}]
                      *
-                     * @returns list all the drug programme, study, vis permissions
+                     * @returns list all the drug program, study, vis permissions
                      */
                     getAllWithScheduledPermissions: function (acuityAclObjectEnum, acuityAclObjectId) {
                         var promise = $http.get('/resources/acl/' + acuityAclObjectEnum.name + '/' + acuityAclObjectId + '/acewithscheduled')
@@ -891,7 +891,7 @@ angular.module('acuityApp.securityServices', [])
                         case 522240:
                             return 'Global Admin';
                         case 450575:
-                            return 'Drug Programme dataowner';
+                            return 'Drug Program dataowner';
                         case 442383:
                             return 'Authroiser';
                         case 32783:

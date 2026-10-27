@@ -24,7 +24,7 @@ import Dataset = Request.Dataset;
 export class StudyListService {
     /**
      * Check whether both datasets have the same type and
-     * are part of the same drug programme
+     * are part of the same drug program
      * @param current - Map<string, any>
      * @param candidate - Map<string, any>
      * @returns {boolean}
