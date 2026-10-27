@@ -122,11 +122,9 @@ public class DrugProgrammeWizardServiceTest {
     public void getSearchProjectResult_OnlyCdbpProjectListIsNotEmpty() throws Exception {
         ProjectRule cdbpPrj1 = new ProjectRule();
         cdbpPrj1.setDrugId("prj1");
-        cdbpPrj1.setTotalStudyCount(10);
         cdbpPrj1.setNumberOfAcuityEnabledStudies(0);
         ProjectRule cdbpPrj2 = new ProjectRule();
         cdbpPrj2.setDrugId("prj2");
-        cdbpPrj2.setTotalStudyCount(20);
         cdbpPrj2.setNumberOfAcuityEnabledStudies(0);
 
 
@@ -191,24 +189,20 @@ public class DrugProgrammeWizardServiceTest {
         //fill cdbp related
         ProjectRule cdbpPrj1 = new ProjectRule();
         cdbpPrj1.setDrugId("prj1");
-        cdbpPrj1.setTotalStudyCount(10);
         cdbpPrj1.setNumberOfAcuityEnabledStudies(0);
 
 
         ProjectRule cdbpPrj2 = new ProjectRule();
         cdbpPrj2.setDrugId("prj2");
-        cdbpPrj2.setTotalStudyCount(20);
         cdbpPrj2.setNumberOfAcuityEnabledStudies(0);
 
         ProjectRule cdbpPrj3 = new ProjectRule();
         cdbpPrj3.setDrugId("prj3");
-        cdbpPrj3.setTotalStudyCount(30);
         cdbpPrj3.setNumberOfAcuityEnabledStudies(0);
 
         //not in acuity
         ProjectRule cdbpPrj5 = new ProjectRule();
         cdbpPrj5.setDrugId("prj5");
-        cdbpPrj5.setTotalStudyCount(50);
         cdbpPrj5.setNumberOfAcuityEnabledStudies(0);
 
         List<ProjectRule> cdbpProjects = asList(cdbpPrj1, cdbpPrj2, cdbpPrj3, cdbpPrj5);
@@ -227,12 +221,11 @@ public class DrugProgrammeWizardServiceTest {
         assertEquals(wizardResult.size(), 5);
         assertEquals(wizardResult.get("prj6"), null);
 
-        //test totalStudyMerge & acuityEnabled
+        //test acuityEnabled
         Comparator<ProjectRule> comparator =
                 (prj1, prj2) ->
                         prj1.getDrugId().compareTo(prj2.getDrugId())
-                                + (prj1.getNumberOfAcuityEnabledStudies() - prj2.getNumberOfAcuityEnabledStudies())
-                                + (prj1.getTotalStudyCount() - prj2.getTotalStudyCount());
+                                + (prj1.getNumberOfAcuityEnabledStudies() - prj2.getNumberOfAcuityEnabledStudies());
 
         final ProjectRule resultPrj5 = wizardResult.get("prj5");
         assertEquals(Objects.compare(resultPrj5, cdbpPrj5, comparator), 0);
@@ -240,6 +233,5 @@ public class DrugProgrammeWizardServiceTest {
 
         final ProjectRule resultPrj1 = wizardResult.get("prj1");
         assertEquals(resultPrj1.getNumberOfAcuityEnabledStudies(), 3);
-        assertEquals(resultPrj1.getTotalStudyCount(), 10);
     }
 }
