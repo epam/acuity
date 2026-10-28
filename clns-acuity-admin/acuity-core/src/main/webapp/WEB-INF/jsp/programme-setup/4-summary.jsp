@@ -35,10 +35,6 @@
                     <td id="sumProgrammeAcuityEnabled"></td>
                 </tr>
                 <tr>
-                    <td class="tdf">Total number of studies listed in the Impact database :</td>
-                    <td id="sumProgrammeNumStudies"></td>
-                </tr>
-                <tr>
                     <td class="tdf">Number of ACUITY enabled studies :</td>
                     <td id="sumProgrammeNumEnabledStudies"></td>
                 </tr>
