@@ -74,7 +74,9 @@ public class AdminService {
     }
 
     public ProjectRule getProjectRule(Long projectId) {
-        return projectRuleDao.getProjectById(projectId);
+        ProjectRule project = projectRuleDao.getProjectById(projectId);
+        project.setTotalStudyCount(getDrugStudyCount(project.getDrugId()));
+        return project;
     }
 
     @Async
