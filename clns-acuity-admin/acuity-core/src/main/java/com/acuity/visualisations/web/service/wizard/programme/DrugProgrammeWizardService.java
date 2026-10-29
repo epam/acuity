@@ -135,10 +135,21 @@ public class DrugProgrammeWizardService {
                 .searchByDrugs(cdbpProjectIds)
                 .forEach(projectRule -> acuityProjects.putIfAbsent(projectRule.getDrugId(), projectRule));
 
-        //add CDBP projects not presented in ACUITY
+        //add CDBP projects not presented in ACUITY & update totalStudyInfo
         cdbpProjects
                 .values()
-                .forEach(cdbpPrj -> acuityProjects.putIfAbsent(cdbpPrj.getDrugId(), cdbpPrj));
+                .forEach(cdbpPrj -> {
+                            acuityProjects.compute(cdbpPrj.getDrugId(),
+                                    (prjId, acuityPrj) -> {
+                                        if (acuityPrj == null) {
+                                            return cdbpPrj;
+                                        } else {
+                                            acuityPrj.setTotalStudyCount(cdbpPrj.getTotalStudyCount());
+                                            return acuityPrj;
+                                        }
+                                    });
+                        }
+                );
         return new TreeMap<>(acuityProjects);
     }
 

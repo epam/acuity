@@ -24,6 +24,8 @@ import java.util.List;
 public interface CDBPProjectDao {
     List<ProjectRule> searchProjects(String query);
 
+    Integer getTotalStudyCountByDrugId(String drugId);
+
     List<String> getCDBPDrugIds();
 
     void fillSearchQueryWorker(String query, QuerySearchWorker<ProjectRule> queryWorker);
