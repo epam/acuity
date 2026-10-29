@@ -53,6 +53,10 @@ history. Link to detailed docs instead of duplicating them.
 - That config has `outOfOrder` off and `validateOnMigrate = false`, so a
   migration numbered below the DB's current version is **skipped silently**.
   Always number new migrations above every version already on `main`.
+- `MAP_STUDY_RULE.MSR_VALID` (study "Disclaimer" confirmation) was dropped by
+  `V1789007000`; studies are treated as always confirmed, so
+  `validateStudyEnabled` needs only `studyCompleted` + enabled file rules.
+  `study-setup-finish` no longer takes `confirm` (the UI may still send it).
 - Write migrations to be safe to re-run (`IF NOT EXISTS`, forward-only
   `setval`) in case they need renumbering later.
 - Deploy/run migrations before starting app images that depend on them, e.g.

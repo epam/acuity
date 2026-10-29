@@ -60,7 +60,6 @@ public class WhenRunningStudyMappingsServicePartial {
     public void thenStudyRuleShouldNotBeUpdatedOnValidateStudy_IfItHasValidFileRule() {
         StudyRule studyRule = new StudyRule();
         studyRule.setStudyCompleted(true);
-        studyRule.setStudyValid(true);
         studyRule.setStudyEnabled(true);
 
         FileRule fileRule1 = new FileRule();
@@ -79,7 +78,6 @@ public class WhenRunningStudyMappingsServicePartial {
     public void thenStudyRuleShouldBeUpdatedOnValidateStudy_IfItHasNotValidFileRule() {
         StudyRule studyRule = new StudyRule();
         studyRule.setStudyCompleted(true);
-        studyRule.setStudyValid(true);
         studyRule.setStudyEnabled(true);
 
         FileRule fileRule1 = new FileRule();
@@ -99,7 +97,6 @@ public class WhenRunningStudyMappingsServicePartial {
     public void thenStudyRuleShouldNotBeUpdatedOnValidateStudy_IfItHasOneValidFileRuleAndOneInvalid() {
         StudyRule studyRule = new StudyRule();
         studyRule.setStudyCompleted(true);
-        studyRule.setStudyValid(true);
         studyRule.setStudyEnabled(true);
 
         FileRule fileRule1 = new FileRule();

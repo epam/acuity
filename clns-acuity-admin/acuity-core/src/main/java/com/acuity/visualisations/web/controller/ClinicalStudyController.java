@@ -553,7 +553,6 @@ public class ClinicalStudyController extends AbstractController {
             List<MappingStatusDTO> result = studyMappingsService.importMappings(upload.getInputStream(), workflow.getSelectedStudy(), replaceExisting);
             workflow.setCompleteMappings(result);
             studyMappingsServicePartial.validateStudyCompleted(workflow.getSelectedStudy(), ControllerUtils.getFileSections(request.getSession()));
-            studyMappingsServicePartial.checkValidStatus(workflow.getSelectedStudy());
             studyMappingsService.validateStudyEnabled(workflow.getSelectedStudy());
             auditService.logAction(AuditAction.MODIFY, AuditEntity.STUDY, workflow.getSelectedStudy().getId(), workflow.getSelectedStudy().getStudyCode(),
                     "Imported study mappings for " + workflow.getSelectedStudy().getStudyCode() + (replaceExisting ? " replacing existing" : ""));
@@ -618,7 +617,6 @@ public class ClinicalStudyController extends AbstractController {
             FileRule fileRule = study.getFileRule(id);
             studyMappingsServicePartial.deleteFileRule(fileRule, study);
             studyMappingsServicePartial.validateStudyCompleted(workflow.getSelectedStudy(), ControllerUtils.getFileSections(request.getSession()));
-            studyMappingsServicePartial.checkValidStatus(workflow.getSelectedStudy());
             studyMappingsService.validateStudyEnabled(workflow.getSelectedStudy());
             List<MappingStatusDTO> valid = studyMappingsService.validateMappings(study);
             auditService.logAction(AuditAction.DELETE, AuditEntity.STUDY, workflow.getSelectedStudy().getId(), workflow.getSelectedStudy().getStudyCode(),
@@ -1006,19 +1004,18 @@ public class ClinicalStudyController extends AbstractController {
     @RequestMapping(method = RequestMethod.POST, value = "/study-setup-finish")
     @ResponseStatus(value = HttpStatus.OK)
     @ResponseBody
-    public StudyRule studyFinish(final HttpServletRequest request, @RequestParam("confirm") boolean confirm,
+    public StudyRule studyFinish(final HttpServletRequest request,
                                  @RequestParam("upload") boolean upload) throws ClinicalStudyException {
         try {
             StudyRule study = extractClinicalStudyRuleOrThrowError(request);
 
-            if (study.isStudyValid() != confirm) {
-                study.setStudyValid(confirm);
-                clinicalStudyService.saveStudy(study);
-                syncService.runSynchronizationAsync();
-            }
+            boolean wasEnabled = study.isStudyEnabled();
             auditService.logAction(AuditAction.CREATE, AuditEntity.STUDY, study.getId(), study.getStudyCode(),
                     "Completed study rule " + study.getStudyCode());
             studyMappingsService.validateStudyEnabled(study);
+            if (study.isStudyEnabled() != wasEnabled) {
+                syncService.runSynchronizationAsync();
+            }
             jobServices.forEach(JobService::refreshJobList);
             if (upload && study.isStudyEnabled()) {
                 jobServices.stream()

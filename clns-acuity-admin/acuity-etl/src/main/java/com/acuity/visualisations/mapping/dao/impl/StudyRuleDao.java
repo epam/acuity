@@ -78,7 +78,6 @@ public class StudyRuleDao extends BasicDynamicEntityDao<StudyRule> implements IS
         study.setEnabled(true);
         study.setStatus(Status.valueOf(rs.getString("MSR_STATUS")));
         study.setStudyCompleted(rs.getInt("MSR_COMPLETED") == 1);
-        study.setStudyValid(rs.getInt("MSR_VALID") == 1);
         study.setStudyEnabled(rs.getInt("MSR_ENABLED") == 1);
         study.setStudyUseAltLabCodes(rs.getInt("MSR_USE_ALT_LAB_CODES") == 1);
         study.setCronExpression(rs.getString("MSR_CRON_EXPRESSION"));
@@ -121,7 +120,6 @@ public class StudyRuleDao extends BasicDynamicEntityDao<StudyRule> implements IS
         ps.setString(paramIndex++, entity.getCronExpression());
         ps.setString(paramIndex++, entity.getStatus().toString());
         ps.setObject(paramIndex++, entity.isStudyCompleted() ? 1 : 0);
-        ps.setObject(paramIndex++, entity.isStudyValid() ? 1 : 0);
         ps.setObject(paramIndex++, entity.isStudyEnabled() ? 1 : 0);
         ps.setObject(paramIndex++, entity.isStudyUseAltLabCodes() ? 1 : 0);
         ps.setString(paramIndex++, entity.getCreatedBy());
@@ -155,7 +153,6 @@ public class StudyRuleDao extends BasicDynamicEntityDao<StudyRule> implements IS
         fieldsToInsert.add(fieldBuilder.setField("MSR_CRON_EXPRESSION").build());
         fieldsToInsert.add(fieldBuilder.setField("MSR_STATUS").build());
         fieldsToInsert.add(fieldBuilder.setField("MSR_COMPLETED").build());
-        fieldsToInsert.add(fieldBuilder.setField("MSR_VALID").build());
         fieldsToInsert.add(fieldBuilder.setField("MSR_ENABLED").build());
         fieldsToInsert.add(fieldBuilder.setField("MSR_USE_ALT_LAB_CODES").build());
         fieldsToInsert.add(fieldBuilder.setField("MSR_CREATED_BY").build());
@@ -237,7 +234,6 @@ public class StudyRuleDao extends BasicDynamicEntityDao<StudyRule> implements IS
         ps.setString(paramIndex++, entity.getPrimarySource());
         ps.setString(paramIndex++, entity.getStatus().toString());
         ps.setObject(paramIndex++, entity.isStudyCompleted() ? 1 : 0);
-        ps.setObject(paramIndex++, entity.isStudyValid() ? 1 : 0);
         ps.setObject(paramIndex++, entity.isStudyEnabled() ? 1 : 0);
         ps.setObject(paramIndex++, entity.isStudyUseAltLabCodes() ? 1 : 0);
         ps.setBoolean(paramIndex++, entity.isUseCustomDrugsForBaseline());
@@ -268,7 +264,6 @@ public class StudyRuleDao extends BasicDynamicEntityDao<StudyRule> implements IS
         fieldsToInsert.add(fieldBuilder.setField("MSR_PRIMARY_SOURCE").build());
         fieldsToInsert.add(fieldBuilder.setField("MSR_STATUS").build());
         fieldsToInsert.add(fieldBuilder.setField("MSR_COMPLETED").build());
-        fieldsToInsert.add(fieldBuilder.setField("MSR_VALID").build());
         fieldsToInsert.add(fieldBuilder.setField("MSR_ENABLED").build());
         fieldsToInsert.add(fieldBuilder.setField("MSR_USE_ALT_LAB_CODES").build());
         fieldsToInsert.add(fieldBuilder.setField("MSR_USE_CUSTOM_BASELINE_DRUGS").build());

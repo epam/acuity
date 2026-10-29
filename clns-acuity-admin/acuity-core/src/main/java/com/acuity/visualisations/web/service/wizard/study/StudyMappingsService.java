@@ -207,7 +207,6 @@ public class StudyMappingsService {
 
         List<MappingStatusDTO> result = validateMappings(study);
         studyMappingsServicePartial.validateStudyCompleted(study, fileSections);
-        studyMappingsServicePartial.checkValidStatus(study);
         validateStudyEnabled(study);
         return result;
     }

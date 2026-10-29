@@ -61,7 +61,6 @@ public class StudyRule extends MappingEntity implements Comparable<StudyRule> {
     private boolean enabled;
 
     private boolean studyCompleted;
-    private boolean studyValid;
     private boolean studyEnabled;
     private boolean studyUseAltLabCodes;
 
