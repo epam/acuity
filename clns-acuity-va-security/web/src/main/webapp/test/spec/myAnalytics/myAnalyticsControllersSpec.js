@@ -262,7 +262,7 @@ describe('Controller: myAnalyticsControllers', function () {
                 });
             }));
 
-//            it('THEN it should get user info for Drug Programme', inject(function(ParentModel) {
+//            it('THEN it should get user info for Drug Program', inject(function(ParentModel) {
 //                scope.editUserLoading = true;
 //                scope.PARENT_MODEL = new ParentModel(); //mimic parent scope
 //                scope.drugProgramme = mockDrugProgrammes[0]; // mimic ng repeat for this controller that injects the ace drugProgramme
@@ -288,7 +288,7 @@ describe('Controller: myAnalyticsControllers', function () {
 //                expect(_.pluck(scope.allUsers, 'userId')).toEqual(['User5', 'User6']);
 //            }));
 //
-//            it('THEN it should get user info for Drug Programme for refreshDrugProgrammeContent', inject(function(AcuityAclObjectEnum) {
+//            it('THEN it should get user info for Drug Program for refreshDrugProgrammeContent', inject(function(AcuityAclObjectEnum) {
 //                scope.editUserLoading = true;
 //
 //                scope.setDrugProgrammeEditPage(29, true); // set to edit

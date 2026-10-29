@@ -289,7 +289,7 @@
                     '           <div class="col-md-9">      ' +
                     '             You are about to ' + meassgeForGranting + ' ' + group.MODEL.groups.selectedGroup.groupName + '. ' + group.MODEL.groups.selectedGroup.groupName + ' has access to a ' + datasetName + ', which is in lockdown. <br/><br/>' +
                     'Granting a user access who is not on the Insiders List could result in criminal charges being brought against the system owner.<br/><br/>' +
-                    'Ensure you have confirmation from the Drug Programme Data Owner or Authoriser the user is on the Insiders List before proceeding <br/><br/>' +
+                    'Ensure you have confirmation from the Drug Program Data Owner or Authoriser the user is on the Insiders List before proceeding <br/><br/>' +
                     '<button ng-click="closeThisDialog()">Cancel</button> ' +
                     '<button ng-click="confirm()">Confirm</button> ' +
                     '           </div>' +

@@ -33,7 +33,6 @@ public class ProjectRule extends MappingEntity implements DynamicEntity {
     private String drugProgrammeName;
     private Boolean acuityEnabled;
     private boolean createDashboard;
-    private int totalStudyCount;
     private int numberOfAcuityEnabledStudies;
     private int completed;
     private String createdBy;

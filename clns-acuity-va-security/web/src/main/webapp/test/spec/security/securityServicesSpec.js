@@ -111,12 +111,12 @@ describe('Service: securityService', function () {
             expect(service.getAcls()).toEqual(aclResponse);
         });
 
-        it('should list only drug programmes from full list', function () {
+        it('should list only drug programs from full list', function () {
             // invoke getting all acls
             service.initAcls();
             $httpBackend.flush();
 
-            // list drug programmes
+            // list drug programs
             var drugProgrammes = service.listDrugProgrammes();
 
             expect(drugProgrammes[0].name).toEqual("Drug A");
@@ -175,7 +175,7 @@ describe('Service: securityService', function () {
             });
         });
 
-        it('should get drug programme from rest service', inject(function (AcuityAclObjectEnum) {
+        it('should get drug program from rest service', inject(function (AcuityAclObjectEnum) {
             var data;
             $httpBackend.expectGET('/resources/myanalytics/DrugProgramme/DrugProgramme/1').respond(response);
             service.getDrugProgramme(AcuityAclObjectEnum.DrugProgramme, 1).then(function (response) {
@@ -183,7 +183,7 @@ describe('Service: securityService', function () {
             });
             $httpBackend.flush();
 
-            console.log("Current drug programme info " + angular.toJson(data));
+            console.log("Current drug program info " + angular.toJson(data));
             expect(data).toEqual(response);
         }));
 

@@ -29,13 +29,13 @@
     <form id="form-edit-programme">
         <table border="0" class="dataTable">
             <tr>
-                <td class="tdf">Drug Programme ID</td>
+                <td class="tdf">Drug Program ID</td>
                 <td><input type="text" id="drugProgrammeId" name="drugProgrammeId" disabled required/></td>
                 <td><a href="#" class="help"
                        title='<%= HelpController.getHelpText("2-edit-programme", "drugProgrammeID") %>'>?</a></td>
             </tr>
             <tr>
-                <td class="tdf">Drug Programme Name</td>
+                <td class="tdf">Drug Program Name</td>
                 <td><input type="text" class="enabled" required
                            id="drugProgrammeName" name="drugProgrammeName"
                            disabled/></td>

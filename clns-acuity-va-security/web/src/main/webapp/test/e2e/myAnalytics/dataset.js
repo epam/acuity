@@ -35,7 +35,7 @@ describe('Dataset modules page tests', function () {
     describe('WHEN Datasets button clicked', function () {
         //Init
         beforeEach(function () {
-            element(by.partialLinkText('Drug programmes')).click();
+            element(by.partialLinkText('Drug programs')).click();
             portal.pause();
         });
 
@@ -71,16 +71,16 @@ describe('Dataset modules page tests', function () {
             });
         });
 
-        it('THEN if icons are sorted by drug programme, number of sections in icon view is equal to number of drug programmes', function () {
+        it('THEN if icons are sorted by drug program, number of sections in icon view is equal to number of drug programs', function () {
             element(by.id('gridDrugInput')).click();
             var numDrugsSections;
             element.all(by.repeater('drug in PARENT_MODEL.allAcls.datasets')).then(function (drugs) {
                 numDrugsSections = drugs.length;
             });
-            element(by.partialLinkText('Drug programmes')).getText().then(function (txt) {
+            element(by.partialLinkText('Drug programs')).getText().then(function (txt) {
                 numProgrammes = parseInt(txt.substr(16, txt.length));//retrieving number of modules, displayed
-                expect(numDrugsSections).not.toBeGreaterThan(numProgrammes);//some drug programmes can have no modules so these values can be not equal
-                expect(numDrugsSections).toBeGreaterThan(numProgrammes/4);//but at least 1/4 of programmes is not empty
+                expect(numDrugsSections).not.toBeGreaterThan(numProgrammes);//some drug programs can have no modules so these values can be not equal
+                expect(numDrugsSections).toBeGreaterThan(numProgrammes/4);//but at least 1/4 of programs is not empty
             });
         });
 
@@ -230,7 +230,7 @@ describe('Dataset modules page tests', function () {
 
                     //Checking the layout
                     expect(element(by.xpath("//*[contains(text(),'Info')]")).isDisplayed()).toBe(true);
-                    expect(element(by.xpath("//*[contains(text(),'Drug Programme:')]")).isDisplayed()).toBe(true);
+                    expect(element(by.xpath("//*[contains(text(),'Drug Program:')]")).isDisplayed()).toBe(true);
                     expect(element(by.xpath("//*[contains(text(),'Drug Components:')]")).isDisplayed()).toBe(true);
                     expect(element(by.xpath("//*[contains(text(),'Date added to ACUITY:')]")).isDisplayed()).toBe(true);
                     expect(element(by.xpath("//*[contains(text(),'Added by:')]")).isDisplayed()).toBe(true);

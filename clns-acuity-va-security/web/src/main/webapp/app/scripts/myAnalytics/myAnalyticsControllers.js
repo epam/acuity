@@ -384,7 +384,7 @@ angular.module('acuityApp.myAnalyticsControllers', [])
          * @returns {ParentModel}
          */
         var ParentModel = {
-            // define the search term for the search input box for Drug Programmes, Studies and datasets
+            // define the search term for the search input box for Drug Programs, Studies and datasets
             searchTerm: {
                 name: ""
             },
@@ -394,7 +394,7 @@ angular.module('acuityApp.myAnalyticsControllers', [])
                 clinicalStudies: SecurityModel.listClinicalStudies(),
                 datasets: SecurityModel.listDatasets()
             },
-            // currently selected Acl id for each Drug Programme, Study Vis, used to
+            // currently selected Acl id for each Drug Program, Study Vis, used to
             // highlight to row on the accordian
             selectedAcl: {
                 drugProgrammeId: 0,
@@ -416,7 +416,7 @@ angular.module('acuityApp.myAnalyticsControllers', [])
                 studies: SecurityModel.listClinicalStudies().length,
                 datasets: SecurityModel.listDatasets().length
             },
-            // dataset display by, either by drug programme or moduleType
+            // dataset display by, either by drug program or moduleType
             displayByDrugProgramme: true,
             /**
              * Toggles the selected analytics menu item
@@ -564,7 +564,7 @@ angular.module('acuityApp.myAnalyticsControllers', [])
                 };
 
                 /**
-                 * Gets the drug programme info from the server using the scope variable drugProgramme
+                 * Gets the drug program info from the server using the scope variable drugProgramme
                  * passed in from the ng-repeat
                  */
                 $scope.loadDrugProgramme = function () {
@@ -664,7 +664,7 @@ angular.module('acuityApp.myAnalyticsControllers', [])
                 /////////////////////////////////////////
 
                 /**
-                 * Adds a group user to the drug programme.
+                 * Adds a group user to the drug program.
                  *
                  * This is called from the dialog box
                  */
@@ -1436,7 +1436,7 @@ angular.module('acuityApp.myAnalyticsControllers', [])
                             '           <div class="col-md-9">' +
                             'You are about to ' + meassgeForGranting + ' access to ' + $scope.vis.name + '. <br/><br/>' +
                             'Granting a user access who is not on the Insiders List could result in criminal charges being brought against the system owner.<br/><br/>' +
-                            'Ensure you have confirmation from the Drug Programme Data Owner or Authoriser ' + messageforUser + ' on the Insiders List before proceeding. <br/><br/>' +
+                            'Ensure you have confirmation from the Drug Program Data Owner or Authoriser ' + messageforUser + ' on the Insiders List before proceeding. <br/><br/>' +
                             '<button ng-click="closeThisDialog()">Cancel</button> ' +
                             '<button ng-click="confirm()">Confirm</button> ' +
                             '       </div>' +
@@ -1472,7 +1472,7 @@ angular.module('acuityApp.myAnalyticsControllers', [])
                             '<b>Are you sure you want to remove lockdown?</b><br/><br/>' +
                             'You cannot apply lockdown to a dataset from VA Security. A dataset has to be loaded with the lockdown status.<br/><br/>' +
                             'Removing lockdown status stops the lockdown audit from being recorded and lockdown warning messages from being displayed.<br/><br/>' +
-                            'Ensure you have confirmation from the Drug Programme Data Owner or Authoriser that ' + $scope.vis.name + ' is no longer in lockdown. <br/><br/>' +
+                            'Ensure you have confirmation from the Drug Program Data Owner or Authoriser that ' + $scope.vis.name + ' is no longer in lockdown. <br/><br/>' +
                             '<button ng-click="closeThisDialog()">Cancel</button> ' +
                             '<button ng-click="confirm()">Confirm</button> ' +
                             '       </div>' +
@@ -1504,9 +1504,9 @@ angular.module('acuityApp.myAnalyticsControllers', [])
                             '               <img src="images/warning.png" class="warning-dialog-image" width="100" height="100">' +
                             '           </div>' +
                             '           <div class="col-md-9">      ' +
-                            'You are about to inherit permissions. This will grant all Drug Programme users access to ' + $scope.vis.name + ', which is in lockdown.<br/><br/>' +
+                            'You are about to inherit permissions. This will grant all Drug Program users access to ' + $scope.vis.name + ', which is in lockdown.<br/><br/>' +
                             'Granting a user access who is not on the Insiders List could result in criminal charges being brought against the system owner.<br/><br/>' +
-                            'Ensure you have confirmation from the Drug Programme Data Owner or Authoriser all Drug Programme users are on the Insiders List before proceeding. <br/><br/>' +
+                            'Ensure you have confirmation from the Drug Program Data Owner or Authoriser all Drug Program users are on the Insiders List before proceeding. <br/><br/>' +
                             '<button ng-click="closeThisDialog()">Cancel</button> ' +
                             '<button ng-click="confirm()">Confirm</button> ' +
                             '       </div>' +

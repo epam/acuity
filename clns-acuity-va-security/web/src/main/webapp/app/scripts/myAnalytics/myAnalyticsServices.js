@@ -572,7 +572,7 @@ angular.module('acuityApp.myAnalyticsServices', [])
                 /**
                  * Gets a list of all of the possible drop locations for a user with a permission mask on an acl object.
                  *
-                 * Ie. for drug programme 1, user has dataOwner permission mask.
+                 * Ie. for drug program 1, user has dataOwner permission mask.
                  * If current location (mySelfLocation) was they wanted to drag from authoriserChannel
                  * Then the droppable locations would be:  administratorChannel, authorisedUserChannel, usersChannel
                  *
@@ -599,12 +599,12 @@ angular.module('acuityApp.myAnalyticsServices', [])
                  * If person is empty, then the list is empty and therefore not draggable
                  * If mySelfLocation is in the list all droppedable locations then its allowed to be dragged.
                  *
-                 * Ie. for drug programme 1, user has dataOwner permission mask.
+                 * Ie. for drug program 1, user has dataOwner permission mask.
                  * If current location (mySelfLocation) was they wanted to drag from authoriserChannel
                  * Then the all available droppable locations would be:  authoriserChannel, administratorChannel, authorisedUserChannel, usersChannel
                  * And mySelfLocation (authoriserChannel) is part of that so is draggable.
                  *
-                 * Ie. for drug programme 1, user has authorisedUser permission mask.
+                 * Ie. for drug program 1, user has authorisedUser permission mask.
                  * If current location (mySelfLocation) was they wanted to drag from authoriserChannel
                  * Then the all available droppable locations would be:  authorisedUserChannel, usersChannel
                  * And mySelfLocation (authoriserChannel) isnt part of that so isnt draggable.
