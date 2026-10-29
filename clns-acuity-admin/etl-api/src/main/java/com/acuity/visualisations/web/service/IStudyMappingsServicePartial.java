@@ -57,8 +57,6 @@ public interface IStudyMappingsServicePartial {
 
 	void saveMappingRules(FileRule fileRule);
 
-	void checkValidStatus(StudyRule study);
-
     /**
      * Removes file rule, its description, mapping rules (one-by-one, calling {@link #deleteMappingRule(MappingRule)} )
      *

@@ -163,7 +163,7 @@ public class AdminController extends AbstractController {
                 adminService.removeStudy(studyId);
                 ControllerUtils.decreaseTotalStudiesCount(request.getSession());
                 jobServices.forEach(JobService::refreshJobList);
-                if (studyRule.isStudyValid()) {
+                if (studyRule.isStudyCompleted()) {
                     adminService.cleanStudiesRelatedInformationAsync(singletonMap(studyRule.getDrugProgramme(),
                             singletonList(studyRule.getStudyCode())));
                     syncService.runSynchronizationAsync();

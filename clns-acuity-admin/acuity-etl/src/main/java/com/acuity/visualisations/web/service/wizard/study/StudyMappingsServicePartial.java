@@ -267,20 +267,6 @@ public class StudyMappingsServicePartial implements IStudyMappingsServicePartial
 
     @Override
     @Transactional(readOnly = false, rollbackFor = Throwable.class)
-    public void checkValidStatus(StudyRule study) {
-        boolean valid = study.isStudyValid();
-        if (!study.isStudyCompleted() && valid) {
-            valid = false;
-        }
-
-        if (study.isStudyValid() != valid) {
-            study.setStudyValid(valid);
-            studyRuleDao.update(study);
-        }
-    }
-
-    @Override
-    @Transactional(readOnly = false, rollbackFor = Throwable.class)
     public void deleteFileRule(FileRule fileRule, StudyRule study) {
         fileRule.setStudyRule(study);
         relationDao.deleteMapFileDescription(fileRule.getId());
@@ -493,7 +479,7 @@ public class StudyMappingsServicePartial implements IStudyMappingsServicePartial
     public void validateStudyEnabled(StudyRule study) {
         boolean enabled = false;
 
-        if (study.isStudyCompleted() && study.isStudyValid()) {
+        if (study.isStudyCompleted()) {
 
             final Map<Long, Boolean> fileTypeAnyEnabled = new HashMap<>();
 
