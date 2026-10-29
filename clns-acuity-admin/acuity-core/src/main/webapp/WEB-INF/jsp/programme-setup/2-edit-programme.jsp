@@ -49,12 +49,6 @@
                        title='<%= HelpController.getHelpText("2-edit-programme", "programmeEnabled") %>'>?</a></td>
             </tr>
             <tr class="hiddenOnAddProgramme">
-                <td class="tdf">Total number of studies listed in the Impact database</td>
-                <td><input type="text" id="studyNumberStudies" name="studyNumberStudies" disabled/></td>
-                <td><a href="#" class="help"
-                       title='<%= HelpController.getHelpText("2-edit-programme", "studyNumberStudies") %>'>?</a></td>
-            </tr>
-            <tr class="hiddenOnAddProgramme">
                 <td class="tdf">Number of ACUITY enabled studies</td>
                 <td><input type="text" id="studyNumberEnabledStudies" name="studyNumberEnabledStudies" disabled/></td>
                 <td><a href="#" class="help"

@@ -13,7 +13,6 @@ var SummaryProgrammeStep = function (programmeWizard) {
         $("#sumProgrammeDrugId").text(result.selectedProject.drugId);
         $("#sumProgrammeDrugName").text(result.selectedProject.drugProgrammeName);
         $("#sumProgrammeAcuityEnabled").text(result.selectedProject.acuityEnabled ? "Yes" : "No");
-        $("#sumProgrammeNumStudies").text(result.selectedProject.totalStudyCount);
         $("#sumProgrammeNumEnabledStudies").text(result.selectedProject.numberOfAcuityEnabledStudies);
         //$("#sumProgrammeAdmin").text(result.selectedProject.admin);
         $("#sumCreateDashboard").text(result.selectedProject.createDashboard ? "Yes" : "No");

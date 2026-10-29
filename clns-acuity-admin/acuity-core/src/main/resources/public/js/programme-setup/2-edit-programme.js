@@ -61,7 +61,6 @@ var EditProgrammeStep = function (programmeWizard) {
                 drugProgrammeId: "<< Required field",
                 drugProgrammeName: "<< Required field",
                 programmeEnabled: "<< Required field",
-                studyNumberStudies: "<< Required field",
                 studyNumberEnabledStudies: "<< Required field"
             }
         });
@@ -72,7 +71,6 @@ var EditProgrammeStep = function (programmeWizard) {
         $("#drugProgrammeId").val("");
         $("#drugProgrammeName").val("");
         $("#programmeEnabled").val("");
-        $("#studyNumberStudies").val("");
         $("#studyNumberEnabledStudies").val("");
         //$("#chiefProgramme").val("");
         $("#studyDeliveryModel").val("");
@@ -87,7 +85,6 @@ var EditProgrammeStep = function (programmeWizard) {
         $('#drugProgrammeId').removeAttr("disabled");
         $("#drugProgrammeName").removeAttr("disabled");
         $('#programmeEnabled').removeAttr("disabled");
-        $('#studyNumberStudies').removeAttr("disabled");
         $('#studyNumberEnabledStudies').removeAttr("disabled");
     };
 
@@ -120,7 +117,6 @@ var EditProgrammeStep = function (programmeWizard) {
             scope.project.drugId = $("#drugProgrammeId").val();
             scope.project.id = null;
             scope.project.acuityEnabled = $("#programmeEnabled").val() === "Yes" ? true : false;
-            scope.project.totalStudyCount = parseInt($("#studyNumberStudies").val(), 10) || 0;
             scope.project.numberOfAcuityEnabledStudies = parseInt($("#studyNumberEnabledStudies").val(), 10) || 0;
         }
 
@@ -199,7 +195,6 @@ EditProgrammeStep.prototype = {
                             $('#drugProgrammeId').attr('disabled', 'disabled');
                             $('#drugProgrammeName').attr('disabled', 'disabled');
                             $('#programmeEnabled').attr('disabled', 'disabled');
-                            $('#studyNumberStudies').attr('disabled', 'disabled');
                             $('#studyNumberEnabledStudies').attr('disabled', 'disabled');
                             $('.hiddenOnAddProgramme').show();
                             scope.programmeWizard.loadProjectWizard(result, toStep, true);
@@ -219,7 +214,6 @@ EditProgrammeStep.prototype = {
                                 $('#drugProgrammeId').attr('disabled', 'disabled');
                                 $('#drugProgrammeName').attr('disabled', 'disabled');
                                 $('#programmeEnabled').attr('disabled', 'disabled');
-                                $('#studyNumberStudies').attr('disabled', 'disabled');
                                 $('#studyNumberEnabledStudies').attr('disabled', 'disabled');
                                 $('.hiddenOnAddProgramme').show();
                                 scope.programmeWizard.loadProjectWizard(result, toStep);
@@ -313,7 +307,6 @@ EditProgrammeStep.prototype = {
         $("#drugProgrammeId").val(this.project.drugId);
         $('#drugProgrammeName').val(this.project.drugProgrammeName);
         $("#programmeEnabled").val(this.project.acuityEnabled ? "Yes" : "No");
-        $("#studyNumberStudies").val(this.project.totalStudyCount);
         $("#studyNumberEnabledStudies").val(this.project.numberOfAcuityEnabledStudies);
         //$("#chiefProgramme").val(this.project.admin);
         $("#aeSeverityType").val(this.project.aeSeverityType || 'CTC_GRADES');
