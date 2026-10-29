@@ -29,12 +29,18 @@ import java.util.List;
 @Repository
 public class CDBPProjectDaoImpl extends CDBPDaoSupport implements CDBPProjectDao {
 
-    private static final String SEARCH_PROJECTS_QUERY = "select MIN(ACTIVE_SUBSTANCE) as ACTIVE_SUBSTANCE "
+    private static final String SEARCH_PROJECTS_QUERY = "select COUNT(*) as STUDIES_TOTAL, MIN(ACTIVE_SUBSTANCE) as ACTIVE_SUBSTANCE "
             + "from vw_acuity "
             + "where (dbl_act is null or dbl_act <= getdate()) "
             + "and (upper(ACTIVE_SUBSTANCE) LIKE upper(?) OR upper(PROJECT_CODE) LIKE upper(?) OR upper(ACTIVITY_CODE) LIKE upper(?)) "
             + "group by ACTIVE_SUBSTANCE;";
 
+
+    private static final String SELECT_PROJECT_TOTAL_STUDY_COUNT = "select COUNT(*) as STUDIES_TOTAL, MIN(ACTIVE_SUBSTANCE) as ACTIVE_SUBSTANCE "
+            + "from vw_acuity "
+            + "where (dbl_act is null or dbl_act <= getdate()) "
+            + "and (upper(ACTIVE_SUBSTANCE) = upper(?)) "
+            + "group by ACTIVE_SUBSTANCE;";
 
     private static final String SELECT_DRUG_PROJECTS_QUERY =
             "select distinct ACTIVE_SUBSTANCE from vw_acuity where (dbl_act is null or dbl_act <= getdate())";
@@ -42,6 +48,15 @@ public class CDBPProjectDaoImpl extends CDBPDaoSupport implements CDBPProjectDao
     @Override
     public List<ProjectRule> searchProjects(String query) {
         return getJdbcTemplate().query(SEARCH_PROJECTS_QUERY, new Object[]{query, query, query}, ROW_MAPPER);
+    }
+
+    @Override
+    public Integer getTotalStudyCountByDrugId(String drugId) {
+        List<ProjectRule> resultQuery = getJdbcTemplate().query(SELECT_PROJECT_TOTAL_STUDY_COUNT, new Object[]{drugId}, ROW_MAPPER);
+        if (!resultQuery.isEmpty()) {
+            return resultQuery.get(0).getTotalStudyCount();
+        }
+        return 0;
     }
 
     @Override
@@ -56,6 +71,7 @@ public class CDBPProjectDaoImpl extends CDBPDaoSupport implements CDBPProjectDao
 
     private static final RowMapper<ProjectRule> ROW_MAPPER = (rs, rowNum) -> {
         ProjectRule prj = new ProjectRule();
+        prj.setTotalStudyCount(rs.getInt("STUDIES_TOTAL"));
         prj.setDrugId(rs.getString("ACTIVE_SUBSTANCE"));
         return prj;
     };
