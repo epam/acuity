@@ -69,7 +69,7 @@
         </help>
         <help>
             <pageElement>studyNumberStudies</pageElement>
-            <helpText>The total number of studies within the drug programme that are known to  the ACUITY  system
+            <helpText>The total number of studies within the drug program that are known to  the ACUITY  system
                 either via link to the IMPACT data system, or have been enabled for further configuration.
             </helpText>
         </help>
