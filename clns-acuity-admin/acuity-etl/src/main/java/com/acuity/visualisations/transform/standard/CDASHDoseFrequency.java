@@ -112,32 +112,6 @@ public final class CDASHDoseFrequency {
         return DOSE_FREQUENCY_BY_NAME.get(dosingFrequencyName);
     }
 
-    public static String getCdashNameBySdtmName(String dosingFrequencyName) {
-        if (dosingFrequencyName == null) {
-            return dosingFrequencyName;
-        }
-
-        switch (dosingFrequencyName) {
-            case "QD":
-            case "QH":
-            case "QM":
-            case "BID":
-            case "TID":
-            case "QID":
-                return dosingFrequencyName;
-            case "QS":
-                return  "Every Week";
-            case "BIS":
-                return "2 Times per Week";
-            case "TIS":
-                return  "3 Times per Week";
-            case "QIS":
-                return  "4 Times per Week";
-            default:
-                return  "Other";
-        }
-    }
-
     public static CDASHDoseFrequency getByFrequencyAndUnit(Integer frequency, String frequencyUnitString) {
         if (frequency != null && frequencyUnitString != null) {
             frequencyUnitString = frequencyUnitString.toLowerCase();

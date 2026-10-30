@@ -16,15 +16,13 @@
 
 package com.acuity.visualisations.batch.reader;
 
-import com.acuity.visualisations.mapping.entity.FileStandard;
-
 /**
  * Created by knml167 on 05/05/14.
  */
 public class ResourceInfoFile extends ResourceInfo {
 
-    public ResourceInfoFile(String resourceName, FileStandard fileStandard) {
-        super(resourceName, fileStandard);
+    public ResourceInfoFile(String resourceName) {
+        super(resourceName);
         this.resourceNameFact = resourceName;
     }
 

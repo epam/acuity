@@ -90,7 +90,7 @@ public interface OutputEntity extends Cloneable {
     void setSourceName(String sourceName);
 
     /**
-     * Entities that disambiguate RESULT_TEST rows by SDTM domain (Laboratory, Vital,
+     * Entities that disambiguate RESULT_TEST rows by domain (Laboratory, Vital,
      * EG, DECG, LVEF, VitalThin, Test) override this. All other entities ignore it.
      */
     default void setDomain(String domain) {

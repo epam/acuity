@@ -22,8 +22,8 @@ var StudyWizard = function () {
         'When you are done, click "Finish".';
 
     var STUDY_ALT_LAB_CODES_STEP_SUB_HEADER = 'Here you should map labcode decoding information into the ACUITY system. ' +
-        'Labcodes found in the mapped lab file in the previous step are shown, along with their corresponding AZ RAW values. ' +
-        'If any labcodes are not recognised, the option to use AZ RAW values will be unabvailable. ' +
+        'Labcodes found in the mapped lab file in the previous step are shown, along with their corresponding RAW values. ' +
+        'If any labcodes are not recognised, the option to use RAW values will be unavailable. ' +
         'If any labcodes are left unmapped, they will not be translated in the ACUITY views.';
     var STUDY_EXCLUSION_VALUES_STEP_SUB_HEADER = 'Here you should specify specific values, if any, which need to be ' +
         'excluded from the visualisations to preserve data integrity. Some AEs or lab tests, for example, can ' +

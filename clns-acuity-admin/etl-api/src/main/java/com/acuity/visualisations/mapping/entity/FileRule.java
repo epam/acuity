@@ -30,7 +30,6 @@ public class FileRule extends MappingEntity implements DynamicEntity {
     private Long fileTypeId;
 
     private StudyRule studyRule;
-    private FileStandard fileStandard;
 
     public String getName() {
         return name;
@@ -66,14 +65,6 @@ public class FileRule extends MappingEntity implements DynamicEntity {
 
     public void setMappingRules(List<MappingRule> mappingRules) {
         this.mappingRules = new ArrayList<MappingRule>(mappingRules);
-    }
-
-    public FileStandard getFileStandard() {
-        return fileStandard;
-    }
-
-    public void setFileStandard(FileStandard fileStandard) {
-        this.fileStandard = fileStandard;
     }
 
     public MappingRule getMappingRule(Long id) {

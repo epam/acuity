@@ -83,7 +83,7 @@ var AltLabCodesStep = function (studyWizard) {
         if (studyWizard.workflow.selectedStudy.studyUseAltLabCodes) {
             $altLabCodesSelect.val('custom');
         } else {
-            $altLabCodesSelect.val('azraw');
+            $altLabCodesSelect.val('raw');
         }
 
         setUseAltCodesState();
@@ -91,16 +91,16 @@ var AltLabCodesStep = function (studyWizard) {
         loadDicts();
     };
 
-    var mergeAutocompleteArrays = function (customArray, azrawArray) {
+    var mergeAutocompleteArrays = function (customArray, rawArray) {
         return _(customArray)
-            .difference(azrawArray)
+            .difference(rawArray)
             .sort()
             .map(function (item) {
                 return {label: item, value: item, category: 'Custom'};
             })
             .concat(
-                _.map(azrawArray, function (item) {
-                    return {label: item, value: item, category: 'AZ RAW'};
+                _.map(rawArray, function (item) {
+                    return {label: item, value: item, category: 'RAW'};
                 })
             ).value();
     };
@@ -169,7 +169,7 @@ var AltLabCodesStep = function (studyWizard) {
 
     $altLabCodesSelect.change(function () {
         var value = $altLabCodesSelect.val();
-        studyWizard.workflow.selectedStudy.studyUseAltLabCodes = value != 'azraw';
+        studyWizard.workflow.selectedStudy.studyUseAltLabCodes = value != 'raw';
 
         setUseAltCodesState();
 

@@ -151,7 +151,6 @@ public class DBStudyMappingConfigurationHolder implements StudyMappingConfigurat
                 if (item == null || isCntlin(fileRule)) {
                     item = new DataFileRule();
                     item.setName(fileRule.getName());
-                    item.setStandard(fileRule.getFileStandard());
                     item.setType(FileType.CUMULATIVE);
                 }
                 List<EntityRule> entities = loadEntityRules(fileRule, excludingValuesMap);

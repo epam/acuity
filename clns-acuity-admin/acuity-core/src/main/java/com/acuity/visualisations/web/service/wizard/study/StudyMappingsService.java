@@ -25,7 +25,6 @@ import com.acuity.visualisations.mapping.entity.FieldRule;
 import com.acuity.visualisations.mapping.entity.FileDescription;
 import com.acuity.visualisations.mapping.entity.FileSection;
 import com.acuity.visualisations.mapping.entity.FileRule;
-import com.acuity.visualisations.mapping.entity.FileStandard;
 import com.acuity.visualisations.mapping.entity.FileType;
 import com.acuity.visualisations.mapping.entity.MappingRule;
 import com.acuity.visualisations.mapping.entity.StudyRule;
@@ -75,7 +74,6 @@ public class StudyMappingsService {
 		fileRule.setName(dto.getDataSourceLocation());
 		fileRule.setStudyRule(study);
 		fileRule.setAcuityEnabled(dto.getStudyAcuityEnabled());
-		fileRule.setFileStandard(dto.getFileStandard());
 		List<FileType> fileTypes = studyMappingsServicePartial.getFileTypes();
 		fileRule.setFileType(fileTypes.get(0));
 		List<FileDescription> dataTypes = studyMappingsServicePartial.getFileDescriptions();
@@ -93,7 +91,6 @@ public class StudyMappingsService {
 		FileRule fileRule = study.getFileRule(dto.getId());
 		fileRule.setName(dto.getDataSourceLocation());
 		fileRule.setAcuityEnabled(dto.getStudyAcuityEnabled());
-		fileRule.setFileStandard(dto.getFileStandard());
 		return fileRule;
 	}
 
@@ -262,7 +259,6 @@ public class StudyMappingsService {
 		int decodingIdx = columns.indexOf("decoding");
 		int defaultValueIdx = columns.indexOf("default_value");
 		int sourceColumnIdx = columns.indexOf("source_column");
-		int fileStandardIdx = columns.indexOf("file_standard");
 		if (dataTypeIdx < 0
 				|| idIdx < 0
 				|| dataFieldIdx < 0
@@ -270,8 +266,7 @@ public class StudyMappingsService {
 				|| fileNameIdx  < 0
 				|| decodingIdx < 0
 				|| defaultValueIdx < 0
-				|| sourceColumnIdx  < 0
-				|| fileStandardIdx < 0) {
+				|| sourceColumnIdx  < 0) {
 			throw new Exception("Not all required columns found in CSV");
 		}
 
@@ -288,8 +283,6 @@ public class StudyMappingsService {
 			final String decoding = row[decodingIdx];
 			final String defaultValue = row[defaultValueIdx];
 			final String sourceColumn = row[sourceColumnIdx];
-			String standardFromFile = row[fileStandardIdx];
-			final String standard = (standardFromFile == null || "".equals(standardFromFile) ? "AZRAW" : standardFromFile).toUpperCase();
 
 			final boolean dynamic = fieldDescriptionId < 0;
 
@@ -298,7 +291,6 @@ public class StudyMappingsService {
 				fileRuleDTO.setTypeId(fileDescriptionId);
 				fileRuleDTO.setStudyAcuityEnabled(true);
 				fileRuleDTO.setDataSourceLocation(fileName);
-				fileRuleDTO.setFileStandard(FileStandard.valueOf(standard));
 				return createFileRule(fileRuleDTO, studyRule);
 			});
 
@@ -348,14 +340,13 @@ public class StudyMappingsService {
 	public byte[] exportMappings(List<FileRule> fileRules) throws IOException {
 		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 		CSVWriter writer = new CSVWriter(new OutputStreamWriter(outputStream));
-		writer.writeNext(new String[]{"id_idx", "data_type", "file_name", "file_standard", "data_field", "source_column",
+		writer.writeNext(new String[]{"id_idx", "data_type", "file_name", "data_field", "source_column",
 				"decoding", "default_value", "aggregation_function"});
 		for (FileRule fileRule : fileRules) {
 			for (MappingRule mappingRule : fileRule.getMappingRules()) {
 				FieldRule fieldRule = mappingRule.getFieldRules().get(0);
 				writer.writeNext(new String[]{fileRule.getId().toString(), fileRule.getDescriptions().get(0).getId().toString(),
 						fileRule.getName() == null ? null : fileRule.getName().replace("\\", "\\\\"),
-						fileRule.getFileStandard() == null ? null : fileRule.getFileStandard().toString(),
 						fieldRule.isDynamic() ? "-1" : fieldRule.getDescription().getId().toString(),
 						getMappingColumns(mappingRule), mappingRule.getFmtName(),
 						mappingRule.getValue(), mappingRule.getAggregationFunction().getId().toString()});

@@ -134,13 +134,6 @@
             </label>
         </div>
 
-        <div class="checkbox">
-            <label>
-                <input type="checkbox" id="isSdtm" value="true" checked name="isSdtm"/>
-                SDTM file
-            </label>
-        </div>
-
         <div style="float:right;margin-top:5px">
             <input type="button" id="studyCancelBtn" class="commonButton" style="float:right" value="Cancel"/>
             <input type="button" id="studyOkBtn" class="commonButton" style="float:right" value="Ok"/>

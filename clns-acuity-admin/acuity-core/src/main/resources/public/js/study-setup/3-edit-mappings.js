@@ -301,7 +301,7 @@ var MappingStudyStep = function (studyWizard) {
             colNames: ['', 'Type of information <a href="#colTypeOfInfo" class="help">?</a>',
                 'Data source <a href="#colDataSource" class="help">?</a>',
                 'ACUITY enabled? <a href="#colAcuityEnabled" class="help">?</a>',
-                'Last edited by <a href="#colLastEdited" class="help">?</a>', 'File standard',
+                'Last edited by <a href="#colLastEdited" class="help">?</a>',
                 '', ''],
             colModel: [{name: 'id', index: 'id', hidden: true, align: 'center', key: true},
                 {name: 'typeId', index: 'typeId', width: 200, align: 'center', formatter: typeFormatter},
@@ -314,7 +314,6 @@ var MappingStudyStep = function (studyWizard) {
                 },
                 {name: 'studyAcuityEnabled', index: 'acuityEnable', formatter: 'checkbox', width: 100, align: "center"},
                 {name: 'lastEditedBy', index: 'lastEditedBy', width: 100, align: "center"},
-                {name: 'fileStandard', index: 'fileStandard', width: 100},
                 {name: 'dataSourceLocationType', index: 'studyStorage', hidden: true},
                 {name: 'dataSourceLocation', index: 'dataSourceLocation', hidden: true}],
             recordpos: 'left',
@@ -1107,8 +1106,6 @@ var MappingStudyStep = function (studyWizard) {
         $("#studyDataType").multiselect('refresh');
         $("#study-no-file").attr('checked', true);
 //    	$("#mappingsPrediction").attr('checked', true);
-        $("#isSdtm").attr('checked', false);
-
         $("#mappingsPrediction").attr("disabled", 'disabled');
         $("#study-file-prediction").attr('disabled', 'disabled');
 
@@ -1145,8 +1142,6 @@ var MappingStudyStep = function (studyWizard) {
         if (dlgData.studyAcuityEnabled == "No") {
             $("#studyAcuityEnabled").attr('checked', false);
         }
-
-        $("#isSdtm").attr('checked', dlgData.fileStandard == 'SDTM');
 
         $("#studyStorageText").val(dlgData.dataSourceLocation);
         $("#fileRuleId").val(dlgData.id);
@@ -1236,10 +1231,6 @@ var MappingStudyStep = function (studyWizard) {
 
     var addMapping = function () {
         var formData = $("#fileRuleForm").serializeObject();
-        if (formData.isSdtm) {
-            formData.fileStandard = 'SDTM';
-        }
-
         ajaxModule.sendAjaxRequest("study-setup-save-file-rule", JSON.stringify(formData), {showDialog: true}, function (result) {
             var mainTable = $("#" + scope.studyMainTableId);
             mainTable.jqGrid('addRowData', result.id, result);
@@ -1259,9 +1250,6 @@ var MappingStudyStep = function (studyWizard) {
         var callBack = function () {
             var rowId = scope.selectedFileRuleId;
             var formData = $("#fileRuleForm").serializeObject();
-            if (formData.isSdtm) {
-                formData.fileStandard = 'SDTM';
-            }
             ajaxModule.sendAjaxRequest("study-setup-save-file-rule", JSON.stringify(formData), {showDialog: true}, function (result) {
                 var mainTable = $("#" + scope.studyMainTableId);
                 mainTable.jqGrid('setRowData', rowId, result);
