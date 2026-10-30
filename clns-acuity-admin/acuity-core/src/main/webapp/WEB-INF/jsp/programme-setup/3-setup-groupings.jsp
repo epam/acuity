@@ -71,7 +71,7 @@
 
 
 <div id="addGroupingDlg" style="display:none">
-    <form id="add-group-form" action="programme-setup/programme-save-group" method="post" enctype="multipart/form-data">
+    <form id="add-group-form" action="program-setup/programme-save-group" method="post" enctype="multipart/form-data">
         <table border="0" class="propertiesTable">
             <tr>
                 <td style="font-weight: bold;">Grouping type</td>

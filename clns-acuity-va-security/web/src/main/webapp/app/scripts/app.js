@@ -185,7 +185,7 @@ angular.module('acuityApp', [
             controller: 'IndividualUsersController'
         })
         .state('drugProgrammes', {
-            url: '/drug-programmes',
+            url: '/drug-programs',
             parent: 'myAnalytics',
             templateUrl: 'views/myAnalytics/drugProgrammes.html',
             controller: function ($scope) {

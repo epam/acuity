@@ -40,7 +40,7 @@ var Admin = function () {
         toggleStudyControls(false);
 
         $('#' + addProgrammeBtnId).on("click", function () {
-            window.location = "programme-setup";
+            window.location = "program-setup";
         });
         $('#' + addStudyBtnId).on("click", function () {
             window.location = "study-setup";
