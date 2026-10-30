@@ -103,11 +103,6 @@ SummaryStudyStep.prototype = {
             $("#randomisation").text(result.selectedStudy.randomisation ? 'Randomised' : 'Not randomised');
             $("#regularity").text(result.selectedStudy.regulatory ? 'Regulated' : 'Not regulated');
             $("#summaryStudyComment").text(result.selectedStudy.studyComment);
-            if (result.selectedStudy.studyValid) {
-                $("#confirm").attr('checked', 'checked');
-            } else {
-                $("#not-confirm").attr('checked', 'checked');
-            }
 
             var mappingTable = $("#" + scope.dataMappingsTableId);
             var subjectTable = $("#" + scope.subjectTableId);

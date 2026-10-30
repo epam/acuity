@@ -167,7 +167,6 @@ var EditStudyStep = function (studyWizard) {
             scope.study.projectId = $('#studyDrugIdSelect').val();
             scope.study.id = null;
             scope.study.studyCompleted = false;
-            scope.study.studyValid = false;
             scope.study.studyEnabled = false;
             scope.study.status = "readyToMap";
         }

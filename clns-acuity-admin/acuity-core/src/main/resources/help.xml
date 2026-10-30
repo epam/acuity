@@ -532,14 +532,6 @@
             <helpText>Here we show a summary of the alternative subject groupings for the clinical study.</helpText>
         </help>
         <help>
-            <pageElement>disclaimer</pageElement>
-            <helpText>For this study to be used in ACUITY, we must be sure that all of the set up is appropriate. In
-                particular, the blinding, randomisation and regulatory statuses of the set up are correct and that
-                no inappropriate (e.g. unblinding) subject groups have been created. To confirm the setup is
-                correct you must indicate this in the disclaimer.
-            </helpText>
-        </help>
-        <help>
             <pageElement>history</pageElement>
             <helpText>Here we record the history of study set up confirmation so that it is clear who has taken
                 responsibility for confirmation and when confirmation was granted.

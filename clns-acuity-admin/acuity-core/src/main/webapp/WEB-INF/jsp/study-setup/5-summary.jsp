@@ -100,24 +100,6 @@
     <table border="0" class="dataTable">
         <tr>
             <td>
-                <div style="margin-bottom:5px;">
-                    <label class="sum-header">Disclaimer</label> <a href="#" class="help"
-                                                                    title='<%= HelpController.getHelpText("5-study-setup-summary", "disclaimer") %>'>?</a>
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td><input type="radio" id="not-confirm" name="disclaimer" value="true" checked/><label for="not-confirm"> I
-                do not confirm that this information is correct, the
-                data will not be used by ACUITY</label></td>
-        </tr>
-        <tr>
-            <td><input type="radio" id="confirm" name="disclaimer" value="true"/><label for="confirm"> I confirm that
-                above data is correct and understand
-                that inaccurate information may allow inappropriate views on data being created by ACUITY</label></td>
-        </tr>
-        <tr>
-            <td>
                 <div class="contentTable">
                     <div style="margin-bottom:5px;">
                         <label class="sum-header">History</label> <a href="#" class="help"
