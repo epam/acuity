@@ -37,7 +37,7 @@ describe('Tests for check searching', function () {
 //We expect browser to stay on the same page
     describe('WHEN my analytics page is loaded and drug programs button clicked', function () {
         it('THEN user is redirected to drug programs page', function () {
-            expect(portal.getCurrentUrl()).toContain('/drug-programmes');
+            expect(portal.getCurrentUrl()).toContain('/drug-programs');
         })
     });
 

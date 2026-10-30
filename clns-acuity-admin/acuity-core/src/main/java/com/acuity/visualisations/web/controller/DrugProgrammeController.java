@@ -77,7 +77,7 @@ import static com.google.common.collect.Lists.newArrayList;
 
 @PreAuthorize("@permissionHelper.isGlobalAdmin(authentication)")
 @Controller
-@RequestMapping("/programme-setup")
+@RequestMapping("/program-setup")
 @Slf4j
 public class DrugProgrammeController extends AbstractController {
     public static final String VIEW_NAME = "programme-setup/main";

@@ -208,7 +208,7 @@ var ProgrammeWizard = function () {
     };
 
     var onFinishCallback = function () {
-        ajaxModule.sendAjaxRequestWithoutParam("programme-setup/programme-email", {showDialog: true}, function () {
+        ajaxModule.sendAjaxRequestWithoutParam("program-setup/programme-email", {showDialog: true}, function () {
             window.location = "admin"
         });
     };

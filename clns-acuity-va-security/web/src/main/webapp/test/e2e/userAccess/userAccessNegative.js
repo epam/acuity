@@ -132,7 +132,7 @@ describe('Dataset modules page tests', function () {
     describe('WHEN Unknown user observes drug programs', function () {
 
         beforeEach(function () {
-            if(ptor.getCurrentUrl().toString().indexOf('drug-programmes')<0){
+            if(ptor.getCurrentUrl().toString().indexOf('drug-programs')<0){
                 element(by.partialLinkText('Drug programs')).click();
                 paws();
             }

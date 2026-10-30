@@ -71,7 +71,7 @@ var GroupingsProgrammeStep = function (programmeWizard) {
             var gridId = mainTable.jqGrid('getGridParam', 'selrow');
             var dbId = mainTable.jqGrid('getCell', gridId, "id");
             var groupType = mainTable.jqGrid('getCell', gridId, "type");
-            ajaxModule.sendAjaxRequestSimpleParams("programme-setup/programme-refresh-group", {
+            ajaxModule.sendAjaxRequestSimpleParams("program-setup/programme-refresh-group", {
                 'groupId': dbId,
                 'groupType': groupType
             }, {showDialog: true}, function (result) {
@@ -93,7 +93,7 @@ var GroupingsProgrammeStep = function (programmeWizard) {
                 var gridId = mainTable.jqGrid('getGridParam', 'selrow');
                 var dbId = mainTable.jqGrid('getCell', gridId, "id");
                 var groupType = mainTable.jqGrid('getCell', gridId, "type");
-                ajaxModule.sendAjaxRequestSimpleParams("programme-setup/programme-delete-group", {
+                ajaxModule.sendAjaxRequestSimpleParams("program-setup/programme-delete-group", {
                     'groupId': dbId,
                     'groupType': groupType
                 }, {showDialog: true}, function (result) {
@@ -348,7 +348,7 @@ var GroupingsProgrammeStep = function (programmeWizard) {
         var gridId = mainTable.jqGrid('getGridParam', 'selrow');
         var dbId = mainTable.jqGrid('getCell', gridId, "id");
         var groupType = mainTable.jqGrid('getCell', gridId, "type");
-        ajaxModule.sendAjaxRequestSimpleParams("programme-setup/programme-get-group", {
+        ajaxModule.sendAjaxRequestSimpleParams("program-setup/programme-get-group", {
             'groupId': dbId,
             'groupType': groupType
         }, {showDialog: false}, function (result) {
@@ -510,7 +510,7 @@ var GroupingsProgrammeStep = function (programmeWizard) {
             }
             programmeWizard.workflow.groupings.push(data);
             programmeWizard.recalculateSplit(programmeWizard.GROUP_STEP_INX);
-        }, 'programme-setup/programme-save-group?_csrf=' + ajaxModule.csrf.token);
+        }, 'program-setup/programme-save-group?_csrf=' + ajaxModule.csrf.token);
     };
 
     var editGrouping = function () {
@@ -537,7 +537,7 @@ var GroupingsProgrammeStep = function (programmeWizard) {
             $("#addGroupingDlg").dialog("close");
             groupTable.setSelection(rowid, true);
 
-        }, 'programme-setup/programme-edit-group?_csrf=' + ajaxModule.csrf.token);
+        }, 'program-setup/programme-edit-group?_csrf=' + ajaxModule.csrf.token);
     };
 
     var getGroupNumber = function (type) {
@@ -667,7 +667,7 @@ var GroupingsProgrammeStep = function (programmeWizard) {
 
     this.deleteGroupValues = function (id, mainTable, slaveTable) {
         var sendData = scope.getActualGroupValues(id, mainTable, slaveTable);
-        ajaxModule.sendAjaxRequest("programme-setup/programme-delete-group-values", JSON.stringify(sendData), {showDialog: true}, function (result) {
+        ajaxModule.sendAjaxRequest("program-setup/programme-delete-group-values", JSON.stringify(sendData), {showDialog: true}, function (result) {
             wizardCommonModule.showInfoDialog("ACUITY", "Delete successful");
         });
     };
@@ -779,14 +779,14 @@ var GroupingsProgrammeStep = function (programmeWizard) {
 
         if (groupType == "lab") { // lab test
             $("#groupAdverseEventTableWrapper").show();
-            ajaxModule.sendAjaxRequestSimpleParams("programme-setup/programme-get-group-values",
+            ajaxModule.sendAjaxRequestSimpleParams("program-setup/programme-get-group-values",
                 {groupId: groupId, groupType: groupType}, {showDialog: false}, function (result) {
                     getGroupValues($("#groupLabTestTableWrapper"), $("#groupAdverseEventTableWrapper"),
                         $("#" + scope.groupLabTestTableId), result);
                 });
         } else if (groupType == "ae") {  //adverse event
             $("#groupLabTestTableWrapper").show();
-            ajaxModule.sendAjaxRequestSimpleParams("programme-setup/programme-get-group-values", {
+            ajaxModule.sendAjaxRequestSimpleParams("program-setup/programme-get-group-values", {
                 groupId: groupId,
                 groupType: groupType
             }, {showDialog: false}, function (result) {
@@ -1088,7 +1088,7 @@ GroupingsProgrammeStep.prototype = {
     saveGroupValues: function (id, mainTable, slaveTable, toAdmin) {
         var scope = this;
         var sendData = scope.getActualGroupValues(id, mainTable, slaveTable);
-        ajaxModule.sendAjaxRequest("programme-setup/programme-save-group-values", JSON.stringify(sendData), {showDialog: true}, function (result) {
+        ajaxModule.sendAjaxRequest("program-setup/programme-save-group-values", JSON.stringify(sendData), {showDialog: true}, function (result) {
             $('#' + slaveTable.id + ' td.edit-cell').removeClass("edit-cell");
             wizardCommonModule.showInfoDialog("Save changes", "Save successful");
             if (toAdmin) {
