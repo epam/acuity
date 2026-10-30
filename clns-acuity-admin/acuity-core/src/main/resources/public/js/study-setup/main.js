@@ -18,7 +18,6 @@ var StudyWizard = function () {
     var STUDY_SUMMARY_STEP_SUB_HEADER = 'Here you can review the information provided about the dataset. ' +
         'Edits can be made to this information by clicking "Back" to the desired setup page, ' +
         'or using the "view/edit" links provided below. It is important to ensure all information is accurate. ' +
-        'Primary drug project administrators should verify the information is correct using the disclaimer. ' +
         'When you are done, click "Finish".';
 
     var STUDY_ALT_LAB_CODES_STEP_SUB_HEADER = 'Here you should map labcode decoding information into the ACUITY system. ' +
@@ -343,52 +342,35 @@ var StudyWizard = function () {
     };
 
     var onFinishCallback = function () {
-        var confirm = $("#confirm").is(':checked');
-        var callBack = function () {
-            var callback2 = function () {
-                var confirm = $("#confirm").is(':checked');
-                ajaxModule.sendAjaxRequestSimpleParams("study-setup-finish", {
-                    'confirm': !!confirm,
-                    'upload': false
-                }, {
-                    showDialog: true
-                }, function (result) {
+        ajaxModule.sendAjaxRequestSimpleParams("study-setup-finish", {
+            'upload': false
+        }, {
+            showDialog: true
+        }, function (result) {
 
-                    function getFinishCallback(isUpload) {
-                        return function () {
-                            ajaxModule.sendAjaxRequestSimpleParams("study-setup-finish", {
-                                'confirm': !!confirm,
-                                'upload': !!isUpload
-                            }, {
-                                showDialog: true
-                            }, function (result) {
-                                window.location = "admin";
-                            });
-                        };
-                    }
-
-                    if (result.studyEnabled) {
-                        wizardCommonModule.showYesNoDialog("ACUITY", "Do you wish to upload your dataset data into the system now?",
-                            getFinishCallback(true),
-                            function (result) {
-                                window.location = "admin";
-                            });
-                    }
-                    else {
+            function getFinishCallback(isUpload) {
+                return function () {
+                    ajaxModule.sendAjaxRequestSimpleParams("study-setup-finish", {
+                        'upload': !!isUpload
+                    }, {
+                        showDialog: true
+                    }, function (result) {
                         window.location = "admin";
-                    }
-                });
-            };
-            callback2();
-        };
-        if (!confirm && scope.workflow.selectedStudy.studyEnabled) {
-            var message = "These changes to ACUITY setup for dataset " + scope.workflow.selectedStudy.studyCode +
-                " will result in deletion of visualisation module " + scope.toStringInstances(scope.workflow.instances) +
-                " because the required dataset data will not be available. Do you wish to continue? ";
-            wizardCommonModule.showYesNoDialog("ACUITY", message, callBack, null, 450);
-        } else {
-            callBack();
-        }
+                    });
+                };
+            }
+
+            if (result.studyEnabled) {
+                wizardCommonModule.showYesNoDialog("ACUITY", "Do you wish to upload your dataset data into the system now?",
+                    getFinishCallback(true),
+                    function (result) {
+                        window.location = "admin";
+                    });
+            }
+            else {
+                window.location = "admin";
+            }
+        });
     };
 
     this.geMappingCounter = function (data) {
