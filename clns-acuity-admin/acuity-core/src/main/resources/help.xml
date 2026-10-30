@@ -317,7 +317,7 @@
         </help>
         <help>
             <pageElement>studyDeliveryModel</pageElement>
-            <helpText>The organisational process through which the study is being made, e.g., run by internal AZ R&amp;D.
+            <helpText>The organisational process through which the study is being made, e.g., run by internal R&amp;D.
                 This field is for user reference only and does not affect the data processing in ACUITY.
             </helpText>
         </help>

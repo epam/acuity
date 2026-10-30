@@ -20,7 +20,6 @@ import com.acuity.visualisations.batch.holders.CntlinDataHolder;
 import com.acuity.visualisations.batch.holders.HoldersAware;
 import com.acuity.visualisations.batch.holders.configuration.ConfigurationUtil;
 import com.acuity.visualisations.batch.holders.configuration.IColumnRule;
-import com.acuity.visualisations.batch.holders.configuration.SdtmDataHolder;
 import com.acuity.visualisations.batch.holders.configuration.StaticConfigurationHolder;
 import com.acuity.visualisations.exception.InvalidDataFormatException;
 import com.acuity.visualisations.model.input.InputModelChunk;
@@ -38,7 +37,6 @@ import com.acuity.visualisations.model.output.entities.MedDosingSchedule;
 import com.acuity.visualisations.model.output.entities.PatientData;
 import com.acuity.visualisations.model.output.entities.Source;
 import com.acuity.visualisations.model.output.entities.TimestampedEntity;
-import com.acuity.visualisations.sdtm.SdtmEntityProcessor;
 import com.acuity.visualisations.service.IExecutionProfiler;
 import com.acuity.visualisations.transform.entity.EntityDescriptionRule;
 import com.acuity.visualisations.transform.function.AbstractFunction;
@@ -91,8 +89,6 @@ public class InputModelChunkProcessorImpl extends HoldersAware implements InputM
 
     private Set<Integer> excludedRows = new HashSet<>();
 
-    private SdtmDataHolder sdtmDataHolder;
-
     @Override
     protected void initHolders() {
 
@@ -100,7 +96,6 @@ public class InputModelChunkProcessorImpl extends HoldersAware implements InputM
         staticConfigurationHolder = getStaticConfigurationHolder();
         cntlinDataHolder = getCntlinDataHolder();
         dataCommonReport = getDataCommonReport();
-        sdtmDataHolder = getSdtmDataHolder();
     }
 
     /**
@@ -113,21 +108,6 @@ public class InputModelChunkProcessorImpl extends HoldersAware implements InputM
     public OutputModelChunk process(InputModelChunk inputModelChunk) throws Exception {
         excludedRows = new HashSet<>();
         String file = inputModelChunk.getSourceName();
-
-        if (sdtmDataHolder.containsMainData(file)) {
-            try {
-                List<String> entityNames = configurationUtil.getEntities(file);
-                SdtmEntityProcessor sdtmEntityProcessor = new SdtmEntityProcessor(getSdtmDataHolder());
-                OutputModelChunk output = sdtmEntityProcessor.processSdtm(file, entityNames);
-
-                for (OutputEntity outputEntity : output.getEntities()) {
-                    completeEntity(outputEntity, file, 0);
-                }
-                return output;
-            } catch (Exception e) {
-                LOGGER.error("Error processing SDTM entities", e);
-            }
-        }
 
         LOGGER.debug("Processing {} items chunk", inputModelChunk.getRecords().size());
         executionProfiler.startOperation(getJobExecutionId(), "InputModelChunkProcessorImpl.process");
@@ -166,7 +146,7 @@ public class InputModelChunkProcessorImpl extends HoldersAware implements InputM
     }
 
     /**
-     * Derive an SDTM-domain-like discriminator from the source file name, e.g.
+     * Derive a domain discriminator from the source file name, e.g.
      * "local://BCSTUDY01/LB.csv" -&gt; "LB". Used to disambiguate RESULT_TEST rows
      * (see Test.uniqueFields / domain field) so that LB, VS, EG, ZE rows for the
      * same subject and date don't collide on a shared Test record.

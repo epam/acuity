@@ -21,7 +21,6 @@ import com.acuity.visualisations.dal.util.TableField;
 import com.acuity.visualisations.dal.util.TableFieldBuilder;
 import com.acuity.visualisations.mapping.dao.IFileRuleDao;
 import com.acuity.visualisations.mapping.entity.FileRule;
-import com.acuity.visualisations.mapping.entity.FileStandard;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
@@ -36,7 +35,6 @@ public class FileRuleDao extends BasicDynamicEntityDao<FileRule> implements IFil
     private static final String MFR_ID = "MFR_ID";
     private static final String MFR_NAME = "MFR_NAME";
     private static final String MFR_ENABLED = "MFR_ENABLED";
-    private static final String MFR_FILE_STANDARD = "MFR_FILE_STANDARD";
 
     private final RowMapper<FileRule> ROW_MAPPER = (rs, rowNum) -> {
         FileRule fileRule = new FileRule();
@@ -44,10 +42,6 @@ public class FileRuleDao extends BasicDynamicEntityDao<FileRule> implements IFil
         fileRule.setName(rs.getString(MFR_NAME));
         fileRule.setFileTypeId(rs.getLong("MFR_MFT_ID"));
         fileRule.setAcuityEnabled(rs.getInt(MFR_ENABLED) == 1);
-        if (rs.getString(MFR_FILE_STANDARD) != null) {
-            fileRule.setFileStandard(FileStandard.valueOf(rs.getString("mfr_file_standard")));
-        }
-
         return fileRule;
     };
 
@@ -57,8 +51,7 @@ public class FileRuleDao extends BasicDynamicEntityDao<FileRule> implements IFil
         ps.setString(paramIndex++, entity.getName());
         ps.setLong(paramIndex++, entity.getStudyRule().getId());
         ps.setLong(paramIndex++, entity.getFileType().getId());
-        ps.setObject(paramIndex++, entity.isAcuityEnabled() ? 1 : 0);
-        ps.setString(paramIndex, entity.getFileStandard() == null ? null : entity.getFileStandard().name());
+        ps.setObject(paramIndex, entity.isAcuityEnabled() ? 1 : 0);
     }
 
     @Override
@@ -72,7 +65,6 @@ public class FileRuleDao extends BasicDynamicEntityDao<FileRule> implements IFil
         fieldsToInsert.add(fieldBuilder.setField("MFR_MSR_ID").build());
         fieldsToInsert.add(fieldBuilder.setField("MFR_MFT_ID").build());
         fieldsToInsert.add(fieldBuilder.setField(MFR_ENABLED).build());
-        fieldsToInsert.add(fieldBuilder.setField(MFR_FILE_STANDARD).build());
         String sql = QueryBuilderUtil.buildInsertQuery(targetTable, fieldsToInsert);
         return sql;
     }
@@ -87,7 +79,6 @@ public class FileRuleDao extends BasicDynamicEntityDao<FileRule> implements IFil
         int paramIndex = 1;
         ps.setString(paramIndex++, entity.getName());
         ps.setObject(paramIndex++, entity.isAcuityEnabled() ? 1 : 0);
-        ps.setString(paramIndex++, entity.getFileStandard() == null ? null : entity.getFileStandard().name());
         ps.setLong(paramIndex, entity.getId());
     }
 
@@ -99,7 +90,6 @@ public class FileRuleDao extends BasicDynamicEntityDao<FileRule> implements IFil
         TableFieldBuilder fieldBuilder = new TableFieldBuilder(targetTable);
         fieldsToInsert.add(fieldBuilder.setField(MFR_NAME).build());
         fieldsToInsert.add(fieldBuilder.setField(MFR_ENABLED).build());
-        fieldsToInsert.add(fieldBuilder.setField(MFR_FILE_STANDARD).build());
         whereFields.add(fieldBuilder.setField(MFR_ID).build());
         return QueryBuilderUtil.buildUpdateQuery(targetTable, fieldsToInsert, whereFields);
     }

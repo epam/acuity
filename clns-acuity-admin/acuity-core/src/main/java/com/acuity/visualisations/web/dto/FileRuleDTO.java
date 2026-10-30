@@ -17,7 +17,6 @@
 package com.acuity.visualisations.web.dto;
 
 import com.acuity.visualisations.mapping.entity.FileRule;
-import com.acuity.visualisations.mapping.entity.FileStandard;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -31,7 +30,6 @@ public class FileRuleDTO {
     private boolean studyUpdateAcuityEnabled = false;
 
     private boolean mappingsPrediction = false;
-    private FileStandard fileStandard;
 
     private transient boolean skipFileRuleCreationIfFilePredictionFailed = false;
 
@@ -46,7 +44,6 @@ public class FileRuleDTO {
         dataSourceLocation = rule.getName();
         studyAcuityEnabled = rule.isAcuityEnabled();
         studyUpdateAcuityEnabled = rule.isUpdateEnabled();
-        fileStandard = rule.getFileStandard();
     }
 
     public Long getTypeId() {
@@ -83,14 +80,6 @@ public class FileRuleDTO {
         } catch (Exception e) {
             this.id = null;
         }
-    }
-
-    public FileStandard getFileStandard() {
-        return fileStandard;
-    }
-
-    public void setFileStandard(FileStandard fileStandard) {
-        this.fileStandard = fileStandard;
     }
 
     public String getDataSourceLocationType() {

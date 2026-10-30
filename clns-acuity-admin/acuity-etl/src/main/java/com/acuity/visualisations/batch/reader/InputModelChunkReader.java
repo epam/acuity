@@ -19,20 +19,15 @@ package com.acuity.visualisations.batch.reader;
 import com.acuity.visualisations.batch.holders.EOFEventHolder;
 import com.acuity.visualisations.batch.holders.HoldersAware;
 import com.acuity.visualisations.batch.holders.configuration.ConfigurationUtil;
-import com.acuity.visualisations.batch.holders.configuration.SdtmDataHolder;
 import com.acuity.visualisations.batch.processor.DataCommonReport;
 import com.acuity.visualisations.batch.reader.tablereader.FileTypeAwareTableReader;
 import com.acuity.visualisations.batch.reader.tablereader.TableReader;
 import com.acuity.visualisations.data.provider.DataProvider;
 import com.acuity.visualisations.data.util.Util;
 import com.acuity.visualisations.exception.MethodFailedException;
-import com.acuity.visualisations.mapping.entity.FileStandard;
 import com.acuity.visualisations.model.input.InputModelChunk;
 import com.acuity.visualisations.model.input.InputModelChunkImpl;
 import com.acuity.visualisations.report.entity.FileReport;
-import com.acuity.visualisations.sdtm.SdtmData;
-import com.acuity.visualisations.sdtm.SdtmDomain;
-import com.acuity.visualisations.sdtm.SdtmSuppData;
 import com.acuity.visualisations.service.IExecutionProfiler;
 import lombok.SneakyThrows;
 import org.jetbrains.annotations.NotNull;
@@ -77,8 +72,6 @@ public class InputModelChunkReader extends HoldersAware implements ResourceInfoA
 
     private DataCommonReport dataCommonReport;
 
-    private SdtmDataHolder sdtmDataHolder;
-
     @Autowired
     private IExecutionProfiler executionProfiler;
 
@@ -90,7 +83,6 @@ public class InputModelChunkReader extends HoldersAware implements ResourceInfoA
         eofEventHolder = getEOFEventHolder();
         configurationUtil = getConfigurationUtil();
         dataCommonReport = getDataCommonReport();
-        sdtmDataHolder = getSdtmDataHolder();
     }
 
     public void close() throws ItemStreamException {
@@ -103,33 +95,6 @@ public class InputModelChunkReader extends HoldersAware implements ResourceInfoA
 
     private Set<String> processedFiles = new HashSet<>();
 
-    private void readSdtmMainAndSuppData(SdtmDomain domain, String file) {
-        if (!sdtmDataHolder.containsMainData(file)) {
-            try {
-                debug("Reading sdtm file: " + file);
-                SdtmData data = domain.readMainFile(file, dataProvider);
-                sdtmDataHolder.putMainData(file, data);
-            } catch (Exception e) {
-                error("Can't read sdtm file: " + file, e);
-                LOGGER.error("Can't read sdtm file: {}", file, e);
-            }
-
-            if (domain.hasSupplementalData()) {
-                String suppFile = SdtmDomain.getSuppFile(domain, file);
-                if (!sdtmDataHolder.containsSuppData(file)) {
-                    debug("Reading supp sdtm file: " + suppFile);
-                    try {
-                        SdtmSuppData data = domain.readSuppFile(suppFile, dataProvider);
-                        sdtmDataHolder.putSuppData(file, data);
-                    } catch (Exception e) {
-                        error("Can't read supp sdtm file: " + suppFile, e);
-                        LOGGER.error("Can't read supp sdtm file: {}", file, e);
-                    }
-                }
-            }
-        }
-    }
-
     @SneakyThrows
     public void open(ExecutionContext executionContext) throws ItemStreamException {
         String file = resourceInfo.toString();
@@ -139,35 +104,6 @@ public class InputModelChunkReader extends HoldersAware implements ResourceInfoA
             return;
         }
         processedFiles.add(file);
-
-        if (FileStandard.SDTM.equals(resourceInfo.getFileStandard())) {
-            SdtmDomain domain = SdtmDomain.resolveByFile(file);
-
-            if (domain != null) {
-                readSdtmMainAndSuppData(domain, file);
-
-                switch (domain) {
-                    case AE:
-                        readSdtmMainAndSuppData(SdtmDomain.FA, SdtmDomain.getSiblingFile(domain, file, SdtmDomain.FA));
-                        break;
-                    case FA:
-                        readSdtmMainAndSuppData(SdtmDomain.MH, SdtmDomain.getSiblingFile(domain, file, SdtmDomain.MH));
-                        break;
-                    case TR:
-                        readSdtmMainAndSuppData(SdtmDomain.TU, SdtmDomain.getSiblingFile(domain, file, SdtmDomain.TU));
-                        readSdtmMainAndSuppData(SdtmDomain.RS, SdtmDomain.getSiblingFile(domain, file, SdtmDomain.RS));
-                        break;
-                    case RS:
-                        readSdtmMainAndSuppData(SdtmDomain.TU, SdtmDomain.getSiblingFile(domain, file, SdtmDomain.TU));
-                        break;
-                    default:
-                        break;
-                }
-
-                processedFiles.add(file);
-                return;
-            }
-        }
 
         try {
             info(String.format("Processing resource: %s", resourceInfo.toString()));
@@ -240,20 +176,7 @@ public class InputModelChunkReader extends HoldersAware implements ResourceInfoA
         }
     }
 
-    private Set<String> sdtmProcessedFiles = new HashSet<>();
-
     public InputModelChunk read() throws Exception {
-
-        if (sdtmProcessedFiles.contains(resourceInfo.toString())) {
-            return null;
-        }
-
-        if (sdtmDataHolder.containsMainData(resourceInfo.toString())) {
-            sdtmProcessedFiles.add(resourceInfo.toString());
-            InputModelChunk sdtmDummyChunk = new InputModelChunkImpl();
-            sdtmDummyChunk.setSourceName(resourceInfo.toString());
-            return sdtmDummyChunk;
-        }
 
         executionProfiler.startOperation(getJobExecutionId(), "InputModelChunkReader.read");
         try {

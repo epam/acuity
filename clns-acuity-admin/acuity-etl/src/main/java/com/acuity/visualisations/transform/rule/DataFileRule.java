@@ -24,7 +24,6 @@
 
 package com.acuity.visualisations.transform.rule;
 
-import com.acuity.visualisations.mapping.entity.FileStandard;
 
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
@@ -62,7 +61,6 @@ public class DataFileRule
     protected List<EntityRule> entity;
     @XmlAttribute
     protected FileType type;
-    private FileStandard standard;
 
     /**
      * Gets the value of the entity property.
@@ -113,13 +111,5 @@ public class DataFileRule
      */
     public void setType(FileType value) {
         this.type = value;
-    }
-
-    public void setStandard(FileStandard standard) {
-        this.standard = standard;
-    }
-
-    public FileStandard getStandard() {
-        return standard;
     }
 }

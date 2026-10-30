@@ -18,7 +18,6 @@ package com.acuity.visualisations.batch.holders;
 
 import com.acuity.visualisations.batch.holders.configuration.ConfigurationDataHolder;
 import com.acuity.visualisations.batch.holders.configuration.ConfigurationUtilHolder;
-import com.acuity.visualisations.batch.holders.configuration.SdtmDataHolder;
 import com.acuity.visualisations.batch.processor.DataAlertReport;
 import com.acuity.visualisations.batch.processor.DataCommonReport;
 import com.acuity.visualisations.batch.processor.ExceptionReport;
@@ -36,7 +35,6 @@ public class HolderResolver implements ApplicationContextAware {
     private ApplicationContext applicationContext;
 
     private ConcurrentMap<Long, CntlinDataHolder> cntlinHolders = new ConcurrentHashMap<Long, CntlinDataHolder>();
-    private ConcurrentMap<Long, SdtmDataHolder> sdtmSupplementalDataHolders = new ConcurrentHashMap<>();
     private ConcurrentMap<Long, ConfigurationDataHolder> configurationHolders = new ConcurrentHashMap<Long, ConfigurationDataHolder>();
     private ConcurrentMap<Long, ConfigurationUtilHolder> configurationUtilHolders = new ConcurrentHashMap<Long, ConfigurationUtilHolder>();
     private ConcurrentMap<Long, EOFEventHolder> eofEventHolders = new ConcurrentHashMap<Long, EOFEventHolder>();
@@ -59,19 +57,8 @@ public class HolderResolver implements ApplicationContextAware {
         return cntlinHolders.get(jobExecutionId);
     }
 
-    public SdtmDataHolder getSdtmSupplementalDataHolder(Long jobExecutionId) {
-        if (!sdtmSupplementalDataHolders.containsKey(jobExecutionId)) {
-            sdtmSupplementalDataHolders.put(jobExecutionId, applicationContext.getBean(SdtmDataHolder.class));
-        }
-        return sdtmSupplementalDataHolders.get(jobExecutionId);
-    }
-
     public void removeCntlinDataHolder(Long jobExecutionId) {
         cntlinHolders.remove(jobExecutionId);
-    }
-
-    public void removeSdtmSupplementalDataHolder(Long jobExecutionId) {
-        sdtmSupplementalDataHolders.remove(jobExecutionId);
     }
 
     public ConfigurationUtilHolder getConfigurationUtilHolder(Long jobExecutionId) {

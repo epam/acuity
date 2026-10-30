@@ -100,7 +100,7 @@ public class SmbSasMultiResourceItemReader extends SkippedFilesAndHoldersAware i
             List<DataFileRule> dataFileRules = ((StudyRule) configurationUtil.getStudy()).getFile();
 
             for (DataFileRule dataFileRule : dataFileRules) {
-                allResources.add(new ResourceInfoFile(dataFileRule.getName(), dataFileRule.getStandard()));
+                allResources.add(new ResourceInfoFile(dataFileRule.getName()));
             }
             executionProfiler.stopOperation(getJobExecutionId(), "getSourceFiles");
             resources = allResources.toArray(new ResourceInfo[allResources.size()]);

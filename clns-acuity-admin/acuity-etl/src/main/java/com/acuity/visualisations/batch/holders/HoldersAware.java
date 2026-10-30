@@ -19,7 +19,6 @@ package com.acuity.visualisations.batch.holders;
 import com.acuity.visualisations.batch.holders.configuration.ConfigurationDataHolder;
 import com.acuity.visualisations.batch.holders.configuration.ConfigurationUtil;
 import com.acuity.visualisations.batch.holders.configuration.ConfigurationUtilHolder;
-import com.acuity.visualisations.batch.holders.configuration.SdtmDataHolder;
 import com.acuity.visualisations.batch.holders.configuration.StaticConfigurationHolder;
 import com.acuity.visualisations.batch.holders.configuration.StudyMappingConfigurationHolder;
 import com.acuity.visualisations.batch.holders.configuration.StudyRuntimeConfigurationHolder;
@@ -42,7 +41,6 @@ public abstract class HoldersAware {
     private ConfigurationDataHolder configurationDataHolder;
     private ConfigurationUtilHolder configurationUtilFactory;
     private CntlinDataHolder cntlinDataHolder;
-    private SdtmDataHolder sdtmDataHolder;
 
     private EOFEventHolder eofEventHolder;
     private HashValuesHolder hashValuesHolder;
@@ -199,13 +197,6 @@ public abstract class HoldersAware {
         return cntlinDataHolder;
     }
 
-    protected SdtmDataHolder getSdtmDataHolder() {
-        if (sdtmDataHolder == null) {
-            sdtmDataHolder = holderResolver.getSdtmSupplementalDataHolder(jobExecutionId);
-        }
-        return sdtmDataHolder;
-    }
-
     protected EOFEventHolder getEOFEventHolder() {
         if (eofEventHolder == null) {
             eofEventHolder = holderResolver.getEOFEventHolder(jobExecutionId);
@@ -249,7 +240,6 @@ public abstract class HoldersAware {
     protected void removeAllHolders() {
         holderResolver.removeConfigurationUtilHolder(jobExecutionId);
         holderResolver.removeCntlinDataHolder(jobExecutionId);
-        holderResolver.removeSdtmSupplementalDataHolder(jobExecutionId);
         holderResolver.removeConfigurationDataHolder(jobExecutionId);
         holderResolver.removeEOFEventHolder(jobExecutionId);
         holderResolver.removeHashValuesHolder(jobExecutionId);

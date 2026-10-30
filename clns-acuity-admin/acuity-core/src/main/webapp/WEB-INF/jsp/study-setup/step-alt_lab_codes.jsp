@@ -19,7 +19,7 @@
 <div>
     Please select a decoding standard:
     <select id="altLabCodesSelect">
-        <option value="azraw" selected>Use AZ RAW values</option>
+        <option value="raw" selected>Use RAW values</option>
         <option value="custom">Use Custom values</option>
     </select>
 </div>

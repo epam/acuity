@@ -57,6 +57,10 @@ history. Link to detailed docs instead of duplicating them.
   `V1789007000`; studies are treated as always confirmed, so
   `validateStudyEnabled` needs only `studyCompleted` + enabled file rules.
   `study-setup-finish` no longer takes `confirm` (the UI may still send it).
+- `MAP_FILE_RULE.MFR_FILE_STANDARD` and the `FileStandard` enum were removed
+  (`V1789008000`) together with all SDTM ingestion code (the SDTM path was
+  legacy and unused). Mapping CSV import ignores a legacy `file_standard`
+  column; export no longer writes it.
 - Write migrations to be safe to re-run (`IF NOT EXISTS`, forward-only
   `setval`) in case they need renumbering later.
 - Deploy/run migrations before starting app images that depend on them, e.g.
