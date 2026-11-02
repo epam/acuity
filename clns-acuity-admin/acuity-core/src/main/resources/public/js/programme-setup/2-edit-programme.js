@@ -91,7 +91,7 @@ var EditProgrammeStep = function (programmeWizard) {
     this.updateProject = function (toStep) {
         scope.fillProgrammeParams();
         var sendData = scope.project;
-        ajaxModule.sendAjaxRequest("programme-setup/programme-edit", JSON.stringify(sendData), {showDialog: false}, function (result) {
+        ajaxModule.sendAjaxRequest("program-setup/programme-edit", JSON.stringify(sendData), {showDialog: false}, function (result) {
             if (toStep == scope.programmeWizard.PROJECT_SEARCH_STEP_INX) {
                 programmeWizard.searchProgrammeStep.searchProjects(true);
             }
@@ -178,7 +178,7 @@ EditProgrammeStep.prototype = {
         }
         if (this.programmeWizard.addedProgrammeMode) {
             scope.fillProgrammeParams();
-            ajaxModule.sendAjaxRequestSimpleParams("programme-setup/programme-setup-exist", {
+            ajaxModule.sendAjaxRequestSimpleParams("program-setup/programme-setup-exist", {
                 'drugId': scope.project.drugId
             }, {
                 showDialog: true
@@ -186,7 +186,7 @@ EditProgrammeStep.prototype = {
                 var programmeAlreadyExist = result.obj;
                 var callBack = function (toStep) {
                     var sendData = scope.project;
-                    ajaxModule.sendAjaxRequest("programme-setup/programme-setup-add-programme", JSON.stringify(sendData),
+                    ajaxModule.sendAjaxRequest("program-setup/programme-setup-add-programme", JSON.stringify(sendData),
                         {showDialog: true}, function (result) {
                             scope.canNextFlag = true;
                             scope.programmeWizard.addedProgrammeMode = false;
@@ -205,7 +205,7 @@ EditProgrammeStep.prototype = {
                     var message = "A drug program " + scope.project.drugId + " already exists, do you wish " +
                         "to continue to edit the setup of that drug program?";
                     wizardCommonModule.showYesNoDialog("ACUITY", message, function () {
-                        ajaxModule.sendAjaxRequestSimpleParams("programme-setup/programme-setup-revert-programme",
+                        ajaxModule.sendAjaxRequestSimpleParams("program-setup/programme-setup-revert-programme",
                             {'drugId': scope.project.drugId}, {showDialog: true}, function (result) {
                                 scope.canNextFlag = true;
                                 scope.programmeWizard.addedProgrammeMode = false;

@@ -52,7 +52,7 @@ var SummaryProgrammeStep = function (programmeWizard) {
 SummaryProgrammeStep.prototype = {
     reloadProjectSummaryData: function () {
         var scope = this;
-        ajaxModule.sendAjaxRequestSimpleParams("programme-setup/programme-get-summary", {}, {showDialog: false}, function (result) {
+        ajaxModule.sendAjaxRequestSimpleParams("program-setup/programme-get-summary", {}, {showDialog: false}, function (result) {
             scope.fillSummaryStep(result);
         });
     }

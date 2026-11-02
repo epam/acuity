@@ -220,7 +220,7 @@ public class AdminController extends AbstractController {
     public String editProject(@RequestParam("projectId") String projectId, RedirectAttributes redirectAttributes) throws AdminException {
         try {
             redirectAttributes.addFlashAttribute("projectId", projectId);
-            return "redirect:/programme-setup";
+            return "redirect:/program-setup";
         } catch (Exception e) {
             throw new AdminException("Exception caught when retrieving project information: ", e);
         }

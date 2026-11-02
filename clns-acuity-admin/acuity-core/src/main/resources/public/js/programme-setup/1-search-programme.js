@@ -70,15 +70,15 @@ var SearchProgrammeStep = function (programmeWizard) {
     };
 
     this.ajaxAsyncSearchProjectsByText = function (text, updateResults) {
-        ajaxModule.sendQueryAsyncAjaxRequest("programme-setup/programme-run-search", "programme-setup/programme-query-status", "programme-setup/programme-cancel-query", {showDialog: true}, {query: text}, function () {
-            ajaxModule.sendAjaxRequestSimpleParams("programme-setup/programme-get-search-result", {query: text}, {showDialog: true}, function (result) {
+        ajaxModule.sendQueryAsyncAjaxRequest("program-setup/programme-run-search", "program-setup/programme-query-status", "program-setup/programme-cancel-query", {showDialog: true}, {query: text}, function () {
+            ajaxModule.sendAjaxRequestSimpleParams("program-setup/programme-get-search-result", {query: text}, {showDialog: true}, function (result) {
                 onSearchCompleted(result, updateResults);
             });
         });
     };
 
     this.ajaxSearchProjectsByText = function (text, updateResults) {
-        ajaxModule.sendAjaxRequestSimpleParams("programme-setup/programme-search", {query: text}, {showDialog: true}, function (result) {
+        ajaxModule.sendAjaxRequestSimpleParams("program-setup/programme-search", {query: text}, {showDialog: true}, function (result) {
             onSearchCompleted(result, updateResults);
         });
     };
@@ -234,7 +234,7 @@ SearchProgrammeStep.prototype = {
         } else {
             $('#smartBtnNext').addClass("disabled");
         }
-        ajaxModule.sendAjaxRequestWithoutParam("programme-setup/programme-total-count", {showDialog: false}, function (result) {
+        ajaxModule.sendAjaxRequestWithoutParam("program-setup/programme-total-count", {showDialog: false}, function (result) {
             var linkAllProjects = $("#link-all-projects");
             linkAllProjects.text("List All(" + result + ")");
         });
@@ -251,7 +251,7 @@ SearchProgrammeStep.prototype = {
             return true;
         }
 
-        ajaxModule.sendAjaxRequestSimpleParams("programme-setup/programme-select", {drugProgramme: this.selectedDrugProgramme}, {showDialog: true}, function (result) {
+        ajaxModule.sendAjaxRequestSimpleParams("program-setup/programme-select", {drugProgramme: this.selectedDrugProgramme}, {showDialog: true}, function (result) {
             scope.programmeWizard.loadProjectWizard(result, stepIndex);
         });
         return false;

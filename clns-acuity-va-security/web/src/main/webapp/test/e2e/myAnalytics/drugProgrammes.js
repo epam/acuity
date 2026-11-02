@@ -37,7 +37,7 @@ describe('Drug programs page tests', function () {
             element(by.partialLinkText('Drug programs')).click();
             portal.pause();
             portal.pause();
-            expect(portal.getCurrentUrl()).toContain('/drug-programmes');
+            expect(portal.getCurrentUrl()).toContain('/drug-programs');
         })
     });
 
@@ -237,7 +237,7 @@ describe('Drug programs page tests', function () {
                     //Checking the setup link
                     var outerHtml = element(by.partialLinkText('Setup')).getOuterHtml();
                     //expect(outerHtml).toContain(portal.ptor.baseUrl); //disabled until complete integration
-                    expect(outerHtml).toContain('/programme-setup?projectId=');
+                    expect(outerHtml).toContain('/program-setup?projectId=');
 
                     //Veryfiing that there is no duplicate links
                     expect(previousHtmls.indexOf(outerHtml)).toEqual(-1);
