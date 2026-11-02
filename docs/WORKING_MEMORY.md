@@ -12,8 +12,9 @@ history. Link to detailed docs instead of duplicating them.
   app/service. Main backend work happens in `clns-acuity-admin/`,
   `clns-acuity-vahub/`, `clns-acuity-va-security/` and `docker/`.
 - `clns-acuity-flyway/` holds the DB migrations used by the Docker images.
-- `infrastructure/` does not contain the cloud deployment setup; runtime
-  topology issues need evidence from AWS/ECS or the infra/deployment repo.
+- `infrastructure/terraform/{bootstrap,acuity}` holds the AWS PoC stack
+  (ECS Fargate + RDS); overview diagram in `infrastructure/README.md`.
+  Live runtime state still needs evidence from AWS itself.
 - Full resolved dependency lists: `docs/DEPENDENCIES.md`.
 
 ## Tech Stack
