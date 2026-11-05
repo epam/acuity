@@ -95,7 +95,7 @@ var EditStudyStep = function (studyWizard) {
                 }
             },
             errorPlacement: function (error, element) {
-                error.appendTo(element.parent("td").next("td"));
+                error.insertAfter(element);
             },
             success: function (label, element) {
             },
@@ -243,6 +243,13 @@ EditStudyStep.prototype = {
 
     onNextStep: function (toStep) {
         var scope = this;
+
+        // Validate Drug ID and Dataset ID before proceeding
+        var editForm = $("#form-edit-study");
+        if (editForm.length && !editForm.valid()) {
+            return false;
+        }
+
         if (scope.isPrimarySourceValid) {
             return callback();
         }
