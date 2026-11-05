@@ -52,7 +52,7 @@ export class CohortEditorComponent extends AbstractPluginComponent implements On
 
     sharedWith: UserVO[] = [];
 
-    @ViewChild(AvailableCohortsComponent, { static: false })
+    @ViewChild(AvailableCohortsComponent, { static: true })
     availableCohortsComponent: AvailableCohortsComponent;
 
     @ViewChild(FilterListComponent, { static: false })
