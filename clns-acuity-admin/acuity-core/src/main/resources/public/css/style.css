@@ -6,6 +6,10 @@
 	width: 100%
 }
 
+#schedulerToolbar {
+	float: left;
+}
+
 #header {
 	height: 80px
 }
