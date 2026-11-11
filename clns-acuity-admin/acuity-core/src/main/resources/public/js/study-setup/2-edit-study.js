@@ -265,8 +265,8 @@ EditStudyStep.prototype = {
 
     onNextStep: function (toStep) {
         var scope = this;
-
-        // Validate form
+        // Validate Drug ID and Dataset ID before proceeding
+     main
         var editForm = $("#form-edit-study");
         if (editForm.length && !editForm.valid()) {
             return false;
