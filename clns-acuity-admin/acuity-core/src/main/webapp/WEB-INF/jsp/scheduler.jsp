@@ -49,6 +49,9 @@
     </script>
 </head>
 <body>
+<div id="schedulerToolbar">
+    <button id="backToAdminBtn" type="button" onclick="window.location.href = 'admin';">Back to Acuity Admin</button>
+</div>
 <%@ include file="/WEB-INF/jsp/header.jsp" %>
 <div id="schedulingTableResult">
     <table id="schedulingTable"></table>
