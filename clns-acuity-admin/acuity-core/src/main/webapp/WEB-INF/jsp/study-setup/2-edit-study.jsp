@@ -32,7 +32,7 @@
             <tr>
                 <td class="tdf">Drug ID</td>
                 <td><input type="text" id="studyDrugId" name="studyDrugId" disabled/>
-                    <select type="text" class="enabled"
+                    <select type="text"
                             id="studyDrugIdSelect"
                             name="studyDrugIdSelect" maxlength="1">
                     </select></td>
@@ -42,7 +42,7 @@
             <tr>
                 <td class="tdf">Dataset ID</td>
                 <td><input type="text"
-                           id="studyCode" name="studyCode" disabled required/></td>
+                           id="studyCode" name="studyCode" disabled/></td>
                 <td><a href="#" class="help" title='<%= HelpController.getHelpText("2-edit-study", "studyID") %>'>?</a>
                 </td>
             </tr>
@@ -56,7 +56,7 @@
             </tr>
             <tr>
                 <td class="tdf">Clinical study code</td>
-                <td><input type="text" class="enabled" required
+                <td><input type="text"
                            id="clinicalStudyId" name="clinicalStudyId"
                            disabled/></td>
                 <td><a href="#" class="help"
