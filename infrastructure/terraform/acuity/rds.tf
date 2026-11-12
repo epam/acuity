@@ -33,8 +33,8 @@ module "rds" {
   create_db_option_group = false
   parameters = [
     { name = "password_encryption", value = "md5", apply_method = "immediate" },
-    # SSL not enforced: image JDBC URLs carry no ssl=.
-    { name = "rds.force_ssl", value = "0", apply_method = "immediate" },
+    # SSL enforced: JDBC URLs in ecs.tf use sslmode=require (no cert verification).
+    { name = "rds.force_ssl", value = "1", apply_method = "immediate" },
   ]
 
   backup_retention_period = 7
