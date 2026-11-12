@@ -5,7 +5,9 @@ data "aws_availability_zones" "available" {
 locals {
   azs            = slice(data.aws_availability_zones.available.names, 0, 2)
   public_subnets = ["10.0.0.0/24", "10.0.1.0/24"]
-  app_port       = 8000 # va-hub-ui, va-hub and admin all listen here
+  # No route to the internet (no IGW/NAT route); RDS is reached in-VPC via sg_rds only.
+  database_subnets = ["10.0.10.0/24", "10.0.11.0/24"]
+  app_port         = 8000 # va-hub-ui, va-hub and admin all listen here
 
   egress_all = {
     all_ipv4 = {
@@ -22,9 +24,12 @@ module "vpc" {
   name = "${local.name_prefix}-vpc"
   cidr = "10.0.0.0/16"
 
-  azs                     = local.azs
-  public_subnets          = local.public_subnets
-  map_public_ip_on_launch = true
+  azs              = local.azs
+  public_subnets   = local.public_subnets
+  database_subnets = local.database_subnets
+  # The rds module creates its own subnet group.
+  create_database_subnet_group = false
+  map_public_ip_on_launch      = true
 
   enable_nat_gateway = false
 
