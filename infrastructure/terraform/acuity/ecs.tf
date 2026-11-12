@@ -105,7 +105,7 @@ resource "aws_ecs_task_definition" "app" {
       environment = [
         for k, v in merge(local.app_common_env, {
           POSTGRES_USER = "acuity"
-          POSTGRES_URL  = "jdbc:postgresql://${module.rds.db_instance_address}:5432/acuity_db"
+          POSTGRES_URL  = "jdbc:postgresql://${module.rds.db_instance_address}:5432/acuity_db?sslmode=require"
           # MaxRAMPercentage needs a float ("=60" is rejected).
           # Explicit against base-image changes.
           JAVA_OPTIONS = join(" ", [
@@ -143,7 +143,7 @@ resource "aws_ecs_task_definition" "app" {
 
       # -1: other services' sidecars wait on the schema-history lock instead of erroring.
       environment = [
-        { name = "FLYWAY_URL", value = "jdbc:postgresql://${module.rds.db_instance_address}:5432/acuity_db" },
+        { name = "FLYWAY_URL", value = "jdbc:postgresql://${module.rds.db_instance_address}:5432/acuity_db?sslmode=require" },
         { name = "FLYWAY_USER", value = "dbadmin" },
         { name = "FLYWAY_LOCK_RETRY_COUNT", value = "-1" },
       ]
