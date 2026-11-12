@@ -41,6 +41,7 @@
     <![endif]-->
 
     <script type="text/javascript" src="js/admin.js?v1"></script>
+    <script type="text/javascript" src="js/manage-services.js"></script>
     <script>
         projectsInAcuity = <%= request.getAttribute("projectsInAcuity") %>;
         webappUrl =
@@ -74,14 +75,17 @@
     </div>
 
     <ul class="nav nav-tabs">
-        <li class="active"><a href="#">Summary</a></li>
+        <li class="active"><a href="#summaryTab" data-toggle="tab">Summary</a></li>
         <li><a href="/app#/audit">History</a></li>
         <li><a href="/app#/upload-summary">Upload summary</a></li>
         <sec:authorize access="@permissionHelper.canAccessSchedulerPage()">
              <li><a href="/scheduler">Scheduler</a></li>
         </sec:authorize>
+        <li><a href="#manageServicesTab" data-toggle="tab">Manage Services</a></li>
     </ul>
 
+    <div class="tab-content">
+    <div class="tab-pane active" id="summaryTab">
 
     <div class="row" style="margin-top: 20px;">
 
@@ -199,6 +203,88 @@
 
             </div>
         </div>
+    </div>
+
+    </div>
+
+    <div class="tab-pane" id="manageServicesTab">
+        <div class="row" style="margin-top: 20px;">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Services</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="panel panel-primary service-block" data-service-id="1">
+                        <div class="panel-heading">
+                            <h3 class="panel-title service-heading"></h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <label>Title</label>
+                                <input type="text" class="form-control service-title"/>
+                            </div>
+                            <div class="form-group">
+                                <label>Link</label>
+                                <input type="text" class="form-control service-link"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-primary service-block" data-service-id="2">
+                        <div class="panel-heading">
+                            <h3 class="panel-title service-heading"></h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <label>Title</label>
+                                <input type="text" class="form-control service-title"/>
+                            </div>
+                            <div class="form-group">
+                                <label>Link</label>
+                                <input type="text" class="form-control service-link"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-primary service-block" data-service-id="3">
+                        <div class="panel-heading">
+                            <h3 class="panel-title service-heading"></h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <label>Title</label>
+                                <input type="text" class="form-control service-title"/>
+                            </div>
+                            <div class="form-group">
+                                <label>Link</label>
+                                <input type="text" class="form-control service-link"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix">
+                        <button id="saveServicesBtn" type="button" class="btn btn-primary pull-right" disabled>Save
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Feedback</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label for="feedbackEmail">Email</label>
+                        <input id="feedbackEmail" type="email" class="form-control"/>
+                    </div>
+                    <div class="clearfix">
+                        <button id="saveFeedbackBtn" type="button" class="btn btn-primary pull-right" disabled>Save
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     </div>
 </body>
 </html>
