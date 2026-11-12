@@ -32,7 +32,7 @@
             <tr>
                 <td class="tdf">Drug ID</td>
                 <td><input type="text" id="studyDrugId" name="studyDrugId" disabled/>
-                    <select type="text" class="enabled"
+                    <select type="text"
                             id="studyDrugIdSelect"
                             name="studyDrugIdSelect" maxlength="1">
                     </select></td>
