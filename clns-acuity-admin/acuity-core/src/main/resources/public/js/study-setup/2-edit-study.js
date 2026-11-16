@@ -48,9 +48,17 @@ var EditStudyStep = function (studyWizard) {
             if ($(this).hasClass("open")) {
                 $(this).removeClass("open");
                 $(".enabled").attr('disabled', 'disabled');
+                // Keep studyCode and clinicalStudyId disabled
+                $("#studyCode").attr('disabled', 'disabled');
+                $("#clinicalStudyId").attr('disabled', 'disabled');
             } else {
                 $(this).addClass("open");
                 $(".enabled").removeAttr('disabled', 'disabled');
+                // Keep studyCode and clinicalStudyId disabled unless in add mode
+                if (!scope.studyWizard || !scope.studyWizard.addedStudyMode) {
+                    $("#studyCode").attr('disabled', 'disabled');
+                    $("#clinicalStudyId").attr('disabled', 'disabled');
+                }
             }
 
         });
@@ -92,6 +100,12 @@ var EditStudyStep = function (studyWizard) {
             rules: {
                 studyEndDate: {
                     dpDate: true
+                },
+                studyCode: {
+                    required: true
+                },
+                clinicalStudyId: {
+                    required: true
                 }
             },
             errorPlacement: function (error, element) {
@@ -103,12 +117,12 @@ var EditStudyStep = function (studyWizard) {
                 studyEndDate: "<< Required field",
                 studyPhaseType: "<< Required field",
                 studyName: "<< Required field",
-                clinicalStudyId: "<< Required field",
                 clinicalStudyName: "<< Required field",
                 studyType: "<< Required field",
                 studyDeliveryModel: "<< Required field",
                 studyDrugId: "<< Required field",
-                studyCode: "<< Required field"
+                studyCode: "<< Required field",
+                clinicalStudyId: "<< Required field"
             }
         });
     };
@@ -140,8 +154,10 @@ var EditStudyStep = function (studyWizard) {
                 $(this).removeAttr("disabled");
             }
         });
+        // Enable studyCode and clinicalStudyId for new dataset mode
+        $("#studyCode").removeAttr("disabled");
+        $("#clinicalStudyId").removeAttr("disabled");
         $('#' + scope.blockingId).addClass("open");
-        $('#studyCode').removeAttr("disabled");
         $('#studyRegulatory option').attr('selected', 'false');
         $('#studyRegulatory option[value="true"]').attr('selected', 'selected');
         /*
@@ -216,7 +232,10 @@ var EditStudyStep = function (studyWizard) {
         });
 
         $("label[for='studyCode']").hide();
+        $("label[for='clinicalStudyId']").hide();
+        // Always disable studyCode and clinicalStudyId when closing padlock
         $("#studyCode").attr('disabled', 'disabled');
+        $("#clinicalStudyId").attr('disabled', 'disabled');
     };
 
     init();
@@ -237,6 +256,9 @@ EditStudyStep.prototype = {
             wizardCommonModule.setHeader(scope.studyWizard.workflow.selectedStudy.studyCode + " Dataset Parameters");
             $('#studyDrugId').show();
             $('#studyDrugIdSelect').hide();
+            // Ensure studyCode and clinicalStudyId are disabled when editing existing study
+            $('#studyCode').attr('disabled', 'disabled');
+            $('#clinicalStudyId').attr('disabled', 'disabled');
         }
         this.studyWizard.recalculateSplit(this.studyWizard.STUDY_EDIT_STEP_INX);
     },
@@ -244,7 +266,7 @@ EditStudyStep.prototype = {
     onNextStep: function (toStep) {
         var scope = this;
 
-        // Validate Drug ID and Dataset ID before proceeding
+        // Validate form
         var editForm = $("#form-edit-study");
         if (editForm.length && !editForm.valid()) {
             return false;
@@ -286,7 +308,9 @@ EditStudyStep.prototype = {
                             $('#studyDrugIdSelect').hide();
                             $('#studyDrugId').show();
                             $('#studyDrugId').val(drugValue);
+                            // Disable studyCode and clinicalStudyId after creation
                             $('#studyCode').attr('disabled', 'disabled');
+                            $('#clinicalStudyId').attr('disabled', 'disabled');
                             scope.studyWizard.loadStudyWizard(result, toStep);
                         });
                     };
@@ -304,7 +328,9 @@ EditStudyStep.prototype = {
                                     $('#studyDrugIdSelect').hide();
                                     $('#studyDrugId').show();
                                     $('#studyDrugId').val(drugValue);
+                                    // Disable studyCode and clinicalStudyId when loading existing study
                                     $('#studyCode').attr('disabled', 'disabled');
+                                    $('#clinicalStudyId').attr('disabled', 'disabled');
                                     scope.studyWizard.loadStudyWizard(result, toStep);
                                 }
                             });
