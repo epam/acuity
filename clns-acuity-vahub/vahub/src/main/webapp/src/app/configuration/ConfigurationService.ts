@@ -22,27 +22,45 @@ import ConfigurationResponse = Request.ConfigurationResponse;
 import BrandingProperties = Request.BrandingProperties;
 import QnaMakerProperties = Request.QnaMakerProperties;
 
+/** Service block shown on the home page: title and URL managed in the admin application. */
+export interface ServiceLinkItem {
+    id: number;
+    title: string;
+    url: string;
+    sortOrder: number;
+}
+
+/** Additional properties for the configuration response: home page content from the database. */
+export interface ConfigurationResponseExtended {
+    serviceLinks?: ServiceLinkItem[];
+    feedbackEmail?: string;
+}
+
 @Injectable()
 export class ConfigurationService {
     public brandingProperties: BrandingProperties;
     public cbioportalUrl: string;
     public pathToStatic: string;
     public qnaMakerProperties: QnaMakerProperties;
+    public serviceLinks: ServiceLinkItem[] = [];
+    public feedbackEmail: string;
 
     constructor(private http: HttpClient) {
     }
 
     getConfigurationProperties(): Observable<ConfigurationResponse> {
-        return this.http.get(getServerPath('configuration', 'properties')).map((res: ConfigurationResponse) => {
+        return this.http.get(getServerPath('configuration', 'properties')).map((res: any) => {
             this.setProperties(res);
             return res;
         });
     }
 
-    setProperties(properties: ConfigurationResponse): void {
+    setProperties(properties: any): void {
         this.brandingProperties = properties.branding;
         this.pathToStatic = this.brandingProperties.pathToImages || 'images';
         this.cbioportalUrl = properties.cbioportalUrl;
         this.qnaMakerProperties = properties.qnaMaker;
+        this.serviceLinks = properties.serviceLinks || [];
+        this.feedbackEmail = properties.feedbackEmail || '';
     }
 }

@@ -56,8 +56,8 @@
                     <span class="nav-item">Best Practice</span>
                 </a>
             </li>
-            <li id="introB4" *ngIf="support">
-                <a href="mailto:{{support.feedback}}?subject=ACUITY_Feedback"
+            <li id="introB4">
+                <a [attr.href]="'mailto:' + feedbackEmail + '?subject=ACUITY_Feedback'"
                    data-toggle="tooltip" data-placement="bottom"
                    [title]="'Provide feedback to the ACUITY development team'">
                     <span class="glyphicon glyphicon-envelope nav-img"></span>

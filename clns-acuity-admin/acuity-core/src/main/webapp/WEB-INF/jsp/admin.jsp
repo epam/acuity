@@ -214,9 +214,9 @@
                     <h3 class="panel-title">Services</h3>
                 </div>
                 <div class="panel-body">
-                    <div class="panel panel-primary service-block" data-service-id="1">
+                    <div class="panel panel-default service-block" data-service-id="1">
                         <div class="panel-heading">
-                            <h3 class="panel-title service-heading"></h3>
+                            <h3 class="panel-title service-heading">Omics Services</h3>
                         </div>
                         <div class="panel-body">
                             <div class="form-group">
@@ -229,9 +229,9 @@
                             </div>
                         </div>
                     </div>
-                    <div class="panel panel-primary service-block" data-service-id="2">
+                    <div class="panel panel-default service-block" data-service-id="2">
                         <div class="panel-heading">
-                            <h3 class="panel-title service-heading"></h3>
+                            <h3 class="panel-title service-heading">Patient Services</h3>
                         </div>
                         <div class="panel-body">
                             <div class="form-group">
@@ -244,9 +244,9 @@
                             </div>
                         </div>
                     </div>
-                    <div class="panel panel-primary service-block" data-service-id="3">
+                    <div class="panel panel-default service-block" data-service-id="3">
                         <div class="panel-heading">
-                            <h3 class="panel-title service-heading"></h3>
+                            <h3 class="panel-title service-heading">AI and Machine Learning Services</h3>
                         </div>
                         <div class="panel-body">
                             <div class="form-group">

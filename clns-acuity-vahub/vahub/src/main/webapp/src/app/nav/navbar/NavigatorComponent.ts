@@ -72,6 +72,8 @@ export class NavigatorComponent implements OnInit, OnDestroy {
 
     public support: { [index: string]: string };
     public pathToImages: string;
+    public feedbackEmail: string;
+    private readonly DEFAULT_EMAIL = 'support@digitalecmt.org';
 
     constructor(public sessionEventService: SessionEventService,
                 private studyService: StudyService,
@@ -86,6 +88,7 @@ export class NavigatorComponent implements OnInit, OnDestroy {
         this.disableShowAllButton = true;
         this.support = configurationService.brandingProperties.support;
         this.pathToImages = configurationService.pathToStatic;
+        this.feedbackEmail = configurationService.feedbackEmail || this.DEFAULT_EMAIL;
     }
 
     ngOnDestroy(): void {
@@ -120,6 +123,11 @@ export class NavigatorComponent implements OnInit, OnDestroy {
             this.userName = userDetails.fullName;
         });
         this.sessionEventService.addSubscription(this.subKey + 'studySelection', this.studySelectionSubscription);
+
+        // Subscribe to configuration loading to update email when ready
+        this.configurationService.getConfigurationProperties().subscribe(() => {
+            this.feedbackEmail = this.configurationService.feedbackEmail || this.DEFAULT_EMAIL;
+        });
     }
 
     /**

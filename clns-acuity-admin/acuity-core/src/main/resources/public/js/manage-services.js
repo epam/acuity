@@ -1,164 +1,155 @@
 var ManageServices = function () {
-    // TODO: replace the "X" placeholders with real endpoints when the BE is ready
-    var LOAD_URL = "X";
-    var SAVE_SERVICES_URL = "X";
-    var SAVE_FEEDBACK_URL = "X";
+    // Endpoint of the service block (ServiceLinkController): GET loads, POST saves all blocks at once
+    var SERVICE_LINKS_URL = "/service-links";
 
-    var FEEDBACK_ID = "feedback";
-    var DEFAULT_SERVICES = {
-        "1": "‘Omics’ Services",
-        "2": "Patient Services",
-        "3": "AI and Machine Learning Services"
-    };
+    // The page always shows these three blocks, in this order (sortOrder 1..3)
+    var DEFAULT_TITLES = [
+        "\u2018Omics\u2019 Services",
+        "Patient Services",
+        "AI and Machine Learning Services"
+    ];
 
-    var $saveServicesBtn = $("#saveServicesBtn");
-    var $saveFeedbackBtn = $("#saveFeedbackBtn");
-    var $feedbackEmail = $("#feedbackEmail");
+    var $saveBtn = $("#saveServicesBtn");
+    var $blocks = $(".service-block");
 
-    // last known (saved) values, used to detect changes
-    var savedServices = {};
-    var savedEmail = "";
+    // last saved state, used to detect changes
+    var savedServices = [];
 
     var init = function () {
-        // fill all defaults first: rendering a single service recalculates the Save button state for all of them
-        _.forEach(DEFAULT_SERVICES, function (title, id) {
-            savedServices[id] = {title: title, link: ""};
-        });
-        _.forEach(DEFAULT_SERVICES, function (title, id) {
-            renderService(id);
-        });
-        renderFeedback();
-
-        $(".service-block").on("input", "input", updateSaveServicesBtn);
-        $feedbackEmail.on("input", updateSaveFeedbackBtn);
-        $saveServicesBtn.on("click", saveServices);
-        $saveFeedbackBtn.on("click", saveFeedback);
-
-        $('a[data-toggle="tab"]').on("shown.bs.tab", function (e) {
-            $("#adminSearch").closest(".col-md-4").toggle($(e.target).attr("href") === "#summaryTab");
-        });
-
+        $saveBtn.on("click", saveServices);
+        $blocks.on("input", ".service-title, .service-link", updateSaveBtn);
         loadData();
     };
 
+    // Fills the three blocks from the DB. Missing rows fall back to the default title and an empty link.
     var loadData = function () {
-        // On failure (e.g. BE is not ready) the defaults are kept, so no error dialog is shown.
         $.ajax({
-            url: LOAD_URL,
+            url: SERVICE_LINKS_URL,
             type: "GET",
             dataType: "json",
             headers: {"X-Requested-With": "XMLHttpRequest"}
         }).done(function (data) {
-            var items = _.isArray(data) ? data : [];
-            _.forEach(DEFAULT_SERVICES, function (defaultTitle, id) {
-                var item = _.find(items, function (i) {
-                    return String(i.id) === id;
-                });
-                if (item) {
-                    savedServices[id] = {title: item.title || "", link: item.link || ""};
-                    renderService(id);
-                }
+            var rows = _.isArray(data) ? data : [];
+            savedServices = _.map(DEFAULT_TITLES, function (defaultTitle, index) {
+                var row = rows[index] || {};
+                return {
+                    dbId: row.id || null,
+                    title: row.title || defaultTitle,
+                    url: row.url || "",
+                    sortOrder: index + 1
+                };
             });
-            var feedback = _.find(items, function (i) {
-                return i.id === FEEDBACK_ID;
-            });
-            if (feedback) {
-                savedEmail = feedback.email || "";
-                renderFeedback();
-            }
+            render();
+        }).fail(handleError);
+    };
+
+    var render = function () {
+        _.forEach(savedServices, function (service, index) {
+            var $block = $blocks.eq(index);
+            $block.find(".service-heading").text(service.title);
+            $block.find(".service-title").val(service.title);
+            $block.find(".service-link").val(service.url);
+        });
+        updateSaveBtn();
+    };
+
+    // Reads all three blocks in display order
+    var readServicesFromPage = function () {
+        return _.map(savedServices, function (service, index) {
+            var $block = $blocks.eq(index);
+            return {
+                id: service.dbId,
+                title: $block.find(".service-title").val(),
+                url: $block.find(".service-link").val(),
+                sortOrder: index + 1
+            };
         });
     };
 
-    var getServiceBlock = function (id) {
-        return $('.service-block[data-service-id="' + id + '"]');
-    };
-
-    var renderService = function (id) {
-        var $block = getServiceBlock(id);
-        $block.find(".service-title").val(savedServices[id].title);
-        $block.find(".service-link").val(savedServices[id].link);
-        updateServiceHeading(id);
-        updateSaveServicesBtn();
-    };
-
-    var renderFeedback = function () {
-        $feedbackEmail.val(savedEmail);
-        updateSaveFeedbackBtn();
-    };
-
-    // the heading shows the last saved title, it does not follow the Title input while typing
-    var updateServiceHeading = function (id) {
-        getServiceBlock(id).find(".service-heading").text(savedServices[id].title);
-    };
-
-    var readService = function ($block) {
-        return {
-            id: $block.data("service-id"),
-            title: $block.find(".service-title").val(),
-            link: $block.find(".service-link").val()
-        };
-    };
-
-    var getChangedServices = function () {
-        var changed = [];
-        $(".service-block").each(function () {
-            var service = readService($(this));
-            var saved = savedServices[service.id];
-            if (service.title !== saved.title || service.link !== saved.link) {
-                changed.push(service);
-            }
-        });
-        return changed;
-    };
-
-    var updateSaveServicesBtn = function () {
-        setEnabled($saveServicesBtn, getChangedServices().length > 0);
-    };
-
-    var updateSaveFeedbackBtn = function () {
-        setEnabled($saveFeedbackBtn, $feedbackEmail.val() !== savedEmail);
-    };
-
-    var setEnabled = function ($btn, enabled) {
-        $btn.prop("disabled", !enabled);
-    };
-
-    var sendSave = function (url, payload, onSuccess) {
-        $.ajax({
-            url: url,
-            type: "PUT",
-            contentType: "application/json",
-            data: JSON.stringify(payload),
-            headers: {"X-Requested-With": "XMLHttpRequest"}
-        }).done(onSuccess).fail(function (jqXHR) {
-            if (jqXHR.status == 401 || jqXHR.status == 419) {
-                wizardCommonModule.showSessionExpiredDialog();
-            } else {
-                wizardCommonModule.showErrorDialog(jqXHR.statusText, jqXHR.responseText);
-            }
+    var hasChanges = function () {
+        var current = readServicesFromPage();
+        return _.some(current, function (c, index) {
+            var s = savedServices[index];
+            return c.title !== s.title || c.url !== s.url;
         });
     };
 
+    var updateSaveBtn = function () {
+        $saveBtn.prop("disabled", !hasChanges());
+    };
+
+    // Sends all three blocks in one POST. The backend creates rows without id and updates rows with id.
     var saveServices = function () {
-        var changed = getChangedServices();
-        if (changed.length === 0) {
-            return;
+        $.ajax({
+            url: SERVICE_LINKS_URL,
+            type: "POST",
+            contentType: "application/json",
+            data: JSON.stringify(readServicesFromPage()),
+            headers: {"X-Requested-With": "XMLHttpRequest"}
+        }).done(loadData).fail(handleError);
+    };
+
+    var handleError = function (jqXHR) {
+        if (jqXHR.status == 401 || jqXHR.status == 419) {
+            wizardCommonModule.showSessionExpiredDialog();
+        } else {
+            wizardCommonModule.showErrorDialog(jqXHR.statusText, jqXHR.responseText);
         }
-        sendSave(SAVE_SERVICES_URL, changed, function () {
-            _.forEach(changed, function (service) {
-                savedServices[service.id] = {title: service.title, link: service.link};
-                updateServiceHeading(service.id);
-            });
-            updateSaveServicesBtn();
-        });
+    };
+
+    init();
+};
+
+/**
+ * Feedback block: a single email. Stored in the map_feedback table, loaded and saved via /feedback.
+ */
+var ManageFeedback = function () {
+    var FEEDBACK_URL = "/feedback";
+    var DEFAULT_EMAIL = "support@digitalecmt.org";
+
+    var $email = $("#feedbackEmail");
+    var $saveBtn = $("#saveFeedbackBtn");
+    var savedEmail = "";
+
+    var init = function () {
+        $saveBtn.on("click", saveFeedback);
+        $email.on("input", updateSaveBtn);
+        loadData();
+    };
+
+    var loadData = function () {
+        $.ajax({
+            url: FEEDBACK_URL,
+            type: "GET",
+            dataType: "json",
+            headers: {"X-Requested-With": "XMLHttpRequest"}
+        }).done(function (data) {
+            savedEmail = (data && data.email) || DEFAULT_EMAIL;
+            $email.val(savedEmail);
+            updateSaveBtn();
+        }).fail(handleError);
+    };
+
+    var updateSaveBtn = function () {
+        $saveBtn.prop("disabled", $email.val() === savedEmail);
     };
 
     var saveFeedback = function () {
-        var email = $feedbackEmail.val();
-        sendSave(SAVE_FEEDBACK_URL, {id: FEEDBACK_ID, email: email}, function () {
-            savedEmail = email;
-            updateSaveFeedbackBtn();
-        });
+        $.ajax({
+            url: FEEDBACK_URL,
+            type: "POST",
+            contentType: "application/json",
+            data: JSON.stringify({email: $email.val()}),
+            headers: {"X-Requested-With": "XMLHttpRequest"}
+        }).done(loadData).fail(handleError);
+    };
+
+    var handleError = function (jqXHR) {
+        if (jqXHR.status == 401 || jqXHR.status == 419) {
+            wizardCommonModule.showSessionExpiredDialog();
+        } else {
+            wizardCommonModule.showErrorDialog(jqXHR.statusText, jqXHR.responseText);
+        }
     };
 
     init();
@@ -166,4 +157,5 @@ var ManageServices = function () {
 
 jQuery(function ($) {
     new ManageServices();
+    new ManageFeedback();
 });

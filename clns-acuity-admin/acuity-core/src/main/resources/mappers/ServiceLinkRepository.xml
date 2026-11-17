@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.acuity.visualisations.web.service.wizard.study.ServiceLinkRepository">
+
+    <select id="selectAll" resultType="com.acuity.visualisations.web.service.wizard.study.vo.ServiceLink">
+        select msl_id as id, msl_title as title, msl_url as url, msl_sort_order as sortOrder
+        from map_service_link
+        order by msl_sort_order, msl_id
+    </select>
+
+    <insert id="insertServiceLink">
+        insert into map_service_link (msl_id, msl_title, msl_url, msl_sort_order)
+        values (#{link.id}, #{link.title}, #{link.url, jdbcType=VARCHAR}, #{link.sortOrder})
+        <selectKey order="BEFORE" resultType="long" keyProperty="link.id">
+            SELECT nextval('msl_seq')
+        </selectKey>
+    </insert>
+
+    <update id="updateServiceLink">
+        update map_service_link
+        set msl_title = #{link.title},
+            msl_url = #{link.url, jdbcType=VARCHAR},
+            msl_sort_order = #{link.sortOrder}
+        where msl_id = #{link.id}
+    </update>
+
+    <delete id="deleteServiceLink">
+        delete from map_service_link where msl_id = #{id}
+    </delete>
+</mapper>
