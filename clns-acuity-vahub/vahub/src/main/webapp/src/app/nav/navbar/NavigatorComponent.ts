@@ -52,9 +52,6 @@ export class NavigatorComponent implements OnInit, OnDestroy {
 
     public loading = new Subject<boolean>();
     private hasStudySelected = false;
-    public hideOnScreenHelp: boolean;
-    public hideOnHelpManual: boolean;
-    public hideHelpDropdown = true;
     public currentDatasets: string[];
     public showAllButtonVisible: boolean;
     public headerExpanded: boolean;
@@ -72,6 +69,8 @@ export class NavigatorComponent implements OnInit, OnDestroy {
 
     public support: { [index: string]: string };
     public pathToImages: string;
+    public feedbackEmail: string;
+    private readonly DEFAULT_EMAIL = 'support@digitalecmt.org';
 
     constructor(public sessionEventService: SessionEventService,
                 private studyService: StudyService,
@@ -86,6 +85,7 @@ export class NavigatorComponent implements OnInit, OnDestroy {
         this.disableShowAllButton = true;
         this.support = configurationService.brandingProperties.support;
         this.pathToImages = configurationService.pathToStatic;
+        this.feedbackEmail = configurationService.feedbackEmail || this.DEFAULT_EMAIL;
     }
 
     ngOnDestroy(): void {
@@ -120,6 +120,11 @@ export class NavigatorComponent implements OnInit, OnDestroy {
             this.userName = userDetails.fullName;
         });
         this.sessionEventService.addSubscription(this.subKey + 'studySelection', this.studySelectionSubscription);
+
+        // Subscribe to configuration loading to update email when ready
+        this.configurationService.getConfigurationProperties().subscribe(() => {
+            this.feedbackEmail = this.configurationService.feedbackEmail || this.DEFAULT_EMAIL;
+        });
     }
 
     /**
@@ -156,18 +161,6 @@ export class NavigatorComponent implements OnInit, OnDestroy {
 
     isActive(location: string): boolean {
         return window.location.hash.indexOf(location) !== -1;
-    }
-
-    public startIntroJs(e: any): void {
-        e.stopPropagation();
-        if (window.location.hash.indexOf('timeline') !== -1) {
-            this.timelineHelpService.startIntro();
-        } else if (this.isOnPluginsPage()) {
-            this.helpService.startIntroAJs();
-        } else {
-            this.helpService.startIntroHomepage();
-        }
-        this.hideHelpDropdown = true;
     }
 
     public navigate(url: string): void {
@@ -213,10 +206,6 @@ export class NavigatorComponent implements OnInit, OnDestroy {
         this.modalDialogAction(event);
     }
 
-    public toggleHelpDropdown(): void {
-        this.hideHelpDropdown = !this.hideHelpDropdown;
-    }
-
     // called when the modal dialog closes
     private modalDialogAction = (event: boolean) => {
     }
@@ -243,9 +232,6 @@ export class NavigatorComponent implements OnInit, OnDestroy {
                 this.headerExpanded = false;
                 this.headerHeight = COLLAPSED_HEIGHT;
             }
-            const withoutScreenHelp = ['about', 'support', 'home', 'manual'];
-            this.hideOnScreenHelp = withoutScreenHelp.some(page => hash.includes(page));
-            this.hideOnHelpManual = hash.includes('manual');
             setTimeout(() => {
                 this.disableShowAllButton = !this.hideStudyName() && this.getHeaderHeight() <= COLLAPSED_HEIGHT;
             });

@@ -16,11 +16,14 @@
 
 package com.acuity.visualisations.rest.model.response;
 
+import com.acuity.visualisations.rawdatamodel.vo.ServiceLink;
 import com.acuity.visualisations.rest.config.branding.BrandingProperties;
 import com.acuity.visualisations.rest.config.properties.IntegrationProperties;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+
+import java.util.List;
 
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -29,4 +32,8 @@ public class ConfigurationResponse {
     private BrandingProperties branding;
     private String cbioportalUrl;
     private IntegrationProperties.QnaMakerProperties qnaMaker;
+    /** Home page service blocks (title and URL) from the database, in display order. */
+    private List<ServiceLink> serviceLinks;
+    /** Feedback email from the database. */
+    private String feedbackEmail;
 }

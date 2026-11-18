@@ -16,8 +16,7 @@
 
 import {Component} from '@angular/core';
 import {Router} from '@angular/router';
-import {ConfigurationService} from '../configuration/ConfigurationService';
-import ExtendedOptions = Request.ExtendedOptions;
+import {ConfigurationService, ServiceLinkItem} from '../configuration/ConfigurationService';
 
 @Component({
     selector: 'home',
@@ -27,24 +26,54 @@ import ExtendedOptions = Request.ExtendedOptions;
 })
 export class HomeComponent {
     loading: boolean;
-    extendedOptions: ExtendedOptions;
+    /** Service blocks from the database, matched by id: 1 = 'Omics', 2 = Patient, 3 = AI and ML. */
+    serviceLinks: ServiceLinkItem[];
+    feedbackEmail: string;
     hasCompanyLogo = false;
     pathToImages: string;
+
+    private readonly DEFAULT_TITLES: { [id: number]: string } = {
+        1: "'Omics' Services",
+        2: "Patient Services",
+        3: "AI and Machine Learning Services"
+    };
+    private readonly DEFAULT_EMAIL = "support@digitalecmt.org";
 
     constructor(private router: Router,
                 private configurationService: ConfigurationService) {
         this.pathToImages = configurationService.pathToStatic;
         this.checkIfHasCompany(configurationService.pathToStatic);
-        this.extendedOptions = configurationService.brandingProperties.extendedOptions;
+        this.serviceLinks = this.normalizeServiceLinks(configurationService.serviceLinks);
+        this.feedbackEmail = configurationService.feedbackEmail || this.DEFAULT_EMAIL;
     }
 
     public navigate(url: string): void {
         this.router.navigateByUrl(url);
     }
 
+    /** Service block with the given id (1 = 'Omics', 2 = Patient, 3 = AI and ML). */
+    serviceById(id: number): ServiceLinkItem | undefined {
+        return this.serviceLinks.find(link => link.id === id);
+    }
+
+    /**
+     * Makes sure the page always has the three blocks (ids 1..3): missing ones get the default title and an empty URL.
+     */
+    private normalizeServiceLinks(links: ServiceLinkItem[]): ServiceLinkItem[] {
+        return [1, 2, 3].map(id => {
+            const existing = (links || []).find(link => link.id === id);
+            return {
+                id,
+                title: existing?.title || this.DEFAULT_TITLES[id],
+                url: existing?.url || '',
+                sortOrder: existing?.sortOrder || id
+            };
+        });
+    }
+
     getTooltipText(hasOption: boolean): string {
         return !hasOption
-            ? 'You are not subscribed to this service, please contact \nsupport@digitalecmt.org for more information' : '';
+            ? `You are not subscribed to this service, please contact \n${this.feedbackEmail} for more information` : '';
     }
 
     private checkIfHasCompany(path: string): void {

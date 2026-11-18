@@ -34,11 +34,6 @@
                     <span class="">About</span>
                 </a>
             </li>
-            <li [ngClass]="{active: isActive('support')}" (click)="navigate('support')">
-                <a routerLink="/home" routerLinkActive="active">
-                    <span class="">Support</span>
-                </a>
-            </li>
             <li [hidden]="!hasDevelopmentTeamPermission()"
                 (click)="clearCache()">
                 <a>
@@ -56,8 +51,8 @@
                     <span class="nav-item">Best Practice</span>
                 </a>
             </li>
-            <li id="introB4" *ngIf="support">
-                <a href="mailto:{{support.feedback}}?subject=ACUITY_Feedback"
+            <li id="introB4">
+                <a [attr.href]="'mailto:' + feedbackEmail + '?subject=ACUITY_Feedback'"
                    data-toggle="tooltip" data-placement="bottom"
                    [title]="'Provide feedback to the ACUITY development team'">
                     <span class="glyphicon glyphicon-envelope nav-img"></span>
@@ -65,7 +60,7 @@
                 </a>
             </li>
             <li>
-                <a (click)="toggleHelpDropdown()">
+                <a class="cursor-pointer" (click)="navigate('manual')">
                     <img src="/assets/images/help-black.png" class="nav-img">
                     <span class="nav-item">Help</span>
                 </a>
@@ -83,20 +78,6 @@
 
     </div>
 </nav>
-<div class="help-dropdown-menu" [hidden]="hideHelpDropdown" (click)="toggleHelpDropdown()">
-    <ul>
-        <li (click)="startIntroJs($event)" class="cursor-pointer" [hidden]="hideOnScreenHelp">
-            <a>On Screen Help</a>
-        </li>
-        <li class="cursor-pointer">
-            <a href="/#/support" target="_blank" routerLinkActive="active">Support</a>
-        </li>
-        <li class="cursor-pointer" [hidden]="hideOnHelpManual">
-            <a href="/#/manual" target="_blank" routerLinkActive="active">Help manual</a>
-        </li>
-    </ul>
-</div>
-
 <app-modal-message
         [Title]="modalDialogTitle"
         [Msg]="modalDialogText"
