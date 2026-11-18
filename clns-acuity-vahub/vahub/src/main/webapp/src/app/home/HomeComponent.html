@@ -29,29 +29,29 @@
                             <p>Analytics Services</p>
                         </a>
                     </div>
-                    <div class="flex-item" [ngClass]="{'no-cursor': !serviceAt(0)?.url}" data-toggle="tooltip" data-placement="bottom"
-                         title="{{getTooltipText(!!serviceAt(0)?.url)}}">
-                        <a class="thumbnail forced-height home-thumbnail" [attr.href]="serviceAt(0)?.url || null"
-                           data-toggle="tooltip" data-placement="bottom" [ngClass]="{'disabled': !serviceAt(0)?.url}">
+                    <div class="flex-item" [ngClass]="{'no-cursor': !serviceById(1)?.url}" data-toggle="tooltip" data-placement="bottom"
+                         title="{{getTooltipText(!!serviceById(1)?.url)}}">
+                        <a class="thumbnail forced-height home-thumbnail" [attr.href]="serviceById(1)?.url || null" target="_blank" rel="noopener noreferrer"
+                           data-toggle="tooltip" data-placement="bottom" [ngClass]="{'disabled': !serviceById(1)?.url}">
                             <img src="/assets/images/omics.png" id="omics" alt=" " class="thumbnail-img"/>
-                            <p>{{serviceAt(0)?.title}}</p>
+                            <p>{{serviceById(1)?.title}}</p>
                         </a>
                     </div>
-                    <div class="flex-item" [ngClass]="{'no-cursor': !serviceAt(1)?.url}" data-toggle="tooltip" data-placement="bottom"
-                         title="{{getTooltipText(!!serviceAt(1)?.url)}}">
-                        <a class="thumbnail forced-height home-thumbnail" [attr.href]="serviceAt(1)?.url || null"
-                           data-toggle="tooltip" data-placement="bottom" [ngClass]="{'disabled': !serviceAt(1)?.url}">
+                    <div class="flex-item" [ngClass]="{'no-cursor': !serviceById(2)?.url}" data-toggle="tooltip" data-placement="bottom"
+                         title="{{getTooltipText(!!serviceById(2)?.url)}}">
+                        <a class="thumbnail forced-height home-thumbnail" [attr.href]="serviceById(2)?.url || null" target="_blank" rel="noopener noreferrer"
+                           data-toggle="tooltip" data-placement="bottom" [ngClass]="{'disabled': !serviceById(2)?.url}">
                             <img src="/assets/images/patient.png" id="patient" alt=" " class="thumbnail-img"/>
-                            <p>{{serviceAt(1)?.title}}</p>
+                            <p>{{serviceById(2)?.title}}</p>
                         </a>
                     </div>
-                    <div class="flex-item" [ngClass]="{'no-cursor': !serviceAt(2)?.url}" data-toggle="tooltip" data-placement="bottom"
-                         title="{{getTooltipText(!!serviceAt(2)?.url)}}">
-                        <a class="thumbnail forced-height home-thumbnail" [attr.href]="serviceAt(2)?.url || null"
-                           data-toggle="tooltip" data-placement="bottom" [ngClass]="{'disabled': !serviceAt(2)?.url}">
+                    <div class="flex-item" [ngClass]="{'no-cursor': !serviceById(3)?.url}" data-toggle="tooltip" data-placement="bottom"
+                         title="{{getTooltipText(!!serviceById(3)?.url)}}">
+                        <a class="thumbnail forced-height home-thumbnail" [attr.href]="serviceById(3)?.url || null" target="_blank" rel="noopener noreferrer"
+                           data-toggle="tooltip" data-placement="bottom" [ngClass]="{'disabled': !serviceById(3)?.url}">
                             <img src="/assets/images/machine_learning.png" id="machine-learning" alt=" "
                                  class="thumbnail-img"/>
-                            <p>{{serviceAt(2)?.title}}</p>
+                            <p>{{serviceById(3)?.title}}</p>
                         </a>
                     </div>
                 </div>

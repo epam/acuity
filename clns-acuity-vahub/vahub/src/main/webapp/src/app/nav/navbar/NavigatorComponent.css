@@ -177,33 +177,6 @@
     margin-top: 9px;
 }
 
-.help-dropdown-menu {
-    position: fixed;
-    border: 1px #ebebeb solid;
-    top: 51px;
-    z-index: 1050;
-    right: 275px;
-    background-color: white;
-}
-
-.help-dropdown-menu ul {
-    list-style: none;
-    padding: 0;
-}
-
-.help-dropdown-menu li {
-    padding: 0 20px;
-}
-
-.help-dropdown-menu li:hover {
-    background-color: #ebebeb;
-}
-
-.help-dropdown-menu a {
-    color: #3f4444;
-    text-decoration: none;
-}
-
 .cursor-pointer {
     cursor: pointer;
 }

@@ -26,17 +26,17 @@ import {ConfigurationService, ServiceLinkItem} from '../configuration/Configurat
 })
 export class HomeComponent {
     loading: boolean;
-    /** Service blocks from the database in display order: 0 = 'Omics', 1 = Patient, 2 = AI and ML. */
+    /** Service blocks from the database, matched by id: 1 = 'Omics', 2 = Patient, 3 = AI and ML. */
     serviceLinks: ServiceLinkItem[];
     feedbackEmail: string;
     hasCompanyLogo = false;
     pathToImages: string;
 
-    private readonly DEFAULT_TITLES = [
-        "'Omics' Services",
-        "Patient Services",
-        "AI and Machine Learning Services"
-    ];
+    private readonly DEFAULT_TITLES: { [id: number]: string } = {
+        1: "'Omics' Services",
+        2: "Patient Services",
+        3: "AI and Machine Learning Services"
+    };
     private readonly DEFAULT_EMAIL = "support@digitalecmt.org";
 
     constructor(private router: Router,
@@ -51,26 +51,24 @@ export class HomeComponent {
         this.router.navigateByUrl(url);
     }
 
-    /** Service block at the given position, or undefined if the table has no such row. */
-    serviceAt(index: number): ServiceLinkItem | undefined {
-        return this.serviceLinks[index];
+    /** Service block with the given id (1 = 'Omics', 2 = Patient, 3 = AI and ML). */
+    serviceById(id: number): ServiceLinkItem | undefined {
+        return this.serviceLinks.find(link => link.id === id);
     }
 
     /**
-     * Fills missing rows with default titles and empty URLs, so that the page always shows three blocks.
+     * Makes sure the page always has the three blocks (ids 1..3): missing ones get the default title and an empty URL.
      */
     private normalizeServiceLinks(links: ServiceLinkItem[]): ServiceLinkItem[] {
-        const result: ServiceLinkItem[] = [];
-        for (let i = 0; i < this.DEFAULT_TITLES.length; i++) {
-            const existing = links && links[i];
-            result.push({
-                id: existing?.id || 0,
-                title: existing?.title || this.DEFAULT_TITLES[i],
+        return [1, 2, 3].map(id => {
+            const existing = (links || []).find(link => link.id === id);
+            return {
+                id,
+                title: existing?.title || this.DEFAULT_TITLES[id],
                 url: existing?.url || '',
-                sortOrder: i + 1
-            });
-        }
-        return result;
+                sortOrder: existing?.sortOrder || id
+            };
+        });
     }
 
     getTooltipText(hasOption: boolean): string {

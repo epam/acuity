@@ -214,7 +214,7 @@
                     <h3 class="panel-title">Services</h3>
                 </div>
                 <div class="panel-body">
-                    <div class="panel panel-default service-block" data-service-id="1">
+                    <div class="panel panel-primary service-block" data-service-id="1">
                         <div class="panel-heading">
                             <h3 class="panel-title service-heading">Omics Services</h3>
                         </div>
@@ -229,7 +229,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="panel panel-default service-block" data-service-id="2">
+                    <div class="panel panel-primary service-block" data-service-id="2">
                         <div class="panel-heading">
                             <h3 class="panel-title service-heading">Patient Services</h3>
                         </div>
@@ -244,7 +244,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="panel panel-default service-block" data-service-id="3">
+                    <div class="panel panel-primary service-block" data-service-id="3">
                         <div class="panel-heading">
                             <h3 class="panel-title service-heading">AI and Machine Learning Services</h3>
                         </div>
@@ -259,6 +259,11 @@
                             </div>
                         </div>
                     </div>
+                    <p class="help-block">
+                        <strong style="color: #000;">Note:</strong> Enter a valid link in the Link field using one of the following formats:<br/>
+                        <strong style="color: #000;">mailto:</strong><span style="color: #000;">blabla@example.com</span> &ndash; opens the default email client (e.g. Outlook) to send an email.<br/>
+                        <span style="color: #000;">https://example.com</span> or <span style="color: #000;">http://example.com</span> &ndash; opens the link in a separate browser tab.
+                    </p>
                     <div class="clearfix">
                         <button id="saveServicesBtn" type="button" class="btn btn-primary pull-right" disabled>Save
                         </button>

@@ -52,9 +52,6 @@ export class NavigatorComponent implements OnInit, OnDestroy {
 
     public loading = new Subject<boolean>();
     private hasStudySelected = false;
-    public hideOnScreenHelp: boolean;
-    public hideOnHelpManual: boolean;
-    public hideHelpDropdown = true;
     public currentDatasets: string[];
     public showAllButtonVisible: boolean;
     public headerExpanded: boolean;
@@ -166,18 +163,6 @@ export class NavigatorComponent implements OnInit, OnDestroy {
         return window.location.hash.indexOf(location) !== -1;
     }
 
-    public startIntroJs(e: any): void {
-        e.stopPropagation();
-        if (window.location.hash.indexOf('timeline') !== -1) {
-            this.timelineHelpService.startIntro();
-        } else if (this.isOnPluginsPage()) {
-            this.helpService.startIntroAJs();
-        } else {
-            this.helpService.startIntroHomepage();
-        }
-        this.hideHelpDropdown = true;
-    }
-
     public navigate(url: string): void {
         this.router.navigateByUrl(url);
     }
@@ -221,10 +206,6 @@ export class NavigatorComponent implements OnInit, OnDestroy {
         this.modalDialogAction(event);
     }
 
-    public toggleHelpDropdown(): void {
-        this.hideHelpDropdown = !this.hideHelpDropdown;
-    }
-
     // called when the modal dialog closes
     private modalDialogAction = (event: boolean) => {
     }
@@ -251,9 +232,6 @@ export class NavigatorComponent implements OnInit, OnDestroy {
                 this.headerExpanded = false;
                 this.headerHeight = COLLAPSED_HEIGHT;
             }
-            const withoutScreenHelp = ['about', 'support', 'home', 'manual'];
-            this.hideOnScreenHelp = withoutScreenHelp.some(page => hash.includes(page));
-            this.hideOnHelpManual = hash.includes('manual');
             setTimeout(() => {
                 this.disableShowAllButton = !this.hideStudyName() && this.getHeaderHeight() <= COLLAPSED_HEIGHT;
             });
