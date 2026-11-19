@@ -261,7 +261,7 @@
                     </div>
                     <p class="help-block">
                         <strong style="color: #000;">Note:</strong> Enter a valid link in the Link field using one of the following formats:<br/>
-                        <strong style="color: #000;">mailto:</strong><span style="color: #000;">blabla@example.com</span> &ndash; opens the default email client (e.g. Outlook) to send an email.<br/>
+                        <strong style="color: #000;">mailto:</strong><span style="color: #000;">test@example.com</span> &ndash; opens the default email client (e.g. Outlook) to send an email.<br/>
                         <span style="color: #000;">https://example.com</span> or <span style="color: #000;">http://example.com</span> &ndash; opens the link in a separate browser tab.
                     </p>
                     <div class="clearfix">
