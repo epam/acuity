@@ -25,9 +25,9 @@ module "rds" {
   password_wo                 = random_password.dbadmin_password.result
   password_wo_version         = 2
 
-  # Public subnets; guarded only by publicly_accessible=false + sg_rds.
+  # Private database subnets (no internet route); reached in-VPC via sg_rds.
   create_db_subnet_group = true
-  subnet_ids             = module.vpc.public_subnets
+  subnet_ids             = module.vpc.database_subnets
   vpc_security_group_ids = [module.sg_rds.id]
 
   create_db_option_group = false
